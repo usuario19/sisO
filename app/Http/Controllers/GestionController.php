@@ -1,0 +1,120 @@
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Models\Gestion;
+use App\Models\Disciplina;
+use App\Models\disciplina_gestion;
+use Illuminate\Support\Facades\DB;
+
+class GestionController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $disciplina = DB::table('disciplinas')->get();
+        return view('admin.reg_gest')->with('disciplina', $disciplina);
+        //return var_dump($disciplina);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $gestion = new Gestion;
+        $gestion->nombre_gestion = $request->get('nombre');
+        $gestion->fecha_ini = $request->get('fechaIni');
+        $gestion->fecha_fin = $request->get('fechaFin');
+        $gestion->desc_gest = $request->get('descripcion');
+        
+        $gestion->save();
+
+        $ultima_gestion = Gestion::all();
+        $valor = $ultima_gestion->last()->id_gestion;
+        //dd($valor);
+
+        
+        $disciplinas =$request->get('id_disciplinas');
+        foreach ($disciplinas as $disc) {
+            $datos = new disciplina_gestion;
+            $datos->id_gestion=$valor;
+            $datos->id_disciplina=$disc;
+            $datos->save();
+        }
+
+       /* foreach ($request as $valor => $disciplina) {
+            $id_disc = $request->get('disciplina');
+            return var_dump($id_disc);
+        }
+        
+
+        $gestion->save();*/
+        
+        //$gestion = Disciplina::find($id_disc);
+        //$gestion = Disciplina::where($request->get('disciplina'));
+        //$gestion->disciplinas()->attach($request->get('disciplina'),['id_disc','state'=>true]);
+        //return var_dump($gestion);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

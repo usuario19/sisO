@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Storage;
+use Illuminate\Http\UploadedFile;
 
+use Storage;
 class Club extends Model
 {
     //
+
+   
     protected $fillable = [
 		'nombre_club',
 		'id_coordinador',

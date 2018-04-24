@@ -1,4 +1,4 @@
-@extends('plantillas.menu_inicio')
+@extends('plantillas.main')
 @section('title')
 SisO:Crear Disciplina
 @endsection
@@ -14,6 +14,12 @@ SisO:Crear Disciplina
 		<div class="form-group col-md-12">
 			{!! Form::label('nombre_disc', 'Nombre Disciplina', []) !!}
 			{!! Form::text('nombre_disc', null, ['class'=>'form-control']) !!}
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-12">
+			{!! Form::label('foto_disc', 'Imagen', []) !!}
+			{!! Form::file('foto_disc', ['class'=>'form-control']) !!}
 		</div>
 	</div>
 

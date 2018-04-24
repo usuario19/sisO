@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Club;
+use App\Models\Jugador;
 use Illuminate\Support\Facades\DB;
 
-class ClubController extends Controller
+class JugadorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,25 +15,8 @@ class ClubController extends Controller
      */
     public function index()
     {
-        //listar clubs
-        $clubs = DB::table('clubs')->get();
-        $usuarios=DB::table('administradores')->get();
-        $coordinadores = array();
-        $datos = array();
-
-        foreach ($clubs as $club) {
-            foreach ($usuarios as $usuario) {
-        
-             
-                if ($club->coordinador=$usuario->id_usuario) {
-                $coordinadores[$club->coordinador] = ($usuario->nombre." ".$usuario->apellidos);
-                } 
-            }
-            }
-       // foreach ($clubs as $club) {
-         //   $datos = ($usuarios->nombre." ".$usuarios->apellidos);
-        //}
-        return view('club.listar_club')->with('clubs',$clubs,'coordinadores',$coordinadores);
+        $usuarios = DB::table('jugadores')->get();
+        return view('jugador.listar_jugadores')->with('usuarios',$usuarios);
     }
 
     /**
@@ -43,16 +26,7 @@ class ClubController extends Controller
      */
     public function create()
     {
-        //
-        $datos = DB::table('administradores')->get();
-        $usuarios = array();
-        $i=0;
-
-        foreach ($datos as $dato) {
-            $usuarios[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
-            $i++;
-        }
-        return view('club.reg_club')->with('usuarios', $usuarios);
+        return view('jugador.reg_jugador');
     }
 
     /**
@@ -63,13 +37,12 @@ class ClubController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $datos = new Club($request->all());
+        $datos = new Jugador($request->all());
         $datos->save();
-        return redirect()->route('club.index');
-    }
-
-    /**
+         
+        return redirect()->route('jugador.index');
+     }
+        /*
      * Display the specified resource.
      *
      * @param  int  $id

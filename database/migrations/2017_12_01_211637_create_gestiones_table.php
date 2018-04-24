@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGestionsTable extends Migration
+class CreateGestionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateGestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gestions', function (Blueprint $table) {
+        Schema::create('gestiones', function (Blueprint $table) {
             $table->increments('id_gestion');
             $table->string('nombre_gestion');
             $table->date('fecha_ini');
@@ -30,6 +30,6 @@ class CreateGestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gestions');
+        Schema::dropIfExists('gestiones');
     }
 }

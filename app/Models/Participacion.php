@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class disciplina_gestion extends Model
+class Participacion extends Model
 {
-    protected $fillable =['id_gest', 'id_disc'];
+	protected $table = 'participaciones';
+	protected $primaryKey = 'id_participacion';
+
+    protected $fillable =['id_gestion', 'id_disciplina'];
 
     public function disciplina(){
     	 return $this->belongsTo('App\Models\Disciplina','id_disc');

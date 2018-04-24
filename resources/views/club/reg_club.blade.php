@@ -1,4 +1,4 @@
-@extends('plantillas.menu_inicio')
+@extends('plantillas.main')
 @section('title')
 SisO: Crear Clubs
 @endsection

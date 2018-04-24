@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permiso extends Model
+class Jugador_Inscripcion extends Model
 {
     //
+    protected $table = 'Jugador_Inscripciones';
+
+	
     protected $fillable = [
-    	'nombre_permiso',
+    	'id_inscripcion',
+    	'id_jugador',
+
     ];
 
 
@@ -16,9 +21,4 @@ class Permiso extends Model
     protected $hidden = [
         'remember_token',
     ];
-    public function usuarios(){
-        return $this-belongsToMany('App\Models\Usuario');
-    }
-    
-
 }

@@ -1,4 +1,4 @@
-@extends('plantillas.menu_inicio')
+@extends('plantillas.main')
 
 @section('title')
     SisO - Lista de Usuarios
@@ -16,20 +16,21 @@
         <th>Correo</th>
         <th>Descripcion</th>
   			<th>Acciones</th>
+        <th>Permisos</th>
         
   		</thead>
   		<tbody>
   			@foreach($usuarios as $usuario)
   				<tr>
-  					<td>{{ $usuario->id_usuario}}</td>
-            <td><img class="img-thumbnail" src="storage/fotos/{{ $usuario->foto }}" alt="" height=" 100px" width="100px"></td>
+  					<td>{{ $usuario->id_administrador}}</td>
+            <td><img class="img-thumbnail" src="storage/fotos/{{ $usuario->foto_admin }}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $usuario->ci}}</td>
   					<td>{{ $usuario->nombre}}</td>
   					<td>{{ $usuario->apellidos}}</td>
             <td>{{ $usuario->email}}</td>
-  					<td>{{ $usuario->descripcion_usuario}}</td>
-            <td><a href="{{ route('usuario.edit',$usuario->id_usuario) }}">Editar</a></td>
-            <td><a href="{{ route('usuario.destroy',$usuario->id_usuario) }}">Eliminar</a></td>
+  					<td>{{ $usuario->descripcion_admin}}</td>
+            <td><a href="{{ route('administrador.edit',$usuario->id_administrador) }}">Editar</a></td>
+            <td><a href="{{ route('administrador.destroy',$usuario->id_administrador) }}">Eliminar</a></td>
             
   				</tr>
   			@endforeach

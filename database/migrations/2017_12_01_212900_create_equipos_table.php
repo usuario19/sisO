@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateEquiposTable extends Migration
 {
     /**
-     * Run the migrations.
+     *
      *
      * @return void
      */

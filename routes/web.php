@@ -12,11 +12,12 @@
 */
 
 Route::get('/', function () {
-   return view('plantillas.menu_inicio');
+   return view('welcome');
 	//return view('disciplina.reg_disc');
 });
+Route::resource('administrador','AdministradorController');
 
-Route::resource('usuario','UsuarioController');
+Route::resource('jugador','JugadorController');
 
 Route::resource('disciplina','DisciplinaController');
 

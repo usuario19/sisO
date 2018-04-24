@@ -1,10 +1,10 @@
-<?php
+44<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClubDisciplinaTable extends Migration
+class CreateClubParticipacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateClubDisciplinaTable extends Migration
      */
     public function up()
     {
-        Schema::create('club_disciplina', function (Blueprint $table) {
-            $table->integer('id_disciplina')->unsigned();
-            $table->foreign('id_disciplina')->references('id_disc')->on('disciplinas');
+        Schema::create('club_participaciones', function (Blueprint $table) {
+            $table->integer('id_participacion')->unsigned();
+            $table->foreign('id_participacion')->references('id_participacion')->on('participaciones');
+
             $table->integer('id_club')->unsigned();
             $table->foreign('id_club')->references('id_club')->on('clubs');
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateClubDisciplinaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clubDisc');
+        Schema::dropIfExists('clubParticipaciones');
     }
 }

@@ -1,7 +1,10 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>@yield('title')</title>
 	{!! Html::style('/css/bootstrap.min.css') !!}
 
@@ -56,8 +59,19 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('usuario.create') }}>Registrar Jugador</a>
-              <a class="dropdown-item" href={{ route('usuario.index') }}>Lista de jugadores</a>
+              <a class="dropdown-item" href={{ route('jugador.create') }}>Registrar Jugador</a>
+              <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de jugadores</a>
+            </div>
+          </li> 
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Administradores
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href={{ route('administrador.create') }}>Registrar Administrador</a>
+              <a class="dropdown-item" href={{ route('administrador.index') }}>Lista de adminstrdores</a>
             </div>
           </li> 
 

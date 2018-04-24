@@ -1,15 +1,15 @@
-@extends('plantillas.menu_inicio')
+@extends('plantillas.main')
 @section('title')
-	SisO: Crear Cuenta
+	SisO: Registrar Admin
 @endsection
 @section('content')
 <div class="container col-md-8">
-	<h1 class="display-4">Crear cuenta</h1>
+	<h1 class="display-4">Registrar Admin</h1>
 	<br>
 </div>
 <div class="container col-md-6">
 	
-	{!! Form::open(['route'=>'usuario.store','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true] ) !!}
+	{!! Form::open(['route'=>'administrador.store','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true] ) !!}
 
 		<div class="form-row">
 
@@ -84,8 +84,8 @@
   
 		<div class="form-row">
 		    <div class="form-group col-md-12">
-		     	{!! Form::label('descripcion_usuario', 'Descripcion', []) !!}
-		     	{!! Form::textArea('descripcion_usuario',null , ['class'=>'form-control','rows'=>4]) !!}
+		     	{!! Form::label('descripcion_admin', 'Descripcion', []) !!}
+		     	{!! Form::textArea('descripcion_admin',null , ['class'=>'form-control','rows'=>4]) !!}
 		    </div>
 
   		</div>
@@ -95,15 +95,8 @@
   		
 		<div class="form-row">
 			<div class="form-group col-md-12">
-				{!! Form::label('foto', 'Subir foto', []) !!}
-				{!! Form::file('foto', ['class'=>'form-control']) !!}
-			</div>
-		</div>
-
-		<div class="form-row">
-			<div class="form-group col-md-12">
-				{!! Form::label('id_club', 'Club', []) !!}
-				{!! Form::text('id_club', null, ['class'=>'form-control']) !!}
+				{!! Form::label('foto_admin', 'Subir foto', []) !!}
+				{!! Form::file('foto_admin', ['class'=>'form-control']) !!}
 			</div>
 		</div>
 		

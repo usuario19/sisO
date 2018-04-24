@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\Administrador;
 use Illuminate\Support\Facades\DB;
 
-class UsuarioController extends Controller
+
+class AdministradorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = DB::table('usuarios')->get();
+        //
+        $usuarios = DB::table('administradores')->get();
         return view('admin.listar_usr')->with('usuarios',$usuarios);
     }
 
@@ -26,6 +28,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
+        //
         return view('admin.reg_usr');
     }
 
@@ -37,12 +40,14 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $datos = new Usuario($request->all());
+        //
+        $datos = new Administrador($request->all());
         $datos->save();
          
-        return redirect()->route('usuario.index');
-     }
-        /*
+        return redirect()->route('administrador.index');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

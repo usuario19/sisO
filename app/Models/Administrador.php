@@ -7,20 +7,24 @@ use Illuminate\Http\UploadedFile;
 
 use Storage;
 
-class Usuario extends Model
+
+class Administrador extends Model
 {
-    //
+	protected $table = 'administradores';
+	protected $primaryKey = 'id_administrador';
+
+	
     protected $fillable = [
     	'ci',
     	'nombre', 
     	'apellidos', 
     	'genero',
     	'fecha_nac',
-    	'foto',
+    	'foto_admin',
+    	'descripcion_admin',
     	'email',
-    	'descripcion_usuario',
     	'password',
-    	'id_club',
+
     ];
 
 
@@ -28,26 +32,26 @@ class Usuario extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function permisos (){
-        return $this-belongsToMany('App\Models\Permiso');
-    }
-    //un jugador pertenece a un club
+
+    //un jugador administra a un club
     public function club (){
         return $this-belongsTo('App\Models\Club');
     } 
     //ALMACENAR EL LIBRO EN LA CARPETA
-    public function setFotoAttribute($value)
+    public function setFotoAdminAttribute($value)
     {
         if($value !== null)
         {
             $nombre = time().'-'.$value->getClientOriginalName();
             //obtiene eel nombre del archivo
             Storage::disk('fotos')->put($nombre, file_get_contents($value));
-            $this->attributes['foto'] = $nombre;
+            $this->attributes['foto_admin'] = $nombre;
             /*
             $path = storage_path('app/public');
             $value ->move($path, $nombre);
             $this->attributes['archivo'] = 'app/public/'.$nombre;*/
+        }else{
+            echo "error";
         }
     }
 }

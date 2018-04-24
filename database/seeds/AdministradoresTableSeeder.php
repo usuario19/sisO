@@ -15,7 +15,7 @@ class AdministradoresTableSeeder extends Seeder
         //
         DB::table('administradores')->insert([
          	'ci' => 1234567,
-            'nombre' => 'admin',
+            'nombre' => 'administrador',
             'apellidos' => 'apellidos',
             'genero' => 'masculino',
             'fecha_nac' => '04/04/1980',

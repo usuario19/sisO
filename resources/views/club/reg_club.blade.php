@@ -19,8 +19,8 @@ SisO: Crear Clubs
 
 		<div class="form-row">
 			<div class="form-group col-md-12">
-				{!! Form::label('id_coordinador', 'Coordinador', []) !!}
-				{!! Form::select('id_coordinador', $usuarios,null, ['class'=>'form-control']) !!}
+				{!! Form::label('id_administrador', 'Coordinador', []) !!}
+				{!! Form::select('id_administrador', $administradores,null, ['class'=>'form-control']) !!}
 				
 			</div>
 		</div>

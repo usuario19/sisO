@@ -34,9 +34,10 @@ class Administrador extends Model
     ];
 
     //un jugador administra a un club
-    public function club (){
-        return $this-belongsTo('App\Models\Club');
+    public function admin_clubs(){
+        return $this-hasMany('App\Models\Admin_club');
     } 
+
     //ALMACENAR EL LIBRO EN LA CARPETA
     public function setFotoAdminAttribute($value)
     {

@@ -14,7 +14,17 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-        //
+        $clubs = DB::table('disciplina')->get();
+        //$usuarios=DB::table('administradores')->get();
+        $coordinadores = array();
+        $datos = array();
+        foreach ($clubs as $club) {
+            foreach ($usuarios as $usuario) {             
+                if ($club->coordinador=$usuario->id_usuario) {
+                $coordinadores[$club->coordinador] = ($usuario->nombre." ".$usuario->apellidos);
+                } 
+            }
+        }   
     }
 
     /**

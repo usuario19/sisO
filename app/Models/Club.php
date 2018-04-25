@@ -8,12 +8,8 @@ use Illuminate\Http\UploadedFile;
 use Storage;
 class Club extends Model
 {
-    //
-
-   
     protected $fillable = [
 		'nombre_club',
-		'id_coordinador',
 		'ciudad',
 		'logo',
 		'descripcion_club',
@@ -23,13 +19,8 @@ class Club extends Model
 		'remember_token'
 		];
 
-	public function disciplinas(){
-		return $this->belongsToMany('App\Models\Disciplina');
-	}
-
-	//club tiene muchos jugadores
-	public function usuarios(){
-		return $this->hasMany('App\Models\Usuario');
+	public function admin_clubs(){
+		return $this->hasMany('App\Models\Admin_Club');
 	}
 	public function setLogoAttribute($value)
     {

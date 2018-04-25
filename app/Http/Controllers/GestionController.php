@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gestion;
 use App\Models\Disciplina;
-use App\Models\disciplina_gestion;
+use App\Models\Participacion;
 use Illuminate\Support\Facades\DB;
 
 class GestionController extends Controller
@@ -15,7 +15,8 @@ class GestionController extends Controller
      */
     public function index()
     {
-        //
+        $gestiones = DB::table('gestiones')->get();
+        return view('admin.listar_gestion')->with('gestiones',$gestiones);
     }
 
     /**
@@ -53,12 +54,12 @@ class GestionController extends Controller
         
         $disciplinas =$request->get('id_disciplinas');
         foreach ($disciplinas as $disc) {
-            $datos = new disciplina_gestion;
+            $datos = new participacion;
             $datos->id_gestion=$valor;
             $datos->id_disciplina=$disc;
             $datos->save();
         }
-
+        return redirect()->route('gestion.index');
        /* foreach ($request as $valor => $disciplina) {
             $id_disc = $request->get('disciplina');
             return var_dump($id_disc);

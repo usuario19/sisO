@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\Admin_club;
+use App\Models\Administrador;
 use Illuminate\Support\Facades\DB;
 
 class ClubController extends Controller
@@ -15,12 +16,26 @@ class ClubController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {/**
+    {
         //listar clubs
-        $clubs = DB::table('clubs')->get();
-        $administradores=DB::table('administradores')->get();
-        $coordinadores = array();
-        $datos = array();
+        $clubs = DB::table('adminclubs')
+        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
+        ->join('clubs','adminclubs.id_club','=','clubs.id_club')
+        
+        ->select('clubs.*','administradores.nombre','administradores.apellidos')
+        ->get();
+        //$clubs = Club::with(['admin_Clubs:id_club,clubs', 'administradores:id_administrador,admin_Club'])->get();
+        //$clubs = DB::table('club')->administradores->nombre->get();
+        //$clubs = App\Models\Club::has('administradores')->get();
+       // $clubs = DB::table('clubs')->get();
+        //$administradores=DB::table('administradores')->get();
+
+        //$id_club = $clubs->last()->id_club;
+
+        //$ultima_gestion = Gestion::all();
+        //$valor = $ultima_gestion->last()->id_gestion;
+        //$coordinadores = array();
+        //$datos = array();
 
        /*** foreach ($clubs as $club) {
             foreach ($administradores as $administrador) {             
@@ -31,23 +46,22 @@ class ClubController extends Controller
             }**/
        // foreach ($clubs as $club) {
          //   $datos = ($usuarios->nombre." ".$usuarios->apellidos);
-        //}**/
-/**
-        return view('club.listar_club')->with('clubs',$clubs,'coordinadores',$coordinadores);
-**/
+
+
+        return view('club.listar_club')->with('clubs',$clubs);
+
     }
 
     
     public function create()
     {
-        //
         $datos = DB::table('administradores')->get();
-        $usuarios = array();
-        $i=0;
+        //$usuarios = array();
+        //$i=0;
 
         foreach ($datos as $dato) {
             $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
-            $i++;
+            //$i++;
         }
         return view('club.reg_club')->with('administradores', $administradores);
     }
@@ -73,12 +87,14 @@ class ClubController extends Controller
         $datos->save();
 
         $admin_club = new Admin_club();
-        $admin_club->id_administrador = $request->get('id_coordinador');
+        $admin_club->id_administrador = $request->get('id_administrador');
 
         $ultimo_club = Club::all();
-        $ultimo=0;
-        $ultmo = $ultimo_club->last()->id_club;
-        $admin_club->id_club = $ultimo +1;
+
+        $ultimo = $ultimo_club->last()->id_club;
+
+        $admin_club->id_club = $ultimo;
+        //$datos->()->attach($);
         $admin_club->save();
 
         return redirect()->route('club.index');
@@ -103,7 +119,27 @@ class ClubController extends Controller
      */
     public function edit($id)
     {
-        //
+        //para editar el club
+        //$clubs = DB::table('club')->get();
+        $datos = DB::table('adminclubs')
+        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
+        ->join('clubs','adminclubs.id_club','=','clubs.id_club')
+        ->where('clubs.id_club', $id)
+        ->select('clubs.*','administradores.nombre','administradores.apellidos','administradores.id_administrador')
+
+        ->get();
+        //$clubs = array();
+        //$clubs = $datos;
+        foreach ($datos as $dato) {
+            $club = $dato;
+        }
+        $datos2 = DB::table('administradores')->get();
+        foreach ($datos2 as $datos) {
+            $administradores[$datos->id_administrador] = ($datos->nombre." ".$datos->apellidos);
+            //$i++;
+        }
+        //return dd($club);
+        return view('club.editar_club')->with('club',$club)->with('administradores',$administradores);
     }
 
     /**
@@ -115,7 +151,25 @@ class ClubController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = DB::table('adminclubs')
+        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
+        ->join('clubs','adminclubs.id_club','=','clubs.id_club')
+        ->where('clubs.id_club', $id)
+        ->select('clubs.*','administradores.nombre','administradores.apellidos','administradores.id_administrador')
+
+        ->get();
+        //$clubs = array();
+        //$clubs = $datos;
+        foreach ($datos as $dato) {
+            $club = $dato;
+        }
+        $datos2 = DB::table('administradores')->get();
+        foreach ($datos2 as $datos) {
+            $administradores[$datos->id_administrador] = ($datos->nombre." ".$datos->apellidos);
+            //$i++;
+        }
+        //return dd($club);
+        return view('club.editar_club')->with('club',$club,'administradores',$administradores);
     }
 
     /**

@@ -7,6 +7,7 @@ SisO:Crear Disciplina
 	<h1 class="display-4">Registrar Disciplina</h1>
 	<br>
 </div>
+
 <div class="container col-md-6">
 	{!! Form::open(['route'=>'disciplina.store','method'=>'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
 	

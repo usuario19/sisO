@@ -7,6 +7,7 @@
 
 	<title>@yield('title')</title>
 	{!! Html::style('/css/bootstrap.min.css') !!}
+  {!! Html::style('/css/mis_estilos.css') !!}
 
 </head>
 <body>

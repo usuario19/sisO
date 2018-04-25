@@ -151,25 +151,7 @@ class ClubController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $datos = DB::table('adminclubs')
-        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
-        ->join('clubs','adminclubs.id_club','=','clubs.id_club')
-        ->where('clubs.id_club', $id)
-        ->select('clubs.*','administradores.nombre','administradores.apellidos','administradores.id_administrador')
-
-        ->get();
-        //$clubs = array();
-        //$clubs = $datos;
-        foreach ($datos as $dato) {
-            $club = $dato;
-        }
-        $datos2 = DB::table('administradores')->get();
-        foreach ($datos2 as $datos) {
-            $administradores[$datos->id_administrador] = ($datos->nombre." ".$datos->apellidos);
-            //$i++;
-        }
-        //return dd($club);
-        return view('club.editar_club')->with('club',$club,'administradores',$administradores);
+        
     }
 
     /**

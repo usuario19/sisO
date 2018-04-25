@@ -1,0 +1,40 @@
+.radio{
+	height: 15px;
+	width: 15px;
+}
+/*div*/
+.texto{
+	margin-top: 10px;
+	text-align: center;
+	font-family: "courier", "sans-serif";
+	font-size: 18px;
+}
+
+.uploader{
+	position: relative;
+	width: 200px;
+	
+}
+
+.uploader:hover{
+	padding: 0px;
+	margin: 0px;
+	font-weight: bold;
+	background-color: skyblue;
+	opacity: 0.4;
+	color:black;
+	height: 35px;
+	border-radius: 25px;
+}
+/*file*/
+.upload{
+	padding: 0px;
+	margin: 0px;
+	position: absolute;/*ajustar ancho*/
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	opacity: 0;
+}

@@ -20,7 +20,7 @@ class CreateAdministradoresTable extends Migration
             $table->string('apellidos');
             $table->string('genero');
             $table->date('fecha_nac');
-            $table->string('foto_admin');
+            $table->string('foto_admin')->default('usuario-sin-foto.png');
             $table->string('email',100)->unique();
             $table->string('password');
             $table->text('descripcion_admin');

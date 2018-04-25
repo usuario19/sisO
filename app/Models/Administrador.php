@@ -38,7 +38,11 @@ class Administrador extends Model
         return $this-hasMany('App\Models\Admin_club');
     } 
 
+<<<<<<< HEAD
+    //ALMACENAR LA IMAGEN EN LA CARPETA
+=======
     //ALMACENAR EL LIBRO EN LA CARPETA
+>>>>>>> refs/remotes/origin/master
     public function setFotoAdminAttribute($value)
     {
         if($value !== null)
@@ -46,13 +50,12 @@ class Administrador extends Model
             $nombre = time().'-'.$value->getClientOriginalName();
             //obtiene eel nombre del archivo
             Storage::disk('fotos')->put($nombre, file_get_contents($value));
+
             $this->attributes['foto_admin'] = $nombre;
             /*
             $path = storage_path('app/public');
             $value ->move($path, $nombre);
             $this->attributes['archivo'] = 'app/public/'.$nombre;*/
-        }else{
-            echo "error";
         }
     }
 }

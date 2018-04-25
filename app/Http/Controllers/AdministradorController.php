@@ -56,17 +56,22 @@ class AdministradorController extends Controller
     public function show($id)
     {
         //
+       
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
-        //
+       // $usuario = DB::table('administradores')->where('id_administrador',$id)->get();
+
+        $usuario = Administrador::find($id);
+        //var_dump($usuario);
+       return view('admin.edit_adm')->with('usuario',$usuario);//url
     }
 
     /**
@@ -79,6 +84,7 @@ class AdministradorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        dd('hola');
     }
 
     /**

@@ -31,16 +31,13 @@
         
   				<tr>
   					<td>{{ $club->id_club}}</td>
-
-            <td><img class="img-thumbnail" src="storage/logos/{{ $club->logo }}" alt="" height=" 100px" width="100px"></td>
-
             <td>{{ $club->nombre_club}}</td>
   					<td>{{ $club->nombre." ".$club->apellidos}}</td>
   					<td>{{ $club->ciudad}}</td>
             <td>{{ $club->descripcion_club}}</td>
 
-            <td><a href="{{ route('club.edit',$club->id_club) }}">Editar</a></td>
-            <td><a href="{{ route('club.destroy',$club->id_club) }}">Eliminar</a></td>
+            <td><a href="{{ route('club.edit',$club->id_club) }}" class="btn btn-info">Editar</a></td>
+            <td><a href="{{ route('club.destroy',$club->id_club) }}" onclick="return confirm('Esta seguro de eliminar el club')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
             
   				</tr>
   			@endforeach

@@ -68,7 +68,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        
+        'foto_disc' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/foto_disc'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'archivos' => [
             'driver' => 'local',
             'root' => storage_path('app/public/archivos'),

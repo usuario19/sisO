@@ -7,6 +7,8 @@ use App\Models\Club;
 use App\Models\Admin_club;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\DB;
+use Image;
+use Storage;
 
 class ClubController extends Controller
 {
@@ -151,8 +153,39 @@ class ClubController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->hasFile('logo'))
+        {   $logo_antiguo = DB::table('clubs')
+                            ->where('id_club',$id)
+                            ->select('logo')
+                            ->get();
+            foreach ($logo_antiguo as $logo) {
+                Storage::disk('logos')->delete($logo->logo);    
+            }
+            
+            //return var_dump($logo_antiguo[]);
+            $logo = $request->file('logo');
+            $nombre_logo= time().'-'.$logo->getClientOriginalExtension();
+            Storage::disk('logos')->put($nombre_logo, file_get_contents($logo));
+
+            //Image::make($avatar)->resize(300, 300)->save(public_path('/storage/logo/'.$nombre_logo));
+
+            DB::table('clubs')
+                ->where('id_club', $id)
+                ->update(['nombre_club' => $request->get('nombre_club'),
+                            'ciudad'=>$request->get('ciudad'),
+                            'logo'=>$nombre_logo,
+                            'descripcion_club'=>$request->get('descripcion_club')
+                        ]);
+            DB::table('adminclubs')
+                ->where('id_club',$id)
+                ->update(['id_administrador'=>$request->get('id_administrador')
+                ]);    
+
         
+        }
+        return redirect()->route('club.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -162,6 +195,17 @@ class ClubController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //DB::table('clubs')->delete();
+        //$club = Club::find($id);
+        //$club->delete();
+        $logo_antiguo = DB::table('clubs')
+                            ->where('id_club',$id)
+                            ->select('logo')
+                            ->get();
+            foreach ($logo_antiguo as $logo) {
+                Storage::disk('logos')->delete($logo->logo);    
+        }
+        DB::table('clubs')->where('id_club', '=',$id)->delete();
+        return redirect()->route('club.index'); 
     }
 }

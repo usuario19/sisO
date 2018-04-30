@@ -13,7 +13,6 @@
   
 </div>
 
-
 	<table class="table table-condensed">
   		<thead>
   			<th width="50px">ID</th>
@@ -27,18 +26,16 @@
   			@foreach($disciplinas as $disciplina)
         
   				<tr>
-  					<td>{{ $disciplina->id_club}}</td>
+  					<td>{{ $disciplina->id_disc}}</td>
 
-            <td><img class="img-thumbnail" src="storage/logos/{{ $club->logo }}" alt="" height=" 100px" width="100px"></td>
-
-            <td>{{ $disciplina->id_disc}}</td>
-  					<td>{{ $disciplina->foto_disc}}</td>
+            <td><img class="img-thumbnail" src="storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $disciplina->nombre_disc}}</td>
-            <td>{{ $disciplina->reglamento_disc}}</td>
-            <td>{{ $disciplina->descripcion_club}}</td>
 
-            <td><a href="{{ route('disciplina.edit',$disciplina->id_disc) }}">Editar</a></td>
-            <td><a href="{{ route('disciplina.destroy',$disciplina->id_disc) }}">Eliminar</a></td>
+            <td><a  href="#">storage/archivos/{{ $disciplina->reglamento_disc }}</td>
+            <td>{{ $disciplina->descripcion_disc}}</td>
+
+            <td><a href="{{ route('disciplina.edit',$disciplina->id_disc) }}" class="btn btn-info">Editar</a></td>
+            <td><a href="{{ route('disciplina.destroy',$disciplina->id_disc) }}" onclick="return confirm('Esta seguro de eliminar la disciplina')" class="btn btn-danger">Eliminar</a></td>
             
   				</tr>
   			@endforeach

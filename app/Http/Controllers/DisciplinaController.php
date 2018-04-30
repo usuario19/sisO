@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
+use Illuminate\Support\Facades\DB;
+use Image;
+use Storage;
 
 class DisciplinaController extends Controller
 {
@@ -14,17 +17,19 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-        $clubs = DB::table('disciplina')->get();
+        $disciplinas = DB::table('disciplinas')->get();
         //$usuarios=DB::table('administradores')->get();
-        $coordinadores = array();
-        $datos = array();
-        foreach ($clubs as $club) {
-            foreach ($usuarios as $usuario) {             
-                if ($club->coordinador=$usuario->id_usuario) {
-                $coordinadores[$club->coordinador] = ($usuario->nombre." ".$usuario->apellidos);
-                } 
-            }
-        }   
+        //$coordinadores = array();
+        //$datos = array();
+        //foreach ($clubs as $club) {
+        //    foreach ($usuarios as $usuario) {             
+        //        if ($club->coordinador = $usuario->id_usuario) {
+        //        $coordinadores[$club->coordinador] = ($usuario->nombre." ".$usuario->apellidos);
+        //        } 
+        //    }
+        //}
+
+        return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
     }
 
     /**
@@ -49,7 +54,7 @@ class DisciplinaController extends Controller
         //
         $datos = new Disciplina($request->all());
         $datos->save();
-        return var_dump($datos);
+        return redirect()->route('disciplina.index');
     }
 
     /**
@@ -60,7 +65,8 @@ class DisciplinaController extends Controller
      */
     public function show($id)
     {
-        //
+        //para listar disciplina
+
     }
 
     /**
@@ -72,9 +78,28 @@ class DisciplinaController extends Controller
     public function edit($id)
     {
         //
-        $datos = new Disciplina($request->all());
-        $datos->save();
-        return var_dump($datos);
+        //$datos = new Disciplina($request->all());
+        //$datos->save();
+        //return var_dump($datos);
+        $datos = DB::table('disciplinas')
+        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
+        ->join('clubs','adminclubs.id_club','=','clubs.id_club')
+        ->where('clubs.id_club', $id)
+        ->select('clubs.*','administradores.nombre','administradores.apellidos','administradores.id_administrador')
+
+        ->get();
+        //$clubs = array();
+        //$clubs = $datos;
+        foreach ($datos as $dato) {
+            $club = $dato;
+        }
+        $datos2 = DB::table('administradores')->get();
+        foreach ($datos2 as $datos) {
+            $administradores[$datos->id_administrador] = ($datos->nombre." ".$datos->apellidos);
+            //$i++;
+        }
+        //return dd($club);
+        return view('club.editar_club')->with('club',$club)->with('administradores',$administradores);
     }
 
     /**

@@ -22,5 +22,9 @@ Route::resource('jugador','JugadorController');
 Route::resource('disciplina','DisciplinaController');
 
 Route::resource('club','ClubController');
+route::get('club/{id}/destroy',[
+    'uses'=> 'ClubController@destroy',
+    'as'=> 'club.destroy'
+]);
 
 Route::resource('gestion','GestionController');

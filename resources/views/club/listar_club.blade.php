@@ -1,3 +1,4 @@
+
 @extends('plantillas.main')
 
 @section('title')
@@ -28,9 +29,9 @@
   		<tbody>
 
   			@foreach($clubs as $club)
-        
   				<tr>
-  					<td>{{ $club->id_club}}</td>
+  					<td>{{ $club->id_club}}</td>            
+            <td><img class="img-thumbnail" src="storage/logos/{{ $club->logo}}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $club->nombre_club}}</td>
   					<td>{{ $club->nombre." ".$club->apellidos}}</td>
   					<td>{{ $club->ciudad}}</td>
@@ -38,6 +39,10 @@
 
             <td><a href="{{ route('club.edit',$club->id_club) }}" class="btn btn-info">Editar</a></td>
             <td><a href="{{ route('club.destroy',$club->id_club) }}" onclick="return confirm('Esta seguro de eliminar el club')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
+            
+            @if ("club.inscrito($club->id_club)" == true)
+                <td><a href="{{ route('club.inscribir',$club->id_club) }}">Inscribir</a></td>
+            @endif
             
   				</tr>
   			@endforeach

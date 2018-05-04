@@ -49,8 +49,6 @@ class GestionController extends Controller
 
         $ultima_gestion = Gestion::all();
         $valor = $ultima_gestion->last()->id_gestion;
-        //dd($valor);
-
         
         $disciplinas =$request->get('id_disciplinas');
         foreach ($disciplinas as $disc) {

@@ -16,10 +16,10 @@ class CreateParticipacionesTable extends Migration
         Schema::create('participaciones', function (Blueprint $table) {
             $table->increments('id_participacion');
             $table->integer('id_gestion')->unsigned();
-            $table->foreign('id_gestion')->references('id_gestion')->on('gestiones');
+            $table->foreign('id_gestion')->references('id_gestion')->on('gestiones')->onDelete('cascade');;
             
             $table->integer('id_disciplina')->unsigned();
-            $table->foreign('id_disciplina')->references('id_disc')->on('disciplinas');
+            $table->foreign('id_disciplina')->references('id_disc')->on('disciplinas')->onDelete('cascade');;
             $table->timestamps();
         });
     }

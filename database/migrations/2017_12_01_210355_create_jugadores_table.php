@@ -15,12 +15,12 @@ class CreateJugadoresTable extends Migration
     {
         Schema::create('jugadores', function (Blueprint $table) {
             $table->increments('id_jugador');
-            $table->integer('ci_jugador');
+            $table->integer('ci_jugador')->unique();
             $table->string('nombre_jugador');
             $table->string('apellidos_jugador');
             $table->string('genero_jugador');
             $table->date('fecha_nac_jugador');
-            $table->string('foto_jugador');
+            $table->string('foto_jugador')->default("usuario-sin-foto.png");
             $table->string('email_jugador',100)->unique();
             $table->text('descripcion_jugador');
             $table->rememberToken();

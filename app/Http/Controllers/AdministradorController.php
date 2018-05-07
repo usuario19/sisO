@@ -84,7 +84,18 @@ class AdministradorController extends Controller
     public function update(Request $request, $id)
     {
         //
-        dd('hola');
+        $usuario = Administrador::find($id);
+        $password = $usuario->password;
+        $usuario->fill($request->all());
+
+        if($request->password == "")
+        {
+            $usuario->password = $password;
+
+        }
+
+        $usuario->save();
+        return redirect()->route('administrador.index');
     }
 
     /**
@@ -96,5 +107,8 @@ class AdministradorController extends Controller
     public function destroy($id)
     {
         //
+        $usuario= Administrador::find($id);
+        $usuario->delete();
+        return redirect()->route('administrador.index');
     }
 }

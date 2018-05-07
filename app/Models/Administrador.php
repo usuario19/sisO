@@ -38,11 +38,8 @@ class Administrador extends Model
         return $this-hasMany('App\Models\Admin_club');
     } 
 
-<<<<<<< HEAD
     //ALMACENAR LA IMAGEN EN LA CARPETA
-=======
-    //ALMACENAR EL LIBRO EN LA CARPETA
->>>>>>> refs/remotes/origin/master
+
     public function setFotoAdminAttribute($value)
     {
         if($value !== null)

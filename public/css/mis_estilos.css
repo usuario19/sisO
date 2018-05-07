@@ -10,31 +10,58 @@
 	font-size: 18px;
 }
 
-.uploader{
-	position: relative;
+div.contenedor{
 	width: 200px;
+	height: 200px;
+}
+
+img#imgOrigen{
+
+	width: 200px;
+	height: 200px;
+}
+
+.noVista{
+	display: none;
+}
+.vista{
+ 	display: block;
+ 	width: 25px;
+	height: 25px;
+	margin: auto;
+	opacity: 0.5;
+ }
+ .vista:hover{
+ 	opacity: 1;
+ 	width: 30px;
+	height: 30px;
+ }
+ /*file*/
+ img#texto{
+ 	position: absolute;
+ 	width: 25px;
+	height: 25px;
+	margin: auto;
+	opacity: 0.5;
+ }
+ img#texto:hover{
+ 	opacity: 1;
+ 	width: 30px;
+	height: 30px;
+ }
+div#div_file{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-left:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
 	
 }
 
-.uploader:hover{
-	padding: 0px;
-	margin: 0px;
-	font-weight: bold;
-	background-color: skyblue;
-	opacity: 0.4;
-	color:black;
-	height: 35px;
-	border-radius: 25px;
+input#input{
+	visibility: hidden;
+	
 }
-/*file*/
-.upload{
-	padding: 0px;
-	margin: 0px;
-	position: absolute;/*ajustar ancho*/
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	width: 100%;
-	opacity: 0;
+input#input:hover{
+	opacity: 0.6;
 }

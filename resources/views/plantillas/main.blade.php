@@ -108,7 +108,7 @@
  	</div>
 	{!! Html::script('/js/jquery.js') !!}
 	{!! Html::script('/js/bootstrap.min.js') !!}
-	
+	{!! Html::script('/js/script.js') !!}
 	
 </body>
 </html>

@@ -61,7 +61,9 @@ class JugadorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = Jugador::find($id);
+        //var_dump($usuario);
+        return view('jugador.edit_jugador')->with('usuario',$usuario);//url
     }
 
     /**
@@ -74,6 +76,11 @@ class JugadorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $usuario = Jugador::find($id);
+        
+        $usuario->fill($request->all());
+        $usuario->save();
+        return redirect()->route('jugador.index');
     }
 
     /**
@@ -85,5 +92,8 @@ class JugadorController extends Controller
     public function destroy($id)
     {
         //
+        $usuario= Jugador::find($id);
+        $usuario->delete();
+        return redirect()->route('jugador.index');
     }
 }

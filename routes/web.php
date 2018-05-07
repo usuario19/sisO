@@ -16,8 +16,14 @@ Route::get('/', function () {
 	//return view('disciplina.reg_disc');
 });
 Route::resource('administrador','AdministradorController');
+Route::get('administrador/{id}/destroy',[ 
+			'uses'=> 'AdministradorController@destroy',
+			'as' => 'administrador.destroy']);
 
 Route::resource('jugador','JugadorController');
+Route::get('jugador/{id}/destroy',[ 
+			'uses'=> 'JugadorController@destroy',
+			'as' => 'jugador.destroy']);
 
 Route::resource('disciplina','DisciplinaController');
 

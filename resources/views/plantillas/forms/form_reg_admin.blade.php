@@ -20,14 +20,14 @@
 	 	<div class="form-row">
 
 			<div class="form-group col-md-4">
-				{!! Form::radio('genero', ' Femenino', false, ['id'=>'generof','class'=>'radio']) !!}
+				{!! Form::radio('genero', 1 ,'Femenino',['id'=>'generof','class'=>'radio']) !!}
 				{!! Form::label('generof', 'Femenino', []) !!}
 				
 			</div>
 
 			<div class="form-group col-md-4">
 					
-				{!! Form::radio('genero', ' Masculino', false, ['id'=>'generom','class'=>'radio']) !!}
+				{!! Form::radio('genero', 0 ,'Masculino',['id'=>'generom','class'=>'radio']) !!}
 				{!! Form::label('generom', 'Masculino', []) !!}
 				
 			</div>	
@@ -36,24 +36,16 @@
 	 	
 
    		<div class="form-row">
+			<div class="form-group col-md-6">
+	  			{!! Form::label('fecha_nac', 'Fecha de Nacimiento', []) !!}
+	  			{!! Form::date('fecha_nac', \Illuminate\Support\Carbon::setTestNow(), ['class'=> 'form-control']) !!}
+	  		</div>
 
 	  		<div class="form-group col-md-6">
 				{!! Form::label('ci', 'CI', []) !!}
 				{!! Form::text('ci', null , ['class'=>'form-control', 'placeholder'=>'']) !!}
 			</div>
-			<div class="form-group col-md-6">
-				{!! Form::label('ci_ciudad', 'Expedido', []) !!}
-				{!! Form::select('ci_ciudad', ['Cochabamba'=> 'Cochabamba','La Paz'=>'La Paz', 'Santa Cruz'=>'Santa Cruz','Potosi'=>'Potosi','Oruro'=>'Oruro','Tarija'=>'Tarija','Chuquisaca'=>'Chuquisaca','Beni'=>'Beni','Pando'=>'Pando'], null , ['class'=>'form-control']) !!}
-		    </div>
   		</div>
-
-  		<div class="form-row">
-  			
-	  		<div class="form-group col-md-6">
-	  			{!! Form::label('fecha_nac', 'Fecha de Nacimiento', []) !!}
-	  			{!! Form::date('fecha_nac', \Illuminate\Support\Carbon::now(), ['class'=> 'form-control']) !!}
-	  		</div>
-		</div>
 		<div class="form-row">
 	  		<div class="form-group col-md-12">
 	  			{!! Form::label('email', 'Correo electronico', []) !!}
@@ -69,7 +61,7 @@
 
 	    	<div class="form-group col-md-6">
 	    		{!! Form::label('password_confirmed', 'Confirma tu contraseña', []) !!}	
-				{!! Form::password('password', ['class' => 'form-control']) !!}
+				{!! Form::password('password_confirmed', ['class' => 'form-control']) !!}
 	    	</div>
     	</div>
   
@@ -80,8 +72,4 @@
 		    </div>
 
   		</div>
-  		<div class="form-row">
-  			
-  		</div>
   		
-		<br>

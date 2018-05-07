@@ -87,10 +87,16 @@
             </div>
           </li> 
 
-          <li class="nav-item">
-            <a class="nav-link" href={{ route('disciplina.create') }}>Registrar Disciplinas</a>
-          </li> 
-        </ul>
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Disciplinas
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href={{ route('disciplina.create') }}>Registrar Disciplina</a>
+              <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
+            </div>
+          </li>
         <ul class="navbar-nav">
          	 <li class="nav-item">
              <a class="nav-link" href="#">Login</a>

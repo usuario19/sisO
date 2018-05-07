@@ -19,6 +19,7 @@ class CreateInscripcionesTable extends Migration
             $table->foreign('id_gestion')->references('id_gestion')->on('gestiones');
             $table->integer('id_club')->unsigned();
             $table->foreign('id_club')->references('id_club')->on('clubs');
+            $table->timestamps();
         });
     }
 

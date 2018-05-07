@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\Admin_club;
 use App\Models\Administrador;
+use App\Models\Gestion;
+use App\Models\Inscripcion;
 use Illuminate\Support\Facades\DB;
+use Image;
+use Storage;
 
 class ClubController extends Controller
 {
@@ -24,35 +28,11 @@ class ClubController extends Controller
         
         ->select('clubs.*','administradores.nombre','administradores.apellidos')
         ->get();
-        //$clubs = Club::with(['admin_Clubs:id_club,clubs', 'administradores:id_administrador,admin_Club'])->get();
-        //$clubs = DB::table('club')->administradores->nombre->get();
-        //$clubs = App\Models\Club::has('administradores')->get();
-       // $clubs = DB::table('clubs')->get();
-        //$administradores=DB::table('administradores')->get();
-
-        //$id_club = $clubs->last()->id_club;
-
-        //$ultima_gestion = Gestion::all();
-        //$valor = $ultima_gestion->last()->id_gestion;
-        //$coordinadores = array();
-        //$datos = array();
-
-       /*** foreach ($clubs as $club) {
-            foreach ($administradores as $administrador) {             
-                if ($club->coordinador=$administradores->id_administrador) {
-                $coordinadores[$club->coordinador] = ($administrador->nombre." ".$administrador->apellidos);
-                } 
-            }
-            }**/
-       // foreach ($clubs as $club) {
-         //   $datos = ($usuarios->nombre." ".$usuarios->apellidos);
-
 
         return view('club.listar_club')->with('clubs',$clubs);
 
     }
 
-    
     public function create()
     {
         $datos = DB::table('administradores')->get();
@@ -151,8 +131,39 @@ class ClubController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->hasFile('logo'))
+        {   $logo_antiguo = DB::table('clubs')
+                            ->where('id_club',$id)
+                            ->select('logo')
+                            ->get();
+            foreach ($logo_antiguo as $logo) {
+                Storage::disk('logos')->delete($logo->logo);    
+            }
+            
+            //return var_dump($logo_antiguo[]);
+            $logo = $request->file('logo');
+            $nombre_logo= time().'-'.$logo->getClientOriginalExtension();
+            Storage::disk('logos')->put($nombre_logo, file_get_contents($logo));
+
+            //Image::make($avatar)->resize(300, 300)->save(public_path('/storage/logo/'.$nombre_logo));
+
+            DB::table('clubs')
+                ->where('id_club', $id)
+                ->update(['nombre_club' => $request->get('nombre_club'),
+                            'ciudad'=>$request->get('ciudad'),
+                            'logo'=>$nombre_logo,
+                            'descripcion_club'=>$request->get('descripcion_club')
+                        ]);
+            DB::table('adminclubs')
+                ->where('id_club',$id)
+                ->update(['id_administrador'=>$request->get('id_administrador')
+                ]);    
+
         
+        }
+        return redirect()->route('club.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -162,6 +173,44 @@ class ClubController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $logo_antiguo = DB::table('clubs')
+                            ->where('id_club',$id)
+                            ->select('logo')
+                            ->get();
+            foreach ($logo_antiguo as $logo) {
+                Storage::disk('logos')->delete($logo->logo);    
+        }
+        DB::table('clubs')->where('id_club', '=',$id)->delete();
+        return redirect()->route('club.index'); 
+    }
+    
+    //para llenar la tabla inscripcion
+    //inscribir un club a una gestion, a la gestion actual
+    public function inscribir($id){
+        $id_gestion = Gestion::all()->last()->id_gestion;
+        //$ultima_gestion = Gestion::all();
+        //$valor = $ultima_gestion->last()->id_gestion;
+        //return dd($id_gestion);
+        $inscripcion = new inscripcion();
+        $inscripcion->id_gestion = $id_gestion;
+        $inscripcion->id_club = $id;
+        $inscripcion->save();
+        return redirect()->route('club.index');
+    }
+    public function inscrito($id){
+        $id_gestion = Gestion::all()->last()->id_gestion;
+        $inscripcion = DB::table('inscripcion')
+        ->select('inscripcion.*')
+        ->where([
+            ['inscripcion.id_gestion', '=', $id_gestion],
+            ['inscripcion.id_club', '=', $id],
+        ])
+        ->get();
+        //dd($inscripcion);
+        if (empty($inscripcion)) {
+            return false;
+        }
+        return true;
+        
     }
 }

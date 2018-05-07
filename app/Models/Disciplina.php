@@ -35,12 +35,22 @@ class Disciplina extends Model
         {
             $nombre = time().'-'.$value->getClientOriginalName();
             //obtiene eel nombre del archivo
-            Storage::disk('fotos')->put($nombre, file_get_contents($value));
+            Storage::disk('foto_disc')->put($nombre, file_get_contents($value));
             $this->attributes['foto_disc'] = $nombre;
             /*
             $path = storage_path('app/public');
             $value ->move($path, $nombre);
             $this->attributes['archivo'] = 'app/public/'.$nombre;*/
+        }
+    }
+    public function setReglamentoDiscAttribute($value)
+    {
+        if($value !== null)
+        {
+            $nombre = time().'-'.$value->getClientOriginalName();
+            //obtiene eel nombre del archivo
+            Storage::disk('archivos')->put($nombre, file_get_contents($value));
+            $this->attributes['reglamento_disc'] = $nombre;
         }
     }
 }

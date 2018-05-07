@@ -21,6 +21,7 @@ class Club extends Model
 
 	public function admin_clubs(){
 		return $this->hasMany('App\Models\Admin_Club');
+        
 	}
 	public function setLogoAttribute($value)
     {

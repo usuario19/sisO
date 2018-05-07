@@ -8,7 +8,8 @@ SisO: Editar Clubs
 	<br>
 </div>
 <div class="container col-md-6">
-	{!! Form::open(['route'=>'club.store','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true] ) !!}
+	
+	{!! Form::model($club, ['route'=>['club.update',$club->id_club],'method'=>'PUT','enctype'=>'multipart/form-data','file'=>true]) !!}
 
 		<div class="form-row">
 			<div class="form-group col-md-12">

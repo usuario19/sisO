@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\AdministradorRequest;
+use Validator;
+use Storage;
 
 
 class AdministradorController extends Controller
@@ -38,9 +41,10 @@ class AdministradorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdministradorRequest $request)
     {
         //
+        //$mensages = $request->validate();
         $datos = new Administrador($request->all());
         $datos->save();
          
@@ -86,6 +90,12 @@ class AdministradorController extends Controller
         //
         $usuario = Administrador::find($id);
         $password = $usuario->password;
+
+        if ($request->hasFile('foto_admin') && $usuario->foto_admin != "usuario-sin-foto.png") 
+        {
+           Storage::disk('fotos')->delete($usuario->foto_admin);
+        }
+
         $usuario->fill($request->all());
 
         if($request->password == "")
@@ -93,7 +103,6 @@ class AdministradorController extends Controller
             $usuario->password = $password;
 
         }
-
         $usuario->save();
         return redirect()->route('administrador.index');
     }
@@ -108,6 +117,10 @@ class AdministradorController extends Controller
     {
         //
         $usuario= Administrador::find($id);
+        if ($usuario->foto_admin != "usuario-sin-foto.png") 
+        {
+           Storage::disk('fotos')->delete($usuario->foto_admin);
+        }
         $usuario->delete();
         return redirect()->route('administrador.index');
     }

@@ -38,10 +38,9 @@
             <td>{{ $usuario->fecha_nac_jugador}}</td>
   					<td>{{ $usuario->descripcion_jugador}}</td>
             <td><a href="{{ route('jugador.edit',$usuario->id_jugador) }}" class="btn btn-warning">Editar</a></td>
-            <td>
-              <a href="#confirm?"  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Eliminar</a>
-              </td>
 
+            <td>
+              <a href="{{ route('jugador.destroy',$usuario->id_jugador) }}"  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Eliminar</a>
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -52,17 +51,20 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
+
                     <div class="modal-body">
                       Esta seguro de querer eliminar al usuario?
                     </div>
+
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                       <a href="{{ route('jugador.destroy',$usuario->id_jugador) }}" class="btn btn-primary">Eliminar</a>
+
+                      <a href="{{ route('jugador.destroy',$usuario->id_jugador) }}" class="btn btn-primary">Eliminar</a>
                     </div>
                   </div>
                 </div>
               </div>
-            
+            </td>
   				</tr>
   			@endforeach
   		</tbody>

@@ -20,14 +20,14 @@
 	 	<div class="form-row">
 
 			<div class="form-group col-md-4">
-				{!! Form::radio('genero', 1 ,'Femenino',['id'=>'generof','class'=>'radio']) !!}
+				{!! Form::radio('genero', 1 ,null,['id'=>'generof','class'=>'radio']) !!}
 				{!! Form::label('generof', 'Femenino', []) !!}
 				
 			</div>
 
 			<div class="form-group col-md-4">
 					
-				{!! Form::radio('genero', 0 ,'Masculino',['id'=>'generom','class'=>'radio']) !!}
+				{!! Form::radio('genero', 0 ,null,['id'=>'generom','class'=>'radio']) !!}
 				{!! Form::label('generom', 'Masculino', []) !!}
 				
 			</div>	
@@ -60,8 +60,8 @@
 	    	</div>
 
 	    	<div class="form-group col-md-6">
-	    		{!! Form::label('password_confirmed', 'Confirma tu contraseña', []) !!}	
-				{!! Form::password('password_confirmed', ['class' => 'form-control']) !!}
+	    		{!! Form::label('password_confirmation', 'Confirma tu contraseña', []) !!}	
+				{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
 	    	</div>
     	</div>
   

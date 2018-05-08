@@ -11,12 +11,13 @@ SisO:Crear Disciplina
 <div class="container col-md-6">
 	{!! Form::open(['route'=>'disciplina.store','method'=>'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
 	
-	<di v class="form-row">
+	<div class="form-row">
 		<div class="form-group col-md-12">
 			{!! Form::label('nombre_disc', 'Nombre Disciplina', []) !!}
 			{!! Form::text('nombre_disc', null, ['class'=>'form-control']) !!}
 		</div>
 	</div>
+
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			{!! Form::label('foto_disc', 'Imagen', []) !!}

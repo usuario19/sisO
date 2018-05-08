@@ -40,7 +40,7 @@
   					<td>{{ $usuario->descripcion_admin}}</td>
             <td><a href="{{ route('administrador.edit',$usuario->id_administrador) }}" class="btn btn-warning">Editar</a></td>
             <td>
-              <a href="#confirm?"  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Eliminar</a></td>
+              <a href="#confirm?"  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Eliminar</a>
              
 
               <!-- Modal -->
@@ -63,6 +63,7 @@
                   </div>
                 </div>
               </div>
+            </td>
             
   				</tr>
   			@endforeach

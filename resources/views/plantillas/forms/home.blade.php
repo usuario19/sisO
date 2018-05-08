@@ -97,10 +97,9 @@
               <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
             </div>
           </li>
-          </ul>
         <ul class="navbar-nav">
          	 <li class="nav-item">
-             <a class="nav-link" href="#">Login</a>
+             <a class="nav-link" href={{ route('login.login') }}>Login</a>
          		</li>
         </ul>  
     	  
@@ -109,17 +108,6 @@
   </nav>
 	
 	</div>
-   <div class="container">
-    @if(count($errors) > 0)
-            <div class="alert alert-danger" role="alert">
-              <ul>
-              @foreach($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-              </ul>
-            </div>
-        @endif
-  </div>
 
  	<div class="container">
  		@yield('content')

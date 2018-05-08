@@ -39,8 +39,6 @@ class Administrador extends Model
     } 
 
     //ALMACENAR LA IMAGEN EN LA CARPETA
-
-
     public function setFotoAdminAttribute($value)
     {
         if($value !== null)

@@ -1,5 +1,4 @@
 <div class="form-row">
-
 			<div class="form-group col-md-6">
 				{!! Form::label('nombre', 'Nombre', []) !!}
 		      	{!! Form::text('nombre', null , ['class' =>'form-control', 'placeholder'=>'Nombres']) !!}

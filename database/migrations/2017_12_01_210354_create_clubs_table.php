@@ -19,7 +19,7 @@ class CreateClubsTable extends Migration
             //$table->integer('id_administrador')->unsigned();
             //$table->foreign('id_administrador')->references('id_administrador')->on('administradores');
             $table->string('ciudad');
-            $table->binary('logo');
+            $table->string('logo')->default('usuario-sin-foto.png');
             $table->text('descripcion_club');
             $table->timestamps();
         });

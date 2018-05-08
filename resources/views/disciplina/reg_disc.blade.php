@@ -15,7 +15,7 @@ SisO:Crear Disciplina
 		<div class="form-group col-md-4">
 			<div class="form-row">
 					<div id="contenedor" class="form-group col-md-12">
-						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/fotos/usuario-sin-foto.png" alt="" height="200px" width="200px">
+						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/foto_disc/usuario-sin-foto.png" alt="" height="200px" width="200px">
 						<img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt="">
 					</div>
 			</div>

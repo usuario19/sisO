@@ -135,7 +135,10 @@ class DisciplinaController extends Controller
                             ->select('foto_disc')
                             ->get();
             foreach ($foto_antiguo as $foto_disc) {
-                Storage::disk('foto_disc')->delete($foto_disc->foto_disc);    
+                if ($foto_disc->foto_disc!='usuario-sin-foto.png') {
+                    Storage::disk('foto_disc')->delete($foto_disc->foto_disc);     
+                }
+                   
         }
 
         $reglamento_antiguo = DB::table('disciplinas')
@@ -146,7 +149,6 @@ class DisciplinaController extends Controller
                 Storage::disk('archivos')->delete($reglamento_disc->reglamento_disc);    
         }
         DB::table('disciplinas')->where('id_disc', '=',$id)->delete();
-        return dd($reglamento_disc);
-        //return redirect()->route('disciplina.index'); 
+        return redirect()->route('disciplina.index'); 
     }
 }

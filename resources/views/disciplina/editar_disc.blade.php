@@ -8,20 +8,38 @@ SisO:Editar Disciplina
 	<br>
 </div>
 
-<div class="container col-md-6">
+<div class="container col-md-9">
 
 	{!! Form::model($disciplina, ['route'=>['disciplina.update',$disciplina->id_disc],'method'=>'PUT','enctype'=>'multipart/form-data','file'=>true]) !!}
-
 	<div class="form-row">
+		<div class="form-group col-md-4">
+			<div class="form-row">
+					<div class="form-group col-md-12">
+						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height="200px" width="200px" >
+							<img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt="">
+						</div>
+
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-5">
+							
+							<div id="div_file">
+								<img id="texto" src="/storage/fotos/subir.png"  alt="">
+								{!! Form::file('foto_disc', ['class'=>'upload','id'=>'input']) !!}
+							</div>
+						</div>
+
+						<div class="form-group col-md-5" id="content" style="">
+							<div><img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png"  alt=""></div>
+						</div>
+					</div>
+		</div>
+				
+	<div class="form-group col-md-8">
+		<div class="form-row">
 		<div class="form-group col-md-12">
 			{!! Form::label('nombre_disc', 'Nombre Disciplina', []) !!}
 			{!! Form::text('nombre_disc',$disciplina->nombre_disc, ['class'=>'form-control']) !!}
-		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-12">
-			{!! Form::label('foto_disc', 'Imagen', []) !!}
-			{!! Form::file('foto_disc', ['class'=>'form-control']) !!}
 		</div>
 	</div>
 
@@ -46,6 +64,8 @@ SisO:Editar Disciplina
 			{!! Form::submit('Actualizar', ['class'=>'btn btn-primary']) !!}
 		</div>
 	</div>
+	</div>		
+</div>
 		
 	{!! Form::close() !!}
 </div>

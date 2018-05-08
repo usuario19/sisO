@@ -11,7 +11,8 @@ use App\Models\Inscripcion;
 use Illuminate\Support\Facades\DB;
 use Image;
 use Storage;
-
+use UxWeb\SweetAlert\SweetAlert;
+use Controllers\Sweet;
 class ClubController extends Controller
 {
     /**
@@ -34,35 +35,27 @@ class ClubController extends Controller
     }
 
     public function create()
-    {
+    {   
+        $administradores=array();
         $datos = DB::table('administradores')->get();
-        //$usuarios = array();
-        //$i=0;
 
-        foreach ($datos as $dato) {
-            $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
-            //$i++;
+        if (empty($administradores)) {
+            return Sweet.notification();
         }
-        return view('club.reg_club')->with('administradores', $administradores);
+        else{
+            foreach ($datos as $dato) {
+                $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
+            }
+            return view('club.reg_club')->with('administradores', $administradores);    
+        }     
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
-        /**$datos = new Club();
-        $datos->nombre_club = $request->get('nombre_club');
-        $datos->ciudad = $request->get('ciudad');
-        $datos->logo = $request->get('logo');
-        $datos->ciudad = $request->get('ciudad');
-        $datos->descripcion_club = $request->get('descripcion_club');
-        $datos->save();
-**/     
         $datos = new Club($request->all());
         $datos->save();
 
@@ -139,8 +132,6 @@ class ClubController extends Controller
             foreach ($logo_antiguo as $logo) {
                 Storage::disk('logos')->delete($logo->logo);    
             }
-            
-            //return var_dump($logo_antiguo[]);
             $logo = $request->file('logo');
             $nombre_logo= time().'-'.$logo->getClientOriginalExtension();
             Storage::disk('logos')->put($nombre_logo, file_get_contents($logo));
@@ -178,7 +169,9 @@ class ClubController extends Controller
                             ->select('logo')
                             ->get();
             foreach ($logo_antiguo as $logo) {
-                Storage::disk('logos')->delete($logo->logo);    
+                if ($logo->logo!='usuario-sin-foto.png') {
+                    Storage::disk('logos')->delete($logo->logo);    
+                }
         }
         DB::table('clubs')->where('id_club', '=',$id)->delete();
         return redirect()->route('club.index'); 

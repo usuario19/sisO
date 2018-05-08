@@ -15,6 +15,7 @@ Route::get('/', function () {
    return view('welcome');
 	//return view('disciplina.reg_disc');
 });
+Route::get('tipo/{type}','SweetController@notification');
 Route::resource('administrador','AdministradorController');
 Route::get('administrador/{id}/destroy',[ 
 			'uses'=> 'AdministradorController@destroy',
@@ -45,3 +46,7 @@ route::get('disciplina/{id}/destroy',[
     'as'=> 'disciplina.destroy'
 ]);
 Route::resource('gestion','GestionController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -163,7 +163,8 @@ return [
         
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        //para los mensajes emergentes
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -216,7 +217,7 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];

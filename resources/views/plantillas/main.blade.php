@@ -115,7 +115,14 @@
 	{!! Html::script('/js/jquery.js') !!}
 	{!! Html::script('/js/bootstrap.min.js') !!}
 	{!! Html::script('/js/script.js') !!}
-	
+<script> 
+    swal({
+        "timer":1800,
+        "title":"Título",
+        "text":"Notificación Básica",
+        "showConfirmButton":false
+    });
+</script>
 </body>
 </html>
 

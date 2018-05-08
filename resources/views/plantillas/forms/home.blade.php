@@ -99,7 +99,7 @@
           </li>
         <ul class="navbar-nav">
          	 <li class="nav-item">
-             <a class="nav-link" href="#">Login</a>
+             <a class="nav-link" href={{ route('login.login') }}>Login</a>
          		</li>
         </ul>  
     	  

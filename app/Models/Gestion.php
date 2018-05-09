@@ -22,6 +22,9 @@ class Gestion extends Model
 		
 	public function disciplina_gestions()
 	{
-		return $this-hasMany('App\Models\disciplina_gestion');
+		return $this->hasMany('App\Models\disciplina_gestion');
+	}
+	public function inscripcions(){
+		return $this->hasMany('App\Models\Inscripcion');
 	}
 }

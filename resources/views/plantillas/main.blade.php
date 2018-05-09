@@ -111,18 +111,16 @@
 
  	<div class="container">
  		@yield('content')
+      {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
+      @include('sweetalert::alert')
  	</div>
 	{!! Html::script('/js/jquery.js') !!}
 	{!! Html::script('/js/bootstrap.min.js') !!}
-	{!! Html::script('/js/script.js') !!}
-<script> 
-    swal({
-        "timer":1800,
-        "title":"Título",
-        "text":"Notificación Básica",
-        "showConfirmButton":false
-    });
-</script>
+
+  {!! Html::script('/js/script.js') !!}
+
+
+
 </body>
 </html>
 

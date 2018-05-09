@@ -13,8 +13,6 @@
   </div>
   
 </div>
-
-
 	<table class="table table-condensed">
   		<thead>
   			<th width="50px">ID</th>
@@ -38,14 +36,16 @@
             <td>{{ $club->descripcion_club}}</td>
 
             <td><a href="{{ route('club.edit',$club->id_club) }}" class="btn btn-info">Editar</a></td>
-            <td><a href="{{ route('club.destroy',$club->id_club) }}" onclick="return confirm('Esta seguro de eliminar el club')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
+            <td><a href="{{ route('club.destroy',$club->id_club) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
             
-            @if ("club.inscrito($club->id_club)" == true)
+            
+            @if ($club->inscripcions)
                 <td><a href="{{ route('club.inscribir',$club->id_club) }}">Inscribir</a></td>
             @endif
             
   				</tr>
   			@endforeach
+        
   		</tbody>
 	</table>
 @endsection

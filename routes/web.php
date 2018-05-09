@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (){
    return view('welcome');
 	//return view('disciplina.reg_disc');
 });
@@ -37,10 +37,13 @@ Route::get('club/{id}/inscribir',[
 	'uses'=>'ClubController@inscribir',
 	'as'=>'club.inscribir'
 ]);
+
+
 Route::get('club/{id}/inscrito',[
 	'uses'=>'ClubController@inscrito',
 	'as'=>'club.inscrito'
 ]);
+
 route::get('disciplina/{id}/destroy',[
     'uses'=> 'DisciplinaController@destroy',
     'as'=> 'disciplina.destroy'

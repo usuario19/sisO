@@ -9,10 +9,8 @@ use App\Models\Administrador;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
 use Illuminate\Support\Facades\DB;
-use Image;
+use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
-use UxWeb\SweetAlert\SweetAlert;
-use Controllers\Sweet;
 class ClubController extends Controller
 {
     /**
@@ -38,16 +36,19 @@ class ClubController extends Controller
     {   
         $administradores=array();
         $datos = DB::table('administradores')->get();
-
-        if (empty($administradores)) {
-            return Sweet.notification();
-        }
-        else{
+        
             foreach ($datos as $dato) {
                 $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
             }
+        if (empty($administradores)) {
+            //Alert()->message('falta coordinado','hola');
+            //return redirect('/')->with('success','fdsafsd');}
+            Alert::info('No hay coordinadores', 'Agregue primero un coordinador');                      }
+        else{
+
             return view('club.reg_club')->with('administradores', $administradores);    
-        }     
+        }
+            
     }
 
     /**

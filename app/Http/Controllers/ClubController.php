@@ -131,7 +131,8 @@ class ClubController extends Controller
                             ->select('logo')
                             ->get();
             foreach ($logo_antiguo as $logo) {
-                Storage::disk('logos')->delete($logo->logo);    
+                if ($foto_disc->foto_disc != 'usuario-sin-foto.png') {
+                Storage::disk('logos')->delete($logo->logo);  }  
             }
             $logo = $request->file('logo');
             $nombre_logo= time().'-'.$logo->getClientOriginalExtension();

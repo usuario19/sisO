@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\Admin_club;
@@ -11,16 +9,13 @@ use App\Models\Inscripcion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
+
 class ClubController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //listar clubs
+        /**
         $clubs = DB::table('adminclubs')
         ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
         ->join('clubs','adminclubs.id_club','=','clubs.id_club')
@@ -28,33 +23,58 @@ class ClubController extends Controller
         ->select('clubs.*','administradores.nombre','administradores.apellidos')
         ->get();
 
+        //para verificar si esta inscrito
+        $id_gestion = Gestion::all()->last()->id_gestion;
+        //return var_dump($id_gestion);
+        $inscrito = DB::table('inscripciones')
+        ->join('clubs','clubs.id_club','=','inscripciones.id_club')
+        ->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
+        ->where('gestiones.id_gestion','=',$id_gestion)
+        ->select('inscripciones.id_club')
+        ->get();
+        return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito);
+        **/
+        $id_gestion = Gestion::all()->last()->id_gestion;
+        $clubs = DB::table('clubs')
+        ->join('adminclubs','adminClubs.id_club','=','clubs.id_club')
+        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
+        //->join('clubs','adminclubs.id_club','=','clubs.id_club')
+        ->join('inscripciones','clubs.id_club','=','inscripciones.id_club')
+        ->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
+        ->where('gestiones.id_gestion','=',$id_gestion)
+        ->select('clubs.*','administradores.nombre','administradores.apellidos','inscripciones.id_club')
+        ->get();
         return view('club.listar_club')->with('clubs',$clubs);
-
+        //para verificar si esta inscrito   
+        /**$id_gestion = Gestion::all()->last()->id_gestion;
+        $inscrito = DB::table('inscripciones')
+        ->join('clubs','clubs.id_club','=','inscripciones.id_club')
+        ->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
+        ->where('gestiones.id_gestion','=',$id_gestion)
+        ->select('inscripciones.id_club')
+        ->get();**/
     }
 
     public function create()
     {   
-        $administradores=array();
+        $administradores = array();
         $datos = DB::table('administradores')->get();
-        
-            foreach ($datos as $dato) {
+        foreach ($datos as $dato) {
                 $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
-            }
+        }
         if (empty($administradores)) {
             //Alert()->message('falta coordinado','hola');
+            //Alert()->info('No hay coordinadores', 'Agregue primero un coordinador');
             //return redirect('/')->with('success','fdsafsd');}
-            Alert::info('No hay coordinadores', 'Agregue primero un coordinador');                      }
-        else{
+            //Alert::info('No hay coordinadores', 'Agregue primero un coordinador'); 
+            Alert::warning('','');
+            return redirect()->route('administrador.create');
+        }else {
 
             return view('club.reg_club')->with('administradores', $administradores);    
         }
-            
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $datos = new Club($request->all());
@@ -73,24 +93,11 @@ class ClubController extends Controller
 
         return redirect()->route('club.index');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //para editar el club
@@ -116,13 +123,6 @@ class ClubController extends Controller
         return view('club.editar_club')->with('club',$club)->with('administradores',$administradores);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if($request->hasFile('logo'))
@@ -156,14 +156,7 @@ class ClubController extends Controller
         }
         return redirect()->route('club.index');
     }
-    
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $logo_antiguo = DB::table('clubs')
@@ -205,7 +198,6 @@ class ClubController extends Controller
         if (empty($inscripcion)) {
             return false;
         }
-        return true;
-        
+        return true; 
     }
 }

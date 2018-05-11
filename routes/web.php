@@ -15,7 +15,7 @@ Route::get('/', function (){
    return view('welcome');
 	//return view('disciplina.reg_disc');
 });
-Route::get('tipo/{type}','SweetController@notification');
+//Route::get('tipo/{type}','SweetController@notification');
 Route::resource('administrador','AdministradorController');
 Route::get('administrador/{id}/destroy',[ 
 			'uses'=> 'AdministradorController@destroy',
@@ -29,6 +29,7 @@ Route::get('jugador/{id}/destroy',[
 Route::resource('disciplina','DisciplinaController');
 
 Route::resource('club','ClubController');
+
 route::get('club/{id}/destroy',[
     'uses'=> 'ClubController@destroy',
     'as'=> 'club.destroy'

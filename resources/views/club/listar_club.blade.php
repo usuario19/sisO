@@ -38,10 +38,9 @@
             <td><a href="{{ route('club.edit',$club->id_club) }}" class="btn btn-info">Editar</a></td>
             <td><a href="{{ route('club.destroy',$club->id_club) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
             
-            
-            @if ($club->inscripcions)
-                <td><a href="{{ route('club.inscribir',$club->id_club) }}">Inscribir</a></td>
-            @endif
+          
+                    <td><a href="{{ route('club.inscribir',$club->id_club) }}">Inscribir</a></td>
+             
             
   				</tr>
   			@endforeach

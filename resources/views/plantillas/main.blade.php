@@ -35,13 +35,30 @@
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Gestion</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href={{ route('gestion.index') }}>Listar Gestiones</a>
             </div>
           </li>
     		
-    		  <li class="nav-item dropdown">
+    		  
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuarios
+            </a>
+      
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <h6 class="dropdown-header">Coordinador</h6>
+                
+              <a class="dropdown-item" href={{ route('administrador.create') }}> Registrar Coordinador</a>
+              <a class="dropdown-item" href={{ route('administrador.index') }}>Lista de Coordinadores</a>
+              <div class="dropdown-divider"></div>
+              <h6 class="dropdown-header">Jugador</h6>
+              <a class="dropdown-item" href={{ route('jugador.create') }}> Registrar Jugador</a>
+              <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de Jugadores</a>
+            </div>
+          </li> 
+
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Resultados
             </a>
@@ -53,28 +70,6 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Jugadores
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('jugador.create') }}>Registrar Jugador</a>
-              <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de jugadores</a>
-            </div>
-          </li> 
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Administradores
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('administrador.create') }}>Registrar Coordinador</a>
-              <a class="dropdown-item" href={{ route('administrador.index') }}>Lista de coordinadores</a>
-            </div>
-          </li> 
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -99,7 +94,7 @@
           </li>
         <ul class="navbar-nav">
          	 <li class="nav-item">
-             <a class="nav-link" href="#">Login</a>
+             <a class="nav-link " href="#">Login</a>
          		</li>
         </ul>  
     	  

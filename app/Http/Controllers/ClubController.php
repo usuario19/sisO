@@ -15,7 +15,7 @@ class ClubController extends Controller
     public function index()
     {
         //listar clubs
-        /**
+        
         $clubs = DB::table('adminclubs')
         ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
         ->join('clubs','adminclubs.id_club','=','clubs.id_club')
@@ -33,8 +33,12 @@ class ClubController extends Controller
         ->select('inscripciones.id_club')
         ->get();
         return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito);
-        **/
+    
+        //si no hay gestion nos da error
+        //lista de los inscritos
+        /**
         $id_gestion = Gestion::all()->last()->id_gestion;
+
         $clubs = DB::table('clubs')
         ->join('adminclubs','adminClubs.id_club','=','clubs.id_club')
         ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
@@ -44,7 +48,8 @@ class ClubController extends Controller
         ->where('gestiones.id_gestion','=',$id_gestion)
         ->select('clubs.*','administradores.nombre','administradores.apellidos','inscripciones.id_club')
         ->get();
-        return view('club.listar_club')->with('clubs',$clubs);
+        
+       return view('club.listar_club')->with('clubs',$clubs);**/
         //para verificar si esta inscrito   
         /**$id_gestion = Gestion::all()->last()->id_gestion;
         $inscrito = DB::table('inscripciones')

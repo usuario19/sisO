@@ -67,7 +67,10 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'ci'=>'ci',
+            'password'=>'password',
+            'model' => App\Models\Administrador::class,
+            'table'=>'administradores',
         ],
 
         // 'users' => [

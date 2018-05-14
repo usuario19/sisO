@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AdministradorRequest;
 use Validator;
 use Storage;
+use Auth;
 
 
 class AdministradorController extends Controller

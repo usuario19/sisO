@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>@yield('title')</title>
-	{!! Html::style('/css/bootstrap.min.css') !!}
-  {!! Html::style('/css/mis_estilos.css') !!}
-
-</head>
-<body>
-	
-	<div class="container">
+<div class="container">
 
       <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 
@@ -24,7 +10,7 @@
 
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="">Home <span class="sr-only">(current)</span>
+            <a class="nav-link" href={{url('/')}}>Home <span class="sr-only">(current)</span>
             </a>
           </li>
 
@@ -34,14 +20,14 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Gestion</a>
+              <a class="dropdown-item" href={{ route('gestion.index') }}>Listar gestiones</a>
               <a class="dropdown-item" href="#">Another action</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-    		
-    		  <li class="nav-item dropdown">
+        
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Resultados
             </a>
@@ -60,21 +46,11 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('jugador.create') }}>Registrar Jugador</a>
               <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de jugadores</a>
             </div>
           </li> 
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Administradores
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('administrador.create') }}>Registrar Coordinador</a>
-              <a class="dropdown-item" href={{ route('administrador.index') }}>Lista de coordinadores</a>
-            </div>
-          </li> 
+          
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,7 +58,6 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('club.create') }}>Registrar Club</a>
               <a class="dropdown-item" href={{ route('club.index') }}>Lista de Clubs</a>
             </div>
           </li> 
@@ -93,29 +68,17 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('disciplina.create') }}>Registrar Disciplina</a>
               <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
             </div>
           </li>
+        </ul>
         <ul class="navbar-nav">
-         	 <li class="nav-item">
-             <a class="nav-link" href={{ route('login.index') }}>Login</a>
-         		</li>
+           <li class="nav-item">
+             <a class="nav-link" href='{{ route('login.index') }}'>Login</a>
+            </li>
         </ul>  
-    	  
+        
       </nav>
     </div>
   </nav>
-	
-	</div>
-
- 	<div class="container">
- 		@yield('content')
- 	</div>
-	{!! Html::script('/js/jquery.js') !!}
-	{!! Html::script('/js/bootstrap.min.js') !!}
-	{!! Html::script('/js/script.js') !!}
-	
-</body>
-</html>
-
+</div>

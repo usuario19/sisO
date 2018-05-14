@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
-
 use Storage;
 
 
-class Administrador extends Model
+class Administrador extends Authenticatable
 {
+    use notifiable;
+
 	protected $table = 'administradores';
 	protected $primaryKey = 'id_administrador';
 
@@ -37,7 +40,12 @@ class Administrador extends Model
     public function admin_clubs(){
         return $this-hasMany('App\Models\Admin_club');
     } 
-
+    
+    public function setPasswordAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['password'] = bcrypt($value);
+    }
     //ALMACENAR LA IMAGEN EN LA CARPETA
     public function setFotoAdminAttribute($value)
     {

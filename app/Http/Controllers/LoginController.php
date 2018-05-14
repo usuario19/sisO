@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
 use App\Models\Administrador;
+use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -39,16 +44,17 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         //
-		$datos = $request->only(['ci_admin','password']);
+		$datos = $request->only(['ci','password']);
 		
 		if (Auth::attempt($datos)) 
 		{
             // Authentication passed...
-            return redirect()->route('usuario.index');
+            return Redirect::to('welcome');
 			//dd('dfdsfsdfsdfsdfsdfsdfsd entra');
         }else{
 			//flash::error('Correo electronico o contraseña incorresctos');
         	return redirect()->route('login.index');
+            //dd('dfdsfsdfsdfsdfsdfsdfsd no entra');
 		}
 		//dd($datos);
     }
@@ -103,6 +109,6 @@ class LoginController extends Controller
 	public function logout()
 	{
 		Auth::logout();
-		return view('welcome');
+		return redirect('/');//ruta URL
 	}
 }

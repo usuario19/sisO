@@ -28,9 +28,7 @@ class Alpha_spaces implements Rule
         //
         $valor=trim($value);
 
-        if (("[[:alpha:][:space:]]",$valor)
-           or (strlen($valor<1) or (strlen($valor)>30)){
-           die('ERROR! Puede que el nombre de la carpeta no cumpla las condiciones.');
+        if (preg_match("[[:alpha:][:space:]]",$valor)
         } 
     }
 

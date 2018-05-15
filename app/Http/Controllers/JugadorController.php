@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jugador;
+use App\Models\Gestion;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\JugadorRequest;
 use Storage;
@@ -19,7 +20,13 @@ class JugadorController extends Controller
     public function index()
     {
         $usuarios = DB::table('jugadores')->get();
-        return view('jugador.listar_jugadores')->with('usuarios',$usuarios);
+
+        $ultima_gestion = Gestion::all()->last()->id_gestion;
+        //dd($ultima_gestion);
+        $clubs = DB::table('inscripciones')->where('id_gestion',$ultima_gestion)->get();
+        //dd($clubs);
+
+        return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('clubs',$clubs);
     }
 
     /**

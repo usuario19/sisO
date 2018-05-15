@@ -163,7 +163,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
-
+	//fases
+	route::get('fase/create',[
+		'uses'=>'FaseController@create',
+		'as'=>'fase.create'
+	]);
 });
 
 Route::group(['middleware' => ['auth','admin_coordinador']], function () {

@@ -1,10 +1,10 @@
 @extends('plantillas.main')
 @section('title')
-SisO:Crear Gestion
+SisO:Crear Campeonato
 @endsection
 @section('content')
 <div class="container col-md-8">
-	<h1 class="display-4">Crear Gestion</h1>
+	<h1 class="display-4">Crear Campeonato</h1>
 	<br>
 </div>
 <div class="container col-md-6">

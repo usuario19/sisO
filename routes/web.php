@@ -164,9 +164,17 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'as'=> 'gestion.destroy'
 	]);
 	//fases
+	route::get('fase/index',[
+		'uses'=>'FaseController@intex',
+		'as'=>'fase.index'
+	]);
 	route::get('fase/create',[
 		'uses'=>'FaseController@create',
 		'as'=>'fase.create'
+	]);
+	route::post('fase/store',[
+		'uses'=>'FaseController@store',
+		'as'=>'fase.store'
 	]);
 });
 

@@ -1,14 +1,14 @@
 @extends('plantillas.main')
 
 @section('title')
-    SisO - Lista de Disciplinas
+    SisO - Lista de Fases
 @endsection
 
 @section('content')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
-    <h1>Lista de Disciplina:</h1>
-    <a href="disciplina/create/" class="btn btn-primary">Agregar Disciplina</a>
+    <h1>Lista de Fase:</h1>
+    <a href="disciplina/create/" class="btn btn-primary">Agregar Fase</a>
   </div> 
 </div>
 

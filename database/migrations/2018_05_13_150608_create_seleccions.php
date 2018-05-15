@@ -16,8 +16,9 @@ class CreateSeleccions extends Migration
         Schema::create('seleccions', function (Blueprint $table) {
             $table->increments('id_seleccion');
             $table->string('nombre_seleccion');
+
             $table->integer('id_inscripcion')->unsigned();
-            $table->foreign('id_inscripcion')->references('id_inscripcion')->on('inscripcions')->onDelete('cascade');
+            $table->foreign('id_inscripcion')->references('id_inscripcion')->on('inscripciones')->onDelete('cascade');
             $table->integer('id_jug_part')->unsigned();
             $table->foreign('id_jug_part')->references('id_jug_part')->on('jugador_participaciones')->onDelete('cascade');
             $table->timestamps();

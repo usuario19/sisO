@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Administrador;
-
+use App\Models\Tipo;
 class AdministradoresTableSeeder extends Seeder
 {
     /**
@@ -26,6 +26,12 @@ class AdministradoresTableSeeder extends Seeder
             'descripcion_admin' => 'Adminsitrador del sistema',
             'tipo'=>'Administrador'
             
+        ]);
+        DB::table('tipos')->insert([
+            'nombre_tipo'=>'series'
+        ]);
+        DB::table('tipos')->insert([
+            'nombre_tipo'=>'eliminacion'
         ]);
     }
 }

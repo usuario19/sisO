@@ -2,35 +2,33 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Gestion;
-use App\Models\Disciplina;
-use App\Models\Participacion;
+use App\Models\Fase;
+use App\Models\Fase_Tipo;
 use Illuminate\Support\Facades\DB;
-
 
 class FaseController extends Controller
 {
     public function index()
-    {
-        
+    { 
     }
     public function create()
     {
         $tipos = DB::table('tipos')->get();
-        return view('fase.reg_fase')->with('tipos', $tipos);
+        return view('fases.reg_fase')->with('tipos', $tipos);
     }
     public function store(Request $request)
     {
-        $fase = new Fase;
-        $fase->nombre_fase = $request->get('nombre');
-        $gestion->save();
+    	//return dd($request);
+        $fases = new Fase;
+        $fases->nombre_fase = $request->get('nombre');
+        $fases->save();
+        //return dd($fases);
+        $fase_tipos = new Fase_Tipo;
+        $fase_tipos->id_fase = Fase::all()->last()->id_fase;;
+        $fase_tipos->id_tipo = $request->get('tipo');
+        $fase_tipos->save();
 
-        $fase_tipo = new Fase_Tipo;
-        $fase_tipo->id_fase = Fase::all()->last()->id_fase;;
-        $fase_tipo->id_tipo = $request->get('tipo');
-        $fase_tipo->save();
-
-        return redirect()->route('fase.index');
+        return redirect()->route('fase.create');
  
     }
     public function show($id)

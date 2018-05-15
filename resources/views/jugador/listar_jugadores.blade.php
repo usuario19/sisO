@@ -24,7 +24,7 @@
   			@foreach($usuarios as $usuario)
   				<tr>
   					<td>{{ $usuario->id_jugador}}</td>
-            <td><img class="rounded mx-auto d-block" src="storage/fotos/{{ $usuario->foto_jugador }}" alt="" height=" 100px" width="100px"></td>
+            <td><img class="rounded mx-auto d-block" src="/storage/fotos/{{ $usuario->foto_jugador }}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $usuario->ci_jugador}}</td>
   					<td>{{ $usuario->nombre_jugador}}</td>
   					<td>{{ $usuario->apellidos_jugador}}</td>

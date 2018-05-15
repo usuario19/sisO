@@ -77,15 +77,20 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              
               <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
             </div>
           </li>
           </ul>
         <ul class="navbar-nav">
-         	 <li class="nav-item">
-             <span>Coordinador:</span><a class="nav-link" href={{ route('logout') }}>Logout</a>
-         		</li>
+         	 <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ Auth::User()->nombre." ".Auth::User()->apellidos }}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href={{ route('logout') }}>Logout</a>
+            </div>
+          </li>
         </ul>  
     	  
       </nav>

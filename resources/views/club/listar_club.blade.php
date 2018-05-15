@@ -29,7 +29,7 @@
   			@foreach($clubs as $club)
   				<tr>
   					<td>{{ $club->id_club}}</td>            
-            <td><img class="img-thumbnail" src="storage/logos/{{ $club->logo}}" alt="" height=" 100px" width="100px"></td>
+            <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $club->nombre_club}}</td>
   					<td>{{ $club->nombre." ".$club->apellidos}}</td>
   					<td>{{ $club->ciudad}}</td>

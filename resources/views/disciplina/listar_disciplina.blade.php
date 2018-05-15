@@ -28,7 +28,7 @@
   				<tr>
   					<td>{{ $disciplina->id_disc}}</td>
 
-            <td><img class="img-thumbnail" src="storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 100px" width="100px"></td>
+            <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $disciplina->nombre_disc}}</td>
 
             <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">Ver</td>

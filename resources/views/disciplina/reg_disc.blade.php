@@ -10,22 +10,18 @@ SisO:Crear Disciplina
 
 <div class = "container col-md-9">
 	{!! Form::open(['route'=>'disciplina.store','method'=>'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
-<<<<<<< HEAD
-	
-	<div class="form-row">
-=======
 
 	<div class="form-row">
 		<div class="form-group col-md-4">
 			<div class="form-row">
 					<div id="contenedor" class="form-group col-md-12">
-						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/fotos/usuario-sin-foto.png" alt="" height="200px" width="200px">
+						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/foto_disc/sin_imagen.png" alt="" height="200px" width="200px">
 						<img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt="">
 					</div>
 			</div>
 			
 			<div class="form-row">
-					<div class="form-group col-md-12">
+					<div class="form-group col-md-5">
 						
 						<div id="div_file">
 							<img id="texto" src="/storage/fotos/subir.png"  alt="">
@@ -41,20 +37,10 @@ SisO:Crear Disciplina
 
 	<div class="form-group col-md-8">
 		<div class="form-row">
->>>>>>> b7a554255304b13dae7ee9aa361bc110f6682f3e
 		<div class="form-group col-md-12">
 			{!! Form::label('nombre_disc', 'Nombre Disciplina', []) !!}
 			{!! Form::text('nombre_disc', null, ['class'=>'form-control']) !!}
 		</div>
-<<<<<<< HEAD
-	</div>
-
-	<div class="form-row">
-		<div class="form-group col-md-12">
-			{!! Form::label('foto_disc', 'Imagen', []) !!}
-			{!! Form::file('foto_disc', ['class'=>'form-control']) !!}
-=======
->>>>>>> b7a554255304b13dae7ee9aa361bc110f6682f3e
 		</div>
 		
 
@@ -83,9 +69,5 @@ SisO:Crear Disciplina
 		
 	{!! Form::close() !!}
 </div>
-<<<<<<< HEAD
-@endsection
-=======
 </div>
 @endsection
->>>>>>> b7a554255304b13dae7ee9aa361bc110f6682f3e

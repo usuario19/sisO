@@ -11,6 +11,7 @@
 
 </head>
 <body>
+
   @if(Auth::check())
     @if(Auth::user()->tipo == 'Administrador')
       @include('plantillas.menus.menu_admin')
@@ -35,11 +36,16 @@
 
  	<div class="container">
  		@yield('content')
+  {!! Html::script('/js/jquery.js') !!}
+  {!! Html::script('/js/bootstrap.min.js') !!}
+  {!! Html::script('/js/script.js') !!}
+  {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
+  @include('sweetalert::alert')
  	</div>
-	{!! Html::script('/js/jquery.js') !!}
-	{!! Html::script('/js/bootstrap.min.js') !!}
-	{!! Html::script('/js/script.js') !!}
-	
+
+
+
+
 </body>
 </html>
 

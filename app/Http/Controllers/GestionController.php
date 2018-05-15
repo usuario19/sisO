@@ -82,6 +82,12 @@ class GestionController extends Controller
     {
         //
     }
+    
+    public function mostrarGestion()
+    {
+        $gestiones = DB::table('gestiones')->get();
+        return view('admin.listar_gestion')->with('gestiones',$gestiones);
+    }
 
     /**
      * Show the form for editing the specified resource.

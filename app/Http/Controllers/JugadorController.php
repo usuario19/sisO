@@ -56,6 +56,13 @@ class JugadorController extends Controller
         //
     }
 
+    public function mostrarJugador()
+    {
+        //
+        $usuarios = DB::table('jugadores')->get();
+        return view('jugador.listar_jugadores')->with('usuarios',$usuarios);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -8,6 +8,9 @@ use Illuminate\Http\UploadedFile;
 use Storage;
 class Club extends Model
 {
+    protected $table = 'clubs';
+    protected $primaryKey = 'id_club';
+
     protected $fillable = [
 		'nombre_club',
 		'ciudad',
@@ -23,6 +26,9 @@ class Club extends Model
 		return $this->hasMany('App\Models\Admin_Club');
         
 	}
+    public function inscripcions(){
+        return $this->hasMany('App\Models\Inscripcion','id_club');
+    }
 	public function setLogoAttribute($value)
     {
         if($value !== null)

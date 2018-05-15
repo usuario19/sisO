@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDisciplinasTable extends Migration
+class CreateFases extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateDisciplinasTable extends Migration
      */
     public function up()
     {
-        Schema::create('disciplinas', function (Blueprint $table) {
-            $table->increments('id_disc');
-            $table->string('nombre_disc');
-            $table->string('foto_disc')->default('sin_imagen.png');
-            $table->string('reglamento_disc');
-            $table->text('descripcion_disc');
+        Schema::create('fases', function (Blueprint $table) {
+            $table->increments('id_fase');
+            $table->string('nombre_fase');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateDisciplinasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diciplinas');
+        Schema::dropIfExists('fases');
     }
 }

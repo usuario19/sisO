@@ -20,7 +20,7 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('gestion.index') }}>Listar gestiones</a>
+              <a class="dropdown-item" href={{ route('gestion.mostrar') }}>Listar gestiones</a>
               <a class="dropdown-item" href="#">Another action</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
@@ -46,7 +46,7 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de jugadores</a>
+              <a class="dropdown-item" href={{ route('jugador.mostrar') }}>Lista de jugadores</a>
             </div>
           </li> 
 
@@ -58,7 +58,7 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('club.index') }}>Lista de Clubs</a>
+              <a class="dropdown-item" href={{ route('club.mostrar') }}>Lista de Clubs</a>
             </div>
           </li> 
 
@@ -68,7 +68,7 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
+              <a class="dropdown-item" href={{ route('disciplina.mostrar') }}>Lista de Disciplinas</a>
             </div>
           </li>
         </ul>

@@ -31,9 +31,6 @@
 				
 			</div>	
 		</div>
-
-	 	
-
    		<div class="form-row">
 			<div class="form-group col-md-6">
 	  			{!! Form::label('fecha_nac', 'Fecha de Nacimiento', []) !!}

@@ -1,3 +1,4 @@
+
 @extends('plantillas.main')
 
 @section('title')

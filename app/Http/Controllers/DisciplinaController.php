@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
-use Image;
+use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 
 class DisciplinaController extends Controller
@@ -57,29 +57,26 @@ class DisciplinaController extends Controller
         //para listar disciplina
 
     }
+    public function mostrarDisc()
+    {
+        //
+        $disciplinas = DB::table('disciplinas')->get();
+        return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    }
+
     public function edit($id)
     {
-        $datos = DB::table('disciplinas')->get();
+        $datos = DB::table('disciplinas')
+        ->where('id_disc',$id)
+        ->get();
+
         foreach ($datos as $dato) {
             $disciplina = $dato;
         }
         return view('disciplina.editar_disc')->with('disciplina',$disciplina);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if($request->hasFile('foto_disc'))
@@ -89,7 +86,9 @@ class DisciplinaController extends Controller
                             ->select('foto_disc')
                             ->get();
             foreach ($foto_antiguo as $foto_disc) {
-                    Storage::disk('foto_disc')->delete($foto_disc->foto_disc);    
+                if ($foto_disc->foto_disc != 'usuario-sin-foto.png') {
+                    Storage::disk('foto_disc')->delete($foto_disc->foto_disc);
+                }    
             }  
             $foto_nueva = $request->file('foto_disc');
                     $nombre_foto = time().'-'.$foto_nueva->getClientOriginalExtension();
@@ -135,7 +134,10 @@ class DisciplinaController extends Controller
                             ->select('foto_disc')
                             ->get();
             foreach ($foto_antiguo as $foto_disc) {
-                Storage::disk('foto_disc')->delete($foto_disc->foto_disc);    
+        if ($foto_disc->foto_disc != 'usuario-sin-foto.png') {
+            Storage::disk('foto_disc')->delete($foto_disc->foto_disc);     
+                }
+                   
         }
 
         $reglamento_antiguo = DB::table('disciplinas')
@@ -146,7 +148,6 @@ class DisciplinaController extends Controller
                 Storage::disk('archivos')->delete($reglamento_disc->reglamento_disc);    
         }
         DB::table('disciplinas')->where('id_disc', '=',$id)->delete();
-        return dd($reglamento_disc);
-        //return redirect()->route('disciplina.index'); 
+        return redirect()->route('disciplina.index'); 
     }
 }

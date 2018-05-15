@@ -12,10 +12,14 @@
 */
 
 
+
 //RUTAS QUE NO NECESITAS ESTAR LOGUEADO/A PARA INGRESAR
-Route::group(['middleware' => ['guest']],function(){
+Route::group(['middleware' => ['web','guest']],function(){
 
 	//Route::resource('login','LoginController');
+	Route::get('/', function () {
+   	return view('home');
+	});
 
 	Route::post('login',[ 
 			'uses'=> 'LoginController@store',
@@ -26,21 +30,21 @@ Route::group(['middleware' => ['guest']],function(){
 				'uses'=> 'LoginController@index',
 				'as' => 'login.index']);
 
-	Route::get('/', function () {
-   	return view('home');
-	});
+	Route::get('jugador/mostrar',[ 
+				'uses'=> 'JugadorController@mostrarJugador',
+				'as' => 'jugador.mostrar']);
 
-	Route::get('jugador',[ 
-				'uses'=> 'JugadorController@index',
-				'as' => 'jugador.index']);
+	Route::get('disciplina/mostrar',[ 
+			'uses'=> 'DisciplinaController@mostrarDisc',
+			'as' => 'disciplina.mostrar']);
 
-	Route::get('disciplina',[ 
-			'uses'=> 'DisciplinaController@index',
-			'as' => 'disciplina.index']);
-
-	Route::get('club',[ 
-			'uses'=> 'ClubController@index',
-			'as' => 'club.index']);
+	Route::get('club/mostrar',[ 
+			'uses'=> 'ClubController@mostrarClub',
+			'as' => 'club.mostrar']);
+	
+	Route::get('gestion/mostrar',[ 
+				'uses'=> 'GestionController@mostrarGestion',
+				'as' => 'gestion.mostrar']);
 });
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS
@@ -54,6 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
 			'uses'=> 'LoginController@logout',
 			'as' => 'logout']);
 });
+
 
 
 //ADMINISTRADOR
@@ -111,7 +116,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 
 	Route::get('disciplina/{disciplina}/edit',[ 
 				'uses'=> 'DisciplinaController@edit',
-				'as' => 'disciplina.update']);
+				'as' => 'disciplina.edit']);
 
 	route::get('disciplina/{id}/destroy',[
 	    'uses'=> 'DisciplinaController@destroy',
@@ -152,7 +157,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 
 	Route::get('gestion/{gestion}/edit',[ 
 				'uses'=> 'GestionController@edit',
-				'as' => 'gestion.update']);
+				'as' => 'gestion.edit']);
 
 	route::get('gestion/{id}/destroy',[
 	    'uses'=> 'GestionController@destroy',
@@ -183,7 +188,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 
 	Route::get('jugador/{jugador}/edit',[ 
 				'uses'=> 'JugadorController@edit',
-				'as' => 'jugador.update']);
+				'as' => 'jugador.edit']);
 
 	Route::get('jugador/{id}/destroy',[ 
 				'uses'=> 'JugadorController@destroy',
@@ -201,7 +206,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 
 	Route::get('club/{club}/edit',[ 
 				'uses'=> 'ClubController@edit',
-				'as' => 'club.update']);
+				'as' => 'club.edit']);
 
 	route::get('club/{id}/destroy',[
 	    'uses'=> 'ClubController@destroy',
@@ -216,18 +221,22 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 		'as'=>'club.inscrito'
 	]);
 
+	Route::get('jugador',[ 
+				'uses'=> 'JugadorController@index',
+				'as' => 'jugador.index']);
+
+	Route::get('disciplina',[ 
+			'uses'=> 'DisciplinaController@index',
+			'as' => 'disciplina.index']);
+
+	Route::get('club',[ 
+			'uses'=> 'ClubController@index',
+			'as' => 'club.index']);
+
 
 });
 
+//Auth::routes();
 
-
-
-
-
-
-
-
-
-
-
-
+//Route::get('/home', 'HomeController@index')->name('home');
+//>>>>>>> refs/remotes/origin/master

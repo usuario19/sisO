@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Grupo;
 use App\Models\Fase;
 use App\Models\Fase_Tipo;
 use Illuminate\Support\Facades\DB;
 
-class FaseController extends Controller
+class GrupoController extends Controller
 {
     public function index()
-    {   
-        
+    { 
         $fases = DB::table('fases')->get();
         return view('fases.list_fase')->with('fases', $fases);
     }

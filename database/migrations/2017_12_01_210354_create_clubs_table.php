@@ -21,6 +21,7 @@ class CreateClubsTable extends Migration
             $table->string('ciudad');
             $table->string('logo')->default('sin_imagen.png');
             $table->text('descripcion_club');
+            
             $table->timestamps();
         });
     }

@@ -164,8 +164,8 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'as'=> 'gestion.destroy'
 	]);
 	//fases
-	route::get('fase/index',[
-		'uses'=>'FaseController@intex',
+	route::get('fase',[
+		'uses'=>'FaseController@index',
 		'as'=>'fase.index'
 	]);
 	route::get('fase/create',[
@@ -175,6 +175,19 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	route::post('fase/store',[
 		'uses'=>'FaseController@store',
 		'as'=>'fase.store'
+	]);
+	//grupos
+	route::get('grupo',[
+		'uses'=>'GrupoController@index',
+		'as'=>'grupo.index'
+	]);
+	route::get('grupo/create',[
+		'uses'=>'GrupoController@create',
+		'as'=>'grupo.create'
+	]);
+	route::post('grupo/store',[
+		'uses'=>'GrupoController@store',
+		'as'=>'grupo.store'
 	]);
 });
 
@@ -224,7 +237,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	    'uses'=> 'ClubController@destroy',
 	    'as'=> 'club.destroy'
 	]);
-	Route::get('club/{id}/inscribir',[
+	Route::post('club/inscribir',[
 		'uses'=>'ClubController@inscribir',
 		'as'=>'club.inscribir'
 	]);

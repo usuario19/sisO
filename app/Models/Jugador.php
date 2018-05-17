@@ -32,7 +32,7 @@ class Jugador extends Model
    
     //un jugador pertenece a un club
     public function club (){
-        return $this-belongsTo('App\Models\Club');
+        return $this->belongsTo('App\Models\Club');
     } 
     //ALMACENAR EL LIBRO EN LA CARPETA
     public function setFotoJugadorAttribute($value)

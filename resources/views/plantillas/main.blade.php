@@ -118,5 +118,8 @@
 
 
 </body>
+<footer>
+  <div class="container navbar navbar-expand-lg bg-dark navbar-dark">pie de pagina</div>
+</footer>
 </html>
 

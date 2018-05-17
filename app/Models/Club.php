@@ -26,9 +26,9 @@ class Club extends Model
 		return $this->hasMany('App\Models\Admin_Club');
         
 	}
-    public function inscripcions(){
+    /**public function inscripcions(){
         return $this->hasMany('App\Models\Inscripcion','id_club');
-    }
+    }**/
 	public function setLogoAttribute($value)
     {
         if($value !== null)

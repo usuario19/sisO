@@ -29,7 +29,7 @@ class GestionController extends Controller
 
         $disciplina = DB::table('disciplinas')->get();
         if (empty($disciplina)) {
-            Alert::warning("Primero debe crear disciplinas",'');
+            Alert::warning('Primero debe crear disciplinas','');
             return redirect()->route('disciplina.create');
         }
         else{

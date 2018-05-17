@@ -205,20 +205,33 @@ class ClubController extends Controller
         //$ultima_gestion = Gestion::all();
         //$valor = $ultima_gestion->last()->id_gestion;
         //return dd($id_gestion);
-        $inscrip = new inscripcion();
-        $inscrip->id_gestion = $request->id_gestion;
-        $inscrip->id_club = $request->id_club;
-        return dd($request->id_club);
         $id_administrador = DB::table('clubs')
-                            ->join('adminclubs','adminclubs.id_club','=','clubs.id_club')
-                            ->where(['adminclubs.id_club','=',$request->id_club],
-                                    ['adminclubs.estado_coordinador','=',1])
-                            ->select('adminclubs.id_administrador')
+                            ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
+                            ->where('adminClubs.id_club',$request->get('id_club'))
+                            ->where('adminClubs.estado_coordinador',1)
+                            ->select('adminClubs.id_adminClub')
                             ->get();
-        //return dd($id_administrador);
-        $inscrip->id_administrador = $id_administrador;
-        $inscrip->save();
-        //return redirect()->route('club.index');
+                            foreach ($id_administrador as $valor) {
+        $id_adm = $valor->id_adminClub;
+        return dd($request->get('id_club'));   
+        }
+        $gestiones=$request->get('id_gestion');
+        foreach ( $gestiones as $valor) {
+            $inscrip = new Inscripcion();
+            $inscrip->id_gestion = $valor;
+            $inscrip->id_adminClub =$id_adm;  
+            //return dd($inscrip);                  
+            $inscrip->save();
+        }
+        
+        //$inscrip->id_club = $request->id_club;
+        //return dd($request->id_club);
+        
+       //return dd($id_administrador);
+        //return dd($inscrip->id_gestion);
+        
+        
+       // return redirect()->route('club.index');
     }
     public function inscrito($id){
         $id_gestion = Gestion::all()->last()->id_gestion;

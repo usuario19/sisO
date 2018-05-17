@@ -19,14 +19,14 @@
 
 	 	<div class="form-row">
 	 		<div class="form-group col-md-4">
-				{!! Form::radio('genero_jugador', 1 ,'Femenino',['id'=>'generof','class'=>'radio']) !!}
+				{!! Form::radio('genero_jugador', 1 ,null,['id'=>'generof','class'=>'radio']) !!}
 				{!! Form::label('generof', 'Femenino', []) !!}
 				
 			</div>
 
 			<div class="form-group col-md-4">
 					
-				{!! Form::radio('genero_jugador', 0 ,'Masculino',['id'=>'generom','class'=>'radio']) !!}
+				{!! Form::radio('genero_jugador', 0 ,null,['id'=>'generom','class'=>'radio']) !!}
 				{!! Form::label('generom', 'Masculino', []) !!}
 				
 			</div>

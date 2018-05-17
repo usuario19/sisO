@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>@yield('title')</title>
-	{!! Html::style('/css/bootstrap.min.css') !!}
-  {!! Html::style('/css/mis_estilos.css') !!}
-
-</head>
-<body>
-	
-	<div class="container">
+<div class="container">
 
       <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 
@@ -24,23 +10,34 @@
 
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="">Home <span class="sr-only">(current)</span>
+            <a class="nav-link" href="{{url('welcome')}}">Home <span class="sr-only">(current)</span>
             </a>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Gestiones
+              Campeonatos
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Gestion</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Campeonatos</a>
+              <a class="dropdown-item" href={{ route('gestion.index') }}>Listar Campeonatos</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-    		
+    		  <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Gestiones
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href={{ route('fase.create') }}>Registrar Gestion</a>
+              
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
     		  <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Resultados
@@ -97,25 +94,21 @@
               <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
             </div>
           </li>
+          </ul>
         <ul class="navbar-nav">
-         	 <li class="nav-item">
-             <a class="nav-link" href={{ route('login.login') }}>Login</a>
-         		</li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ Auth::User()->nombre." ".Auth::User()->apellidos }}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href={{ route('logout') }}>Logout</a>
+            </div>
+          </li>
         </ul>  
     	  
       </nav>
     </div>
   </nav>
 	
-	</div>
-
- 	<div class="container">
- 		@yield('content')
- 	</div>
-	{!! Html::script('/js/jquery.js') !!}
-	{!! Html::script('/js/bootstrap.min.js') !!}
-	{!! Html::script('/js/script.js') !!}
-	
-</body>
-</html>
-
+</div>

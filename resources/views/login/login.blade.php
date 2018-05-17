@@ -10,19 +10,20 @@
 
 <div class="container col-md-9">
 	
-	{!! Form::open(['route'=>'login.login','method' => 'POST' ,'enctype' => 'multipart/form-data'] ) !!}
+	{!! Form::open(['route'=>'login','method' => 'POST' ] ) !!}
 				
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				{!! Form::label('login', 'Login', []) !!}
-		      	{!! Form::text('login', null , ['class' =>'form-control', 'placeholder'=>'Login']) !!}
+				{!! Form::label('ci', 'Usuario', []) !!}
+		      	{!! Form::text('ci', null , ['class' =>'form-control', 'placeholder'=>'Login']) !!}
 		    </div>
-
-		    <div class="form-group col-md-6">
-		    	{!! Form::label('password', 'Passsword', []) !!}
-		    	{!! Form::password('password', null, ['class' =>'form-control']) !!}
-	    	</div>
 	 	</div>
+ 		<div class="form-row">
+ 			<div class="form-group col-md-6">
+ 				{!! Form::label('password', 'Passsword', []) !!}
+ 				{!! Form::password('password', ['class' =>'form-control']) !!}
+ 			</div>
+ 		</div>
 
 			{!! Form::submit('Ingresar', ['class'=>'btn btn-primary']) !!}
 		

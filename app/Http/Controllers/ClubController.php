@@ -15,7 +15,6 @@ class ClubController extends Controller
     public function index()
     {
         //listar clubs
-        
         $clubs = DB::table('adminclubs')
         ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
         ->join('clubs','adminclubs.id_club','=','clubs.id_club')
@@ -24,15 +23,16 @@ class ClubController extends Controller
         ->get();
 
         //para verificar si esta inscrito
-        $id_gestion = Gestion::all()->last()->id_gestion;
+        //$id_gestion = Gestion::all()->last()->id_gestion;
         //return var_dump($id_gestion);
-        $inscrito = DB::table('inscripciones')
-        ->join('clubs','clubs.id_club','=','inscripciones.id_club')
-        ->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
-        ->where('gestiones.id_gestion','=',$id_gestion)
-        ->select('inscripciones.id_club')
-        ->get();
-        return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito);
+        //$inscrito = DB::table('inscripciones')
+        //->join('clubs','clubs.id_club','=','inscripciones.id_club')
+        //->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
+        //->where('gestiones.id_gestion','=',$id_gestion)
+        //->select('inscripciones.id_club')
+        //->get();
+        $gestiones = DB::table('gestiones')->get();
+        return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones);
     
         //si no hay gestion nos da error
         //lista de los inscritos
@@ -94,6 +94,7 @@ class ClubController extends Controller
 
         $admin_club->id_club = $ultimo;
         //$datos->()->attach($);
+        $admin_club->estado_coordinador = 1;
         $admin_club->save();
 
         return redirect()->route('club.index');
@@ -102,7 +103,27 @@ class ClubController extends Controller
     {
         //
     }
+    public function mostrarClub()
+    {
+        //
+        $clubs = DB::table('adminclubs')
+        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
+        ->join('clubs','adminclubs.id_club','=','clubs.id_club')
+        
+        ->select('clubs.*','administradores.nombre','administradores.apellidos')
+        ->get();
 
+        //para verificar si esta inscrito
+        $id_gestion = Gestion::all()->last()->id_gestion;
+        //return var_dump($id_gestion);
+        $inscrito = DB::table('inscripciones')
+        ->join('clubs','clubs.id_club','=','inscripciones.id_club')
+        ->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
+        ->where('gestiones.id_gestion','=',$id_gestion)
+        ->select('inscripciones.id_club')
+        ->get();
+        return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito);
+    }
     public function edit($id)
     {
         //para editar el club
@@ -179,16 +200,25 @@ class ClubController extends Controller
     
     //para llenar la tabla inscripcion
     //inscribir un club a una gestion, a la gestion actual
-    public function inscribir($id){
-        $id_gestion = Gestion::all()->last()->id_gestion;
+    public function inscribir(request $request){
+        //$id_gestion = Gestion::all()->last()->id_gestion;
         //$ultima_gestion = Gestion::all();
         //$valor = $ultima_gestion->last()->id_gestion;
         //return dd($id_gestion);
-        $inscripcion = new inscripcion();
-        $inscripcion->id_gestion = $id_gestion;
-        $inscripcion->id_club = $id;
-        $inscripcion->save();
-        return redirect()->route('club.index');
+        $inscrip = new inscripcion();
+        $inscrip->id_gestion = $request->id_gestion;
+        $inscrip->id_club = $request->id_club;
+        return dd($request->id_club);
+        $id_administrador = DB::table('clubs')
+                            ->join('adminclubs','adminclubs.id_club','=','clubs.id_club')
+                            ->where(['adminclubs.id_club','=',$request->id_club],
+                                    ['adminclubs.estado_coordinador','=',1])
+                            ->select('adminclubs.id_administrador')
+                            ->get();
+        //return dd($id_administrador);
+        $inscrip->id_administrador = $id_administrador;
+        $inscrip->save();
+        //return redirect()->route('club.index');
     }
     public function inscrito($id){
         $id_gestion = Gestion::all()->last()->id_gestion;

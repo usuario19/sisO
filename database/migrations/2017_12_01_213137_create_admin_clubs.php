@@ -14,6 +14,8 @@ class CreateAdminClubs extends Migration
     public function up()
     {
         Schema::create('adminClubs', function (Blueprint $table) {
+            $table->increments('id_adminClub');
+            $table->integer('estado_coordinador');
             $table->integer('id_administrador')->unsigned();
             $table->foreign('id_administrador')->references('id_administrador')->on('administradores')->onDelete('cascade');
             $table->integer('id_club')->unsigned();

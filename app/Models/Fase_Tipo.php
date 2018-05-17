@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Fase_Tipo extends Model
     protected $hidden = ['remember_token'];
 
     public function fase_tipos(){
-    	retunr $this->hasMany('App\Models\Fase_Tipo');
+    	return $this->hasMany('App\Models\Fase_Tipo');
     }
 }

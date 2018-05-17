@@ -16,7 +16,7 @@ class CreateDisciplinasTable extends Migration
         Schema::create('disciplinas', function (Blueprint $table) {
             $table->increments('id_disc');
             $table->string('nombre_disc');
-            $table->string('foto_disc')->default('usuario-sin-foto.png');
+            $table->string('foto_disc')->default('sin_imagen.png');
             $table->string('reglamento_disc');
             $table->text('descripcion_disc');
             $table->timestamps();

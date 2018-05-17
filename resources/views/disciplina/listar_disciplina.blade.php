@@ -28,7 +28,7 @@
   				<tr>
   					<td>{{ $disciplina->id_disc}}</td>
 
-            <td><img class="img-thumbnail" src="storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 100px" width="100px"></td>
+            <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $disciplina->nombre_disc}}</td>
 
             <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">Ver</td>
@@ -36,6 +36,7 @@
 
             <td><a href="{{ route('disciplina.edit',$disciplina->id_disc) }}" class="btn btn-info">Editar</a></td>
             <td><a href="{{ route('disciplina.destroy',$disciplina->id_disc) }}" onclick = "return Alert::info('Esta seguro de eliminar la disciplina,'jej')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
+            <td><a href="{{ route('fase.index',$disciplina->id_disc) }}" class="btn btn-success"><span class="glyphicon glyphicon-bold"></span>Fases</a></td>
             
   				</tr>
   			@endforeach

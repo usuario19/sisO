@@ -24,6 +24,7 @@ class CreateAdministradoresTable extends Migration
             $table->string('email',100)->unique();
             $table->string('password');
             $table->text('descripcion_admin');
+            $table->enum('tipo',['Administrador','Coordinador'])->default('Coordinador');
             $table->rememberToken();
             $table->timestamps();
         });

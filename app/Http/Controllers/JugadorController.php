@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jugador;
+use App\Models\Gestion;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\JugadorRequest;
+use Storage;
+use Validator;
 
 class JugadorController extends Controller
 {
@@ -16,7 +20,13 @@ class JugadorController extends Controller
     public function index()
     {
         $usuarios = DB::table('jugadores')->get();
-        return view('jugador.listar_jugadores')->with('usuarios',$usuarios);
+
+        $ultima_gestion = Gestion::all()->last()->id_gestion;
+        //dd($ultima_gestion);
+        $clubs = DB::table('inscripciones')->where('id_gestion',$ultima_gestion)->get();
+        //dd($clubs);
+
+        return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('clubs',$clubs);
     }
 
     /**
@@ -35,7 +45,7 @@ class JugadorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JugadorRequest $request)
     {
         $datos = new Jugador($request->all());
         $datos->save();
@@ -51,6 +61,13 @@ class JugadorController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function mostrarJugador()
+    {
+        //
+        $usuarios = DB::table('jugadores')->get();
+        return view('jugador.listar_jugadores')->with('usuarios',$usuarios);
     }
 
     /**
@@ -77,7 +94,12 @@ class JugadorController extends Controller
     {
         //
         $usuario = Jugador::find($id);
-        
+
+        if ($request->hasFile('foto_jugador') && $usuario->foto_jugador != "usuario-sin-foto.png") 
+        {
+           Storage::disk('fotos')->delete($usuario->foto_jugador);
+        }
+
         $usuario->fill($request->all());
         $usuario->save();
         return redirect()->route('jugador.index');
@@ -93,6 +115,11 @@ class JugadorController extends Controller
     {
         //
         $usuario= Jugador::find($id);
+        if ($usuario->foto_jugador != "usuario-sin-foto.png") 
+        {
+           Storage::disk('fotos')->delete($usuario->foto_jugador);
+        }
+        
         $usuario->delete();
         return redirect()->route('jugador.index');
     }

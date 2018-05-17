@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 
 class DisciplinaController extends Controller
@@ -54,6 +55,13 @@ class DisciplinaController extends Controller
     public function show($id)
     {
         //para listar disciplina
+
+    }
+    public function mostrarDisc()
+    {
+        //
+        $disciplinas = DB::table('disciplinas')->get();
+        return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
 
     }
 

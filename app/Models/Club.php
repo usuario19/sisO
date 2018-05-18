@@ -23,7 +23,7 @@ class Club extends Model
 		];
 
 	public function admin_clubs(){
-		return $this->hasMany('App\Models\Admin_Club');
+		return $this->hasMany('App\Models\Admin_Club','id_adminClub','id_adminClub');
         
 	}
     /**public function inscripcions(){

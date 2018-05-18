@@ -20,10 +20,10 @@ class Admin_Club extends Model
     ];
 
     public function administradors(){
-         return $this->belongsTo('App\Models\Administrador','id_administrador');
+         return $this->belongsTo('App\Models\Administrador','id_administrador','id_administrador');
     }
 
      public function clubs(){
-         return $this->belongsTo('App\Models\Club','id_club');
+         return $this->belongsTo('App\Models\Club','id_club','id_club');
     }
 }

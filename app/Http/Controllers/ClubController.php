@@ -31,9 +31,13 @@ class ClubController extends Controller
         //->where('gestiones.id_gestion','=',$id_gestion)
         //->select('inscripciones.id_club')
         //->get();
-        $gestiones = DB::table('gestiones')->get();
-        return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones);
-    
+        //gestiones en las que aun no esta inscrito
+        /**$gestiones = DB::table('gestiones')
+                    ->join('inscripciones','gestiones.id_gestion','=','inscripciones.id_gestion')
+                    ->where()
+                    ->get();**/
+       // return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones);
+        return view('club.listar_club')->with('clubs',$clubs);
         //si no hay gestion nos da error
         //lista de los inscritos
         /**
@@ -199,39 +203,33 @@ class ClubController extends Controller
     }
     
     //para llenar la tabla inscripcion
-    //inscribir un club a una gestion, a la gestion actual
+    //inscribir un club a una gestion con un coordinador
     public function inscribir(request $request){
-        //$id_gestion = Gestion::all()->last()->id_gestion;
-        //$ultima_gestion = Gestion::all();
-        //$valor = $ultima_gestion->last()->id_gestion;
-        //return dd($id_gestion);
-        $id_administrador = DB::table('clubs')
+        if (empty($request->get('id_gestion'))) {
+            Alert::info('no selecciono ningun campeonato','');
+            return redirect()->route('club.index');
+        }
+        else{
+            $id_administrador = DB::table('clubs')
                             ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
                             ->where('adminClubs.id_club',$request->get('id_club'))
                             ->where('adminClubs.estado_coordinador',1)
                             ->select('adminClubs.id_adminClub')
                             ->get();
-                            foreach ($id_administrador as $valor) {
-        $id_adm = $valor->id_adminClub;
-        return dd($request->get('id_club'));   
+        foreach ($id_administrador as $valor) {
+            $id_adm = $valor->id_adminClub;
         }
         $gestiones=$request->get('id_gestion');
         foreach ( $gestiones as $valor) {
             $inscrip = new Inscripcion();
             $inscrip->id_gestion = $valor;
-            $inscrip->id_adminClub =$id_adm;  
-            //return dd($inscrip);                  
+            $inscrip->id_adminClub =$id_adm;                   
             $inscrip->save();
         }
         
-        //$inscrip->id_club = $request->id_club;
-        //return dd($request->id_club);
+        return redirect()->route('club.index');
+        }
         
-       //return dd($id_administrador);
-        //return dd($inscrip->id_gestion);
-        
-        
-       // return redirect()->route('club.index');
     }
     public function inscrito($id){
         $id_gestion = Gestion::all()->last()->id_gestion;
@@ -247,5 +245,16 @@ class ClubController extends Controller
             return false;
         }
         return true; 
+    }
+    public function gestiones_disp($id){
+        $gestiones = DB::table('clubs')
+                    ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
+                    ->join('inscripciones','adminClubs.id_adminClub','=','inscripciones.id_adminClub')
+                    ->join('gestiones','inscripciones.id_gestion','=','gestiones.id_gestion')
+                    ->where('clubs.id_club',$id)
+                    ->where('adminClubs.id_club','<',$id)
+                    ->select('gestiones.nombre_gestion','gestiones.id_gestion')
+                    ->get();
+        return view('club.gestiones')->with('gestiones',$gestiones)->with('id_club',$id);
     }
 }

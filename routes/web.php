@@ -133,6 +133,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 			'uses'=> 'ClubController@create',
 			'as' => 'club.create']);
 	
+	Route::get('club/{id}/gestiones_disp',[ 
+			'uses'=> 'ClubController@gestiones_disp',
+			'as' => 'club.gestiones_disp']);
+	
 	//GESTION
 	//Route::resource('gestion','GestionController');
 	Route::post('gestion',[ 

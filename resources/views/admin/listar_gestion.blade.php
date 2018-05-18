@@ -15,6 +15,7 @@
         <th>Descripcion</th>
   			<th>Acciones</th>
         <th>Permisos</th>
+        <th>Clubs</th>
         
   		</thead>
   		<tbody>
@@ -27,7 +28,7 @@
   					<td>{{ $gestion->desc_gest}}</td>
             <td><a href="{{ route('gestion.edit',$gestion->id_gestion) }}">Editar</a></td>
             <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}">Eliminar</a></td>
-            
+            <td><a href="{{ route('gestion.clubs',$gestion->id_gestion) }}">Ver</a></td>
   				</tr>
   			@endforeach
   		</tbody>

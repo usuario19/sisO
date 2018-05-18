@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gestion;
 use App\Models\Disciplina;
+use App\Models\Club;
 use App\Models\Participacion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -101,27 +102,33 @@ class GestionController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    public function destroy($id){
         DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
         return redirect()->route('gestion.index'); 
+    }
+
+    public function clubs($id){
+        $clubs_inscritos = DB::table('clubs')
+                        ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
+                        ->join('inscripciones','adminClubs.id_adminClub','=','inscripciones.id_adminClub')
+                        ->join('gestiones','inscripciones.id_gestion','=','gestiones.id_gestion')
+                        ->where('gestiones.id_gestion',$id)
+                        ->select('clubs.*','gestiones.nombre_gestion')
+                        ->get();
+        $clubs = DB::table('clubs')
+                        ->whereNotIn('gestiones.id_gestion',$id)
+                        ->where('inscripciones.id_gestion',$id)
+                        ->select('clubs.*','gestiones.nombre_gestion')
+                        ->get();
+        //return dd($clubs_inscritos);
+        //$clubs = Club::all();
+        $gestion = Gestion::find($id);
+
+
+        return view('admin.gestion_clubs')->with('clubs_inscritos',$clubs_inscritos)->with('clubs',$clubs)->with('gestion',$gestion);
     }
 }

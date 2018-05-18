@@ -133,6 +133,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 			'uses'=> 'ClubController@create',
 			'as' => 'club.create']);
 	
+	Route::get('club/{id}/gestiones_disp',[ 
+			'uses'=> 'ClubController@gestiones_disp',
+			'as' => 'club.gestiones_disp']);
+	
 	//GESTION
 	//Route::resource('gestion','GestionController');
 	Route::post('gestion',[ 
@@ -162,6 +166,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	route::get('gestion/{id}/destroy',[
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
+	]);
+	route::get('gestion/{id}/clubs',[
+	    'uses'=> 'GestionController@clubs',
+	    'as'=> 'gestion.clubs'
 	]);
 	//fases
 	route::get('fase',[
@@ -237,9 +245,13 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	    'uses'=> 'ClubController@destroy',
 	    'as'=> 'club.destroy'
 	]);
-	Route::post('club/inscribir',[
+	Route::get('club/{id}/{id_gestion}/inscribir',[
 		'uses'=>'ClubController@inscribir',
 		'as'=>'club.inscribir'
+	]);
+	Route::get('club/{id}/{id_gestion}/desinscribir',[
+		'uses'=>'ClubController@desinscribir',
+		'as'=>'club.desinscribir'
 	]);
 	Route::get('club/{id}/inscrito',[
 		'uses'=>'ClubController@inscrito',

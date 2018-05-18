@@ -31,7 +31,7 @@
   					<td>{{ $club->id_club}}</td>            
             <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 100px" width="100px"></td>
             <td>{{ $club->nombre_club}}</td>
-  					<td>{{ $club->nombre." ".$club->apellidos}}</td>
+  					<td>{{ $club->admin_clubs}}</td>
   					<td>{{ $club->ciudad}}</td>
             <td>{{ $club->descripcion_club}}</td>
 
@@ -54,12 +54,12 @@
   
                       
                       <div class="form-row" style = "display:none">
-     
+                        
                         {!! Form::text('id_club', $club->id_club, ['class'=>'form-control']) !!}
                       </div>
                         
                       @foreach ($gestiones as $gestion)
-                        {!! Form::checkbox('id_gestion[]',$gestion->id_gestion, false, []) !!}
+                    {!! Form::checkbox('id_gestion[]',$gestion->id_gestion, false, []) !!}
                         {!! Form::label('gestion',$gestion->nombre_gestion, []) !!}
                       @endforeach
                     </div>

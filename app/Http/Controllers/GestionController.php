@@ -64,7 +64,7 @@ class GestionController extends Controller
             return var_dump($id_disc);
         }
         
-
+ 
         $gestion->save();*/
         
         //$gestion = Disciplina::find($id_disc);

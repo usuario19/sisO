@@ -24,6 +24,6 @@ class Admin_Club extends Model
     }
 
      public function clubs(){
-         return $this->belongsTo('App\Models\Club','id_club');
+         return $this->belongsTo('App\Models\Club','id_club','id_club');
     }
 }

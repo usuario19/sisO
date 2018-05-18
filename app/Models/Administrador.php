@@ -38,7 +38,7 @@ class Administrador extends Authenticatable
 
     //un jugador administra a un club
     public function admin_clubs(){
-        return $this-hasMany('App\Models\Admin_club');
+        return $this->hasMany('App\Models\Admin_Club','id_adminClub');
     } 
     
     public function setPasswordAttribute($value)

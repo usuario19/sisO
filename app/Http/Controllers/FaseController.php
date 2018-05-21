@@ -11,8 +11,7 @@ class FaseController extends Controller
     public function index()
     {   
         
-        $fases = DB::table('fases')->get();
-        return view('fases.list_fase')->with('fases', $fases);
+        
     }
     public function create()
     {
@@ -36,7 +35,7 @@ class FaseController extends Controller
     }
     public function show($id)
     {
-        //
+        
     }
     
     public function mostrarGestion()
@@ -60,6 +59,12 @@ class FaseController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function fases($id_disc){
+        $fases = DB::table('fases')
+                ->join()
+        ->get();
+        return view('fases.list_fase')->with('fases', $fases);
     }
 }
 

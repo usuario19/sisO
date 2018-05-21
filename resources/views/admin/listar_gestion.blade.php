@@ -1,11 +1,11 @@
 @extends('plantillas.main')
 
 @section('title')
-    SisO - Lista de Gestiones
+    SisO - Lista de Campeonatos
 @endsection
 
 @section('content')
-<h1>Lista de Gestiones:</h1>
+<h1>Lista de Campeonatos:</h1>
 	<table class="table table-condensed">
   		<thead>
   			<th>ID</th>
@@ -26,9 +26,9 @@
   					<td>{{ $gestion->fecha_ini}}</td>
             <td>{{ $gestion->fecha_fin}}</td>
   					<td>{{ $gestion->desc_gest}}</td>
-            <td><a href="{{ route('gestion.edit',$gestion->id_gestion) }}">Editar</a></td>
-            <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}">Eliminar</a></td>
-            <td><a href="{{ route('gestion.clubs',$gestion->id_gestion) }}">Ver</a></td>
+            <td><a href="{{ route('gestion.edit',$gestion->id_gestion) }}" class="btn btn-info">Editar</a></td>
+            <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}" class="btn btn-danger">Eliminar</a></td>
+            <td><a href="{{ route('gestion.clubs',$gestion->id_gestion) }}" class="btn btn-success">Ver</a></td>
   				</tr>
   			@endforeach
   		</tbody>

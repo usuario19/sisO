@@ -112,6 +112,7 @@ class GestionController extends Controller
     }
 
     public function clubs($id){
+        //clubs inscritos en una determinada gestion
         $clubs_inscritos = DB::table('clubs')
                         ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
                         ->join('inscripciones','adminClubs.id_adminClub','=','inscripciones.id_adminClub')
@@ -119,15 +120,23 @@ class GestionController extends Controller
                         ->where('gestiones.id_gestion',$id)
                         ->select('clubs.*','gestiones.nombre_gestion')
                         ->get();
-        $clubs = DB::table('clubs')
-                        ->whereNotIn('gestiones.id_gestion',$id)
-                        ->where('inscripciones.id_gestion',$id)
-                        ->select('clubs.*','gestiones.nombre_gestion')
-                        ->get();
-        //return dd($clubs_inscritos);
-        //$clubs = Club::all();
-        $gestion = Gestion::find($id);
+        $inscritos = DB::table('clubs')
+                        ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
+                        ->join('inscripciones','adminClubs.id_adminClub','=','inscripciones.id_adminClub')
+                        ->join('gestiones','inscripciones.id_gestion','=','gestiones.id_gestion')
+                        ->where('gestiones.id_gestion',$id)
+                        ->select('clubs.id_club')
+                        ->get()->toArray();        
 
+        $lista = array();
+                        foreach ($inscritos as $inscrito) {
+                            $lista[] = $inscrito->id_club;
+                        }
+        $clubs = DB::table('clubs')
+                        ->whereNotIn('clubs.id_club',$lista)
+                        ->select('clubs.*')
+                        ->get();
+        $gestion = Gestion::find($id);
 
         return view('admin.gestion_clubs')->with('clubs_inscritos',$clubs_inscritos)->with('clubs',$clubs)->with('gestion',$gestion);
     }

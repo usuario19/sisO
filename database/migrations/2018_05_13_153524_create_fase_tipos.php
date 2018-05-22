@@ -13,7 +13,7 @@ class CreateFaseTipos extends Migration
      */
     public function up()
     {
-        Schema::create('fase_Tipos', function (Blueprint $table) {
+        Schema::create('fase_tipos', function (Blueprint $table) {
             
             $table->integer('id_tipo')->unsigned();
             $table->foreign('id_tipo')->references('id_tipo')->on('tipos')->onDelete('cascade');
@@ -30,6 +30,6 @@ class CreateFaseTipos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fase_Tipos');
+        Schema::dropIfExists('fase_tipos');
     }
 }

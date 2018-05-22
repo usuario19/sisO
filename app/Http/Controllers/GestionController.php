@@ -140,4 +140,14 @@ class GestionController extends Controller
 
         return view('admin.gestion_clubs')->with('clubs_inscritos',$clubs_inscritos)->with('clubs',$clubs)->with('gestion',$gestion);
     }
+    public function disciplinas($id_gestion){
+        $disciplinas = DB::table('disciplinas')
+                    ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
+                    ->where('participaciones.id_gestion',$id_gestion)
+                    ->get();
+        //$disciplinas = Disciplina::all();
+        $gestion = Gestion::find($id_gestion);
+        //return dd($disciplinas);
+        return view('admin.gestion_disciplina')->with('disciplinas',$disciplinas)->with('gestion',$gestion);
+    }
 }

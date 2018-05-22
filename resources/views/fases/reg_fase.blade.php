@@ -29,17 +29,16 @@ SisO:Crear Fase
 				 				{!! Form::radio('tipo',$tipo->id_tipo,null,['id'=>'series','class'=>'radio']) !!}
 								{!! Form::label('series',$tipo->nombre_tipo, []) !!}
 								</div>
-				 			@endforeach
-							
-							
-						
+				 			@endforeach				
 					</div>	
 				</div>
 			</div>
 				
 		</div>
 	</div>
-	
+	<div style="display: none;">
+		{!! Form::text('id_disc', $id_disc, []) !!}
+	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			{!! Form::submit('Crear Fase', ['class'=>'btn btn-primary']) !!}

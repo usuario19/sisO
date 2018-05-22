@@ -13,20 +13,21 @@ class FaseController extends Controller
         
         
     }
-    public function create()
-    {
+    public function create($id_disc,$id_gestion)
+    {  
         $tipos = DB::table('tipos')->get();
-        return view('fases.reg_fase')->with('tipos', $tipos);
+        return view('fases.reg_fase')->with('tipos', $tipos)->with('id_disc',$id_disc)->with('id_gestion',$id_gestion);
     }
     public function store(Request $request)
     {
-    	//return dd($request);
+        $id_participacion = DB::table('participacion')
         $fases = new Fase;
         $fases->nombre_fase = $request->get('nombre');
+        $fases->id_participacion = $id_participacion;
         $fases->save();
         //return dd($fases);
         $fase_tipos = new Fase_Tipo;
-        $fase_tipos->id_fase = Fase::all()->last()->id_fase;;
+        $fase_tipos->id_fase = Fase::all()->last()->id_fase;
         $fase_tipos->id_tipo = $request->get('tipo');
         $fase_tipos->save();
 

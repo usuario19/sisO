@@ -122,7 +122,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'DisciplinaController@destroy',
 	    'as'=> 'disciplina.destroy'
 	]);
-
+	route::get('disciplina/{id}/{id_gestion}/fases',[
+	    'uses'=> 'DisciplinaController@fases',
+	    'as'=> 'disciplina.fases'
+	]);
 	//CLUB
 	//Route::resource('club','ClubController');
 	Route::post('club',[ 
@@ -171,12 +174,16 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@clubs',
 	    'as'=> 'gestion.clubs'
 	]);
+	route::get('gestion/{id}/disciplinas',[
+	    'uses'=> 'GestionController@disciplinas',
+	    'as'=> 'gestion.disciplinas'
+	]);
 	//fases
 	route::get('fase',[
 		'uses'=>'FaseController@index',
 		'as'=>'fase.index'
 	]);
-	route::get('fase/create',[
+	route::get('fase/{id_disc}/{id_gestion}/create',[
 		'uses'=>'FaseController@create',
 		'as'=>'fase.create'
 	]);

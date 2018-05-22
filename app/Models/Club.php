@@ -21,14 +21,21 @@ class Club extends Model
 	protected $hidden = [
 		'remember_token'
 		];
-
+    //UN CLUB TIENE VARION JUGADORES
+    public function jugador_clubs(){
+        return $this->hasMany('App\Models\Jugador_Club', 'id_club');
+        
+    }
+    //UN CLUB TIENE MUCHOS ADMINISTRADORES
 	public function admin_clubs(){
 		return $this->hasMany('App\Models\Admin_Club');
         
 	}
-    public function inscripcions(){
+    //
+    public function inscripciones(){
         return $this->hasMany('App\Models\Inscripcion','id_club');
     }
+    //ALMACEN LOGO EN CARPETA
 	public function setLogoAttribute($value)
     {
         if($value !== null)
@@ -37,10 +44,6 @@ class Club extends Model
             //obtiene eel nombre del archivo
             Storage::disk('logos')->put($nombre, file_get_contents($value));
             $this->attributes['logo'] = $nombre;
-            /*
-            $path = storage_path('app/public');
-            $value ->move($path, $nombre);
-            $this->attributes['archivo'] = 'app/public/'.$nombre;*/
         }
     }
 }

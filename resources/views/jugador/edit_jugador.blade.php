@@ -9,33 +9,39 @@
 <div class="container col-md-9">
 	{!! Form::model($usuario,['route'=>['jugador.update',$usuario->id_jugador],'method' => 'PUT' ,'enctype' => 'multipart/form-data', 'files'=>true]) !!}
 
+
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<div class="form-row">
 					<div id="contenedor" class="form-group col-md-12">
-						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/fotos/{{ $usuario->foto_jugador }}" alt="" height="200px" width="200px">
+						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/fotos/{{$usuario->foto_jugador  }}" alt="" height="200px" width="200px">
 						<img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt="">
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="form-group col-md-5">
-						
-						<div id="div_file">
+					<div id="div_file" class="form-group col-md-2">
 							<img id="texto" src="/storage/fotos/subir.png"  alt="">
 							{!! Form::file('foto_jugador', ['class'=>'upload','id'=>'input']) !!}
-						</div>
 					</div>
-					<div class="form-group col-md-5" id="content" style="">
+					<div class="form-group col-md-2" id="content">
 						<div><img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png"  alt=""></div>
 					</div>
 				</div>
 			</div>
-			
 			<div class="form-group col-md-8" >
-				@include('plantillas.forms.form_reg_jugador')
 				<div class="form-row">
-				<div class="form-group col-md-12">
-					{!! Form::submit('Acualizar datos', ['class'=>'btn btn-primary']) !!}
+					<div class="form-group col-md-12">
+						<table class="table table-sm">
+						  
+						  <tbody>
+						    <tr>
+						      
+							  @include('plantillas.forms.form_reg_jugador')
+							  <tr><td colspan="2">{!! Form::submit('Actualizar datos de jugador', ['class'=>'btn btn-primary']) !!}</td></tr>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

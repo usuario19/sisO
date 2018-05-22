@@ -163,6 +163,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
+	//JUGADOR_INSCRIPCION
+	Route::post('registrar',[ 
+				'uses'=> 'JugadorInscripcionController@store',
+				'as' => 'jugador_inscripcion.store']);
 
 });
 
@@ -192,9 +196,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 
 	Route::get('jugador/{id}/destroy',[ 
 				'uses'=> 'JugadorController@destroy',
-				'as' => 'jugador.destroy']);
-
-	
+				'as' => 'jugador.destroy']);	
 
 	Route::put('club/{club}',[ 
 				'uses'=> 'ClubController@update',
@@ -233,7 +235,30 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 			'uses'=> 'ClubController@index',
 			'as' => 'club.index']);
 
+	//COORDINADOR
+	Route::get('coordinador',[ 
+				'uses'=> 'CoordinadorController@index',
+				'as' => 'coordinador.index']);
 
+	Route::get('coordinador/gestiones',[ 
+				'uses'=> 'CoordinadorController@ver_misGestiones',
+				'as' => 'coordinador.mis_gestiones']);
+
+	/*Route::put('jugador/{jugador}',[ 
+				'uses'=> 'JugadorController@update',
+				'as' => 'jugador.update']);
+
+	Route::get('jugador/{jugador}',[ 
+				'uses'=> 'JugadorController@show',
+				'as' => 'jugador.show']);
+
+	Route::get('jugador/{jugador}/edit',[ 
+				'uses'=> 'JugadorController@edit',
+				'as' => 'jugador.edit']);
+
+	Route::get('jugador/{id}/destroy',[ 
+				'uses'=> 'JugadorController@destroy',
+				'as' => 'jugador.destroy']);*/
 });
 
 //Auth::routes();

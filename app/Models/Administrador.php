@@ -30,15 +30,13 @@ class Administrador extends Authenticatable
 
     ];
 
-
-
     protected $hidden = [
         'password', 'remember_token',
     ];
 
     //un jugador administra a un club
     public function admin_clubs(){
-        return $this-hasMany('App\Models\Admin_club');
+        return $this-hasMany('App\Models\Admin_club','id_adminClubs');
     } 
     
     public function setPasswordAttribute($value)

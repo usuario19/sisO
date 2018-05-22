@@ -17,11 +17,14 @@ class Inscripcion extends Model
 	protected $hidden = [
 		'remember_token'
 		];
-
+		
 	public function clubs(){
-		return $this->belongTo('App\Models\Club','id_club');
+		return $this->belongsTo('App\Models\Club','id_club');
 	}
-	public function gestions(){
-		return $this->belongTo('App\Models\Gestion','id_gestion');
+	public function gestiones(){
+		return $this->belongsTo('App\Models\Gestion','id_gestion');
 	}
+	public function jugador_inscripciones(){
+        return $this-hasMany('App\Models\Jugador_Inscripcion');
+    }
 }

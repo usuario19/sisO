@@ -40,9 +40,9 @@
             <td><a href="{{ route('jugador.edit',$usuario->id_jugador) }}" class="btn btn-warning">Editar</a></td>
 
             <td>
-              <a href="{{ route('jugador.destroy',$usuario->id_jugador) }}"  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Eliminar</a>
+              <a href="{{ route('jugador.destroy',$usuario->id_jugador) }}"  class="btn btn-danger" data-toggle="modal" data-target="#Eliminar{{ $usuario->id_jugador}}" >Eliminar</a>
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="Eliminar{{ $usuario->id_jugador}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                       <a href="{{ route('jugador.destroy',$usuario->id_jugador) }}" class="btn btn-primary">Eliminar</a>
                     </div>
@@ -65,33 +65,54 @@
                 </div>
               </div>
             </td>
+
+
             <td>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
-                Registrar a un club
-              </button>
-                <!-- Modal -->
-              <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Clubs:</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Clubs inscritos en la gestion actual:
-                      {!! Form::open() !!}
-                          {!! Form::submit('Inscribir', []) !!}
-                      {!! Form::close() !!}
-                      
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              {!! Form::open(['route'=>'jugador_inscripcion.store','method' => 'POST']) !!}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Inscribirse{{ $usuario->id_jugador}}">
+                  Registrar a un club
+                </button>
+                  <!-- Modal -->
+                <div class="modal fade" id="Inscribirse{{ $usuario->id_jugador}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Clubs inscritos en la gestion actual:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="form-row">
+                              <div class="form-group col-md-12">
+                                {{ "Registrar a ".$usuario->nombre_jugador." ".$usuario->apellidos_jugador." en el Club:" }}
+                              </div>
+                          </div>
+                           <div class="form-row" style="display: none">
+                              <div class="form-group col-md-12">
+                                {!! Form::label('id_jugador', 'Jugador', []) !!}
+                                {!! Form::text('id_jugador',$usuario->id_jugador , ['class' =>'form-control']) !!}
+                              </div>
+                            </div> 
+                            @foreach($inscritos as $inscrito)
+                                
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                      {!! Form::radio('club', $inscrito->id_inscripcion ,null,['id'=> 'club'.$usuario->id_jugador.$inscrito->id_club ,'class'=>'radio']) !!}
+                                  
+                                      {!! Form::label('club'.$usuario->id_jugador.$inscrito->id_club, $inscrito->clubs->nombre_club, []) !!}
+                                  </div>
+                                </div>
+                            @endforeach
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                         {!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+                {!! Form::close() !!}
             </td>
   				</tr>
   			@endforeach

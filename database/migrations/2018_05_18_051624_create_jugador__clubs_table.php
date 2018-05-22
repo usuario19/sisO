@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class JugadorInscripciones extends Migration
+class CreateJugadorClubsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class JugadorInscripciones extends Migration
      */
     public function up()
     {
-        //
-         Schema::create('jugador_inscripciones', function (Blueprint $table) {
-            $table->increments('id_insc_jug');
-            $table->integer('id_inscripcion')->unsigned();
-            $table->foreign('id_inscripcion')->references('id_inscripcion')->on('inscripciones');
+        Schema::create('jugador__clubs', function (Blueprint $table) {
+            //$table->increments('id');
+            $table->integer('id_club')->unsigned();
+            $table->foreign('id_club')->references('id_club')->on('clubs');
+
             $table->integer('id_jugador')->unsigned();
             $table->foreign('id_jugador')->references('id_jugador')->on('jugadores');
             $table->timestamps();
@@ -31,7 +31,6 @@ class JugadorInscripciones extends Migration
      */
     public function down()
     {
-        //
-        Schema::dropIfExists('jugadorInscripciones');
+        Schema::dropIfExists('jugador__clubs');
     }
 }

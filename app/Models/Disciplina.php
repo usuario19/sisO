@@ -29,6 +29,13 @@ class Disciplina extends Model
 	{
 		return $this->hasMany('App\Models\disciplina_gestion');
 	}
+    public function inscripciones(){
+        return $this->hasMany('App\Models\Inscripcion','id_disc');
+    }
+
+
+
+    //......................................................................
 	public function setFotoDiscAttribute($value)
     {
         if($value !== null)

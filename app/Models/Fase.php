@@ -12,9 +12,9 @@ class Fase extends Model
     protected $hidden = ['remember_token'];
 
     public function fase_tipos (){
-    	return $this->hasMany('App\Models\Fase_Tipo');
+    	return $this->hasMany('App\Models\Fase_Tipo','id_fase','id_fase');
     }
     public function fechas(){
-    	return $this->hasMany('App\Models\Fecha');
+    	return $this->hasMany('App\Models\Fecha','id_fecha','id_fecha');
     }
 }

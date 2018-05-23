@@ -13,6 +13,6 @@ class Tipo extends Model
     protected $hidden = ['remember_token'];
 
     public function fase_tipos(){
-    	retunr $this->hasMany('App\Models\Fase_Tipo');
+    	return $this->hasMany('App\Models\Fase_Tipo','id_tipo','id_tipo');
     }
 }

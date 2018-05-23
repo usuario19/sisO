@@ -41,20 +41,15 @@ SisO:Crear Campeonato
 			<div class="card">
 				<div class="card-body">
 					@foreach ($disciplina as $valor)
-
 						{!! Form::checkbox('id_disciplinas[]',$valor->id_disc, false, []) !!}
 						{!! Form::label('disciplina',$valor->nombre_disc, []) !!}
 						<br>
 					@endforeach
 				</div>
 				
-			</div>
-				
-
-					
+			</div>		
 		</div>
 	</div>
-	
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			{!! Form::submit('Crear Gestion', ['class'=>'btn btn-primary']) !!}

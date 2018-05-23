@@ -38,6 +38,7 @@ SisO:Crear Fase
 	</div>
 	<div style="display: none;">
 		{!! Form::text('id_disc', $id_disc, []) !!}
+		{!! Form::text('id_gestion', $id_gestion, []) !!}
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">

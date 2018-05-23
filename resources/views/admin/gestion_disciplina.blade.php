@@ -27,7 +27,6 @@
 
             <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">Ver</td>
             <td>{{ $disciplina->descripcion_disc}}</td>
-
             <td><a href="{{ route('disciplina.fases',[$disciplina->id_disc,$gestion->id_gestion]) }}" class="btn btn-info">ver</a></td>
             
           </tr>

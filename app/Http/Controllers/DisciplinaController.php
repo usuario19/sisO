@@ -123,10 +123,18 @@ class DisciplinaController extends Controller
         return redirect()->route('disciplina.index'); 
     }
     public function fases($id_disc,$id_gestion){
-        $fases = DB::table('fases')
+        //$fases = Fase::where('id_disciplina','=',$id_disc)->where('id')
+        /*$fases = DB::table('fases')
                 ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
+
                 ->where('participaciones.id_disciplina',$id_disc)
+                ->get();*/
+        $fases = DB::table('participaciones')
+                ->join('fases','participaciones.id_participacion','=','fases.id_participacion')
+                ->join('fase_tipos','fases.id_fase','=','fase_tipos.id_fase')
+                ->join('tipos','fase_tipos.id_tipo','=','tipos.id_tipo')
+                ->select('fases.*','tipos.*')
                 ->get();
-        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion);
+        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc);
     }
 }

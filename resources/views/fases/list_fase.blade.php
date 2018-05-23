@@ -16,7 +16,8 @@
   		<thead>
   			<th width="50px">ID</th>
         <th>Nombre</th>
-  			<th>Grupos</th>
+        <th>Tipo</th>
+        <th>Grupos</th>
   		</thead>
   		<tbody>
 
@@ -24,6 +25,7 @@
   				<tr>
   					<td>{{ $fase->id_fase}}</td>
             <td>{{ $fase->nombre_fase }}</td>
+            <td>{{ $fase->nombre_tipo}}</td>
             <td><a href="{{ route('grupo.index') }}" class="btn btn-primary">ver grupos</a></td>
   				</tr>
   			@endforeach

@@ -8,7 +8,7 @@
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
     <h1>Lista de Fase:</h1>
-    <a href="{{ route('grupo.create') }}" class="btn btn-primary">Agregar Grupos</a>
+    <a href="{{ route('fase.create',[$id_disc,$id_gestion]) }}" class="btn btn-primary">Agregar Fase</a>
   </div> 
 </div>
 
@@ -26,7 +26,7 @@
   					<td>{{ $fase->id_fase}}</td>
             <td>{{ $fase->nombre_fase }}</td>
             <td>{{ $fase->nombre_tipo}}</td>
-            <td><a href="{{ route('fase.listar_grupos',$fase->id_fase) }}" class="btn btn-success">ver grupos</a></td>
+            <td><a href="{{ route('grupo.index') }}" class="btn btn-success">ver grupos</a></td>
   				</tr>
   			@endforeach
   		</tbody>

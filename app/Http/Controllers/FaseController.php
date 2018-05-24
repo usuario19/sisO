@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Fase;
+use App\Models\Grupo;
 use App\Models\Participacion;
 use App\Models\Fase_Tipo;
 use Illuminate\Support\Facades\DB;
@@ -67,14 +68,11 @@ class FaseController extends Controller
     {
         //
     }
-    public function fases($id_disc){
-        $fases = DB::table('fases')
-                ->join('fase_tipos','fases.id_fase','=','fase_tipos.id_fase')
-                ->join('tipos','tipos.id_tipo','=','fase_tipos.id_tipo')
-                ->select('fase.*','tipo.*')
+    public function listar_grupos($id_fase){
+        $grupos = DB::table('grupos')
+                ->where('grupos.id_fase',$id_fase)
                 ->get();
-        return dd($fases);
-        //return view('fases.list_fase')->with('fases', $fases);
+        return view('');
     }
 }
 

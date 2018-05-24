@@ -191,6 +191,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@store',
 		'as'=>'fase.store'
 	]);
+	route::get('fase/{id_fase}/listar_grupos',[
+		'uses'=>'FaseController@listar_grupos',
+		'as'=>'fase.listar_grupos'
+	]);
 	//grupos
 	route::get('grupo',[
 		'uses'=>'GrupoController@index',

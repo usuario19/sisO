@@ -15,10 +15,10 @@ class CreateClubParticipacionesTable extends Migration
     {
         Schema::create('club_participaciones', function (Blueprint $table) {
             $table->integer('id_participacion')->unsigned();
-            $table->foreign('id_participacion')->references('id_participacion')->on('participaciones');
+            $table->foreign('id_participacion')->references('id_participacion')->on('participaciones')->onDelete('cascade');
 
             $table->integer('id_club')->unsigned();
-            $table->foreign('id_club')->references('id_club')->on('clubs');
+            $table->foreign('id_club')->references('id_club')->on('clubs')->onDelete('cascade');
             $table->timestamps();
         });
     }

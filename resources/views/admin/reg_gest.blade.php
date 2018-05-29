@@ -52,9 +52,9 @@ SisO:Crear Campeonato
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			{!! Form::submit('Crear Gestion', ['class'=>'btn btn-primary']) !!}
+			{!! Form::submit('Crear Campeonato', ['class'=>'btn btn-primary']) !!}
 		</div>
 	</div>
-
+{!! Form::close() !!}
 </div>
 @endsection

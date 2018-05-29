@@ -1,10 +1,10 @@
-<?php
+44<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClubParticipaciones extends Migration
+class CreateClubParticipacionesOtroTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,11 @@ class CreateClubParticipaciones extends Migration
     public function up()
     {
         Schema::create('club_participaciones', function (Blueprint $table) {
-            $table->increments('id_club_part');
+            $table->integer('id_participacion')->unsigned();
+            $table->foreign('id_participacion')->references('id_participacion')->on('participaciones')->onDelete('cascade');
+
+            $table->integer('id_club')->unsigned();
+            $table->foreign('id_club')->references('id_club')->on('clubs')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateClubParticipaciones extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seleccions');
+        Schema::dropIfExists('clubParticipacionesOtro');
     }
 }

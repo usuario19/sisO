@@ -13,7 +13,7 @@
 <div class="form-row">
   <div class="col-md-6">
 
-      <h4>Lista de clubs inscritos:</h4>
+      <h4>Clubs inscritos:</h4>
     <table class="table table-condensed table-striped">
         <thead class="">
           <th>ID</th>
@@ -36,7 +36,7 @@
     
   </div>
   <div class="col-lg-6">
-    <h4>Lista total de clubs:</h4>
+    <h4>Clubs disponibles:</h4>
       <table class="table table-condensed table-striped">
         <thead class="">
           <th>ID</th>

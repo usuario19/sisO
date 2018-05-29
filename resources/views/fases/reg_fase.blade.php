@@ -45,6 +45,6 @@ SisO:Crear Fase
 			{!! Form::submit('Crear Fase', ['class'=>'btn btn-primary']) !!}
 		</div>
 	</div>
-
+{!! Form::close() !!}
 </div>
 @endsection

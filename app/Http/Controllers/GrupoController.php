@@ -11,27 +11,14 @@ class GrupoController extends Controller
 {
     public function index()
     { 
-        $fases = DB::table('fases')->get();
-        return view('fases.list_fase')->with('fases', $fases);
     }
-    public function create()
-    {
-        $tipos = DB::table('tipos')->get();
-        return view('fases.reg_fase')->with('tipos', $tipos);
+    public function create($id_fase)
+    {   
+        return view('grupo.reg_grupo')->with('id_fase',$id_fase);
     }
     public function store(Request $request)
     {
-    	//return dd($request);
-        $fases = new Fase;
-        $fases->nombre_fase = $request->get('nombre');
-        $fases->save();
-        //return dd($fases);
-        $fase_tipos = new Fase_Tipo;
-        $fase_tipos->id_fase = Fase::all()->last()->id_fase;;
-        $fase_tipos->id_tipo = $request->get('tipo');
-        $fase_tipos->save();
 
-        return redirect()->route('fase.index');
  
     }
     public function show($id)
@@ -60,6 +47,12 @@ class GrupoController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function crearGrupos(Request $request)
+    {
+        $cantGrupos = $request->get('cant_grupos');
+        $id_fase = $request->get('id_fase');
+        return view('grupo.registrar_grupos')->with('cantGrupos',$cantGrupos)->with('id_fase',$id_fase)->with('clubs',$clubs);
     }
 }
 

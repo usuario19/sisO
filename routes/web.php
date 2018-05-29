@@ -200,9 +200,13 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
-	route::get('grupo/create',[
+	route::get('grupo/{id_fase}/create',[
 		'uses'=>'GrupoController@create',
 		'as'=>'grupo.create'
+	]);
+	route::post('grupo/crearGrupos',[
+		'uses'=>'GrupoController@crearGrupos',
+		'as'=>'grupo.crearGrupos'
 	]);
 	route::post('grupo/store',[
 		'uses'=>'GrupoController@store',

@@ -184,7 +184,7 @@ class DisciplinaController extends Controller
 
         return redirect()->back();
 
-
+    }
     public function fases($id_disc,$id_gestion){
         //$fases = Fase::where('id_disciplina','=',$id_disc)->where('id')
         /*$fases = DB::table('fases')

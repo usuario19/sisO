@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jugador;
+use App\Models\Club;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
 use App\Models\Admin_club;
+use App\Models\Jugador_club;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\JugadorRequest;
 use Storage;
@@ -27,11 +29,15 @@ class JugadorController extends Controller
         $ultima_gestion = Gestion::all()->last()->id_gestion;
 
         $inscritos = Inscripcion::where('id_gestion',$ultima_gestion)->get();
+        if(Auth::User()->tipo =='Coordinador')
+            return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('inscritos',$inscritos);
+         else
+            $clubs = Club::all();
+            return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('clubs',$clubs);
+
         //dd($inscritos);
         //$clubs = DB::table('inscripciones')->where('id_gestion',$ultima_gestion)->get();
         //dd($clubs);
-
-        return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('inscritos',$inscritos);
     }
 
     /**
@@ -63,11 +69,31 @@ class JugadorController extends Controller
     public function store(JugadorRequest $request)
     {
         $datos = new Jugador($request->all());
-        $ci_jugador = $request->ci_jugador;
         $datos->save();
+        if(Auth::User()->tipo == 'Coordinador')
+        {
+            $ci_jugador = $request->ci_jugador;
+            $id_club = $request->clubs;
 
+            $jugador = Jugador::where('ci_jugador',$ci_jugador)->get();
+            
+            $id_jugador = $jugador[0]->id_jugador;
+            //dd($id_jugador);
+            $Jugador_Club = new Jugador_Club;
+            $Jugador_Club->id_club = $id_club;
+            $Jugador_Club->id_jugador = $id_jugador;
+            $Jugador_Club->save();
+            
+
+        }/*else{
+
+            //$ultima_gestion = Gestion::all()->last()->id_gestion;
+            $clubs = Club::all();
+
+            //$inscritos = Inscripcion::where('id_gestion',$ultima_gestion)->get();
+            return redirect()->route('jugador.index')->with('clubs',$clubs);
+        }*/
         return redirect()->route('jugador.index');
-
      }
         /*
      * Display the specified resource.

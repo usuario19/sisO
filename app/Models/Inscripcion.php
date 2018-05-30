@@ -12,16 +12,17 @@ class Inscripcion extends Model
 
     protected $fillable = [
 		'id_gestion',
-		'id_club',
+		'id_adminClub',
 		];
 	protected $hidden = [
 		'remember_token'
 		];
-		
-	public function clubs(){
-		return $this->belongsTo('App\Models\Club','id_club');
+
+	public function admin_club(){
+		return $this->belongsTo('App\Models\Admin_Club','id_adminClub');
+
 	}
-	public function gestiones(){
+	public function gestion(){
 		return $this->belongsTo('App\Models\Gestion','id_gestion');
 	}
 	public function jugador_inscripciones(){

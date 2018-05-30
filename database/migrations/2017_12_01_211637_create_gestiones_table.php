@@ -19,6 +19,7 @@ class CreateGestionesTable extends Migration
             $table->date('fecha_ini');
             $table->date('fecha_fin');
             $table->text('desc_gest');
+            $table->integer('estado_gestion');
             $table->timestamps();
         });
     }

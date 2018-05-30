@@ -28,7 +28,7 @@
             <td>{{ $usuario->ci_jugador}}</td>
   					<td>{{ $usuario->nombre_jugador}}</td>
   					<td>{{ $usuario->apellidos_jugador}}</td>
-            <td>@if($usuario->genero_jugador == "0")
+            <td>@if($usuario->genero_jugador == "2")
                      {{ "Masculino" }}
                 @else
                       {{ "Femenino" }}
@@ -65,8 +65,7 @@
                 </div>
               </div>
             </td>
-
-
+          @if(Auth::User()->tipo == 'Administrador')
             <td>
               {!! Form::open(['route'=>'jugador_inscripcion.store','method' => 'POST']) !!}
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Inscribirse{{ $usuario->id_jugador}}">
@@ -77,7 +76,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Clubs inscritos en la gestion actual:</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Clubs:</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -94,13 +93,13 @@
                                 {!! Form::text('id_jugador',$usuario->id_jugador , ['class' =>'form-control']) !!}
                               </div>
                             </div> 
-                            @foreach($inscritos as $inscrito)
+                            @foreach($clubs as $club)
                                 
                                 <div class="form-row">
                                   <div class="form-group col-md-12">
-                                      {!! Form::radio('club', $inscrito->id_inscripcion ,null,['id'=> 'club'.$usuario->id_jugador.$inscrito->id_club ,'class'=>'radio']) !!}
+                                      {!! Form::radio('club', $club->id_club ,null,['id'=> 'club'.$usuario->id_jugador ,'class'=>'radio']) !!}
                                   
-                                      {!! Form::label('club'.$usuario->id_jugador.$inscrito->id_club, $inscrito->clubs->nombre_club, []) !!}
+                                      {!! Form::label('club'.$usuario->id_jugador, $club->nombre_club, []) !!}
                                   </div>
                                 </div>
                             @endforeach
@@ -114,6 +113,7 @@
                 </div>
                 {!! Form::close() !!}
             </td>
+          @endif
   				</tr>
   			@endforeach
   		</tbody>

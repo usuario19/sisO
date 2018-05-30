@@ -16,17 +16,16 @@
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Gestiones
+              Campeonatos
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Gestion</a>
-              <a class="dropdown-item" href={{ route('gestion.index') }}>Another action</a>
+              <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Campeonatos</a>
+              <a class="dropdown-item" href={{ route('gestion.index') }}>Listar Campeonatos</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-    		
     		  <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Resultados
@@ -95,9 +94,6 @@
             </div>
           </li>
         </ul>  
-    	  
+    	  </div>
       </nav>
     </div>
-  </nav>
-	
-</div>

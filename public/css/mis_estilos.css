@@ -73,3 +73,7 @@ input#input{
 input#input:hover{
 	opacity: 0.6;
 }
+.check_us, #todo, .check_hab, #todo_hab{
+	width: 20px;
+	height: 20px;
+}

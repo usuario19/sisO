@@ -17,7 +17,7 @@
 				<td>{!! Form::radio('genero_jugador', 1 ,null,['id'=>'generof','class'=>'radio']) !!}
 					{!! Form::label('generof', 'Femenino', []) !!}</td>
 			
-				<td>{!! Form::radio('genero_jugador', 0 ,null,['id'=>'generom','class'=>'radio']) !!}
+				<td>{!! Form::radio('genero_jugador', 2 ,null,['id'=>'generom','class'=>'radio']) !!}
 					{!! Form::label('generom', 'Masculino', []) !!}</td>
 			</tr>
 				

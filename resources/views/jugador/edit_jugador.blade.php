@@ -49,3 +49,6 @@
 	{!! Form::close() !!}
 </div>
 @endsection
+@section('scripts')
+  {!! Html::script('/js/script.js') !!}
+@endsection

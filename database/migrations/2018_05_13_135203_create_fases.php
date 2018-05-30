@@ -16,6 +16,10 @@ class CreateFases extends Migration
         Schema::create('fases', function (Blueprint $table) {
             $table->increments('id_fase');
             $table->string('nombre_fase');
+
+           // $table->integer('id_seleccion')->unsigned();
+            //$table->foreign('id_seleccion')->references('id_seleccion')->on('seleccions')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

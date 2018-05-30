@@ -7,7 +7,7 @@
 	<h1 class="display-5">Registrar Jugador</h1><br>
 	<br>
 </div>
-<div class="container col-md-8">
+<div class="container col-md-10">
 	
 	{!! Form::open(['route'=>'jugador.store','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true]) !!}
 		<div class="form-row">
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-3">
 				<div class="form-row">
 					<div id="contenedor" class="form-group col-md-12">
 						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/fotos/usuario-sin-foto.png" alt="" height="200px" width="200px">
@@ -36,10 +36,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group col-md-8" >
+			<div class="form-group col-md-9" >
 				<div class="form-row">
 					<div class="form-group col-md-12">
-						<table class="table table-sm">
+						<table class="table table-sm table-bordered">
 						  <thead></thead>
 						  <tbody>
 								@if(Auth::User()->tipo =="Coordinador")
@@ -77,7 +77,7 @@
 
 						    <tr>  
 							  @include('plantillas.forms.form_reg_jugador')
-							  <tr><td colspan="2">{!! Form::submit('Registrar Jugador', ['class'=>'btn btn-primary']) !!}</td></tr>
+							  <tr><td colspan="3">{!! Form::submit('Registrar Jugador', ['class'=>'btn btn-primary']) !!}</td></tr>
 						    </tr>
 						  </tbody>
 						</table>
@@ -88,4 +88,7 @@
 	</div>
 	{!! Form::close() !!}
 </div>
+@endsection
+@section('scripts')
+  {!! Html::script('/js/script.js') !!}
 @endsection

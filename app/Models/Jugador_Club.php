@@ -8,6 +8,7 @@ class Jugador_Club extends Model
 {
     //
     protected $table = 'jugador_clubs';
+    protected $primaryKey = 'id_jug_club';
     protected $fillable = [
     	'id_club',
         'id_jugador',
@@ -23,5 +24,9 @@ class Jugador_Club extends Model
     //UNA SUSCRIPCION LE PRETENECE A UN CLUB
     public function club(){
          return $this->belongsTo('App\Models\Club','id_club');
+    }
+    
+    public function selecciones(){
+         return $this->hasMany('App\Models\Seleccion','id_jug_club');
     }
 }

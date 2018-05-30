@@ -8,6 +8,7 @@ class Admin_Club extends Model
 {
     //
     protected $table = 'adminclubs';
+    protected $primaryKey = 'id_adminClub';
     protected $fillable = [
     	'id_administrador',
     	'id_club',
@@ -17,6 +18,7 @@ class Admin_Club extends Model
     protected $hidden = [
         'remember_token',
     ];
+
 
     public function administrador(){
          return $this->belongsTo('App\Models\Administrador','id_administrador');

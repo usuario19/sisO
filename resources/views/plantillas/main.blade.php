@@ -38,8 +38,8 @@
  		@yield('content')
   {!! Html::script('/js/jquery.js') !!}
   {!! Html::script('/js/bootstrap.min.js') !!}
-  {!! Html::script('/js/script.js') !!}
   {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
+    @yield('scripts')
   @include('sweetalert::alert')
  	</div>
 
@@ -47,5 +47,8 @@
 
 
 </body>
+<footer>
+  <div class="container navbar navbar-expand-lg bg-dark navbar-dark">pie de pagina</div>
+</footer>
 </html>
 

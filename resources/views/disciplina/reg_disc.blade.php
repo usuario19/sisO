@@ -37,10 +37,16 @@ SisO:Crear Disciplina
 
 	<div class="form-group col-md-8">
 		<div class="form-row">
-		<div class="form-group col-md-12">
-			{!! Form::label('nombre_disc', 'Nombre Disciplina', []) !!}
-			{!! Form::text('nombre_disc', null, ['class'=>'form-control']) !!}
+			<div class="form-group col-md-12">
+				{!! Form::label('nombre_disc', 'Nombre Disciplina', []) !!}
+				{!! Form::text('nombre_disc', null, ['class'=>'form-control']) !!}
+			</div>
 		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				{!! Form::label('categoria', 'Categoria', []) !!}
+				{!! Form::select('categoria', ['0'=>'Ambos', '1'=>'Mujeres','2'=>'Varones'], null, ['class'=>'form-control']) !!}
+			</div>
 		</div>
 		
 
@@ -70,4 +76,7 @@ SisO:Crear Disciplina
 	{!! Form::close() !!}
 </div>
 </div>
+@endsection
+@section('scripts')
+  {!! Html::script('/js/script.js') !!}
 @endsection

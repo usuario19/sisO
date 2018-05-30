@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
-
 use Storage;
 class Club extends Model
 {
@@ -28,14 +26,20 @@ class Club extends Model
     }
     //UN CLUB TIENE MUCHOS ADMINISTRADORES
 	public function admin_clubs(){
-		return $this->hasMany('App\Models\Admin_Club');
-        
+
+		return $this->hasMany('App\Models\Admin_Club','id_adminClub');  
 	}
     //
+    public function club_participaciones(){
+
+        return $this->hasMany('App\Models\Club_Participacion','id_club');  
+    }
+    //
     public function inscripciones(){
-        return $this->hasMany('App\Models\Inscripcion','id_club');
+        return $this->hasMany('App\Models\Inscripcion','id_adminClub');
     }
     //ALMACEN LOGO EN CARPETA
+
 	public function setLogoAttribute($value)
     {
         if($value !== null)

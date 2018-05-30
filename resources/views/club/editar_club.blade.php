@@ -41,6 +41,7 @@ SisO: Editar Clubs
 
 				</div>
 			</div>
+			@if(Auth::User()->tipo == 'Administrador')
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						{!! Form::label('id_administrador', 'Coordinador', []) !!}
@@ -48,6 +49,15 @@ SisO: Editar Clubs
 						
 					</div>
 				</div>
+			@else
+				<div class="form-row" style="display: none;">
+					<div class="form-group col-md-12">
+						{!! Form::label('id_administrador', 'Coordinador', []) !!}
+						{!! Form::select('id_administrador', $administradores,null, ['class'=>'form-control']) !!}
+						
+					</div>
+				</div>
+			@endif
 				
 				<div class="form-row">
 					<div class="form-group col-md-12">
@@ -76,4 +86,7 @@ SisO: Editar Clubs
 
 	{!! Form::close() !!}
 </div>
+@endsection
+@section('scripts')
+  {!! Html::script('/js/script.js') !!}
 @endsection

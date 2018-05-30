@@ -29,7 +29,7 @@
             <td>{{ $usuario->ci}}</td>
   					<td>{{ $usuario->nombre}}</td>
   					<td>{{ $usuario->apellidos}}</td>
-            <td>@if($usuario->genero == "0")
+            <td>@if($usuario->genero == "2")
                      {{ "Masculino" }}
                 @else
                       {{ "Femenino" }}

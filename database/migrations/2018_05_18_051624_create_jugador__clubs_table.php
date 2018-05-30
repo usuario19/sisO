@@ -13,8 +13,9 @@ class CreateJugadorClubsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jugador__clubs', function (Blueprint $table) {
-            //$table->increments('id');
+        Schema::create('jugador_clubs', function (Blueprint $table) {
+            $table->increments('id_jug_club');
+
             $table->integer('id_club')->unsigned();
             $table->foreign('id_club')->references('id_club')->on('clubs');
 

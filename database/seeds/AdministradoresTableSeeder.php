@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Administrador;
-
+use App\Models\Tipo;
 
 class AdministradoresTableSeeder extends Seeder
 {
@@ -52,6 +52,12 @@ class AdministradoresTableSeeder extends Seeder
             'password' => bcrypt('123456'),
             'descripcion_admin' => 'coordinadorclubs',
             'tipo'=>'Coordinador',
+        ]);
+        DB::table('tipos')->insert([
+            'nombre_tipo'=>'series'
+        ]);
+        DB::table('tipos')->insert([
+            'nombre_tipo'=>'eliminacion'
         ]);
     }
 }

@@ -1,10 +1,10 @@
 @extends('plantillas.main')
 @section('title')
-SisO:Crear Gestion
+SisO:Crear Campeonato
 @endsection
 @section('content')
 <div class="container col-md-8">
-	<h1 class="display-4">Crear Gestion</h1>
+	<h1 class="display-4">Crear Campeonato</h1>
 	<br>
 </div>
 <div class="container col-md-6">
@@ -43,7 +43,7 @@ SisO:Crear Gestion
 					@foreach ($disciplina as $valor)
 
 						{!! Form::checkbox('id_disciplinas[]',$valor->id_disc, false, []) !!}
-						{!! Form::label('disciplina',$valor->nombre_disc, []) !!}
+						{!! Form::label('disciplina',$valor->nombre_disc." ".$valor->categoria, []) !!}
 						<br>
 					@endforeach
 				</div>

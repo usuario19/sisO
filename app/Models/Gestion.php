@@ -25,10 +25,18 @@ class Gestion extends Model
         return $this->hasMany('App\Models\Inscripcion','id_gestion');
     }
 
+    public function participaciones(){
+        return $this->hasMany('App\Models\Participacion','id_gestion');
+    }
+
 	public function disciplina_gestions()
 	{
 		return $this->hasMany('App\Models\disciplina_gestion');
 	}
-	
+
+	public function club_participaciones(){
+
+        return $this->hasMany('App\Models\Club_Participacion','id_gestion');  
+    }
 	
 }

@@ -7,13 +7,13 @@
 @section('content')
 <h1>Mis Clubs</h1>
 	<div class="container">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <table class="table table-condensed">
               <thead>
                 <th width="50px">ID</th>
                 <th width="200px">Logo</th>
                 <th colspan="2">Informacion</th>
-                <th>Acciones</th>
+                <th colspan="2">Acciones</th>
                 
               </thead>
               <tbody>
@@ -25,12 +25,15 @@
                     <tr>
                       <td><h5>Nombre del club:</h5></td>
                       <td>{{ $club->club->nombre_club}}</td>
-                      <td rowspan="4"><a href="" class="btn btn-info">Registrar Jugadores</a></td>
+                      <td rowspan="4"><a href="{{ route('club.edit', $club->id_club) }}" class="btn btn-warning">Editar datos</a></td>
+                      <td rowspan="4"><a href="{{ route('coordinador.show', $club->id_club) }}" class="btn btn-success">Ver jugadores</a></td>
                     </tr>
         
                     <tr>
                       <td><h5>Ciudad:</h5></td>
                       <td>{{ $club->club->ciudad}}</td>
+                      
+
                     </tr>
                     <tr>
                       <td><h5>Descripcion:</h5></td>

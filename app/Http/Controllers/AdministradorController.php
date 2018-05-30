@@ -76,7 +76,7 @@ class AdministradorController extends Controller
 
         $usuario = Administrador::find($id);
         //var_dump($usuario);
-       return view('admin.edit_adm')->with('usuario',$usuario);//url
+        return view('admin.edit_adm')->with('usuario',$usuario);//url
     }
 
     /**

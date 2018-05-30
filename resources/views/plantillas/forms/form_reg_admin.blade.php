@@ -26,7 +26,7 @@
 
 			<div class="form-group col-md-4">
 					
-				{!! Form::radio('genero', 0 ,null,['id'=>'generom','class'=>'radio']) !!}
+				{!! Form::radio('genero', 2 ,null,['id'=>'generom','class'=>'radio']) !!}
 				{!! Form::label('generom', 'Masculino', []) !!}
 				
 			</div>	

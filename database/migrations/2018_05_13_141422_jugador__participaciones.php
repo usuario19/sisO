@@ -33,6 +33,6 @@ class JugadorParticipaciones extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('jugadorParticipacion');
+        Schema::dropIfExists('jugador_participaciones');
     }
 }

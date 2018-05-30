@@ -11,34 +11,18 @@ use Storage;
 
 class DisciplinaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $disciplinas = DB::table('disciplinas')->get();
         return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
         return view('disciplina.reg_disc');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -47,12 +31,6 @@ class DisciplinaController extends Controller
         return redirect()->route('disciplina.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //para listar disciplina
@@ -122,12 +100,6 @@ class DisciplinaController extends Controller
         return redirect()->route('disciplina.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $foto_antiguo = DB::table('disciplinas')
@@ -151,6 +123,7 @@ class DisciplinaController extends Controller
         DB::table('disciplinas')->where('id_disc', '=',$id)->delete();
         return redirect()->route('disciplina.index'); 
     }
+
 
     //Almacenar las disciplinas donde participa cada club en una gestion especifica
     public function store_disc_club(Request $request)
@@ -210,6 +183,22 @@ class DisciplinaController extends Controller
         $participacion->delete();
 
         return redirect()->back();
+
+
+    public function fases($id_disc,$id_gestion){
+        //$fases = Fase::where('id_disciplina','=',$id_disc)->where('id')
+        /*$fases = DB::table('fases')
+                ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
+
+                ->where('participaciones.id_disciplina',$id_disc)
+                ->get();*/
+        $fases = DB::table('participaciones')
+                ->join('fases','participaciones.id_participacion','=','fases.id_participacion')
+                ->join('fase_tipos','fases.id_fase','=','fase_tipos.id_fase')
+                ->join('tipos','fase_tipos.id_tipo','=','tipos.id_tipo')
+                ->select('fases.*','tipos.*')
+                ->get();
+        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc);
 
     }
 }

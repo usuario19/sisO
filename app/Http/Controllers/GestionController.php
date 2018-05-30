@@ -9,22 +9,11 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 class GestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $gestiones = DB::table('gestiones')->get();
         return view('admin.listar_gestion')->with('gestiones',$gestiones);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
@@ -74,12 +63,6 @@ class GestionController extends Controller
         //return var_dump($gestion);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -91,12 +74,6 @@ class GestionController extends Controller
         return view('admin.listar_gestion')->with('gestiones',$gestiones);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -139,5 +116,15 @@ class GestionController extends Controller
         $gestion = Gestion::find($id);
 
         return view('admin.gestion_clubs')->with('clubs_inscritos',$clubs_inscritos)->with('clubs',$clubs)->with('gestion',$gestion);
+    }
+    public function disciplinas($id_gestion){
+        $disciplinas = DB::table('disciplinas')
+                    ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
+                    ->where('participaciones.id_gestion',$id_gestion)
+                    ->get();
+        //$disciplinas = Disciplina::all();
+        $gestion = Gestion::find($id_gestion);
+        //return dd($disciplinas);
+        return view('admin.gestion_disciplina')->with('disciplinas',$disciplinas)->with('gestion',$gestion);
     }
 }

@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateFechas extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('fechas', function (Blueprint $table) {
@@ -23,11 +18,6 @@ class CreateFechas extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('fechas');

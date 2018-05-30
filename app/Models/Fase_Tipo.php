@@ -10,7 +10,10 @@ class Fase_Tipo extends Model
     protected $fillable = ['id_fase','id_tipo'];
     protected $hidden = ['remember_token'];
 
-    public function fase_tipos(){
-    	return $this->hasMany('App\Models\Fase_Tipo');
+    public function fases(){
+    	return $this->belongsTo('App\Models\Fase','id_fase','id_fase');
     }
+    public function tipos(){
+    	return $this->belongsTo('App\Models\Tipo','id_tipo','id_tipo');
+    }   
 }

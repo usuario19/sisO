@@ -16,6 +16,7 @@
   			<th>Acciones</th>
         <th>Permisos</th>
         <th>Clubs</th>
+        <th>Disciplinas</th>
         
   		</thead>
   		<tbody>
@@ -29,6 +30,7 @@
             <td><a href="{{ route('gestion.edit',$gestion->id_gestion) }}" class="btn btn-info">Editar</a></td>
             <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}" class="btn btn-danger">Eliminar</a></td>
             <td><a href="{{ route('gestion.clubs',$gestion->id_gestion) }}" class="btn btn-success">Ver</a></td>
+            <td><a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}" class="btn btn-success">Disciplinas</a></td>
   				</tr>
   			@endforeach
   		</tbody>

@@ -95,7 +95,43 @@ class DisciplinaController extends Controller
                             'reglamento_disc'=>$nombre_reglamento,
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]); 
+            }
+            else{
+                DB::table('disciplinas')
+                    ->where('id_disc', $id)
+                    ->update(['nombre_disc' => $request->get('nombre_disc'),
+                            'descripcion_disc'=>$request->get('descripcion_disc')
+                        ]);  
             }                  
+        }
+        else{
+             if ($request->hasFile('reglamento_disc')) {
+                $reglamento_antiguo = DB::table('disciplinas')
+                                    ->where('id_disc',$id)
+                                    ->select('reglamento_disc')
+                                    ->get();
+                foreach ($reglamento_antiguo as $reglamento_disc) {
+                        Storage::disk('archivos')->delete($reglamento_disc->reglamento_disc);
+                }    
+                $reglamento_nuevo = $request->file('reglamento_disc');
+                $nombre_reglamento= time().'-'.$reglamento_nuevo->getClientOriginalExtension();
+                Storage::disk('archivos')->put($nombre_reglamento, file_get_contents($reglamento_nuevo));
+
+                
+                DB::table('disciplinas')
+                    ->where('id_disc', $id)
+                    ->update(['nombre_disc' => $request->get('nombre_disc'),
+                            'reglamento_disc'=>$nombre_reglamento,
+                            'descripcion_disc'=>$request->get('descripcion_disc')
+                        ]); 
+            }
+            else{
+                DB::table('disciplinas')
+                    ->where('id_disc', $id)
+                    ->update(['nombre_disc' => $request->get('nombre_disc'),
+                            'descripcion_disc'=>$request->get('descripcion_disc')
+                        ]);  
+            }     
         }
         return redirect()->route('disciplina.index');
     }

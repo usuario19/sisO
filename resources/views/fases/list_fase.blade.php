@@ -11,7 +11,6 @@
     <a href="{{ route('fase.create',[$id_disc,$id_gestion]) }}" class="btn btn-primary">Agregar Fase</a>
   </div> 
 </div>
-
 	<table class="table table-condensed">
   		<thead>
   			<th width="50px">ID</th>

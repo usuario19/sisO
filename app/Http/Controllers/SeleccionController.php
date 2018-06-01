@@ -140,4 +140,17 @@ class SeleccionController extends Controller
         }
         return redirect()->back(); 
     }
+
+    public function ver_seleccion($id_jugador, $id_club)
+    {
+
+        $jugador = Jugador_Club::where('id_club',$id_club)
+                        ->where('id_jugador',$id_jugador)
+                        ->get();
+
+        $selecciones = Seleccion::where('id_jug_club',$jugador[0]->id_jug_club)->get();
+        //dd($jugador[0]->id_jug_club);
+        return view('seleccion.ver_seleccion')->with('selecciones',$selecciones)->with('jugador',$jugador); 
+    }
+
 }

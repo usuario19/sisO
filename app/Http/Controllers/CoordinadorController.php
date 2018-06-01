@@ -144,19 +144,31 @@ class CoordinadorController extends Controller
         ->get();
 
         $clubs = array('0' => 'Mostrar Todo');
-
+        $id_clubs = array();
+        $i=0;
         foreach ($todo_clubs as $valor) {
             $clubs[$valor->id_club]=$valor->nombre_club;
+            $id_clubs[$i]=$valor->id_club;
+            $i++; 
         }
+
+        $usuarios = DB::table('jugadores')
+            ->join('jugador_clubs','jugador_clubs.id_jugador','=','jugadores.id_jugador')
+            ->join('clubs','clubs.id_club','=','jugador_clubs.id_club')
+            ->select('jugadores.*','clubs.*')
+            ->whereIn('jugador_clubs.id_club',$id_clubs)
+            ->select('jugadores.*','jugador_clubs.id_jug_club','clubs.id_club','clubs.nombre_club')
+            ->orderBy('jugadores.ci_jugador')
+            ->get();
 
         //dd($clubs);
         //dd($id_coordinador);
-        return view('coordinador.todo_jugadores')->with('clubs', $clubs);
+        return view('coordinador.todo_jugadores')->with('clubs', $clubs)->with('usuarios', $usuarios);
     }
 
     public function filtrar(Request $request)
     {
-        /*$id_coordinador = Auth::User()->id_administrador;
+        $id_coordinador = Auth::User()->id_administrador;
         //clubs de la tabla adminsclub
          $todo_clubs = DB::table('clubs')
         ->join('adminclubs','adminClubs.id_club','=','clubs.id_club')
@@ -165,37 +177,65 @@ class CoordinadorController extends Controller
         ->get();
 
         $clubs = array('0' => 'Mostrar Todo');
-
+        $id_clubs = array();
+        $i=0;
         foreach ($todo_clubs as $valor) {
             $clubs[$valor->id_club]=$valor->nombre_club;
+            $id_clubs[$i]=$valor->id_club;
+            $i++; 
         }
-
-        //dd($clubs);
-        //dd($id_coordinador);
-        //return view('coordinador.todo_jugadores')->with('clubs', $clubs);
-        $club=$request->club;
-        $genero=$request->genero;*/
+       
         
-        if($request->club == 0 && $request->genero == 2 )
+        
+        if($request->club == "0" && $request->genero == "0" )
         {
             $usuarios = DB::table('jugadores')
             ->join('jugador_clubs','jugador_clubs.id_jugador','=','jugadores.id_jugador')
             ->join('clubs','clubs.id_club','=','jugador_clubs.id_club')
             ->select('jugadores.*','clubs.*')
+            ->whereIn('jugador_clubs.id_club',$id_clubs)
+            ->select('jugadores.*','jugador_clubs.id_jug_club','clubs.id_club','clubs.nombre_club')
+            ->orderBy('jugadores.ci_jugador')
             ->get();
-            dd($usuarios);
         }
-        else{
+        elseif($request->club == "0" )
+        {
            
            $usuarios = DB::table('jugadores')
             ->join('jugador_clubs','jugador_clubs.id_jugador','=','jugadores.id_jugador')
             ->join('clubs','clubs.id_club','=','jugador_clubs.id_club')
-            ->where('clubs.id_club',$club)
-            ->where('jugadores.genero_jugador', $genero)
-            ->select('jugadores.*','clubs.logo','clubs.id_club')
+            ->select('jugadores.*','clubs.*')
+            ->whereIn('jugador_clubs.id_club',$id_clubs)
+            ->where('jugadores.genero_jugador',$request->genero)
+            ->select('jugadores.*','jugador_clubs.id_jug_club','clubs.id_club','clubs.nombre_club')
+            ->orderBy('jugadores.ci_jugador')
             ->get(); 
+            //dd($usuarios);
 
         }
+        elseif ($request->genero == "0") {
+            # code...
+            $usuarios = DB::table('jugadores')
+            ->join('jugador_clubs','jugador_clubs.id_jugador','=','jugadores.id_jugador')
+            ->join('clubs','clubs.id_club','=','jugador_clubs.id_club')
+            ->select('jugadores.*','clubs.*')
+            ->where('jugador_clubs.id_club',$request->club)
+            ->select('jugadores.*','jugador_clubs.id_jug_club','clubs.id_club','clubs.nombre_club')
+            ->orderBy('jugadores.ci_jugador')
+            ->get();
+        }
+        else{
+            $usuarios = DB::table('jugadores')
+            ->join('jugador_clubs','jugador_clubs.id_jugador','=','jugadores.id_jugador')
+            ->join('clubs','clubs.id_club','=','jugador_clubs.id_club')
+            ->select('jugadores.*','clubs.*')
+            ->where('jugadores.genero_jugador',$request->genero)
+            ->where('jugador_clubs.id_club',$request->club)
+            ->select('jugadores.*','jugador_clubs.id_jug_club','clubs.id_club','clubs.nombre_club')
+            ->orderBy('jugadores.ci_jugador')
+            ->get();
+        }
+
         return view('coordinador.todo_jugadores')->with('usuarios', $usuarios)->with('clubs', $clubs);
         //dd($datos);
         //dd('hola');

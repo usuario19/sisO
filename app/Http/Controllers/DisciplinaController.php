@@ -164,19 +164,30 @@ class DisciplinaController extends Controller
     //Almacenar las disciplinas donde participa cada club en una gestion especifica
     public function store_disc_club(Request $request)
     {
+        $this->validate($request, [
+                        'id_disciplinas' => 'required'
+                    ],[
+                        'id_disciplinas.required'=>'Seleccione una disciplina.']); 
+        
         $id_club = $request->id_club;
         $id_gestion = $request->id_gestion;
 
         $disciplinas =$request->get('id_disciplinas');
         foreach ($disciplinas as $disc) {
-            $datos = new Club_Participacion;
-            $datos->id_disc=$disc;
-            $datos->id_club=$id_club;
-            $datos->id_gestion=$id_gestion;
+            if(Club_Participacion::where('id_club',$id_club)->where('id_gestion',$id_gestion)->where('id_disc',$disc)->doesntExist())
+            {
+                $datos = new Club_Participacion;
+                $datos->id_disc=$disc;
+                $datos->id_club=$id_club;
+                $datos->id_gestion=$id_gestion;
+                $datos->save();
+            }else{
+                echo'ya esta inscrito.';
+            }
 
-            $datos->save();
+            
         }
-        return redirect()->route('coordinador.mis_gestiones');
+        return redirect()->route('disciplina.ver_disciplinas',[$id_club,$id_gestion]);
     }
     /*
     public function update_disc_club(Request $request, $id)
@@ -201,9 +212,18 @@ class DisciplinaController extends Controller
 
         $disciplinas = Club_Participacion::where('id_gestion',$id_gestion)->where('id_club', $id_club)->get();
 
-        $datos = DB::table('clubs')
+        /*$datos = DB::table('clubs')
         ->join('club_participaciones','club_participaciones.id_club','clubs.id_club')
         ->join('gestiones','gestiones.id_gestion','club_participaciones.id_gestion')
+        ->select('clubs.nombre_club','clubs.logo','gestiones.nombre_gestion')
+        ->where('clubs.id_club',$id_club)
+        ->where('gestiones.id_gestion',$id_gestion)
+        ->distinct()->get();*/
+
+        $datos = DB::table('gestiones')
+        ->join('inscripciones','inscripciones.id_gestion','gestiones.id_gestion')
+        ->join('adminClubs','adminClubs.id_adminClub','inscripciones.id_adminClub')
+        ->join('clubs','clubs.id_club','adminClubs.id_club')
         ->select('clubs.nombre_club','clubs.logo','gestiones.nombre_gestion')
         ->where('clubs.id_club',$id_club)
         ->where('gestiones.id_gestion',$id_gestion)

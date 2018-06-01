@@ -83,8 +83,11 @@ class JugadorController extends Controller
             $Jugador_Club->id_club = $id_club;
             $Jugador_Club->id_jugador = $id_jugador;
             $Jugador_Club->save();
-            
 
+            return redirect()->route('coordinador.mostrarJugadores');
+
+        }else{
+            return redirect()->route('jugador.index');
         }/*else{
 
             //$ultima_gestion = Gestion::all()->last()->id_gestion;
@@ -93,7 +96,9 @@ class JugadorController extends Controller
             //$inscritos = Inscripcion::where('id_gestion',$ultima_gestion)->get();
             return redirect()->route('jugador.index')->with('clubs',$clubs);
         }*/
-        return redirect()->route('jugador.index');
+        
+
+        
      }
         /*
      * Display the specified resource.

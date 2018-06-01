@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<table class="table table-container">
+<table class="table table-sm table-container">
       <thead> 
         <tr>
           @foreach($datos as $dato)
@@ -23,7 +23,7 @@
           </th>
         </tr>
        @endforeach
-        <tr>
+        <tr class="table-primary">
           <th width="20px">ID</th>
           <th width="100px">Foto</th>
           <th>Disciplina</th>

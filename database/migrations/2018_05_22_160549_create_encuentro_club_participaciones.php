@@ -24,6 +24,6 @@ class CreateEncuentroClubParticipaciones extends Migration
     }
     public function down()
     {
-        Schema::dropIfExists('encuentro_seleccions');
+        Schema::dropIfExists('encuentro_club_participaciones');
     }
 }

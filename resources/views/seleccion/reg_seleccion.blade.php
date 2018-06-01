@@ -3,7 +3,7 @@
 	SisO: Seleccion
 @endsection
 @section('content')
-<div class="container col-md-12">
+<div class="container col-md-12 table-responsive-xl">
 	<p class="display-4" style="font-size: 30px; font-weight: bold;">Crear Seleccion </p>
 	<br>
 	<table class="table table-sm table-bordered">
@@ -41,10 +41,10 @@
 </div>
 <div class="container col-md-12">
 		<div class="form-row">
-			<div class="form-group col-md-6" >
-				<table class="table table-bordered">
+			<div class="form-group col-md-6 table-responsive-xl" >
+				<table class="table table-striped table-bordered">
 				  <thead>
-				  	<tr>
+				  	<tr class="bg-success">
 				  		<th colspan="6"><p class="text-center display-5" style="">TODOS LOS JUGADORES</p></th>
 				  	</tr>
 				  	<tr>
@@ -92,7 +92,7 @@
 		                      		{{ "Femenino" }}
 		                		@endif
 		            		</td>
-		            		
+		            		<td>{{ $usuario->club->nombre_club }}</td>
 		            		<td>
 								{!! Form::checkbox('id_jug_club[]',$usuario->id_jug_club, false, ['class'=>'check_us']) !!}
 		  					</td>
@@ -110,10 +110,10 @@
 	{!! Form::close() !!}
 
 <!--TABLA DE AHBILITADOS ...........................................................-->
-			<div class="form-group col-md-6">
-				<table class="table table-bordered">
+			<div class="form-group col-md-6 table-responsive-xl">
+				<table class="table table-striped table-bordered">
 				  <thead>
-				  	<tr>
+				  	<tr class="bg-warning">
 				  		<th colspan="5"><p class="text-center display-5" style="">JUGADORES HABILITADOS</p></th>
 				  	</tr>
 				  	<tr>

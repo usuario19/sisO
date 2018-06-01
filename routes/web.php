@@ -206,6 +206,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
+	
 	route::get('grupo/{id_fase}/create',[
 		'uses'=>'GrupoController@create',
 		'as'=>'grupo.create'
@@ -344,7 +345,9 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=>'SeleccionController@deshabilitar',
 				'as'=>'seleccion.deshabilitar']);
 
-	
+	Route::get('seleccion/misJugadores/{id}/{id_club}/participacion',[
+				'uses'=>'SeleccionController@ver_seleccion',
+				'as'=>'seleccion.ver_seleccion']);
 
 	
 });

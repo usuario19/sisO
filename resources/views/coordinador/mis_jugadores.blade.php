@@ -28,7 +28,7 @@
           <th>Correo</th>
           <th>Fecha de nacimiento</th>
           <th>Descripcion</th>
-          <th colspan="2">Acciones</th>
+          <th colspan="3">Acciones</th>
         </tr>
         
   		</thead>
@@ -76,6 +76,9 @@
                   </div>
                 </div>
               </div>
+            </td>
+            <td>
+              <a href={{ route('seleccion.ver_seleccion',[$usuario->id_jugador,$usuario->id_club]) }} class="btn btn-info">Ver Participacion</a>
             </td>
   				</tr>
   			@endforeach

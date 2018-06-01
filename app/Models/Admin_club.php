@@ -27,4 +27,8 @@ class Admin_Club extends Model
      public function club(){
          return $this->belongsTo('App\Models\Club','id_club');
     }
+    
+    public function inscripciones(){
+        return $this->hasMany('App\Models\Inscripcion','id_adminClub');
+    }
 }

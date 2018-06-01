@@ -26,6 +26,6 @@ class CreateGrupoClubParticipaciones extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('grupo_seleccion');
+        Schema::dropIfExists('grupo_club_participaciones');
     }
 }

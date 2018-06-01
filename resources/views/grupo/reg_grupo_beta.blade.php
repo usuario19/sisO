@@ -9,34 +9,27 @@ SisO:Crear Grupo
 			var formulario2 = document.getElementById('formGrupo2');
 			var formulario3 = document.getElementById('formGrupo3');
 			
-		    if(cantidad.selectedIndex = 1)
-		    {
-		      formulario1.style.display = 'block';
-		      formulario2.style.display = 'none';
-		      formulario3.style.display = 'none';
-		    }else{
-		    	if (cantidad.selectedIndex = 2) {
-		    		formulario2.style.display = 'block';
+		    switch(cantidad.selectedIndex){
+		        case 0:
+		            formulario1.style.display = 'block';
+				    formulario2.style.display = 'none';
+				    formulario3.style.display = 'none';
+		           break;
+		    
+		   		case 1:
+		            formulario2.style.display = 'block';
 		    		formulario1.style.display = 'none';
 		    		formulario3.style.display = 'none';
+		            break;
+		        case 2:
+		            formulario3.style.display = 'block';
+			    	formulario1.style.display = 'none';
+			    	formulario2.style.display = 'none';
+		            break;
+		     }
 
-		    	}else{
-		    	if (cantidad.selectedIndex = 3) {
-		    		formulario3.style.display = 'block';
-		    		formulario1.style.display = 'none';
-		    		formulario2.style.display = 'none';
-
-		    	}
-		    	else{
-		    		formulario1.style.display = 'none';
-		    		formulario2.style.display = 'none';
-					formulario3.style.display = 'none';
-		    		formulario4.style.display = 'none';
-
-		    	}
-		    }
-		    }
-	    }
+		    
+		}
 	
 </script>
 @section('content')
@@ -49,7 +42,7 @@ SisO:Crear Grupo
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			{!! Form::label('grupos', 'Cantidad de grupos', []) !!}
-			{!! Form::select('cant_grupos', ['1'=> '1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','15'=>'15','20'=>'20'], null ,['id'=>'cant_grupos','onClick'=>'grupos()','onChange'=>'grupos()','class'=>'form-control']) !!}
+			{!! Form::select('cant_grupos', ['1'=> '1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','15'=>'15','20'=>'20'], null ,['id'=>'cant_grupos','onclick'=>'grupos()','onchange'=>'grupos()','class'=>'form-control']) !!}
 		</div>
 	</div>
 	<div id="formGrupo1" style="display: none">
@@ -79,8 +72,7 @@ SisO:Crear Grupo
 						{!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
 					</div>
 				</div>
-		@endfor
-				
+		@endfor		
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">

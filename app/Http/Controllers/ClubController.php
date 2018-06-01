@@ -146,7 +146,7 @@ class ClubController extends Controller
                             ->select('logo')
                             ->get();
             foreach ($logo_antiguo as $logo) {
-                if ($foto_disc->foto_disc != 'sin_imagen.png') {
+                if ($logo->logo != 'sin_imagen.png') {
                 Storage::disk('logos')->delete($logo->logo);  }  
             }
             $logo = $request->file('logo');
@@ -165,6 +165,19 @@ class ClubController extends Controller
                 ->update(['id_administrador'=>$request->get('id_administrador')
                 ]);    
         
+        }
+        else{
+            DB::table('clubs')
+                ->where('id_club', $id)
+                ->update(['nombre_club' => $request->get('nombre_club'),
+                            'ciudad'=>$request->get('ciudad'),
+          
+                            'descripcion_club'=>$request->get('descripcion_club')
+                        ]);
+            DB::table('adminclubs')
+                ->where('id_club',$id)
+                ->update(['id_administrador'=>$request->get('id_administrador')
+                ]); 
         }
         return redirect()->route('club.index');
     }

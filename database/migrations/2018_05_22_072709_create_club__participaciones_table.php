@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClubParticipaciones extends Migration
+class CreateClubParticipacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,12 @@ class CreateClubParticipaciones extends Migration
     {
         Schema::create('club_participaciones', function (Blueprint $table) {
             $table->increments('id_club_part');
-
-            $table->integer('id_club')->unsigned();
-            $table->foreign('id_club')->references('id_club')->on('clubs')->onDelete('cascade');
-
-            $table->integer('id_disc')->unsigned();
-            $table->foreign('id_disc')->references('id_disc')->on('disciplinas')->onDelete('cascade');
-
             $table->integer('id_gestion')->unsigned();
-            $table->foreign('id_gestion')->references('id_gestion')->on('gestiones')->onDelete('cascade');
+            $table->foreign('id_gestion')->references('id_gestion')->on('gestiones');
+            $table->integer('id_club')->unsigned();
+            $table->foreign('id_club')->references('id_club')->on('clubs');
+            $table->integer('id_disc')->unsigned();
+            $table->foreign('id_disc')->references('id_disc')->on('disciplinas');
             $table->timestamps();
         });
     }

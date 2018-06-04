@@ -64,7 +64,8 @@ class FaseController extends Controller
         $grupos = DB::table('grupos')
                 ->where('grupos.id_fase',$id_fase)
                 ->get();
-        return view('grupo.listar_grupos')->with('grupos',$grupos)->with('id_fase',$id_fase);
+        $fase = Fase::where('id_fase','=',$id_fase)->find(1);
+        return view('grupo.listar_grupos')->with('grupos',$grupos)->with('fase',$fase);
     }
 }
 

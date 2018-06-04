@@ -206,11 +206,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
-	
-	route::get('grupo/{id_fase}/create',[
-		'uses'=>'GrupoController@create',
-		'as'=>'grupo.create'
+				route::get('grupo/{id_fase}/create2',[
+		'uses'=>'GrupoController@create2',
+		'as'=>'grupo.create2'
 	]);
+
 	route::post('grupo/crearGrupos',[
 		'uses'=>'GrupoController@crearGrupos',
 		'as'=>'grupo.crearGrupos'

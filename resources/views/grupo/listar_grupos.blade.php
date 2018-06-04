@@ -1,14 +1,18 @@
 @extends('plantillas.main')
 
 @section('title')
-    SisO - Lista de Fases
+    SisO - Lista de Grupos
 @endsection
 
 @section('content')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
-    <h1>Lista de Grupos:</h1>
-    <a href="{{ route('grupo.create',$id_fase) }}" class="btn btn-primary">Agregar Grupo</a>
+    
+      <h1>Lista de Grupos:</h1><h2> {{ $fase->nombre_fase }}</h2>
+    
+    
+
+    <a href="{{ route('grupo.create2',$fase->id_fase) }}" class="btn btn-primary">Agregar Grupo</a>
   </div> 
 </div>
 
@@ -23,7 +27,7 @@
   				<tr>
   					<td>{{ $grupo->id_grupo}}</td>
             <td>{{ $grupo->nombre_grupo }}</td>
-            <td><a href="" class="btn btn-success">ver grupos</a></td>
+            <td><a href="" class="btn btn-success">ver equipos</a></td>
   				</tr>
   			@endforeach
         

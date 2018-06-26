@@ -16,9 +16,9 @@ class CreateInscripcionesTable extends Migration
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('id_inscripcion');
             $table->integer('id_gestion')->unsigned();
-            $table->foreign('id_gestion')->references('id_gestion')->on('gestiones');
+            $table->foreign('id_gestion')->references('id_gestion')->on('gestiones')->onDelete('cascade');
             $table->integer('id_adminClub')->unsigned();
-            $table->foreign('id_adminClub')->references('id_adminClub')->on('adminClubs');
+            $table->foreign('id_adminClub')->references('id_adminClub')->on('adminClubs')->onDelete('cascade');
             //$table->integer('id_administrador')->unsigned();
             //$table->foreign('id_administrador')->references('id_administrador')->on('administraores');
             $table->timestamps();

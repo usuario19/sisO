@@ -14,51 +14,23 @@ class ClubController extends Controller
     public function index()
     {
         //listar clubs
+        $administradores = array();
+        $datos = DB::table('administradores')->get();
+        foreach ($datos as $dato) {
+                $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
+        }
         $clubs = DB::table('adminclubs')
         ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
         ->join('clubs','adminclubs.id_club','=','clubs.id_club')
         
         ->select('clubs.*','administradores.nombre','administradores.apellidos')
         ->get();
-        //para verificar si esta inscrito
-        //$id_gestion = Gestion::all()->last()->id_gestion;
-        //return var_dump($id_gestion);
-        //$inscrito = DB::table('inscripciones')
-        //->join('clubs','clubs.id_club','=','inscripciones.id_club')
-        //->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
-        //->where('gestiones.id_gestion','=',$id_gestion)
-        //->select('inscripciones.id_club')
-        //->get();
-        //gestiones en las que aun no esta inscrito
+
         $gestiones = DB::table('gestiones')
                     ->join('inscripciones','gestiones.id_gestion','=','inscripciones.id_gestion')
                     ->get();
-        return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones);
-        //return view('club.listar_club')->with('clubs',$clubs);
-        //si no hay gestion nos da error
-        //lista de los inscritos
-        /**
-        $id_gestion = Gestion::all()->last()->id_gestion;
-        $clubs = DB::table('clubs')
-        ->join('adminclubs','adminClubs.id_club','=','clubs.id_club')
-        ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
-        //->join('clubs','adminclubs.id_club','=','clubs.id_club')
-        ->join('inscripciones','clubs.id_club','=','inscripciones.id_club')
-        ->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
-        ->where('gestiones.id_gestion','=',$id_gestion)
-        ->select('clubs.*','administradores.nombre','administradores.apellidos','inscripciones.id_club')
-        ->get();
-        
-       return view('club.listar_club')->with('clubs',$clubs);**/
-        //para verificar si esta inscrito   
-        /**$id_gestion = Gestion::all()->last()->id_gestion;
-        $inscrito = DB::table('inscripciones')
-        ->join('clubs','clubs.id_club','=','inscripciones.id_club')
-        ->join('gestiones','gestiones.id_gestion','=','inscripciones.id_gestion')
-        ->where('gestiones.id_gestion','=',$id_gestion)
-        ->select('inscripciones.id_club')
-        ->get();**/
-    }
+        return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones)->with('administradores',$administradores);
+ }
     public function create()
     {   
         $administradores = array();
@@ -113,7 +85,14 @@ class ClubController extends Controller
         ->where('gestiones.id_gestion','=',$id_gestion)
         ->select('inscripciones.id_club')
         ->get();
-        return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito);
+        $coordinadores = DB::table('administradores')
+                        ->get();
+        $administradores = array();
+        $datos = DB::table('administradores')->get();
+        foreach ($datos as $dato) {
+                $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
+        }
+        return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito)->with('administradores',$administradores);
     }
     public function edit($id)
     {
@@ -181,19 +160,25 @@ class ClubController extends Controller
         }
         return redirect()->route('club.index');
     }
-    public function destroy($id)
+    public function destroy(request $request,$id_club)
     {
-        $logo_antiguo = DB::table('clubs')
-                            ->where('id_club',$id)
+        //return dd($request);
+        
+        //if($request->ajax())
+          //  {
+                $logo_antiguo = DB::table('clubs')
+                            ->where('id_club',$id_club)
                             ->select('logo')
                             ->get();
-            foreach ($logo_antiguo as $logo) {
-                if ($logo->logo!='usuario-sin-foto.png') {
-                    Storage::disk('logos')->delete($logo->logo);    
+                foreach ($logo_antiguo as $logo) {
+                    if ($logo->logo!='sin_imagen.png') {
+                        Storage::disk('logos')->delete($logo->logo);    
+                    }
                 }
-        }
-        DB::table('clubs')->where('id_club', '=',$id)->delete();
-        return redirect()->route('club.index'); 
+            DB::table('clubs')->where('id_club', '=',$id_club)->delete();
+            return redirect()->route('club.index'); 
+           // }
+                
     }
     
     //para llenar la tabla inscripcion

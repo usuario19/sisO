@@ -1,11 +1,5 @@
 (function(){
-    /*
-    "readAsDataURL" es usado para leer el contenido del especificado Blob o File
-    "readyState" se convierte en DONE, y el "loadend" es lanzado
-    En ese momento, el atributo "result" contiene  la información como una URL 
-    representando la información del archivo como una cadena de caracteres 
-    codificados en base64
-    */
+
     var inputfile = function(){
       document.getElementById("input").click();
     }
@@ -50,3 +44,4 @@
     document.getElementById("input").addEventListener("change", vistaprevia);
   
 }())
+

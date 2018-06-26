@@ -128,6 +128,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	]);
 	//CLUB
 	//Route::resource('club','ClubController');
+	
+	Route::get('club/datosclub',[ 
+		'uses'=> 'datosclubController@datos',
+			'as' => 'datosclub']);
+
 	Route::post('club',[ 
 				'uses'=> 'ClubController@store',
 				'as' => 'club.store']);

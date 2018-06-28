@@ -66,7 +66,7 @@
                                  </div>
                               </div>
                                   <div class="modal-footer">
-                                  {!! Form::submit('Registrar Club', ['class'=>'btn btn-primary']) !!}
+                                  {!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}
                                   {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
                                   </div>
                             {!! Form::close() !!}
@@ -75,3 +75,6 @@
                 </div>
           </div>
       </div>
+      @section('scripts')
+  {!! Html::script('/js/script.js') !!}
+@endsection

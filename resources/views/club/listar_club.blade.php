@@ -48,20 +48,13 @@ var Mostrar = function(id){
     $("#edit_id_club").val(data.id_club);
     //alert("/storage/logos/"+data.logo);
     $("#nombre_club").val(data.nombre_club);
-    $("#edit_descripcion  ").val(data.nombre);
+    $("#edit_administrador").val(data.id_administrador);
     $("#edit_ciudad").val(data.ciudad);
     var url = '/storage/logos/'+data.logo
     var file = $.get(url);
-    //file.then(function(data) {
         $('#imgOrigen2').attr('src', url);
-    //});
-    //$("#imgOrigen").attr('src','/storage/logos/subir.png');
-    //$("#imgOrigen").val(data.logo);
     $("#edit_descripcion").val(data.descripcion_club);
   });
 }
 </script>
-@endsection
-@section('scripts')
-  {!! Html::script('/js/script.js') !!}
 @endsection

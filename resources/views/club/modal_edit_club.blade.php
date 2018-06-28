@@ -8,27 +8,26 @@
                             </button>
                       </div>
                       <div class="modal-body">
-                            {!! Form::open(['id'=>"Edit",'route'=>'club.update','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true] ) !!}
-
+                            {!! Form::open(['route'=>'club.update','method' => 'PUT' ,'enctype' => 'multipart/form-data', 'files'=>true] ) !!}
                               <div class="row">
                                   <div class="col-md-12">
                                       <div class="row">
                                           <div class="col-md-6">
                                               <div class="form-row">
                                                   <div id="contenedor" class="form-group col-md-2">
-                                                    <img id="imgOrigen2" class="rounded mx-auto d-block float-left" src="/storage/logos/" alt="" height="200px" width="200px">
+                                                    <img id="imgOrigen2" class="rounded mx-auto d-block float-left" src="" alt="" height="200px" width="200px">
                                                     <img id="imgParcial2" height="200px" width="200px" class="noVista" src="" alt="">
                                                   </div>
                                               </div>
                                               <div class="form-row">
                                                   <div class="form-group col-md-2">
                                                     
-                                                    <div id="div_file">
+                                                    <div id="div_file2">
                                                       <img id="texto2" src="/storage/fotos/subir.png"  alt="" height="50px" width="50px">
                                                       {!! Form::file('logo', ['class'=>'upload','id'=>'input2']) !!}
                                                     </div>
                                                   </div>
-                                                  <div class="form-group col-md-4" id="content" style="">
+                                                  <div class="form-group col-md-4" id="content2" style="">
                                                     <div><img id="btnCancelar2" class="noVista" src="/storage/fotos/cancelar.png"  alt=""></div>
                                                   </div>
                                               </div>
@@ -76,3 +75,6 @@
                       </div>                      
                 </div>
           </div>
+            @section('scripts')
+  {!! Html::script('/js/script.js') !!}
+@endsection

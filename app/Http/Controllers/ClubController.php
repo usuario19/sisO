@@ -16,9 +16,11 @@ class ClubController extends Controller
         //listar clubs
         $administradores = array();
         $datos = DB::table('administradores')->get();
+
         foreach ($datos as $dato) {
                 $administradores[$dato->id_administrador] = ($dato->nombre." ".$dato->apellidos);
         }
+
         $clubs = DB::table('adminclubs')
         ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
         ->join('clubs','adminclubs.id_club','=','clubs.id_club')
@@ -29,6 +31,7 @@ class ClubController extends Controller
         $gestiones = DB::table('gestiones')
                     ->join('inscripciones','gestiones.id_gestion','=','inscripciones.id_gestion')
                     ->get();
+
         return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones)->with('administradores',$administradores);
  }
     public function create()
@@ -159,7 +162,7 @@ class ClubController extends Controller
     {
         if($request->hasFile('logo'))
         {   $logo_antiguo = DB::table('clubs')
-                            ->where('id_club',$id)
+                            ->where('id_club', $request->get('id_club'))
                             ->select('logo')
                             ->get();
             foreach ($logo_antiguo as $logo) {
@@ -171,28 +174,28 @@ class ClubController extends Controller
             Storage::disk('logos')->put($nombre_logo, file_get_contents($logo));
             //Image::make($avatar)->resize(300, 300)->save(public_path('/storage/logo/'.$nombre_logo));
             DB::table('clubs')
-                ->where('id_club', $id)
+                ->where('id_club', $request->get('id_club'))
                 ->update(['nombre_club' => $request->get('nombre_club'),
                             'ciudad'=>$request->get('ciudad'),
                             'logo'=>$nombre_logo,
                             'descripcion_club'=>$request->get('descripcion_club')
                         ]);
             DB::table('adminclubs')
-                ->where('id_club',$id)
+                ->where('id_club', $request->get('id_club'))
                 ->update(['id_administrador'=>$request->get('id_administrador')
                 ]);    
         
         }
         else{
             DB::table('clubs')
-                ->where('id_club', $id)
+                ->where('id_club', $request->get('id_club'))
                 ->update(['nombre_club' => $request->get('nombre_club'),
                             'ciudad'=>$request->get('ciudad'),
           
                             'descripcion_club'=>$request->get('descripcion_club')
                         ]);
             DB::table('adminclubs')
-                ->where('id_club',$id)
+                ->where('id_club', $request->get('id_club'))
                 ->update(['id_administrador'=>$request->get('id_administrador')
                 ]); 
         }

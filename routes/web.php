@@ -141,6 +141,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 			'uses'=> 'ClubController@create',
 			'as' => 'club.create']);
 	
+	Route::put('club/',[ 
+				'uses'=> 'ClubController@update',
+				'as' => 'club.update']);
+	
 	Route::get('club/{id}/gestiones_disp',[ 
 			'uses'=> 'ClubController@gestiones_disp',
 			'as' => 'club.gestiones_disp']);
@@ -354,10 +358,5 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=>'SeleccionController@ver_seleccion',
 				'as'=>'seleccion.ver_seleccion']);
 
-	
 });
 
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-//>>>>>>> refs/remotes/origin/master

@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Models\Grupo;
+use App\Models\Grupo;
 use App\Models\Fase;
 use App\Models\Fase_Tipo;
 use Illuminate\Support\Facades\DB;
@@ -55,7 +55,8 @@ class GrupoController extends Controller
         $cantGrupos = $request->get('cant_grupos');
         $id_fase = $request->get('id_fase');
        //$clubs = 
-        return view('grupo.registrar_grupos')->with('cantGrupos',$cantGrupos)->with('id_fase',$id_fase)->with('clubs',$clubs);
+        dd("hola");
+        //return view('grupo.registrar_grupos')->with('cantGrupos',$cantGrupos)->with('id_fase',$id_fase)->with('clubs',$clubs);
     }
 }
 

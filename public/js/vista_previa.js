@@ -31,8 +31,6 @@
       addEvent(elemento, 'change', vista_previa,false);
     }
 
-    
-
     var vista_previa = function(){
         //var origen = document.getElementById("img").src;
         var archivo = new FileReader();

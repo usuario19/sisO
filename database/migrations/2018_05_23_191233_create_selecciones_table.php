@@ -16,9 +16,9 @@ class CreateSeleccionesTable extends Migration
         Schema::create('selecciones', function (Blueprint $table) {
             $table->increments('id_seleccion');
             $table->integer('id_jug_club')->unsigned();
-            $table->foreign('id_jug_club')->references('id_jug_club')->on('jugador_clubs');
+            $table->foreign('id_jug_club')->references('id_jug_club')->on('jugador_clubs')->onDelete('cascade');
              $table->integer('id_club_part')->unsigned();
-            $table->foreign('id_club_part')->references('id_club_part')->on('club_participaciones');
+            $table->foreign('id_club_part')->references('id_club_part')->on('club_participaciones')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -6,40 +6,73 @@
 
 @section('content')
 <h1>Lista de Jugadores:</h1>
-	<table class="table table-container">
+	<table class="table table-sm table-bordered">
   		<thead>
         <tr>
-          @foreach($mi_club as $club)
+          
             <th colspan="2">
-              <img src="/storage/logos/{{ $club->logo }}" alt="" width="110px" height="100px">
+              <div style="float:left; margin:10px;width="110px"">
+                <img src="/storage/logos/{{ $mi_club->logo }}" alt="" width="100px" height="100px">
+              </div>
+            
+             <div style="float:left; padding: 20px 10px ">
+                <h3 class="display-4">{{ $mi_club->nombre_club }}</h3>
+             </div>
             </th>
-            <th colspan="9">
-              <h3 class="display-4">{{ $club->nombre_club }}</h3>
-            </th>
-          @endforeach
+          
         </tr>
+        </thead>
+      
+        <tbody>
+        <tr>
+           
+          <td>
+           {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+          </td>
+
+          <td>
+           <div class="btn-group">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+              Inscribir nuevo jugador
+              </button>
+              <div class="dropdown-menu">
+               <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">Crear nuevo jugador</button>
+                <a class="dropdown-item" href="#">Importar jugadores desde excel</a>
+              </div>
+            </div>
+            @include('plantillas.forms.form_reg_jugador_modal')
+           </td>
+           
+        </tr>
+      </tbody>
+  </table>
+
+  <table class="table table-sm table-bordered">
+      <thead>
   			<tr>
           <th width="20px">ID</th>
           <th width="100px">Foto</th>
           <th width="50px">CI</th>
           <th>Nombre</th>
-          <th>Apellidos</th>
+          <!--th>Apellidos</th-->
           <th>Genero</th>
           <th>Correo</th>
           <th>Fecha de nacimiento</th>
-          <th>Descripcion</th>
+          <!--th>Descripcion</th-->
           <th colspan="3">Acciones</th>
         </tr>
         
   		</thead>
-  		<tbody>
+
+  		<tbody id="datos">
   			@foreach($mis_jugadores as $usuario)
+        
   				<tr>
   					<td>{{ $usuario->jugador->id_jugador}}</td>
             <td><img class="rounded mx-auto d-block" src="/storage/fotos/{{ $usuario->jugador->foto_jugador }}" alt="" height=" 80px" width="80px"></td>
             <td>{{ $usuario->jugador->ci_jugador}}</td>
-  					<td>{{ $usuario->jugador->nombre_jugador}}</td>
-  					<td>{{ $usuario->jugador->apellidos_jugador}}</td>
+  					<td>{{ $usuario->jugador->nombre_jugador." ".$usuario->jugador->apellidos_jugador}}</td>
+  					<!--td>{{ $usuario->jugador->apellidos_jugador}}</td-->
             <td>@if($usuario->jugador->genero_jugador == "2")
                      {{ "Masculino" }}
                 @else
@@ -48,7 +81,7 @@
             </td>
             <td>{{ $usuario->jugador->email_jugador}}</td>
             <td>{{ $usuario->jugador->fecha_nac_jugador}}</td>
-  					<td>{{ $usuario->jugador->descripcion_jugador}}</td>
+  					<!--td>{{ $usuario->jugador->descripcion_jugador}}</td-->
             <td><a href="{{ route('jugador.edit',$usuario->id_jugador) }}" class="btn btn-warning">Editar</a></td>
 
             <td>
@@ -77,11 +110,15 @@
                 </div>
               </div>
             </td>
-            <td>
+            <!--td>
               <a href={{ route('seleccion.ver_seleccion',[$usuario->id_jugador,$usuario->id_club]) }} class="btn btn-info">Ver Participacion</a>
-            </td>
+            </td-->
   				</tr>
   			@endforeach
   		</tbody>
 	</table>
+@endsection
+@section('scripts')
+  {!! Html::script('/js/script.js') !!}
+   {!! Html::script('/js/filtrar_por_nombre.js') !!}
 @endsection

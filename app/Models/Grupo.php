@@ -18,6 +18,7 @@ class Grupo extends Model
     public function fases (){
     	return $this->belongsTo('App\Models\Fase');
     }
+    
     public function grupo_seleccions(){
     	return $this->hasMany('App\Models\Grupo_seleccion');
     }

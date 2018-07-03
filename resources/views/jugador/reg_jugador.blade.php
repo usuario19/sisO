@@ -33,48 +33,51 @@
 			</div>
 			<div class="float-sm-left" >
 					<div class="col-md-12">
-						<table class="table table-sm">
-						  <thead></thead>
-						  <tbody>
+					
 								@if(Auth::User()->tipo =="Coordinador")
 									@if(count($mis_clubs)> 1)
-										<tr>
-											<th rowspan="{{ count($mis_clubs)+1 }}">
-												<h6 class="display-6 ">{!! Form::label('club', 'Club: ', []) !!}</h6>
-											</th>
+										
+											<!--th rowspan="{{ count($mis_clubs)+1 }}"-->
+												<!--h6 class="display-6 "-->{!! Form::label('club', 'Club: ', []) !!}</h6>
+												{!! Form::select('clubs', $mis_clubs, null, ['class'=>'form-control']) !!}
+											
 										@foreach($mis_clubs as $club)
-											<tr>
-												<td colspan="2">
+
+										
+
+										{!! Form::select('clubs', [$club->club->id_club => $club->club->nombre_club], null, ['class'=>'form-control']) !!}
+
+
+											
 													{!! Form::radio('clubs',$club->club->id_club , false , ['id'=>'clubs'.$club->club->id_club]) !!}
 
 													{!! Form::label('clubs'.$club->club->id_club,$club->club->nombre_club , []) !!}
 													
-												</td>
-											</tr>
+												<
 										@endforeach
-										</tr>
+										
 									@else
-										<tr>
-											<th rowspan="{{ count($mis_clubs) }}">
-												<h6 class="display-6 ">{!! Form::label('club', 'Club:', []) !!}</h6>
-											</th>
+										<!--tr>
+											<th rowspan="{{ count($mis_clubs) }}"-->
+												{!! Form::label('club', 'Club:', []) !!}</h6>
+											
 										@foreach($mis_clubs as $club)
-												<td colspan="2">
+												
 													{!! Form::label('nombre_club',$club->club->nombre_club , []) !!}
 													<img id="imgLog" class="rounded mx-auto d-block float-left" src="/storage/logos/{{$club->club->logo}}" alt="" height="50px" width="50px">
 													{!! Form::radio('clubs',$club->club->id_club , true , []) !!}
-												</td>
+												
 										@endforeach
-										</tr>
+										
 									@endif
 								@endif
 
-						    <tr>  
+						    
 							  @include('plantillas.forms.form_reg_jugador')
-							  <tr><td colspan="3">{!! Form::submit('Registrar Jugador', ['class'=>'btn btn-primary']) !!}</td></tr>
-						    </tr>
-						  </tbody>
-						</table>
+
+							  {!! Form::submit('Registrar Jugador', ['class'=>'btn btn-primary']) !!}</td></tr>
+						    
+						
 					</div>
 			</div>
 	</div>

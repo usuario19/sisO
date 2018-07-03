@@ -17,10 +17,10 @@ class JugadorParticipaciones extends Migration
         Schema::create('jugador_participaciones', function (Blueprint $table) {
             $table->increments('id_jug_part');
             $table->integer('id_jugador')->unsigned();
-            $table->foreign('id_jugador')->references('id_jugador')->on('jugadores');
+            $table->foreign('id_jugador')->references('id_jugador')->on('jugadores')->onDelete('cascade');
 
             $table->integer('id_participacion')->unsigned();
-            $table->foreign('id_participacion')->references('id_participacion')->on('participaciones');
+            $table->foreign('id_participacion')->references('id_participacion')->on('participaciones')->onDelete('cascade');
             $table->timestamps();
         });
     }

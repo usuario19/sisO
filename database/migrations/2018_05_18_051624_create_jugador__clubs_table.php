@@ -17,10 +17,10 @@ class CreateJugadorClubsTable extends Migration
             $table->increments('id_jug_club');
 
             $table->integer('id_club')->unsigned();
-            $table->foreign('id_club')->references('id_club')->on('clubs');
+            $table->foreign('id_club')->references('id_club')->on('clubs')->onDelete('cascade');
 
             $table->integer('id_jugador')->unsigned();
-            $table->foreign('id_jugador')->references('id_jugador')->on('jugadores');
+            $table->foreign('id_jugador')->references('id_jugador')->on('jugadores')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -43,7 +43,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
 		$datos = $request->only(['ci','password']);
 		
 		if (Auth::attempt($datos)) 
@@ -51,12 +51,17 @@ class LoginController extends Controller
             // Authentication passed...
             return Redirect::to('welcome');
 			//dd('dfdsfsdfsdfsdfsdfsdfsd entra');
+
+            //return "true";
         }else{
-			//flash::error('Correo electronico o contraseña incorresctos');
-        	return redirect()->route('login.index');
+            //echo('Correo electronico o contraseña incorrectos');
+			//flash::error('Correo electronico o contraseña incorrectos');
+        	//echo "no es correcto";
             //dd('dfdsfsdfsdfsdfsdfsdfsd no entra');
+            return Redirect::to('login');
 		}
 		//dd($datos);
+        //*/
     }
 
     /**

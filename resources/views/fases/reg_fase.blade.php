@@ -26,7 +26,15 @@ SisO:Crear Fase
 				 		
 				 			@foreach ($tipos as $tipo)
 				 			<div class="form-group col-md-4">
-				 				{!! Form::radio('tipo',$tipo->id_tipo,null,['id'=>'series','class'=>'radio']) !!}
+				 				{!! Form::<!DOCTYPE html>
+				 				<html>
+				 				<head>
+				 					<title></title>
+				 				</head>
+				 				<body>
+				 				
+				 				</body>
+				 				</html>radio('tipo',$tipo->id_tipo,null,['id'=>'series','class'=>'radio']) !!}
 								{!! Form::label('series',$tipo->nombre_tipo, []) !!}
 								</div>
 				 			@endforeach				

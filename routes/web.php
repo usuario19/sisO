@@ -128,6 +128,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	]);
 	//CLUB
 	//Route::resource('club','ClubController');
+	
+	Route::get('club/datosclub',[ 
+		'uses'=> 'datosclubController@datos',
+			'as' => 'datosclub']);
+
 	Route::post('club',[ 
 				'uses'=> 'ClubController@store',
 				'as' => 'club.store']);
@@ -135,6 +140,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('club/create',[ 
 			'uses'=> 'ClubController@create',
 			'as' => 'club.create']);
+	
+	Route::put('club/',[ 
+				'uses'=> 'ClubController@update',
+				'as' => 'club.update']);
 	
 	Route::get('club/{id}/gestiones_disp',[ 
 			'uses'=> 'ClubController@gestiones_disp',
@@ -206,11 +215,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
-	
-	route::get('grupo/{id_fase}/create',[
-		'uses'=>'GrupoController@create',
-		'as'=>'grupo.create'
+				route::get('grupo/{id_fase}/create2',[
+		'uses'=>'GrupoController@create2',
+		'as'=>'grupo.create2'
 	]);
+
 	route::post('grupo/crearGrupos',[
 		'uses'=>'GrupoController@crearGrupos',
 		'as'=>'grupo.crearGrupos'
@@ -250,7 +259,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=> 'JugadorController@destroy',
 				'as' => 'jugador.destroy']);	
 
-	Route::put('club/{club}',[ 
+	Route::put('club/',[ 
 				'uses'=> 'ClubController@update',
 				'as' => 'club.update']);
 
@@ -349,10 +358,5 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=>'SeleccionController@ver_seleccion',
 				'as'=>'seleccion.ver_seleccion']);
 
-	
 });
 
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-//>>>>>>> refs/remotes/origin/master

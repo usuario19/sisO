@@ -17,7 +17,6 @@ SisO: Editar Clubs
 						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/logos/{{$club->logo}}" alt="" height="200px" width="200px" >
 							<img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt="">
 						</div>
-
 			</div>
 			<div class="form-row">
 						<div class="form-group col-md-5">

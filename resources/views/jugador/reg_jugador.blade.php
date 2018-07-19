@@ -39,24 +39,20 @@
 										
 											<!--th rowspan="{{ count($mis_clubs)+1 }}"-->
 												<!--h6 class="display-6 "-->{!! Form::label('club', 'Club: ', []) !!}</h6>
-												{!! Form::select('clubs', $mis_clubs, null, ['class'=>'form-control']) !!}
+												
 											
-										@foreach($mis_clubs as $club)
+										
+										 @foreach($mis_clubs as $club) 
 
+											$optionsArray = [$club->club->id_club => $club->club->nombre_club] 
+										 @endforeach
 										
 
-										{!! Form::select('clubs', [$club->club->id_club => $club->club->nombre_club], null, ['class'=>'form-control']) !!}
+										
+			
 
-
-											
-													{!! Form::radio('clubs',$club->club->id_club , false , ['id'=>'clubs'.$club->club->id_club]) !!}
-
-													{!! Form::label('clubs'.$club->club->id_club,$club->club->nombre_club , []) !!}
+										
 													
-												<
-										@endforeach
-										
-									@else
 										<!--tr>
 											<th rowspan="{{ count($mis_clubs) }}"-->
 												{!! Form::label('club', 'Club:', []) !!}</h6>

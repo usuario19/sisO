@@ -27,19 +27,20 @@
         <tr>
            
           <td>
-           {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-          </td>
-
-          <td>
-           <div class="btn-group">
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-              Inscribir nuevo jugador
-              </button>
-              <div class="dropdown-menu">
-               <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">Crear nuevo jugador</button>
-                <a class="dropdown-item" href="#">Importar jugadores desde excel</a>
+           <div style="float: left;" class="col-md-9">{!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+           </div>
+          
+           <div style="float: left;" class="col-md-3">
+             <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                Inscribir nuevo jugador
+                </button>
+                <div class="dropdown-menu">
+                 <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">Crear nuevo jugador</button>
+                  <a class="dropdown-item" href="#">Importar jugadores desde excel</a>
+                </div>
               </div>
-            </div>
+           </div>
             @include('plantillas.forms.form_reg_jugador_modal')
            </td>
            

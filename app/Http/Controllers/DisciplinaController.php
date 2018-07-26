@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
+use App\Models\Tipo;
 use App\Models\Club_Participacion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -252,7 +253,8 @@ class DisciplinaController extends Controller
                 ->join('tipos','fase_tipos.id_tipo','=','tipos.id_tipo')
                 ->select('fases.*','tipos.*')
                 ->get();
-        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc);
+        $tipos2 = Tipo::get();
+        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc)->with('tipos2',$tipos2);
 
     }
 }

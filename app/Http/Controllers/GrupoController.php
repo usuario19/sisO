@@ -34,12 +34,17 @@ class GrupoController extends Controller
 		    			$grupo->id_fase = $request->id_fase;
 		    			$grupo->save();
     				}
+                case 3:
+                    for ($i=2; $i < 5; $i++) { 
+                        $grupo = new Grupo;
+                        $grupo->nombre_grupo = $request->get('nombre'.$i);
+                        $grupo->id_fase = $request->id_fase;
+                        $grupo->save();
+                    }
     				break;
     		}
-    	$grupos = DB::table('grupos')
-    					->where('grupos.id_fase','=',$id_fase)
-    					->get();
-    	$fase = Fase::where('id_fase','=',$id_fase)->find(1);
+    	$grupos = Grupo::where('grupos.id_fase','=',$id_fase)->get();
+    	$fase = Fase::where('id_fase','=',$id_fase)->first();
     	/**$fase = DB::table('fases')
     			->where('fases.id_fase','=',$id_fase)
     			->get();**/
@@ -51,11 +56,6 @@ class GrupoController extends Controller
         //
     }
     
-    public function mostrarGestion()
-    {
-       
-    }
-
 
     public function edit($id)
     {
@@ -71,7 +71,9 @@ class GrupoController extends Controller
     
     public function destroy($id)
     {
-        //
+        $grupo = Grupo::find($id);
+        $grupo->delete();
+         return redirect()->back(); 
     }
     public function crearGrupos(Request $request)
     {

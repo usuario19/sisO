@@ -24,13 +24,11 @@ class FaseController extends Controller
         $id_disc = $request->get('id_disc');
         $id_gestion = $request->get('id_gestion');
         $id_participacion = DB::table('participaciones')
-                            ->where('participaciones.id_disciplina',$request->id_disc)
-                            ->where('participaciones.id_gestion',$request->id_gestion)
+                            ->where('participaciones.id_disciplina',$id_disc)
+                            ->where('participaciones.id_gestion',$id_gestion)
                             ->select('participaciones.id_participacion')
                             ->get()->toArray();
         $fases = new Fase;
-        //return dd($request->id_disc);
-        //return dd($id_participacion);
         $fases->nombre_fase = $request->get('nombre');
         $fases->id_participacion = $id_participacion[0]->{'id_participacion'};
         $fases->save();
@@ -40,7 +38,7 @@ class FaseController extends Controller
         $fase_tipos->id_tipo = $request->get('tipo');
         $fase_tipos->save();
         
-        return redirect()->route('disciplina.fases',array('id_disc'=>$id_disc,'id_gestion'=>$id_gestion));
+        return redirect()->back();
     }
     public function show($id)
     {
@@ -62,10 +60,12 @@ class FaseController extends Controller
     }
     public function listar_grupos($id_fase){
         $grupos = DB::table('grupos')
-                ->where('grupos.id_fase',$id_fase)
+                ->where('grupos.id_fase','=',$id_fase)
                 ->get();
-        $fase = Fase::where('id_fase','=',$id_fase)->find(1);
+       // $fase
+        $fase = Fase::where("id_fase","=",$id_fase)->first();
         return view('grupo.listar_grupos')->with('grupos',$grupos)->with('fase',$fase);
+        //return dd($fase);
     }
 }
 

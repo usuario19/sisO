@@ -16,13 +16,13 @@ class CreateEquiposTable extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->increments('id_equipo');
             $table->string('nombre_equipo');
-            $table->text('decsripcion_equipo');
+            $table->text('descripcion_equipo');
 
             $table->integer('id_club')->unsigned();
-            $table->foreign('id_club')->references('id_club')->on('clubs');
+            $table->foreign('id_club')->references('id_club')->on('clubs')->onDelete('cascade');
 
             $table->integer('id_disciplina')->unsigned();
-            $table->foreign('id_disciplina')->references('id_disc')->on('disciplinas');
+            $table->foreign('id_disciplina')->references('id_disc')->on('disciplinas')->onDelete('cascade');
 
             $table->timestamps();
         });

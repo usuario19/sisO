@@ -4,7 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jugador;
+use App\Models\Club;
+use App\Models\Gestion;
+use App\Models\Inscripcion;
+use App\Models\Admin_club;
+use App\Models\Jugador_club;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\JugadorRequest;
+use Storage;
+use Validator;
+use Auth;
 
 class JugadorController extends Controller
 {
@@ -15,8 +24,20 @@ class JugadorController extends Controller
      */
     public function index()
     {
-        $usuarios = DB::table('jugadores')->get();
-        return view('jugador.listar_jugadores')->with('usuarios',$usuarios);
+        $usuarios = Jugador::all();
+
+        $ultima_gestion = Gestion::all()->last()->id_gestion;
+
+        $inscritos = Inscripcion::where('id_gestion',$ultima_gestion)->get();
+        if(Auth::User()->tipo =='Coordinador')
+            return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('inscritos',$inscritos);
+         else
+            $clubs = Club::all();
+            return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('clubs',$clubs);
+
+        //dd($inscritos);
+        //$clubs = DB::table('inscripciones')->where('id_gestion',$ultima_gestion)->get();
+        //dd($clubs);
     }
 
     /**
@@ -26,7 +47,17 @@ class JugadorController extends Controller
      */
     public function create()
     {
-        return view('jugador.reg_jugador');
+
+        if(Auth::User()->tipo == "Coordinador")
+        {
+            $id_coordinador = Auth::User()->id_administrador;
+                //clubs de la tabla adminsclub
+            $mis_clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->get();
+            return view('jugador.reg_jugador')->with('mis_clubs',$mis_clubs);
+        }else{
+            
+            return view('jugador.reg_jugador');
+        }
     }
 
     /**
@@ -35,12 +66,40 @@ class JugadorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JugadorRequest $request)
     {
         $datos = new Jugador($request->all());
         $datos->save();
-         
-        return redirect()->route('jugador.index');
+        if(Auth::User()->tipo == 'Coordinador')
+        {
+            $ci_jugador = $request->ci_jugador;
+            $id_club = $request->clubs;
+
+            $jugador = Jugador::where('ci_jugador',$ci_jugador)->get();
+            
+            $id_jugador = $jugador[0]->id_jugador;
+            //dd($id_jugador);
+            $Jugador_Club = new Jugador_Club;
+            $Jugador_Club->id_club = $id_club;
+            $Jugador_Club->id_jugador = $id_jugador;
+            $Jugador_Club->save();
+
+            //return redirect()->route('coordinador.mostrarJugadores');
+            return redirect()->back();
+
+        }else{
+            return redirect()->route('jugador.index');
+        }/*else{
+
+            //$ultima_gestion = Gestion::all()->last()->id_gestion;
+            $clubs = Club::all();
+
+            //$inscritos = Inscripcion::where('id_gestion',$ultima_gestion)->get();
+            return redirect()->route('jugador.index')->with('clubs',$clubs);
+        }*/
+        
+
+        
      }
         /*
      * Display the specified resource.
@@ -51,6 +110,13 @@ class JugadorController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function mostrarJugador()
+    {
+        //
+        $usuarios = DB::table('jugadores')->get();
+        return view('jugador.listar_jugadores')->with('usuarios',$usuarios);
     }
 
     /**
@@ -77,7 +143,12 @@ class JugadorController extends Controller
     {
         //
         $usuario = Jugador::find($id);
-        
+
+        if ($request->hasFile('foto_jugador') && $usuario->foto_jugador != "usuario-sin-foto.png") 
+        {
+           Storage::disk('fotos')->delete($usuario->foto_jugador);
+        }
+
         $usuario->fill($request->all());
         $usuario->save();
         return redirect()->route('jugador.index');
@@ -93,7 +164,13 @@ class JugadorController extends Controller
     {
         //
         $usuario= Jugador::find($id);
+        if ($usuario->foto_jugador != "usuario-sin-foto.png") 
+        {
+           Storage::disk('fotos')->delete($usuario->foto_jugador);
+        }
+        
         $usuario->delete();
+        
         return redirect()->route('jugador.index');
     }
 }

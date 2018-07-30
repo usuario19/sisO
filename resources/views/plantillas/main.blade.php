@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>@yield('title')</title>
 	{!! Html::style('/css/bootstrap.min.css') !!}
@@ -11,112 +12,43 @@
 
 </head>
 <body>
-	
-	<div class="container">
 
-      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="">Home <span class="sr-only">(current)</span>
-            </a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Gestiones
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Gestion</a>
-              <a class="dropdown-item" href={{ route('gestion.index') }}>Listar Gestiones</a>
+  @if(Auth::check())
+    @if(Auth::user()->tipo == 'Administrador')
+      @include('plantillas.menus.menu_admin')
+    @else
+      @include('plantillas.menus.menu_coordinador')
+    @endif
+  @else
+    @include('plantillas.menus.menu_principal')
+  @endif
+  
+   <div class="container">
+    @if(count($errors) > 0)
+            <div class="alert alert-danger" role="alert">
+              <ul>
+              @foreach($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+              </ul>
             </div>
-          </li>
-    		
-    		  
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Usuarios
-            </a>
-      
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <h6 class="dropdown-header">Coordinador</h6>
-                
-              <a class="dropdown-item" href={{ route('administrador.create') }}> Registrar Coordinador</a>
-              <a class="dropdown-item" href={{ route('administrador.index') }}>Lista de Coordinadores</a>
-              <div class="dropdown-divider"></div>
-              <h6 class="dropdown-header">Jugador</h6>
-              <a class="dropdown-item" href={{ route('jugador.create') }}> Registrar Jugador</a>
-              <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de Jugadores</a>
-            </div>
-          </li> 
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Resultados
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Clubs
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('club.create') }}>Registrar Club</a>
-              <a class="dropdown-item" href={{ route('club.index') }}>Lista de Clubs</a>
-            </div>
-          </li> 
-
-           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Disciplinas
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('disciplina.create') }}>Registrar Disciplina</a>
-              <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
-            </div>
-          </li>
-        <ul class="navbar-nav">
-         	 <li class="nav-item">
-             <a class="nav-link " href="#">Login</a>
-         		</li>
-        </ul>  
-    	  
-      </nav>
-    </div>
-  </nav>
-	
-	</div>
+        @endif
+  </div>
 
  	<div class="container">
  		@yield('content')
   {!! Html::script('/js/jquery.js') !!}
+  {!! Html::script('/js/popper.min.js') !!}
   {!! Html::script('/js/bootstrap.min.js') !!}
-
-  {!! Html::script('/js/script.js') !!}
-      {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
-      @include('sweetalert::alert')
+  {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
+    @yield('scripts')
+  @include('sweetalert::alert')
  	</div>
 
-
-
-
 </body>
+<footer>
+  <br><br>
+  <div class="container navbar navbar-expand-lg bg-dark navbar-dark">pie de pagina</div>
+</footer>
 </html>
 

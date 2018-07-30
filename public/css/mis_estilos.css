@@ -1,6 +1,6 @@
 .radio{
-	height: 15px;
-	width: 15px;
+	height: 18px;
+	width: 18px;
 }
 /*div*/
 .texto{
@@ -9,13 +9,23 @@
 	font-family: "courier", "sans-serif";
 	font-size: 18px;
 }
-
+.texto2 {
+	margin-top: 10px;
+	text-align: center;
+	font-family: "courier", "sans-serif";
+	font-size: 18px;
+}
 div.contenedor{
 	width: 200px;
 	height: 200px;
 }
 
 img#imgOrigen{
+
+	width: 200px;
+	height: 200px;
+}
+img#imgOrigen2{
 
 	width: 200px;
 	height: 200px;
@@ -49,6 +59,18 @@ img#imgOrigen{
  	width: 30px;
 	height: 30px;
  }
+ img#texto2{
+ 	position: absolute;
+ 	width: 25px;
+	height: 25px;
+	margin: auto;
+	opacity: 0.5;
+ }
+ img#texto2:hover{
+ 	opacity: 1;
+ 	width: 30px;
+	height: 30px;
+ }
 div#div_file{
 	position: relative;/*para q el input vaya dentro del div*/
 	padding-left:20px;
@@ -57,11 +79,46 @@ div#div_file{
 	width: 100px;
 	
 }
-
+div#div_file2{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-left:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
+	
+}
+div#content{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-right:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
+	
+}
+div#content2{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-right:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
+	
+}
 input#input{
+	visibility: hidden;
+	
+}
+input#input2{
 	visibility: hidden;
 	
 }
 input#input:hover{
 	opacity: 0.6;
+}
+input#input2{
+	opacity: 0.6;
+	
+}
+.check_us, #todo, .check_hab, #todo_hab{
+	width: 20px;
+	height: 20px;
 }

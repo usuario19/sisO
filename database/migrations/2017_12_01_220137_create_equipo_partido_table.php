@@ -15,9 +15,9 @@ class CreateEquipoPartidoTable extends Migration
     {
         Schema::create('equipo_partido', function (Blueprint $table) {
             $table->integer('id_equipo')->unsigned();
-            $table->foreign('id_equipo')->references('id_equipo')->on('equipos');
+            $table->foreign('id_equipo')->references('id_equipo')->on('equipos')->onDelete('cascade');
             $table->integer('id_partido')->unsigned();
-            $table->foreign('id_partido')->references('id_partido')->on('partidos');
+            $table->foreign('id_partido')->references('id_partido')->on('partidos')->onDelete('cascade');
             $table->timestamps();
         });
     }

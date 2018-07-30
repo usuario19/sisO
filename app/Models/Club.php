@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
-
 use Storage;
+
 class Club extends Model
 {
     protected $table = 'clubs';
@@ -21,14 +20,27 @@ class Club extends Model
 	protected $hidden = [
 		'remember_token'
 		];
-
-	public function admin_clubs(){
-		return $this->hasMany('App\Models\Admin_Club');
+    //UN CLUB TIENE VARION JUGADORES
+    public function jugador_clubs(){
+        return $this->hasMany('App\Models\Jugador_Club', 'id_club');
         
-	}
-    public function inscripcions(){
-        return $this->hasMany('App\Models\Inscripcion','id_club');
     }
+    //UN CLUB TIENE MUCHOS ADMINISTRADORES
+	public function admin_clubs(){
+
+		return $this->hasMany('App\Models\Admin_Club','id_adminClub');  
+	}
+    //
+    public function club_participaciones(){
+
+        return $this->hasMany('App\Models\Club_Participacion','id_club');  
+    }
+    //
+    public function inscripciones(){
+        return $this->hasMany('App\Models\Inscripcion','id_adminClub');
+    }
+    //ALMACEN LOGO EN CARPETA
+
 	public function setLogoAttribute($value)
     {
         if($value !== null)
@@ -37,10 +49,6 @@ class Club extends Model
             //obtiene eel nombre del archivo
             Storage::disk('logos')->put($nombre, file_get_contents($value));
             $this->attributes['logo'] = $nombre;
-            /*
-            $path = storage_path('app/public');
-            $value ->move($path, $nombre);
-            $this->attributes['archivo'] = 'app/public/'.$nombre;*/
         }
     }
 }

@@ -17,7 +17,6 @@ SisO: Editar Clubs
 						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/logos/{{$club->logo}}" alt="" height="200px" width="200px" >
 							<img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt="">
 						</div>
-
 			</div>
 			<div class="form-row">
 						<div class="form-group col-md-5">
@@ -41,6 +40,7 @@ SisO: Editar Clubs
 
 				</div>
 			</div>
+			@if(Auth::User()->tipo == 'Administrador')
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						{!! Form::label('id_administrador', 'Coordinador', []) !!}
@@ -48,6 +48,15 @@ SisO: Editar Clubs
 						
 					</div>
 				</div>
+			@else
+				<div class="form-row" style="display: none;">
+					<div class="form-group col-md-12">
+						{!! Form::label('id_administrador', 'Coordinador', []) !!}
+						{!! Form::select('id_administrador', $administradores,null, ['class'=>'form-control']) !!}
+						
+					</div>
+				</div>
+			@endif
 				
 				<div class="form-row">
 					<div class="form-group col-md-12">
@@ -76,4 +85,7 @@ SisO: Editar Clubs
 
 	{!! Form::close() !!}
 </div>
+@endsection
+@section('scripts')
+  {!! Html::script('/js/script.js') !!}
 @endsection

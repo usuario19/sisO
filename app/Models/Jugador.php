@@ -29,12 +29,20 @@ class Jugador extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
+    //UN JUGADOR PUEDE SUSCRIBIRSE A MUCHOS CLUB
+    public function jugador_clubs(){
+        return $this-hasMany('App\Models\Jugador_Club', 'id_jugador');
+    }
+    //un jugador administra a un club
+    public function jugador_inscripciones(){
+        return $this-hasMany('App\Models\Jugador_Inscripcion');
+    } 
    
     //un jugador pertenece a un club
     public function club (){
-        return $this-belongsTo('App\Models\Club');
+        return $this->belongsTo('App\Models\Club');
     } 
-    //ALMACENAR EL LIBRO EN LA CARPETA
+    //ALMACENAR FOTO EN LA CARPETA
     public function setFotoJugadorAttribute($value)
     {
         if($value !== null)

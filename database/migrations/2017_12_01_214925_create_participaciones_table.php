@@ -19,7 +19,7 @@ class CreateParticipacionesTable extends Migration
             $table->foreign('id_gestion')->references('id_gestion')->on('gestiones')->onDelete('cascade');;
             
             $table->integer('id_disciplina')->unsigned();
-            $table->foreign('id_disciplina')->references('id_disc')->on('disciplinas')->onDelete('cascade');;
+            $table->foreign('id_disciplina')->references('id_disc')->on('disciplinas')->onDelete('cascade');
             $table->timestamps();
         });
     }

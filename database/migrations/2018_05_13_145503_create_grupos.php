@@ -16,6 +16,11 @@ class CreateGrupos extends Migration
         Schema::create('grupos', function (Blueprint $table) {
             $table->increments('id_grupo');
             $table->string('nombre_grupo');
+          
+            $table->integer('id_fase')->unsigned();
+            $table->foreign('id_fase')->references('id_fase')->on('fases')->onDelete('cascade');
+
+
             $table->timestamps();
         });
     }

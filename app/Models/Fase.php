@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,4 +17,5 @@ class Fase extends Model
     public function fechas(){
     	return $this->hasMany('App\Models\Fecha');
     }
+
 }

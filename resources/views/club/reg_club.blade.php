@@ -13,13 +13,13 @@ SisO: Crear Clubs
 			<div class="form-group col-md-4">
 				<div class="form-row">
 						<div id="contenedor" class="form-group col-md-12">
-							<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/logos/usuario-sin-foto.png" alt="" height="200px" width="200px">
+							<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/logos/sin_imagen.png" alt="" height="200px" width="200px">
 							<img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt="">
 						</div>
 				</div>
 			
 				<div class="form-row">
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-5">
 							
 							<div id="div_file">
 								<img id="texto" src="/storage/fotos/subir.png"  alt="">
@@ -32,7 +32,7 @@ SisO: Crear Clubs
 						</div>
 				</div>
 			</div>
-			<div class="form-group col-md-8">
+			<div class="form-group col-md-7">
 				<div class="form-row">
 				<div class="form-group col-md-12">
 					{!! Form::label('nombre_club', 'Nombre del Club', []) !!}
@@ -75,4 +75,7 @@ SisO: Crear Clubs
 
 	{!! Form::close() !!}
 </div>
+@endsection
+@section('scripts')
+  {!! Html::script('/js/script.js') !!}
 @endsection

@@ -16,11 +16,10 @@ class CreateClubsTable extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id_club');
             $table->string('nombre_club');
-            //$table->integer('id_administrador')->unsigned();
-            //$table->foreign('id_administrador')->references('id_administrador')->on('administradores');
             $table->string('ciudad');
-            $table->string('logo')->default('usuario-sin-foto.png');
+            $table->string('logo')->default('sin_imagen.png');
             $table->text('descripcion_club');
+            
             $table->timestamps();
         });
     }

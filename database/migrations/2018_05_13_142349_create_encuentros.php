@@ -16,6 +16,10 @@ class CreateEncuentros extends Migration
             $table->string('ubicacion');
             $table->text('observacion');
             $table->string('resultado');
+
+            $table->integer('id_fecha')->unsigned();
+            $table->foreign('id_fecha')->references('id_fecha')->on('fechas')->onDelete('cascade');
+           
             $table->timestamps();
         });
     }

@@ -8,17 +8,23 @@ class Club_Participacion extends Model
 {
     //
     protected $table = 'club_participaciones';
+	protected $primaryKey = 'id_club_part';
 
-	
-    protected $fillable = [
-    	'id_participacion',
-    	'id_club',
+    protected $fillable =['id_gestion', 'id_club','id_disc'];
 
-    ];
+    public function disciplina(){
+         return $this->belongsTo('App\Models\Disciplina','id_disc');
+    }
 
+    public function gestion(){
+    	 return $this->belongsTo('App\Models\Gestion','id_gestion');
+    }
 
+    public function club(){
+    	 return $this->belongsTo('App\Models\Club','id_club');
+    }
 
-    protected $hidden = [
-        'remember_token',
-    ];
+    public function selecciones(){
+         return $this->hasMany('App\Models\Seleccion','id_club_part');
+    }
 }

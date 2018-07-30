@@ -19,12 +19,24 @@ class Gestion extends Model
 	protected $hidden = [
 		'remember_token'
 		];
-		
+	
+
+	public function inscripciones(){
+        return $this->hasMany('App\Models\Inscripcion','id_gestion');
+    }
+
+    public function participaciones(){
+        return $this->hasMany('App\Models\Participacion','id_gestion');
+    }
+
 	public function disciplina_gestions()
 	{
 		return $this->hasMany('App\Models\disciplina_gestion');
 	}
-	public function inscripcions(){
-		return $this->hasMany('App\Models\Inscripcion');
-	}
+
+	public function club_participaciones(){
+
+        return $this->hasMany('App\Models\Club_Participacion','id_gestion');  
+    }
+	
 }

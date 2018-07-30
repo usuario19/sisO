@@ -16,9 +16,15 @@ class Jugador_Inscripcion extends Model
 
     ];
 
-
-
     protected $hidden = [
         'remember_token',
     ];
+
+    public function jugador(){
+         return $this->belongsTo('App\Models\Jugador','id_jugador');
+    }
+
+     public function inscripcion(){
+         return $this->belongsTo('App\Models\Inscripcion','id_inscripcion');
+    }
 }

@@ -6,25 +6,18 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateFechas extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('fechas', function (Blueprint $table) {
             $table->increments('id_fecha');
             $table->string('nombre_fecha');
+            
+            $table->integer('id_fase')->unsigned();
+            $table->foreign('id_fase')->references('id_fase')->on('fases')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('fechas');

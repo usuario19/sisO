@@ -16,6 +16,7 @@ class Disciplina extends Model
 
     protected $fillable = [
 		'nombre_disc',
+        'categoria',
 		'foto_disc',
 		'reglamento_disc',
 		'descripcion_disc',
@@ -25,10 +26,25 @@ class Disciplina extends Model
 		'remember_token'
 		];
 
+    public function participaciones(){
+        return $this->hasMany('App\Models\Participacion','id_disc');
+    }    
+
 	public function disciplina_getions()
 	{
 		return $this->hasMany('App\Models\disciplina_gestion');
 	}
+    public function inscripciones(){
+        return $this->hasMany('App\Models\Inscripcion','id_disc');
+    }
+    public function club_participaciones(){
+
+        return $this->hasMany('App\Models\Club_Participacion','id_disc');  
+    }
+
+
+
+    //......................................................................
 	public function setFotoDiscAttribute($value)
     {
         if($value !== null)

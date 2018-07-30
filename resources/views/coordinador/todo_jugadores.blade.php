@@ -6,7 +6,7 @@
 
 @section('content')
 <h1>Todos los jugadores:</h1>
-{!! Form::open(['route'=>'coordinador.filtrar','method'=>'post']) !!}
+{!! Form::open(['route'=>'coordinador.filtrar','method'=>'get']) !!}
   <div class="form-row">
     <table class="table table-borderless">
       <thead></thead>

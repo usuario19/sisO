@@ -21,9 +21,9 @@ Route::group(['middleware' => ['web','guest']],function(){
    	return view('home');
 	});
 
-	Route::post('login',[ 
+	Route::post('log',[ 
 			'uses'=> 'LoginController@store',
-			'as' => 'login']);
+			'as' => 'login.store']);
 
 
 	Route::get('login',[ 

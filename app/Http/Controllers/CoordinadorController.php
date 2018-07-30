@@ -80,11 +80,11 @@ class CoordinadorController extends Controller
     {
         //
         $mis_jugadores = Jugador_Club::where('id_club',$id)->get();
-        $mi_club = DB::table('clubs')->select('nombre_club','logo')->where('id_club',$id)->get();
+        $mi_club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$id)->get();
         //dd($mis_jugadores);
         //dd($mi_club);
         //dd('hola');
-        return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club); 
+        return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); 
     }
 
     
@@ -163,12 +163,12 @@ class CoordinadorController extends Controller
 
         //dd($clubs);
         //dd($id_coordinador);
-        return view('coordinador.todo_jugadores')->with('clubs', $clubs)->with('usuarios', $usuarios);
+        return view('coordinador.ajaxfiltrar')->with('clubs', $clubs)->with('usuarios', $usuarios);
     }
 
     public function filtrar(Request $request)
     {
-        $id_coordinador = Auth::User()->id_administrador;
+         $id_coordinador = Auth::User()->id_administrador;
         //clubs de la tabla adminsclub
          $todo_clubs = DB::table('clubs')
         ->join('adminclubs','adminClubs.id_club','=','clubs.id_club')
@@ -176,16 +176,15 @@ class CoordinadorController extends Controller
         ->select('clubs.id_club','nombre_club')
         ->get();
 
-        $clubs = array('0' => 'Mostrar Todo');
+        //$clubs = array('0' => 'Mostrar Todo');
         $id_clubs = array();
         $i=0;
         foreach ($todo_clubs as $valor) {
-            $clubs[$valor->id_club]=$valor->nombre_club;
+            //$clubs[$valor->id_club]=$valor->nombre_club;
             $id_clubs[$i]=$valor->id_club;
             $i++; 
         }
        
-        
         
         if($request->club == "0" && $request->genero == "0" )
         {
@@ -236,8 +235,55 @@ class CoordinadorController extends Controller
             ->get();
         }
 
-        return view('coordinador.todo_jugadores')->with('usuarios', $usuarios)->with('clubs', $clubs);
-        //dd($datos);
-        //dd('hola');
+        //return view('coordinador.todo_jugadores')->with('usuarios', $usuarios)->with('clubs', $clubs);
+       
+        //dd($usuarios);
+       //dd($club, $genero);
+        $datos = "";
+        
+        foreach ($usuarios as $usuario) {
+            # code...
+            $datos .= "<tr><td>".$usuario->id_jugador."</td>";
+            $datos .= "<td>".$usuario->nombre_club."</td>";
+            $datos .= "<td><img class="."'rounded mx-auto d-block'". "src='/storage/fotos/".$usuario->foto_jugador."' height=".'"50px"'."width=".'"50px"'."></td>";
+            $datos .= "<td>".$usuario->ci_jugador."</td>";
+            $datos .=  "<td>".$usuario->apellidos_jugador." ".$usuario->nombre_jugador."</td>";
+            if($usuario->genero_jugador == "2")
+                       $datos .= "<td>M</td>";
+            else
+                        $datos .= "<td>F</td>" ;
+            $datos .= "<td>".$usuario->email_jugador."</td>";
+            $datos .= "<td>". $usuario->fecha_nac_jugador."</td>";
+            $datos .=  "<td class="."d-inline-block text-truncate"." style="."max-width: 150px;>".$usuario->descripcion_jugador."</td>";
+            $datos .=  "<td><a href=".route('jugador.edit',$usuario->id_jugador)." class=".'"btn btn-warning"'.">Editar</a></td>";
+            $datos .= "<td>
+                <a href=".route('jugador.destroy',$usuario->id_jugador)."  class="."'btn btn-danger'"." data-toggle="."modal data-target='#eliminar".$usuario->id_jugador."'"." >Eliminar</a>".
+                "<div class='modal fade'"." id="."'eliminar".$usuario->id_jugador."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                  <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>
+                      <div class='modal-header'>
+                        <h5 class='modal-title' id='exampleModalLabel'>SisO:</h5>
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                          <span aria-hidden='true'>&times;</span>
+                        </button>
+                      </div>
+    
+                      <div class='modal-body'>
+                        Esta seguro de querer eliminar al usuario?
+                      </div>
+    
+                      <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>
+    
+                        <a href=".route('jugador.destroy',$usuario->id_jugador)." class='btn btn-primary'>Eliminar</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td></tr>";
+
+        }
+        echo $datos;
     }
+   
 }

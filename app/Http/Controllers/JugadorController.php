@@ -84,7 +84,8 @@ class JugadorController extends Controller
             $Jugador_Club->id_jugador = $id_jugador;
             $Jugador_Club->save();
 
-            return redirect()->route('coordinador.mostrarJugadores');
+            //return redirect()->route('coordinador.mostrarJugadores');
+            return redirect()->back();
 
         }else{
             return redirect()->route('jugador.index');
@@ -169,6 +170,7 @@ class JugadorController extends Controller
         }
         
         $usuario->delete();
+        
         return redirect()->route('jugador.index');
     }
 }

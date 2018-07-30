@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>@yield('title')</title>
 	{!! Html::style('/css/bootstrap.min.css') !!}
@@ -37,17 +38,16 @@
  	<div class="container">
  		@yield('content')
   {!! Html::script('/js/jquery.js') !!}
+  {!! Html::script('/js/popper.min.js') !!}
   {!! Html::script('/js/bootstrap.min.js') !!}
   {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
     @yield('scripts')
   @include('sweetalert::alert')
  	</div>
 
-
-
-
 </body>
 <footer>
+  <br><br>
   <div class="container navbar navbar-expand-lg bg-dark navbar-dark">pie de pagina</div>
 </footer>
 </html>

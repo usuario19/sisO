@@ -45,7 +45,7 @@ SisO:Crear Disciplina
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				{!! Form::label('categoria', 'Categoria', []) !!}
-				{!! Form::select('categoria', ['0'=>'Ambos', '1'=>'Mujeres','2'=>'Varones'], null, ['class'=>'form-control']) !!}
+				{!! Form::select('categoria', ['0'=>'Mixto', '1'=>'Damas','2'=>'Varones'], null, ['class'=>'form-control']) !!}
 			</div>
 		</div>
 		

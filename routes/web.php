@@ -232,6 +232,18 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@destroy',
 		'as'=>'grupo.destroy'
 	]);
+	Route::get('grupo/{id}/mostrar_grupos',[
+		'uses'=>'GrupoController@mostrar_grupos',
+		'as'=>'grupo.mostrar_grupos'
+	]);
+	Route::get('grupo/{id}/listar_clubs',[
+		'uses'=>'GrupoController@listar_clubs',
+		'as'=>'grupo.listar_clubs'
+	]);
+	Route::post('grupo/store_club',[
+		'uses'=>'GrupoController@store_club',
+		'as'=>'grupo.store_club'
+	]);
 });
 
 //COORDINADOR

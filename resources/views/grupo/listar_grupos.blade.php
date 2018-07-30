@@ -19,6 +19,7 @@
   		<thead>
   			<th width="50px">ID</th>
         <th>Nombre</th>
+        <th>Encuentros</th>
   		</thead>
   		<tbody>
 
@@ -26,7 +27,7 @@
   				<tr>
   					<td>{{ $grupo->id_grupo}}</td>
             <td>{{ $grupo->nombre_grupo }}</td>
-            <td><a href="" class="btn btn-success">ver equipos</a></td>
+            <td><a href="{{ route('grupo.listar_clubs',$grupo->id_grupo) }}" class="btn btn-success">Encuentros</a></td>
             <td><a href="{{ route('grupo.destroy',$grupo->id_grupo) }}" class="btn btn-danger">Eliminar</a></td>
   				</tr>
   			@endforeach

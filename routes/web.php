@@ -244,6 +244,19 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@store_club',
 		'as'=>'grupo.store_club'
 	]);
+	Route::get('grupo/{id_grupo}/{id_club_part}/eliminar_club',[
+		'uses'=>'GrupoController@eliminar_club',
+		'as'=>'grupo.eliminar_club'
+	]);
+	//FECHA
+	Route::post('fecha/store',[
+		'uses'=>'FechaController@store',
+		'as'=>'fecha.store'
+	]);
+	Route::get('fecha/{id_fase}/listar_fechas',[
+		'uses'=>'FechaController@listar_fechas',
+		'as'=>'fecha.listar_fechas'
+	]);
 });
 
 //COORDINADOR

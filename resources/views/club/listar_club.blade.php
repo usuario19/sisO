@@ -2,10 +2,12 @@
 @section('title')
     SisO - Lista de Clubs
 @endsection
-@include('club.modal_reg_club')
+
 @section('content')
+@include('club.modal_reg_club')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
+
     <h1>Lista de Clubs:</h1>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Agregar</button>
   </div>
@@ -30,8 +32,8 @@
             <td scope="row">{{ $club->ciudad}}</td>
             <td scope="row">{{ $club->descripcion_club}}</td>
 
-            <td scope="row"><a href="{{ route('club.edit',$club->id_club) }}" class="btn btn-info">Editar</a>
-              <a onclick="Mostrar({{ $club->id_club }});"  class="btn btn-primary" data-toggle="modal" data-target="#edit">Editar2</a>
+            <td scope="row">
+              <a onclick="Mostrar({{ $club->id_club }});"  class="btn btn-primary" data-toggle="modal" data-target="#edit">Editar</a>
              
                 <a href="{{ route('club.destroy',$club->id_club) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
             </td>

@@ -1,3 +1,4 @@
+ {!! Form::open(['route'=>'fase.store','method' => 'POST' ,'enctype' => 'multipart/form-data'] ) !!}
 <div class="modal fade" id="modalFase" tabindex="-1" role="dialog" aria-labelledby="modalLabelFase" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -9,7 +10,7 @@
       </div>
       
       <div class="modal-body">
-        {!! Form::open(['route'=>'fase.store','method' => 'POST' ,'enctype' => 'multipart/form-data'] ) !!}
+       
 
           <div class="form-group">
             {!! Form::label('nombre', 'Nombre', []) !!}
@@ -43,11 +44,12 @@
           {!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}
           {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
         </div>
-        {!! Form::close() !!}
+        
         </div>
     </div>
   </div>
 </div>
+{!! Form::close() !!}
 @section('scripts')
   {!! Html::script('/js/script.js') !!}
 @endsection

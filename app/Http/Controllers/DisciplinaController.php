@@ -251,6 +251,8 @@ class DisciplinaController extends Controller
                 ->join('fases','participaciones.id_participacion','=','fases.id_participacion')
                 ->join('fase_tipos','fases.id_fase','=','fase_tipos.id_fase')
                 ->join('tipos','fase_tipos.id_tipo','=','tipos.id_tipo')
+                ->where('participaciones.id_gestion','=',$id_gestion)
+                ->where('participaciones.id_disciplina','=',$id_disc)
                 ->select('fases.*','tipos.*')
                 ->get();
         $tipos2 = Tipo::get();

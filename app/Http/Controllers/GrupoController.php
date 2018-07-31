@@ -5,6 +5,7 @@ use App\Models\Grupo;
 use App\Models\Club;
 use App\Models\Fase;
 use App\Models\Fase_Tipo;
+use App\Models\Grupo_Club_Participacion;
 use Illuminate\Support\Facades\DB;
 
 class GrupoController extends Controller
@@ -69,23 +70,34 @@ class GrupoController extends Controller
             ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
             ->where('grupos.id_grupo','=',$id_grupo)
             ->select('participaciones.id_disciplina')
-            ->get()->id_disciplina;
+            ->get()->last()->id_disciplina;
+
+        $clubsInscritos = DB::table('grupo_club_participaciones')
+            ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+            ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+            ->select('grupo_club_participaciones.id_club_part')
+            ->get()->toArray();
+        $lista = array();
+                        foreach ($clubsInscritos as $club) {
+                            $lista[] = $club->id_club_part;
+                        }
+//return dd($clubsInscritos);
 
         $clubsDisponibles = DB::table('clubs')
             ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
-            //->where('club_participaciones.id_gestion','=',$id_gestion[0])
-            //->where('club_participaciones.id_disc','=',$id_disciplina->id_disciplina)
+            ->where('club_participaciones.id_gestion','=',$id_gestion)
+            ->where('club_participaciones.id_disc','=',$id_disciplina)
+            ->whereNotIn('club_participaciones.id_club_part',$lista)
             ->get();
+        
         $clubs = DB::table('grupos')
             ->join('grupo_club_participaciones','grupos.id_grupo','=','grupo_club_participaciones.id_grupo')
             ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
             ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
             ->where('grupos.id_grupo','=',$id_grupo)
-            ->select('clubs.*')
+            ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
-
-return dd($id_disciplina);
-        //return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles);
+        return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('id_grupo',$id_grupo);
     }
     public function edit($id)
     {
@@ -113,8 +125,29 @@ return dd($id_disciplina);
        // dd("hola");
         //return view('grupo.registrar_grupos')->with('cantGrupos',$cantGrupos)->with('id_fase',$id_fase)->with('clubs',$clubs);
     }
-    public function store_club(){
+    public function store_club(Request $request){
+        
+        $clubs =$request->get('id_club');
+        foreach ($clubs as $club) {
+            $datos = new grupo_club_participacion;
+            $datos->id_grupo = $request->get('id_grupo');
+            $id_club_part = DB::table('club_participaciones')
+                ->where('club_participaciones.id_gestion','=',$request->get('id_gestion'))
+                ->where('club_participaciones.id_disc','=',$request->get('id_disciplina'))
+                ->where('club_participaciones.id_club','=',$club)->get()->last()->id_club_part;
+            $datos->id_club_part = $id_club_part;
+            $datos->save();
+        }
 
+        return redirect()->back();
+    }
+    public function eliminar_club($id_grupo,$id_club_part){
+
+        $grupo_club_participacion = DB::table('grupo_club_participaciones')
+            ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+            ->where('grupo_club_participaciones.id_club_part','=',$id_club_part)->delete();
+        //$grupo_club_participacion->delete();
+         return redirect()->back();
     }
 }
 

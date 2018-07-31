@@ -9,7 +9,7 @@
   <div class="form-group col-md-12 form-inline">
     
       <h1>Lista de Clubs:</h1>
-@include('grupo.modal_agregar_equipos')
+  @include('grupo.modal_agregar_equipos')
       
                           
   </div> 
@@ -18,6 +18,7 @@
 	<table class="table table-condensed">
   		<thead>
   			<th width="50px">ID</th>
+        <th>Logo</th>
         <th>Nombre</th>
         <th>Encuentros</th>
   		</thead>
@@ -26,6 +27,7 @@
   			@foreach($clubs as $club)
   				<tr>
   					<td>{{ $club->id_club }}</td>
+             <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
             <td>{{ $club->nombre_club }}</td>
             <td><a href="{{ route('grupo.eliminar_club',[$club->id_grupo,$club->id_club_part]) }}" class="btn btn-danger">Eliminar</a></td>
            

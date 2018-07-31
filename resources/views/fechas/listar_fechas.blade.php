@@ -8,7 +8,8 @@
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
     <h1>Lista de Fase:</h1>
-    
+    @include('fechas.modal_registrar_fecha')
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
 </div>
 
 
@@ -16,7 +17,7 @@
   		<thead>
   			<th width="50px">ID</th>
         <th>Nombre</th>
-        <th>Encuentros</th>
+        <th>Acciones</th>
         
   		</thead>
   		<tbody>
@@ -26,8 +27,8 @@
   					<td>{{ $fecha->id_fecha}}</td>
             <td>{{ $fecha->nombre_fecha}}</td>
             
-            <td><a href="" class="btn btn-success">encuentros</a></td>
-            <td><a href="" class="btn btn-success">eliminar</a></td>
+           
+            <td><a href="{{ route('fecha.destroy',$fecha->id_fecha) }}" class="btn btn-danger">eliminar</a></td>
   				</tr>
   			@endforeach
   		</tbody>

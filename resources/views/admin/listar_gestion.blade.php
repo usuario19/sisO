@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
+@include('gestiones.modal_registrar_gestion')
 <h1>Lista de Campeonatos:</h1>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGestion">Agregar</button>
 	<table class="table table-condensed">
   		<thead>
   			<th>ID</th>

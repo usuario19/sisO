@@ -11,7 +11,7 @@
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
     <h1>Lista de Fase:</h1>
-    <a href="{{ route('fase.create',[$id_disc,$id_gestion]) }}" class="btn btn-primary">Agregar</a>
+  
   </div> 
 </div>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFase">Agregar</button>

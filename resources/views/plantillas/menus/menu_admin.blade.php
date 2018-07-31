@@ -20,7 +20,6 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('gestion.create') }}>Registrar Campeonatos</a>
               <a class="dropdown-item" href={{ route('gestion.index') }}>Listar Campeonatos</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
@@ -67,7 +66,6 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('club.create') }}>Registrar Club</a>
               <a class="dropdown-item" href={{ route('club.index') }}>Lista de Clubs</a>
             </div>
           </li> 

@@ -50,6 +50,3 @@
   </div>
 </div>
 {!! Form::close() !!}
-@section('scripts')
-  {!! Html::script('/js/script.js') !!}
-@endsection

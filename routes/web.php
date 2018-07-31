@@ -257,6 +257,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FechaController@listar_fechas',
 		'as'=>'fecha.listar_fechas'
 	]);
+	Route::get('fecha/{id_fecha}/destroy',[
+		'uses'=>'FechaController@destroy',
+		'as'=>'fecha.destroy'
+	]);
 });
 
 //COORDINADOR

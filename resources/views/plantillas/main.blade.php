@@ -13,37 +13,39 @@
 </head>
 <body>
 
-  @if(Auth::check())
-    @if(Auth::user()->tipo == 'Administrador')
-      @include('plantillas.menus.menu_admin')
-    @else
-      @include('plantillas.menus.menu_coordinador')
-    @endif
-  @else
-    @include('plantillas.menus.menu_principal')
-  @endif
-  
-   <div class="container">
-    @if(count($errors) > 0)
-            <div class="alert alert-danger" role="alert">
-              <ul>
-              @foreach($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-              </ul>
-            </div>
-        @endif
-  </div>
-
- 	<div class="container">
- 		@yield('content')
-  {!! Html::script('/js/jquery.js') !!}
-  {!! Html::script('/js/popper.min.js') !!}
-  {!! Html::script('/js/bootstrap.min.js') !!}
-  {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
-    @yield('scripts')
-  @include('sweetalert::alert')
- 	</div>
+ <div class="container col-md-12">
+    @if(Auth::check())
+     @if(Auth::user()->tipo == 'Administrador')
+       @include('plantillas.menus.menu_admin')
+     @else
+       @include('plantillas.menus.menu_coordinador')
+     @endif
+   @else
+     @include('plantillas.menus.menu_principal')
+   @endif
+   
+    <div class="container">
+     @if(count($errors) > 0)
+             <div class="alert alert-danger" role="alert">
+               <ul>
+               @foreach($errors->all() as $error)
+               <li>{{ $error }}</li>
+               @endforeach
+               </ul>
+             </div>
+         @endif
+   </div>
+   
+      <div class="container">
+        @yield('content')
+   {!! Html::script('/js/jquery.js') !!}
+   {!! Html::script('/js/popper.min.js') !!}
+   {!! Html::script('/js/bootstrap.min.js') !!}
+   {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
+     @yield('scripts')
+   @include('sweetalert::alert')
+      </div>
+ </div>
 
 </body>
 <footer>

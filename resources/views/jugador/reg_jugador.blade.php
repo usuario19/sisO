@@ -46,12 +46,7 @@
 
 											$optionsArray = [$club->club->id_club => $club->club->nombre_club] 
 										 @endforeach
-										
 
-										
-			
-
-										
 													
 										<!--tr>
 											<th rowspan="{{ count($mis_clubs) }}"-->
@@ -67,12 +62,10 @@
 										
 									@endif
 								@endif
-
 						    
 							  @include('plantillas.forms.form_reg_jugador')
 
-							  {!! Form::submit('Registrar Jugador', ['class'=>'btn btn-primary']) !!}</td></tr>
-						    
+							  {!! Form::submit('Registrar Jugador', ['class'=>'btn btn-primary']) !!}</td></tr> 
 						
 					</div>
 			</div>
@@ -81,5 +74,5 @@
 </div>
 @endsection
 @section('scripts')
-  {!! Html::script('/js/script.js') !!}
+  {!! Html::script('js/script.js') !!}
 @endsection

@@ -122,3 +122,14 @@ input#input2{
 	width: 20px;
 	height: 20px;
 }
+.title-table{
+	margin: auto;
+	color: white;
+	font-weight: bold;
+	background:#FF5733;
+	/*height: 100px;*/
+	text-align: center;
+}
+.title-table h3{
+	font-size: 40px;
+}

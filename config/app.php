@@ -146,6 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -166,6 +167,7 @@ return [
         //para los mensajes emergentes
         //UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -219,6 +221,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         //'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-    ],
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 ];

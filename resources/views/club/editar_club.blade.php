@@ -40,6 +40,20 @@ SisO: Editar Clubs
 
 				</div>
 			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					{!! Form::label('alias_club', 'Alias del Club', []) !!}
+					{!! Form::text('alias_club', null, ['class'=>'form-control']) !!}
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					{!! Form::label('color_club', 'Color del Club', ['class'='']) !!}
+					{!! Form::color('color_club', null , ['class'=>'']) !!}
+				</div>
+			</div>
 			@if(Auth::User()->tipo == 'Administrador')
 				<div class="form-row">
 					<div class="form-group col-md-12">

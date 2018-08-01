@@ -112,8 +112,8 @@ class ClubController extends Controller
             $administradores[$datos->id_administrador] = ($datos->nombre." ".$datos->apellidos);
         }
         //return dd($datos);
-        return response()->json($club);
-        //return view('club.editar_club')->with('club',$club)->with('administradores',$administradores);
+        //return response()->json($club);
+        return view('club.editar_club')->with('club',$club)->with('administradores',$administradores);
     }
     public function update2(Request $request, $id)
     {

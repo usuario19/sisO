@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 class GestionController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $gestiones = DB::table('gestiones')->get();
-        return view('admin.listar_gestion')->with('gestiones',$gestiones);
+        $disciplina = DB::table('disciplinas')->get();
+        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplina', $disciplina);
     }
+
     public function create()
     {
 

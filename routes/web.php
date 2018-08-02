@@ -189,44 +189,77 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@clubs',
 	    'as'=> 'gestion.clubs'
 	]);
-	route::get('gestion/{id}/disciplinas',[
+	Route::get('gestion/{id}/disciplinas',[
 	    'uses'=> 'GestionController@disciplinas',
 	    'as'=> 'gestion.disciplinas'
 	]);
 	//fases
-	route::get('fase',[
+	Route::get('fase',[
 		'uses'=>'FaseController@index',
 		'as'=>'fase.index'
 	]);
-	route::get('fase/{id_disc}/{id_gestion}/create',[
+	Route::get('fase/{id_disc}/{id_gestion}/create',[
 		'uses'=>'FaseController@create',
 		'as'=>'fase.create'
 	]);
-	route::post('fase/store',[
+	Route::post('fase/store',[
 		'uses'=>'FaseController@store',
 		'as'=>'fase.store'
 	]);
-	route::get('fase/{id_fase}/listar_grupos',[
+	Route::get('fase/{id_fase}/listar_grupos',[
 		'uses'=>'FaseController@listar_grupos',
 		'as'=>'fase.listar_grupos'
 	]);
 	//grupos
-	route::get('grupo',[
+	Route::get('grupo',[
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
-				route::get('grupo/{id_fase}/create2',[
+	Route::get('grupo/{id_fase}/create2',[
 		'uses'=>'GrupoController@create2',
 		'as'=>'grupo.create2'
 	]);
 
-	route::post('grupo/crearGrupos',[
+	Route::post('grupo/crearGrupos',[
 		'uses'=>'GrupoController@crearGrupos',
 		'as'=>'grupo.crearGrupos'
 	]);
-	route::post('grupo/store',[
+	Route::post('grupo/store',[
 		'uses'=>'GrupoController@store',
 		'as'=>'grupo.store'
+	]);
+	Route::get('grupo/{id}/destroy',[
+		'uses'=>'GrupoController@destroy',
+		'as'=>'grupo.destroy'
+	]);
+	Route::get('grupo/{id}/mostrar_grupos',[
+		'uses'=>'GrupoController@mostrar_grupos',
+		'as'=>'grupo.mostrar_grupos'
+	]);
+	Route::get('grupo/{id}/listar_clubs',[
+		'uses'=>'GrupoController@listar_clubs',
+		'as'=>'grupo.listar_clubs'
+	]);
+	Route::post('grupo/store_club',[
+		'uses'=>'GrupoController@store_club',
+		'as'=>'grupo.store_club'
+	]);
+	Route::get('grupo/{id_grupo}/{id_club_part}/eliminar_club',[
+		'uses'=>'GrupoController@eliminar_club',
+		'as'=>'grupo.eliminar_club'
+	]);
+	//FECHA
+	Route::post('fecha/store',[
+		'uses'=>'FechaController@store',
+		'as'=>'fecha.store'
+	]);
+	Route::get('fecha/{id_fase}/listar_fechas',[
+		'uses'=>'FechaController@listar_fechas',
+		'as'=>'fecha.listar_fechas'
+	]);
+	Route::get('fecha/{id_fecha}/destroy',[
+		'uses'=>'FechaController@destroy',
+		'as'=>'fecha.destroy'
 	]);
 });
 

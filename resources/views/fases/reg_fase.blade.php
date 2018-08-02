@@ -23,18 +23,9 @@ SisO:Crear Fase
 			<div class="card">
 				<div class="card-body">
 					<div class="form-row">
-				 		
 				 			@foreach ($tipos as $tipo)
 				 			<div class="form-group col-md-4">
-				 				{!! Form::<!DOCTYPE html>
-				 				<html>
-				 				<head>
-				 					<title></title>
-				 				</head>
-				 				<body>
-				 				
-				 				</body>
-				 				</html>radio('tipo',$tipo->id_tipo,null,['id'=>'series','class'=>'radio']) !!}
+				 				{!! Form::radio('tipo',$tipo->id_tipo,null,['id'=>'series','class'=>'radio']) !!}
 								{!! Form::label('series',$tipo->nombre_tipo, []) !!}
 								</div>
 				 			@endforeach				

@@ -64,9 +64,10 @@ class GestionController extends Controller
         //return var_dump($gestion);
     }
 
-    public function show($id)
-    {
-        //
+    public function show($id){
+        //$gestion = Gestion::where('id_gestion','=',$id)->get();
+        $gestion = Gestion::find($id);
+        return view('plantillas.menus.menu_gestion')->with('gestion',$gestion);
     }
     
     public function mostrarGestion()
@@ -74,15 +75,49 @@ class GestionController extends Controller
         $gestiones = DB::table('gestiones')->get();
         return view('admin.listar_gestion')->with('gestiones',$gestiones);
     }
+    public function configurar($id_gestion){
+        $gestion = Gestion::find($id_gestion);
+        $disciplinasInscrito = DB::table('gestiones')
+            ->join('participaciones','gestiones.id_gestion','=','participaciones.id_gestion')
+            ->join('disciplinas','participaciones.id_disciplina','=','disciplinas.id_disc')
+            ->where('gestiones.id_gestion','=',$id_gestion)
+            ->get();
+        $disciplinas = array();
+        foreach ($disciplinasInscrito as $disciplina) {
+            $disciplinas[] = $disciplina->id_disc;
+        }
+        $disciplinasNoInscrito = DB::table('Disciplinas')
+            ->whereNotIn('disciplinas.id_disc',$disciplinas)
+            ->get();
+        //$disciplinas = Disciplina::get();
+        //return dd($disciplinasInscrito );
+        return view('gestiones.configurar_gestion')->with('gestion',$gestion)->with('disciplinasInscrito',$disciplinasInscrito)->with('disciplinasNoInscrito',$disciplinasNoInscrito);
+    }
 
     public function edit($id)
     {
-        //
+        
     }
 
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){ 
+        DB::table('gestiones')
+                ->where('id_gestion', $id)
+                ->update(['nombre_gestion' => $request->get('nombre_gestion'),
+                            'fecha_ini'=>$request->get('fecha_ini'),
+                            'fecha_fin'=>$request->get('fecha_fin'),
+                            'desc_gest'=>$request->get('descripcion')
+                        ]);
+        $disciplinas =$request->get('id_disciplinas');
+        foreach ($disciplinas as $disc) {
+            if ($disc = ) {
+                
+            }
+            DB::table('participaciones')
+                ->where('id_gestion', $id)
+                ->update(['id_disciplina'=>$disc)
+                ]); 
+        }
+        return redirect()->back(); 
     }
     public function destroy($id){
         DB::table('gestiones')->where('id_gestion', '=',$id)->delete();

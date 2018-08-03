@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
+use App\Models\Participacion;
+use App\Models\Inscripcion;
+use App\Models\Club_participacion;
+
 
 use Storage;
 
@@ -26,15 +30,11 @@ class Disciplina extends Model
 		'remember_token'
 		];
 
-    public function participaciones(){
+    public function participacions(){
         return $this->hasMany('App\Models\Participacion','id_disc');
     }    
 
-	public function disciplina_getions()
-	{
-		return $this->hasMany('App\Models\disciplina_gestion');
-	}
-    public function inscripciones(){
+    public function inscripcions(){
         return $this->hasMany('App\Models\Inscripcion','id_disc');
     }
     public function club_participaciones(){

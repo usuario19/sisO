@@ -44,7 +44,10 @@ Route::group(['middleware' => ['web','guest']],function(){
 	
 	Route::get('gestion/mostrar',[ 
 				'uses'=> 'GestionController@mostrarGestion',
-				'as' => 'gestion.mostrar']);
+				'as' => 'gestion.mostrar'
+			]);
+	
+	
 });
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS
@@ -167,7 +170,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'GestionController@update',
 				'as' => 'gestion.update']);
 
-	Route::get('gestion/{gestion}',[ 
+	Route::get('gestion/{id_gestion}',[ 
 				'uses'=> 'GestionController@show',
 				'as' => 'gestion.show']);
 
@@ -193,6 +196,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@disciplinas',
 	    'as'=> 'gestion.disciplinas'
 	]);
+	Route::get('gestion/{id_gestion}/configurar',[ 
+				'uses'=> 'GestionController@configurar',
+				'as' => 'gestion.configurar'
+			]);
 	//fases
 	Route::get('fase',[
 		'uses'=>'FaseController@index',

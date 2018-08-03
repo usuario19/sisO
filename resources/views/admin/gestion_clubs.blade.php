@@ -3,10 +3,11 @@
 @section('title')
     SisO - Lista de Clubs
 @endsection
+@section('submenu')
 
+@include('plantillas.menus.menu_gestion')
+@endsection
 @section('content')
-
-  <h1 class="table-ligth" style="text-align: center;">{{ $gestion->nombre_gestion}}</h1>
 <div class="form-row">
   <div class="col-md-6">
 

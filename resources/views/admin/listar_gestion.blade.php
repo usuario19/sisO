@@ -33,9 +33,7 @@
   			<th>Fecha de Fin</th>
         <th>Descripcion</th>
   			<th>Acciones</th>
-        <th>Permisos</th>
-        <th>Clubs</th>
-        <th>Disciplinas</th>
+        
         
   		</thead>
   		<tbody>
@@ -47,9 +45,9 @@
   					<td>{{ $gestion->fecha_ini}}</td>
             <td>{{ $gestion->fecha_fin}}</td>
   					<td>{{ $gestion->desc_gest}}</td>
-            <td><a href="{{ route('gestion.edit',$gestion->id_gestion) }}" class="btn btn-info">Editar</a></td>
+           
             <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}" class="btn btn-danger">Eliminar</a></td>
-            <td><a href="{{ route('gestion.clubs',$gestion->id_gestion) }}" class="btn btn-success">Ver</a></td>
+            
             <td><a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}" class="btn btn-success">Disciplinas</a></td>
   				</tr>
   			@endforeach

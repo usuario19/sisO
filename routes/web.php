@@ -166,7 +166,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'GestionController@create',
 				'as' => 'gestion.create']);
 
-	Route::put('gestion/{gestion}',[ 
+	Route::post('gestion/{id_gestion}',[ 
 				'uses'=> 'GestionController@update',
 				'as' => 'gestion.update']);
 
@@ -179,6 +179,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'as' => 'gestion.edit']);
 
 	route::get('gestion/{id}/destroy',[
+	    'uses'=> 'GestionController@destroy',
+	    'as'=> 'gestion.destroy'
+	]);
+	route::get('gestion/{id}/disciplinas',[
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);

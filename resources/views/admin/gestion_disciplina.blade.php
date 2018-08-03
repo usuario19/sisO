@@ -3,9 +3,12 @@
 @section('title')
     SisO - Lista de Disciplinas
 @endsection
+@section('submenu')
 
+@include('plantillas.menus.menu_gestion')
+@endsection
 @section('content')
-<h1 class="table-ligth" style="text-align: center;">{{ $gestion->nombre_gestion}}</h1>
+<h4>Diciplinas participantes</h4>
 	 <table class="table table-condensed">
       <thead>
         <th width="50px">ID</th>

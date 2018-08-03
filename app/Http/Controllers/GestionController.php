@@ -7,6 +7,7 @@ use App\Models\Club;
 use App\Models\Participacion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+
 class GestionController extends Controller
 {
     public function index(){
@@ -14,10 +15,7 @@ class GestionController extends Controller
         $disciplina = DB::table('disciplinas')->get();
         return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplina', $disciplina);
     }
-
-    public function create()
-    {
-
+    public function create(){
         $disciplina = DB::table('disciplinas')->get();
         if (empty($disciplina)) {
             Alert::warning('Primero debe crear disciplinas','');
@@ -26,11 +24,8 @@ class GestionController extends Controller
         else{
             return view('admin.reg_gest')->with('disciplina', $disciplina);
         }
-        
-        //return var_dump($disciplina);
     }
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $gestion = new Gestion;
         $gestion->nombre_gestion = $request->get('nombre');
         $gestion->fecha_ini = $request->get('fechaIni');
@@ -50,18 +45,6 @@ class GestionController extends Controller
             $datos->save();
         }
         return redirect()->route('gestion.index');
-       /* foreach ($request as $valor => $disciplina) {
-            $id_disc = $request->get('disciplina');
-            return var_dump($id_disc);
-        }
-        
- 
-        $gestion->save();*/
-        
-        //$gestion = Disciplina::find($id_disc);
-        //$gestion = Disciplina::where($request->get('disciplina'));
-        //$gestion->disciplinas()->attach($request->get('disciplina'),['id_disc','state'=>true]);
-        //return var_dump($gestion);
     }
 
     public function show($id){
@@ -70,8 +53,7 @@ class GestionController extends Controller
         return view('plantillas.menus.menu_gestion')->with('gestion',$gestion);
     }
     
-    public function mostrarGestion()
-    {
+    public function mostrarGestion(){
         $gestiones = DB::table('gestiones')->get();
         return view('admin.listar_gestion')->with('gestiones',$gestiones);
     }
@@ -94,31 +76,23 @@ class GestionController extends Controller
         return view('gestiones.configurar_gestion')->with('gestion',$gestion)->with('disciplinasInscrito',$disciplinasInscrito)->with('disciplinasNoInscrito',$disciplinasNoInscrito);
     }
 
-    public function edit($id)
-    {
+    public function edit($id){
         
     }
 
     public function update(Request $request, $id){ 
+        //return dd($Request);
         DB::table('gestiones')
                 ->where('id_gestion', $id)
                 ->update(['nombre_gestion' => $request->get('nombre_gestion'),
                             'fecha_ini'=>$request->get('fecha_ini'),
                             'fecha_fin'=>$request->get('fecha_fin'),
                             'desc_gest'=>$request->get('descripcion')
-                        ]);
-        $disciplinas =$request->get('id_disciplinas');
-        foreach ($disciplinas as $disc) {
-            if ($disc = ) {
-                
-            }
-            DB::table('participaciones')
-                ->where('id_gestion', $id)
-                ->update(['id_disciplina'=>$disc)
-                ]); 
-        }
+                      ]);
+        
         return redirect()->back(); 
     }
+
     public function destroy($id){
         DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
         return redirect()->route('gestion.index'); 

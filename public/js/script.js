@@ -3,6 +3,7 @@
     var inputfile = function(){
       document.getElementById("input").click();
     }
+
     var inputfile2 = function(){
       document.getElementById("input2").click();
     }

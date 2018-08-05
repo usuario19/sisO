@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Administrador;
+use App\Rules\Alpha_spaces;
+
 
 class AdministradorRequest extends FormRequest
 {
@@ -27,8 +29,8 @@ class AdministradorRequest extends FormRequest
         return [
             //
             'ci'=>'required|unique:administradores|numeric',
-            'nombre'=>'required|alpha|min:3|max:100', 
-            'apellidos' =>'required|alpha|min:4|max:150', 
+            'nombre'=>['required','alpha','min:3','max:100', new Alpha_spaces], 
+            'apellidos' =>['required','min:4','max:150','alpha'], 
             'genero' =>'required',
             'fecha_nac' =>'required|date',
             'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',

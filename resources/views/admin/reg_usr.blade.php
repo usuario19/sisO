@@ -23,14 +23,17 @@
 				</div>
 
 				<div class="form-row">
-					<div class="form-group col-md-5">
+					<div class="form-group col-md-5 {{ $errors->has('foto_admin') ? 'siError':'' }}">
 						
 						<div id="div_file">
 							<img id="texto" src="/storage/fotos/subir.png"  alt="">
 							{!! Form::file('foto_admin', ['class'=>'upload','id'=>'input']) !!}
 						</div>
+						 
 					</div>
-
+					<div class="form-row errorLogin">
+		    			<span><h6>{{ $errors->has('foto_admin') ? $errors->first('foto_admin'):'' }}</h6></span>
+		 			</div>
 					<div class="form-group col-md-5" id="content" style="">
 						<div><img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png"  alt=""></div>
 					</div>
@@ -38,7 +41,9 @@
 			</div>
 			
 			<div class="form-group col-md-8" >
+
 				@include('plantillas.forms.form_reg_admin')
+				<br>
 				<div class="form-row">
 				<div class="form-group col-md-12">
 					{!! Form::submit('Crear cuenta', ['class'=>'btn btn-primary']) !!}
@@ -51,5 +56,5 @@
 </div>
 @endsection
 @section('scripts')
-  {!! Html::script('/js/script.js') !!}
+  {!! Html::script('/js/vista_previa.js') !!}
 @endsection

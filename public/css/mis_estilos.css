@@ -133,3 +133,20 @@ input#input2{
 .title-table h3{
 	font-size: 40px;
 }
+/*input
+input#ci, input#password{
+	border:3px solid #E74C3C;
+}*/
+
+.errorLogin span h6{
+	color: #E74C3C;
+}
+div.siError{
+	margin: 0;
+}
+div.siError input{
+	border-bottom: 2px solid #E74C3C;
+	/* background-color: #FADBD8; */
+    border-radius: 8px;
+	
+}

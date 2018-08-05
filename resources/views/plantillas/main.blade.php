@@ -25,7 +25,7 @@
    @endif
    
     <div class="container">
-     @if(count($errors) > 0)
+     @if(count($errors) > 10000000)
              <div class="alert alert-danger" role="alert">
                <ul>
                @foreach($errors->all() as $error)

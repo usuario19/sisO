@@ -391,5 +391,12 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=>'SeleccionController@ver_seleccion',
 				'as'=>'seleccion.ver_seleccion']);
 
+	Route::get('jugadores/importExcel',[
+				'uses'=>'JugadorController@viewImportExcel',
+				'as'=>'jugador.VImportExcel']);
+
+	Route::post('jugadores/registrar_importExcel',[
+				'uses'=>'JugadorController@importExcel',
+				'as'=>'jugador.importExcel']);
 });
 

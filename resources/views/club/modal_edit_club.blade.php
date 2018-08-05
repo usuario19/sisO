@@ -76,5 +76,5 @@
                 </div>
           </div>
             @section('scripts')
-  {!! Html::script('/js/script.js') !!}
+  {!! Html::script('/js/vista_previa.js') !!}
 @endsection

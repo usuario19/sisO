@@ -28,8 +28,9 @@ class Alpha_spaces implements Rule
         //
         $valor=trim($value);
 
-        if (preg_match("[[:alpha:][:space:]]",$valor)
-        } 
+        return (preg_match("/^[A-Za-z*.\s]+$/",$valor));
+
+        
     }
 
     /**
@@ -39,6 +40,6 @@ class Alpha_spaces implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'El campo :atribute solo puede contener letras.';
     }
 }

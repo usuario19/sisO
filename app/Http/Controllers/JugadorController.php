@@ -12,6 +12,7 @@ use App\Models\Jugador_club;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\JugadorRequest;
 use Storage;
+use Excel;
 use Validator;
 use Auth;
 
@@ -172,5 +173,38 @@ class JugadorController extends Controller
         $usuario->delete();
         
         return redirect()->route('jugador.index');
+    }
+
+
+    public function viewImportExcel()
+    {
+        return view('jugador.importar_excel');
+    }
+
+
+    public function importExcel(Request $request)
+    {
+        
+        Excel::load($request->file_excel, function($reader) {
+ 
+        $results = $reader->get();
+        // iteracción
+        $results->each(function($row) {
+                
+            $jugador = new Jugador;
+            $jugador->ci_jugador = $row->ci;
+            $jugador->nombre_jugador = $row->nombre;
+            $jugador->apellidos_jugador = $row->apellido;
+            $jugador->genero_jugador = $row->genero;
+            $jugador->fecha_nac_jugador =$row->fecha_de_nacimiento;
+            $jugador->email_jugador = $row->email;
+            $jugador->descripcion_jugador = $row->descripcion;
+            $jugador->save();
+
+        });
+
+     
+    });
+
     }
 }

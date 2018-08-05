@@ -43,7 +43,11 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $errores = [
+                'e'=>'El usuario no coincide con nuestros registros.',
+                'pass'=> 'La contraseña es incorrecta.',
+            ];
+
 		$datos = $request->only(['ci','password']);
 		
 		if (Auth::attempt($datos)) 
@@ -54,11 +58,20 @@ class LoginController extends Controller
 
             //return "true";
         }else{
+          
             //echo('Correo electronico o contraseña incorrectos');
 			//flash::error('Correo electronico o contraseña incorrectos');
         	//echo "no es correcto";
             //dd('dfdsfsdfsdfsdfsdfsdfsd no entra');
-            return Redirect::to('login');
+            //return Redirect::to('login');
+            //dd($errores);
+            //return back()->withInput()->with('errores', $errores);
+            return back()->withInput()->withErrors([
+                'email'=>'Ingrese el nombre de Usuario correcto',
+                'password'=> 'Ingrese la Contraseña correcta',
+            ]);
+
+
 		}
 		//dd($datos);
         //*/

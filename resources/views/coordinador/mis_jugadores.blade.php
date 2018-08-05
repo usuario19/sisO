@@ -37,7 +37,7 @@
                 </button>
                 <div class="dropdown-menu">
                  <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">Crear nuevo jugador</button>
-                  <a class="dropdown-item" href="#">Importar jugadores desde excel</a>
+                  <a class="dropdown-item" href={{ route('jugador.VImportExcel') }}>Importar jugadores desde excel</a>
                 </div>
               </div>
            </div>

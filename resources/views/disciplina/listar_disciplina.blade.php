@@ -37,7 +37,7 @@
                     @break
             
                @case(1)
-                    <td>{{ 'Mujeres' }}</td>
+                    <td>{{ 'Damas' }}</td>
                     @break
                     @case(2)
                     <td>{{ 'Varones' }}</td>

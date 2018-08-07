@@ -7,6 +7,7 @@ use App\Models\Club;
 use App\Models\Participacion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+
 class GestionController extends Controller
 {
     public function index(){
@@ -14,10 +15,7 @@ class GestionController extends Controller
         $disciplina = DB::table('disciplinas')->get();
         return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplina', $disciplina);
     }
-
-    public function create()
-    {
-
+    public function create(){
         $disciplina = DB::table('disciplinas')->get();
         if (empty($disciplina)) {
             Alert::warning('Primero debe crear disciplinas','');
@@ -26,11 +24,8 @@ class GestionController extends Controller
         else{
             return view('admin.reg_gest')->with('disciplina', $disciplina);
         }
-        
-        //return var_dump($disciplina);
     }
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $gestion = new Gestion;
         $gestion->nombre_gestion = $request->get('nombre');
         $gestion->fecha_ini = $request->get('fechaIni');
@@ -50,40 +45,54 @@ class GestionController extends Controller
             $datos->save();
         }
         return redirect()->route('gestion.index');
-       /* foreach ($request as $valor => $disciplina) {
-            $id_disc = $request->get('disciplina');
-            return var_dump($id_disc);
-        }
-        
- 
-        $gestion->save();*/
-        
-        //$gestion = Disciplina::find($id_disc);
-        //$gestion = Disciplina::where($request->get('disciplina'));
-        //$gestion->disciplinas()->attach($request->get('disciplina'),['id_disc','state'=>true]);
-        //return var_dump($gestion);
     }
 
-    public function show($id)
-    {
-        //
+    public function show($id){
+        //$gestion = Gestion::where('id_gestion','=',$id)->get();
+        $gestion = Gestion::find($id);
+        return view('plantillas.menus.menu_gestion')->with('gestion',$gestion);
     }
     
-    public function mostrarGestion()
-    {
+    public function mostrarGestion(){
         $gestiones = DB::table('gestiones')->get();
         return view('admin.listar_gestion')->with('gestiones',$gestiones);
     }
-
-    public function edit($id)
-    {
-        //
+    public function configurar($id_gestion){
+        $gestion = Gestion::find($id_gestion);
+        $disciplinasInscrito = DB::table('gestiones')
+            ->join('participaciones','gestiones.id_gestion','=','participaciones.id_gestion')
+            ->join('disciplinas','participaciones.id_disciplina','=','disciplinas.id_disc')
+            ->where('gestiones.id_gestion','=',$id_gestion)
+            ->get();
+        $disciplinas = array();
+        foreach ($disciplinasInscrito as $disciplina) {
+            $disciplinas[] = $disciplina->id_disc;
+        }
+        $disciplinasNoInscrito = DB::table('Disciplinas')
+            ->whereNotIn('disciplinas.id_disc',$disciplinas)
+            ->get();
+        //$disciplinas = Disciplina::get();
+        //return dd($disciplinasInscrito );
+        return view('gestiones.configurar_gestion')->with('gestion',$gestion)->with('disciplinasInscrito',$disciplinasInscrito)->with('disciplinasNoInscrito',$disciplinasNoInscrito);
     }
 
-    public function update(Request $request, $id)
-    {
-        //
+    public function edit($id){
+        
     }
+
+    public function update(Request $request, $id){ 
+        //return dd($Request);
+        DB::table('gestiones')
+                ->where('id_gestion', $id)
+                ->update(['nombre_gestion' => $request->get('nombre_gestion'),
+                            'fecha_ini'=>$request->get('fecha_ini'),
+                            'fecha_fin'=>$request->get('fecha_fin'),
+                            'desc_gest'=>$request->get('descripcion')
+                      ]);
+        
+        return redirect()->back(); 
+    }
+
     public function destroy($id){
         DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
         return redirect()->route('gestion.index'); 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,8 +12,8 @@
 
 </head>
 <body>
-
-<<<<<<< HEAD
+{{-- 
+<<<<<<< HEAD --}}
  <div class="container col-md-12">
     @if(Auth::check())
      @if(Auth::user()->tipo == 'Administrador')
@@ -47,7 +47,7 @@
    @include('sweetalert::alert')
       </div>
  </div>
-=======
+{{-- =======
   @if(Auth::check())
     @if(Auth::user()->tipo == 'Administrador')
       @include('plantillas.menus.menu_admin')
@@ -80,7 +80,7 @@
     @yield('scripts')
 
  	</div>
->>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master --}}
 
 </body>
 <footer>

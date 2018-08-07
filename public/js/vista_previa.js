@@ -1,6 +1,7 @@
 (function(){
     window.addEventListener('load', inicializarElementos, false);
-
+    var imgO = document.getElementById("imgOrigen").src;
+    
  
     function inicializarElementos(){
       
@@ -56,24 +57,32 @@
         var archivo = new FileReader();
 
         archivo.onload = function(){
-          document.getElementById("imgParcial").src = archivo.result;
-          document.getElementById("imgParcial").setAttribute("class","rounded mx-auto d-block float-left");
+          /*document.getElementById("imgParcial").src = archivo.result;
+          document.getElementById("imgParcial").setAttribute("class","rounded mx-auto d-block float-left");*/
+          document.getElementById("imgOrigen").src = archivo.result;
+
         }
+
         if(document.getElementById("input").files[0]){
 
           archivo.readAsDataURL(document.getElementById("input").files[0]);
 
           document.getElementById("btnCancelar").setAttribute("class","uploader vista");
-          document.getElementById("imgOrigen").setAttribute("class","noVista");
+          //document.getElementById("imgOrigen").setAttribute("class","noVista");
           //document.getElementById("texto").setAttribute("class","noVista");
           
         }else {
-          document.getElementById("imgOrigen").setAttribute("class","rounded mx-auto d-block float-left");
-          document.getElementById("imgParcial").setAttribute("class","noVista");
+          console.log(imgO)
+          document.getElementById("imgOrigen").src = imgO;
+          document.getElementById("input").value = "";
+         /* document.getElementById("imgOrigen").setAttribute("class","rounded mx-auto d-block float-left");
+          document.getElementById("imgParcial").setAttribute("class","noVista");*/
           document.getElementById("btnCancelar").setAttribute("class","noVista");
           //document.getElementById("texto").setAttribute("class","vista");
         }
     }
+
+
     function vistaprevia2(){
         var archivo2 = new FileReader();
 
@@ -100,10 +109,11 @@
     }
 
     var cancelarImg = function(){
-      document.getElementById("imgOrigen").setAttribute("class","");
-      document.getElementById("imgParcial").setAttribute("class","noVista");
+      document.getElementById("imgOrigen").src = imgO;
+      /*document.getElementById("imgOrigen").setAttribute("class","");
+      document.getElementById("imgParcial").setAttribute("class","noVista");*/
       document.getElementById("btnCancelar").setAttribute("class","noVista");
-      document.getElementById("texto").setAttribute("class","vista");
+      /*document.getElementById("texto").setAttribute("class","vista");*/
       document.getElementById("input").value = "";
     }
 

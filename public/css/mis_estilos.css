@@ -15,9 +15,23 @@
 	font-family: "courier", "sans-serif";
 	font-size: 18px;
 }
-div.contenedor{
+div#contenedor{
+	position: relative;
+	margin:0px;
 	width: 200px;
 	height: 200px;
+	
+}
+div#divtexto{
+	position: absolute;
+	bottom: 10px;
+    right: 25px;
+    min-width:35px;
+    height: 25px;
+}
+
+img#btnCancelar{
+	float:left;
 }
 
 img#imgOrigen{
@@ -48,10 +62,10 @@ img#imgOrigen2{
  }
  /*file*/
  img#texto{
- 	position: absolute;
+ 	float: left;
  	width: 25px;
 	height: 25px;
-	margin: auto;
+	/* margin: auto; */
 	opacity: 0.5;
  }
  img#texto:hover{
@@ -88,7 +102,7 @@ div#div_file2{
 	
 }
 div#content{
-	position: relative;/*para q el input vaya dentro del div*/
+	/* position: relative;para q el input vaya dentro del div */
 	padding-right:20px;
 	margin: 0px;
 	height: 30px;
@@ -119,8 +133,8 @@ input#input2{
 	
 }
 .check_us, #todo, .check_hab, #todo_hab{
-	width: 20px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 }
 .title-table{
 	margin: auto;

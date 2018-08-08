@@ -1,4 +1,4 @@
- {!! Form::open(['route'=>'fase.store','method' => 'POST' ,'enctype' => 'multipart/form-data'] ) !!}
+{!! Form::open(['route'=>'fase.store','method' => 'POST' ,'enctype' => 'multipart/form-data'] ) !!}
 <div class="modal fade" id="modalFase" tabindex="-1" role="dialog" aria-labelledby="modalLabelFase" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

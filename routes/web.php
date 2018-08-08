@@ -125,7 +125,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'DisciplinaController@destroy',
 	    'as'=> 'disciplina.destroy'
 	]);
-	route::get('disciplina/{id}/{id_gestion}/fases',[
+	route::get('disciplina/{id_gestion}/{id_disc}/fases',[
 	    'uses'=> 'DisciplinaController@fases',
 	    'as'=> 'disciplina.fases'
 	]);
@@ -217,7 +217,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@store',
 		'as'=>'fase.store'
 	]);
-	Route::get('fase/{id_fase}/listar_grupos',[
+	Route::get('fase/{id_fase}/{id_gestion}/{id_disc}/listar_grupos',[
 		'uses'=>'FaseController@listar_grupos',
 		'as'=>'fase.listar_grupos'
 	]);
@@ -226,7 +226,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
-	Route::get('grupo/{id_fase}/create2',[
+	Route::get('grupo/{id_fase}/{id_gestion}/{id_disc}/create2',[
 		'uses'=>'GrupoController@create2',
 		'as'=>'grupo.create2'
 	]);
@@ -247,7 +247,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@mostrar_grupos',
 		'as'=>'grupo.mostrar_grupos'
 	]);
-	Route::get('grupo/{id}/listar_clubs',[
+	Route::get('grupo/{id}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs',[
 		'uses'=>'GrupoController@listar_clubs',
 		'as'=>'grupo.listar_clubs'
 	]);
@@ -264,7 +264,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FechaController@store',
 		'as'=>'fecha.store'
 	]);
-	Route::get('fecha/{id_fase}/listar_fechas',[
+	Route::get('fecha/{id_fase}/{id_gestion}/{id_disc}/listar_fechas',[
 		'uses'=>'FechaController@listar_fechas',
 		'as'=>'fecha.listar_fechas'
 	]);

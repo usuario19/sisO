@@ -4,17 +4,20 @@
     SisO - Lista de clubs
 @endsection
 
+@section('submenu')
+@include('plantillas.menus.menu_gestion')
+@endsection
+
 @section('content')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
-    
-      <h1>Lista de Clubs:</h1>
-  @include('grupo.modal_agregar_equipos')
-      
-                          
+    <a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">{{ $disciplina->nombre_disc }}/</a>
+      <a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">{{ $fase->nombre_fase }}/</a>                       
+      <a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">{{ $grupo->nombre_grupo }}/</a>
   </div> 
 </div>
-
+<h4>Lista de Clubs:</h4>
+  @include('grupo.modal_agregar_equipos') 
 	<table class="table table-condensed">
   		<thead>
   			<th width="50px">ID</th>
@@ -36,7 +39,7 @@
         
   		</tbody>
 	</table>
-   <h1>Lista de Fechas:</h1>
+   <h4>Lista de Fechas:</h4>
   <table class="table table-condensed">
       <thead>
         <th width="50px">ID</th>

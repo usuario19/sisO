@@ -2,6 +2,11 @@
 @section('title')
 SisO:Crear Grupo
 @endsection
+
+@section('submenu')
+@include('plantillas.menus.menu_gestion')
+@endsection
+
 <script>
 		function grupos(){
 			var cantidad = document.getElementById('cant_grupos');
@@ -72,8 +77,8 @@ SisO:Crear Grupo
 </script>
 @section('content')
 <div class="container col-md-8">
-	<h1 class="display-4">Crear Grupo</h1>
-	<br>
+	<h4 class="display-4">Crear Grupo</h4>
+	
 </div>
 <div class="container col-md-6">
 	{!! Form::open(['route'=>'grupo.store','metod'=>'POST','enctype'=>'multipart/formdata']) !!}	
@@ -87,6 +92,8 @@ SisO:Crear Grupo
 				<div class="form-row">
 						<div class="form-group col-md-12">
 							{!! Form::text('id_fase', $id_fase, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+							{!! Form::text('id_gestion', $gestion->id_gestion, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+							{!! Form::text('id_disc', $id_disc, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
 						</div>
 					</div>	
 	</div>

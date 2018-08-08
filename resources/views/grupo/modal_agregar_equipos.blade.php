@@ -25,7 +25,7 @@
                               <div style="display: none">
                                   {!! Form::text('id_gestion', $club->id_gestion, []) !!}
                                   {!! Form::text('id_disciplina', $club->id_disc, []) !!}
-                                  {!! Form::text('id_grupo', $id_grupo, []) !!}
+                                  {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
                                   
                               </div>
 

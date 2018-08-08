@@ -5,7 +5,7 @@
 @endsection
 
 @section('submenu')
-<h1>{{ $gestion->nombre_gestion }}</h1>
+<h3>{{ $gestion->nombre_gestion }}</h3>
  <nav class="nav nav-justified navbar-light bg-light" >
   <a class="nav-item nav-link" href="{{ route('gestion.configurar',$gestion->id_gestion) }}">Configuracion</a>
   <a class="nav-item nav-link" href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">Disciplinas</a>

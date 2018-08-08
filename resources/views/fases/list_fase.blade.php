@@ -4,18 +4,20 @@
     SisO - Lista de Fases
 @endsection
 
-
+@section('submenu')
+@include('plantillas.menus.menu_gestion')
+@endsection
 
 @section('content')
 @include('fases.modal_reg_fase')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
-    <h1>Lista de Fase:</h1>
-  
+    
+    <a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">{{ $disciplina->nombre_disc }}/</a>
   </div> 
 </div>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFase">Agregar</button>
-
+<h4>Lista de fases:</h4>
 	<table class="table table-condensed">
   		<thead>
   			<th width="50px">ID</th>
@@ -30,8 +32,8 @@
   					<td>{{ $fase->id_fase}}</td>
             <td>{{ $fase->nombre_fase }}</td>
             <td>{{ $fase->nombre_tipo}}</td>
-            <td><a href="{{ route('fase.listar_grupos',$fase->id_fase) }}" class="btn btn-success">ver grupos</a></td>
-            <td><a href="{{ route('fecha.listar_fechas',$fase->id_fase) }}" class="btn btn-success">fechas</a></td>
+            <td><a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-success">ver grupos</a></td>
+            <td><a href="{{ route('fecha.listar_fechas',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-success">fechas</a></td>
   				</tr>
   			@endforeach
   		</tbody>

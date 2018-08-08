@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
+use App\Models\Gestion;
 use App\Models\Tipo;
 use App\Models\Club_Participacion;
 use Illuminate\Support\Facades\DB;
@@ -240,13 +241,15 @@ class DisciplinaController extends Controller
         return redirect()->back();
 
     }
-    public function fases($id_disc,$id_gestion){
+    public function fases($id_gestion,$id_disc){
         //$fases = Fase::where('id_disciplina','=',$id_disc)->where('id')
         /*$fases = DB::table('fases')
                 ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
 
                 ->where('participaciones.id_disciplina',$id_disc)
                 ->get();*/
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
         $fases = DB::table('participaciones')
                 ->join('fases','participaciones.id_participacion','=','fases.id_participacion')
                 ->join('fase_tipos','fases.id_fase','=','fase_tipos.id_fase')
@@ -256,7 +259,7 @@ class DisciplinaController extends Controller
                 ->select('fases.*','tipos.*')
                 ->get();
         $tipos2 = Tipo::get();
-        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc)->with('tipos2',$tipos2);
+        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc)->with('tipos2',$tipos2)->with('gestion',$gestion)->with('disciplina',$disciplina);
 
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Fase;
+use App\Models\Gestion;
 use App\Models\Grupo;
+use App\Models\Disciplina;
 use App\Models\Participacion;
 use App\Models\Fase_Tipo;
 use Illuminate\Support\Facades\DB;
@@ -58,13 +60,15 @@ class FaseController extends Controller
     {
         //
     }
-    public function listar_grupos($id_fase){
+    public function listar_grupos($id_fase,$id_gestion,$id_disc){
+        $gestion = Gestion::find($id_gestion);
         $grupos = DB::table('grupos')
                 ->where('grupos.id_fase','=',$id_fase)
                 ->get();
-       // $fase
-        $fase = Fase::where("id_fase","=",$id_fase)->first();
-        return view('grupo.listar_grupos')->with('grupos',$grupos)->with('fase',$fase);
+        $disciplina = Disciplina::find($id_disc);
+        //$fase = Fase::where("id_fase","=",$id_fase)->first();
+        $fase = Fase::find($id_fase);
+        return view('grupo.listar_grupos')->with('grupos',$grupos)->with('fase',$fase)->with('gestion',$gestion)->with('disciplina',$disciplina);
         //return dd($fase);
     }
 }

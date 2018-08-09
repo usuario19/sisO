@@ -23,7 +23,7 @@
   			<th width="50px">ID</th>
         <th>Logo</th>
         <th>Nombre</th>
-        <th>Encuentros</th>
+        <th>Acciones</th>
   		</thead>
   		<tbody>
 
@@ -44,23 +44,16 @@
       <thead>
         <th width="50px">ID</th>
         <th>Nombre</th>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Ubicacion</th>
-        <th>Observacion</th>
-        <th>Resultado</th>
+        <th>Acciones</th>
       </thead>
       <tbody>
-
-        @foreach($clubs as $club)
+        @foreach($fechas as $fecha)
           <tr>
-            <td>{{ $club->id_club }}</td>
-            <td>{{ $club->nombre_club }}</td>
-            <td><a href="{{ route('grupo.eliminar_club',[$club->id_grupo,$club->id_club_part]) }}" class="btn btn-danger">Eliminar</a></td>
-           
+            <td>{{ $fecha->id_fecha }}</td>
+            <td>{{ $fecha->nombre_fecha }}</td>
+            <td><a href="{{ route('fecha.destroy',$fecha->id_fecha) }}" class="btn btn-danger">Eliminar</a></td>
           </tr>
         @endforeach
-        
       </tbody>
   </table>
 @endsection

@@ -39,21 +39,40 @@
         
   		</tbody>
 	</table>
-   <h4>Lista de Fechas:</h4>
-  <table class="table table-condensed">
-      <thead>
-        <th width="50px">ID</th>
-        <th>Nombre</th>
-        <th>Acciones</th>
-      </thead>
-      <tbody>
-        @foreach($fechas as $fecha)
-          <tr>
-            <td>{{ $fecha->id_fecha }}</td>
-            <td>{{ $fecha->nombre_fecha }}</td>
-            <td><a href="{{ route('fecha.destroy',$fecha->id_fecha) }}" class="btn btn-danger">Eliminar</a></td>
-          </tr>
-        @endforeach
-      </tbody>
-  </table>
+  <div>
+       
+     </div>
+     <h4>Lista de Encuentros:</h4>
+     @include('encuentro.modal_agregar_encuentro')
+     
+
+   @foreach ($fechas as $fecha)
+      <div>
+         <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}</h4>
+      </div>
+      <table class="table table-condensed">
+          <thead>
+            <th width="50px">ID</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Ubicacion</th>
+            <th>Observacion</th>
+            <th>Acciones</th>
+          </thead>
+          <tbody>
+            @foreach($fecha->encuentros as $encuentro)
+              <tr>
+                <td>{{ $encuentro->id_encuentro }}</td>
+                <td>{{ $encuentro->nombre_encuentro}}</td>
+                <td>{{ $encuentro->fecha_encuentro}}</td>
+                <td>{{ $encuentro->hora_encuentro}}</td>
+                <td>{{ $encuentro->ubicacion_encuentro}}</td>
+                <td>{{ $encuentro->observacion_encuentro}}</td>
+                <td><a href="{{ route('fecha.destroy',$fecha->id_fecha) }}" class="btn btn-danger">Eliminar</a></td>
+              </tr>
+            @endforeach
+          </tbody>
+      </table>
+   @endforeach
 @endsection

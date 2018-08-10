@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,9 +18,9 @@ class Encuentro extends Model
     ];
     protected $hidden = ['remember_token'];
     public function encuentro_seleccions(){
-    	reurn $this->hasMany('App\Models\Encuentro_Seleccion');
+    	return $this->hasMany('App\Models\Encuentro_Seleccion');
     }
-    public function fechas (){
-    	retunr $this->belongsTo('App\Models\Fecha');
+    public function fecha(){
+    	return $this->belongsTo('App\Models\Fecha','id_fecha');
     }
 }

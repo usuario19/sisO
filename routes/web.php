@@ -272,6 +272,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FechaController@destroy',
 		'as'=>'fecha.destroy'
 	]);
+	//encuentro
+	Route::post('encuentro/store',[
+		'uses'=>'EncuentroController@store',
+		'as'=>'encuentro.store'
+	]);
 });
 
 //COORDINADOR

@@ -7,6 +7,7 @@ use App\Models\Club;
 use App\Models\Fase;
 use App\Models\Disciplina;
 use App\Models\Fase_Tipo;
+use App\Models\Fecha;
 use App\Models\Grupo_Club_Participacion;
 use Illuminate\Support\Facades\DB;
 
@@ -82,6 +83,8 @@ class GrupoController extends Controller
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase = Fase::find($id_fase);
+        $fechas = Fecha::where('id_fase','=',$id_fase)->get();
+        //$fechas = DB::table('fechas');
         $grupo = Grupo::find($id_grupo);
         $clubsInscritos = DB::table('grupo_club_participaciones')
             ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
@@ -92,7 +95,6 @@ class GrupoController extends Controller
                         foreach ($clubsInscritos as $club) {
                             $lista[] = $club->id_club_part;
                         }
-//return dd($clubsInscritos);
 
         $clubsDisponibles = DB::table('clubs')
             ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
@@ -108,20 +110,19 @@ class GrupoController extends Controller
             ->where('grupos.id_grupo','=',$id_grupo)
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
-        return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase);
+        return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas);
+        //return dd($fechas);
     }
     public function edit($id)
     {
         //
     }
 
- 
     public function update(Request $request, $id)
     {
         //
     }
 
-    
     public function destroy($id)
     {
         $grupo = Grupo::find($id);

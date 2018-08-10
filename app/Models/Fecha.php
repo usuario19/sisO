@@ -20,7 +20,7 @@ class Fecha extends Model
     public function fase(){
     	return $this->belongsTo('App\Models\Fase');
     }
-    public function encuentro(){
-    	return $this->hasMany('App\Models\Encuentro');
+    public function encuentros(){
+    	return $this->hasMany('App\Models\Encuentro','id_fecha');
     }
 }

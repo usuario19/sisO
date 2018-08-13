@@ -84,24 +84,40 @@ class GrupoController extends Controller
         $disciplina = Disciplina::find($id_disc);
         $fase = Fase::find($id_fase);
         $fechas = Fecha::where('id_fase','=',$id_fase)->get();
+
+        $fechas2 = array();
+        foreach ($fechas as $fecha) {
+            $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
+        }
         //$fechas = DB::table('fechas');
         $grupo = Grupo::find($id_grupo);
         $clubsInscritos = DB::table('grupo_club_participaciones')
             ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
-            ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+            //->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
             ->select('grupo_club_participaciones.id_club_part')
             ->get()->toArray();
         $lista = array();
                         foreach ($clubsInscritos as $club) {
                             $lista[] = $club->id_club_part;
                         }
+        $clubsParticipantes = DB::table('grupo_club_participaciones')
+            ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+            ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
+            ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+            ->select('clubs.*')
+            ->get()->toArray();
 
+        $clubsParaEncuentro = array();
+        foreach ($clubsParticipantes as $club) {
+            $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
+        }
         $clubsDisponibles = DB::table('clubs')
             ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
             ->where('club_participaciones.id_gestion','=',$id_gestion)
             ->where('club_participaciones.id_disc','=',$id_disc)
             ->whereNotIn('club_participaciones.id_club_part',$lista)
             ->get();
+       
         
         $clubs = DB::table('grupos')
             ->join('grupo_club_participaciones','grupos.id_grupo','=','grupo_club_participaciones.id_grupo')
@@ -110,7 +126,8 @@ class GrupoController extends Controller
             ->where('grupos.id_grupo','=',$id_grupo)
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
-        return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas);
+        //return dd($fechas->toArray());
+        return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro);
         //return dd($fechas);
     }
     public function edit($id)

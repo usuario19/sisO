@@ -30,7 +30,7 @@
 
             <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">Ver</td>
             <td>{{ $disciplina->descripcion_disc}}</td>
-            <td><a href="{{ route('disciplina.fases',[$disciplina->id_disc,$gestion->id_gestion]) }}" class="btn btn-info">fases</a></td>
+            <td><a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-info">fases</a></td>
             
           </tr>
         @endforeach

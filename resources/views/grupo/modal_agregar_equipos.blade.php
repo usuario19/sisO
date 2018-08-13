@@ -19,33 +19,23 @@
                             <div class="modal-body">
     
                               <h6>Seleccione los clubs que desea agregar:</h6><br>
-    
-                          
-                              <div style="display: none">
-                                  {!! Form::text('id_gestion', $club->id_gestion, []) !!}
-                                  {!! Form::text('id_disciplina', $club->id_disc, []) !!}
-                                  {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
-                                  
-                              </div>
-                                   <div class="col-md-6">
-                                              <div class="form-row">
-                                                <div class="form-group col-md-12">
-                                                  {!! Form::label('id_equipo', 'Equipo', []) !!}
-                                                  {!! Form::select('id_equipo', $equipos,null, ['class'=>'form-control']) !!}
-                                                  </div>
-                                              </div>
-                                    </div>
                                     <div class="col-md-6">
                                               <div class="form-row">
                                                 <div class="form-group col-md-12">
-                                                  {!! Form::label('ubicacion', 'Ubicacion', []) !!}
-                                                  {!! Form::text('ubicacion', null, []) !!}
+                                                  @foreach($clubsDisponibles as $club)
+                                                    <div style="display: none">
+                                                        {!! Form::text('id_gestion', $club->id_gestion, []) !!}
+                                                        {!! Form::text('id_disciplina', $club->id_disc, []) !!}
+                                                        {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
+                                                       
+                                                    </div>
+                                                        {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us']) !!}
+                                                        <img src="/storage/logos/{{ $club->logo }}" alt="" width="50px" height="50px">{{ $club->nombre_club }} <br>
+
+                                                  @endforeach
                                                   </div>
                                               </div>
                                     </div>
-
-                                  
-
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

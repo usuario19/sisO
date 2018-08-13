@@ -53,23 +53,22 @@
       <table class="table table-condensed">
           <thead>
             <th width="50px">ID</th>
-            <th>Nombre</th>
             <th>Fecha</th>
             <th>Hora</th>
             <th>Ubicacion</th>
-            <th>Observacion</th>
+            <th>Detalle</th>
             <th>Acciones</th>
           </thead>
           <tbody>
             @foreach($fecha->encuentros as $encuentro)
               <tr>
                 <td>{{ $encuentro->id_encuentro }}</td>
-                <td>{{ $encuentro->nombre_encuentro}}</td>
-                <td>{{ $encuentro->fecha_encuentro}}</td>
-                <td>{{ $encuentro->hora_encuentro}}</td>
-                <td>{{ $encuentro->ubicacion_encuentro}}</td>
-                <td>{{ $encuentro->observacion_encuentro}}</td>
-                <td><a href="{{ route('fecha.destroy',$fecha->id_fecha) }}" class="btn btn-danger">Eliminar</a></td>
+               
+                <td>{{ $encuentro->fecha}}</td>
+                <td>{{ $encuentro->hora}}</td>
+                <td>{{ $encuentro->ubicacion}}</td>
+                <td>{{ $encuentro->detalle}}</td>
+                <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" class="btn btn-danger">Eliminar</a></td>
               </tr>
             @endforeach
           </tbody>

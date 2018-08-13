@@ -21,39 +21,52 @@
                               <h6>Seleccione los clubs a enfrentarse:</h6><br>
     
                               <div class="form-row">
-                                <div class="col-md-5">
-                                    @foreach($clubsDisponibles as $club)
-                                      <div style="display: none">
-                                          {!! Form::text('id_gestion', $club->id_gestion, []) !!}
-                                          {!! Form::text('id_disciplina', $club->id_disc, []) !!}
-                                          {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
+                                  <div style="display: none">
                                           
-                                      </div>
-                                          {!! Form::text('nombre', $value, []) !!}
-                                          {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us']) !!}
-                                          <img src="/storage/logos/{{ $club->logo }}" alt="" width="50px" height="50px">{{ $club->nombre_club }} <br>
-
-                                    @endforeach
-                                </div>
-                                <div class="col-md-2">
-                                  <h1>Vs.</h1>
-                                </div>
-                                <div class="col-md-5">
-                                     @foreach($clubsDisponibles as $club)
-                                      <div style="display: none">
-                                          {!! Form::text('id_gestion', $club->id_gestion, []) !!}
-                                          {!! Form::text('id_disciplina', $club->id_disc, []) !!}
-                                          {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
+                                          {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
+                                          {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
+                                  </div>
+                                  <div class="col-md-5">
+                                     {!! Form::select('id_club1', $clubsParaEncuentro, null,['class'=>'form-control']) !!}
                                           
-                                      </div>
-
-                                          {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us']) !!}
-                                          <img src="/storage/logos/{{ $club->logo }}" alt="" width="50px" height="50px">{{ $club->nombre_club }} <br>
-
-                                    @endforeach
-                                </div>
+                                             
+                                  </div>
+                                  <div class="col-md-2">
+                                    <h2 style="text-align: center;">Vs.</h2>
+                                  </div>
+                                  <div class="col-md-5">
+                                     {!! Form::select('id_club2', $clubsParaEncuentro, null, ['class'=>'form-control']) !!}
+                                  </div>
                               </div>
-                              
+                              <div class="form-row">
+                                  <div class="col-md-6">
+                                    {!! Form::label('ubicacion', 'Ubicacion', []) !!}
+                                      {!! Form::text('ubicacion',null, ['class'=>'form-control']) !!}
+                                      
+                                  </div>
+                                  <div class="col-md-6">
+                                      {!! Form::label('id_fecha', 'Fecha', []) !!}
+                                      {!! Form::select('id_fecha',$fechas2, null,['class'=>'form-control']) !!}
+                                  </div>
+                              </div>
+                              <div class="form-row">
+                                  <div class="col-md-6">
+                                    {!! Form::label('fecha', 'Fecha', []) !!}
+                                      {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                                    
+                                  </div>
+                                  <div class="col-md-6">
+                                      {!! Form::label('hora', 'Hora', []) !!}
+                                      {!! Form::time('hora', \Illuminate\Support\Carbon::now()->format('H:i'), ['class'=>'form-control']) !!}
+
+                                  </div>
+                              </div>
+                              <div class="form-row">
+                                  <div class="col-md-12">
+                                      {!! Form::label('detalle', 'Detalle', []) !!}
+                                      {!! Form::textarea('detalle',null, ['class'=>'form-control','rows'=>4]) !!}
+                                  </div>
+                              </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

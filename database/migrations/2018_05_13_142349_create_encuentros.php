@@ -10,12 +10,12 @@ class CreateEncuentros extends Migration
     {
         Schema::create('encuentros', function (Blueprint $table) {
             $table->increments('id_encuentro');
-            $table->string('nombre_encuentro');
+            
             $table->date('fecha');
             $table->time('hora');
             $table->string('ubicacion');
-            $table->text('observacion');
-            $table->string('resultado');
+            $table->text('detalle');
+           
 
             $table->integer('id_fecha')->unsigned();
             $table->foreign('id_fecha')->references('id_fecha')->on('fechas')->onDelete('cascade');

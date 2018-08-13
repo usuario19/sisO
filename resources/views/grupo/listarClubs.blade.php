@@ -30,7 +30,7 @@
   			@foreach($clubs as $club)
   				<tr>
   					<td>{{ $club->id_club }}</td>
-             <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
+            <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
             <td>{{ $club->nombre_club }}</td>
             <td><a href="{{ route('grupo.eliminar_club',[$club->id_grupo,$club->id_club_part]) }}" class="btn btn-danger">Eliminar</a></td>
            
@@ -62,6 +62,8 @@
           <tbody>
             @foreach($fecha->encuentros as $encuentro)
               <tr>
+                
+                
                 <td>{{ $encuentro->id_encuentro }}</td>
                
                 <td>{{ $encuentro->fecha}}</td>
@@ -70,6 +72,9 @@
                 <td>{{ $encuentro->detalle}}</td>
                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" class="btn btn-danger">Eliminar</a></td>
               </tr>
+            @endforeach
+            @foreach ($encuentros->encuntro_club_participaciones->club->nombre_club as $encuentro)
+              <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px">{{ $club->nombre_club }}</td>
             @endforeach
           </tbody>
       </table>

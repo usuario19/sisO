@@ -127,8 +127,13 @@ class GrupoController extends Controller
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
         //return dd($fechas->toArray());
-        return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro);
+        $encuentros = DB::table('encuentros')
+                    ->join('encuentro_club_participaciones','encuentros.id_encuentro','=','encuentro_club_participaciones.id_encuentro')
+                    ->groupBy('id_encuentro')
+                    ->get();
+        return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro)->with('encuentros',$encuentros);
         //return dd($fechas);
+        
     }
     public function edit($id)
     {

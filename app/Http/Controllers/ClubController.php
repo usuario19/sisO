@@ -129,7 +129,6 @@ class ClubController extends Controller
             $logo = $request->file('logo');
             $nombre_logo= time().'-'.$logo->getClientOriginalExtension();
             Storage::disk('logos')->put($nombre_logo, file_get_contents($logo));
-            //Image::make($avatar)->resize(300, 300)->save(public_path('/storage/logo/'.$nombre_logo));
             DB::table('clubs')
                 ->where('id_club', $id)
                 ->update(['nombre_club' => $request->get('nombre_club'),
@@ -201,12 +200,7 @@ class ClubController extends Controller
         }
         return redirect()->route('club.index');
     }
-    public function destroy(request $request,$id_club)
-    {
-        //return dd($request);
-        
-        //if($request->ajax())
-          //  {
+    public function destroy(request $request,$id_club){
                 $logo_antiguo = DB::table('clubs')
                             ->where('id_club',$id_club)
                             ->select('logo')
@@ -217,9 +211,7 @@ class ClubController extends Controller
                     }
                 }
             DB::table('clubs')->where('id_club', '=',$id_club)->delete();
-            return redirect()->route('club.index'); 
-           // }
-                
+            return redirect()->route('club.index');                 
     }
     
     //para llenar la tabla inscripcion
@@ -246,10 +238,8 @@ class ClubController extends Controller
             $inscrip->id_adminClub =$id_adm;                   
             $inscrip->save();
         }
-        
         return redirect()->route('club.index');
         }
-        
     }
     public function inscribir($id,$id_gestion){
         $id_adminClub = DB::table('adminClubs')

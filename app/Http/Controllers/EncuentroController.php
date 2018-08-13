@@ -67,10 +67,9 @@ class EncuentroController extends Controller
     {
         
     }
-    public function destroy($id_encuentro)
-    {
-       
-                
+    public function destroy($id_encuentro){
+        DB::table('encuentros')->where('id_encuentro', '=',$id_encuentro)->delete();
+        return redirect()->back();            
     }
     
 }

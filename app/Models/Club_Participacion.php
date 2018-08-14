@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Club_Participacion extends Model
-{
-    //
+class Club_Participacion extends Model{
+
     protected $table = 'club_participaciones';
 	protected $primaryKey = 'id_club_part';
 
@@ -26,5 +25,8 @@ class Club_Participacion extends Model
 
     public function selecciones(){
          return $this->hasMany('App\Models\Seleccion','id_club_part');
+    }
+    public function encuentro_club_participaciones(){
+         return $this->hasMany('App\Models\Encuentro_Club_Participacion','id_club_part');
     }
 }

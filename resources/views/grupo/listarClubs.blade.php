@@ -73,9 +73,12 @@
                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" class="btn btn-danger">Eliminar</a></td>
               </tr>
             @endforeach
-            @foreach ($encuentros->encuntro_club_participaciones->club->nombre_club as $encuentro)
+            @foreach ($encuentros as $encuentro)
+              @foreach ($encuentro->encuentro_club_participaciones->club_participacion->nombre_club as $encuentro)
               <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px">{{ $club->nombre_club }}</td>
             @endforeach
+            @endforeach
+            
           </tbody>
       </table>
    @endforeach

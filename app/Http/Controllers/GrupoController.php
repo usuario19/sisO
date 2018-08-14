@@ -6,6 +6,7 @@ use App\Models\Gestion;
 use App\Models\Club;
 use App\Models\Fase;
 use App\Models\Disciplina;
+use App\Models\Encuentro;
 use App\Models\Fase_Tipo;
 use App\Models\Fecha;
 use App\Models\Grupo_Club_Participacion;
@@ -127,10 +128,15 @@ class GrupoController extends Controller
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
         //return dd($fechas->toArray());
-        $encuentros = DB::table('encuentros')
-                    ->join('encuentro_club_participaciones','encuentros.id_encuentro','=','encuentro_club_participaciones.id_encuentro')
-                    ->groupBy('id_encuentro')
-                    ->get();
+        //$encuentros = DB::table('encuentros')
+        //            ->join('encuentro_club_participaciones','encuentros.id_encuentro','=','encuentro_club_participaciones.id_encuentro')
+                    //->groupBy('id_encuentro')
+         //           ->get();
+        $encuentros = Encuentro::all();
+
+
+    //return dd($encuentros->encuentro_club_participaciones);
+
         return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro)->with('encuentros',$encuentros);
         //return dd($fechas);
         

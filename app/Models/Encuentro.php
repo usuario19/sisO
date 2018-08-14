@@ -12,14 +12,16 @@ class Encuentro extends Model
     	'fecha', 
     	'hora',
     	'ubicacion',
-    	'detalle',
+        'detalle',
+    	'id_fecha',
     ];
     protected $hidden = ['remember_token'];
     
     public function encuentro_club_participaciones(){
-    	return $this->hasMany('App\Models\Encuentro_Club_participaciones','id_encuentro_club_part');
+    	return $this->hasMany('App\Models\Encuentro_Club_Participacion','id_encuentro');
     }
+    
     public function fecha(){
-    	return $this->belongsTo('App\Models\Fecha','id_fecha','id_fecha');
+    	return $this->belongsTo('App\Models\Fecha','id_fecha');
     }
 }

@@ -53,6 +53,7 @@
       <table class="table table-condensed">
           <thead>
             <th width="50px">ID</th>
+            <th>Equipos</th>
             <th>Fecha</th>
             <th>Hora</th>
             <th>Ubicacion</th>
@@ -62,23 +63,24 @@
           <tbody>
             @foreach($fecha->encuentros as $encuentro)
               <tr>
-                
-                
-                <td>{{ $encuentro->id_encuentro }}</td>
-               
+                <td>{{ $encuentro->id_encuentro }}</td> 
+                <td>
+
+                  @foreach ($encuentro->encuentro_club_participaciones as $equipo)
+                  
+                    <img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}
+                  @endforeach
+                </td>
+                       
                 <td>{{ $encuentro->fecha}}</td>
                 <td>{{ $encuentro->hora}}</td>
                 <td>{{ $encuentro->ubicacion}}</td>
                 <td>{{ $encuentro->detalle}}</td>
+
+                
                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" class="btn btn-danger">Eliminar</a></td>
               </tr>
-            @endforeach
-            @foreach ($encuentros as $encuentro)
-              @foreach ($encuentro->encuentro_club_participaciones->club_participacion->nombre_club as $encuentro)
-              <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px">{{ $club->nombre_club }}</td>
-            @endforeach
-            @endforeach
-            
+            @endforeach            
           </tbody>
       </table>
    @endforeach

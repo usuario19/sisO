@@ -24,7 +24,7 @@
                                                   @foreach($disciplinasDisponibles as $disciplina)
                                                     
                                                         {!! Form::checkbox('id_disc[]',$disciplina->id_disc, false, ['class'=>'check_us']) !!}
-                                                        <img src="/storage/logos/{{ $disciplina->foto_disc }}" alt="" width="50px" height="50px">{{ $disciplina->nombre_disc }} <br>
+                                                        <img src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" width="50px" height="50px">{{ $disciplina->nombre_disc }} <br>
 
                                                   @endforeach
                                                   </div>

@@ -154,7 +154,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	
 	//GESTION
 	//Route::resource('gestion','GestionController');
-	Route::post('gestion',[ 
+	Route::post('gestion/store',[ 
 				'uses'=> 'GestionController@store',
 				'as' => 'gestion.store']);
 

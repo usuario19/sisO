@@ -14,6 +14,7 @@ class DisciplinaController extends Controller
     public function index()
     {
         $disciplinas = DB::table('disciplinas')->get();
+        
         return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
     }
 
@@ -143,7 +144,7 @@ class DisciplinaController extends Controller
                             ->select('foto_disc')
                             ->get();
             foreach ($foto_antiguo as $foto_disc) {
-        if ($foto_disc->foto_disc != 'usuario-sin-foto.png') {
+        if ($foto_disc->foto_disc != 'sin_imagen.png') {
             Storage::disk('foto_disc')->delete($foto_disc->foto_disc);     
                 }
                    

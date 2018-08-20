@@ -30,6 +30,7 @@
   					<td>{{ $grupo->id_grupo}}</td>
             <td>{{ $grupo->nombre_grupo }}</td>
             <td><a href="{{ route('grupo.listar_clubs',[$grupo->id_grupo,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}" class="btn btn-success">Encuentros</a></td>
+            <td><a href="" class="btn btn-info">Editar</a></td>
             <td><a href="{{ route('grupo.destroy',$grupo->id_grupo) }}" class="btn btn-danger">Eliminar</a></td>
   				</tr>
   			@endforeach

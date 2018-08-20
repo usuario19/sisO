@@ -7,10 +7,12 @@ use App\Models\Administrador;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
 use App\Models\Encuentro;
+use App\Models\Fecha;
 use App\Models\Encuentro_Club_Participacion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
+use PDF;
 class EncuentroController extends Controller
 {
     public function index()
@@ -40,9 +42,9 @@ class EncuentroController extends Controller
             ->get()->last()->id_club_part;
 
             $encuentro_club_part = new Encuentro_Club_Participacion();
-            $encuentro_club_part->puntos = '-';
-            $encuentro_club_part->observacion = '-';
-            $encuentro_club_part->resultado = '-';
+            $encuentro_club_part->puntos = '0';
+            $encuentro_club_part->observacion = '0';
+            $encuentro_club_part->resultado = '0';
             $encuentro_club_part->id_encuentro = $id_encuentro;
             $encuentro_club_part->id_club_part = $id_club_part;
             $encuentro_club_part->save();
@@ -70,6 +72,17 @@ class EncuentroController extends Controller
     public function destroy($id_encuentro){
         DB::table('encuentros')->where('id_encuentro', '=',$id_encuentro)->delete();
         return redirect()->back();            
+    }
+    public function fixture()
+    {        
+        $fechas = Fecha::all(); 
+
+        $pdf = PDF::loadView('grupo.fixture',['fechas'=>$fechas ]);
+        //return $pdf->stream('fechas.pdf');
+        return $pdf->download('fixture.pdf');
+        //return var_dump($pdf);
+        //$pdf = PDF::loadView('pdf.invoice', $fechas);
+//return $pdf->download('invoice.pdf');
     }
     
 }

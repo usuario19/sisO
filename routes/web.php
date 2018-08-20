@@ -178,13 +178,17 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'GestionController@edit',
 				'as' => 'gestion.edit']);
 
-	route::get('gestion/{id}/destroy',[
+	Route::get('gestion/{id}/destroy',[
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
-	route::get('gestion/{id}/disciplinas',[
+	Route::get('gestion/{id}/disciplinas',[
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
+	]);
+	Route::post('gestion',[
+	    'uses'=> 'GestionController@agregar_disciplinas',
+	    'as'=> 'gestion.agregar_disciplinas'
 	]);
 
 	//JUGADOR_INSCRIPCION
@@ -192,7 +196,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'JugadorInscripcionController@store',
 				'as' => 'jugador_inscripcion.store']);
 
-	route::get('gestion/{id}/clubs',[
+	Route::get('gestion/{id}/clubs',[
 	    'uses'=> 'GestionController@clubs',
 	    'as'=> 'gestion.clubs'
 	]);
@@ -280,6 +284,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('encuentro/{id_encuentro}/destroy',[
 		'uses'=>'EncuentroController@destroy',
 		'as'=>'encuentro.destroy'
+	]);
+	Route::get('encuentro/fixture',[
+		'uses'=>'EncuentroController@fixture',
+		'as'=>'encuentro.fixture'
 	]);
 });
 

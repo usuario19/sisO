@@ -79,6 +79,7 @@
 
                 
                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" class="btn btn-danger">Eliminar</a></td>
+                <td><a href="{{ route('encuentro.fixture') }}" class="btn btn-danger">fixture</a></td>
               </tr>
             @endforeach            
           </tbody>

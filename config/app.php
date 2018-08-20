@@ -166,6 +166,8 @@ return [
         //para los mensajes emergentes
         //UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+     //para los reportes pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -219,6 +221,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         //'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        //para los reportes pdf
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

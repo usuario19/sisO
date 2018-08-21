@@ -160,6 +160,7 @@ class DisciplinaController extends Controller
         DB::table('disciplinas')->where('id_disc', '=',$id)->delete();
         return redirect()->route('disciplina.index'); 
     }
+   
 
 
     //Almacenar las disciplinas donde participa cada club en una gestion especifica

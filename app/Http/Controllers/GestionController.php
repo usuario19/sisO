@@ -165,4 +165,11 @@ class GestionController extends Controller
         
         return redirect()->back();
     }
+     function eliminar_disciplina($id_gestion,$id_disciplina){
+        $id_participacion = Participacion::where('id_gestion','=',$id_gestion)
+                    ->where('id_disciplina','=',$id_disciplina)
+                    ->delete();
+        //return dd($id_participacion);
+        return redirect()->back();
+     }
 }

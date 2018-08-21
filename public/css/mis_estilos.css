@@ -15,6 +15,12 @@
 	font-family: "courier", "sans-serif";
 	font-size: 18px;
 }
+.textoAgrDisc {
+	margin-top: 10px;
+	text-align: center;
+	font-family: "courier", "sans-serif";
+	font-size: 18px;
+}
 div.contenedor{
 	width: 200px;
 	height: 200px;
@@ -30,6 +36,11 @@ img#imgOrigen2{
 	width: 200px;
 	height: 200px;
 }
+img#imgOrigenAgrDisc{
+
+	width: 200px;
+	height: 200px;
+}
 
 .noVista{
 	display: none;
@@ -41,7 +52,7 @@ img#imgOrigen2{
 	margin: auto;
 	opacity: 0.5;
  }
- .vista:hover{
+.vista:hover{
  	opacity: 1;
  	width: 30px;
 	height: 30px;
@@ -71,6 +82,32 @@ img#imgOrigen2{
  	width: 30px;
 	height: 30px;
  }
+ img#textoAgrDisc{
+ 	position: absolute;
+ 	width: 25px;
+	height: 25px;
+	margin: auto;
+	opacity: 0.5;
+ }
+ img#textoAgrDisc:hover{
+ 	opacity: 1;
+ 	width: 30px;
+	height: 30px;
+ }
+ img#btnCancelarAgrDisc{
+ 	align-content: top;
+ 	position: relative;
+ 	padding-right: 20px
+ 	width: 25px;
+	height: 25px;
+	margin: auto;
+	opacity: 0.5;
+ }
+ img#btnCancelarAgrDisc:hover{
+ 	opacity: 1;
+ 	width: 30px;
+	height: 30px;
+ }
 div#div_file{
 	position: relative;/*para q el input vaya dentro del div*/
 	padding-left:20px;
@@ -80,6 +117,14 @@ div#div_file{
 	
 }
 div#div_file2{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-left:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
+	
+}
+div#div_fileAgrDisc{
 	position: relative;/*para q el input vaya dentro del div*/
 	padding-left:20px;
 	margin: 0px;
@@ -103,6 +148,15 @@ div#content2{
 	width: 100px;
 	
 }
+
+div#contentAgrDisc{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-right:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
+	
+}
 input#input{
 	visibility: hidden;
 	
@@ -111,10 +165,18 @@ input#input2{
 	visibility: hidden;
 	
 }
+input#inputAgrDisc{
+	visibility: hidden;
+	
+}
 input#input:hover{
 	opacity: 0.6;
 }
 input#input2{
+	opacity: 0.6;
+	
+}
+input#inputAgrDisc{
 	opacity: 0.6;
 	
 }

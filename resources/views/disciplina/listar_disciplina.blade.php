@@ -5,11 +5,12 @@
 @endsection
 
 @section('content')
+@include('disciplina.modal_agregar_disc')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
-    <h1>Lista de Disciplinas:</h1>
-    <a href="disciplina/create/" class="btn btn-primary">Agregar</a>
-    @include('disciplina.modal_agregar_disc')
+    <h4>Lista de Disciplinas:</h4>
+    
+   
   </div> 
 </div>
 

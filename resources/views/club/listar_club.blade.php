@@ -8,7 +8,7 @@
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
 
-    <h1>Lista de Clubs:</h1>
+    <h4>Lista de Clubs:</h4>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Agregar</button>
   </div>
   <table class="table table-condensed">

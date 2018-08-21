@@ -190,6 +190,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@agregar_disciplinas',
 	    'as'=> 'gestion.agregar_disciplinas'
 	]);
+	Route::get('gestion/{id_gestion}/{id_disc}/eliminar_disciplina',[
+	    'uses'=> 'GestionController@eliminar_disciplina',
+	    'as'=> 'gestion.eliminar_disciplina'
+	]);
+	
 
 	//JUGADOR_INSCRIPCION
 	Route::post('registrar',[ 

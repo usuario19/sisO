@@ -1,6 +1,5 @@
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditDisc">Agregar</button>
 
-  {!! Form::open(['route'=>'disciplina.store','method'=>'PUT','enctype'=>'multipart/form-data','files'=>true]) !!}
+  {!! Form::open(['route'=>'disciplina.update','method'=>'PUT','enctype'=>'multipart/form-data','files'=>true]) !!}
     <div class="modal fade" id="modalEditDisc" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -25,7 +24,7 @@
                                       
                                         <div class="form-row">
                                           <div style="display: none;">
-                                                {!! Form::text('id_disc', $disciplina->id_disc, ['class'=>'form-control']) !!}
+                                                {!! Form::text('id_disc', null, ['id'=>'edit_id_disc','class'=>'form-control']) !!}
                                             </div>
                                             <div class="form-group col-md-12">
                                             
@@ -45,13 +44,13 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-12">
                                     {!! Form::label('nombre_disc', 'Nombre', []) !!}
-                                    {!! Form::text('nombre_disc', $disciplina->nombre_disc, ['class'=>'form-control']) !!}
+                                    {!! Form::text('nombre_disc', null, ['id'=>'edit_nombre_disc','class'=>'form-control']) !!}
                                   </div>
                                 </div>
                                 <div class="form-row">
                                   <div class="form-group col-md-12">
                                     {!! Form::label('categoria', 'Categoria', []) !!}
-                                    {!! Form::select('categoria', ['0'=>'Mixto', '1'=>'Damas','2'=>'Varones'], null, ['class'=>'form-control']) !!}
+                                    {!! Form::select('categoria', ['0'=>'Mixto', '1'=>'Damas','2'=>'Varones'], null, ['id'=>'edit_categoria','class'=>'form-control']) !!}
                                   </div>
                                 </div>
                                  
@@ -62,7 +61,7 @@
                                   <div class="form-group col-md-12">
                                     
                                     {!! Form::label('reglamento_disc', 'Subir reglamento', []) !!}
-                                    {!! Form::file('reglamento_disc', ['class'=>'form-control']) !!}
+                                    {!! Form::file('reglamento_disc', ['id'=>'edit_reglamento_disc','class'=>'form-control']) !!}
                                   </div>
                             </div>  
 
@@ -70,7 +69,7 @@
                                   <div class="form-group col-md-12">
 
                                     {!! Form::label('descripcion_disc', 'Descripcion', []) !!}
-                                    {!! Form::textArea('descripcion_disc', null, ['class'=>'form-control' ,'rows'=>4]) !!}
+                                    {!! Form::textArea('descripcion_disc', null, ['id'=>'edit_descripcion_disc','class'=>'form-control' ,'rows'=>4]) !!}
                                   </div>
                             </div>
                           

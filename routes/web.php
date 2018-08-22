@@ -109,7 +109,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'DisciplinaController@create',
 				'as' => 'disciplina.create']);
 
-	Route::put('disciplina/{disciplina}',[ 
+	Route::put('disciplina/',[ 
 				'uses'=> 'DisciplinaController@update',
 				'as' => 'disciplina.update']);
 

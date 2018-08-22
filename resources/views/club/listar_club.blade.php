@@ -27,13 +27,12 @@
           <tr>
             <td scope="row">{{ $club->id_club}}</td>            
             <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 100px" width="100px"></td>
-            <td scope="row">{{ $club->nombre_club}}</td>
-            <td scope="row">{{ $club->nombre." ".$club->apellidos}}</td>
-            <td scope="row">{{ $club->ciudad}}</td>
-            <td scope="row">{{ $club->descripcion_club}}</td>
+            <td>{{ $club->nombre_club}}</td>
+            <td>{{ $club->nombre." ".$club->apellidos}}</td>
+            <td>{{ $club->ciudad}}</td>
+            <td>{{ $club->descripcion_club}}</td>
 
-            <td scope="row">
-              <a onclick="Mostrar({{ $club->id_club }});"  class="btn btn-primary" data-toggle="modal" data-target="#edit">Editar</a>
+            <td><a onclick="Mostrar({{ $club->id_club }});"  class="btn btn-primary" data-toggle="modal" data-target="#edit">Editar</a>
              
                 <a href="{{ route('club.destroy',$club->id_club) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
             </td>

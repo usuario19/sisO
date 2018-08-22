@@ -21,6 +21,12 @@
 	font-family: "courier", "sans-serif";
 	font-size: 18px;
 }
+.textoEditDisc {
+	margin-top: 10px;
+	text-align: center;
+	font-family: "courier", "sans-serif";
+	font-size: 18px;
+}
 div.contenedor{
 	width: 200px;
 	height: 200px;
@@ -41,7 +47,11 @@ img#imgOrigenAgrDisc{
 	width: 200px;
 	height: 200px;
 }
+img#imgOrigenEditDisc{
 
+	width: 200px;
+	height: 200px;
+}
 .noVista{
 	display: none;
 }
@@ -94,6 +104,18 @@ img#imgOrigenAgrDisc{
  	width: 30px;
 	height: 30px;
  }
+ img#textoEditDisc{
+ 	position: absolute;
+ 	width: 25px;
+	height: 25px;
+	margin: auto;
+	opacity: 0.5;
+ }
+ img#textoEditDisc:hover{
+ 	opacity: 1;
+ 	width: 30px;
+	height: 30px;
+ }
  img#btnCancelarAgrDisc{
  	align-content: top;
  	position: relative;
@@ -104,6 +126,20 @@ img#imgOrigenAgrDisc{
 	opacity: 0.5;
  }
  img#btnCancelarAgrDisc:hover{
+ 	opacity: 1;
+ 	width: 30px;
+	height: 30px;
+ }
+ img#btnCancelarEditDisc{
+ 	align-content: top;
+ 	position: relative;
+ 	padding-right: 20px
+ 	width: 25px;
+	height: 25px;
+	margin: auto;
+	opacity: 0.5;
+ }
+ img#btnCancelarEditDisc:hover{
  	opacity: 1;
  	width: 30px;
 	height: 30px;
@@ -125,6 +161,14 @@ div#div_file2{
 	
 }
 div#div_fileAgrDisc{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-left:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
+	
+}
+div#div_fileEditDisc{
 	position: relative;/*para q el input vaya dentro del div*/
 	padding-left:20px;
 	margin: 0px;
@@ -157,6 +201,14 @@ div#contentAgrDisc{
 	width: 100px;
 	
 }
+div#contentEditDisc{
+	position: relative;/*para q el input vaya dentro del div*/
+	padding-right:20px;
+	margin: 0px;
+	height: 30px;
+	width: 100px;
+	
+}
 input#input{
 	visibility: hidden;
 	
@@ -169,6 +221,10 @@ input#inputAgrDisc{
 	visibility: hidden;
 	
 }
+input#inputEditDisc{
+	visibility: hidden;
+	
+}
 input#input:hover{
 	opacity: 0.6;
 }
@@ -177,6 +233,10 @@ input#input2{
 	
 }
 input#inputAgrDisc{
+	opacity: 0.6;
+	
+}
+input#inputEditDisc{
 	opacity: 0.6;
 	
 }

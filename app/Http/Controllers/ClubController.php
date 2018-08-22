@@ -96,8 +96,7 @@ class ClubController extends Controller
         }
         return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito)->with('administradores',$administradores);
     }
-    public function edit($id)
-    {
+    public function edit($id){
         $datos = DB::table('adminclubs')
         ->join('administradores','adminClubs.id_administrador','=','administradores.id_administrador')
         ->join('clubs','adminclubs.id_club','=','clubs.id_club')
@@ -111,7 +110,6 @@ class ClubController extends Controller
         foreach ($datos2 as $datos) {
             $administradores[$datos->id_administrador] = ($datos->nombre." ".$datos->apellidos);
         }
-        //return dd($datos);
         return response()->json($club);
         //return view('club.editar_club')->with('club',$club)->with('administradores',$administradores);
     }

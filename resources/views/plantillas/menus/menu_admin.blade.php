@@ -71,12 +71,11 @@
           </li> 
 
            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="{{ route('disciplina.index') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Disciplinas
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('disciplina.create') }}>Registrar Disciplina</a>
               <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
             </div>
           </li>

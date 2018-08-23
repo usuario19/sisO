@@ -56,19 +56,19 @@ class AdministradorController extends Controller
      public function store(AdministradorRequest $request)
     {
         //
-        /*$mensages = $request->ajax();
+        //$mensages = $request->ajax();
         $datos = new Administrador($request->all());
         $datos->save();
          
         return redirect()->route('administrador.index');
-       /* echo "hola";*/
+       /* echo "hola";
        if ($request->json()) {
             return response()->json(
                 ["mensaje"=>$reuest->all()]);
            # code...
        }else
         return response($content = 'entroaaaaaeeeee');
-        //dd($request);
+        //dd($request);*/
     }
 
     /**
@@ -79,9 +79,10 @@ class AdministradorController extends Controller
      */
     public function show($id)
     {
-        //
+        
        
     }
+
     /**
      * Show the form for editing the specified resource.
      *

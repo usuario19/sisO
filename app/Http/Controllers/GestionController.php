@@ -98,20 +98,20 @@ class GestionController extends Controller
         return redirect()->route('gestion.index'); 
     }
 
-    public function clubs($id){
+    public function clubs($id_gestion){
         //clubs inscritos en una determinada gestion
         $clubs_inscritos = DB::table('clubs')
                         ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
                         ->join('inscripciones','adminClubs.id_adminClub','=','inscripciones.id_adminClub')
                         ->join('gestiones','inscripciones.id_gestion','=','gestiones.id_gestion')
-                        ->where('gestiones.id_gestion',$id)
+                        ->where('gestiones.id_gestion',$id_gestion)
                         ->select('clubs.*','gestiones.nombre_gestion')
                         ->get();
         $inscritos = DB::table('clubs')
                         ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
                         ->join('inscripciones','adminClubs.id_adminClub','=','inscripciones.id_adminClub')
                         ->join('gestiones','inscripciones.id_gestion','=','gestiones.id_gestion')
-                        ->where('gestiones.id_gestion',$id)
+                        ->where('gestiones.id_gestion',$id_gestion)
                         ->select('clubs.id_club')
                         ->get()->toArray();        
 
@@ -123,7 +123,7 @@ class GestionController extends Controller
                         ->whereNotIn('clubs.id_club',$lista)
                         ->select('clubs.*')
                         ->get();
-        $gestion = Gestion::find($id);
+        $gestion = Gestion::find($id_gestion);
 
         return view('admin.gestion_clubs')->with('clubs_inscritos',$clubs_inscritos)->with('clubs',$clubs)->with('gestion',$gestion);
     }
@@ -135,6 +135,41 @@ class GestionController extends Controller
         //$disciplinas = Disciplina::all();
         $gestion = Gestion::find($id_gestion);
         //return dd($disciplinas);
-        return view('admin.gestion_disciplina')->with('disciplinas',$disciplinas)->with('gestion',$gestion);
+        
+        $inscritos = DB::table('disciplinas')
+                    ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
+                    ->where('participaciones.id_gestion',$id_gestion)
+                    ->select('disciplinas.id_disc')
+                        ->get()->toArray();
+        $lista = array();
+                        foreach ($inscritos as $inscrito) {
+                            $lista[] = $inscrito->id_disc;
+                        }
+        $disciplinasDisponibles = DB::table('disciplinas')
+                        ->whereNotIn('disciplinas.id_disc',$lista)
+                        ->select('disciplinas.*')
+                        ->get();
+        return view('admin.gestion_disciplina')->with('disciplinas',$disciplinas)->with('gestion',$gestion)->with('disciplinasDisponibles',$disciplinasDisponibles);
     }
+    public function agregar_disciplinas(Request $request){
+        //return dd($request);
+        $id_gestion = $request->get('id_gestion');
+        $disciplinas = $request->get('id_disc');
+        
+        foreach ($disciplinas as $disc) {
+            $datos = new participacion;
+            $datos->id_gestion = $id_gestion;
+            $datos->id_disciplina = $disc;
+            $datos->save();
+        }
+        
+        return redirect()->back();
+    }
+     function eliminar_disciplina($id_gestion,$id_disciplina){
+        $id_participacion = Participacion::where('id_gestion','=',$id_gestion)
+                    ->where('id_disciplina','=',$id_disciplina)
+                    ->delete();
+        //return dd($id_participacion);
+        return redirect()->back();
+     }
 }

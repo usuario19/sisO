@@ -109,7 +109,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'DisciplinaController@create',
 				'as' => 'disciplina.create']);
 
-	Route::put('disciplina/{disciplina}',[ 
+	Route::put('disciplina/',[ 
 				'uses'=> 'DisciplinaController@update',
 				'as' => 'disciplina.update']);
 
@@ -125,7 +125,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'DisciplinaController@destroy',
 	    'as'=> 'disciplina.destroy'
 	]);
-	route::get('disciplina/{id}/{id_gestion}/fases',[
+	route::get('disciplina/{id_gestion}/{id_disc}/fases',[
 	    'uses'=> 'DisciplinaController@fases',
 	    'as'=> 'disciplina.fases'
 	]);
@@ -154,7 +154,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	
 	//GESTION
 	//Route::resource('gestion','GestionController');
-	Route::post('gestion',[ 
+	Route::post('gestion/store',[ 
 				'uses'=> 'GestionController@store',
 				'as' => 'gestion.store']);
 
@@ -178,21 +178,30 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'GestionController@edit',
 				'as' => 'gestion.edit']);
 
-	route::get('gestion/{id}/destroy',[
+	Route::get('gestion/{id}/destroy',[
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
-	route::get('gestion/{id}/disciplinas',[
+	Route::get('gestion/{id}/disciplinas',[
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
+	Route::post('gestion',[
+	    'uses'=> 'GestionController@agregar_disciplinas',
+	    'as'=> 'gestion.agregar_disciplinas'
+	]);
+	Route::get('gestion/{id_gestion}/{id_disc}/eliminar_disciplina',[
+	    'uses'=> 'GestionController@eliminar_disciplina',
+	    'as'=> 'gestion.eliminar_disciplina'
+	]);
+	
 
 	//JUGADOR_INSCRIPCION
 	Route::post('registrar',[ 
 				'uses'=> 'JugadorInscripcionController@store',
 				'as' => 'jugador_inscripcion.store']);
 
-	route::get('gestion/{id}/clubs',[
+	Route::get('gestion/{id}/clubs',[
 	    'uses'=> 'GestionController@clubs',
 	    'as'=> 'gestion.clubs'
 	]);
@@ -217,7 +226,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@store',
 		'as'=>'fase.store'
 	]);
-	Route::get('fase/{id_fase}/listar_grupos',[
+	Route::get('fase/{id_fase}/{id_gestion}/{id_disc}/listar_grupos',[
 		'uses'=>'FaseController@listar_grupos',
 		'as'=>'fase.listar_grupos'
 	]);
@@ -226,7 +235,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
-	Route::get('grupo/{id_fase}/create2',[
+	Route::get('grupo/{id_fase}/{id_gestion}/{id_disc}/create2',[
 		'uses'=>'GrupoController@create2',
 		'as'=>'grupo.create2'
 	]);
@@ -247,7 +256,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@mostrar_grupos',
 		'as'=>'grupo.mostrar_grupos'
 	]);
-	Route::get('grupo/{id}/listar_clubs',[
+	Route::get('grupo/{id}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs',[
 		'uses'=>'GrupoController@listar_clubs',
 		'as'=>'grupo.listar_clubs'
 	]);
@@ -264,13 +273,26 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FechaController@store',
 		'as'=>'fecha.store'
 	]);
-	Route::get('fecha/{id_fase}/listar_fechas',[
+	Route::get('fecha/{id_fase}/{id_gestion}/{id_disc}/listar_fechas',[
 		'uses'=>'FechaController@listar_fechas',
 		'as'=>'fecha.listar_fechas'
 	]);
 	Route::get('fecha/{id_fecha}/destroy',[
 		'uses'=>'FechaController@destroy',
 		'as'=>'fecha.destroy'
+	]);
+	//encuentro
+	Route::post('encuentro/store',[
+		'uses'=>'EncuentroController@store',
+		'as'=>'encuentro.store'
+	]);
+	Route::get('encuentro/{id_encuentro}/destroy',[
+		'uses'=>'EncuentroController@destroy',
+		'as'=>'encuentro.destroy'
+	]);
+	Route::get('encuentro/fixture',[
+		'uses'=>'EncuentroController@fixture',
+		'as'=>'encuentro.fixture'
 	]);
 });
 

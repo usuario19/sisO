@@ -65,6 +65,6 @@
 @endsection
 @section('scripts')
   {!! Html::script('/js/vista_previa.js') !!}
-  {!! Html::script('/js/filtro_ajax_form.js') !!}
+  {!! Html::script('/js/validaciones.js') !!}
 
 @endsection

@@ -23,7 +23,7 @@
 </script>
 
 @include('gestiones.modal_registrar_gestion')
-<h1>Lista de Campeonatos:</h1>
+<h4>Lista de Campeonatos:</h4>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGestion">Agregar</button>
 	<table class="table table-condensed">
   		<thead>
@@ -47,8 +47,6 @@
   					<td>{{ $gestion->desc_gest}}</td>
            
             <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}" class="btn btn-danger">Eliminar</a></td>
-            
-            <td><a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}" class="btn btn-success">Disciplinas</a></td>
   				</tr>
   			@endforeach
   		</tbody>

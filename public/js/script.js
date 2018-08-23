@@ -44,7 +44,7 @@
 
           archivo2.readAsDataURL(document.getElementById("input2").files[0]);
 
-          document.getElementById("btnCancelar2").setAttribute("class","uploader vista");
+          document.getElementById("btnCancelar2").setAttribute("class","uploader} vista");
           document.getElementById("imgOrigen2").setAttribute("class","noVista");
           document.getElementById("texto2").setAttribute("class","noVista");
           
@@ -56,6 +56,7 @@
           document.getElementById("texto2").setAttribute("class","vista");
         }
     }
+    
 
         var cancelarImg = function(){
           document.getElementById("imgOrigen").setAttribute("class","");
@@ -67,22 +68,20 @@
         var cancelarImg2 = function(){
           document.getElementById("imgOrigen2").setAttribute("class","");
           document.getElementById("imgParcial2").setAttribute("class","noVista");
-          document.getElementById("btnCancela2r").setAttribute("class","noVista");
+          document.getElementById("btnCancelar2").setAttribute("class","noVista");
           document.getElementById("texto2").setAttribute("class","vista");
           document.getElementById("input2").value = "";
         }
-        
+       
         document.getElementById("texto").addEventListener("click", inputfile);
-
         document.getElementById("texto2").addEventListener("click", inputfile2);
-
+       
         document.getElementById("btnCancelar").addEventListener("click", cancelarImg);
         document.getElementById("btnCancelar2").addEventListener("click", cancelarImg2);
-
+      
         document.getElementById("input").addEventListener("change", vistaprevia);
-
         document.getElementById("input2").addEventListener("change", vistaprevia2);
-    
+       
 } ())
 
 

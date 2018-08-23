@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,18 +9,19 @@ class Encuentro extends Model
     protected $table = 'encuentros';
 	protected $primaryKey = 'id_encuentro';
     protected $fillable = [
-    	'nombre_encuentro', 
     	'fecha', 
     	'hora',
     	'ubicacion',
-    	'observacion',
-    	'resultado',
+        'detalle',
+    	'id_fecha',
     ];
     protected $hidden = ['remember_token'];
-    public function encuentro_seleccions(){
-    	reurn $this->hasMany('App\Models\Encuentro_Seleccion');
+    
+    public function encuentro_club_participaciones(){
+    	return $this->hasMany('App\Models\Encuentro_Club_Participacion','id_encuentro');
     }
-    public function fechas (){
-    	retunr $this->belongsTo('App\Models\Fecha');
+    
+    public function fecha(){
+    	return $this->belongsTo('App\Models\Fecha','id_fecha');
     }
 }

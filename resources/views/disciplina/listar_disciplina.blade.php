@@ -5,10 +5,12 @@
 @endsection
 
 @section('content')
+@include('disciplina.modal_agregar_disc')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
-    <h1>Lista de Disciplina:</h1>
-    <a href="disciplina/create/" class="btn btn-primary">Agregar Disciplina</a>
+    <h4>Lista de Disciplinas:</h4>
+    
+   
   </div> 
 </div>
 
@@ -47,12 +49,35 @@
             <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">Ver</td>
             <td>{{ $disciplina->descripcion_disc}}</td>
 
-            <td><a href="{{ route('disciplina.edit',$disciplina->id_disc) }}" class="btn btn-info">Editar</a></td>
+            <td><a onclick="MostrarDisc({{ $disciplina->id_disc }});"  class="btn btn-primary" data-toggle="modal" data-target="#modalEditDisc">Editar</a></td>
+
             <td><a href="{{ route('disciplina.destroy',$disciplina->id_disc) }}" onclick = "return Alert::info('Esta seguro de eliminar la disciplina,'jej')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
             
             
+
   				</tr>
   			@endforeach
   		</tbody>
 	</table>
+@include('disciplina.modal_editar_disc')
+
+<script> 
+var MostrarDisc = function(id){
+  var route = "{{ url('disciplina') }}/"+id+"/edit";
+  $.get(route, function(data){
+    $("#edit_id_disc").val(data.id_disc);
+    $("#edit_nombre_disc").val(data.nombre_disc);
+    //$("#edit_administrador").val(data.id_administrador);
+    $("#edit_categoria").val(data.categoria);
+    var url = '/storage/foto_disc/'+data.foto_disc
+    var file = $.get(url);
+        $('#imgOrigenEditDisc').attr('src', url);
+
+    //var urlReglamento = '/storage/archivos/'+data.reglamento_disc
+    //var reglamento = $.get(urlReglamento);
+    //    $('#edit_reglamento_disc').attr('src', urlReglamento);
+    $("#edit_descripcion_disc").val(data.descripcion_disc);
+  });
+}
+</script>
 @endsection

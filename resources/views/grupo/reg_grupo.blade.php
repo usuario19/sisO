@@ -2,6 +2,11 @@
 @section('title')
 SisO:Crear Grupo
 @endsection
+
+@section('submenu')
+@include('plantillas.menus.menu_gestion')
+@endsection
+
 @section('content')
 <div class="container col-md-8">
 	<h1 class="display-4">Crear Grupo</h1>

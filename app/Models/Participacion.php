@@ -14,15 +14,12 @@ class Participacion extends Model
 
     protected $fillable =['id_gestion', 'id_disciplina'];
 
-    public function gestions(){
+    public function gestiones(){
          return $this->belongsTo('App\Models\Gestion','id_gestion');
     }
-    public function disciplinas(){
+    public function disciplina(){
     	 return $this->belongsTo('App\Models\Disciplina','id_disciplina');
-    }
-
-    
-    
+    }  
     public function club_participaciones(){
 
         return $this->hasMany('App\Models\Club_Participacion','id_participacion');  

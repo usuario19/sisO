@@ -19,7 +19,7 @@
          
       <div>
         <div style="display: none;">
-        {!! Form::text('id_fase', $id_fase, []) !!}
+        {!! Form::text('id_fase', $fase->id_fase, []) !!}
         
          </div>
       </div>

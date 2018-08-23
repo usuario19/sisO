@@ -22,12 +22,11 @@ class Gestion extends Model
 		'remember_token'
 		];
 	
-
 	public function inscripciones(){
         return $this->hasMany('App\Models\Inscripcion','id_gestion');
     }
 
-    public function participacions(){
+    public function participaciones(){
         return $this->hasMany('App\Models\Participacion','id_gestion');
     }
 	public function club_participaciones(){

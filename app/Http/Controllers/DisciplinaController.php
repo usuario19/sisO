@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
+use App\Models\Gestion;
 use App\Models\Tipo;
 use App\Models\Club_Participacion;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ class DisciplinaController extends Controller
     public function index()
     {
         $disciplinas = DB::table('disciplinas')->get();
+        
         return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
     }
 
@@ -43,45 +45,47 @@ class DisciplinaController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit($id_disc)
     {
-        $datos = DB::table('disciplinas')
+        /**$datos = DB::table('disciplinas')
         ->where('id_disc',$id)
         ->get();
 
         foreach ($datos as $dato) {
             $disciplina = $dato;
         }
-        return view('disciplina.editar_disc')->with('disciplina',$disciplina);
+        return view('disciplina.editar_disc')->with('disciplina',$disciplina);*/
+
+        $disciplina = Disciplina::find($id_disc);
+    
+        return response()->json($disciplina);
     }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request){
+        $id = $request->get('id_disc');
         if($request->hasFile('foto_disc'))
         {   
             $foto_antiguo = DB::table('disciplinas')
                             ->where('id_disc',$id)
                             ->select('foto_disc')
-                            ->get();
-            foreach ($foto_antiguo as $foto_disc) {
-                if ($foto_disc->foto_disc != 'usuario-sin-foto.png') {
-                    Storage::disk('foto_disc')->delete($foto_disc->foto_disc);
+                            ->get()->last();
+            $foto_disc = $foto_antiguo->foto_disc;
+                if ($foto_disc != 'sin_imagen.png') {
+                    Storage::disk('foto_disc')->delete($foto_disc);
                 }    
-            }  
             $foto_nueva = $request->file('foto_disc');
+
                     $nombre_foto = time().'-'.$foto_nueva->getClientOriginalExtension();
                     Storage::disk('foto_disc')->put($nombre_foto, file_get_contents($foto_nueva));
-
-
 
             if ($request->hasFile('reglamento_disc')) {
                 $reglamento_antiguo = DB::table('disciplinas')
                                     ->where('id_disc',$id)
                                     ->select('reglamento_disc')
-                                    ->get();
-                foreach ($reglamento_antiguo as $reglamento_disc) {
-                        Storage::disk('archivos')->delete($reglamento_disc->reglamento_disc);
-                }    
+                                    ->get()->last()->reglamento_disc;
+                //foreach ($reglamento_antiguo as $reglamento_disc) {
+                        Storage::disk('archivos')->delete($reglamento_antiguo);
+                //}    
                 $reglamento_nuevo = $request->file('reglamento_disc');
                 $nombre_reglamento= time().'-'.$reglamento_nuevo->getClientOriginalExtension();
                 Storage::disk('archivos')->put($nombre_reglamento, file_get_contents($reglamento_nuevo));
@@ -91,6 +95,7 @@ class DisciplinaController extends Controller
                     ->where('id_disc', $id)
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'foto_disc'=>$nombre_foto,
+                            'categoria'=>$request->get('categoria'),
                             'reglamento_disc'=>$nombre_reglamento,
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]); 
@@ -99,6 +104,8 @@ class DisciplinaController extends Controller
                 DB::table('disciplinas')
                     ->where('id_disc', $id)
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
+                            'foto_disc'=>$nombre_foto,
+                            'categoria'=>$request->get('categoria'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]);  
             }                  
@@ -121,6 +128,7 @@ class DisciplinaController extends Controller
                     ->where('id_disc', $id)
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'reglamento_disc'=>$nombre_reglamento,
+                            'categoria'=>$request->get('categoria'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]); 
             }
@@ -128,6 +136,7 @@ class DisciplinaController extends Controller
                 DB::table('disciplinas')
                     ->where('id_disc', $id)
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
+                            'categoria'=>$request->get('categoria'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]);  
             }     
@@ -142,7 +151,7 @@ class DisciplinaController extends Controller
                             ->select('foto_disc')
                             ->get();
             foreach ($foto_antiguo as $foto_disc) {
-        if ($foto_disc->foto_disc != 'usuario-sin-foto.png') {
+        if ($foto_disc->foto_disc != 'sin_imagen.png') {
             Storage::disk('foto_disc')->delete($foto_disc->foto_disc);     
                 }
                    
@@ -158,6 +167,7 @@ class DisciplinaController extends Controller
         DB::table('disciplinas')->where('id_disc', '=',$id)->delete();
         return redirect()->route('disciplina.index'); 
     }
+   
 
 
     //Almacenar las disciplinas donde participa cada club en una gestion especifica
@@ -240,13 +250,15 @@ class DisciplinaController extends Controller
         return redirect()->back();
 
     }
-    public function fases($id_disc,$id_gestion){
+    public function fases($id_gestion,$id_disc){
         //$fases = Fase::where('id_disciplina','=',$id_disc)->where('id')
         /*$fases = DB::table('fases')
                 ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
 
                 ->where('participaciones.id_disciplina',$id_disc)
                 ->get();*/
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
         $fases = DB::table('participaciones')
                 ->join('fases','participaciones.id_participacion','=','fases.id_participacion')
                 ->join('fase_tipos','fases.id_fase','=','fase_tipos.id_fase')
@@ -256,7 +268,7 @@ class DisciplinaController extends Controller
                 ->select('fases.*','tipos.*')
                 ->get();
         $tipos2 = Tipo::get();
-        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc)->with('tipos2',$tipos2);
+        return view('fases.list_fase')->with('fases',$fases)->with('id_gestion',$id_gestion)->with('id_disc',$id_disc)->with('tipos2',$tipos2)->with('gestion',$gestion)->with('disciplina',$disciplina);
 
     }
 }

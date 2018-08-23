@@ -84,5 +84,13 @@ class EncuentroController extends Controller
         //$pdf = PDF::loadView('pdf.invoice', $fechas);
 //return $pdf->download('invoice.pdf');
     }
+    public function mostrar_resultado($id_encuentro){
+        $encuentro = Encuentro::find($id_encuentro);
+        return view('encuentro.reg_resultado_encuentro')->with('encuentro',$encuentro);
+    }
+    public function reg_resultado(request $request){
+
+    }
+
     
 }

@@ -38,6 +38,7 @@
    </div>
    
       <div class="container">
+        @yield('submenu')
         @yield('content')
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}

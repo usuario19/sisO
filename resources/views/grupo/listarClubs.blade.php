@@ -43,8 +43,7 @@
        
      </div>
      <h4>Lista de Encuentros:</h4>
-     @include('encuentro.modal_agregar_encuentro')
-     
+     @include('encuentro.modal_agregar_encuentro')     
 
    @foreach ($fechas as $fecha)
       <div>
@@ -53,7 +52,7 @@
       <table class="table table-condensed">
           <thead>
             <th width="50px">ID</th>
-            <th>Equipos</th>
+            <th colspan="2" style="text-align: center;">Equipos</th>
             <th>Fecha</th>
             <th>Hora</th>
             <th>Ubicacion</th>
@@ -64,13 +63,13 @@
             @foreach($fecha->encuentros as $encuentro)
               <tr>
                 <td>{{ $encuentro->id_encuentro }}</td> 
-                <td>
+                
 
                   @foreach ($encuentro->encuentro_club_participaciones as $equipo)
                   
-                    <img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}
+                    <td><img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}</td>
                   @endforeach
-                </td>
+                
                        
                 <td>{{ $encuentro->fecha}}</td>
                 <td>{{ $encuentro->hora}}</td>
@@ -80,6 +79,7 @@
                 
                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" class="btn btn-danger">Eliminar</a></td>
                 <td><a href="{{ route('encuentro.fixture') }}" class="btn btn-danger">fixture</a></td>
+                <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}" class="btn btn-success">Resultado</a></td>
               </tr>
             @endforeach            
           </tbody>

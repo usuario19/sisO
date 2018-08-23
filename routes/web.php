@@ -294,6 +294,14 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@fixture',
 		'as'=>'encuentro.fixture'
 	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado',[
+		'uses'=>'EncuentroController@mostrar_resultado',
+		'as'=>'encuentro.mostrar_resultado'
+	]);
+	Route::post('encuentro/reg_resultado',[
+		'uses'=>'EncuentroController@reg_resultado',
+		'as'=>'encuentro.reg_resultado'
+	]);
 });
 
 //COORDINADOR

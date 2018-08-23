@@ -40,6 +40,6 @@ class Alpha_spaces implements Rule
      */
     public function message()
     {
-        return 'El campo :atribute solo puede contener letras.';
+        return 'El campo :attribute solo puede contener letras.';
     }
 }

@@ -42,7 +42,7 @@ class AdministradorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdministradorRequest $request)
+    /*public function store(AdministradorRequest $request)
     {
         //
         //$mensages = $request->validate();
@@ -50,6 +50,25 @@ class AdministradorController extends Controller
         $datos->save();
          
         return redirect()->route('administrador.index');
+       /* echo "hola";
+        var_dump($request);S
+    }*/
+     public function store(AdministradorRequest $request)
+    {
+        //
+        /*$mensages = $request->ajax();
+        $datos = new Administrador($request->all());
+        $datos->save();
+         
+        return redirect()->route('administrador.index');
+       /* echo "hola";*/
+       if ($request->json()) {
+            return response()->json(
+                ["mensaje"=>$reuest->all()]);
+           # code...
+       }else
+        return response($content = 'entroaaaaaeeeee');
+        //dd($request);
     }
 
     /**

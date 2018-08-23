@@ -1,5 +1,24 @@
 (function(){
 	window.addEventListener('load', inicializarEventos, false);
+
+	function inicializarEventos(){
+		var elementos = document.getElementsByTagName("input");
+		for (var i = elementos.length - 1; i >= 0; i--) {
+			elementos[i].addEventListener("keyup", validar, false);
+		}
+	}
+	function validar(e){
+		var input = e.target;
+		if(input.name == "ci")
+		{
+			document.getElementById("error_ci").innerHTML = " " ;
+			input.parentNode.setAttribute("class", "form-group col-md-6"); 
+		}else if (input.name == "password") {
+			document.getElementById("error_password").innerHTML = " " ;
+			input.parentNode.setAttribute("class", "form-group col-md-6"); 						
+		}
+	}
+	/*window.addEventListener('load', inicializarEventos, false);
 	//console.log('hola');
 
 	function inicializarEventos(){
@@ -41,5 +60,5 @@
 		xmlhttp.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
 		xmlhttp.send(info);
 	}
-	//console.log('hola');
+	//*///console.log('hola');
 }())

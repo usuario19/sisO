@@ -15,17 +15,18 @@
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<div class="form-row">
-					<div id="contenedor" class="form-group col-md-12">
-						<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/fotos/usuario-sin-foto.png" alt="" height="200px" width="200px">
-
-						<div id="divtexto">
+					<div class="form-group col-md-12">
+						<div id="contenedor">
+							<img id="imgOrigen" class="rounded mx-auto d-block float-left" src="/storage/fotos/usuario-sin-foto.png" alt="" height="200px" width="200px">
 							
+							<div id="divtexto">
+								
 								<img id="texto" src="/storage/fotos/subir.png"  alt="">
 						
 								<img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png"  alt="">
-							
+								
+							</div>
 						</div>
-
 						{{-- <img id="imgParcial" height="200px" width="200px" class="noVista" src="" alt=""> --}}
 						<!--img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png" alt=""-->
 					</div>
@@ -40,7 +41,9 @@
 						 
 					</div>
 					<div class="form-row errorLogin">
-		    			<span><h6>{{ $errors->has('foto_admin') ? $errors->first('foto_admin'):'' }}</h6></span>
+		    			<span>
+		    				<h6 id="error_foto">{{ $errors->has('foto_admin') ? $errors->first('foto_admin'):'' }}</h6>
+		    			</span>
 		 			</div>
 				</div>
 			</div>
@@ -51,7 +54,7 @@
 				<br>
 				<div class="form-row">
 				<div class="form-group col-md-12">
-					{!! Form::submit('Crear cuenta', ['class'=>'btn btn-primary']) !!}
+					{!! Form::submit('Crear cuenta', ['class'=>'btn btn-primary','id'=>'buttonReg']) !!}
 				</div>
 			</div>
 		</div>
@@ -62,4 +65,6 @@
 @endsection
 @section('scripts')
   {!! Html::script('/js/vista_previa.js') !!}
+  {!! Html::script('/js/filtro_ajax_form.js') !!}
+
 @endsection

@@ -20,14 +20,17 @@ div#contenedor{
 	margin:0px;
 	width: 200px;
 	height: 200px;
+	/* border: 3px solid blue; */
 	
 }
 div#divtexto{
 	position: absolute;
 	bottom: 10px;
-    right: 25px;
+    right: 10px;
     min-width:35px;
     height: 25px;
+	/* border: 3px solid blue; */
+
 }
 
 img#btnCancelar{
@@ -152,7 +155,7 @@ input#ci, input#password{
 	border:3px solid #E74C3C;
 }*/
 
-.errorLogin span h6{
+.errorLogin h6{
 	color: #E74C3C;
 }
 div.siError{
@@ -160,6 +163,12 @@ div.siError{
 }
 div.siError input{
 	border-bottom: 2px solid #E74C3C;
+	/* background-color: #FADBD8; */
+    border-radius: 8px;
+	
+}
+div.noError input{
+	border-bottom: 2px solid #4CAF50;
 	/* background-color: #FADBD8; */
     border-radius: 8px;
 	

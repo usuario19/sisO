@@ -176,35 +176,71 @@ class JugadorController extends Controller
     }
 
 
-    public function viewImportExcel()
+    public function viewImportExcel($id)
     {
-        return view('jugador.importar_excel');
+        return view('jugador.importar_excel')->with('id',$id);
     }
 
 
     public function importExcel(Request $request)
     {
+        $errores=[];
         
         Excel::load($request->file_excel, function($reader) {
  
         $results = $reader->get();
         // iteracción
         $results->each(function($row) {
+            
+            if(Jugador::where('ci_jugador',$row->ci)->exists())
+            {
+                //dd(Jugador::where('ci_jugador',$row->ci)->exists());
+                $errores = [$row->ci=>"El usuario". $row->nombre." ".$row->apellido."no se pudo registrar.",];
                 
-            $jugador = new Jugador;
-            $jugador->ci_jugador = $row->ci;
-            $jugador->nombre_jugador = $row->nombre;
-            $jugador->apellidos_jugador = $row->apellido;
-            $jugador->genero_jugador = $row->genero;
-            $jugador->fecha_nac_jugador =$row->fecha_de_nacimiento;
-            $jugador->email_jugador = $row->email;
-            $jugador->descripcion_jugador = $row->descripcion;
-            $jugador->save();
+            }
+            else{
+
+                $jugador = new Jugador;
+                $jugador->ci_jugador = $row->ci;
+                $jugador->nombre_jugador = $row->nombre;
+                $jugador->apellidos_jugador = $row->apellido;
+                $jugador->genero_jugador = $row->genero;
+                $jugador->fecha_nac_jugador =$row->fecha_de_nacimiento;
+                $jugador->email_jugador = $row->email;
+                $jugador->descripcion_jugador = $row->descripcion;
+                $jugador->save();
+                //echo "registrado";
+            }
+
+           /* if(Auth::User()->tipo == 'Coordinador')
+            {
+                $ci_jugador = $row->ci;
+                $id_club = $request->id_club;
+
+                $jugador = Jugador::where('ci_jugador',$ci_jugador)->get();
+                
+                $id_jugador = $jugador[0]->id_jugador;
+                //dd($id_jugador);
+                $Jugador_Club = new Jugador_Club;
+                $Jugador_Club->id_club = $id_club;
+                $Jugador_Club->id_jugador = $id_jugador;
+                $Jugador_Club->save();
+
+            //return redirect()->route('coordinador.mostrarJugadores');
+            return redirect()->back();
+
+            }else{
+            
+                return redirect()->route('jugador.index');
+            }*/
+                
 
         });
 
      
     });
+
+       return redirect()->route('jugador.index')->with('errores',$errores);
 
     }
 }

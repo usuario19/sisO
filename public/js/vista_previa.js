@@ -1,6 +1,7 @@
 (function(){
     window.addEventListener('load', inicializarElementos, false);
     var imgO = document.getElementById("imgOrigen").src;
+    //var tipos = ["image/png","image/jpeg", "image/jpg", "image/bmp"];
     
  
     function inicializarElementos(){
@@ -60,19 +61,27 @@
           /*document.getElementById("imgParcial").src = archivo.result;
           document.getElementById("imgParcial").setAttribute("class","rounded mx-auto d-block float-left");*/
           document.getElementById("imgOrigen").src = archivo.result;
-
         }
 
-        if(document.getElementById("input").files[0]){
-
-          archivo.readAsDataURL(document.getElementById("input").files[0]);
-
-          document.getElementById("btnCancelar").setAttribute("class","uploader vista");
+        if(document.getElementById("input").files[0])
+        {
+          //VALIDACION
+          var tipo = document.getElementById("input").files[0].type;
+          if(tipo == "image/png"|| tipo =="image/jpeg" || tipo == "image/jpg" || tipo == "image/bmp")
+          {
+            archivo.readAsDataURL(document.getElementById("input").files[0]);
+            document.getElementById("btnCancelar").setAttribute("class","uploader vista");
+            document.getElementById("error_foto").innerHTML ="";
+          }else {
+            document.getElementById("imgOrigen").src = imgO;
+            document.getElementById("error_foto").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg,png."
+          }
           //document.getElementById("imgOrigen").setAttribute("class","noVista");
           //document.getElementById("texto").setAttribute("class","noVista");
           
-        }else {
-          console.log(imgO)
+        }else{
+          //console.log(imgO);
+          console.log(document.getElementById("input").value);
           document.getElementById("imgOrigen").src = imgO;
           document.getElementById("input").value = "";
          /* document.getElementById("imgOrigen").setAttribute("class","rounded mx-auto d-block float-left");

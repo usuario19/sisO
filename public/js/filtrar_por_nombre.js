@@ -18,25 +18,30 @@
 				tr[i].style.display = 'table-row';
 
 
-				console.log('null');
+				//console.log('null');
 			}
 
 		}else {
 			for (var i = tr.length - 1; i >= 0; i--) {
 			var tri = tr[i].children;
 			var td = tr[i].children;
+			var str = texto_buscar.value;
+			var str2 = String(td[3].innerHTML);
+
 
 			//console.log(td[3].innerHTML);
-			console.log('--------------------')
-			console.log(String(td[3].innerHTML).indexOf(texto_buscar.value));
-			console.log(String(td[3].innerHTML));
+			//console.log(str.toLowerCase());
+			//console.log(str2.toLowerCase());
+			//console.log('--------------------')
+			//console.log(String(td[3].innerHTML).indexOf(texto_buscar.value));
+			//console.log(String(td[3].innerHTML));
 
 
-				if(String(td[3].innerHTML).indexOf(texto_buscar.value) == -1){ //si no es encontrado
+				if((str2.toLowerCase()).indexOf(str.toLowerCase()) == -1){ //si no es encontrado
 					//tr[i].style.visibility = 'hidden';
 					tr[i].style.display = 'none';
 
-					console.log('entro');
+					//console.log('entro');
 				}
 				else{//si es encontrado
 					//tr[i].style.visibility = 'visible';

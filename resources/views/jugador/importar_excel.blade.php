@@ -24,6 +24,12 @@
 		<div class="form-row">
 			<div class="form-group">
 				<div>
+					{!! Form::label('id_club', 'id club:', []) !!}
+					{!! Form::text('id_club',$id, ['class'=>'form-control']) !!}
+				</div>
+			</div>
+			<div class="form-group">
+				<div>
 					{!! Form::label('file_excel', 'Archivo Excel:', []) !!}
 					{!! Form::file('file_excel', ['class'=>'form-control']) !!}
 				</div>

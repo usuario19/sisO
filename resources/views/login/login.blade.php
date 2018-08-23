@@ -17,27 +17,25 @@
 			<div class="form-group col-md-6 {{ $errors->has('email') ? 'siError':'' }} ">
 				{!! Form::label('ci', 'Usuario', []) !!}
 		      	{!! Form::text('ci', null , ['class' =>'form-control', 'placeholder'=>'Login', 'id'=>'ci']) !!}
+			     <div class="form-group errorLogin">
+			    	<h6 id="error_ci">{{ $errors->has('email') ? $errors->first('email'):'' }}</h6></span>
+			    </div>
 		  
 		    </div>
-		</div>
-		<div class="form-row">
-		    <div class="form-group col-md-6 errorLogin">
-		    	<span><h6>{{ $errors->has('email') ? $errors->first('email'):'' }}</h6></span>
-		    </div>
+		
+		    
 	 	</div>
 
  		<div class="form-row">
  			<div class="form-group col-md-6 {{ $errors->has('email') ? 'siError':'' }}">
  				{!! Form::label('password', 'Passsword', []) !!}
  				{!! Form::password('password', ['class' =>'form-control', 'id'=>'password']) !!}
- 				
+ 				<div class="form-group errorLogin">
+			    	<h6 id="error_password">{{ $errors->has('email') ? $errors->first('password'):'' }}</h6></span>
+			    </div>
  			</div>
- 		</div>
-
- 		<div class="form-row">
-		    <div class="form-group col-md-6 errorLogin">
-		    	<span><h6>{{ $errors->has('email') ? $errors->first('password'):'' }}</h6></span>
-		    </div>
+ 		
+		    
 	 	</div>
 
 		<div class="form-row">

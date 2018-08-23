@@ -66,7 +66,7 @@ class LoginController extends Controller
             //return Redirect::to('login');
             //dd($errores);
             //return back()->withInput()->with('errores', $errores);
-            return back()->withInput()->withErrors([
+            return back()->withErrors([
                 'email'=>'Ingrese el nombre de Usuario correcto',
                 'password'=> 'Ingrese la Contraseña correcta',
             ]);

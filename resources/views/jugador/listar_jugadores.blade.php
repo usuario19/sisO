@@ -6,6 +6,7 @@
 
 @section('content')
 <h1>Lista de Jugadores:</h1>
+{{ $errores->has() ? dd($errores):'' }}
 	<table class="table table-condensed">
   		<thead>
   			<th width="50px">ID</th>

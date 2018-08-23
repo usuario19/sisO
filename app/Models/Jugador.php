@@ -42,6 +42,17 @@ class Jugador extends Model
     public function club (){
         return $this->belongsTo('App\Models\Club');
     } 
+    public function setNombreJugadorAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['nombre_jugador']= ucwords(strtolower($value));
+    }
+    
+    public function setApellidosJugadorAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['apellidos_jugador']= ucwords(strtolower($value));
+    }
     //ALMACENAR FOTO EN LA CARPETA
     public function setFotoJugadorAttribute($value)
     {

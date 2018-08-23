@@ -45,6 +45,17 @@ class Administrador extends Authenticatable
         if($value !== null)
             $this->attributes['password'] = bcrypt($value);
     }
+    public function setNombreAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['nombre']= ucwords(strtolower($value));
+    }
+    
+    public function setApellidosAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['apellidos']= ucwords(strtolower($value));
+    }
     //ALMACENAR LA IMAGEN EN LA CARPETA
     public function setFotoAdminAttribute($value)
     {

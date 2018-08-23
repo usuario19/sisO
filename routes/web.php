@@ -402,7 +402,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=>'SeleccionController@ver_seleccion',
 				'as'=>'seleccion.ver_seleccion']);
 
-	Route::get('jugadores/importExcel',[
+	Route::get('jugadores/importExcel/{id_club}',[
 				'uses'=>'JugadorController@viewImportExcel',
 				'as'=>'jugador.VImportExcel']);
 

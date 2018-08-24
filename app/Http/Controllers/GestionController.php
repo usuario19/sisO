@@ -48,9 +48,15 @@ class GestionController extends Controller
     }
 
     public function show($id){
-        //$gestion = Gestion::where('id_gestion','=',$id)->get();
+        $gestiones = Gestion::all();
+        //$gestiones2 = array();
+        //foreach ($gestiones2 as $gestion) {
+          //  $gestiones[$id_gestion] = $gestion->nombre_gestion;
+        //return dd($gestion);
+        //}
+        //return dd($gestiones);
         $gestion = Gestion::find($id);
-        return view('plantillas.menus.menu_gestion')->with('gestion',$gestion);
+        return view('plantillas.menus.menu_gestion')->with('gestion',$gestion)->with('gestiones',$gestiones);
     }
     
     public function mostrarGestion(){
@@ -58,6 +64,11 @@ class GestionController extends Controller
         return view('admin.listar_gestion')->with('gestiones',$gestiones);
     }
     public function configurar($id_gestion){
+        $gestiones2 = Gestion::select('nombre_gestion')->get();
+        $gestiones = array();
+        foreach ($gestiones2 as $gestion) {
+            $gestiones[] = $gestion->nombre_gestion;
+        }
         $gestion = Gestion::find($id_gestion);
         $disciplinasInscrito = DB::table('gestiones')
             ->join('participaciones','gestiones.id_gestion','=','participaciones.id_gestion')
@@ -73,7 +84,7 @@ class GestionController extends Controller
             ->get();
         //$disciplinas = Disciplina::get();
         //return dd($disciplinasInscrito );
-        return view('gestiones.configurar_gestion')->with('gestion',$gestion)->with('disciplinasInscrito',$disciplinasInscrito)->with('disciplinasNoInscrito',$disciplinasNoInscrito);
+        return view('gestiones.configurar_gestion')->with('gestion',$gestion)->with('disciplinasInscrito',$disciplinasInscrito)->with('disciplinasNoInscrito',$disciplinasNoInscrito)->with('gestiones',$gestiones);
     }
 
     public function edit($id){

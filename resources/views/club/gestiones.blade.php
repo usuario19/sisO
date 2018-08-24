@@ -1,4 +1,3 @@
-
 @extends('plantillas.main')
 @section('title')
     SisO - Lista de Clubs

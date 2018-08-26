@@ -96,6 +96,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'AdministradorController@destroy',
 				'as' => 'administrador.destroy']);
 
+	Route::post('administrador/validarCI',[ 
+				'uses'=> 'AdministradorController@validarCI',
+				'as' => 'administrador.validar']);
+
 	//DISCIPLINA
 
 	//Route::resource('disciplina','DisciplinaController');

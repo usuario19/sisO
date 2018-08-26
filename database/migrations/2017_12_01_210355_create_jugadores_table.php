@@ -21,8 +21,8 @@ class CreateJugadoresTable extends Migration
             $table->string('genero_jugador');
             $table->date('fecha_nac_jugador');
             $table->string('foto_jugador')->default("usuario-sin-foto.png");
-            $table->string('email_jugador',100)->unique();
-            $table->text('descripcion_jugador');
+            $table->string('email_jugador',100);
+            $table->text('descripcion_jugador')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

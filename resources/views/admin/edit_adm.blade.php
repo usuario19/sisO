@@ -50,5 +50,5 @@
 
 @endsection
 @section('scripts')
-  {!! Html::script('/js/script.js') !!}
+  {!! Html::script('/js/validaciones.js') !!}
 @endsection

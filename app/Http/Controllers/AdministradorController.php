@@ -145,4 +145,11 @@ class AdministradorController extends Controller
         $usuario->delete();
         return redirect()->route('administrador.index');
     }
+    
+    public function validarCI(Request $request){
+        if(Administrador::where('ci',$request->ci)->exists())
+            echo "true";
+        else
+            echo "false";
+    }
 }

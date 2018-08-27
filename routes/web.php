@@ -194,6 +194,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@eliminar_disciplina',
 	    'as'=> 'gestion.eliminar_disciplina'
 	]);
+	Route::get('gestion/{id_gestion}/listar_clubs',[
+	    'uses'=> 'GestionController@listar_clubs',
+	    'as'=> 'gestion.listar_clubs'
+	]);
 	
 
 	//JUGADOR_INSCRIPCION
@@ -360,6 +364,10 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('club/{id}/inscrito',[
 		'uses'=>'ClubController@inscrito',
 		'as'=>'club.inscrito'
+	]);
+	Route::get('club/{id_gestion}/{id_club}/listar_jugadores',[
+		'uses'=>'ClubController@listar_jugadores',
+		'as'=>'club.listar_jugadores'
 	]);
 
 	Route::get('jugador',[ 

@@ -28,6 +28,7 @@
               <td>{{ $club->nombre_club}}</td>
               <td>{{ $club->descripcion_club}}</td>
               <td><a href="{{ route('club.desinscribir',[$club->id_club,$gestion->id_gestion]) }}" class="btn btn-danger">Retirar</a></td>
+            </tr>
           @endforeach
         </tbody>
   </table>

@@ -10,10 +10,11 @@
 
 @section('content')
 <div class="form-row">
-  <div class="form-group col-md-12 form-inline">
-    <a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">{{ $disciplina->nombre_disc }}/</a>
-      <a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">{{ $fase->nombre_fase }}/</a>                       
-      <a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">{{ $grupo->nombre_grupo }}/</a>
+  <div class="form-group col-md-12 form-inline" style="background-color: #cccccc">
+    <h5>{{ $disciplina->nombre_disc }}/</h5>
+      <a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}"><h5>Fases/</h5></a>                       
+      <a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}"><h5>Grupos/</h5></a>
+      <h5>{{ $grupo->nombre_grupo }}</h5>
   </div> 
 </div>
 <h4>Lista de Clubs:</h4>

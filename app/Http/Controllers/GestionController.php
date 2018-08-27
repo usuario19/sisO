@@ -59,10 +59,12 @@ class GestionController extends Controller
         return view('plantillas.menus.menu_gestion')->with('gestion',$gestion)->with('gestiones',$gestiones);
     }
     
-    public function mostrarGestion(){
+    /**public function mostrarGestion(){
         $gestiones = DB::table('gestiones')->get();
-        return view('admin.listar_gestion')->with('gestiones',$gestiones);
-    }
+        $disciplina = DB::table('disciplinas')->get();
+        
+        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplina', $disciplina);
+    }*/
     public function configurar($id_gestion){
         $gestiones2 = Gestion::select('nombre_gestion')->get();
         $gestiones = array();
@@ -182,5 +184,19 @@ class GestionController extends Controller
                     ->delete();
         //return dd($id_participacion);
         return redirect()->back();
-     }
+    }
+    public function listar_clubs($id_gestion){
+        //clubs inscritos en una determinada gestion
+        $clubs_inscritos = DB::table('clubs')
+                        ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
+                        ->join('inscripciones','adminClubs.id_adminClub','=','inscripciones.id_adminClub')
+                        ->join('gestiones','inscripciones.id_gestion','=','gestiones.id_gestion')
+                        ->where('gestiones.id_gestion',$id_gestion)
+                        ->select('clubs.*','gestiones.nombre_gestion')
+                        ->get();
+       
+        $gestion = Gestion::find($id_gestion);
+
+        return view('gestiones.listar_clubs_inscritos')->with('clubs_inscritos',$clubs_inscritos)->with('gestion',$gestion);
+    }
 }

@@ -12,8 +12,7 @@
 @include('fases.modal_reg_fase')
 <div class="form-row">
   <div class="form-group col-md-12 form-inline">
-    
-    <a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">{{ $disciplina->nombre_disc }}/</a>
+    <h5>{{ $disciplina->nombre_disc }}</h5> 
   </div> 
 </div>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFase">Agregar</button>

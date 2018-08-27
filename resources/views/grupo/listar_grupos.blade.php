@@ -10,9 +10,10 @@
 
 @section('content')
 <div class="form-row">
-  <div class="form-group col-md-12 form-inline">    
-      <a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">{{ $disciplina->nombre_disc }}/</a>
-      <a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">{{ $fase->nombre_fase }}/</a>
+  <div class="form-group col-md-12 form-inline">
+      <h5>{{ $disciplina->nombre_disc }}/</h5>
+      <a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}"><h5>Fases/</h5></a>
+      <h5>{{ $fase->nombre_fase }}</h5>
   </div> 
 </div>
 <a href="{{ route('grupo.create2',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-primary">Agregar Grupo</a>

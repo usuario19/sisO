@@ -27,6 +27,7 @@
 			var td = tr[i].children;
 			var str = texto_buscar.value;
 			var str2 = String(td[3].innerHTML);
+			var str3 = String(td[2].innerHTML);
 
 
 			//console.log(td[3].innerHTML);
@@ -37,7 +38,7 @@
 			//console.log(String(td[3].innerHTML));
 
 
-				if((str2.toLowerCase()).indexOf(str.toLowerCase()) == -1){ //si no es encontrado
+				if((str2.toLowerCase()).indexOf(str.toLowerCase()) == -1 && (str3.toLowerCase()).indexOf(str.toLowerCase()) == -1){ //si no es encontrado
 					//tr[i].style.visibility = 'hidden';
 					tr[i].style.display = 'none';
 

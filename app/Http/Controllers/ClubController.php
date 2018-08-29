@@ -7,6 +7,7 @@ use App\Models\Administrador;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
 use App\Models\Jugador_Club;
+use App\Models\Jugador;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
@@ -274,7 +275,11 @@ class ClubController extends Controller
     }
     public function listar_jugadores($id_gestion,$id_club){
         $gestion = Gestion::find($id_gestion);
-        $jugadores = Jugador_Club::where('id_club','=',$id_club)->get();
+        //$jugadores = Jugador_Club::where('id_club','=',$id_club)->get();
+        $jugadores = DB::table('jugadores')
+                ->join('jugador_clubs','jugadores.id_jugador','=','jugador_clubs.id_jugador')
+                ->where('jugador_clubs.id_club','=',$id_club)
+                ->paginate(15);
         return view('club.listar_jugadores')->with('jugadores',$jugadores)->with('gestion',$gestion);
     }
 }

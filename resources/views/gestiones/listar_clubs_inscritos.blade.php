@@ -39,7 +39,7 @@
         </thead>
         <tbody>
           @foreach($clubs_inscritos as $club)
-          <tr id="fila.{{ $gestion->id_gestion }}" onMouseOver="ResaltarFila('fila.{{ $gestion->id_gestion }}');" onMouseOut="RestablecerFila('fila.{{ $gestion->id_gestion}}')" onClick="CrearEnlace('{{ route('club.listar_jugadores',[$gestion->id_gestion,$club->id_club]) }}');">
+          <tr id="fila.{{ $club->id_club }}" onMouseOver="ResaltarFila('fila.{{ $club->id_club }}');" onMouseOut="RestablecerFila('fila.{{ $club->id_club}}')" onClick="CrearEnlace('{{ route('club.listar_jugadores',[$gestion->id_gestion,$club->id_club]) }}');">
             
               <td>{{ $club->id_club}}</td>
               <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 100px" width="100px"></td>
@@ -53,5 +53,5 @@
     
   </div>
 </div>
-  
+
 @endsection

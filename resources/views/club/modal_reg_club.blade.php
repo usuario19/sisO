@@ -76,6 +76,3 @@
                 </div>
           </div>
       </div>
-@section('scripts')
-  {!! Html::script('/js/script.js') !!}
-@endsection

@@ -75,6 +75,4 @@
                       </div>                      
                 </div>
           </div>
-            @section('scripts')
-  {!! Html::script('/js/vista_previa.js') !!}
-@endsection
+            

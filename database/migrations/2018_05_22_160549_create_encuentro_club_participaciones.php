@@ -10,9 +10,9 @@ class CreateEncuentroClubParticipaciones extends Migration
     {
         Schema::create('encuentro_club_participaciones', function (Blueprint $table) {
             $table->increments('id_encuentro_club_part');
-            $table->integer('puntos');
-            $table->text('observacion');
-            $table->string('resultado');
+            $table->integer('puntos')->nullable();
+            $table->text('observacion')->nullable();
+            $table->string('resultado')->nullable();
 
             $table->integer('id_encuentro')->unsigned();
             $table->foreign('id_encuentro')->references('id_encuentro')->on('encuentros')->onDelete('cascade');

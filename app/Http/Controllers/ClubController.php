@@ -28,7 +28,7 @@ class ClubController extends Controller
         ->join('clubs','adminclubs.id_club','=','clubs.id_club')
         
         ->select('clubs.*','administradores.nombre','administradores.apellidos')
-        ->get();
+        ->paginate(15);
 
         $gestiones = DB::table('gestiones')
                     ->join('inscripciones','gestiones.id_gestion','=','inscripciones.id_gestion')

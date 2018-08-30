@@ -199,4 +199,28 @@ class GestionController extends Controller
 
         return view('gestiones.listar_clubs_inscritos')->with('clubs_inscritos',$clubs_inscritos)->with('gestion',$gestion);
     }
+    public function clasificacion($id_gestion){
+        $disciplinas = DB::table('disciplinas')
+                    ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
+                    ->where('participaciones.id_gestion',$id_gestion)
+                    ->get();
+        //$disciplinas = Disciplina::all();
+        $gestion = Gestion::find($id_gestion);
+        //return dd($disciplinas);
+        
+        $inscritos = DB::table('disciplinas')
+                    ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
+                    ->where('participaciones.id_gestion',$id_gestion)
+                    ->select('disciplinas.id_disc')
+                        ->get()->toArray();
+        $lista = array();
+                        foreach ($inscritos as $inscrito) {
+                            $lista[] = $inscrito->id_disc;
+                        }
+        $disciplinasDisponibles = DB::table('disciplinas')
+                        ->whereNotIn('disciplinas.id_disc',$lista)
+                        ->select('disciplinas.*')
+                        ->get();
+        return view('gestiones.clasificacion')->with('disciplinas',$disciplinas)->with('gestion',$gestion)->with('disciplinasDisponibles',$disciplinasDisponibles);
+    }
 }

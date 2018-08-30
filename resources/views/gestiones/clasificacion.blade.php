@@ -12,7 +12,7 @@
 
 <h4>Diciplinas participantes</h4>
 
-	 <table class="table table-condensed">
+   <table class="table table-condensed">
     @include('admin.modal_registrar_disciplinas')
       <thead>
         <th width="50px">ID</th>

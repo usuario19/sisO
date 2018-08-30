@@ -198,6 +198,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@listar_clubs',
 	    'as'=> 'gestion.listar_clubs'
 	]);
+	Route::get('gestion/{id_gestion}/clasificacion',[
+	    'uses'=> 'GestionController@clasificacion',
+	    'as'=> 'gestion.clasificacion'
+	]);
 	
 
 	//JUGADOR_INSCRIPCION

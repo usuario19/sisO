@@ -18,7 +18,7 @@
   <a class="nav-item nav-link text-white" href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">Disciplinas</a>
   <a class="nav-item nav-link text-white" href="{{ route('gestion.clubs',$gestion->id_gestion) }}">Inscripcion</a>
   <a class="nav-item nav-link text-white" href="{{ route('gestion.listar_clubs',$gestion->id_gestion) }}">Clubs</a>
-  <a class="nav-item nav-link text-white" href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">Clasificacion y Calendario</a>
+  <a class="nav-item nav-link text-white" href="{{ route('gestion.clasificacion',$gestion->id_gestion) }}">Clasificacion y Calendario</a>
 </nav>
     
  

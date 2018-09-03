@@ -43,9 +43,22 @@
 							<br>
 							<div class="card">
 								<div class="card-body">
-									@foreach ($disciplina as $valor)
-										{!! Form::checkbox('id_disciplinas[]',$valor->id_disc, false, []) !!}
-										{!! Form::label('disciplina',$valor->nombre_disc." ".$valor->categoria, []) !!}
+									@foreach ($disciplinas as $disciplina)
+										{!! Form::checkbox('id_disciplinas[]',$disciplina->id_disc, false, []) !!}
+										@switch($disciplina->categoria)
+										    @case(0)
+										        {!! Form::label('disciplina',$disciplina->nombre_disc." mixto", []) !!}
+										        @break
+										
+										    @case(1)
+										        {!! Form::label('disciplina',$disciplina->nombre_disc." damas", []) !!}
+										        @break
+										    @case(2)
+										        {!! Form::label('disciplina',$disciplina->nombre_disc." varones", []) !!}
+										    @break
+										@endswitch
+										
+										
 										<br>
 									@endforeach
 								</div>

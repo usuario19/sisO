@@ -12,18 +12,35 @@ class GestionController extends Controller
 {
     public function index(){
         $gestiones = DB::table('gestiones')->get();
-        $disciplina = DB::table('disciplinas')->get();
-        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplina', $disciplina);
+        $disciplinas = DB::table('disciplinas')->get();
+
+        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplinas', $disciplinas);
     }
     public function create(){
         $disciplina = DB::table('disciplinas')->get();
-        if (empty($disciplina)) {
-            Alert::warning('Primero debe crear disciplinas','');
-            return redirect()->route('disciplina.create');
+            
+
+        $disciplinas2 = DB::table('disciplinas')
+                    ->get()->toArray();
+       
+        $disciplinas = array();
+        foreach ($disciplinas2 as $disciplina) {
+            $categoria = "";
+            switch ($disciplina->categoria) {
+                case '0':
+                    $categoria = "mixto";
+                    break;
+                case '1':
+                    $categoria = "damas";
+                    break;
+                case '2':
+                    $categoria = "varones";
+                    break;
+            }
+            $disciplinas[$disciplina->id_disc] = $disciplina->nombre_disc." ".$categoria;
         }
-        else{
-            return view('admin.reg_gest')->with('disciplina', $disciplina);
-        }
+        return dd($disciplinas);
+        //return view('admin.reg_gest')->with('disciplinas', $disciplinas);
     }
     public function store(Request $request){
         $gestion = new Gestion;
@@ -200,14 +217,30 @@ class GestionController extends Controller
         return view('gestiones.listar_clubs_inscritos')->with('clubs_inscritos',$clubs_inscritos)->with('gestion',$gestion);
     }
     public function clasificacion($id_gestion){
-        $disciplinas = DB::table('disciplinas')
+        $disciplinas2 = DB::table('disciplinas')
                     ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
                     ->where('participaciones.id_gestion',$id_gestion)
-                    ->get();
-        //$disciplinas = Disciplina::all();
-        $gestion = Gestion::find($id_gestion);
+                    ->get()->toArray();
+        //$disciplinas = array_pluck($disciplinas2, 'disciplinas2.nombre_disc');
+        $disciplinas = array();
+        foreach ($disciplinas2 as $disciplina) {
+            $categoria = "";
+            switch ($disciplina->categoria) {
+                case '0':
+                    $categoria = "mixto";
+                    break;
+                case '1':
+                    $categoria = "damas";
+                    break;
+                case '2':
+                    $categoria = "varones";
+                    break;
+            }
+            $disciplinas[$disciplina->id_disc] = $disciplina->nombre_disc." ".$categoria;
+        }
         //return dd($disciplinas);
-        
+        $gestion = Gestion::find($id_gestion);
+
         $inscritos = DB::table('disciplinas')
                     ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
                     ->where('participaciones.id_gestion',$id_gestion)

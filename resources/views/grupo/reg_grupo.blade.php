@@ -17,7 +17,7 @@ SisO:Crear Grupo
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			{!! Form::label('grupos', 'Cantidad de grupos', []) !!}
-			{!! Form::select('cant_grupos', ['1'=> '1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','15'=>'15','20'=>'20'], null ,['id'=>'cant_grupos','class'=>'form-control']) !!}
+			{!! Form::select('cant_grupos', ['1'=> '1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','10'=>'10','15'=>'15','20'=>'20'], null ,['placeholder'=>'seleccione','id'=>'cant_grupos','class'=>'form-control']) !!}
 		</div>
 	</div>
 	<div style="display: none">
@@ -26,7 +26,7 @@ SisO:Crear Grupo
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			{!! Form::submit('Crear Grupos', ['class'=>'btn btn-primary']) !!}
+			{!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
 		</div>
 	</div>
 	{!! Form::close() !!}

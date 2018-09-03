@@ -222,7 +222,7 @@ class GestionController extends Controller
                     ->where('participaciones.id_gestion',$id_gestion)
                     ->get()->toArray();
         //$disciplinas = array_pluck($disciplinas2, 'disciplinas2.nombre_disc');
-        $disciplinas = array();
+        $disciplinas3 = array();
         foreach ($disciplinas2 as $disciplina) {
             $categoria = "";
             switch ($disciplina->categoria) {
@@ -236,7 +236,7 @@ class GestionController extends Controller
                     $categoria = "varones";
                     break;
             }
-            $disciplinas[$disciplina->id_disc] = $disciplina->nombre_disc." ".$categoria;
+            $disciplinas3[$disciplina->id_disc] = $disciplina->nombre_disc." ".$categoria;
         }
         //return dd($disciplinas);
         $gestion = Gestion::find($id_gestion);
@@ -254,6 +254,10 @@ class GestionController extends Controller
                         ->whereNotIn('disciplinas.id_disc',$lista)
                         ->select('disciplinas.*')
                         ->get();
+        $disciplinas = DB::table('disciplinas')
+                    ->join('participaciones','disciplinas.id_disc','=','participaciones.id_disciplina')
+                    ->where('participaciones.id_gestion',$id_gestion)
+                    ->get();
         return view('gestiones.clasificacion')->with('disciplinas',$disciplinas)->with('gestion',$gestion)->with('disciplinasDisponibles',$disciplinasDisponibles);
     }
 }

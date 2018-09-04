@@ -21,6 +21,7 @@
         "maatwebsite/excel": "^2.1",
         "vue": "^2.5.7"
     },
-    "dependencies": {}
-
+    "dependencies": {
+        "sweetalert2": "^7.26.14"
+    }
 }

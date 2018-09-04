@@ -10,6 +10,7 @@
 	{!! Html::style('/css/bootstrap.min.css') !!}
   {!! Html::style('/css/mis_estilos.css') !!}
 
+
 </head>
 <body>
 {{-- 
@@ -44,9 +45,10 @@
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}
-   {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
+   {!! Html::script('sweetalert2/dist/sweetalert2.all.min.js') !!}
+
+
      @yield('scripts')
-   @include('sweetalert::alert')
       </div>
  </div>
 {{-- =======

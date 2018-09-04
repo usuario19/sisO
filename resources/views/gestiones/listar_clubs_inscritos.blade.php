@@ -8,6 +8,10 @@
 @include('plantillas.menus.menu_gestion')
 @endsection
 
+@include('sweetalert::cdn')        
+@include('sweetalert::view')
+@include('sweetalert::validator')
+
 <script language="javascript" type="text/javascript">
     // RESALTAR LAS FILAS AL PASAR EL MOUSE
     function ResaltarFila(id_fila) {

@@ -8,13 +8,14 @@ use App\Models\Club_Participacion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
+use Softon\SweetAlert\Facades\SWAL; 
 
 class DisciplinaController extends Controller
 {
     public function index()
     {
         $disciplinas = DB::table('disciplinas')->get();
-        
+        SWAL::message('Good Job','You have successfully logged In!','info');  
         return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
     }
 
@@ -29,7 +30,9 @@ class DisciplinaController extends Controller
         //
         $datos = new Disciplina($request->all());
         $datos->save();
+
         return redirect()->route('disciplina.index');
+
     }
 
     public function show($id)
@@ -146,6 +149,7 @@ class DisciplinaController extends Controller
 
     public function destroy($id)
     {
+         
         $foto_antiguo = DB::table('disciplinas')
                             ->where('id_disc',$id)
                             ->select('foto_disc')
@@ -165,7 +169,10 @@ class DisciplinaController extends Controller
                 Storage::disk('archivos')->delete($reglamento_disc->reglamento_disc);    
         }
         DB::table('disciplinas')->where('id_disc', '=',$id)->delete();
-        return redirect()->route('disciplina.index'); 
+
+        //swal.clickConfirm();
+        SWAL::message('Good Job','You have successfully logged In!','info');
+        //return redirect()->route('disciplina.index'); 
     }
    
 

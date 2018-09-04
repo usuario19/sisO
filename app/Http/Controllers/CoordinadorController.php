@@ -234,8 +234,9 @@ class CoordinadorController extends Controller
             ->orderBy('jugadores.ci_jugador')
             ->get();
         }
+        //echo "hola";
 
-        //return view('coordinador.todo_jugadores')->with('usuarios', $usuarios)->with('clubs', $clubs);
+        //return view('coordinador.plantilla.tabla_jugadores')->with('usuarios');
        
         //dd($usuarios);
        //dd($club, $genero);
@@ -284,6 +285,6 @@ class CoordinadorController extends Controller
 
         }
         echo $datos;
-    }
+   }
    
 }

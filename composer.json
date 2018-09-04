@@ -15,6 +15,7 @@
         "laravelcollective/html": "^5.4.0",
         "maatwebsite/excel": "^2.1",
         "realrashid/sweet-alert": "^1.1",
+        "softon/sweetalert": "^1.0",
         "uxweb/sweet-alert": "^1.4"
     },
     "require-dev": {

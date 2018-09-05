@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <script language="javascript" type="text/javascript">
     // RESALTAR LAS FILAS AL PASAR EL MOUSE
     function ResaltarFila(id_fila) {
@@ -23,6 +24,7 @@
 </script>
 
 @include('gestiones.modal_registrar_gestion')
+
 <h4>Lista de Campeonatos:</h4>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGestion">Agregar</button>
 	<table class="table table-condensed">
@@ -46,9 +48,13 @@
             <td>{{ $gestion->fecha_fin}}</td>
   					<td>{{ $gestion->desc_gest}}</td>
            
-            <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}" class="btn btn-danger">Eliminar</a></td>
+            <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}" class="btn btn-danger" >Eliminar</a></td>
   				</tr>
   			@endforeach
   		</tbody>
 	</table>
+    @include('sweetalert::cdn') 
+ @include('vendor.sweetalert.view') 
 @endsection
+  
+

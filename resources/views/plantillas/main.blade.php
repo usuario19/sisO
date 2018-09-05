@@ -9,7 +9,7 @@
 	<title>@yield('title')</title>
 	{!! Html::style('/css/bootstrap.min.css') !!}
   {!! Html::style('/css/mis_estilos.css') !!}
-
+{{--{!! Html::style('sweetalert/sweetalert2.min.css') !!}}}
 
 </head>
 <body>
@@ -43,13 +43,13 @@
         @yield('gestiones')
         @yield('content')
    {!! Html::script('/js/jquery.js') !!}
-   {!! Html::script('/js/popper.min.js') !!}
+   {{-- {!! Html::script('/js/popper.min.js') !!} --}}
    {!! Html::script('/js/bootstrap.min.js') !!}
-   {!! Html::script('sweetalert2/dist/sweetalert2.all.min.js') !!}
-
+   {{--{!! Html::script('sweetalert/sweetalert2.min.js') !!}}}
 
      @yield('scripts')
       </div>
+
  </div>
 {{-- =======
   @if(Auth::check())
@@ -80,16 +80,16 @@
   {!! Html::script('/js/jquery.js') !!}
   {!! Html::script('/js/popper.min.js') !!}
   {!! Html::script('/js/bootstrap.min.js') !!}
-  {!! Html::script('https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js') !!}
+
     @yield('scripts')
 
  	</div>
 >>>>>>> refs/remotes/origin/master --}}
-
 </body>
 <footer>
   <br><br>
   <div class="container navbar navbar-expand-lg bg-dark navbar-dark">pie de pagina</div>
 </footer>
+
 </html>
 

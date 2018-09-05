@@ -165,8 +165,6 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         //para los mensajes emergentes
         //UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
         
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
@@ -174,9 +172,9 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         //alerts
 
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        
         //alert
-        Softon\SweetAlert\SweetAlertServiceProvider::class,
+        //Softon\SweetAlert\SweetAlertServiceProvider::class,
     ],
 
     /*
@@ -238,7 +236,7 @@ return [
 
         //alerts
         //'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-        'SWAL' => Softon\SweetAlert\Facades\SWAL::class,
+        //'SWAL' => Softon\SweetAlert\Facades\SWAL::class,
 
     ],
 ];

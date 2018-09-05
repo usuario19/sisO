@@ -6,17 +6,19 @@ use App\Models\Disciplina;
 use App\Models\Club;
 use App\Models\Participacion;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
-
+  
 class GestionController extends Controller
 {
     public function index(){
+        
+
         $gestiones = DB::table('gestiones')->get();
         $disciplinas = DB::table('disciplinas')->get();
 
         return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplinas', $disciplinas);
     }
     public function create(){
+        
         $disciplina = DB::table('disciplinas')->get();
             
 
@@ -40,7 +42,7 @@ class GestionController extends Controller
             $disciplinas[$disciplina->id_disc] = $disciplina->nombre_disc." ".$categoria;
         }
         return dd($disciplinas);
-        //return view('admin.reg_gest')->with('disciplinas', $disciplinas);
+        return view('admin.reg_gest')->with('disciplinas', $disciplinas);
     }
     public function store(Request $request){
         $gestion = new Gestion;
@@ -76,12 +78,12 @@ class GestionController extends Controller
         return view('plantillas.menus.menu_gestion')->with('gestion',$gestion)->with('gestiones',$gestiones);
     }
     
-    /**public function mostrarGestion(){
+    public function mostrarGestion(){
         $gestiones = DB::table('gestiones')->get();
-        $disciplina = DB::table('disciplinas')->get();
+        $disciplinas = DB::table('disciplinas')->get();
         
-        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplina', $disciplina);
-    }*/
+        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplinas', $disciplinas);
+    }
     public function configurar($id_gestion){
         $gestiones2 = Gestion::select('nombre_gestion')->get();
         $gestiones = array();
@@ -124,8 +126,12 @@ class GestionController extends Controller
     }
 
     public function destroy($id){
-        DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
-        return redirect()->route('gestion.index'); 
+        
+      
+            return 'eliminado';
+           // DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
+            //return redirect()->route('gestion.index'); 
+
     }
 
     public function clubs($id_gestion){

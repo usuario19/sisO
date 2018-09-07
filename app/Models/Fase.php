@@ -17,5 +17,4 @@ class Fase extends Model
     public function fechas(){
     	return $this->hasMany('App\Models\Fecha');
     }
-
 }

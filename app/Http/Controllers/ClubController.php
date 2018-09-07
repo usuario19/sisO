@@ -13,8 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 class ClubController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         //listar clubs
         $administradores = array();
         $datos = DB::table('administradores')->get();
@@ -112,14 +111,9 @@ class ClubController extends Controller
         $datos2 = DB::table('administradores')->get();
         foreach ($datos2 as $datos) {
             $administradores[$datos->id_administrador] = ($datos->nombre." ".$datos->apellidos);
-        }
-
-        //return dd($datos);
-        //return response()->json($club);
-        
+        }   
         return response()->json($club);
         //return view('club.editar_club')->with('club',$club)->with('administradores',$administradores);
-
     }
     public function update2(Request $request, $id)
     {
@@ -222,32 +216,8 @@ class ClubController extends Controller
     
     //para llenar la tabla inscripcion
     //inscribir un club a una gestion con un coordinador
-    public function inscribir2(request $request){
-        if (empty($request->get('id_gestion'))) {
-            Alert::info('no selecciono ningun campeonato','');
-            return redirect()->route('club.index');
-        }
-        else{
-            $id_administrador = DB::table('clubs')
-                            ->join('adminClubs','clubs.id_club','=','adminClubs.id_club')
-                            ->where('adminClubs.id_club',$request->get('id_club'))
-                            ->where('adminClubs.estado_coordinador',1)
-                            ->select('adminClubs.id_adminClub')
-                            ->get();
-        foreach ($id_administrador as $valor) {
-            $id_adm = $valor->id_adminClub;
-        }
-        $gestiones=$request->get('id_gestion');
-        foreach ( $gestiones as $valor) {
-            $inscrip = new Inscripcion();
-            $inscrip->id_gestion = $valor;
-            $inscrip->id_adminClub =$id_adm;                   
-            $inscrip->save();
-        }
-        return redirect()->route('club.index');
-        }
-    }
-    public function inscribir($id,$id_gestion){
+    
+    /**public function inscribir($id,$id_gestion){
         $id_adminClub = DB::table('adminClubs')
                         ->where('adminClubs.id_club',$id)
                         //->where('adminClubs.id_gestion',$id_gestion)
@@ -259,7 +229,7 @@ class ClubController extends Controller
         $inscrip->id_adminClub = $id_adminClub[0]->{'id_adminClub'};
         $inscrip->save();
         return redirect()->back();
-    }
+    }**/
     public function desinscribir($id,$id_gestion){
         $id_adminClub = DB::table('adminClubs')
                         ->where('adminClubs.id_club',$id)

@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use App\Models\Gestion;
 use App\Models\Disciplina;
 use App\Models\Club;
+use App\Models\Fase;
 use App\Models\Participacion;
+use App\Models\Inscripcion;
 use Illuminate\Support\Facades\DB;
   
 class GestionController extends Controller
@@ -201,6 +203,24 @@ class GestionController extends Controller
         
         return redirect()->back();
     }
+    public function agregar_clubs(Request $request){
+        //return dd($request);
+        $id_gestion = $request->get('id_gestion');
+        $clubs = $request->get('id_club');
+        foreach ($clubs as $club) {
+            $id_adminClub = DB::table('adminClubs')
+                        ->where('adminClubs.id_club',$club)
+                        ->where('adminClubs.estado_coordinador',1)
+                        ->select('adminClubs.id_adminClub')
+                        ->get()->last();
+            $datos = new Inscripcion;
+            $datos->id_gestion = $id_gestion;
+            $datos->id_adminClub = $id_adminClub->id_adminClub;
+            $datos->save();
+        }
+        
+        return redirect()->back();
+    }
      function eliminar_disciplina($id_gestion,$id_disciplina){
         $id_participacion = Participacion::where('id_gestion','=',$id_gestion)
                     ->where('id_disciplina','=',$id_disciplina)
@@ -265,5 +285,21 @@ class GestionController extends Controller
                     ->where('participaciones.id_gestion',$id_gestion)
                     ->get();
         return view('gestiones.clasificacion')->with('disciplinas',$disciplinas)->with('gestion',$gestion)->with('disciplinasDisponibles',$disciplinasDisponibles);
+    }
+    public function resultados($id_gestion){
+        $gestion = Gestion::find($id_gestion);
+        $disciplinas = Disciplina::pluck('nombre_disc','id_disc');
+        return view('gestiones.resultados')->with('gestion',$gestion)->with('disciplinas',$disciplinas);
+    }
+    public function listar_disciplinas_json($id_gestion){
+        $disciplinas = Disciplina::all();
+        return response()->json($disciplinas);
+    }
+    public function listar_fases(Request $request,$id_disc){
+        if (condition) {
+            $fases = Fase::all();
+        return response()->json($fases);
+        }
+        
     }
 }

@@ -186,7 +186,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
-	Route::post('gestion',[
+	Route::post('gestion/agregar_disciplinas',[
 	    'uses'=> 'GestionController@agregar_disciplinas',
 	    'as'=> 'gestion.agregar_disciplinas'
 	]);
@@ -202,7 +202,22 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@clasificacion',
 	    'as'=> 'gestion.clasificacion'
 	]);
-	
+	Route::post('gestion/',[
+	    'uses'=> 'GestionController@agregar_clubs',
+	    'as'=> 'gestion.agregar_clubs'
+	]);
+	Route::get('gestion/{id_gestion}/resultados',[
+	    'uses'=> 'GestionController@resultados',
+	    'as'=> 'gestion.resultados'
+	]);
+	Route::get('gestion/{id}/listar_disciplinas_json',[
+	    'uses'=> 'GestionController@listar_disciplinas_json',
+	    'as'=> 'gestion.listar_disciplinas_json'
+	]);
+	Route::get('gestion/{id_disc}/listar_fases',[
+	    'uses'=> 'GestionController@listar_fases',
+	    'as'=> 'gestion.listar_fases'
+	]);
 
 	//JUGADOR_INSCRIPCION
 	Route::post('registrar',[ 

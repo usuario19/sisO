@@ -9,16 +9,7 @@
 @endsection
 
 @section('content')
-<script>
-    $("#disciplinas").change(event =>{
-        $.get('fases/${event.target.value}',function(res,disc){
-            $("#fases").empty();
-            res.forEach(element =>{
-                $("#fases").append('<option value=${element.id_fase}>${element.name}</option>');
-            });
-        });
-    });
-</script>
+
 <div class="content col-md-6" style="align-content: center;">
   <div class="form-row">
     <div class="form-row col-md-8 form-inline">
@@ -30,4 +21,14 @@
     </div>
   </div>
 </div>
+<script>
+        $("#disciplinas").change(event =>{
+            $.get('fases/${event.target.value}',function(res,disc){
+                $("#fases").empty();
+                res.forEach(element =>{
+                    $("#fases").append('<option value=${element.id_fase}>${element.name}</option>');
+                });
+            });
+        });
+    </script>
 @endsection

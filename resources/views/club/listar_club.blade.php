@@ -83,10 +83,7 @@ var Mostrar = function(id){
 
   {!! Html::script('/js/script.js') !!}
    {!! Html::script('/js/filtrar_por_nombre.js') !!}
-
   {!! Html::script('/js/vista_previa.js') !!}
-
-  {!! Html::script('/js/script.js') !!}
 
 @endsection
 

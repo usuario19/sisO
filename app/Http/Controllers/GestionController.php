@@ -260,4 +260,8 @@ class GestionController extends Controller
                     ->get();
         return view('gestiones.clasificacion')->with('disciplinas',$disciplinas)->with('gestion',$gestion)->with('disciplinasDisponibles',$disciplinasDisponibles);
     }
+    public function resultados($id_gestion){
+        $gestion = Gestion::find($id_gestion);
+        return view('gestiones.resultados')->with('gestion',$gestion);
+    }
 }

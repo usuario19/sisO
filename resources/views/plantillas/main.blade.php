@@ -45,7 +45,7 @@
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}
-   {!! Html::script('sweetalert2/dist/sweetalert2.all.min.js') !!}
+   {{-- {!! Html::script('sweetalert2/dist/sweetalert2.all.min.js') !!}--}}
 
 
      @yield('scripts')

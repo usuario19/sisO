@@ -202,7 +202,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@clasificacion',
 	    'as'=> 'gestion.clasificacion'
 	]);
-	
+	Route::get('gestion/{id_gestion}/resultados',[
+	    'uses'=> 'GestionController@resultados',
+	    'as'=> 'gestion.resultados'	
+	]);
 
 	//JUGADOR_INSCRIPCION
 	Route::post('registrar',[ 

@@ -4,19 +4,23 @@ use Illuminate\Http\Request;
 use App\Models\Gestion;
 use App\Models\Disciplina;
 use App\Models\Club;
+use App\Models\Fase;
 use App\Models\Participacion;
+use App\Models\Inscripcion;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
-
+  
 class GestionController extends Controller
 {
     public function index(){
+        
+
         $gestiones = DB::table('gestiones')->get();
         $disciplinas = DB::table('disciplinas')->get();
 
         return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplinas', $disciplinas);
     }
     public function create(){
+        
         $disciplina = DB::table('disciplinas')->get();
             
 
@@ -40,7 +44,7 @@ class GestionController extends Controller
             $disciplinas[$disciplina->id_disc] = $disciplina->nombre_disc." ".$categoria;
         }
         return dd($disciplinas);
-        //return view('admin.reg_gest')->with('disciplinas', $disciplinas);
+        return view('admin.reg_gest')->with('disciplinas', $disciplinas);
     }
     public function store(Request $request){
         $gestion = new Gestion;
@@ -76,12 +80,12 @@ class GestionController extends Controller
         return view('plantillas.menus.menu_gestion')->with('gestion',$gestion)->with('gestiones',$gestiones);
     }
     
-    /**public function mostrarGestion(){
+    public function mostrarGestion(){
         $gestiones = DB::table('gestiones')->get();
-        $disciplina = DB::table('disciplinas')->get();
+        $disciplinas = DB::table('disciplinas')->get();
         
-        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplina', $disciplina);
-    }*/
+        return view('admin.listar_gestion')->with('gestiones',$gestiones)->with('disciplinas', $disciplinas);
+    }
     public function configurar($id_gestion){
         $gestiones2 = Gestion::select('nombre_gestion')->get();
         $gestiones = array();
@@ -124,8 +128,12 @@ class GestionController extends Controller
     }
 
     public function destroy($id){
-        DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
-        return redirect()->route('gestion.index'); 
+        
+      
+            return 'eliminado';
+           // DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
+            //return redirect()->route('gestion.index'); 
+
     }
 
     public function clubs($id_gestion){
@@ -190,6 +198,24 @@ class GestionController extends Controller
             $datos = new participacion;
             $datos->id_gestion = $id_gestion;
             $datos->id_disciplina = $disc;
+            $datos->save();
+        }
+        
+        return redirect()->back();
+    }
+    public function agregar_clubs(Request $request){
+        //return dd($request);
+        $id_gestion = $request->get('id_gestion');
+        $clubs = $request->get('id_club');
+        foreach ($clubs as $club) {
+            $id_adminClub = DB::table('adminClubs')
+                        ->where('adminClubs.id_club',$club)
+                        ->where('adminClubs.estado_coordinador',1)
+                        ->select('adminClubs.id_adminClub')
+                        ->get()->last();
+            $datos = new Inscripcion;
+            $datos->id_gestion = $id_gestion;
+            $datos->id_adminClub = $id_adminClub->id_adminClub;
             $datos->save();
         }
         
@@ -262,6 +288,18 @@ class GestionController extends Controller
     }
     public function resultados($id_gestion){
         $gestion = Gestion::find($id_gestion);
-        return view('gestiones.resultados')->with('gestion',$gestion);
+
+        $disciplinas = Disciplina::pluck('nombre_disc','id_disc');
+        return view('gestiones.resultados')->with('gestion',$gestion)->with('disciplinas',$disciplinas);
+    }
+    public function listar_disciplinas_json($id_gestion){
+        $disciplinas = Disciplina::all();
+        return response()->json($disciplinas);
+    }
+    public function listar_fases(Request $request,$id_disc){
+        if (condition) {
+            $fases = Fase::all();
+        return response()->json($fases);
+        }
     }
 }

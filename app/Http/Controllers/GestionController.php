@@ -288,6 +288,7 @@ class GestionController extends Controller
     }
     public function resultados($id_gestion){
         $gestion = Gestion::find($id_gestion);
+
         $disciplinas = Disciplina::pluck('nombre_disc','id_disc');
         return view('gestiones.resultados')->with('gestion',$gestion)->with('disciplinas',$disciplinas);
     }
@@ -300,6 +301,5 @@ class GestionController extends Controller
             $fases = Fase::all();
         return response()->json($fases);
         }
-        
     }
 }

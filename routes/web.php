@@ -202,6 +202,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@clasificacion',
 	    'as'=> 'gestion.clasificacion'
 	]);
+
+	Route::get('gestion/{id_gestion}/resultados',[
+	    'uses'=> 'GestionController@resultados',
+	    'as'=> 'gestion.resultados'	
+
 	Route::post('gestion/',[
 	    'uses'=> 'GestionController@agregar_clubs',
 	    'as'=> 'gestion.agregar_clubs'
@@ -217,6 +222,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('gestion/{id_disc}/listar_fases',[
 	    'uses'=> 'GestionController@listar_fases',
 	    'as'=> 'gestion.listar_fases'
+
 	]);
 
 	//JUGADOR_INSCRIPCION

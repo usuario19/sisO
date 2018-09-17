@@ -9,12 +9,8 @@
 	<title>@yield('title')</title>
 	{!! Html::style('/css/bootstrap.min.css') !!}
   {!! Html::style('/css/mis_estilos.css') !!}
-{{--{!! Html::style('sweetalert/sweetalert2.min.css') !!}}}
 
-</head>
-<body>
-{{-- 
-<<<<<<< HEAD --}}
+
  <div class="container col-md-12">
     @if(Auth::check())
      @if(Auth::user()->tipo == 'Administrador')
@@ -42,15 +38,21 @@
         @yield('submenu')
         @yield('gestiones')
         @yield('content')
+<<<<<<< HEAD
         {!! Html::script('/js/jquery.js') !!}
         {!! Html::script('/js/popper.min.js') !!} 
         {!! Html::script('/js/bootstrap.min.js') !!}
         {!! Html::script('sweetalert/sweetalert2.min.js')!!}
+=======
+   {!! Html::script('/js/jquery.js') !!}
+   {{-- {!! Html::script('/js/popper.min.js') !!} --}}
+   {!! Html::script('/js/bootstrap.min.js') !!}
+
+>>>>>>> 02dc7115c25fa2558537ee0d7b0430d9eb942ea4
      @yield('scripts')
       </div>
 
- </div>
-{{-- =======
+
   @if(Auth::check())
     @if(Auth::user()->tipo == 'Administrador')
       @include('plantillas.menus.menu_admin')
@@ -83,7 +85,7 @@
     @yield('scripts')
 
  	</div>
->>>>>>> refs/remotes/origin/master --}}
+
 </body>
 <footer>
   <br><br>

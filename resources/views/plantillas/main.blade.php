@@ -38,17 +38,10 @@
         @yield('submenu')
         @yield('gestiones')
         @yield('content')
-<<<<<<< HEAD
-        {!! Html::script('/js/jquery.js') !!}
-        {!! Html::script('/js/popper.min.js') !!} 
-        {!! Html::script('/js/bootstrap.min.js') !!}
-        {!! Html::script('sweetalert/sweetalert2.min.js')!!}
-=======
    {!! Html::script('/js/jquery.js') !!}
-   {{-- {!! Html::script('/js/popper.min.js') !!} --}}
+  {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}
 
->>>>>>> 02dc7115c25fa2558537ee0d7b0430d9eb942ea4
      @yield('scripts')
       </div>
 

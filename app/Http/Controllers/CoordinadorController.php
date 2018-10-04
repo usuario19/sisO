@@ -121,13 +121,7 @@ class CoordinadorController extends Controller
     public function eliminar($id,$id_club)
     {
         //
-        $usuario= Jugador_Club::where('id_jugador',$id)->where('id_club',$id_club)->get();
-
-        if ($usuario->jugador->foto_jugador != "usuario-sin-foto.png") 
-        {
-           Storage::disk('fotos')->delete($usuario->jugador->foto_jugador);
-        }
-        $id_club = $usuaio->id_club;
+        $usuario = Jugador_Club::where('id_jugador',$id)->where('id_club',$id_club);
         $usuario->delete();
         return redirect()->route('coordinador.show',$id_club);
 

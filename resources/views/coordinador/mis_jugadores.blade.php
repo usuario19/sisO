@@ -30,11 +30,11 @@
            </div>
           
            <div style="float: left;" class="form-group col-md-3">
-             <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+             <div class="btn-group btn-block">
+                <button type="button" class="btn btn-secondary dropdown-toggle btn-block" data-toggle="dropdown">
                 Inscribir nuevo jugador
                 </button>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu dropdown-menu-right">
                  <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">Crear nuevo jugador</button>
                   <a class="dropdown-item" href={{ route('jugador.VImportExcel',$mi_club->id_club ) }}>Importar jugadores desde excel</a>
                 </div>
@@ -83,7 +83,7 @@
               <td>{{ $usuario->jugador->email_jugador}}</td>
               <td>{{ $usuario->jugador->fecha_nac_jugador}}</td>
               <!--td>{{ $usuario->jugador->descripcion_jugador}}</td-->
-              <td><a href="{{ route('jugador.edit',$usuario->id_jugador) }}" class="btn btn-warning">Editar</a></td>
+              <td><a href="#confirm?" class="btn btn-warning">Editar</a></td>
     
               <td>
                 <a href="{{ route('coordinador.eliminar',[$usuario->id_jugador,$usuario->id_club]) }}"  class="btn btn-danger" data-toggle="modal" data-target="#Eliminar{{ $usuario->id_jugador}}" >Eliminar</a>

@@ -29,10 +29,15 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div>
+				<div class="form-group col-md-6 {{ $errors->has('file_excel') ? 'siError':'noError' }}">
 					{!! Form::label('file_excel', 'Archivo Excel:', []) !!}
 					{!! Form::file('file_excel', ['class'=>'form-control']) !!}
 				</div>
+				<div class="form-group errorLogin">
+                            
+						<h6 id="error_file_excel">{{ $errors->has('file_excel') ? $errors->first('file_excel'):'' }}</h6>
+						
+					</div>
 			</div>
 		</div>
 
@@ -47,5 +52,5 @@
 </div>
 @endsection
 @section('scripts')
-  {!! Html::script('js/script.js') !!}
+  {{--  {!! Html::script('js/script.js') !!}  --}}
 @endsection

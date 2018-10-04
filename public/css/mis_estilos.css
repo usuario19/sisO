@@ -35,18 +35,23 @@ div#contenedor{
 }
 
 div.contenedor{
+	position: relative;
+	margin:10px;
 	width: 200px;
 	height: 200px;
-	border: 3px solid blue;
-	
+	/* border: 3px solid rgb(255, 0, 242);
+	 */
+}
+div#contenedor_info{
+	margin: 10px;
 }
 div#contenedor{
 	/* background: blue; */
 	position: relative;
-	margin:0px;
-	width: 200px;
-	height: 200px;
-	/* border: 3px solid blue; */
+	margin:10px;
+	width: 150px;
+	height: 150px;
+	/* border: 3px solid rgb(30, 255, 0); */
 	
 }
 div#divtexto{
@@ -55,19 +60,34 @@ div#divtexto{
     right: 10px;
     min-width:35px;
     height: 25px;
-	/* border: 3px solid blue; */
-
+	/* border: 3px solid crimson; */
 }
-
+div#divdetalle{
+	position: absolute;
+	bottom: 10px;
+    right: 10px;
+    min-width:35px;
+    height: 25px;
+	/* border: 3px solid blue; */
+}
 img#btnCancelar{
 	float:left;
 }
 
 img#imgOrigen{
 
+	
+}
+
+img.imgtam{
 	width: 200px;
 	height: 200px;
 }
+img.imginfo{
+	width: 150px;
+	height: 150px;
+}
+
 img#imgOrigen2{
 
 	width: 200px;
@@ -150,7 +170,7 @@ img#imgOrigenEditDisc{
  img#btnCancelarAgrDisc{
  	align-content: top;
  	position: relative;
- 	padding-right: 20px
+ 	padding-right: 20px;
  	width: 25px;
 	height: 25px;
 	margin: auto;
@@ -164,7 +184,7 @@ img#imgOrigenEditDisc{
  img#btnCancelarEditDisc{
  	align-content: top;
  	position: relative;
- 	padding-right: 20px
+ 	padding-right: 20px;
  	width: 25px;
 	height: 25px;
 	margin: auto;
@@ -292,20 +312,19 @@ input#ci, input#password{
 }*/
 
 .errorLogin h6{
-	color: #E74C3C;
+	color: rgb(228, 118, 103);
 }
 div.siError{
 	margin: 0;
 }
 div.siError input{
-	border-bottom: 2px solid #E74C3C;
+	border: 2px solid  rgb(228, 118, 103);
 	/* background-color: #FADBD8; */
     border-radius: 8px;
 	
 }
 div.noError input{
-	border-bottom: 2px solid #4CAF50;
+	border-bottom: 2px solid rgba(75, 238, 60, 0.363);
 	/* background-color: #FADBD8; */
     border-radius: 8px;
-	
 }

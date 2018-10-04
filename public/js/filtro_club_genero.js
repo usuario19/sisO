@@ -50,9 +50,11 @@
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function(){
 			if(xmlhttp.readyState === 4 && xmlhttp.status === 200)
-				var mensaje = xmlhttp.responseText;
-				div.innerHTML = mensaje;
-				//console.log(mensaje);
+				{
+					var mensaje = xmlhttp.responseText;
+								div.innerHTML = mensaje;
+								//console.log(mensaje);
+				}
 				
 		}
 		xmlhttp.open("POST",route,true);

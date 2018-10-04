@@ -46,8 +46,6 @@ Route::group(['middleware' => ['web','guest']],function(){
 				'uses'=> 'GestionController@mostrarGestion',
 				'as' => 'gestion.mostrar'
 			]);
-	
-	
 });
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS
@@ -68,6 +66,8 @@ Route::group(['middleware' => ['auth']], function () {
 //Route::resource('administrador','AdministradorController');
 Route::group(['middleware' => ['auth','administrador']], function () {
 
+	
+
 	Route::post('administrador',[ 
 				'uses'=> 'AdministradorController@store',
 				'as' => 'administrador.store']);
@@ -80,9 +80,13 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'AdministradorController@create',
 				'as' => 'administrador.create']);
 
-	Route::put('administrador/{administrador}',[ 
-				'uses'=> 'AdministradorController@update',
-				'as' => 'administrador.update']);
+	/* Route::any('administrador/update/{administrador}',[ 
+		'uses'=> 'AdministradorController@update',
+		'as' => 'administrador.update']); */
+
+	Route::put('administrador/update/{administrador}',[ 
+		'uses'=> 'AdministradorController@update',
+		'as' => 'administrador.update']);
 
 	Route::get('administrador/{administrador}',[ 
 				'uses'=> 'AdministradorController@show',
@@ -92,13 +96,29 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'AdministradorController@edit',
 				'as' => 'administrador.edit']);
 
+	Route::get('administrador/{administrador}/informacion',[ 
+				'uses'=> 'AdministradorController@verInformacion',
+				'as' => 'administrador.informacion']);
+	Route::get('administrador/{administrador}/informacion_club',[ 
+		'uses'=> 'AdministradorController@verInformacion_club',
+		'as' => 'administrador.informacion_club']);
+
 	Route::get('administrador/{id}/destroy',[ 
 				'uses'=> 'AdministradorController@destroy',
 				'as' => 'administrador.destroy']);
+		
 
 	Route::post('administrador/validarCI',[ 
 				'uses'=> 'AdministradorController@validarCI',
 				'as' => 'administrador.validar']);
+
+	Route::post('administrador/registrar_importExcel',[
+		'uses'=>'AdministradorController@importExcel',
+		'as'=>'administrador.importExcel']);
+
+	
+
+	
 
 	//DISCIPLINA
 
@@ -201,9 +221,9 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	
 
 	//JUGADOR_INSCRIPCION
-	Route::post('registrar',[ 
-				'uses'=> 'JugadorInscripcionController@store',
-				'as' => 'jugador_inscripcion.store']);
+	Route::post('inscripcion_jugador',[ 
+				'uses'=> 'JugadorClubController@store',
+				'as' => 'jugador_club.store']);
 
 	Route::get('gestion/{id}/clubs',[
 	    'uses'=> 'GestionController@clubs',
@@ -311,8 +331,16 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 //COORDINADOR
 Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 
+	Route::post('administrador/updateFoto',[ 
+				'uses'=> 'AdministradorController@updateFoto',
+				'as' => 'administrador.updateFoto']);
+
 	//JUGADOR
 	//Route::resource('jugador','JugadorController');
+	Route::post('jugador/updateFoto',[ 
+		'uses'=> 'JugadorController@updateFoto',
+		'as' => 'jugador.updateFoto']);
+		
 	Route::post('jugador',[ 
 				'uses'=> 'JugadorController@store',
 				'as' => 'jugador.store']);
@@ -332,6 +360,10 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('jugador/{jugador}/edit',[ 
 				'uses'=> 'JugadorController@edit',
 				'as' => 'jugador.edit']);
+
+	Route::get('jugador/{jugador}/informacion',[ 
+		'uses'=> 'JugadorController@verInformacion',
+		'as' => 'jugador.informacion']);
 
 	Route::get('jugador/{id}/destroy',[ 
 				'uses'=> 'JugadorController@destroy',
@@ -443,5 +475,6 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::post('jugadores/registrar_importExcel',[
 				'uses'=>'JugadorController@importExcel',
 				'as'=>'jugador.importExcel']);
+	
 });
 

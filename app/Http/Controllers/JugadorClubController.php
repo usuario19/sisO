@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Jugador_Inscripcion;
 
 use Illuminate\Http\Request;
+use App\Models\Jugador_Club;
 
-class JugadorInscripcionController extends Controller
+class JugadorClubController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,11 +36,13 @@ class JugadorInscripcionController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request->id);
-       /*  $datos = new Jugador_Inscripcion($request->all());
-        $datos->save();
-         
-        return redirect()->route('jugador.index'); */
+         //
+          $datos = new Jugador_Club();
+          $datos->id_jugador = $request->id;
+          $datos->id_club = $request->club;
+          $datos->save();
+           
+          return redirect()->route('jugador.index');
     }
 
     /**

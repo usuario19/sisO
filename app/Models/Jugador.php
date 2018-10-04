@@ -31,11 +31,11 @@ class Jugador extends Model
     ];
     //UN JUGADOR PUEDE SUSCRIBIRSE A MUCHOS CLUB
     public function jugador_clubs(){
-        return $this-hasMany('App\Models\Jugador_Club', 'id_jugador');
+        return $this->hasMany('App\Models\Jugador_Club', 'id_jugador');
     }
     //un jugador administra a un club
     public function jugador_inscripciones(){
-        return $this-hasMany('App\Models\Jugador_Inscripcion');
+        return $this->hasMany('App\Models\Jugador_Inscripcion');
     } 
    
     //un jugador pertenece a un club

@@ -31,6 +31,7 @@ class SeleccionController extends Controller
     {
         //
         $datos = Club_participacion::where('id_club_part',$id)->get();
+        
         $id_club = $datos[0]->id_club;
         $id_gestion = $datos[0]->id_gestion;
         $id_disc = $datos[0]->id_disc;

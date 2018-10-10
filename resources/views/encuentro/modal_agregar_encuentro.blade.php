@@ -17,9 +17,7 @@
                               </button>
                             </div>
                             <div class="modal-body">
-    
                               <h6>Seleccione los clubs a enfrentarse:</h6><br>
-      
                               <div class="form-row">                            
                                       <div style="display: none">
                                          
@@ -29,10 +27,7 @@
                                   </div>
                                   <div class="col-md-5">
                                      {!! Form::select('id_club1', $clubsParaEncuentro, null,['class'=>'form-control']) !!}
-                                          
-                                      </div>
-                                       
-                              
+                                  </div>
                                   <div class="col-md-2">
                                     <h2 style="text-align: center;">Vs.</h2>
                                   </div>
@@ -48,7 +43,7 @@
                                   </div>
                                   <div class="col-md-6">
                                       {!! Form::label('id_fecha', 'Fecha', []) !!}
-                                      {!! Form::select('id_fecha',$fechas2, null,['class'=>'form-control']) !!}
+                                      {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione...','class'=>'form-control']) !!}
                                   </div>
                               </div>
                               <div class="form-row">

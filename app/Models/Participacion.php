@@ -18,7 +18,7 @@ class Participacion extends Model
          return $this->belongsTo('App\Models\Gestion','id_gestion');
     }
     public function disciplina(){
-    	 return $this->belongsTo('App\Models\Disciplina','id_disciplina');
+    	 return $this->belongsTo('App\Models\Disciplina','id_disc');
     }  
     public function club_participaciones(){
 

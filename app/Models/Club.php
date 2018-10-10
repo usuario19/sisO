@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Storage;
+use App\Models\Encuentro;
+use App\Models\Encuentro_Club_Participacion;
+use App\Models\Club_Participacion;
+use App\Models\Fecha;
+use App\Models\Fase;
 
 class Club extends Model
 {
@@ -50,5 +55,21 @@ class Club extends Model
             Storage::disk('logos')->put($nombre, file_get_contents($value));
             $this->attributes['logo'] = $nombre;
         }
+    }
+    public function pj($id_club,$id_fase){
+        $pj = DB::table('clubs')
+        ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
+        ->join('encuentro_club_participaciones','club_participaciones.id_club_part','=','encuentro_club_participaciones.id_club_part')
+        ->join('encuentros','encuentro_club_participaciones.id_encuentro','=','encuentros.id_encuentro')
+        ->join('fechas','encuentros.id_fecha','=','fechas.id_fecha')
+        ->join('fases','fechas.id_fase','=','fases.id_fase')
+        ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
+        ->select('encuentro_club_participaciones.puntos as puntos', 'clubs.*')
+        ->where('fases.id_fase','=',$id_fase)
+        ->where('clubs.id_club','=',$id_club)
+        //->groupBy('clubs.id_club')
+        //->distinct('id_clubs')
+        ->count();
+        return $pj;
     }
 }

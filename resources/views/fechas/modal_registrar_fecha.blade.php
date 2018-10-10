@@ -24,7 +24,7 @@
          </div>
       </div>
         <div class="modal-footer">
-          {!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}
+          {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
           {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
         </div>
         

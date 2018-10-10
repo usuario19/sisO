@@ -17,13 +17,14 @@ class GrupoController extends Controller
     public function index()
     { 
     }
-    public function create2($id_fase,$id_gestion,$id_disc)
-    {   
+    public function create($id_fase,$id_gestion,$id_disc){   
         $gestion = Gestion::find($id_gestion);
-        return view('grupo.reg_grupo_beta')->with('id_fase',$id_fase)->with('gestion',$gestion)->with('id_disc',$id_disc);
+        $fase = Fase::find($id_fase);
+        $disciplina = Disciplina::find($id_disc);
+
+        return view('grupo.agregar_grupo')->with('fase',$fase)->with('gestion',$gestion)->with('disciplina',$disciplina);
     }
     public function store(Request $request){
-    	//return dd($request);
     	$id_fase = $request->get('id_fase');
         $id_gestion = $request->get('id_gestion');
         $id_disc = $request->get('id_disc');
@@ -40,10 +41,36 @@ class GrupoController extends Controller
     					$grupo = new Grupo;
 		    			$grupo->nombre_grupo = $request->get('nombre'.$i);
 		    			$grupo->id_fase = $request->id_fase;
-		    			$grupo->save();
-    				}
+                        $grupo->save();
+                    
+                    }
+                    break;
                 case 3:
                     for ($i=2; $i < 5; $i++) { 
+                        $grupo = new Grupo;
+                        $grupo->nombre_grupo = $request->get('nombre'.$i);
+                        $grupo->id_fase = $request->id_fase;
+                        $grupo->save();
+                    }
+                    break;
+                case 4:
+                    for ($i=5; $i < 9; $i++) { 
+                        $grupo = new Grupo;
+                        $grupo->nombre_grupo = $request->get('nombre'.$i);
+                        $grupo->id_fase = $request->id_fase;
+                        $grupo->save();
+                    }
+                    break;
+                case 5:
+                    for ($i=9; $i < 14; $i++) { 
+                        $grupo = new Grupo;
+                        $grupo->nombre_grupo = $request->get('nombre'.$i);
+                        $grupo->id_fase = $request->id_fase;
+                        $grupo->save();
+                    }
+                    break;
+                case 10:
+                    for ($i=14; $i < 24; $i++) { 
                         $grupo = new Grupo;
                         $grupo->nombre_grupo = $request->get('nombre'.$i);
                         $grupo->id_fase = $request->id_fase;
@@ -56,31 +83,13 @@ class GrupoController extends Controller
 
     	
     }
-    public function mostrar_grupos($id_fase)
-    {
-        $grupos = Grupo::where('grupos.id_fase','=',$id_fase)->get();
-        $fase = Fase::where('id_fase','=',$id_fase)->first();
-        /**$fase = DB::table('fases')
-                ->where('fases.id_fase','=',$id_fase)
-                ->get();**/
-        //return redirect()->route('fases.listar_grupos')->with('id_fase',$id_fase);
-        return view('grupo.listar_grupos')->with('fase',$fase)->with('grupos',$grupos);
+    public function mostrar_grupos($id_fase){
+        //en desuso
+        // $grupos = Grupo::where('grupos.id_fase','=',$id_fase)->paginate(10);
+        // $fase = Fase::where('id_fase','=',$id_fase)->first();
+        // return view('grupo.listar_grupos')->with('fase',$fase)->with('grupos',$grupos);
     }
     public function listar_clubs($id_grupo,$id_gestion,$id_disc,$id_fase){
-
-        /**$id_gestion = DB::table('grupos')
-            ->join('fases','grupos.id_fase','=','fases.id_fase')
-            ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
-            ->where('grupos.id_grupo','=',$id_grupo)
-            ->select('participaciones.id_gestion')
-            ->get()->last()->id_gestion;
-        $id_disciplina = DB::table('grupos')
-            ->join('fases','grupos.id_fase','=','fases.id_fase')
-            ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
-            ->where('grupos.id_grupo','=',$id_grupo)
-            ->select('participaciones.id_disciplina')
-            ->get()->last()->id_disciplina;**/
-
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase = Fase::find($id_fase);
@@ -127,43 +136,20 @@ class GrupoController extends Controller
             ->where('grupos.id_grupo','=',$id_grupo)
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
-        //return dd($fechas->toArray());
-        //$encuentros = DB::table('encuentros')
-        //            ->join('encuentro_club_participaciones','encuentros.id_encuentro','=','encuentro_club_participaciones.id_encuentro')
-                    //->groupBy('id_encuentro')
-         //           ->get();
         $encuentros = Encuentro::all();
-
-
-    //return dd($encuentros->encuentro_club_participaciones);
-
         return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro)->with('encuentros',$encuentros);
-        //return dd($fechas);
-        
     }
-    public function edit($id)
-    {
+    public function edit($id){
+    }
+
+    public function update(Request $request, $id){
         //
     }
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
+    public function destroy($id){
         $grupo = Grupo::find($id);
         $grupo->delete();
          return redirect()->back(); 
-    }
-    public function crearGrupos(Request $request)
-    {
-        $cantGrupos = $request->get('cant_grupos');
-        $id_fase = $request->get('id_fase');
-       //$clubs = 
-       // dd("hola");
-        //return view('grupo.registrar_grupos')->with('cantGrupos',$cantGrupos)->with('id_fase',$id_fase)->with('clubs',$clubs);
     }
     public function store_club(Request $request){
         
@@ -189,5 +175,6 @@ class GrupoController extends Controller
         //$grupo_club_participacion->delete();
          return redirect()->back();
     }
+    
 }
 

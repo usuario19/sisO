@@ -30,10 +30,9 @@ class Disciplina extends Model
 		'remember_token'
 		];
 
-    public function participacions(){
-        return $this->hasMany('App\Models\Participacion','id_disc');
+    public function participaciones(){
+        return $this->hasMany('App\Models\Participacion','id_disciplina');
     }    
-
     public function inscripcions(){
         return $this->hasMany('App\Models\Inscripcion','id_disc');
     }
@@ -67,6 +66,22 @@ class Disciplina extends Model
             //obtiene eel nombre del archivo
             Storage::disk('archivos')->put($nombre, file_get_contents($value));
             $this->attributes['reglamento_disc'] = $nombre;
+        }
+    }
+    public function nombre_categoria($categoria){
+
+        switch ($categoria) {
+            case '0':
+                return 'Mixto';
+                break;
+                case '1':
+                return 'Damas';
+                break;
+            
+                case '2':
+                return 'Varones';
+                break;
+            
         }
     }
 }

@@ -48,7 +48,7 @@
             <td>{{ $gestion->fecha_fin}}</td>
   					<td>{{ $gestion->desc_gest}}</td>
            
-            <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}" class="btn btn-danger" >Eliminar</a></td>
+            <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}"><i title="Eliminar" class="material-icons">delete</i></a></td>
   				</tr>
   			@endforeach
   		</tbody>

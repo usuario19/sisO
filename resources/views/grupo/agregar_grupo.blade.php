@@ -13,12 +13,12 @@ SisO:Crear Grupo
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
 			<li class="breadcrumb-item"><a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">Fases</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ $fase->nombre_fase }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">Grupos</a></li>         			
 		</ol>
 	</nav>
 </div>
 <div class="container col-md-8">
-	<h4 class="display-4">Crear Grupo</h4>
+	<h4 class="display-4">Crear Grupos</h4>
 </div>
 <div class="container col-md-6">
 	{!! Form::open(['route'=>'grupo.store','metod'=>'POST','enctype'=>'multipart/formdata']) !!}	
@@ -31,9 +31,9 @@ SisO:Crear Grupo
 	<div style="display: none">
 				<div class="form-row">
 						<div class="form-group col-md-12">
-							{!! Form::text('id_fase', $id_fase, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+							{!! Form::text('id_fase', $fase->id_fase, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
 							{!! Form::text('id_gestion', $gestion->id_gestion, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
-							{!! Form::text('id_disc', $id_disc, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+							{!! Form::text('id_disc', $disciplina->id_disc, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
 						</div>
 				</div>	
 	</div>		
@@ -129,7 +129,7 @@ SisO:Crear Grupo
 				{!! Form::submit('Aceptar', ['class'=>'btn btn-primary btn-block']) !!}
 			</div>
 			<div class="form-group col-md-6">
-				<a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-default">Cancelar</a>
+				<button href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-secondary btn-block">Cancelar</button>	
 			</div>
 		</div>
 	</div>

@@ -20,21 +20,19 @@
             <th>Puntos</th>
         </thead>
         <tbody>
-                
+                @foreach ($tabla_posiciones as $club)
                 <tr>
-                    <td></td>
-                    <td>{{ $clubs->fechas }}</td>
-                    {{--  <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>-->
-                    <td>{{ $club->pj($club->id_fase,$club->id_club) }}</td>  --}}
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ $clubs->nombre_fase }}</td>
-
+                    <td>{{ 1 }}</td>
+                    <td>{{ $club->club->nombre_club }}</td>
+                    <td><img class="img-thumbnail" src="/storage/logos/{{ $club->club->logo}}" alt="" height=" 30px" width="30px"></td>
+                    <td>{{ $club->pj }}</td>
+                    <td>{{ $club->pg }}</td>
+                    <td>{{ $club->pe }}</td>
+                    <td>{{ $club->pp }}</td>
+                    <td>{{ $club->puntos }}</td>
                 </tr>
-                
-                
+                @endforeach
         </tbody>
     </table>
-    {{ $posiciones_clubs->links() }}
+    {{ $tabla_posiciones->links() }}
 @endsection

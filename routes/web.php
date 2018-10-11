@@ -130,7 +130,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	//Route::resource('club','ClubController');
 	
 	Route::get('club/datosclub',[ 
-		'uses'=> 'datosclubController@datos',
+		'uses'=> 'ClubController@datos',
 			'as' => 'datosclub']);
 
 	Route::post('club',[ 
@@ -204,7 +204,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@resultados',
 	    'as'=> 'gestion.resultados'	
 		]);
-	Route::post('gestion/',[
+	Route::post('gestion',[
 	    'uses'=> 'GestionController@agregar_clubs',
 	    'as'=> 'gestion.agregar_clubs'
 	]);
@@ -221,7 +221,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'as'=> 'gestion.listar_fases'
 
 	]);
-	Route::post('gestion/',[
+	Route::post('gestion',[
 	    'uses'=> 'GestionController@mostrar_resultados',
 	    'as'=> 'gestion.mostrar_resultados'
 	]);

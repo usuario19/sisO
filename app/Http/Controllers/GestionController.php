@@ -6,6 +6,7 @@ use App\Models\Fase;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
 use App\Models\Participacion;
+use App\Models\Tabla_Posicion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -127,11 +128,9 @@ class GestionController extends Controller
 
     public function destroy($id)
     {
-
-        return 'eliminado';
-        // DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
-        //return redirect()->route('gestion.index');
-
+        //return 'eliminado';
+        DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
+        return redirect()->route('gestion.index');
     }
 
     public function clubs($id_gestion)
@@ -206,10 +205,10 @@ class GestionController extends Controller
     }
     public function agregar_clubs(Request $request)
     {
-        //return dd($request);
-        $id_gestion = $request->get('id_gestion');
-        $clubs = $request->get('id_club');
-        foreach ($clubs as $club) {
+        if($request->isMethod('post')){
+            $id_gestion = $request->get('id_gestion');
+            $clubs = $request->get('id_club');
+            foreach ($clubs as $club) {
             $id_adminClub = DB::table('adminClubs')
                 ->where('adminClubs.id_club', $club)
                 ->where('adminClubs.estado_coordinador', 1)
@@ -219,9 +218,12 @@ class GestionController extends Controller
             $datos->id_gestion = $id_gestion;
             $datos->id_adminClub = $id_adminClub->id_adminClub;
             $datos->save();
+            }
+            //return dd($request);
+            return redirect()->back();
         }
-
-        return redirect()->back();
+        else return dd('algo');
+        
     }
     public function eliminar_disciplina($id_gestion, $id_disciplina)
     {
@@ -321,22 +323,22 @@ class GestionController extends Controller
         $disciplina = Disciplina::find($request->get('id_disciplina'));
         $id_fase = $request->get('id_fase');
         $fase = Fase::find($id_fase);
-        $posiciones_clubs = DB::table('clubs')
-            ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
-            ->join('encuentro_club_participaciones','club_participaciones.id_club_part','=','encuentro_club_participaciones.id_club_part')
-            ->join('encuentros','encuentro_club_participaciones.id_encuentro','=','encuentros.id_encuentro')
-            ->join('fechas','encuentros.id_fecha','=','fechas.id_fecha')
-            ->join('fases','fechas.id_fase','=','fases.id_fase')
-            ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
-            ->select('encuentro_club_participaciones.puntos as puntos', 'clubs.*')
-            ->where('fases.id_fase','=',$id_fase)
-            //->groupBy('clubs.id_club')
-            ->distinct('id_clubs')
-            ->paginate(10);   
+        // $posiciones_clubs = DB::table('clubs')
+        //     ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
+        //     ->join('encuentro_club_participaciones','club_participaciones.id_club_part','=','encuentro_club_participaciones.id_club_part')
+        //     ->join('encuentros','encuentro_club_participaciones.id_encuentro','=','encuentros.id_encuentro')
+        //     ->join('fechas','encuentros.id_fecha','=','fechas.id_fecha')
+        //     ->join('fases','fechas.id_fase','=','fases.id_fase')
+        //     ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
+        //     ->select('encuentro_club_participaciones.puntos as puntos', 'clubs.*')
+        //     ->where('fases.id_fase','=',$id_fase)
+        //     //->groupBy('clubs.id_club')
+        //     ->distinct('id_clubs')
+        //     ->paginate(10);   
         
-        $clubs = Fase::find($id_fase);
+        $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->paginate();
         //return dd($clubs);
         //$pj = pj($id_fase,$id_club);
-        return view('gestiones.mostrar_resultados',compact('clubs','gestion','disciplina','fase','posiciones_clubs','pj'));
+        return view('gestiones.mostrar_resultados',compact('tabla_posiciones','gestion','disciplina','fase'));
     }
 }

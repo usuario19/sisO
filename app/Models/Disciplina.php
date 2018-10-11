@@ -24,6 +24,7 @@ class Disciplina extends Model
 		'foto_disc',
 		'reglamento_disc',
 		'descripcion_disc',
+		'id_disc',
 		];
 
 	protected $hidden = [
@@ -37,7 +38,6 @@ class Disciplina extends Model
         return $this->hasMany('App\Models\Inscripcion','id_disc');
     }
     public function club_participaciones(){
-
         return $this->hasMany('App\Models\Club_Participacion','id_disc');  
     }
 

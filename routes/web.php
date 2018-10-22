@@ -183,7 +183,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
-	Route::post('gestion/agregar_disciplinas',[
+	Route::post('agregar_disciplinas',[
 	    'uses'=> 'GestionController@agregar_disciplinas',
 	    'as'=> 'gestion.agregar_disciplinas'
 	]);
@@ -203,10 +203,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('gestion/{id_gestion}/resultados',[
 	    'uses'=> 'GestionController@resultados',
 	    'as'=> 'gestion.resultados'	
-		]);
-	Route::post('gestion',[
-	    'uses'=> 'GestionController@agregar_clubs',
-	    'as'=> 'gestion.agregar_clubs'
+	]);
+	Route::post('agregar_clubs_inscripcion',[
+	    'uses'=> 'GestionController@agregar_clubs_inscripcion',
+	    'as'=> 'gestion.agregar_clubs_inscripcion'
 	]);
 	Route::get('gestion/{id_gestion}/resultados',[
 	    'uses'=> 'GestionController@resultados',

@@ -163,8 +163,7 @@ class GestionController extends Controller
 
         return view('admin.gestion_clubs')->with('clubs_inscritos', $clubs_inscritos)->with('clubs', $clubs)->with('gestion', $gestion);
     }
-    public function disciplinas($id_gestion)
-    {
+    public function disciplinas($id_gestion){
         $disciplinas = DB::table('disciplinas')
             ->join('participaciones', 'disciplinas.id_disc', '=', 'participaciones.id_disciplina')
             ->where('participaciones.id_gestion', $id_gestion)
@@ -182,10 +181,7 @@ class GestionController extends Controller
         foreach ($inscritos as $inscrito) {
             $lista[] = $inscrito->id_disc;
         }
-        $disciplinasDisponibles = DB::table('disciplinas')
-            ->whereNotIn('disciplinas.id_disc', $lista)
-            ->select('disciplinas.*')
-            ->get();
+        $disciplinasDisponibles = Disciplina::whereNotIn('id_disc', $lista)->get();
         return view('admin.gestion_disciplina')->with('disciplinas', $disciplinas)->with('gestion', $gestion)->with('disciplinasDisponibles', $disciplinasDisponibles);
     }
     public function agregar_disciplinas(Request $request)
@@ -203,7 +199,7 @@ class GestionController extends Controller
 
         return redirect()->back();
     }
-    public function agregar_clubs(Request $request)
+    public function agregar_clubs_inscripcion(Request $request)
     {
         if($request->isMethod('post')){
             $id_gestion = $request->get('id_gestion');

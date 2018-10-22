@@ -5,9 +5,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalCenterTitle">Agregar disciplinas</h5>
-    
-    
+                              <h5 class="modal-title" id="exampleModalCenterTitle">Agregar disciplinas</h5>    
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -22,10 +20,8 @@
                                                         {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                                                     </div>
                                                   @foreach($disciplinasDisponibles as $disciplina)
-                                                    
                                                         {!! Form::checkbox('id_disc[]',$disciplina->id_disc, false, ['class'=>'check_us']) !!}
-                                                        <img src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" width="50px" height="50px">{{ $disciplina->nombre_disc }} <br>
-
+                                                        <img src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" width="50px" height="50px">{{ $disciplina->nombre_disc." ".$disciplina->nombre_categoria($disciplina->categoria) }} <br>
                                                   @endforeach
                                                   </div>
                                               </div>

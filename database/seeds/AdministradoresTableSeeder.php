@@ -53,11 +53,5 @@ class AdministradoresTableSeeder extends Seeder
             'descripcion_admin' => 'coordinadorclubs',
             'tipo'=>'Coordinador',
         ]);
-        DB::table('tipos')->insert([
-            'nombre_tipo'=>'series'
-        ]);
-        DB::table('tipos')->insert([
-            'nombre_tipo'=>'eliminacion'
-        ]);
     }
 }

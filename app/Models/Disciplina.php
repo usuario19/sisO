@@ -18,6 +18,7 @@ class Disciplina extends Model
     protected $fillable = [
 		'nombre_disc',
         'categoria',
+        'tipo',
 		'foto_disc',
 		'reglamento_disc',
 		'descripcion_disc',
@@ -75,6 +76,16 @@ class Disciplina extends Model
                 break;
             case '2':
                 return 'Varones';
+                break;   
+        }
+    }
+    public function nombre_tipo($tipo){
+        switch ($tipo) {
+            case '0':
+                return 'Equipo';
+                break;
+            case '1':
+                return 'Competicion';
                 break;   
         }
     }

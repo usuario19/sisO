@@ -87,7 +87,7 @@
  </div>
     <div id="encuentros1" class="tab-pane fade">
       <h4>Lista de Encuentros:</h4>
-      @include('encuentro.modal_agregar_encuentro')     
+      @include('encuentro.modal_agregar_competicion')     
  
     @foreach ($fechas as $fecha)
        <div>

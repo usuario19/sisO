@@ -313,6 +313,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@eliminar_club',
 		'as'=>'grupo.eliminar_club'
 	]);
+	Route::get('grupo/{id}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs_competicion',[
+		'uses'=>'GrupoController@listar_clubs_competicion',
+		'as'=>'grupo.listar_clubs_competicion'
+	]);
 	
 	//FECHA
 	Route::post('fecha/store',[

@@ -17,7 +17,7 @@
             {!! Form::text('nombre', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
           </div>
           <div class="form-group">
-            {!! Form::label('tipo', 'Tipos', []) !!}
+            {!! Form::label('tipo', 'Tipo', []) !!}
             <br>
             <div class="card">
               <div class="card-body">

@@ -7,32 +7,14 @@
 @section('submenu')
 @include('plantillas.menus.menu_gestion')
 @endsection
-
-{{--  @include('sweetalert::cdn')        
+       
 @include('sweetalert::view')
-@include('sweetalert::validator')  --}}
-
-<script language="javascript" type="text/javascript">
-    // RESALTAR LAS FILAS AL PASAR EL MOUSE
-    function ResaltarFila(id_fila) {
-        document.getElementById(id_fila).style.backgroundColor = '#C0C0C0';
-    }
-     
-    // RESTABLECER EL FONDO DE LAS FILAS AL QUITAR EL FOCO
-    function RestablecerFila(id_fila) {
-        document.getElementById(id_fila).style.backgroundColor = '#FFFFFF';
-    }
-     
-    // CONVERTIR LAS FILAS EN LINKS
-    function CrearEnlace(url) {
-        location.href=url;
-    }
-</script>
 @section('content')
 <div class="form-row">
   <div class="col-md-12">
-
       <h4>Clubs inscritos:</h4>
+    </div>
+    </div>
     <table class="table table-condensed table-striped">
         <thead class="">
           <th>ID</th>
@@ -54,8 +36,20 @@
           @endforeach
         </tbody>
   </table>
-    
-  </div>
-</div>
-
 @endsection
+<script language="javascript" type="text/javascript">
+    // RESALTAR LAS FILAS AL PASAR EL MOUSE
+    function ResaltarFila(id_fila) {
+        document.getElementById(id_fila).style.backgroundColor = '#C0C0C0';
+    }
+     
+    // RESTABLECER EL FONDO DE LAS FILAS AL QUITAR EL FOCO
+    function RestablecerFila(id_fila) {
+        document.getElementById(id_fila).style.backgroundColor = '#FFFFFF';
+    }
+     
+    // CONVERTIR LAS FILAS EN LINKS
+    function CrearEnlace(url) {
+        location.href=url;
+    }
+</script>

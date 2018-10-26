@@ -25,14 +25,10 @@ class DisciplinaController extends Controller
         return view('disciplina.reg_disc');
     }
 
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
         $datos = new Disciplina($request->all());
         $datos->save();
-
         return redirect()->route('disciplina.index');
-
     }
 
     public function show($id)

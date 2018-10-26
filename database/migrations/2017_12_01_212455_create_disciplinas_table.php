@@ -15,11 +15,12 @@ class CreateDisciplinasTable extends Migration
     {
         Schema::create('disciplinas', function (Blueprint $table) {
             $table->increments('id_disc');
-             $table->string('categoria');
+            $table->integer('categoria');
+            $table->integer('tipo');
             $table->string('nombre_disc');
             $table->string('foto_disc')->default('sin_imagen.png');
             $table->string('reglamento_disc')->nullable();
-            $table->text('descripcion_disc');
+            $table->text('descripcion_disc')->nullable();
             $table->timestamps();
         });
     }

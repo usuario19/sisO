@@ -10,31 +10,17 @@
                           <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title" id="exampleModalCenterTitle">Agregar encuentro</h5>
-    
-    
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
                             <div class="modal-body">
-                              <h6>Seleccione los clubs a enfrentarse:</h6><br>
-                              <div class="form-row">                            
+                              <h6>Datos generales:</h6>                
                                       <div style="display: none">
-                                         
                                           {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
                                           {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                                           {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
                                   </div>
-                                  <div class="col-md-5">
-                                     {!! Form::select('id_club1', $clubsParaEncuentro, null,['class'=>'form-control']) !!}
-                                  </div>
-                                  <div class="col-md-2">
-                                    <h2 style="text-align: center;">Vs.</h2>
-                                  </div>
-                                  <div class="col-md-5">
-                                     {!! Form::select('id_club2', $clubsParaEncuentro, null, ['class'=>'form-control']) !!}
-                                  </div>
-                              </div>
                               <div class="form-row">
                                   <div class="col-md-6">
                                     {!! Form::label('ubicacion', 'Ubicacion', []) !!}
@@ -64,6 +50,16 @@
                                       {!! Form::textarea('detalle',null, ['class'=>'form-control','rows'=>4]) !!}
                                   </div>
                               </div>
+                              <div class="form-row">
+                                    <br>
+                                <h6>Seleccione participantes a enfrentarse:</h6>
+                                <h1>poner lista de jugadores k estan participando</h1>
+                                @foreach ($participantes as $participante)
+                                {!! Form::checkbox('id_participante[]',$participante->id_jugador, false, ['class'=>'check_us']) !!}
+                                <img src="/storage/foto/{{ $participante->foto }}" alt="" width="50px" height="50px">{{ $participante->nombre_jugador." ".$participante->apellidos_jugador }} <br>
+                          
+                                @endforeach
+                            </div>
                               </div>
                               
                               <div class="modal-footer">

@@ -53,49 +53,5 @@ class AdministradoresTableSeeder extends Seeder
             'descripcion_admin' => 'coordinadorclubs',
             'tipo'=>'Coordinador',
         ]);
-        DB::table('tipos')->insert([
-            'nombre_tipo'=>'series'
-        ]);
-        DB::table('tipos')->insert([
-            'nombre_tipo'=>'eliminacion'
-        ]);
-
-        //DISCIPLINAS
-        DB::table('disciplinas')->insert([
-            'nombre_disc'=>'Futbol',
-            'categoria'=>'2',
-            'descripcion_disc'=>'Disciplina',
-        ]);
-        DB::table('disciplinas')->insert([
-            'nombre_disc'=>'Futbol',
-            'categoria'=>'1',
-            'descripcion_disc'=>'Disciplina',
-        ]);
-        DB::table('disciplinas')->insert([
-            'nombre_disc'=>'Basquet',
-            'categoria'=>'1',
-            'descripcion_disc'=>'Disciplina',
-        ]);
-        DB::table('disciplinas')->insert([
-            'nombre_disc'=>'Basquet',
-            'categoria'=>'2',
-            'descripcion_disc'=>'Disciplina',
-        ]);
-        DB::table('disciplinas')->insert([
-            'nombre_disc'=>'Voleibol',
-            'categoria'=>'0',
-            'descripcion_disc'=>'Disciplina',
-        ]);
-        DB::table('disciplinas')->insert([
-            'nombre_disc'=>'Voleibol',
-            'categoria'=>'1',
-            'descripcion_disc'=>'Disciplina',
-        ]);
-        DB::table('disciplinas')->insert([
-            'nombre_disc'=>'Voleibol',
-            'categoria'=>'2',
-            'descripcion_disc'=>'Disciplina',
-        ]);
-        
     }
 }

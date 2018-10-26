@@ -5,12 +5,16 @@
 @endsection
 
 @section('submenu')
-<div class="form-row">
-  <div class="form-group col-md-12 form-inline">
-    <a href="{{ route('gestion.index') }}"><h5>Gestiones/</h5></a>
-    <h5>{{ $gestion->nombre_gestion }}</h5>
-  </div> 
-    <div class="container">
+<div class="content">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('gestion.index') }}">Gestiones</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ $gestion->nombre_gestion }}</li>
+      </ol>
+    </nav>
+</div>
+
+<div class="content">
       <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +50,4 @@
     	  </div>
       </nav>
     </div>
-</div>
-
 @endsection

@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
 //RUTAS QUE NO NECESITAS ESTAR LOGUEADO/A PARA INGRESAR
 Route::group(['middleware' => ['web','guest']],function(){
 
@@ -158,7 +155,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	//Route::resource('club','ClubController');
 	
 	Route::get('club/datosclub',[ 
-		'uses'=> 'datosclubController@datos',
+		'uses'=> 'ClubController@datos',
 			'as' => 'datosclub']);
 
 	Route::post('club',[ 
@@ -211,7 +208,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
-	Route::post('gestion/agregar_disciplinas',[
+	Route::post('agregar_disciplinas',[
 	    'uses'=> 'GestionController@agregar_disciplinas',
 	    'as'=> 'gestion.agregar_disciplinas'
 	]);
@@ -232,9 +229,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@resultados',
 	    'as'=> 'gestion.resultados'	
 	]);
-	Route::post('gestion/',[
-	    'uses'=> 'GestionController@agregar_clubs',
-	    'as'=> 'gestion.agregar_clubs'
+	
+	Route::post('agregar_clubs_inscripcion',[
+	    'uses'=> 'GestionController@agregar_clubs_inscripcion',
+	    'as'=> 'gestion.agregar_clubs_inscripcion'
 	]);
 
 	/* Route::get('gestion/{id_gestion}/resultados',[
@@ -250,6 +248,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@listar_fases',
 	    'as'=> 'gestion.listar_fases'
 
+	]);
+	Route::post('gestion',[
+	    'uses'=> 'GestionController@mostrar_resultados',
+	    'as'=> 'gestion.mostrar_resultados'
 	]);
 
 	//JUGADOR_INSCRIPCION
@@ -282,23 +284,38 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@store',
 		'as'=>'fase.store'
 	]);
+	Route::get('fase/{id_fase}/destroy',[
+		'uses'=>'FaseController@destroy',
+		'as'=>'fase.destroy'
+	]);
 	Route::get('fase/{id_fase}/{id_gestion}/{id_disc}/listar_grupos',[
 		'uses'=>'FaseController@listar_grupos',
 		'as'=>'fase.listar_grupos'
+	]);
+	Route::get('fase/{id_fase}/{id_gestion}/{id_disc}/eliminacion_encuentro',[
+		'uses'=>'FaseController@eliminacion_encuentro',
+		'as'=>'fase.eliminacion_encuentro'
+	]);
+	Route::post('fase/store_club_eliminacion',[
+		'uses'=>'FaseController@store_club_eliminacion',
+		'as'=>'fase.store_club_eliminacion'
+	]);
+	Route::get('fase/{id_fase}/{id_club_part}eliminar_club_eliminacion',[
+		'uses'=>'FaseController@eliminar_club_eliminacion',
+		'as'=>'fase.eliminar_club_eliminacion'
+	]);
+	Route::get('fase/{id_disc}/select_fases',[
+		'uses'=>'FaseController@select_fases',
+		'as'=>'fase.select_fases'
 	]);
 	//grupos
 	Route::get('grupo',[
 		'uses'=>'GrupoController@index',
 		'as'=>'grupo.index'
 	]);
-	Route::get('grupo/{id_fase}/{id_gestion}/{id_disc}/create2',[
-		'uses'=>'GrupoController@create2',
-		'as'=>'grupo.create2'
-	]);
-
-	Route::post('grupo/crearGrupos',[
-		'uses'=>'GrupoController@crearGrupos',
-		'as'=>'grupo.crearGrupos'
+	Route::get('grupo/{id_fase}/{id_gestion}/{id_disc}/create',[
+		'uses'=>'GrupoController@create',
+		'as'=>'grupo.create'
 	]);
 	Route::post('grupo/store',[
 		'uses'=>'GrupoController@store',
@@ -324,6 +341,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@eliminar_club',
 		'as'=>'grupo.eliminar_club'
 	]);
+	Route::get('grupo/{id}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs_competicion',[
+		'uses'=>'GrupoController@listar_clubs_competicion',
+		'as'=>'grupo.listar_clubs_competicion'
+	]);
+	
 	//FECHA
 	Route::post('fecha/store',[
 		'uses'=>'FechaController@store',
@@ -341,6 +363,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::post('encuentro/store',[
 		'uses'=>'EncuentroController@store',
 		'as'=>'encuentro.store'
+	]);
+	Route::post('encuentro/store_eliminacion',[
+		'uses'=>'EncuentroController@store_eliminacion',
+		'as'=>'encuentro.store_eliminacion'
 	]);
 	Route::get('encuentro/{id_encuentro}/destroy',[
 		'uses'=>'EncuentroController@destroy',

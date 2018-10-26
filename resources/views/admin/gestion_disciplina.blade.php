@@ -21,7 +21,7 @@
         <th>Categoria</th>
         <th>Reglamento</th>
         <th>Descripcion</th>
-        <th>Fases</th>
+        <th>Accion</th>
       </thead>
       <tbody>
 
@@ -46,7 +46,7 @@
             @endswitch
             <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">Ver</td>
             <td>{{ $disciplina->descripcion_disc}}</td>
-            <td><a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-danger">Eliminar</a></td>
+            <td><a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}"><i title="Eliminar" class="material-icons">delete</i></a></td>
             
           </tr>
         @endforeach

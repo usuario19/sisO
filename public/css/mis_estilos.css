@@ -1,8 +1,20 @@
+body{
+font-size: 80%;
+}
+
+table tbody tr td{
+	margin:auto;
+	padding: auto;
+}
 .radio{
 	height: 18px;
 	width: 18px;
 }
 /*div*/
+.form-group{
+padding: 2px;
+margin: 0%;
+}
 .texto{
 	margin-top: 10px;
 	text-align: center;
@@ -37,24 +49,43 @@ div#contenedor{
 div.contenedor{
 	position: relative;
 	margin:10px;
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
+	/* border: 3px solid rgb(255, 0, 242);
+	 */
+}
+
+div.contenedor_modal{
+	position: relative;
+	margin:10px;
+	width: 150px;
+	height: 150px;
 	/* border: 3px solid rgb(255, 0, 242);
 	 */
 }
 div#contenedor_info{
-	margin: 10px;
+	margin: 0px 0px 0px 0px;
 }
-div#contenedor{
+div#contenedor_club{
 	/* background: blue; */
 	position: relative;
-	margin:10px;
+	box-align: center;
+	margin:10px auto;
 	width: 150px;
 	height: 150px;
 	/* border: 3px solid rgb(30, 255, 0); */
 	
 }
-div#divtexto{
+div#contenedor{
+	/* background: blue; */
+	position: relative;
+	margin:10px;
+	width: 120px;
+	height: 120px;
+	/* border: 3px solid rgb(30, 255, 0); */
+	
+}
+div#divtexto , div#divtexto2{
 	position: absolute;
 	bottom: 10px;
     right: 10px;
@@ -80,18 +111,18 @@ img#imgOrigen{
 }
 
 img.imgtam{
-	width: 200px;
-	height: 200px;
-}
-img.imginfo{
 	width: 150px;
 	height: 150px;
+}
+img.imginfo{
+	width: 120px;
+	height: 120px;
 }
 
 img#imgOrigen2{
 
-	width: 200px;
-	height: 200px;
+	/* width: 200px;
+	height: 200px; */
 }
 img#imgOrigenAgrDisc{
 
@@ -107,31 +138,25 @@ img#imgOrigenEditDisc{
 	display: none;
 }
 .vista{
- 	display: block;
- 	width: 25px;
-	height: 25px;
-	margin: auto;
-	opacity: 0.5;
+	opacity:0.7;
  }
 .vista:hover{
  	opacity: 1;
- 	width: 30px;
-	height: 30px;
  }
  /*file*/
- img#texto{
- 	float: left;
+ img#texto , img#texto2{
+ 	float: right;
  	width: 25px;
 	height: 25px;
 	/* margin: auto; */
 	opacity: 0.5;
  }
- img#texto:hover{
+ img#texto:hover , img#texto2:hover{
  	opacity: 1;
  	width: 30px;
 	height: 30px;
  }
- img#texto2{
+ /* img#texto2{
  	position: absolute;
  	width: 25px;
 	height: 25px;
@@ -142,7 +167,7 @@ img#imgOrigenEditDisc{
  	opacity: 1;
  	width: 30px;
 	height: 30px;
- }
+ } */
  img#textoAgrDisc{
  	position: absolute;
  	width: 25px;
@@ -181,6 +206,65 @@ img#imgOrigenEditDisc{
  	width: 30px;
 	height: 30px;
  }
+ .btn_hover{
+	
+	opacity: 0.7;
+	font-size: 16px;
+	/* width: 20px;
+	height: 20px; */
+ }
+ .btn_hover:hover{
+	/* margin: 0;
+	padding: 0; */
+	opacity: 1;
+	font-size: 17px;
+	/* width: 22px;
+   height: 22px; */
+}
+.button{
+	margin: 0%;
+	padding: 0% 7px;
+}
+
+.btn_hover_del{
+	/* margin: 0;
+	padding: 0; */
+	opacity: 0.7;
+	font-size: 16px;
+	/* width: 20px;
+	height: 20px; */
+ }
+ .btn_hover_del:hover{
+	/* margin: 0;
+	padding: 0; */
+	opacity: 1;
+	font-size: 16px;
+	/* width: 22px;
+   height: 22px; */
+}
+span.letter_size{
+	font-size: 14px;
+	margin: 0px 15px;
+}
+.btn_add{
+	margin: 0;
+	padding: 0;
+	opacity: 0.5;
+	color: rgb(255, 230, 0);
+	font-size: 25px;
+	/* width: 20px;
+	height: 20px; */
+ }
+ .btn_add:hover{
+	margin: 0;
+	padding: 0;
+	color:  rgb(241, 149, 0);
+	opacity: 1;
+	font-size: 27px;
+	/* width: 22px;
+   height: 22px; */
+}
+
  img#btnCancelarEditDisc{
  	align-content: top;
  	position: relative;
@@ -260,14 +344,15 @@ div#contentEditDisc{
 	width: 100px;
 	
 }
-input#input{
-	visibility: hidden;
+input#input ,input#input2{
+	/* visibility: hidden; */
+	display: none;
 	
 }
-input#input2{
+/* input#input2{
 	visibility: hidden;
 	
-}
+} */
 input#inputAgrDisc{
 	visibility: hidden;
 	
@@ -296,15 +381,53 @@ input#inputEditDisc{
 	height: 15px;
 }
 .title-table{
+	height: 50px;
+	height: 30px;
 	margin: auto;
-	color: white;
 	font-weight: bold;
-	background:#FF5733;
 	/*height: 100px;*/
 	text-align: center;
 }
+.title-table-club{
+	margin: 20px;
+	color: rgb(255, 255, 255);
+	height: 50px;
+	background: #FF5733;
+	text-align: center;
+}
+.title-table-club h4{
+	/* font-weight: bold; */
+	font-size: 20px;
+}
+.menu{
+	padding: 0%;
+	margin: 0%;
+}
+thead{
+ color: rgb(124, 121, 121);
+}
+h3{
+	padding: 0%;
+	margin: 0%;
+	height: 21px;
+}
+h3.display-1 {
+	margin: 5px;
+}
+.modal-title{
+	margin: 0px;
+	font-size: 18px;
+	text-transform: uppercase;
+	/* font-weight: 600; */
+	color: rgb(151, 151, 151);
+}
 .title-table h3{
-	font-size: 40px;
+	padding: 0%;
+	margin: 0%;
+	font-weight: bold;
+	font-size: 20px;
+	/* font-size: 20px; */
+	color: rgb(26, 26, 26);
 }
 /*input
 input#ci, input#password{
@@ -328,3 +451,61 @@ div.noError input{
 	/* background-color: #FADBD8; */
     border-radius: 8px;
 }
+/* nav */
+.submenu{
+	color: black;
+}
+
+.submenu :hover{
+	background: rgb(253, 253, 253);
+	
+	color: black;
+}
+a.link{
+	color: dimgray;
+	margin: auto;
+
+	/* background: aqua; */
+}
+.card-header{
+	background: white;
+}
+a.link{
+	/* border-right: 1px solid darkgray; */
+	
+	text-align: center;
+	color: rgb(102, 102, 102);
+}
+
+.link{
+	/* border-right: 1px solid darkgray; */
+	text-align: center;
+	color: rgb(102, 102, 102);
+}
+
+.link :hover{
+	/* border-bottom: 2px solid rgba(1, 10, 1, 0.603); */
+	color: rgb(102, 102, 102);
+	font-weight: bold;
+	/* border-radius: 16px; */
+	/* background: rgb(177, 175, 175); */
+}
+.active{
+	/* border-radius: 16px; */
+	/* background: rgb(94, 92, 92); */
+}
+a.active{
+	/* border-bottom: 2px solid rgba(1, 10, 1, 0.603); */
+	color: rgb(102, 102, 102);
+	font-weight: bold;
+	/* border-radius: 16px; */
+	/* background: gray; */
+	/* font-weight: bolder; */
+	/* font-size: 16px; */
+	/* border-bottom: #FF5733 10px; */
+}
+a.current:link, a.current:visited {
+	color: white;
+	background-color: blue;
+  }
+

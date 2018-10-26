@@ -2,7 +2,7 @@
  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><h1 style="font-size: 30px" class="display-4">Registrar Jugador</h1></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><h1 style="font-size: 20px" class="display-4">Registrar Jugador</h1></h5>
         <button id="close" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -33,12 +33,12 @@
 						<div class="form-row">
 								<div class="form-group col-md-12 {{ $errors->has('foto_admin') ? 'siError':'' }}">
 									<div style="display:none">
-										{!! Form::file('foto_admin', ['class'=>'upload','id'=>'input']) !!}
+										{!! Form::file('foto_jugador', ['class'=>'upload','id'=>'input']) !!}
 									</div>
 								</div>
 								<div class="form-row errorLogin">
 										<span>
-											<h6 id="error_foto">{{ $errors->has('foto_admin') ? $errors->first('foto_admin'):'' }}</h6>
+											<h6 id="error_foto">{{ $errors->has('foto_jugador') ? $errors->first('foto_jugador'):'' }}</h6>
 										</span>
 								</div>
 							</div>
@@ -51,8 +51,8 @@
 					  <thead></thead>
 					  <tbody>
 					  	{{--  <tr>
-							<th><h6 class="display-6 ">{!! Form::label('clubs', 'Club:', []) !!}</h6></th>
-					      	<td colspan="2">{!! Form::text('clubs', $mi_club->id_club , ['class' =>'form-control']) !!}</td>
+							<td><h6 class="display-6 ">{!! Form::label('clubs', 'Club:', []) !!}</h6></th>
+					      	<td colspan="2">{!! Form::text('clubs', $club->id_club , ['class' =>'form-control']) !!}</td>
 						</tr>  --}}
 					    <tr>  
 						  @include('plantillas.forms.form_reg_jugador')

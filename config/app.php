@@ -165,14 +165,16 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         //para los mensajes emergentes
         //UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
         
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
      //para los reportes pdf
         Barryvdh\DomPDF\ServiceProvider::class,
+        //alerts
 
+        
+        //alert
+        //Softon\SweetAlert\SweetAlertServiceProvider::class,
     ],
 
     /*
@@ -225,12 +227,16 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         //'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        //'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
         //para los reportes pdf
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        //alerts
+        //'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        //'SWAL' => Softon\SweetAlert\Facades\SWAL::class,
 
     ],
 ];

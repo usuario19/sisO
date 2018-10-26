@@ -4,13 +4,13 @@
     SisO - Lista de Clubs
 @endsection
 @section('submenu')
-
 @include('plantillas.menus.menu_gestion')
 @endsection
+
 @section('content')
 <div class="form-row">
-  <div class="col-md-6">
-
+  <div class="col-md-12">
+@include('gestiones.modal_inscribir_clubs')
       <h4>Clubs inscritos:</h4>
     <table class="table table-condensed table-striped">
         <thead class="">
@@ -28,34 +28,13 @@
               <td>{{ $club->nombre_club}}</td>
               <td>{{ $club->descripcion_club}}</td>
               <td><a href="{{ route('club.desinscribir',[$club->id_club,$gestion->id_gestion]) }}" class="btn btn-danger">Retirar</a></td>
+            </tr>
           @endforeach
         </tbody>
   </table>
     
   </div>
-  <div class="col-lg-6">
-    <h4>Clubs disponibles:</h4>
-      <table class="table table-condensed table-striped">
-        <thead class="">
-          <th>ID</th>
-          <th>Logo</th>
-          <th>Nombre</th>
-          <th>Descripcion</th>
-          <th>Acciones</th>        
-        </thead>
-        <tbody>
-          @foreach($clubs as $club)
-            <tr>
-              <td>{{ $club->id_club}}</td>
-              <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 100px" width="100px"></td>
-              <td>{{ $club->nombre_club}}</td>
-              <td>{{ $club->descripcion_club}}</td>
-              <td><a href="{{ route('club.inscribir',[$club->id_club,$gestion->id_gestion]) }}" class="btn btn-info">Agregar</a></td>
-            </tr>
-          @endforeach
-        </tbody>
-  </table>
-  </div>
+
 </div>
   
 @endsection

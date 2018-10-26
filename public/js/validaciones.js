@@ -55,14 +55,27 @@
 			//console.log(validarTexto(elemento.value))
 			if(validarTexto(elemento.value))
 			{
-				//console.log("entro")
+				//console.log(elemento.parentNode.classList)
 				document.getElementById("error_nombre").innerHTML = " " ;
-				elemento.parentNode.setAttribute("class", "form-group col-md-6 noError");
+				var myarray = elemento.parentNode.classList;
+				myarray.forEach(element => {
+					if(element.includes('siError'))
+					elemento.parentNode.classList.remove("siError");
+				});
+					
+				elemento.parentNode.className +=" noError";
+				/* elemento.parentNode.setAttribute("class", "form-group col-md-6 noError"); */
 			}
 			else
 			{
 				document.getElementById("error_nombre").innerHTML ="Solo se permite letras.";
-				elemento.parentNode.setAttribute("class", "form-group col-md-6 siError");
+				var myarray = elemento.parentNode.classList;
+				myarray.forEach(element => {
+					if(element.includes('noError'))
+					elemento.parentNode.classList.remove("noError");
+				});
+				elemento.parentNode.className +=" siError";
+				/* elemento.parentNode.setAttribute("class", "form-group col-md-6 siError"); */
 			}
 
 		}else if (elemento.name.indexOf("apellidos") != -1  ) {

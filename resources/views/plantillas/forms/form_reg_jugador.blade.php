@@ -85,7 +85,7 @@
 	<div class="form-group col-md-12 {{ $errors->has('descripcion_admin') ? 'siError':'noError' }}">	
 	
 		{!! Form::label('descripcion_jugador', 'Descripcion:', []) !!}
-		{!! Form::textArea('descripcion_jugador',null , ['class'=>'form-control','rows'=>3]) !!}
+		{!! Form::textArea('descripcion_jugador',null , ['class'=>'form-control','rows'=>2]) !!}
 		<div class="form-group errorLogin">
 			<h6 id="error_desc">{{ $errors->has('descripcion_admin') ? $errors->first('descripcion_admin'):'' }}</h6>    
 		</div>

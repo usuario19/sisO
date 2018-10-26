@@ -1,4 +1,7 @@
-<div class="container">
+<div class="container-fluid bg-dark ">
+
+
+<div class="container ">
 
       <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 
@@ -94,3 +97,4 @@
     	  </div>
       </nav>
     </div>
+  </div>

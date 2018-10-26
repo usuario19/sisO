@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid" style="padding: 0%">
 
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 

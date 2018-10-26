@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<h1>Todos los jugadores:</h1>
+<h1>Todos los jugadores tt:</h1>
 {!! Form::open(['route'=>'coordinador.filtrar','method'=>'get']) !!}
   <div class="form-row">
     <table class="table table-borderless">
@@ -17,7 +17,7 @@
           <td></td>
         </tr>
         <tr>
-          <td width="350px">{!! Form::select('club', $clubs,0,['class'=>'form-control','id'=>'club']) !!}</td>
+          <td width="350px">{!! Form::select('club',$clubs ,0,['class'=>'form-control','id'=>'club']) !!}</td>
           <td width="350px">{!! Form::select('genero', ['0'=>'Mostrar Todo', '1'=>'Femenino', '2'=>'Masculino'],0,['class'=>'form-control', 'id'=>'genero']) !!}</td>
           <td>{!! Form::submit('Filtrar', ['class'=>'btn btn-primary']) !!}</td>
         </tr>

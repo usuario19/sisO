@@ -13,30 +13,27 @@
         <th>
            <div style="float:left; padding: 20px 10px;">
                 <h1 class="display-4" style=" font-size:40px">Administradores</h1>
-             </div>
+            </div>
         </th>
         </thead>
         <tbody>
         <tr>
-           
           <td>
-{{--             <div class="form-row"> --}}
-                <div  style="float: left;" class="form-group col-md-9">
-                    {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-                </div>
-                <div  style="float: left;" class="form-group col-md-3">
-                  <div class="btn-group btn-block">
-                        <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
-                        Registrar administrador
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalRegADmin">Crear nuevo coordinador</button>
-                          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportADmin">Importar Administradores desde excel</button>
-                          
-                        </div>
-                  </div>
-                </div>
-            {{-- </div> --}}
+            <div  style="float: left;" class="form-group col-md-9">
+                {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+            </div>
+            <div  style="float: left;" class="form-group col-md-3">
+              <div class="btn-group btn-block">
+                    <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+                    Registrar administrador
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalRegADmin">Crear nuevo coordinador</button>
+                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportADmin">Importar Administradores desde excel</button>
+                      
+                    </div>
+              </div>
+            </div>
              @include('plantillas.forms.form_reg_admin_modal')
              @include('plantillas.forms.form_import_admin_modal')
           </td>

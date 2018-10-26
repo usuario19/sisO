@@ -18,7 +18,7 @@ class CreateDisciplinasTable extends Migration
              $table->string('categoria');
             $table->string('nombre_disc');
             $table->string('foto_disc')->default('sin_imagen.png');
-            $table->string('reglamento_disc');
+            $table->string('reglamento_disc')->nullable();
             $table->text('descripcion_disc');
             $table->timestamps();
         });

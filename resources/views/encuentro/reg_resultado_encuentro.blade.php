@@ -12,9 +12,6 @@
   </div> 
 </div>
 {!! Form::open(['route'=>'encuentro.reg_resultado','method' => 'POST']) !!}
-                   
-
-                              
                                 <div class="container col-md-6">
                                     @foreach ($encuentro->encuentro_club_participaciones as $participacion)
                                     <div class="card">
@@ -40,10 +37,6 @@
                               
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                  {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
-                                </div></div>
-                                
-                                                       
-                                
-                         
+                                </div></div>     
  {!! Form::close() !!}
 @endsection

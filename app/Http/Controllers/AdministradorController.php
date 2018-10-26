@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\DB;
+use App\Models\Inscripcion;
 use App\Http\Requests\AdministradorRequest;
 use App\Http\Requests\UpdateAdministradorRequest;
 use Validator;
@@ -204,7 +205,7 @@ class AdministradorController extends Controller
                 }
                 $usuario->fill($request->all()); 
             } 
-
+            $usuario->tipo=$request->tipo;
             $usuario->save();
             flash('Se actualizo correctamente los datos del Usuario. ')->success();
             return redirect()->route('administrador.informacion',$id);
@@ -240,8 +241,11 @@ class AdministradorController extends Controller
 
             
         }
+        
 
-        return redirect()->route('administrador.informacion',$request->id_administrador);
+        //return redirect()->route('administrador.informacion',$request->id_administrador);
+        flash('Se actualizo la foto de perfil correctamente.')->success();
+        return redirect()->back();
     }
 
 
@@ -297,6 +301,24 @@ class AdministradorController extends Controller
         $usuario = Administrador::find($id);
         //var_dump($usuario);
         return view('admin.informacion_us_club')->with('usuario',$usuario);//url
+    }
+    public function verInformacion_club_resultados($id)
+    {
+        $usuario = Administrador::find($id);
+        $datos = $usuario->admin_clubs;
+        $adminclubs=[];
+        foreach($datos as $club)
+        {
+            array_push($adminclubs, $club->id_adminClub);
+        }
+        /* $club_participaciones = DB::table('club_participaciones')
+        ->whereIn('id_club', $clubs)
+        ->get(); */
+        $inscripciones = Inscripcion::whereIn('id_adminClub',$adminclubs)->orderBy('id_inscripcion','desc')->get();
+
+        
+        //dd($club_participaciones);
+        return view('admin.informacion_us_club_resultados')->with('usuario',$usuario)->with('inscripciones',$inscripciones);//url
     }
 
     public function array_administrador(array $row)

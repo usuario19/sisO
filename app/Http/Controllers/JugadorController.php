@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jugador;
 use App\Models\Club;
+use App\Models\Seleccion;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
 use App\Models\Admin_club;
@@ -14,6 +15,7 @@ use App\Http\Requests\JugadorRequest;
 use Storage;
 use Validator;
 use Auth;
+use App\Models\Club_Participacion;
 
 class JugadorController extends Controller
 {
@@ -70,10 +72,11 @@ class JugadorController extends Controller
     {
         $datos = new Jugador($request->all());
         $datos->save();
-        if(Auth::User()->tipo == 'Coordinador')
+        /* if(Auth::User()->tipo == 'Coordinador') */
+        if($request->id_club)
         {
             $ci_jugador = $request->ci_jugador;
-            $id_club = $request->clubs;
+            $id_club = $request->id_club;
 
             $jugador = Jugador::where('ci_jugador',$ci_jugador)->get();
             
@@ -88,7 +91,7 @@ class JugadorController extends Controller
             return redirect()->back();
 
         }else{
-            return redirect()->route('jugador.index');
+            return redirect()->back();
         }/*else{
 
             //$ultima_gestion = Gestion::all()->last()->id_gestion;
@@ -293,6 +296,47 @@ class JugadorController extends Controller
         $usuario = Jugador::find($id);
         //var_dump($usuario);
         return view('jugador.informacion_jugador')->with('usuario',$usuario);//url
+    }
+
+    public function verInformacion_club($id)
+    {
+        $usuario = Jugador::find($id);
+        //var_dump($usuario);
+        $clubs = Club::all();
+        return view('jugador.informacion_jugador_club')->with('usuario',$usuario)->with('clubs',$clubs);//url
+    }
+
+    public function verInformacion_club_resultados($id)
+    {
+        $usuario = Jugador::find($id);
+        $jug_club = Jugador_Club::where('id_jugador',$id)->select('id_jug_club')->get();
+        $jug_clubs =[];
+        foreach($jug_club as $dato){
+            array_push($jug_clubs, $dato->id_jug_club);
+        }
+       // dd($jug_clubs);
+        $selecciones = Seleccion::whereIn('id_jug_club',$jug_clubs)->get();
+        //echo($selecciones);
+        $jug_club = Jugador_Club::where('id_jugador',$id)->get();
+
+       /*  $jug_club = Jugador_Club::where('id_jugador',$id)->get();
+        $clubs =[];
+        foreach($jug_club as $club){
+            array_push($clubs, $club->id_club);
+        }
+        $participaciones = Club_Participacion::whereIn('id_club',$clubs)->get();
+        $id_participaciones = [];
+        $id_gestiones =[];
+        foreach($participaciones as $participacion){
+            array_push($id_gestiones, $participacion->id_gestion);
+            array_push($id_participaciones,$participacion->id_club_part);
+        }
+        $gestiones = Gestion::whereIn('id_gestion',$id_gestiones)->get();
+        
+
+        //var_dump($usuario);
+        return view('jugador.informacion_jugador_club_resultados')->with('usuario',$usuario)->with('gestiones',$gestiones)->with('id_participaciones',$id_participaciones);//url */
+        return view('jugador.informacion_jugador_club_resultados')->with('usuario',$usuario)->with('selecciones',$selecciones)->with('jug_clubs',$jug_club);
     }
 
     public function updateFoto(Request $request)

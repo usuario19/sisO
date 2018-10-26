@@ -10,14 +10,14 @@
     La informacion se actualizo exitosamente!!!!
   </div>
 </div>
-<h2  class="display-1" style="font-size: 20px"><a href="{{ route('administrador.index')}}">Coordinadores </a>|  {{ $usuario->nombre ." ". $usuario->apellidos }}</h2>
+<h2  class="display-1" style="font-size: 16px"><a href="{{ route('administrador.index')}}">Coordinadores </a>|  {{ $usuario->nombre ." ". $usuario->apellidos }}</h2>
 <br>
 
 <div class="table-responsive-xl">
     
     <table class="table table-sm table-bordered">
       <thead>
-         <th class="table"><h3 class="display-1" style="font-size: 20px">Ficha de informacion</h3></th>
+         <th class="table"><h3 class="display-4" style="font-size: 20px">Ficha de informacion</h3></th>
       </thead>
       <tbody>
           <tr>
@@ -25,7 +25,7 @@
                 <div id="contenedor_info"  {{--  class="form-group col-md-12"  --}}>
 
                   <div class="form-row" {{--  style="position:relative"  --}}>
-                    <div class="form-group " style="width: 180px">
+                    <div class="form-group " style="width: 140px">
                           <div id="contenedor">
                             <img id="imgOrigen" class="rounded mx-auto d-block float-left imginfo" src="/storage/fotos/{{ $usuario->foto_admin }}" alt="" >
                             <div id="divtexto">
@@ -35,10 +35,10 @@
                             </div>
                           </div>
                     </div>
-                    <div class="form-group col-md-9" style="position: relative; height:100px ;">
+                    <div class="form-group col-md-9" style="position: relative; height:65px ;">
                             <div style="bottom: 0px; position: absolute; ">
-                              <h3 class="display-1" style="font-size: 27px; font-weight:bold;">{{ $usuario->tipo .":" }}</h3>
-                              <h3 class="display-4" style="font-size: 24px">{{ $usuario->nombre ." ". $usuario->apellidos }}</h3>
+                              <h3 class="display-1" style="font-size: 20px; font-weight:bold;">{{ strtoupper($usuario->tipo ).":" }}</h3>
+                              <h3 class="display-1" style="font-size: 18px">{{ $usuario->nombre ." ". $usuario->apellidos }}</h3>
                             </div>
                           <div class="form-row errorLogin">
                             <span>
@@ -47,24 +47,30 @@
                           </div>
                     </div>
                   </div>  
+                  
+
                 </div>
               </td>
           </tr>
       </tbody>
     </table>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <ul class="navbar-nav">
-        <li class="nav-item  col-md-12">
-          <a class="nav-link" href={{ route('administrador.informacion',$usuario->id_administrador) }}>Configuracion <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active col-md-12">
-          <a class="nav-link" href="{{ route('administrador.informacion_club',$usuario->id_administrador) }}">Clubs que adminsitra</a>
-        </li>
-       
-      </ul>
-
-  </nav>
     <div class="card">
+        <div class="card-header" style="padding: 0%">
+            <nav class="navbar navbar-expand-lg table-bordered menu">
+                <ul class="navbar-nav btn-block">
+                  <li class="nav-item link col-md-4">
+                    <a class="nav-link link  col-md-12" href={{ route('administrador.informacion',$usuario->id_administrador) }}>CONFIGURACION <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item link col-md-4">
+                    <a class="nav-link link active col-md-12" href="{{ route('administrador.informacion_club',$usuario->id_administrador) }}">CLUBS QUE ADMINSITRA</a>
+                  </li>
+                  <li class="nav-item link col-md-4">
+                    <a class="nav-link link col-md-12" href="{{ route('administrador.informacion_club_resultados',$usuario->id_administrador) }}">ESTADISTICAS</a>
+                  </li>
+                </ul>
+          
+            </nav>
+        </div>
         
         <div class="card-body">
 
@@ -86,26 +92,33 @@
         
           
             <div class="col-md-12 table-responsive-xl">
+                <div class=" col-md-12 title-table">
+                  <h3 class="display-6" style="float: left;">CLUBS</h3>
 
-              <table class="table table-hover">
+                </div>
+
+              <table class="table table-hover table-condensed">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Logo</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Ciudad</th>
-                    <th></th>
+                    {{--  <th scope="col">#</th>  --}}
+                    
+                    <th style="width: 200px" scope="col">NOMBRE</th>
+                    <th style="width: 200px" scope="col">CIUDAD</th>
+                    <th scope="col">LOGO</th>
+                    <th><button type="button" style="float: right" class="btn btn-warning" data-toggle="modal" data-target="#modal">Agregar</button></th>
+                    {{--  <th><button type="button" class="btn  btn-block btn-warning" data-toggle="modal" data-target="#modal">Agregar</button></th>  --}}
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($usuario->admin_clubs as $club)
                   
                   <tr class="link_pointer" style="cursor:pointer" data-href="{{ route('coordinador.show', $club->id_club) }}">
-                      <th scope="row">{{ $club->id_club}}</th>
-                      <td data-href="{{ route('coordinador.show', $club->id_club) }}"><img class="rounded float-left" src="/storage/logos/{{$club->club->logo}}" alt="" height=" 50px" width="50px"></td>
+                      {{--  <th scope="row">{{ $club->id_club}}</th>  --}}
+                      
                       <td>{{ $club->club->nombre_club}}</td>
                       <td>{{ $club->club->ciudad}}</td>
-                      <td></td>
+                      <td data-href="{{ route('coordinador.show', $club->id_club) }}"><img class="rounded float-left" src="/storage/logos/{{$club->club->logo}}" alt="" height=" 50px" width="50px"></td>
+                      <td><a style="float: right" href="{{ route('club.destroy',$club->id_club) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
                   </tr>
                 
                   @endforeach
@@ -113,7 +126,7 @@
               </table>
               
                
-                
+              @include('admin.modal_reg_club')
 
             </div>
         </div>

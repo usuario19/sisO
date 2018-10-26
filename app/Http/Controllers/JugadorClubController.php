@@ -42,7 +42,7 @@ class JugadorClubController extends Controller
           $datos->id_club = $request->club;
           $datos->save();
            
-          return redirect()->route('jugador.index');
+          return redirect()->back();
     }
 
     /**

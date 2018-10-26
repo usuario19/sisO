@@ -76,7 +76,7 @@
             <td>{{ $usuario->email_jugador}}</td>
             <td>{{ $usuario->fecha_nac_jugador}}</td>
   					<td>{{ $usuario->descripcion_jugador}}</td>
-            <td><a href="{{ route('jugador.edit',$usuario->id_jugador) }}" class="btn btn-warning">Editar</a></td>
+            {{--  <td><a href="{{ route('jugador.edit',$usuario->id_jugador) }}" class="btn btn-warning">Editar</a></td>  --}}
 
             <td>
               <a href="#confirm?"  class="btn btn-danger button_redirect" data-toggle="modal" data-target="#Eliminar{{ $usuario->id_jugador}}" >Eliminar</a>
@@ -179,6 +179,7 @@
       }
       function redirect(e){
         elemento = e.target;
+        console.log(elemento.className)
         if(elemento.className.indexOf('button_redirect') == -1)
          {
             window.location = elemento.parentNode.getAttribute('data-href');

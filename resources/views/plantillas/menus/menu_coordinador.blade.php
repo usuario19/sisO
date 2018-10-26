@@ -1,3 +1,4 @@
+<div class="container-fluid bg-dark ">
 <div class="container">
 
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -10,11 +11,30 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href={{url('welcome')}}>Home <span class="sr-only">(current)</span>
+          <a class="nav-link" href={{url('welcome')}}>HOME <span class="sr-only">(current)</span>
           </a>
         </li>
+        <li class="nav-item ">
+            <a class="nav-link" href={{ route('coordinador.index') }}>MIS CLUBS</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href={{ route('coordinador.ely') }}>JUGADORES</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href={{ route('coordinador.mis_gestiones') }}>GESTIONES</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href={{ route('disciplina.index') }}>DISCIPLINAS</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href={{ route('disciplina.index') }}>PARTIDOS</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href={{ route('disciplina.index') }}>RESULTADOS</a>
+        </li>
+        
 
-        <li class="nav-item dropdown">
+        {{--  <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Clubs
           </a>
@@ -22,9 +42,9 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href={{ route('coordinador.index') }}>Lista de Clubs</a>
             </div>
-          </li>
+          </li>  --}}
           
-          <li class="nav-item dropdown">
+          {{--  <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Jugadores
             </a>
@@ -33,10 +53,10 @@
               <a class="dropdown-item" href={{ route('jugador.create') }}>Registrar Jugador</a>
               <a class="dropdown-item" href={{ route('coordinador.mostrarJugadores') }}>Lista de jugadores</a>
             </div>
-          </li> 
+          </li>  --}} 
           
 
-          <li class="nav-item dropdown">
+         {{--   <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Gestiones
             </a>
@@ -71,7 +91,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
-          </li>
+          </li>  --}}
           </ul>
         <ul class="navbar-nav">
          	 <li class="nav-item dropdown">
@@ -81,9 +101,11 @@
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href={{ route('logout') }}>Logout</a>
+              <a class="dropdown-item" href={{ route('administrador.edit',Auth::User()->id_administrador) }}>Editar perfil</a>
             </div>
           </li>
         </ul>  
     	  </div>
       </nav>
     </div>
+  </div>

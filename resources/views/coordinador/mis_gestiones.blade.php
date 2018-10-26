@@ -46,13 +46,14 @@
                   </td>
                   <td>
 
-                    {!! Form::open(['route'=>'disciplina.store_disc','method' => 'POST']) !!}
+                    
                     <!-- Button trigger modal -->
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}">
                         Inscribirse en disciplinas
                       </button>
     
                       <!-- Modal -->
+                      {!! Form::open(['route'=>'disciplina.store_disc','method' => 'POST']) !!}
                       <div class="modal fade" id="V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">

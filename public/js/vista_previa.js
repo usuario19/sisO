@@ -1,12 +1,14 @@
 (function(){
     window.addEventListener('load', inicializarElementos, false);
     var imgO = document.getElementById("imgOrigen").src;
+    if(document.getElementById("imgOrigen2"))
+      var imgO2 = document.getElementById("imgOrigen2").src;
     //var tipos = ["image/png","image/jpeg", "image/jpg", "image/bmp"];
     
  
     function inicializarElementos(){
       
-     var img = document.getElementsByTagName("img");
+     var img = document.getElementsByTagName("button");
      var input = document.getElementsByTagName("input");
 
       for (var i = img.length - 1; i >= 0; i--) {
@@ -44,7 +46,8 @@
         vista_previa();
 
       if(elemento.id =="input2")
-        vistaprevia2();
+      
+        vista_previa2();
     }
 
     
@@ -66,8 +69,7 @@
         var archivo = new FileReader();
 
         archivo.onload = function(){
-          /*document.getElementById("imgParcial").src = archivo.result;
-          document.getElementById("imgParcial").setAttribute("class","rounded mx-auto d-block float-left");*/
+          
           document.getElementById("imgOrigen").src = archivo.result;
         }
 
@@ -83,42 +85,85 @@
             for (var i = botones.length - 1; i >= 0; i--) {
               if(botones[i].id.indexOf("btn") != -1)
               {
-                botones[i].setAttribute("class","uploader vista");
+                botones[i].setAttribute("class","btn btn-dark button vista");
               }
             }
-/*
-            document.getElementById("btnCancelar").setAttribute("class","uploader vista");
-            document.getElementById("btnUpdate").setAttribute("class","uploader vista");*/
+
             document.getElementById("error_foto").innerHTML ="";
           }else {
             document.getElementById("imgOrigen").src = imgO;
             document.getElementById("error_foto").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg,png."
           }
-          //document.getElementById("imgOrigen").setAttribute("class","noVista");
-          //document.getElementById("texto").setAttribute("class","noVista");
+        
           
         }else{
           //console.log(imgO);
           console.log(document.getElementById("input").value);
           document.getElementById("imgOrigen").src = imgO;
           document.getElementById("input").value = "";
-         /* document.getElementById("imgOrigen").setAttribute("class","rounded mx-auto d-block float-left");
-          document.getElementById("imgParcial").setAttribute("class","noVista");*/
+        
           var botones = document.getElementById("divtexto").children;
             for (var i = botones.length - 1; i >= 0; i--) {
               if(botones[i].id.indexOf("btn") != -1)
               {
-                botones[i].setAttribute("class","uploader noVista");
+                botones[i].setAttribute("class","btn btn-outline-dark button noVista");
               }
             }
-          /*document.getElementById("btnCancelar").setAttribute("class","noVista");
-          document.getElementById("btnUpdate").setAttribute("class","noVista");
-          //document.getElementById("texto").setAttribute("class","vista");*/
+         
         }
     }
+    function vista_previa2(){
+      //var origen = document.getElementById("img").src;
+      
+      var archivo = new FileReader();
+
+      archivo.onload = function(){
+        
+        document.getElementById("imgOrigen2").src = archivo.result;
+      }
+
+      if(document.getElementById("input2").files[0])
+      {
+        //VALIDACION
+        var tipo = document.getElementById("input2").files[0].type;
+        if(tipo == "image/png"|| tipo =="image/jpeg" || tipo == "image/jpg" || tipo == "image/bmp")
+        {
+          archivo.readAsDataURL(document.getElementById("input2").files[0]);
+
+          var botones = document.getElementById("divtexto2").children;
+          for (var i = botones.length - 1; i >= 0; i--) {
+            if(botones[i].id.indexOf("btn") != -1)
+            {
+              botones[i].setAttribute("class","uploader vista");
+            }
+          }
+
+          document.getElementById("error_foto2").innerHTML ="";
+        }else {
+          document.getElementById("imgOrigen2").src = imgO2;
+          document.getElementById("error_foto2").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg,png."
+        }
+      
+        
+      }else{
+        //console.log(imgO);
+        console.log(document.getElementById("input2").value);
+        document.getElementById("imgOrigen2").src = imgO;
+        document.getElementById("input2").value = "";
+      
+        var botones = document.getElementById("divtexto2").children;
+          for (var i = botones.length - 1; i >= 0; i--) {
+            if(botones[i].id.indexOf("btn") != -1)
+            {
+              botones[i].setAttribute("class","uploader noVista");
+            }
+          }
+       
+      }
+  }
 
 
-    function vistaprevia2(){
+    /* function vistaprevia2(){
         var archivo2 = new FileReader();
 
         archivo2.onload = function(){
@@ -141,12 +186,10 @@
           document.getElementById("btnCancelar2").setAttribute("class","noVista");
           document.getElementById("texto2").setAttribute("class","vista");
         }
-    }
+    } */
 
     var cancelarImg = function(){
       document.getElementById("imgOrigen").src = imgO;
-      /*document.getElementById("imgOrigen").setAttribute("class","");
-      document.getElementById("imgParcial").setAttribute("class","noVista");*/
       var botones = document.getElementById("divtexto").children;
             for (var i = botones.length - 1; i >= 0; i--) {
               if(botones[i].id.indexOf("btn") != -1)
@@ -154,17 +197,28 @@
                 botones[i].setAttribute("class","uploader noVista");
               }
             }
-      /*document.getElementById("btnCancelar").setAttribute("class","noVista");
-      document.getElementById("btnUpdate").setAttribute("class","noVista");*/
-      /*document.getElementById("texto").setAttribute("class","vista");*/
+      
       document.getElementById("input").value = "";
     }
 
     var cancelarImg2 = function(){
+      document.getElementById("imgOrigen2").src = imgO2;
+      var botones = document.getElementById("divtexto2").children;
+            for (var i = botones.length - 1; i >= 0; i--) {
+              if(botones[i].id.indexOf("btn") != -1)
+              {
+                botones[i].setAttribute("class","uploader noVista");
+              }
+            }
+      
+      document.getElementById("input2").value = "";
+    }
+
+    /* var cancelarImg2 = function(){
           document.getElementById("imgOrigen2").setAttribute("class","");
           document.getElementById("imgParcial2").setAttribute("class","noVista");
           document.getElementById("btnCancela2r").setAttribute("class","noVista");
           document.getElementById("texto2").setAttribute("class","vista");
           document.getElementById("input2").value = "";
-    }
+    } */
 }())

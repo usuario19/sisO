@@ -42,9 +42,6 @@ class EncuentroController extends Controller
             ->get()->last()->id_club_part;
 
             $encuentro_club_part = new Encuentro_Club_Participacion();
-            $encuentro_club_part->puntos = '0';
-            $encuentro_club_part->observacion = '0';
-            $encuentro_club_part->resultado = '0';
             $encuentro_club_part->id_encuentro = $id_encuentro;
             $encuentro_club_part->id_club_part = $id_club_part;
             $encuentro_club_part->save();

@@ -30,8 +30,8 @@
 
       <div class="form-group" style="min-width: 200px">
         <div class="form-row">
-          <div class="form-group col-md-12" style="margin:0%">
-            <div class="contenedor">
+          <div class="form-group col-md-12">
+            <div class="contenedor_modal">
               <img id="imgOrigen" class="rounded mx-auto d-block float-left imgtam" src="/storage/fotos/usuario-sin-foto.png" alt="" {{--  style="height=200px ; width=200px"  --}}>
               
               <div id="divtexto">
@@ -61,6 +61,15 @@
       
       <div class="form-group col-lg-8" >
         @include('plantillas.forms.form_reg_admin')
+        <div class="form-group col-md-6">
+            {!! Form::label('tipo', 'Tipo de Usuario', []) !!}
+            
+            {!! Form::select('tipo',['Administrador'=>'Administrador','Coordinador'=>'Coordinador'] ,'Coordinador', ['class'=>'form-control']) !!}
+          
+            
+          </div>
+          
+          </div>
         <div class="form-row">
           <div class="form-group col-md-6 {{ $errors->has('password') ? 'siError':'noError' }}">
             {!! Form::label('password', 'Contraseña', []) !!} 
@@ -85,7 +94,7 @@
       <div class="form-row">
           <div class="form-group col-md-12 {{ $errors->has('descripcion_admin') ? 'siError':'noError' }}">
             {!! Form::label('descripcion_admin', 'Descripcion', []) !!}
-            {!! Form::textArea('descripcion_admin',null , ['class'=>'form-control','rows'=>4]) !!}
+            {!! Form::textArea('descripcion_admin',null , ['class'=>'form-control','rows'=>2]) !!}
           
         <div class="form-group errorLogin">
             <h6 id="error_desc">{{ $errors->has('descripcion_admin') ? $errors->first('descripcion_admin'):'' }}</h6>    

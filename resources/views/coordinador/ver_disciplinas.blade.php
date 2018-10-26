@@ -46,6 +46,7 @@
                   {{ 'Mixto' }}
                 @endif
             </td>
+            
             <td>
               <a href="{{ route('disciplina.eliminar',$disc->id_club_part) }}"  class="btn btn-danger" data-toggle="modal" data-target="#Eliminar{{ $disc->id_club_part}}" >Eliminar</a>
               <!-- Modal -->
@@ -72,6 +73,7 @@
                 </div>
               </div>
             </td>
+
             <td><a href="{{ route('seleccion.create', $disc->id_club_part) }}" class="btn btn-success">Crear Seleccion</a></td>
           </tr>
         @endforeach

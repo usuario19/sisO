@@ -46,5 +46,5 @@
   </div>
 @endsection
 @section('scripts')
-  {!! Html::script('/js/script2.js') !!}
+  {!! Html::script('/js/filtro_club_genero.js') !!}
 @endsection

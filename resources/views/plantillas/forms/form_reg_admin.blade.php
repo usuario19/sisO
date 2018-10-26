@@ -68,7 +68,7 @@
 			</div>
   		</div>
 		<div class="form-row">
-	  		<div class="form-group col-md-12 {{ $errors->has('email') ? 'siError':'noError' }}">
+	  		<div class="form-group col-md-6 {{ $errors->has('email') ? 'siError':'noError' }}">
 	  			{!! Form::label('email', 'Correo electronico', []) !!}
 	  			{!! Form::text('email', null , ['class' =>'form-control', 'placeholder'=>'example@example.com']) !!}
 
@@ -76,10 +76,9 @@
 				    
 		    		<h6 id="error_email">{{ $errors->has('email') ? $errors->first('email'):'' }}</h6>
 				    
-		 	</div>
-	    	</div>
-	    	
-    	</div>
+		 		</div>
+			</div>
+			
     	
 
     	

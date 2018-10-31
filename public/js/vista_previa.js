@@ -23,6 +23,7 @@
 
     function clickIMagen(e){
       var elemento = e.target;
+      console.log(e);
       if(elemento.id =="texto")
         inputfile();
 
@@ -42,11 +43,12 @@
 
     function vista_previa_Click(e){
        var elemento = e.target;
+
       if(elemento.id =="input")
         vista_previa();
 
       if(elemento.id =="input2")
-      
+        console.log(e);
         vista_previa2();
     }
 
@@ -112,9 +114,9 @@
          
         }
     }
+
     function vista_previa2(){
       //var origen = document.getElementById("img").src;
-      
       var archivo = new FileReader();
 
       archivo.onload = function(){
@@ -128,13 +130,14 @@
         var tipo = document.getElementById("input2").files[0].type;
         if(tipo == "image/png"|| tipo =="image/jpeg" || tipo == "image/jpg" || tipo == "image/bmp")
         {
+          console.log('1');
           archivo.readAsDataURL(document.getElementById("input2").files[0]);
 
           var botones = document.getElementById("divtexto2").children;
           for (var i = botones.length - 1; i >= 0; i--) {
             if(botones[i].id.indexOf("btn") != -1)
             {
-              botones[i].setAttribute("class","uploader vista");
+              botones[i].setAttribute("class","btn btn-dark button vista");
             }
           }
 
@@ -155,12 +158,61 @@
           for (var i = botones.length - 1; i >= 0; i--) {
             if(botones[i].id.indexOf("btn") != -1)
             {
-              botones[i].setAttribute("class","uploader noVista");
+              botones[i].setAttribute("class","btn btn-outline-dark button noVista");
             }
           }
        
       }
   }
+    /* function vista_previa2(){
+      //var origen = document.getElementById("img").src;
+      
+      var archivo = new FileReader();
+
+      archivo.onload = function(){
+        
+        document.getElementById("imgOrigen2").src = archivo.result;
+      }
+
+      if(document.getElementById("input2").files[0])
+      {
+        //VALIDACION
+        var tipo = document.getElementById("input2").files[0].type;
+        if(tipo == "image/png"|| tipo =="image/jpeg" || tipo == "image/jpg" || tipo == "image/bmp")
+        {
+          archivo.readAsDataURL(document.getElementById("input2").files[0]);
+
+          var botones = document.getElementById("divtexto2").children;
+            for (var i = botones.length - 1; i >= 0; i--) {
+              if(botones[i].id.indexOf("btn") != -1)
+              {
+                botones[i].setAttribute("class","btn btn-dark button vista");
+              }
+            }
+
+          document.getElementById("error_foto2").innerHTML ="";
+        }else {
+          document.getElementById("imgOrigen2").src = imgO2;
+          document.getElementById("error_foto2").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg,png."
+        }
+      
+        
+      }else{
+        //console.log(imgO);
+        console.log(document.getElementById("input2").value);
+        document.getElementById("imgOrigen2").src = imgO;
+        document.getElementById("input2").value = "";
+      
+        var botones = document.getElementById("divtexto").children;
+        for (var i = botones.length - 1; i >= 0; i--) {
+          if(botones[i].id.indexOf("btn") != -1)
+          {
+            botones[i].setAttribute("class","btn btn-outline-dark button noVista");
+          }
+        }
+       
+      }
+  } */
 
 
     /* function vistaprevia2(){
@@ -194,7 +246,7 @@
             for (var i = botones.length - 1; i >= 0; i--) {
               if(botones[i].id.indexOf("btn") != -1)
               {
-                botones[i].setAttribute("class","uploader noVista");
+                botones[i].setAttribute("class","noVista");
               }
             }
       
@@ -207,7 +259,7 @@
             for (var i = botones.length - 1; i >= 0; i--) {
               if(botones[i].id.indexOf("btn") != -1)
               {
-                botones[i].setAttribute("class","uploader noVista");
+                botones[i].setAttribute("class","noVista");
               }
             }
       

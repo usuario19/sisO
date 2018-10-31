@@ -35,20 +35,17 @@
                             <div id="divtexto">
                                 <button id="btnCancelar" class="btn btn-outline-dark button noVista">
                                     <span class="btn_hover ">
-                                        <i id="btnCancelar" class="fas fa-times"></i>
+                                        <i id="btnCancelar" class="material-icons float-left">clear</i>
+                                        
                                     </span></button>
                                 <button id="btnUpdate" class="btn btn-outline-dark button noVista">
                                     <span class="btn_hover ">
-                                        <i id="btnUpdate" class="fas fa-sync-alt"></i>
+                                        <i id="btnUpdate" class="material-icons float-left">loop</i>
                                     </span></button>
                               <button id="texto" class="btn btn-dark button vista">
                                 <span class="btn_hover ">
-                                    <i id="texto" class="fas fa-pen"></i>
+                                    <i id="texto" class="material-icons float-left">edit</i>
                                 </span></button>
-                              
-                              {{--  <img id="texto" src="/storage/fotos/subir.png"  alt="">
-                              <img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png"  alt="">
-                              <img id="btnUpdate" class="noVista" src="/storage/fotos/actualizar.png"  alt="">  --}}
                             </div>
                           </div>
                     </div> 

@@ -34,7 +34,13 @@ class ClubController extends Controller
                     ->get();
 
         return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones)->with('administradores',$administradores);
- }
+    }
+
+    public function clubs_principal(){
+        $clubs = Club::all();
+        return view('principal.listar_club')->with('clubs',$clubs);
+    }
+    
     public function create()
     {   
         $administradores = array();
@@ -97,6 +103,7 @@ class ClubController extends Controller
         }
         return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito)->with('administradores',$administradores);
     }
+
 
     public function edit($id){
         $datos = DB::table('adminclubs')

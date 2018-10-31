@@ -83,6 +83,13 @@ class GestionController extends Controller
 
         return view('admin.listar_gestion')->with('gestiones', $gestiones)->with('disciplinas', $disciplinas);
     }
+    public function mostrarGestion_principal()
+    {
+        $gestiones = DB::table('gestiones')->get();
+        $disciplinas = DB::table('disciplinas')->get();
+
+        return view('principal.listar_gestion')->with('gestiones', $gestiones)->with('disciplinas', $disciplinas);
+    }
     public function configurar($id_gestion)
     {
         $gestiones2 = Gestion::select('nombre_gestion')->get();

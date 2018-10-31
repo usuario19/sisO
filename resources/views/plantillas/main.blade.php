@@ -41,21 +41,32 @@
       @endif
    </div>
    
-      <div class="container col-md-10">
-        @yield('submenu')
-        @yield('gestiones')
-        @yield('content')
+ {{--   <div class="container col-md-10">  --}}
+    @yield('submenu')
+    @yield('gestiones')
+    @yield('content')
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}
 
-     @yield('scripts')
-  </div>
+    @yield('scripts')
+  {{--  </div>  --}}
 </div>
 
 <footer>
   <br><br>
-  <div class="container navbar bg-secondary">SITUMSS-Administrador de Olimpiadas Deportivas</div>s
+  <div class="container-fluid navbar navbar-light bg-light">
+    <div class="container">
+      <p>
+          Universidad Mayor de San Simon
+      </p>
+      <p>
+          SITUMSS-Administrador de Olimpiadas Deportivas
+      </p>
+      
+    </div>
+    
+  </div>
 </footer>
 
 </html>

@@ -119,7 +119,7 @@
                 <div class="form-row">
                     
               <div class="form-group col-md-3">
-                {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-block']) !!}
+                {!! Form::submit('Aceptar', ['class'=>'btn btn-primary btn-block']) !!}
               </div>
               <div class="form-group col-md-3">
                 <a href="" class="btn btn-block btn-secondary">Cancelar</a>

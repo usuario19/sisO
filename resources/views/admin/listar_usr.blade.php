@@ -7,33 +7,57 @@
 @section('content')
 
 <div class="table-responsive-xl">
-  
+    
     <table class="table table-sm table-bordered">
       <thead>
         <th>
-           <div style="float:left; padding: 20px 10px;">
-                <h1 class="display-4" style=" font-size:40px">Administradores</h1>
+           <div style="float:left; padding:10px;">
+                <h1 class="display-4" style=" font-size:20px">Administradores</h1>
             </div>
         </th>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <tr>
           <td>
-            <div  style="float: left;" class="form-group col-md-9">
-                {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+            <div class="form-row col-md-12">
+                <div{{--    style="float: left;"  --}} class="form-group col-xl-9">
+                    {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+                </div>
+
+                <div{{--    style="float: left;"  --}} class="form-group col-xl-3">
+                  
+                  <div class="btn-group btn-block" style="margin: auto">
+                        <button type="button" class="btn btn-warning btn-block" data-toggle="dropdown">
+                            <div class="button-div">
+                                <i class="material-icons float-left">settings</i>
+                                <span class="letter-size">Registrar coordinador</span>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalRegADmin">
+                            
+                              <div class="button-item">
+                                  <i class="material-icons float-left">
+                                      person_add
+                                   </i>
+                                  <span class="letter-size">Crear nuevo coordinador</span>
+                              </div>
+                            
+                           </button>
+                          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportADmin">
+                              <div class="button-item">
+                                  <i class="material-icons float-left">
+                                      group_add
+                                  </i>
+                                  <span class="letter-size">Importar coordinadores de excel</span>
+                              </div>
+                          </button>
+                          
+                        </div>
+                  </div>
+                </div>
             </div>
-            <div  style="float: left;" class="form-group col-md-3">
-              <div class="btn-group btn-block">
-                    <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
-                    Registrar administrador
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalRegADmin">Crear nuevo coordinador</button>
-                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportADmin">Importar Administradores desde excel</button>
-                      
-                    </div>
-              </div>
-            </div>
+            
              @include('plantillas.forms.form_reg_admin_modal')
              @include('plantillas.forms.form_import_admin_modal')
           </td>
@@ -75,8 +99,12 @@
                 <td>{{ $usuario->descripcion_admin}}</td>
                {{--   <td><a href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="btn btn-warning">Editar</a></td>
                 <td><a href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="btn btn-success">Mas info</a></td>  --}}
-                <td >
-                  <a  href="#confirm?"  class="btn btn-danger delete_button" data-toggle="modal" data-target="#exampleModal{{ $usuario->id_administrador }}" >Eliminar</a>
+                <td class="text-center">
+                  <a  href="#confirm?"  class="delete_button" data-toggle="modal" data-target="#exampleModal{{ $usuario->id_administrador }}" >
+                      <i title="Eliminar" class="material-icons delete_button">
+                          delete
+                       </i>
+                  </a>
                 </td>
               </tr>
               <!-- Modal -->

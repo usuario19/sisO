@@ -9,8 +9,13 @@
 
 	<div class="container">
     <div class="col-md-12 table-responsive-xl">
-        <h1 style="font-size: 18px" class="display-3">Mis Clubs:</h1>
-        <br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="id_club_jugadores">Mis clubs</label>
+            </div>
+            {!! Form::select('id_club', ['1'=>'club 1'],0, ['class'=>'custom-select','id'=>'id_club_jugadores']) !!}</td>
+                
+        </div>
       @foreach($mis_clubs as $club)
       <div class="col-12 table-responsive">
      
@@ -40,20 +45,20 @@
                     <td style="width: 50%">
                       <div align="right">
                         <a href="{{ route('coordinador.informacion_club', $club->id_club) }}" class="btn btn-outline-warning"> 
-                          <span class="btn_hover_del ">
-                            <i class="fas fa-cog"></i>
-                            <span  class="letter_size"> Configuración </span>
-                          </span>
+                            <div class="">
+                                <i class="material-icons float-left">settings</i>
+                                <span class="letter-size">Configuracion</span>
+                            </div>
                         </a>
                       </div>
                     </td>
                     <td style="width: 50%">
                       <div>
                         <a href="{{ route('coordinador.show', $club->id_club) }}" class="btn btn-outline-success">
-                            <span class="btn_hover_del ">
-                                <i class="fas fa-users"></i>
-                                <span  class="letter_size"> Ver jugadores </span>
-                              </span>
+                            <div class="">
+                                <i class="material-icons float-left">group</i>
+                                <span class="letter-size">ver jugadores</span>
+                            </div>
                         </a>
                       </div>
                     </td>

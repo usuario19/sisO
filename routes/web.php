@@ -43,6 +43,14 @@ Route::group(['middleware' => ['web','guest']],function(){
 				'uses'=> 'GestionController@mostrarGestion',
 				'as' => 'gestion.mostrar'
 			]);
+	Route::get('gestiones',[ 
+		'uses'=> 'GestionController@mostrarGestion_principal',
+		'as' => 'gestion.mostrar_principal'
+	]);
+
+	Route::get('clubs',[ 
+		'uses'=> 'ClubController@clubs_principal',
+		'as' => 'club.mostrar_principal']);
 });
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS

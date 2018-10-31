@@ -14,10 +14,10 @@
 		if(input.name == "ci")
 		{
 			document.getElementById("error_ci").innerHTML = " " ;
-			input.parentNode.setAttribute("class", "form-group col-md-6"); 
+			input.parentNode.setAttribute("class", "form-group col-md-12"); 
 		}else if (input.name == "password") {
 			document.getElementById("error_password").innerHTML = " " ;
-			input.parentNode.setAttribute("class", "form-group col-md-6"); 						
+			input.parentNode.setAttribute("class", "form-group col-md-12"); 						
 		}
 	}
 	/*window.addEventListener('load', inicializarEventos, false);

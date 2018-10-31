@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DisciplinaTableSeeder extends Seeder
 {
@@ -59,6 +60,7 @@ class DisciplinaTableSeeder extends Seeder
        'reglamento_disc' => '',
        'descripcion_disc' => '',
         ]);
+
         DB::table('tipos')->insert([
             'nombre_tipo'=>'series'
         ]);

@@ -20,13 +20,24 @@
 								<div class="contenedor">
 									<img id="imgOrigen2" class="rounded mx-auto d-block float-left imgtam" src="/storage/fotos/usuario-sin-foto.png" alt="" {{--  style="height=200px ; width=200px"  --}}>
 									
-									<div id="divtexto2">
+											<div id="divtexto2">
+													<button id="btnCancelar2" class="btn btn-outline-dark button noVista">
+															<span class="btn_hover">
+																	<i id="btnCancelar2" class="material-icons float-left">clear</i>	
+															</span></button>
+													
+												<button id="texto2" class="btn btn-dark button vista">
+													<span class="btn_hover ">
+															<i id="texto2" class="material-icons float-left">edit</i>
+													</span></button>
+											</div>
+									{{--  <div id="divtexto2">
 										
 										<img id="texto2" src="/storage/fotos/subir.png"  alt="">
 								
 										<img id="btnCancelar2" class="noVista" src="/storage/fotos/cancelar.png"  alt="">
 										
-									</div>
+									</div>  --}}
 								</div>
 							</div>
 						
@@ -64,9 +75,8 @@
 					</table>
 					<div class="form-row">
 							<div class="form-group col-md-6">
-								{!! Form::submit('Crear cuenta', ['class'=>'btn btn-primary btn-block','id'=>'buttonReg']) !!}
-								<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> -->
-							</div>
+							{{--  	{!! Form::submit('Crear cuenta', ['class'=>'btn btn-primary btn-block','id'=>'buttonReg']) !!}
+								  --}}
 							<div class="form-group col-md-6">
 								<a href="" class="btn btn-block btn-secondary" data-dismiss="modal" id="buttonClose">Cancelar</a>
 							</div>

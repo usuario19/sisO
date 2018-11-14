@@ -183,7 +183,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
-	Route::post('gestion/agregar_disciplinas',[
+	Route::post('agregar_disciplinas',[
 	    'uses'=> 'GestionController@agregar_disciplinas',
 	    'as'=> 'gestion.agregar_disciplinas'
 	]);
@@ -204,7 +204,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@resultados',
 	    'as'=> 'gestion.resultados'	
 		]);
-	Route::post('gestion',[
+	Route::post('agregar_clubs',[
 	    'uses'=> 'GestionController@agregar_clubs',
 	    'as'=> 'gestion.agregar_clubs'
 	]);
@@ -351,6 +351,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::post('encuentro/reg_resultado',[
 		'uses'=>'EncuentroController@reg_resultado',
 		'as'=>'encuentro.reg_resultado'
+	]);
+	Route::get('encuentro/{id_club}/{id_grupo}/select_contrincante',[
+		'uses'=>'EncuentroController@select_contrincante',
+		'as'=>'encuentro.select_contrincante'
 	]);
 });
 

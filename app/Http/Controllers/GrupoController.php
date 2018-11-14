@@ -139,6 +139,46 @@ class GrupoController extends Controller
         $encuentros = Encuentro::all();
         return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro)->with('encuentros',$encuentros);
     }
+    public function select_contrincante_grupos($id_club){
+        // $clubsInscritos = DB::table('grupo_club_participaciones')
+        //     ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+        //     //->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+        //     ->select('grupo_club_participaciones.id_club_part')
+        //     ->get()->toArray();
+        // $lista = array();
+        //                 foreach ($clubsInscritos as $club) {
+        //                     $lista[] = $club->id_club_part;
+        //                 }
+        // $clubsParticipantes = DB::table('grupo_club_participaciones')
+        //     ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+        //     ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
+        //     ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+        //     ->select('clubs.*')
+        //     ->get()->toArray();
+        $clubsParaEncuentro = DB::table('grupo_club_participaciones')
+            ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+            ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
+            ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+            ->select('clubs.*')
+            ->get();
+             
+        //$clubsParaEncuentro = array();
+        foreach ($clubsParticipantes as $club) {
+            $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
+        }
+        // $clubsDisponibles = DB::table('clubs')
+        //     ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
+        //     ->where('club_participaciones.id_gestion','=',$id_gestion)
+        //     ->where('club_participaciones.id_disc','=',$id_disc)
+        //     ->whereNotIn('club_participaciones.id_club_part',$lista)
+        //     ->get();
+        // $clubs = DB::table('clubs')
+        //     ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
+        //     ->where('participaciones.id_disciplina','=',$id_disc)
+        //     ->get();
+        // return $fases; 
+        return $clubsParaEncuentro;
+    }
     public function edit($id){
     }
 

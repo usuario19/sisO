@@ -21,9 +21,9 @@ class CreateAdministradoresTable extends Migration
             $table->string('genero');
             $table->date('fecha_nac');
             $table->string('foto_admin')->default('usuario-sin-foto.png');
-            $table->string('email',100)->unique();
+            $table->string('email',100);
             $table->string('password');
-            $table->text('descripcion_admin');
+            $table->text('descripcion_admin')->nullable();
             $table->enum('tipo',['Administrador','Coordinador'])->default('Coordinador');
             $table->rememberToken();
             $table->timestamps();

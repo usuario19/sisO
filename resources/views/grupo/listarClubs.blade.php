@@ -22,7 +22,7 @@
 <div class="content"> 
   <ul id="tabsJustified" class="nav nav-tabs">
       <li class="nav-item">
-        <a href="" data-target="#clubs1" data-toggle="tab" class="nav-link active">Clubs</a></li>
+        <a href="" data-target="#clubs1" data-toggle="tab" class="nav-link">Clubs</a></li>
       <li class="nav-item">
         <a href="" data-target="#fechas1" data-toggle="tab" class="nav-link">Fechas</a></li>
       <li class="nav-item">
@@ -31,7 +31,7 @@
   </ul>
   <br>
   <div id="tabsJustifiedContent" class="tab-content">
-    <div id="clubs1" class="tab-pane fade active show">
+    <div id="clubs1" class="tab-pane fade active">
       <div style="float: left;" class="form-row col-md-12 form-inline">
           <h4>Lista de Clubs:</h4>
           <button class="btn btn-primary " data-toggle="modal" data-target="#v">Agregar</button>
@@ -77,7 +77,9 @@
                <td>{{ $fecha->nombre_fecha}}</td>
                <td><a href="" class="btn btn-success">Editar</a></td>
                <td>
-                 <a href=""><img src="icons\baseline_delete_black_18dp" alt=""></a></td>
+                 <a href=""><i title="Eliminar" class="material-icons">
+                  delete
+                  </i></a></td>
              </tr>
            @endforeach            
          </tbody>
@@ -89,7 +91,10 @@
  
     @foreach ($fechas as $fecha)
        <div>
-          <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}</h4>
+          <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}
+            <a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons">
+                event_note</i></a></h4>
+          
        </div>
        <table class="table table-condensed">
            <thead>
@@ -99,7 +104,7 @@
              <th>Hora</th>
              <th>Ubicacion</th>
              <th>Detalle</th>
-             <th>Acciones</th>
+             <th colspan="2">Acciones</th>
            </thead>
            <tbody>
              @foreach($fecha->encuentros as $encuentro)
@@ -112,11 +117,11 @@
                  <td>{{ $encuentro->hora}}</td>
                  <td>{{ $encuentro->ubicacion}}</td>
                  <td>{{ $encuentro->detalle}}</td>                 
-                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons">
-                    delete
-                    </i></a></td>
-                 <td><a href="{{ route('encuentro.fixture') }}" class="btn btn-danger">fixture</a></td>
-                 <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}" class="btn btn-success">Resultado</a></td>
+                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" data-toggle="modal" data-target="#modalEliminar"><i title="Eliminar" class="material-icons">
+                    delete</i></a></td>
+                 
+                 <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
+                    description</i></a></td>
                </tr>
              @endforeach            
            </tbody>
@@ -125,28 +130,24 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Esta seguro de eliminar?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Aceptar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
-<script>
-    function cargarContrincantes() {
-    var id_club = $('#club1').val();
-    var id_grupo = $('#id_grupo').val();
-    console.log(id_grupo);
-    $.get('/encuentro/' + id_club +'/'+ id_grupo +'/select_contrincante', function(data) {
-        //alert(data);
-        //$('#club2').empty();
-        var html_fases = '<option value="">seleccione club</option>';
-        console.log(data);
-        if (data.length > 0) {
-            var html_fases = '<option value="">seleccione club</option>';
-
-            for (var i = 0; i < data.length; i++) {
-                html_fases += '<option value=" ' + data[i].id_club + '"> ' + data[i].nombre_club + '</option>';
-                $('#club2').html(html_fases);
-                //console.log(html_fases);
-            }
-        } else
-            $('#club2').html(html_fases);
-
-    });
-}
-</script>

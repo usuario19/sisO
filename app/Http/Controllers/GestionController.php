@@ -47,6 +47,7 @@ class GestionController extends Controller
         $gestion->fecha_ini = $request->get('fechaIni');
         $gestion->fecha_fin = $request->get('fechaFin');
         $gestion->desc_gest = $request->get('descripcion');
+        $gestion->sede = $request->get('sede');
         $gestion->estado_gestion = 1;
         $gestion->save();
 
@@ -82,6 +83,13 @@ class GestionController extends Controller
         $disciplinas = DB::table('disciplinas')->get();
 
         return view('admin.listar_gestion')->with('gestiones', $gestiones)->with('disciplinas', $disciplinas);
+    }
+    public function mostrarGestion_principal()
+    {
+        $gestiones = DB::table('gestiones')->get();
+        $disciplinas = DB::table('disciplinas')->get();
+
+        return view('principal.listar_gestion')->with('gestiones', $gestiones)->with('disciplinas', $disciplinas);
     }
     public function configurar($id_gestion)
     {
@@ -163,8 +171,7 @@ class GestionController extends Controller
 
         return view('admin.gestion_clubs')->with('clubs_inscritos', $clubs_inscritos)->with('clubs', $clubs)->with('gestion', $gestion);
     }
-    public function disciplinas($id_gestion)
-    {
+    public function disciplinas($id_gestion){
         $disciplinas = DB::table('disciplinas')
             ->join('participaciones', 'disciplinas.id_disc', '=', 'participaciones.id_disciplina')
             ->where('participaciones.id_gestion', $id_gestion)
@@ -182,10 +189,7 @@ class GestionController extends Controller
         foreach ($inscritos as $inscrito) {
             $lista[] = $inscrito->id_disc;
         }
-        $disciplinasDisponibles = DB::table('disciplinas')
-            ->whereNotIn('disciplinas.id_disc', $lista)
-            ->select('disciplinas.*')
-            ->get();
+        $disciplinasDisponibles = Disciplina::whereNotIn('id_disc', $lista)->get();
         return view('admin.gestion_disciplina')->with('disciplinas', $disciplinas)->with('gestion', $gestion)->with('disciplinasDisponibles', $disciplinasDisponibles);
     }
     public function agregar_disciplinas(Request $request)
@@ -203,7 +207,7 @@ class GestionController extends Controller
 
         return redirect()->back();
     }
-    public function agregar_clubs(Request $request)
+    public function agregar_clubs_inscripcion(Request $request)
     {
         if($request->isMethod('post')){
             $id_gestion = $request->get('id_gestion');
@@ -318,27 +322,11 @@ class GestionController extends Controller
         }
     }
     public function mostrar_resultados(request $request){
-        //return dd($request);
         $gestion = Gestion::find($request->get('id_gestion'));
         $disciplina = Disciplina::find($request->get('id_disciplina'));
         $id_fase = $request->get('id_fase');
         $fase = Fase::find($id_fase);
-        // $posiciones_clubs = DB::table('clubs')
-        //     ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
-        //     ->join('encuentro_club_participaciones','club_participaciones.id_club_part','=','encuentro_club_participaciones.id_club_part')
-        //     ->join('encuentros','encuentro_club_participaciones.id_encuentro','=','encuentros.id_encuentro')
-        //     ->join('fechas','encuentros.id_fecha','=','fechas.id_fecha')
-        //     ->join('fases','fechas.id_fase','=','fases.id_fase')
-        //     ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
-        //     ->select('encuentro_club_participaciones.puntos as puntos', 'clubs.*')
-        //     ->where('fases.id_fase','=',$id_fase)
-        //     //->groupBy('clubs.id_club')
-        //     ->distinct('id_clubs')
-        //     ->paginate(10);   
-        
-        $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->paginate();
-        //return dd($clubs);
-        //$pj = pj($id_fase,$id_club);
+        $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->orderBy('puntos','desc')->paginate(15);
         return view('gestiones.mostrar_resultados',compact('tabla_posiciones','gestion','disciplina','fase'));
     }
 }

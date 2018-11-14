@@ -29,7 +29,7 @@
   		<thead>
   			<th width="50px">ID</th>
         <th>Nombre</th>
-        <th>Tipo</th>
+        <th>Categoria</th>
         <th>Grupos</th>
         <th colspan="2">Acciones</th>
   		</thead>

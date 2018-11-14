@@ -28,21 +28,23 @@
 
 	 	<div class="form-row {{ $errors->has('genero') ? 'siError':'noError' }}">
 
-			<div class="form-group col-md-4">
-				{!! Form::radio('genero', 1 ,null,['id'=>'generof','class'=>'radio']) !!}
-				{!! Form::label('generof', 'Femenino', []) !!}
-				
-			</div>
-
-			<div class="form-group col-md-4">
+			
+				<div class="form-group col-md-4">
+					{!! Form::radio('genero', 1 ,1,['id'=>'generof','class'=>'radio']) !!}
+					{!! Form::label('generof', 'Femenino', []) !!}
 					
-				{!! Form::radio('genero', 2 ,null,['id'=>'generom','class'=>'radio']) !!}
-				{!! Form::label('generom', 'Masculino', []) !!}
+				</div>
 				
-			</div>
-			<div class="form-group errorLogin">
-		    		<h6>{{ $errors->has('genero') ? $errors->first('genero'):'' }}</h6>
-		 	</div>
+				<div class="form-group col-md-4">
+						
+					{!! Form::radio('genero', 2 ,2,['id'=>'generom','class'=>'radio']) !!}
+					{!! Form::label('generom', 'Masculino', []) !!}
+					
+				</div>
+				<div class="form-group errorLogin">
+						    		<h6 id="error_genero">{{ $errors->has('genero') ? $errors->first('genero'):'' }}</h6>
+						 	</div>
+			
 		</div>
    		<div class="form-row">
 			<div class="form-group col-md-6 {{ $errors->has('fecha_nac') ? 'siError':'noError' }}">
@@ -66,7 +68,7 @@
 			</div>
   		</div>
 		<div class="form-row">
-	  		<div class="form-group col-md-12 {{ $errors->has('email') ? 'siError':'noError' }}">
+	  		<div class="form-group col-md-6 {{ $errors->has('email') ? 'siError':'noError' }}">
 	  			{!! Form::label('email', 'Correo electronico', []) !!}
 	  			{!! Form::text('email', null , ['class' =>'form-control', 'placeholder'=>'example@example.com']) !!}
 
@@ -74,41 +76,9 @@
 				    
 		    		<h6 id="error_email">{{ $errors->has('email') ? $errors->first('email'):'' }}</h6>
 				    
-		 	</div>
-	    	</div>
-	    	
-    	</div>
-
-    	<div class="form-row">
-	  		<div class="form-group col-md-6 {{ $errors->has('password') ? 'siError':'noError' }}">
-	    		{!! Form::label('password', 'Contraseña', []) !!}	
-				{!! Form::password('password', ['class' => 'form-control']) !!}
-				<div class="form-group errorLogin">
-				    
-		    		<h6 id="error_password">{{ $errors->has('password') ? $errors->first('password'):'' }}</h6>
-				    
 		 		</div>
-	    	</div>
+			</div>
+			
+    	
 
-	    	<div class="form-group col-md-6">
-	    		{!! Form::label('password_confirmation', 'Confirma tu contraseña', []) !!}	
-				{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
-				<div class="form-group errorLogin">
-				    
-		    		<h6 id="error_confirmation"></h6>
-				    
-		 	</div>
-	    	</div>
-    	</div>
-  
-		<div class="form-row">
-		    <div class="form-group col-md-12 {{ $errors->has('descripcion_admin') ? 'siError':'noError' }}">
-		     	{!! Form::label('descripcion_admin', 'Descripcion', []) !!}
-		     	{!! Form::textArea('descripcion_admin',null , ['class'=>'form-control','rows'=>4]) !!}
-		    
-			<div class="form-group errorLogin">
-		    	<h6 id="error_desc">{{ $errors->has('descripcion_admin') ? $errors->first('descripcion_admin'):'' }}</h6>    
-		 	</div>
-		 </div>
-  		</div>
-  		
+    	

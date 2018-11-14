@@ -25,14 +25,10 @@ class DisciplinaController extends Controller
         return view('disciplina.reg_disc');
     }
 
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
         $datos = new Disciplina($request->all());
         $datos->save();
-
         return redirect()->route('disciplina.index');
-
     }
 
     public function show($id)
@@ -203,7 +199,9 @@ class DisciplinaController extends Controller
 
             
         }
-        return redirect()->route('disciplina.ver_disciplinas',[$id_club,$id_gestion]);
+        flash('Se añadieron las disciplinas correctamente. ')->success();
+        return back();
+        //return redirect()->route('disciplina.ver_disciplinas',[$id_club,$id_gestion]);
     }
     /*
     public function update_disc_club(Request $request, $id)
@@ -253,6 +251,8 @@ class DisciplinaController extends Controller
         //
         $participacion= Club_Participacion::find($id_club_part);
         $participacion->delete();
+
+        flash('Se elimino la participacion en la disciplina. ')->info();
 
         return redirect()->back();
 

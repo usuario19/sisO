@@ -4,7 +4,9 @@
 	function inicializarEventos(){
 		var elementos = document.getElementsByTagName("input");
 		for (var i = elementos.length - 1; i >= 0; i--) {
-			elementos[i].addEventListener("keyup", validar, false);
+			elementos[i].addEventListener("change", validar, false);
+			elementos[i].addEventListener("focus", validar, false);
+
 		}
 	}
 	function validar(e){
@@ -12,10 +14,10 @@
 		if(input.name == "ci")
 		{
 			document.getElementById("error_ci").innerHTML = " " ;
-			input.parentNode.setAttribute("class", "form-group col-md-6"); 
+			input.parentNode.setAttribute("class", "form-group col-md-12"); 
 		}else if (input.name == "password") {
 			document.getElementById("error_password").innerHTML = " " ;
-			input.parentNode.setAttribute("class", "form-group col-md-6"); 						
+			input.parentNode.setAttribute("class", "form-group col-md-12"); 						
 		}
 	}
 	/*window.addEventListener('load', inicializarEventos, false);

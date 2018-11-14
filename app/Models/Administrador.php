@@ -37,7 +37,7 @@ class Administrador extends Authenticatable
     //un jugador administra a un club
     public function admin_clubs(){
 
-        return $this-hasMany('App\Models\Admin_club','id_adminClub','id_adminClub');
+        return $this->hasMany('App\Models\Admin_club','id_administrador');
     } 
     
     public function setPasswordAttribute($value)
@@ -48,20 +48,20 @@ class Administrador extends Authenticatable
     public function setNombreAttribute($value)
     {
         if($value !== null)
-            $this->attributes['nombre']= ucwords(strtolower($value));
+            $this->attributes['nombre']= trim(ucwords(strtolower($value)));
     }
     
     public function setApellidosAttribute($value)
     {
         if($value !== null)
-            $this->attributes['apellidos']= ucwords(strtolower($value));
+            $this->attributes['apellidos']= trim(ucwords(strtolower($value)));
     }
     //ALMACENAR LA IMAGEN EN LA CARPETA
     public function setFotoAdminAttribute($value)
     {
         if($value !== null)
         {
-            $nombre = time().'-'.$value->getClientOriginalName();
+            $nombre = time().'-'.'image';
             //obtiene eel nombre del archivo
             Storage::disk('fotos')->put($nombre, file_get_contents($value));
 

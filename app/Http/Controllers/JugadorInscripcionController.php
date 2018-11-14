@@ -36,10 +36,11 @@ class JugadorInscripcionController extends Controller
     public function store(Request $request)
     {
         //
-        $datos = new Jugador_Inscripcion($request->all());
+        dd($request->id);
+       /*  $datos = new Jugador_Inscripcion($request->all());
         $datos->save();
          
-        return redirect()->route('jugador.index');
+        return redirect()->route('jugador.index'); */
     }
 
     /**

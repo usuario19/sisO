@@ -34,7 +34,13 @@ class ClubController extends Controller
                     ->get();
 
         return view('club.listar_club')->with('clubs',$clubs)->with('gestiones',$gestiones)->with('administradores',$administradores);
- }
+    }
+
+    public function clubs_principal(){
+        $clubs = Club::all();
+        return view('principal.listar_club')->with('clubs',$clubs);
+    }
+    
     public function create()
     {   
         $administradores = array();
@@ -64,7 +70,7 @@ class ClubController extends Controller
         $admin_club->id_club = $ultimo;
         $admin_club->estado_coordinador = 1;
         $admin_club->save();
-        return redirect()->route('club.index');
+        return redirect()->back();
     }
     public function show($id)
     {
@@ -97,6 +103,7 @@ class ClubController extends Controller
         }
         return view('club.listar_club')->with('clubs',$clubs)->with('inscrito',$inscrito)->with('administradores',$administradores);
     }
+
 
     public function edit($id){
         $datos = DB::table('adminclubs')
@@ -211,7 +218,7 @@ class ClubController extends Controller
                     }
                 }
             DB::table('clubs')->where('id_club', '=',$id_club)->delete();
-            return redirect()->route('club.index');                 
+            return redirect()->back();                 
     }
     
     //para llenar la tabla inscripcion

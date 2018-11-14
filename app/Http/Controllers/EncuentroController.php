@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 use PDF;
+use App\Models\Disciplina;
 class EncuentroController extends Controller
 {
     public function index()
@@ -114,11 +115,20 @@ class EncuentroController extends Controller
         return $pdf->download('fixture.pdf');
     }
     public function mostrar_resultado($id_encuentro){
+        $datos_menu = DB::table('encuentros')
+                ->join('encuentro_club_participaciones','encuentros.id_encuentro','encuentro_club_participaciones.id_encuentro')
+                ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+                ->where('encuentros.id_encuentro',$id_encuentro)
+                ->select('club_participaciones.*')
+                ->get()->last();
+        
+        $gestion = Gestion::find($datos_menu->id_gestion);
+        $disciplina = Disciplina::find($datos_menu->id_disc);
         $encuentro = Encuentro::find($id_encuentro);
-        return view('encuentro.reg_resultado_encuentro')->with('encuentro',$encuentro);
+        //return dd($datos_menu->id_gestion);
+        return view('encuentro.reg_resultado_encuentro',compact('encuentro','gestion','disciplina'));
     }
     public function reg_resultado(request $request){
-        return dd($request);
         $id_encuentro = $request->get('id_encuentro');
         
     }
@@ -136,5 +146,75 @@ class EncuentroController extends Controller
         //     $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
         // }
         return $clubsParaEncuentro;
+
+        $clubs = DB::table('encuentros')
+                    ->join('encuentro_club_participaciones','encuentros.id_encuentro','encuentro_club_participaciones.id_encuentro')
+                    ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+                    ->join('clubs','club_participaciones.id_club','clubs.id_club')
+                    ->where('encuentros.id_encuentro',$id_encuentro)
+                    ->get()->toArray();
+        $id_fase = DB::table('fechas')
+                ->join('encuentros','fechas.id_fecha','encuentros.id_fecha')
+                ->where('id_encuentro',$id_encuentro)
+                ->get()->last()->id_fase;
+     
+         $j = 1;
+        for ($i=0; $i < 2; $i++) { 
+            $puntos = $request->get('punto'.$clubs[$i]->{'id_encuentro_club_part'});
+            $observacion = $request->get('observacion'.$clubs[$i]->{'id_encuentro_club_part'});
+            
+            //para encuentro club participacion
+            $id_encuentro_club_part = $request->get('id_encuentro_club_part'.$clubs[$i]->{'id_encuentro_club_part'});
+            //return dd($id_encuentro_club_part);
+            Encuentro_Club_Participacion::where('id_encuentro_club_part', $id_encuentro_club_part)
+                ->update(['puntos' => $puntos, 'observacion'=>$observacion,'resultado'=>"1"]);
+            //para tabla de posiciones
+            $id_club = $clubs[$i]->id_club;
+            
+            $puntos_total = Tabla_Posicion::where('id_club', $id_club)
+                ->where('id_fase', $id_fase)
+                ->select('puntos')->get()->last()->puntos;
+            $puntos_total = $puntos_total + $puntos;
+            
+            $puntos1 = $request->get('punto'.$clubs[$i]->{'id_encuentro_club_part'});
+            $puntos2 = $request->get('punto'.$clubs[$j]->{'id_encuentro_club_part'});
+            if ($puntos1 > $puntos2) {
+                $pg = Tabla_Posicion::where('id_club', $id_club)
+                ->where('id_fase', $id_fase)
+                ->select('pg')->get()->last()->pg;
+                $pg = $pg + 1;
+                //return dd($pg);
+                Tabla_Posicion::where('id_club', $id_club)
+                ->where('id_fase', $id_fase)
+                ->update(['puntos' => $puntos_total, 'pg'=>$pg]);
+                
+            }
+            else {
+                if ($puntos1 < $puntos2) {
+                    $pp = Tabla_Posicion::where('id_club', $id_club)
+                        ->where('id_fase', $id_fase)
+                        ->select('pp')->get()->last()->pp;
+                        $pp = $pp + 1;
+                    Tabla_Posicion::where('id_club', $id_club)
+                        ->where('id_fase', $id_fase)
+                        ->update(['puntos' => $puntos_total,'pp'=>$pp]);   
+                }
+                else {
+                    $pe = Tabla_Posicion::where('id_club', $id_club)
+                    ->where('id_fase', $id_fase)
+                    ->select('pe')->get()->last()->pe;
+                    
+                    $pe = $pe + 1;
+                    
+                    Tabla_Posicion::where('id_club', $id_club)
+                    ->where('id_fase', $id_fase)
+                    ->update(['puntos' => $puntos_total,'pe'=>$pe]);
+                        
+                }
+                
+            }
+            $j = 0;
+        }
+        return redirect()->back();  
     }
 }

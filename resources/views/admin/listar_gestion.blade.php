@@ -31,6 +31,7 @@
   		<thead>
   			<th>ID</th>
         <th>Nombre</th>
+        <th>Sede</th>
         <th>Fecha de Inicio</th>
   			<th>Fecha de Fin</th>
         <th>Descripcion</th>
@@ -44,6 +45,7 @@
   				<tr id="fila.{{ $gestion->id_gestion }}" onMouseOver="ResaltarFila('fila.{{ $gestion->id_gestion }}');" onMouseOut="RestablecerFila('fila.{{ $gestion->id_gestion}}')" onClick="CrearEnlace('{{ route('gestion.show',$gestion->id_gestion) }}');">
   					<td>{{ $gestion->id_gestion}}</td>
   					<td>{{ $gestion->nombre_gestion}}</td>
+  					<td>{{ $gestion->sede}}</td>
   					<td>{{ $gestion->fecha_ini}}</td>
             <td>{{ $gestion->fecha_fin}}</td>
   					<td>{{ $gestion->desc_gest}}</td>

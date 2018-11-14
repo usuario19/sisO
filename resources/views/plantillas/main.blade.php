@@ -12,8 +12,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-
- <div class="container col-md-12">
+</head>
+<body>
+ <div class="container-fluid" style="padding: 0%">
     @if(Auth::check())
      @if(Auth::user()->tipo == 'Administrador')
        @include('plantillas.menus.menu_admin')
@@ -21,36 +22,51 @@
      @else
        @include('plantillas.menus.menu_coordinador')
      @endif
-   @else
-     @include('plantillas.menus.menu_principal')
-   @endif
+    @else
+      @include('plantillas.menus.menu_principal')
+    @endif
    
     <div class="container">
-     @if(count($errors) > 10000000)
-             <div class="alert alert-danger" role="alert">
-               <ul>
-               @foreach($errors->all() as $error)
-               <li>{{ $error }}</li>
-               @endforeach
-               </ul>
-             </div>
-         @endif
+      <br>
+     @include('flash::message')
+
+      @if(count($errors) > 0)
+              <div class="alert alert-danger" role="alert">
+                <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+              </div>
+      @endif
    </div>
    
-      <div class="container">
-        @yield('submenu')
-        @yield('gestiones')
-        @yield('content')
-  {!! Html::script('/js/jquery.js') !!}
-  {{--  {!! Html::script('/js/popper.min.js') !!}  --}}
-  {!! Html::script('/js/bootstrap.min.js') !!}
+ {{--   <div class="container col-md-10">  --}}
+    @yield('submenu')
+    @yield('gestiones')
+    @yield('content')
+   {!! Html::script('/js/jquery.js') !!}
+   {!! Html::script('/js/popper.min.js') !!}
+   {!! Html::script('/js/bootstrap.min.js') !!}
 
-     @yield('scripts')
-      </div>
-</body>
+    @yield('scripts')
+  {{--  </div>  --}}
+</div>
+
 <footer>
   <br><br>
-  <div class="container navbar bg-secondary">SITUMSS-Administrador de Olimpiadas Deportivas</div>
+  <div class="container-fluid navbar navbar-light bg-light">
+    <div class="container">
+      <p>
+          Universidad Mayor de San Simon
+      </p>
+      <p>
+          SITUMSS-Administrador de Olimpiadas Deportivas
+      </p>
+      
+    </div>
+    
+  </div>
 </footer>
 
 </html>

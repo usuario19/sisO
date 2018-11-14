@@ -8,11 +8,14 @@
 @endsection
 
 @section('content')
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarclub">Agregar</button>
+@include('gestiones.modal_inscribir_clubs')
 <div class="form-row">
   <div class="col-md-12">
-@include('gestiones.modal_inscribir_clubs')
       <h4>Clubs inscritos:</h4>
-    <table class="table table-condensed table-striped">
+  </div>
+</div>
+    <table class="table table-condensed">
         <thead class="">
           <th>ID</th>
           <th>Logo</th>
@@ -32,9 +35,4 @@
           @endforeach
         </tbody>
   </table>
-    
-  </div>
-
-</div>
-  
 @endsection

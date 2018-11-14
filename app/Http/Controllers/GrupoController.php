@@ -148,7 +148,28 @@ class GrupoController extends Controller
         // $lista = array();
         //                 foreach ($clubsInscritos as $club) {
         //                     $lista[] = $club->id_club_part;
-        //                 }
+        //                 
+    }
+    public function listar_clubs_competicion($id_grupo,$id_gestion,$id_disc,$id_fase){
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+        $fechas = Fecha::where('id_fase','=',$id_fase)->get();
+        $grupo = Grupo::find($id_grupo);
+        $fechas2 = array();
+        foreach ($fechas as $fecha) {
+            $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
+        }
+        
+        $clubsInscritos = DB::table('grupo_club_participaciones')
+            ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+            //->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+            ->select('grupo_club_participaciones.id_club_part')
+            ->get()->toArray();
+        $lista = array();
+                        foreach ($clubsInscritos as $club) {
+                            $lista[] = $club->id_club_part;
+                        }
         // $clubsParticipantes = DB::table('grupo_club_participaciones')
         //     ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
         //     ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
@@ -178,6 +199,34 @@ class GrupoController extends Controller
         //     ->get();
         // return $fases; 
         return $clubsParaEncuentro;
+
+        // $clubsParaEncuentro = array();
+        // foreach ($clubsParticipantes as $club) {
+        //     $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
+        // }
+        $clubsDisponibles = DB::table('clubs')
+            ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
+            ->where('club_participaciones.id_gestion','=',$id_gestion)
+            ->where('club_participaciones.id_disc','=',$id_disc)
+            ->whereNotIn('club_participaciones.id_club_part',$lista)
+            ->get();
+        
+        $clubs = DB::table('grupos')
+            ->join('grupo_club_participaciones','grupos.id_grupo','=','grupo_club_participaciones.id_grupo')
+            ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+            ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
+            ->where('grupos.id_grupo','=',$id_grupo)
+            ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
+            ->get();
+        $encuentros = Encuentro::all();
+        $participantes = DB::table('jugadores')
+                ->join('jugador_participaciones','jugadores.id_jugador','jugador_participaciones.id_jugador')
+                ->join('participaciones','jugador_participaciones.id_participacion','participaciones.id_participacion')
+                ->where('participaciones.id_gestion',$id_gestion)
+                ->where('participaciones.id_disciplina',$id_disc)
+                ->select('jugadores.*')->get();
+
+        return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','encuentros'));
     }
     public function edit($id){
     }

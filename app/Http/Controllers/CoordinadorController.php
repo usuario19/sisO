@@ -5,9 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin_Club;
 use App\Models\Jugador_Club;
+use App\Models\Club;
+use App\Models\Gestion;
+use App\Models\Inscripcion;
+
+
+
 use Illuminate\Support\Facades\DB;
 
 use Auth;
+use Validator;
+use Storage;
+use Hash;
+use Flash;
 
 class CoordinadorController extends Controller
 {
@@ -80,11 +90,38 @@ class CoordinadorController extends Controller
     {
         //
         $mis_jugadores = Jugador_Club::where('id_club',$id)->get();
-        $mi_club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$id)->get();
+        $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$id)->get();
         //dd($mis_jugadores);
         //dd($mi_club);
         //dd('hola');
-        return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); 
+        /* return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); */ 
+        return view('coordinador.informacion_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0]);
+    }
+    public function club_jugadores2($id)
+    {
+        //
+        $mis_jugadores = Jugador_Club::where('id_club',$id)->get();
+        $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$id)->get();
+        //dd($mis_jugadores);
+        //dd($mi_club);
+        //dd('hola');
+        /* return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); */ 
+        return view('coordinador.coordinador_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0]);
+    }
+    public function club_jugadores(Request $request)
+    {
+        //
+        $mis_jugadores = Jugador_Club::where('id_club',$request->id_club)->get();
+        $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$request->id_club)->get();
+        //dd($mis_jugadores);
+        //dd($mi_club);
+        //dd('hola');
+        /* return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); */ 
+        //return (String) view('coordinador.coordinador_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0]);
+        $view = view('coordinador.coordinador_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0])->render();
+        return response()->json(array('success' => true, 'html'=>$view));
+        //return $request->id_club;
+        
     }
 
     
@@ -121,15 +158,10 @@ class CoordinadorController extends Controller
     public function eliminar($id,$id_club)
     {
         //
-        $usuario= Jugador_Club::where('id_jugador',$id)->where('id_club',$id_club)->get();
-
-        if ($usuario->jugador->foto_jugador != "usuario-sin-foto.png") 
-        {
-           Storage::disk('fotos')->delete($usuario->jugador->foto_jugador);
-        }
-        $id_club = $usuaio->id_club;
+        $usuario = Jugador_Club::where('id_jugador',$id)->where('id_club',$id_club);
         $usuario->delete();
-        return redirect()->route('coordinador.show',$id_club);
+        /* return redirect()->route('coordinador.show',$id_club); */
+        return back();
 
     }
 
@@ -164,6 +196,39 @@ class CoordinadorController extends Controller
         //dd($clubs);
         //dd($id_coordinador);
         return view('coordinador.ajaxfiltrar')->with('clubs', $clubs)->with('usuarios', $usuarios);
+    }
+
+    public function filtrar_jugadores()
+    {
+        $id_coordinador = Auth::User()->id_administrador;
+        //clubs de la tabla adminsclub
+         $todo_clubs = DB::table('clubs')
+        ->join('adminclubs','adminClubs.id_club','=','clubs.id_club')
+        ->where('adminClubs.id_administrador','=',$id_coordinador)
+        ->select('clubs.id_club','nombre_club')
+        ->get();
+
+        $clubs = array('0' => '-- Seleccionar --');
+        $id_clubs = array();
+        $i=0;
+        foreach ($todo_clubs as $valor) {
+            $clubs[$valor->id_club]=$valor->nombre_club;
+            $id_clubs[$i]=$valor->id_club;
+            $i++; 
+        }
+
+        /* $usuarios = DB::table('jugadores')
+            ->join('jugador_clubs','jugador_clubs.id_jugador','=','jugadores.id_jugador')
+            ->join('clubs','clubs.id_club','=','jugador_clubs.id_club')
+            ->select('jugadores.*','clubs.*')
+            ->whereIn('jugador_clubs.id_club',$id_clubs)
+            ->select('jugadores.*','jugador_clubs.id_jug_club','clubs.id_club','clubs.nombre_club')
+            ->orderBy('jugadores.ci_jugador')
+            ->get(); */
+
+        //dd($clubs);
+        //dd($id_coordinador);
+        return view('coordinador.plantilla.plantilla_jugadores_ajaxfiltrar')->with('clubs', $clubs);
     }
 
     public function filtrar(Request $request)
@@ -286,5 +351,61 @@ class CoordinadorController extends Controller
         }
         echo $datos;
    }
+   public function informacion_club($id_club){
+        $club = Club::find($id_club);
+        return view('coordinador.informacion_club')->with('club',$club);
+   }
+
+   public function informacion_club_gestiones($id_club){
+    $club = Club::find($id_club);
+    $id = $club->admin_clubs->first()->id_adminClub;
+    $inscripciones = Inscripcion::where('id_adminClub',$id)->get();
+    return view('coordinador.informacion_club_gestiones')->with('club',$club)->with('inscripciones',$inscripciones);
+}
+
+
+   public function updateFotoClub(Request $request)
+   {
+       //
+       //var_dump($request->foto_admin);
+       $club = Club::find($request->id_club);
+       //$password_antigua = $usuario->password;
+
+       if ($request->hasFile('logo')) 
+       {
+           //echo "entro";
+           $this->validate($request, [
+               'logo' =>'mimes:jpeg,bmp,png,jpg|max:5120',
+           ]);
+
+           $nombre = time().'-'.'image';
+           
+           //obtiene el nombre del archivo
+           if(Storage::disk('logos')->put($nombre, file_get_contents($request->logo)))
+           {
+               if($club->logo != "sin_imagen.png")
+                   Storage::disk('logos')->delete($club->logo);
+               
+               DB::table('clubs')
+                       ->where('id_club', $request->id_club)
+                       ->update(['logo' => $nombre]);
+           }
+
+           
+       }
+        //return redirect()->route('administrador.informacion',$request->id_administrador);
+        flash('Se actualizo el logo del club correctamente.')->success();
+        return redirect()->back();
+    }
+
+
+    public function update_club(Request $request, $id)
+   {
+        $club = Club::find($id);
+        $club->fill($request->all());
+        $club->save();
+        flash('Se actualizo la informacion del club correctamente.')->success();
+        return redirect()->back();
+    }
    
 }

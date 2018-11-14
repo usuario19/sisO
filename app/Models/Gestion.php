@@ -16,6 +16,7 @@ class Gestion extends Model
 		'nombre_gestion',
 		'fecha_ini',
 		'fecha_fin',
+		'sede',
 		'descripcion_gestion',
 		];
 	protected $hidden = [

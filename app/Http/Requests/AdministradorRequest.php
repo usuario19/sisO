@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Administrador;
 use App\Rules\Alpha_spaces;
+use App\Rules\password;
+use App\Rules\birthdate;
 
 
 class AdministradorRequest extends FormRequest
@@ -28,15 +30,15 @@ class AdministradorRequest extends FormRequest
     {
         return [
             //
-            'ci'=>'required|unique:administradores|numeric',
-            'nombre'=>['required','max:100', new Alpha_spaces], 
-            'apellidos' =>['required','max:150',  new Alpha_spaces], 
+            'ci'=>'required|unique:administradores|numeric|digits_between:6,10',
+            'nombre'=>['required','between:2,150', new Alpha_spaces], 
+            'apellidos' =>['required','between:2,150',  new Alpha_spaces], 
             'genero' =>'required',
-            'fecha_nac' =>'required|date',
+            'fecha_nac' =>['required','date', new birthdate],
             'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',
-            'descripcion_admin'=>'required|max:200',
-            'email'=>'required|unique:administradores|email',
-            'password'=>'required|confirmed|min:6|max:100',
+            'descripcion_admin'=>'between:0,200',
+            'email'=>'required|email',
+            'password'=>['required','confirmed','between:6,100', new password],
         ];
     }
 }

@@ -18,13 +18,6 @@
 							{!! Form::text('nombre', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
 						</div>
 					</div>
-					
-					<div class="form-row">
-						<div class="form-group col-md-12">
-							{!! Form::label('descripcion', 'Descripcion', []) !!}
-							{!! Form::textarea('descripcion', null, ['class'=>'form-control','placeholder'=>'Descripcion', 'rows'=> 4]) !!}
-						</div>
-					</div>
 
 					<div class="form-row">
 						<div class="form-group col-md-6">
@@ -36,7 +29,18 @@
 							{!! Form::date('fechaFin', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
 						</div>
 					</div>
-					
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							{!! Form::label('sede', 'Sede', []) !!}
+							{!! Form::text('sede', null, ['class'=>'form-control','placeholder'=>'Sede']) !!}
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							{!! Form::label('descripcion', 'Descripcion', []) !!}
+							{!! Form::textarea('descripcion', null, ['class'=>'form-control','placeholder'=>'Descripcion', 'rows'=> 4]) !!}
+						</div>
+					</div>
 					<div class="form-row">
 						<div class="form-group col-md-12">
 							{!! Form::label('disciplina', 'Disciplinas', []) !!}

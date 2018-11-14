@@ -20,7 +20,7 @@
 	      		<th>
 	      			<div class="row">
 	      				<div class="col-md-6" >
-	      					<p class="text-center align-text-bottom display-4" style="font-size: 30px;">{{ $dato->gestion->nombre_gestion }}</p>
+	      					<p class="text-center align-text-bottom display-4" style="font-size: 30px;">{{ $dato->gestiones->nombre_gestion }}</p>
 	      				</div>          	      	
 			             <div class="col-md-6" >
 			              	<p class="text-center display-4" style="font-size: 30px;"><img src="/storage/foto_disc/{{ $dato->disciplina->foto_disc }}" alt="" width="50px" height="50px">

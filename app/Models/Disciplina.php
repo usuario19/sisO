@@ -12,15 +12,13 @@ use App\Models\Club_participacion;
 use Storage;
 
 class Disciplina extends Model
-{
-    //
-
-    protected $table = 'disciplinas';
+{   protected $table = 'disciplinas';
 	protected $primaryKey = 'id_disc';
 
     protected $fillable = [
 		'nombre_disc',
         'categoria',
+        'tipo',
 		'foto_disc',
 		'reglamento_disc',
 		'descripcion_disc',
@@ -69,19 +67,26 @@ class Disciplina extends Model
         }
     }
     public function nombre_categoria($categoria){
-
         switch ($categoria) {
             case '0':
                 return 'Mixto';
                 break;
-                case '1':
+            case '1':
                 return 'Damas';
                 break;
-            
-                case '2':
+            case '2':
                 return 'Varones';
+                break;   
+        }
+    }
+    public function nombre_tipo($tipo){
+        switch ($tipo) {
+            case '0':
+                return 'Equipo';
                 break;
-            
+            case '1':
+                return 'Competicion';
+                break;   
         }
     }
 }

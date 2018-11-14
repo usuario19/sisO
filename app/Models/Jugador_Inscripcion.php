@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Jugador_Inscripcion extends Model
 {
     //
-    protected $table = 'Jugador_Inscripciones';
+    protected $table = 'jugador_inscripciones';
 
-	
+    protected $primaryKey = 'id_insc_jug';
     protected $fillable = [
     	'id_inscripcion',
     	'id_jugador',

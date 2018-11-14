@@ -35,7 +35,7 @@ class Jugador extends Model
     }
     //un jugador administra a un club
     public function jugador_inscripciones(){
-        return $this->hasMany('App\Models\Jugador_Inscripcion');
+        return $this->hasMany('App\Models\Jugador_Inscripcion', 'id_jugador');
     } 
    
     //un jugador pertenece a un club

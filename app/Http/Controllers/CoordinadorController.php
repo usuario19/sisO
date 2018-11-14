@@ -28,13 +28,34 @@ class CoordinadorController extends Controller
      */
     public function index()
     {
-        
         $id_coordinador = Auth::User()->id_administrador;
         //clubs de la tabla adminsclub
-        $mis_clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->get();
+        $clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->get();
         //dd($clubs);
         //dd($id_coordinador);
-        return view('coordinador.mis_clubs')->with('mis_clubs', $mis_clubs);
+        $mis_clubs = [];
+        foreach($clubs as $club)
+        {
+            $mis_clubs[$club->id_club]=$club->club->nombre_club;
+            
+        }
+        /* dd($mis_clubs); */
+        if(count($mis_clubs) > 1)
+            return view('coordinador.mis_clubs_ajax')->with('mis_clubs', $mis_clubs)->with('club',$clubs->first());
+        else{
+            return view('coordinador.mis_clubs')->with('mis_clubs', $clubs);
+        }
+            
+    }
+
+    //metodo ajax
+    public function index_ajax(Request $request){
+        $club = Club::where('id_club',$request->id_club)->get();
+
+        $view = view('coordinador.plantilla.plantilla_mis_clubs_ajax')->with('club', $club)->render();
+        return response()->json(array('success' => true, 'html'=>$view));
+        //echo($club);
+
     }
 
     /**
@@ -46,22 +67,18 @@ class CoordinadorController extends Controller
     {
         $id_coordinador = Auth::User()->id_administrador;
         //clubs de la tabla adminsclub
-        $mis_clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->get();
-        $array =array();
+        $clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->get();
+        $mis_clubs =[];
         $i=0;
-        foreach ($mis_clubs as $club) {
+        foreach ($clubs as $club) {
             # code...
-            $array[$i]=$club->id_adminClub;
-            $i++;
+            $mis_clubs[$club->club->id_club] = $club->club->nombre_club;
         }
-
-        //$gestiones = Inscripcion::whereIn('id_adminClub',$array);
-
-        //dd($clubs);
-        //dd($id_coordinador);
-        return view('coordinador.mis_gestiones')->with('mis_clubs', $mis_clubs);
+        if(count($clubs)<=1)
+            return view('coordinador.mis_gestiones')->with('mis_clubs', $clubs);
+        else
+            return view('coordinador.mis_gestiones_ajax')->with('mis_clubs', $mis_clubs);
         
-        //$mis_gestiones = DB::table('')
     }
 
     public function create()
@@ -90,12 +107,13 @@ class CoordinadorController extends Controller
     {
         //
         $mis_jugadores = Jugador_Club::where('id_club',$id)->get();
-        $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$id)->get();
+        $club = Club::where('id_club',$id)->get();
+        //$club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$id)->get();
         //dd($mis_jugadores);
         //dd($mi_club);
         //dd('hola');
         /* return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); */ 
-        return view('coordinador.informacion_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0]);
+        return view('coordinador.informacion_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club->first());
     }
     public function club_jugadores2($id)
     {
@@ -118,7 +136,23 @@ class CoordinadorController extends Controller
         //dd('hola');
         /* return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); */ 
         //return (String) view('coordinador.coordinador_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0]);
-        $view = view('coordinador.coordinador_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0])->render();
+        $view = view('coordinador.plantilla.planilla_tabla_jugadores_ajax')->with('mis_jugadores', $mis_jugadores)->with('club',$club[0])->render();
+        return response()->json(array('success' => true, 'html'=>$view));
+        //return $request->id_club;
+        
+    }
+
+
+
+    public function club_gestiones(Request $request)
+    {
+        $id_coordinador = Auth::User()->id_administrador;
+        $mis_clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->where('id_club',$request->id_club)->get();
+
+        /* $mis_jugadores = Jugador_Club::where('id_club',$request->id_club)->get();
+        $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$request->id_club)->get(); */
+        
+        $view = view('coordinador.plantilla.plantilla_tabla_gestiones_ajax')->with('mis_clubs', $mis_clubs)->render();
         return response()->json(array('success' => true, 'html'=>$view));
         //return $request->id_club;
         
@@ -195,7 +229,8 @@ class CoordinadorController extends Controller
 
         //dd($clubs);
         //dd($id_coordinador);
-        return view('coordinador.ajaxfiltrar')->with('clubs', $clubs)->with('usuarios', $usuarios);
+            return view('coordinador.ajaxfiltrar')->with('clubs', $clubs)->with('usuarios', $usuarios);
+    
     }
 
     public function filtrar_jugadores()
@@ -208,27 +243,43 @@ class CoordinadorController extends Controller
         ->select('clubs.id_club','nombre_club')
         ->get();
 
-        $clubs = array('0' => '-- Seleccionar --');
-        $id_clubs = array();
-        $i=0;
+        $clubs = [];
+        
         foreach ($todo_clubs as $valor) {
             $clubs[$valor->id_club]=$valor->nombre_club;
-            $id_clubs[$i]=$valor->id_club;
-            $i++; 
+           
         }
 
-        /* $usuarios = DB::table('jugadores')
-            ->join('jugador_clubs','jugador_clubs.id_jugador','=','jugadores.id_jugador')
-            ->join('clubs','clubs.id_club','=','jugador_clubs.id_club')
-            ->select('jugadores.*','clubs.*')
-            ->whereIn('jugador_clubs.id_club',$id_clubs)
-            ->select('jugadores.*','jugador_clubs.id_jug_club','clubs.id_club','clubs.nombre_club')
-            ->orderBy('jugadores.ci_jugador')
-            ->get(); */
 
-        //dd($clubs);
-        //dd($id_coordinador);
-        return view('coordinador.plantilla.plantilla_jugadores_ajaxfiltrar')->with('clubs', $clubs);
+        if(count($todo_clubs) <= 1)
+        {
+            if (count($todo_clubs)==0) {
+                $mis_jugadores = null;
+                $club = null;
+                
+                return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club);
+            }else{
+                $mis_jugadores = Jugador_Club::where('id_club',$todo_clubs->first()->id_club)->get();
+                $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$todo_clubs->first()->id_club)->get();
+
+                return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club->first());
+            }
+            
+            
+        }
+        elseif($todo_clubs->first() != null)
+        {
+            $mis_jugadores = Jugador_Club::where('id_club',$todo_clubs->first()->id_club)->get();
+            $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$todo_clubs->first()->id_club)->get();
+            
+            
+            return view('coordinador.mis_jugadores_ajax')->with('clubs', $clubs)->with('mis_jugadores', $mis_jugadores)->with('club',$club->first());
+        }
+        else{
+            $mis_jugadores=null;
+            $club=null;
+            return view('coordinador.mis_jugadores_ajax')->with('clubs', $clubs)->with('mis_jugadores', $mis_jugadores)->with('club',$club);
+        }
     }
 
     public function filtrar(Request $request)
@@ -361,7 +412,7 @@ class CoordinadorController extends Controller
     $id = $club->admin_clubs->first()->id_adminClub;
     $inscripciones = Inscripcion::where('id_adminClub',$id)->get();
     return view('coordinador.informacion_club_gestiones')->with('club',$club)->with('inscripciones',$inscripciones);
-}
+    }
 
 
    public function updateFotoClub(Request $request)
@@ -394,7 +445,7 @@ class CoordinadorController extends Controller
            
        }
         //return redirect()->route('administrador.informacion',$request->id_administrador);
-        flash('Se actualizo el logo del club correctamente.')->success();
+        flash('Se actualizo el logo del club correctamente.')->success()->important();
         return redirect()->back();
     }
 
@@ -404,7 +455,7 @@ class CoordinadorController extends Controller
         $club = Club::find($id);
         $club->fill($request->all());
         $club->save();
-        flash('Se actualizo la informacion del club correctamente.')->success();
+        flash('Se actualizo la informacion del club correctamente.')->success()->important();
         return redirect()->back();
     }
    

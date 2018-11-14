@@ -30,7 +30,11 @@
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <a href="/storage/archivos/planilla_jugadores.xlsx"><span>Descargar Planilla</span></a>
+                  <a href="/storage/archivos/planilla_jugadores.xlsx">
+                    <div class="button-div" style="">
+                        <i class="material-icons float-left">vertical_align_bottom</i>
+                        <span class="letter-size">Descargar planilla</span>
+                    </div></a>
                 </div>
               </div>
             

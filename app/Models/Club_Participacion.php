@@ -26,6 +26,10 @@ class Club_Participacion extends Model{
     public function selecciones(){
          return $this->hasMany('App\Models\Seleccion','id_club_part');
     }
+
+    public function grupo_club_participaciones(){
+        return $this->hasMany('App\Models\Grupo_Club_Participacion','id_club_part');
+   }
     public function encuentro_club_participaciones(){
          return $this->hasMany('App\Models\Encuentro_Club_Participacion','id_club_part');
     }

@@ -1,10 +1,18 @@
 (function(){
-	window.addEventListener('load', inicializarEventos, false)
+	window.addEventListener('load', inicializarEventos, false);
+	//document.getElementById('buscar').addEventListener('focus', inicializarEventos, false);
+	if(document.getElementById('buscar2'))
+		document.getElementById('buscar2').addEventListener('focus', inicializarEventos, false);
+	if(document.getElementById('buscar'))
+	document.getElementById('buscar').addEventListener('focus', inicializarEventos, false);
+
 	function inicializarEventos(){
-		var texto_buscar = document.getElementById('buscar');
-		//texto_buscar.addEventListener('keydown', filtrar_datos, false)
-		texto_buscar.addEventListener('keyup', filtrar_datos_completos, false)
-		//var tbody = document.getElementById('datos');
+		if(document.getElementById('buscar'))
+		document.getElementById('buscar').addEventListener('keyup', filtrar_datos_completos, false);
+		
+		
+		if(document.getElementById('buscar2'))
+		document.getElementById('buscar2').addEventListener('keyup', filtrar_datos_completos, false);
 
 	}
 	function filtrar_datos(){
@@ -53,10 +61,23 @@
 		
 	}
 
-	function filtrar_datos_completos(){
-		var texto_buscar = document.getElementById('buscar');
-		var datos = document.getElementById('datos');
+	function filtrar_datos_completos(e){
+		if(e.target.id == 'buscar'){
+			var texto_buscar = document.getElementById('buscar');
+			var datos = document.getElementById('datos');
+		}
+		else{
+			if(e.target.id == 'buscar2'){
+				var texto_buscar = document.getElementById('buscar2');
+				var datos = document.getElementById('datos2');
+			}
+		}
+			
+		
+		
+		//console.log(datos);
 		var tr = datos.children;
+	
 		//console.log(tr)
 
 		if (texto_buscar.value == "") {
@@ -70,14 +91,17 @@
 			}
 
 		}else {
+			
 			for (var i = tr.length - 1; i >= 0; i--) {
-				/* var tri = tr[i].children; */
+				//var tri = tr[i].children;
+				//console.log(tri);
 				//console.log(tr[i].tagName)
 
 				if(tr[i].tagName == 'TR')
 				{
 					var td = tr[i].children;
 					var str = texto_buscar.value;
+					//console.log(td[3]);
 					var str2 = String(td[3].innerHTML);
 					var str3 = String(td[2].innerHTML);
 

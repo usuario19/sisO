@@ -14,7 +14,7 @@
 
 </head>
 <body>
- <div class="container-fluid" style="padding: 0%">
+ <div class="container" style="padding: 0%">
     @if(Auth::check())
      @if(Auth::user()->tipo == 'Administrador')
        @include('plantillas.menus.menu_admin')

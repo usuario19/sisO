@@ -129,10 +129,19 @@ div .card-header, div .card-header h5{
 	margin: 0%;
 	font-weight: bold;
 }
-body{
-font-size: 80%;
+input.form-control, .form-control{
+font-size: 12px;
 font-family: 'Montserrat', sans-serif;
 }
+.btn {
+	font-size: 12px;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+}
+body{
+	font-size: 80%;
+	font-family: 'Montserrat', sans-serif;
+	}
 footer{
 	top: 100%;
 }
@@ -391,6 +400,7 @@ img#imgOrigenEditDisc{
  {
 	text-align: center;
 	 font-size: 30px;
+	 padding: 5px;
 
 	 color: darkslategray;
 	/*  float: none; */
@@ -398,6 +408,23 @@ img#imgOrigenEditDisc{
  i.delete_button:hover
  {
 	 font-size: 35px;
+	 padding: 0%;
+	 /* opacity: 0.5; */
+	/*  float: none; */
+ }
+
+ i.button_option
+ {
+	text-align: center;
+	 font-size: 25px;
+	padding: 8px;
+	 color: rgb(10, 92, 44);
+	/*  float: none; */
+ }
+ i.button_option:hover
+ {
+	 font-size: 30px;
+	 padding: 0%;
 	 /* opacity: 0.5; */
 	/*  float: none; */
  }
@@ -410,7 +437,7 @@ img#imgOrigenEditDisc{
    height: 22px; */
 }
 div.button-div{
-	width:195px;
+	/* width:100px; */
 	margin: auto; 
 	overflow: hidden;
 }
@@ -420,9 +447,9 @@ div.button-item{
 	overflow: hidden;
 }
 span.letter-size {
-	font-size: 14px;
+	font-size: 12px;
 	overflow: hidden;
-	padding-left: 15px;
+	padding-left: 5px;
 	/* top: 1em;
 	left: 2em; */
 	/* background-color: lime; */
@@ -575,24 +602,32 @@ input#inputEditDisc{
 	/*height: 100px;*/
 	text-align: center;
 }
-.title-table-club{
-	margin: 20px;
-	color: rgb(255, 255, 255);
-	height: 50px;
-	background: #FF5733;
+.title-table-club, .title-table-club div h5 {
+	margin:0 auto;
+	font-weight: 400;
+	font-size: 15px;
+	/* color: rgb(255, 255, 255);
+	height: 40px;
+	background: rgb(23, 121, 212); */
+	
+
 	text-align: center;
+	/* font-size: 20px; */
 }
 .title-table-club h4{
 	/* font-weight: bold; */
-	font-size: 20px;
+	font-size: 16px;
+	margin: 0%;
+	padding: 0%;
 }
 .menu{
 	padding: 0%;
 	margin: 0%;
 }
-thead{
+thead, tr th, .title-select{
 text-transform: uppercase;
  color: rgb(124, 121, 121);
+ font-weight:bolder;
 }
 h3{
 	padding: 0%;
@@ -603,8 +638,9 @@ h3.display-1 {
 	margin: 5px;
 }
 .modal-title{
-	margin: 0px;
-	font-size: 18px;
+	margin:0;
+	font-weight: 400;
+	font-size: 15px;
 	text-transform: uppercase;
 	/* font-weight: 600; */
 	color: rgb(151, 151, 151);
@@ -673,8 +709,9 @@ a.link{
 
 .link :hover{
 	/* border-bottom: 2px solid rgba(1, 10, 1, 0.603); */
-	color: rgb(102, 102, 102);
+	color:  #474c52;
 	font-weight: bold;
+	background:  #DAE0E5;
 	/* border-radius: 16px; */
 	/* background: rgb(177, 175, 175); */
 }
@@ -684,8 +721,9 @@ a.link{
 }
 a.active{
 	/* border-bottom: 2px solid rgba(1, 10, 1, 0.603); */
-	color: rgb(102, 102, 102);
+	color: #474c52;
 	font-weight: bold;
+	/* background:  rgb(251, 253, 255); */
 	/* border-radius: 16px; */
 	/* background: gray; */
 	/* font-weight: bolder; */

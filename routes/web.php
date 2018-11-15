@@ -398,7 +398,8 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 
 	
-
+	
+		
 	Route::get('administrador/{administrador}/edit',[ 
 		'uses'=> 'AdministradorController@edit',
 		'as' => 'administrador.edit']);
@@ -414,7 +415,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::post('coordinador/updateFotoClub',[ 
 		'uses'=> 'CoordinadorController@updateFotoClub',
 		'as' => 'coordinador.updateFotoClub']);
-		
+
 
 	//JUGADOR
 	//Route::resource('jugador','JugadorController');
@@ -445,7 +446,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('jugador/{jugador}/informacion',[ 
 		'uses'=> 'JugadorController@verInformacion',
 		'as' => 'jugador.informacion']);
-
+		
 	Route::get('jugador/{jugador}/informacion_club',[ 
 		'uses'=> 'JugadorController@verInformacion_club',
 		'as' => 'jugador.informacion_club']);
@@ -453,8 +454,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('jugador/{jugador}/informacion_club_resultados',[ 
 		'uses'=> 'JugadorController@verInformacion_club_resultados',
 		'as' => 'jugador.informacion_club_resultados']);
-
-		
+			
 
 
 	Route::get('jugador/{id}/destroy',[ 
@@ -485,6 +485,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 		'uses'=>'ClubController@desinscribir',
 		'as'=>'club.desinscribir'
 	]);
+	
 	Route::get('club/{id}/inscrito',[
 		'uses'=>'ClubController@inscrito',
 		'as'=>'club.inscrito'
@@ -520,17 +521,23 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=> 'CoordinadorController@ver_misJugadores',
 				'as' => 'coordinador.mostrarJugadores']);
 
-	Route::get('coordinador/{id_club}/{id_gestion}/disciplinas',[ 
-				'uses'=> 'DisciplinaController@ver_disciplinas',
+	Route::get('coordinador/{id_club}/{id_gestion}/inscripcion',[ 
+				'uses'=> 'DisciplinaController@ver_disciplinas_jugadores',
 				'as' => 'disciplina.ver_disciplinas']);
 
-	Route::get('coordinador/{coordinador}',[ 
-				'uses'=> 'CoordinadorController@show',
-				'as' => 'coordinador.show']);
+	Route::get('coordinador/{id_club}/{id_gestion}/disciplinas',[ 
+		'uses'=> 'DisciplinaController@ver_disciplinas',
+		'as' => 'disciplina.ver_disciplinas_inscritas']);
+		
+		
+
+	
 
 	Route::post('coordinador',[ 
 				'uses'=> 'DisciplinaController@store_disc_club',
 				'as' => 'disciplina.store_disc']);
+
+				
 
 	Route::post('coordinador/filtrar',[ 
 				'uses'=> 'CoordinadorController@filtrar',
@@ -542,11 +549,9 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	'uses'=> 'CoordinadorController@ver_misGestiones',
 	'as' => 'coordinador.mis_gestiones']);
 
-	Route::get('coordinador/ely/dos',[ 
+	Route::get('coordinador/clubs/jugadores',[ 
 		'uses'=> 'CoordinadorController@filtrar_jugadores',
-		'as' => 'coordinador.ely']);
-
-
+		'as' => 'coordinador.club_jugadores_ajax']);
 
 	Route::post('coordinador/{id}',[ 
 				'uses'=> 'DisciplinaController@update_disc_club',
@@ -564,6 +569,10 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 		'uses'=> 'CoordinadorController@informacion_club',
 		'as' => 'coordinador.informacion_club']);
 
+	Route::post('coordinador/gestiones_activas/club',[ 
+		'uses'=> 'CoordinadorController@club_gestiones',
+		'as' => 'coordinador.club_gestiones']);
+
 	Route::get('coordinador/gestiones/{id_club}',[ 
 		'uses'=> 'CoordinadorController@informacion_club_gestiones',
 		'as' => 'coordinador.informacion_club_gestiones']);
@@ -571,6 +580,12 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::post('coordinador/jugadores/club',[ 
 			'uses'=> 'CoordinadorController@club_jugadores',
 			'as' => 'coordinador.club_jugadores']);
+
+	
+
+	Route::post('coordinador/club/inf',[ 
+		'uses'=> 'CoordinadorController@index_ajax',
+		'as' => 'coordinador.index_ajax']);
 
 	Route::get('coordinador/jugadores/club/{id_club}',[ 
 		'uses'=> 'CoordinadorController@club_jugadores2',
@@ -581,7 +596,11 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=> 'DisciplinaController@eliminar',
 				'as' => 'disciplina.eliminar']);
 
-	Route::get('seleccion/{id}/create',[
+	Route::get('seleccion/{id}/jugadores',[
+				'uses'=>'SeleccionController@create_ajax',
+				'as'=>'seleccion.create_ajax']);
+
+	Route::post('seleccion/jugadores/disc',[
 				'uses'=>'SeleccionController@create',
 				'as'=>'seleccion.create']);
 
@@ -605,6 +624,35 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=>'JugadorController@importExcel',
 				'as'=>'jugador.importExcel']);
 
-	
+	Route::post('jugador_inscripcion',[
+		'uses'=>'JugadorInscripcionController@store',
+		'as'=>'jugador_inscripcion.store']);
+
+	Route::post('jugador_inscripcion/deshabilitar',[
+		'uses'=>'JugadorInscripcionController@deshabilitar',
+		'as'=>'jugador_inscripcion.deshabilitar']);
+
+	Route::get('coordinador/partidos',[ 
+			'uses'=> 'PartidoController@ver_los_partidos',
+			'as' => 'partido.ver_partidos']);
+			
+	Route::post('coordinador/partidos/club',[ 
+		'uses'=> 'PartidoController@obtener_gestiones',
+		'as' => 'partido.obtener_gestiones']);
+
+	Route::post('coordinador/partidos/club/gestiones',[ 
+		'uses'=> 'PartidoController@obtener_disciplinas',
+		'as' => 'partido.obtener_disciplinas']);
+
+	Route::post('coordinador/partidos/club/encuentros',[ 
+		'uses'=> 'PartidoController@obtener_clubs_encuentros',
+		'as' => 'partido.clubs_encuentros']);
+
+	Route::get('coordinador/{coordinador}',[ 
+			'uses'=> 'CoordinadorController@show',
+			'as' => 'coordinador.show']);
+
+
+
 });
 

@@ -31,17 +31,20 @@
      @include('flash::message')
 
       @if(count($errors) > 0)
-              <div class="alert alert-danger" role="alert">
-                <ul>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul style="margin: 0%">
                 @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li style="list-style: circle">{{ $error }}</li>
                 @endforeach
                 </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
               </div>
       @endif
    </div>
    
- {{--   <div class="container col-md-10">  --}}
+
     @yield('submenu')
     @yield('gestiones')
     @yield('content')
@@ -50,7 +53,7 @@
    {!! Html::script('/js/bootstrap.min.js') !!}
 
     @yield('scripts')
-  {{--  </div>  --}}
+
 </div>
 
 <footer>

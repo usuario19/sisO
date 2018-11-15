@@ -88,10 +88,11 @@ class JugadorController extends Controller
             $Jugador_Club->save();
 
             //return redirect()->route('coordinador.mostrarJugadores');
-            return redirect()->back();
+            flash('Se registraron todos los usuarios exitosamente.')->success()->important();
+            return back()->withInput();
 
         }else{
-            return redirect()->back();
+            return back();
         }/*else{
 
             //$ultima_gestion = Gestion::all()->last()->id_gestion;
@@ -284,7 +285,7 @@ class JugadorController extends Controller
         else{
             flash('Se registraron todos los usuarios exitosamente.')->success();
             
-            return back();
+            return back()->withInput();
         }
 
        //return redirect()->back()->with('errores',$errores);

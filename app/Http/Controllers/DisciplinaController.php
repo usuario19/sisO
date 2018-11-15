@@ -5,6 +5,7 @@ use App\Models\Disciplina;
 use App\Models\Gestion;
 use App\Models\Tipo;
 use App\Models\Club_Participacion;
+use App\Models\Jugador_Club;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
@@ -199,8 +200,8 @@ class DisciplinaController extends Controller
 
             
         }
-        flash('Se añadieron las disciplinas correctamente. ')->success();
-        return back();
+        flash('Se añadieron las disciplinas correctamente. ')->success()->important();
+        return back()->withInput();
         //return redirect()->route('disciplina.ver_disciplinas',[$id_club,$id_gestion]);
     }
     /*
@@ -221,6 +222,34 @@ class DisciplinaController extends Controller
        //dd('holfsdf');
     }*/
     
+    public function ver_disciplinas_jugadores($id_club,$id_gestion)
+    {
+        $jugadores = Jugador_Club::where('id_club',$id_club)->get();
+
+        $disciplinas = Club_Participacion::where('id_gestion',$id_gestion)->where('id_club', $id_club)->get();
+
+        /*$datos = DB::table('clubs')
+        ->join('club_participaciones','club_participaciones.id_club','clubs.id_club')
+        ->join('gestiones','gestiones.id_gestion','club_participaciones.id_gestion')
+        ->select('clubs.nombre_club','clubs.logo','gestiones.nombre_gestion')
+        ->where('clubs.id_club',$id_club)
+        ->where('gestiones.id_gestion',$id_gestion)
+        ->distinct()->get();*/
+
+        $datos = DB::table('gestiones')
+        ->join('inscripciones','inscripciones.id_gestion','gestiones.id_gestion')
+        ->join('adminClubs','adminClubs.id_adminClub','inscripciones.id_adminClub')
+        ->join('clubs','clubs.id_club','adminClubs.id_club')
+        ->select('clubs.nombre_club','clubs.logo','clubs.id_club','gestiones.nombre_gestion','gestiones.id_gestion','inscripciones.id_inscripcion')
+        ->where('clubs.id_club',$id_club)
+        ->where('gestiones.id_gestion',$id_gestion)
+        ->distinct()->get();
+
+
+        //return view('coordinador.ver_disciplinas')->with('disciplinas',$disciplinas)->with('datos',$datos);
+        return view('coordinador.ver_disciplinas_jugadores')->with('club_jugadores',$jugadores)->with('datos',$datos);
+    }
+
     public function ver_disciplinas($id_club,$id_gestion)
     {
 
@@ -238,25 +267,31 @@ class DisciplinaController extends Controller
         ->join('inscripciones','inscripciones.id_gestion','gestiones.id_gestion')
         ->join('adminClubs','adminClubs.id_adminClub','inscripciones.id_adminClub')
         ->join('clubs','clubs.id_club','adminClubs.id_club')
-        ->select('clubs.nombre_club','clubs.logo','gestiones.nombre_gestion')
+        ->select('clubs.nombre_club','clubs.logo','clubs.id_club','gestiones.nombre_gestion','gestiones.id_gestion','inscripciones.id_inscripcion')
         ->where('clubs.id_club',$id_club)
         ->where('gestiones.id_gestion',$id_gestion)
         ->distinct()->get();
 
 
         return view('coordinador.ver_disciplinas')->with('disciplinas',$disciplinas)->with('datos',$datos);
+        //return view('coordinador.ver_disciplinas_jugadores')->with('club_jugadores',$jugadores)->with('datos',$datos);
     }
+
+
+
     public function eliminar($id_club_part)
     {
         //
         $participacion= Club_Participacion::find($id_club_part);
+        $id = $participacion->id_club;
         $participacion->delete();
 
-        flash('Se elimino la participacion en la disciplina. ')->info();
-
-        return redirect()->back();
+        flash('Se elimino la participacion en la disciplinaa. ')->info()->important();
+        return back()->withInput(['id_club'=>$id]);
 
     }
+
+
     public function fases($id_gestion,$id_disc){
         //$fases = Fase::where('id_disciplina','=',$id_disc)->where('id')
         /*$fases = DB::table('fases')

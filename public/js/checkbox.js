@@ -1,5 +1,9 @@
 (function(){
-	window.addEventListener("load", inicializarEventos);
+	//window.addEventListener("load", inicializarEventos);
+	if(document.getElementById("todo") && document.getElementById("todo_hab")){
+		document.getElementById("todo").addEventListener("mouseover", inicializarEventos);
+		document.getElementById("todo_hab").addEventListener("mouseover", inicializarEventos);
+	}
 	
 	function inicializarEventos(){
 		//console.log('hola');
@@ -26,5 +30,4 @@
 		}
 		
 	}
-	//console.log('hola');
 }())

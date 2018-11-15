@@ -27,10 +27,6 @@
         location.href=url;
     }
 </script>
-
-
-
-
 <div class="container">
         <div class="table-responsive-xl">
         <table class="table table-condensed">

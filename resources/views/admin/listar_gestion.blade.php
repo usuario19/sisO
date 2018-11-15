@@ -30,25 +30,21 @@
 	<table class="table table-condensed">
   		<thead>
   			<th>ID</th>
-        <th>Nombre</th>
-        <th>Fecha de Inicio</th>
+            <th>Nombre</th>
+            <th>Fecha de Inicio</th>
   			<th>Fecha de Fin</th>
-        <th>Descripcion</th>
+            <th>Descripcion</th>
   			<th>Acciones</th>
-        
-        
   		</thead>
   		<tbody>
   			@foreach($gestiones as $gestion)
-        
   				<tr id="fila.{{ $gestion->id_gestion }}" onMouseOver="ResaltarFila('fila.{{ $gestion->id_gestion }}');" onMouseOut="RestablecerFila('fila.{{ $gestion->id_gestion}}')" onClick="CrearEnlace('{{ route('gestion.show',$gestion->id_gestion) }}');">
   					<td>{{ $gestion->id_gestion}}</td>
   					<td>{{ $gestion->nombre_gestion}}</td>
   					<td>{{ $gestion->fecha_ini}}</td>
-            <td>{{ $gestion->fecha_fin}}</td>
+                    <td>{{ $gestion->fecha_fin}}</td>
   					<td>{{ $gestion->desc_gest}}</td>
-           
-            <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}"><i title="Eliminar" class="material-icons">delete</i></a></td>
+                    <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}"><i title="Eliminar" class="material-icons">delete</i></a></td>
   				</tr>
   			@endforeach
   		</tbody>

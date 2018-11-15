@@ -15,7 +15,7 @@
          <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
          <li class="breadcrumb-item"><a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">Fases</a></li>
          <li class="breadcrumb-item"><a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">Grupos</a></li>         
-         <li class="breadcrumb-item active" aria-current="page">{{ $grupo->nombre_grupo }}</li>
+         <li class="breadcrumb-item active" id="id_grupo" value="{{$grupo->id_grupo}}"  aria-current="page">{{ $grupo->nombre_grupo }}</li>
        </ol>
     </nav>
 </div>

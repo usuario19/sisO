@@ -392,6 +392,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@reg_resultado',
 		'as'=>'encuentro.reg_resultado'
 	]);
+	Route::get('encuentro/{id_club}/{id_grupo}/select_contrincante',[
+		'uses'=>'EncuentroController@select_contrincante',
+		'as'=>'encuentro.select_contrincante'
+	]);
 });
 
 //COORDINADOR

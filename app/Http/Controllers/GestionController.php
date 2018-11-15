@@ -47,6 +47,7 @@ class GestionController extends Controller
         $gestion->fecha_ini = $request->get('fechaIni');
         $gestion->fecha_fin = $request->get('fechaFin');
         $gestion->desc_gest = $request->get('descripcion');
+        $gestion->sede = $request->get('sede');
         $gestion->estado_gestion = 1;
         $gestion->save();
 

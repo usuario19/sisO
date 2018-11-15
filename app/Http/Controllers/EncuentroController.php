@@ -130,6 +130,22 @@ class EncuentroController extends Controller
     }
     public function reg_resultado(request $request){
         $id_encuentro = $request->get('id_encuentro');
+        
+    }
+    public function select_contrincante($id_club, $id_grupo){
+        $clubsParaEncuentro = DB::table('grupo_club_participaciones')
+            ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+            ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
+            ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+            ->where('clubs.id_club','!=',$id_club)
+            ->select('clubs.*')
+            ->get();
+
+        // $clubsParaEncuentro = array();
+        // foreach ($clubsParticipantes as $club) {
+        //     $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
+        // }
+        return $clubsParaEncuentro;
 
         $clubs = DB::table('encuentros')
                     ->join('encuentro_club_participaciones','encuentros.id_encuentro','encuentro_club_participaciones.id_encuentro')

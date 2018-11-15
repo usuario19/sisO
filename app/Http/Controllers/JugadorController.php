@@ -28,12 +28,12 @@ class JugadorController extends Controller
     {
         $usuarios = Jugador::all();
 
-        $ultima_gestion = Gestion::all()->last()->id_gestion;
+        //$ultima_gestion = Gestion::all()->last()->id_gestion;
 
-        $inscritos = Inscripcion::where('id_gestion',$ultima_gestion)->get();
-        if(Auth::User()->tipo =='Coordinador')
+        //$inscritos = Inscripcion::where('id_gestion',$ultima_gestion)->get();
+        /* if(Auth::User()->tipo =='Coordinador')
             return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('inscritos',$inscritos);
-         else
+         else */
             $clubs = Club::all();
             return view('jugador.listar_jugadores')->with('usuarios',$usuarios)->with('clubs',$clubs);
 

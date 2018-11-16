@@ -1,4 +1,4 @@
- {!! Form::open(['route'=>'fecha.store','method' => 'POST' ,'enctype' => 'multipart/form-data'] ) !!}
+ {!! Form::open(['route'=>'fecha.store','method' => 'POST' ,'enctype' => 'multipart/form-data','id'=>'boton_aceptar'] ) !!}
 <div class="modal fade" id="modalFecha" tabindex="-1" role="dialog" aria-labelledby="modalLabelFecha" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

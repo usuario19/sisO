@@ -113,7 +113,7 @@
                    @foreach ($encuentro->encuentro_club_participaciones as $equipo)
                      <td><img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}</td>
                    @endforeach
-                 <td>{{ $encuentro->fecha}}</td>
+                 <td>{{ $encuentro->fecha }}</td>
                  <td>{{ $encuentro->hora}}</td>
                  <td>{{ $encuentro->ubicacion}}</td>
                  <td>{{ $encuentro->detalle}}</td>                 

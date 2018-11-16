@@ -64,26 +64,29 @@
   <h4>Lista de Fechas:</h4>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
   @include('fechas.modal_registrar_fecha') 
-     <table class="table table-condensed">
-         <thead>
-           <th width="50px">ID</th>
-           <th>Nombre</th>
-           <th colspan="2" style="text-align: center">Acciones</th>
-         </thead>
-         <tbody>
-            @foreach ($fechas as $fecha)
-             <tr>    
-               <td>{{ $fecha->id_fecha}}</td>
-               <td>{{ $fecha->nombre_fecha}}</td>
-               <td><a href="" class="btn btn-success">Editar</a></td>
-               <td>
-                 <a href=""><i title="Eliminar" class="material-icons">
-                  delete
-                  </i></a></td>
-             </tr>
-           @endforeach            
-         </tbody>
-     </table>
+    <div>
+        <table class="table table-condensed">
+            <thead>
+              <th width="50px">ID</th>
+              <th>Nombre</th>
+              <th colspan="2" style="text-align: center">Acciones</th>
+            </thead>
+            <tbody id="tablas_fechas_competicion">
+                @foreach ($fechas as $fecha)
+                <tr>    
+                  <td>{{ $fecha->id_fecha}}</td>
+                  <td>{{ $fecha->nombre_fecha}}</td>
+                  <td><a href="" class="btn btn-success">Editar</a></td>
+                  <td>
+                    <a href=""><i title="Eliminar" class="material-icons">
+                      delete
+                      </i></a></td>
+                </tr>
+              @endforeach            
+            </tbody>
+        </table>
+    </div>
+     
  </div>
     <div id="encuentros1" class="tab-pane fade">
       <h4>Lista de Encuentros:</h4>
@@ -150,4 +153,7 @@
       </div>
     </div>
   </div>
+@endsection
+@section('scripts')
+{!! Html::script('/js/insertar_fecha.js') !!}
 @endsection

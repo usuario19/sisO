@@ -80,6 +80,7 @@
 </div>
 
 @include('club.modal_edit_club')
+
 <script> 
 var Mostrar = function(id){
   var route = "{{ url('club') }}/"+id+"/edit";

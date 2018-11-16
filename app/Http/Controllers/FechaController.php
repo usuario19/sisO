@@ -14,7 +14,13 @@ class FechaController extends Controller{
 		$fecha->nombre_fecha = $request->get('nombre_fecha');
 		$fecha->id_fase = $request->get('id_fase');
 		$fecha->save();
-		return redirect()->back();
+
+		$datos = Fecha::all();
+		return response()->json(
+			$datos->toArray()
+		);
+
+		//return redirect()->back();
     }
     public function listar_fechas($id_fase,$id_gestion,$id_disc){
         $gestion = Gestion::find($id_gestion);

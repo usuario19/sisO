@@ -175,6 +175,7 @@ return [
         
         //alert
         //Softon\SweetAlert\SweetAlertServiceProvider::class,
+        Cornford\Googlmapper\MapperServiceProvider::class,
     ],
 
     /*
@@ -237,6 +238,7 @@ return [
         //alerts
         //'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         //'SWAL' => Softon\SweetAlert\Facades\SWAL::class,
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
 
     ],
 ];

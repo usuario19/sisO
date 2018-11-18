@@ -18,7 +18,8 @@
         "phpoffice/phpspreadsheet": "^1.4",
         "realrashid/sweet-alert": "^1.1",
         "softon/sweetalert": "^1.0",
-        "uxweb/sweet-alert": "^1.4"
+        "uxweb/sweet-alert": "^1.4",
+        "cornford/googlmapper": "2.*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

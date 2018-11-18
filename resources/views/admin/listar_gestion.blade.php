@@ -9,7 +9,7 @@
 <script language="javascript" type="text/javascript">
     // RESALTAR LAS FILAS AL PASAR EL MOUSE
     function ResaltarFila(id_fila) {
-        document.getElementById(id_fila).style.backgroundColor = '#C0C0C0';
+        document.getElementById(id_fila).style.backgroundColor = '#E5EBEB';
     }
      
     // RESTABLECER EL FONDO DE LAS FILAS AL QUITAR EL FOCO
@@ -61,14 +61,17 @@
             </thead>
             <tbody id="datos">
                 @foreach($gestiones as $gestion)
-                    <tr id="fila.{{ $gestion->id_gestion }}" onMouseOver="ResaltarFila('fila.{{ $gestion->id_gestion }}');" onMouseOut="RestablecerFila('fila.{{ $gestion->id_gestion}}')" onClick="CrearEnlace('{{ route('gestion.show',$gestion->id_gestion) }}');">
+                    <tr id="fila.{{ $gestion->id_gestion }}" onMouseOver="ResaltarFila('fila.{{ $gestion->id_gestion }}');" onMouseOut="RestablecerFila('fila.{{ $gestion->id_gestion}}')" onClick="CrearEnlace('{{ route('gestion.show',$gestion->id_gestion) }}');" style="cursor: pointer">
                         <td>{{ $gestion->id_gestion}}</td>
                         <td>{{ $gestion->nombre_gestion}}</td>
                         <td>{{ $gestion->sede}}</td>
                         <td>{{ $gestion->fecha_ini}}</td>
                         <td>{{ $gestion->fecha_fin}}</td>
                         <td>{{ $gestion->desc_gest}}</td>
-                        <td><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}"><i title="Eliminar" class="material-icons">delete</i></a></td>
+                        <td class="text-center"><a href="{{ route('gestion.destroy',$gestion->id_gestion) }}">
+                            <i title="Eliminar" class="material-icons delete_button">delete</i>
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -9,21 +9,46 @@
             </button>
         </div>
                             
-        <div class="modal-body">
-          <h6>Seleccione los clubs que desea inscribir:</h6><br>
-          <div class="col-md-6">
-            <div class="form-row">
-              <div class="form-group col-md-12">
-                <div style="display: none">
-                  {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
-                </div>
-                 @foreach($clubs as $club)
-                    {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us']) !!}
-                    <img src="/storage/logos/{{ $club->logo }}" alt="" width="50px" height="50px">{{ $club->nombre_club }} <br>
-                @endforeach
-              </div>
-            </div>
-          </div>
+        <div class="modal-body container col-10">
+          
+          <table class="table table-sm table-bordered">
+            <thead>
+
+                <tr>
+                    <th class="text-center" style="width: 50px">
+                        
+                        {!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}
+                        
+                    </th>
+                    <th style="font-size: 12px">
+                        <span>Seleccione los clubs que desea inscribir:</span>
+                    </th>
+                  </tr>
+            </thead>
+          
+          <tbody>
+            <tr style="display: none">
+              <td>
+                  <div>
+                      {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
+                    </div>
+              </td>
+            </tr>
+            @foreach($clubs as $club)
+                <tr>
+                  <td class="text-center" style="margin: auto; padding: 5px">
+                      {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us']) !!}
+                  </td>
+                  <td>
+                      <img src="/storage/logos/{{ $club->logo }}" alt="" width="50px" height="50px">
+                      <span class="letter-size" style="font-size: 14px">{{ $club->nombre_club }}</span>
+                  </td>
+                </tr>
+            @endforeach
+          </tbody>
+        </table>   
+                 
+              
         </div>
         <div class="modal-footer">
           {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}

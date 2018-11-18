@@ -239,7 +239,7 @@
                                         {{$i}}
                                       </td>
                                       <td style="width: 110px" class="text-center">
-                                        <img src="/storage/foto_disc/{{ $disc->disciplina->foto_disc }}" alt="" width="30px" height="30px">
+                                        <img src="/storage/foto_disc/{{ $disc->disciplina->foto_disc }}" alt="" width="20px" height="20px">
                                       </td>
                                       <td colspan="2">
                                         {{strtoupper($disc->disciplina->nombre_disc)}}
@@ -283,11 +283,6 @@
                                     @endphp
                               @endforeach
                             @endif
-                        
-    
-                        
-          
-                        
                       </tr>
                     @endif
                     @endforeach

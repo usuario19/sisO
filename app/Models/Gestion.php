@@ -34,5 +34,15 @@ class Gestion extends Model
 
         return $this->hasMany('App\Models\Club_Participacion','id_gestion');  
     }
-	
+	public function setSedeAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['sede']= trim(ucwords(strtolower($value)));
+    }
+
+    public function setNombreGestionAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['nombre_gestion']= trim(ucwords(strtolower($value)));
+    }
 }

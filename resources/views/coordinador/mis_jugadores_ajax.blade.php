@@ -14,16 +14,16 @@
     
       <div class="form-row">
           
-              <div class="container input-group mb-3 col-md-10">
-                  <div class="input-group-prepend">
-                      <label class="input-group-text" for="id_club_inf" style="color: white; background:  #85c1e9;">Mis Clubs: </label>
-                  </div>
-                  {!! Form::select('id_club',$clubs,'', ['class'=>'custom-select','id'=>'id_club_jugadores']) !!}</td>
-                    
-              </div>
-              <div id="cargando" style="display: none; padding:0 0 10px 0" class="col-md-12 text-center">
-                  <img src="/storage/logos/loader.gif" alt="" height="30">
-              </div>
+        <div class="container input-group mb-3 col-md-10">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="id_club_inf" style="color: white; background:  #85c1e9;">Mis Clubs: </label>
+            </div>
+            {!! Form::select('id_club',$clubs,'', ['class'=>'custom-select','id'=>'id_club_jugadores']) !!}</td>
+              
+        </div>
+        <div id="cargando" style="display: none; padding:0 0 10px 0" class="col-md-12 text-center">
+            <img src="/storage/logos/loader.gif" alt="" height="30">
+        </div>
       </div>
       {!! Form::open(['route'=>['coordinador.updateFotoClub'],'method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true]) !!}
 

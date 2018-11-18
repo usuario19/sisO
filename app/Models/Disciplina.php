@@ -89,4 +89,9 @@ class Disciplina extends Model
                 break;   
         }
     }
+    public function setNombreDiscAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['nombre_disc']= trim(ucwords(strtolower($value)));
+    }
 }

@@ -5,7 +5,7 @@
 @endsection
 
 @section('submenu')
-<div class="content">
+<div class="container">
   <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('gestion.index') }}">Gestiones</a></li>
@@ -14,7 +14,7 @@
     </nav>
 </div>
 
-<div class="content">
+<div class="container">
       <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

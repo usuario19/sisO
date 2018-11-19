@@ -26,8 +26,7 @@
       <li class="nav-item">
         <a href="" data-target="#fechas1" data-toggle="tab" class="nav-link">Fechas</a></li>
       <li class="nav-item">
-          <a href="" data-target="#encuentros1" data-toggle="tab" class="nav-link">Encuentros</a></li>
-    
+          <a href="" data-target="#encuentros1" data-toggle="tab" class="nav-link">Encuentros</a></li>  
   </ul>
   <br>
   <div id="tabsJustifiedContent" class="tab-content">
@@ -117,7 +116,7 @@
                  <td>{{ $encuentro->hora}}</td>
                  <td>{{ $encuentro->ubicacion}}</td>
                  <td>{{ $encuentro->detalle}}</td>                 
-                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" data-toggle="modal" data-target="#modalEliminar"><i title="Eliminar" class="material-icons">
+                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" ><i title="Eliminar" class="material-icons">
                     delete</i></a></td>
                  
                  <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
@@ -130,24 +129,4 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Eliminar</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Esta seguro de eliminar?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Aceptar</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection

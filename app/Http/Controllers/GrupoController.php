@@ -140,6 +140,7 @@ class GrupoController extends Controller
         return view('grupo.listarClubs')->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro)->with('encuentros',$encuentros);
     }
     public function listar_clubs_competicion($id_grupo,$id_gestion,$id_disc,$id_fase){
+        
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase = Fase::find($id_fase);
@@ -185,14 +186,16 @@ class GrupoController extends Controller
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
         $encuentros = Encuentro::all();
-        $participantes = DB::table('jugadores')
-                ->join('jugador_participaciones','jugadores.id_jugador','jugador_participaciones.id_jugador')
-                ->join('participaciones','jugador_participaciones.id_participacion','participaciones.id_participacion')
-                ->where('participaciones.id_gestion',$id_gestion)
-                ->where('participaciones.id_disciplina',$id_disc)
-                ->select('jugadores.*')->get();
-
-        return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','encuentros'));
+        // $participantes = DB::table('jugadores')
+        //         ->join('jugador_participaciones','jugadores.id_jugador','jugador_participaciones.id_jugador')
+        //         ->join('participaciones','jugador_participaciones.id_participacion','participaciones.id_participacion')
+        //         ->where('participaciones.id_gestion',$id_gestion)
+        //         ->where('participaciones.id_disciplina',$id_disc)
+        //         ->select('jugadores.*')->get();
+        $participantes = DB::table();
+        // return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','encuentros'));
+        //return ("hol");
+        //return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','encuentros'));
     }
     public function edit($id){
     }

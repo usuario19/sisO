@@ -17,7 +17,8 @@ class Gestion extends Model
 		'fecha_ini',
 		'fecha_fin',
 		'sede',
-		'descripcion_gestion',
+        'descripcion_gestion',
+        'estado_inscripcion'
 		];
 	protected $hidden = [
 		'remember_token'

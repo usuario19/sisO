@@ -19,7 +19,8 @@
         "realrashid/sweet-alert": "^1.1",
         "softon/sweetalert": "^1.0",
         "uxweb/sweet-alert": "^1.4",
-        "cornford/googlmapper": "2.*"
+        "cornford/googlmapper": "2.*",
+        "farhanwazir/laravelgooglemaps": "^2.3"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

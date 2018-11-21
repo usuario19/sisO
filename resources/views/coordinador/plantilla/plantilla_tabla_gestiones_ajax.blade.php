@@ -1,12 +1,12 @@
 @foreach($mis_clubs as $club)
-<div class="container col-md-10">
+
     <table class="table table-bordered">
   
         <thead>
           <tr>
             <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
               <div class="container text-center" style="padding: 10px 0px; margin: auto;">
-                  <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px">{{ strtoupper($club->club->nombre_club)}}</h5>
+                  <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->club->nombre_club)}}</h5>
               </div>
           </th>
           </tr>
@@ -66,7 +66,6 @@
             {!! Form::close() !!}
         </thead>
         <tbody>
-
           @foreach($club->club->inscripciones->sortByDesc('id_inscripcion') as $inscripcion)
             @if ($inscripcion->gestion->estado_gestion == 1)
               <tr class="badge-secondary">
@@ -74,12 +73,18 @@
                   <div style="color: white; margin: auto; padding: 10px">{{ $inscripcion->gestion->nombre_gestion }}</div>
                 </th>
                 <td style="padding: 5px; margin: 0px">
-                    <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="btn btn-secondary">
-                        <div class="button-div" style="width: 150px">
-                            <i class="material-icons float-left">settings</i>
-                            <span class="letter-size">Crear Seleccion</span>
-                        </div>
-                    </a>
+                  @if ($inscripcion->gestion->estado_inscripcion == 1)
+                  <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="btn btn-secondary">
+                      <div class="button-div" style="width: 150px">
+                          <i class="material-icons float-left">settings</i>
+                          <span class="letter-size">Crear Seleccion</span>
+                      </div>
+                  </a>
+                  @else
+                  <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                      
+                    </button>
+                  @endif
                   </td>
               </tr>
               <tr class="bg-light">
@@ -269,7 +274,7 @@
           
         </tbody>
     </table>
-</div>
+
 
 <br>
 @endforeach

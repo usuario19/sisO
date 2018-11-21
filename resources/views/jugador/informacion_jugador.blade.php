@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-
-<div class="table-responsive-xl">
+<div class="container">
+  <div class="table-responsive-xl">
     <h2  class="display-1" style="font-size: 16px"><a href="{{ route('jugador.index')}}">Jugadores </a>|  {{ $usuario->nombre_jugador ." ". $usuario->apellidos_jugador }}</h2>
     <br>
     <div class="container col-md-12">
@@ -31,10 +31,24 @@
                           <div id="contenedor">
                             <img id="imgOrigen" class="rounded mx-auto d-block float-left imginfo" src="/storage/fotos/{{ $usuario->foto_jugador }}" alt="" >
                             <div id="divtexto">
-                              <img id="texto" src="/storage/fotos/subir.png"  alt="">
-                              <img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png"  alt="">
-                              <img id="btnUpdate" class="noVista" src="/storage/fotos/actualizar.png"  alt="">
-                            </div>
+                              <a id="btnCancelar" class="btn btn-outline-dark button noVista">
+                                  <span class="btn_hover ">
+                                      <i id="btnCancelar" class="material-icons float-left" style="color:white">clear</i>
+                                      
+                                  </span>
+                              </a>
+                              <a id="btnUpdate" class="btn btn-outline-dark button noVista">
+                                  <span class="btn_hover ">
+                                      <i id="btnUpdate" class="material-icons float-left" style="color:white">loop</i>
+                                  </span>
+                              </a>
+                              <a id="texto" class="btn btn-dark button vista">
+                              <span class="btn_hover ">
+                                  <i id="texto" class="material-icons float-left" style="color:white">edit</i>
+                              </span>
+                            </a>
+                          </div>
+
                           </div>
                     </div>
                     <div class="form-group col-md-5" style="position: relative; height:65px ;">
@@ -131,6 +145,8 @@
     </div>
   </div>
 </div>
+</div>
+
 
 
 @endsection

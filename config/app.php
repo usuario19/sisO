@@ -176,6 +176,7 @@ return [
         //alert
         //Softon\SweetAlert\SweetAlertServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
+        FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
     ],
 
     /*
@@ -239,6 +240,7 @@ return [
         //'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         //'SWAL' => Softon\SweetAlert\Facades\SWAL::class,
         'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
 
     ],
 ];

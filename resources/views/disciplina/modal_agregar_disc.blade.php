@@ -47,13 +47,13 @@
                                           <div class="form-row">
                                             <div class="form-group col-md-12">
                                               {!! Form::label('categoria', 'Categoria', []) !!}
-                                              {!! Form::select('categoria', ['0'=>'Mixto', '1'=>'Damas','2'=>'Varones'], null, ['class'=>'form-control']) !!}
+                                              {!! Form::select('categoria', ['0'=>'Mixto', '1'=>'Damas','2'=>'Varones'], null, ['placeholder'=>'Seleccione','class'=>'form-control']) !!}
                                             </div>
                                           </div>
                                           <div class="form-row">
                                             <div class="form-group col-md-12">
                                               {!! Form::label('tipo', 'Tipo', []) !!}
-                                              {!! Form::select('tipo', ['0'=>'Equipo', '1'=>'Competicion'], null, ['class'=>'form-control']) !!}
+                                              {!! Form::select('tipo', ['0'=>'Equipo', '1'=>'Competicion'], null, ['placeholder'=>'Seleccione','class'=>'form-control']) !!}
                                             </div>
                                           </div>
                                         </div>                                

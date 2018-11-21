@@ -26,7 +26,7 @@
       
               <div class="collapse navbar-collapse" id="navbarSupportedContent2">
       
-              <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto menu-nav">
                 <li class="nav-item active">
                    <a class="nav-item nav-link text-white" href="{{ route('gestion.configurar',$gestion->id_gestion) }}">Configuracion</a>
                 </li>

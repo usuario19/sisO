@@ -84,7 +84,9 @@ class AdministradorController extends Controller
      */
     public function show($id)
     {
-        
+        $usuario = Administrador::find($id);
+        //var_dump($usuario);
+        return view('admin.perfil')->with('usuario',$usuario);//url
        
     }
 

@@ -6,10 +6,6 @@
 
 @section('content')
 <div class="container">
-   
-    
-    
-
             <div class="container">
                     <div class="form-row">
                             <div class="form-group col-md-12">
@@ -119,17 +115,23 @@
                         </div>
                         
                     </div>
-                    @if(Auth::check() && Auth::user()->tipo == 'Administrador')
-                        @include('disciplina.modal_editar_disc')
-                    @endif
+                   
                 </div>
         </div>
+        @if(Auth::check() && Auth::user()->tipo == 'Administrador')
+                        @include('disciplina.modal_editar_disc')
+                    @endif
 </div>
-   
+
 
 @endsection
 @section('scripts')
-@if(Auth::check() && Auth::user()->tipo == 'Administrador')
+<!-- @if(Auth::check() && Auth::user()->tipo == 'Administrador') -->
+
+<!-- @endif
+
+    {!! Html::script('/js/filtrar_por_nombre.js') !!} -->
+@endsection
 <script> 
     var MostrarDisc = function(id){
       var route = "{{ url('disciplina') }}/"+id+"/edit";
@@ -138,6 +140,7 @@
         $("#edit_nombre_disc").val(data.nombre_disc);
         //$("#edit_administrador").val(data.id_administrador);
         $("#edit_categoria").val(data.categoria);
+        $("#edit_tipo").val(data.tipo);
         var url = '/storage/foto_disc/'+data.foto_disc
         var file = $.get(url);
             $('#imgOrigenEditDisc').attr('src', url);
@@ -149,8 +152,3 @@
       });
     }
 </script>
-@endif
-
-    {!! Html::script('/js/filtrar_por_nombre.js') !!}
-@endsection
-

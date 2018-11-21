@@ -16,6 +16,7 @@ use Storage;
 use Validator;
 use Auth;
 use App\Models\Club_Participacion;
+use Laracasts\Flash\Flash;
 
 class JugadorController extends Controller
 {
@@ -155,7 +156,11 @@ class JugadorController extends Controller
 
         $usuario->fill($request->all());
         $usuario->save();
-        return redirect()->route('jugador.index');
+
+        
+        //return redirect()->route('jugador.index');
+        flash('Se actualizo los datos del jugador.')->success()->important();
+        return back();
     }
 
     /**
@@ -279,11 +284,11 @@ class JugadorController extends Controller
             $var = "";
             for($i = 2; $i<count($errores) ; $i++ )
                 $var.= $errores[$i]." , ";
-                flash('Los siguientes usuarios correspondientes a los No de la lista '.$var.'no fueron registrados.')->error();
+                flash('Los siguientes usuarios correspondientes a los No de la lista '.$var.'no fueron registrados.')->error()->important();
             return back();
         }
         else{
-            flash('Se registraron todos los usuarios exitosamente.')->success();
+            flash('Se registraron todos los usuarios exitosamente.')->success()->important();
             
             return back()->withInput();
         }
@@ -297,6 +302,22 @@ class JugadorController extends Controller
         $usuario = Jugador::find($id);
         //var_dump($usuario);
         return view('jugador.informacion_jugador')->with('usuario',$usuario);//url
+    }
+    public function verInformacion_jug_club($id,$id_club){
+        $club = Club::find($id_club);
+        $usuario = Jugador::find($id);
+        return view('coordinador.plantilla.informacion_jugador')->with('usuario',$usuario)->with('club',$club);//url
+    }
+
+    public function verInformacion_jug_participacion($id,$id_club)
+    {
+        $usuario = Jugador::find($id);
+        //var_dump($usuario);
+        $club = Club::find($id_club);
+        $jug_club = Jugador_Club::where('id_jugador',$id)->where('id_club',$id_club)->select('id_jug_club')->get();
+        $club_part = Club_Participacion::where('id_club',$id_club)->get();
+
+        return view('coordinador.plantilla.informacion_jug_participacion')->with('jug_club',$jug_club)->with('club',$club)->with('club_part',$club_part)->with('usuario',$usuario);//url
     }
 
     public function verInformacion_club($id)
@@ -370,7 +391,8 @@ class JugadorController extends Controller
             
         }
         
+        flash('Se actualizo la foto de perfil del jugador.')->success()->important();
 
-        return redirect()->route('jugador.informacion',$request->id_jugador);
+        return redirect()->back();
     }
 }

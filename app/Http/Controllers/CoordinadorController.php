@@ -18,6 +18,7 @@ use Validator;
 use Storage;
 use Hash;
 use Flash;
+use PDF;
 
 class CoordinadorController extends Controller
 {
@@ -40,10 +41,10 @@ class CoordinadorController extends Controller
             
         }
         /* dd($mis_clubs); */
-        if(count($mis_clubs) > 1)
-            return view('coordinador.mis_clubs_ajax')->with('mis_clubs', $mis_clubs)->with('club',$clubs->first());
+        if(count($mis_clubs) >= 1)
+            return view('coordinador.mis_clubs_ajax')->with('mis_clubs', $mis_clubs)->with('club',$clubs->first())->with('id_club',$clubs->first()->id_club);
         else{
-            return view('coordinador.mis_clubs')->with('mis_clubs', $clubs);
+            return view('coordinador.mis_clubs_ajax')->with('mis_clubs', $mis_clubs)->with('club',null);
         }
             
     }
@@ -68,17 +69,21 @@ class CoordinadorController extends Controller
         $id_coordinador = Auth::User()->id_administrador;
         //clubs de la tabla adminsclub
         $clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->get();
-        $mis_clubs =[];
+        $id_clubs =[];
         $i=0;
         foreach ($clubs as $club) {
             # code...
-            $mis_clubs[$club->club->id_club] = $club->club->nombre_club;
+            $id_clubs[$club->club->id_club] = $club->club->nombre_club;
         }
-        if(count($clubs)<=1)
-            return view('coordinador.mis_gestiones')->with('mis_clubs', $clubs);
-        else
-            return view('coordinador.mis_gestiones_ajax')->with('mis_clubs', $mis_clubs);
-        
+
+        if(count($clubs)==0){
+            $mis_clubs=null;
+            return view('coordinador.mis_gestiones_ajax')->with('mis_clubs', $mis_clubs)->with('id_clubs', $id_clubs);}
+        else{
+            $mis_clubs = Admin_Club::where('id_administrador',$id_coordinador)->where('estado_coordinador',1 )->where('id_club',$club->first()->club->id_club)->get();
+
+            return view('coordinador.mis_gestiones_ajax')->with('mis_clubs', $mis_clubs)->with('id_clubs', $id_clubs);
+        }
     }
 
     public function create()
@@ -251,7 +256,7 @@ class CoordinadorController extends Controller
         }
 
 
-        if(count($todo_clubs) <= 1)
+        /* if(count($todo_clubs) <= 1)
         {
             if (count($todo_clubs)==0) {
                 $mis_jugadores = null;
@@ -266,8 +271,8 @@ class CoordinadorController extends Controller
             }
             
             
-        }
-        elseif($todo_clubs->first() != null)
+        } */
+        if(count($todo_clubs) >= 1)
         {
             $mis_jugadores = Jugador_Club::where('id_club',$todo_clubs->first()->id_club)->get();
             $club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$todo_clubs->first()->id_club)->get();
@@ -456,7 +461,22 @@ class CoordinadorController extends Controller
         $club->fill($request->all());
         $club->save();
         flash('Se actualizo la informacion del club correctamente.')->success()->important();
-        return redirect()->back();
+        return redirect()->back()->withInput(['id_club'=>$id]);
     }
+
+    public function pdf_jugadores($id)
+    {
+        //$club = Club::find($id);
+        $jug_club = Jugador_Club::where('id_club',$id)->get();
+        
+
+         //return PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('reportes.pdf_jugadores', ['jugadores'=>$jug_club])->stream();
+
+
+        $pdf = PDF::loadView('reportes.pdf_jugadores', ['jugadores'=>$jug_club]);
+        return  $pdf->stream('reporteJugadores.pdf');
+ 
+        //return view('reportes.pdf_jugadores')->with('jugadores',$jug_club)->with('club',$club); 
+     }
    
 }

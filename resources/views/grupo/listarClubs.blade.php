@@ -25,18 +25,28 @@
       <div class="card-body">
           
           <div class="content"> 
-            <ul id="tabsJustified" class="nav nav-tabs">
-                <li class="nav-item">
-                  <a href="" data-target="#clubs1" data-toggle="tab" class="nav-link active">Clubs</a></li>
-                <li class="nav-item">
-                  <a href="" data-target="#fechas1" data-toggle="tab" class="nav-link">Fechas</a></li>
-                <li class="nav-item">
-                    <a href="" data-target="#encuentros1" data-toggle="tab" class="nav-link">Encuentros</a></li>
+
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="club_tab" data-toggle="tab" href="#clubs1" role="tab" aria-controls="home" aria-selected="true">Clubs</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" id="fecha_tab" data-toggle="tab" href="#fechas1" role="tab" aria-controls="home" aria-selected="true">Fechas</a>
+                  </li>
+                  <li class="nav-item">
+                        <a class="nav-link" id="encuentro_tab" data-toggle="tab" href="#encuentros1" role="tab" aria-controls="home" aria-selected="true">Encuentros</a>
+                  </li>
               
-            </ul>
+               {{--   <li class="nav-item">
+                  <a href="#fechas1" data-target="#fechas1" data-toggle="tab" class="nav-link" role="tab">Fechas</a></li>
+                <li class="nav-item">
+                    <a href="#encuentros1" data-target="#encuentros1" data-toggle="tab" class="nav-link" role="tab">Encuentros</a>
+                </li>  --}}
+              </ul>
             <br>
-            <div id="tabsJustifiedContent" class="tab-content">
-              <div id="clubs1" class="tab-pane fade active show">
+            <div class="tab-content" id="myTabContent">
+              {{--  <div id="clubs1" class="tab-pane fade">  --}}
+                <div class="tab-pane fade show active" id="clubs1" role="tabpanel" aria-labelledby="">
 
                   <div class="table-responsive-xl  container col-md-10">
                       <table class="table table-sm table-bordered" style="margin: 0%; padding: 0%">
@@ -84,7 +94,7 @@
                   
                 </div> 
              
-           <div id="fechas1" class="tab-pane fade"> 
+                <div class="tab-pane fade show active" id="fechas1" role="tabpanel" aria-labelledby=""> 
 
               <div class="table-responsive-xl  container col-md-10">
                   <table class="table table-sm table-bordered" style="margin: 0%; padding: 0%">
@@ -104,38 +114,38 @@
               </div><br>
               
             
-            @include('fechas.modal_registrar_fecha')
-            <div class="table-responsive-xl container col-md-10">
-                <table class="table table-sm">
-                    <thead>
-                      <th width="" class="text-center">ID</th>
-                      <th>Nombre</th>
-                      <th colspan="2" style="text-align: center">Acciones</th>
-                    </thead>
-                    <tbody id="datos">
-                       @foreach ($fechas as $fecha)
-                        <tr>    
-                          <td class="text-center">{{ $fecha->id_fecha}}</td>
-                          <td>{{ $fecha->nombre_fecha}}</td>
-                          <td style="width: 70px"><a href="" class="">
-                              <i title="Editar" class="material-icons delete_button">
-                                  edit</i>
-                          </a></td>
-                          <td style="width: 70px">
-                            <a href="">
-                              <i title="Eliminar" class="material-icons delete_button">
-                             delete</i>
+              @include('fechas.modal_registrar_fecha')
+              <div class="table-responsive-xl container col-md-10">
+                  <table class="table table-sm">
+                      <thead>
+                        <th width="" class="text-center">ID</th>
+                        <th>Nombre</th>
+                        <th colspan="2" style="text-align: center">Acciones</th>
+                      </thead>
+                      <tbody id="datos">
+                        @foreach ($fechas as $fecha)
+                          <tr>    
+                            <td class="text-center">{{ $fecha->id_fecha}}</td>
+                            <td>{{ $fecha->nombre_fecha}}</td>
+                            <td style="width: 70px"><a href="" class="">
+                                <i title="Editar" class="material-icons delete_button">
+                                    edit</i>
                             </a></td>
-                        </tr>
-                      @endforeach            
-                    </tbody>
-                </table>
-            </div>
+                            <td style="width: 70px">
+                              <a href="">
+                                <i title="Eliminar" class="material-icons delete_button">
+                              delete</i>
+                              </a></td>
+                          </tr>
+                        @endforeach            
+                      </tbody>
+                  </table>
+              </div>
                
            </div>
 
 
-              <div id="encuentros1" class="tab-pane fade">
+              <div id="encuentros1" class="tab-pane fade show active">
                   <div class="table-responsive-xl  container col-md-12">
                       <table class="table table-sm table-bordered" style="margin: 0%; padding: 0%">
                           <tbody>

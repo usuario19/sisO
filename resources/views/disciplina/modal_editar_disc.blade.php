@@ -53,7 +53,12 @@
                                     {!! Form::select('categoria', ['0'=>'Mixto', '1'=>'Damas','2'=>'Varones'], null, ['id'=>'edit_categoria','class'=>'form-control']) !!}
                                   </div>
                                 </div>
-                                 
+                                <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                              {!! Form::label('tipo', 'Tipo', []) !!}
+                                              {!! Form::select('tipo', ['0'=>'Equipo', '1'=>'Competicion'], null, ['id'=>'edit_tipo','class'=>'form-control']) !!}
+                                            </div>
+                                          </div>
                               </div>                                
                             
                            </div>

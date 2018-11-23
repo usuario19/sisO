@@ -21,7 +21,7 @@
                               <div class="form-row">                            
                                       <div style="display: none">
                                          
-                                          {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
+                                          {!! Form::text('id_grupo', $grupo->id_grupo, ['id'=>'id_grupo']) !!}
                                           {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                                           {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
                                   </div>
@@ -75,3 +75,7 @@
                            </div>
                          </div>
  {!! Form::close() !!}
+ 
+ @section('scripts')
+   {!! Html::script('/js/cargar_contrincante_encuentro.js') !!}
+@endsection

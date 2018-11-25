@@ -6,6 +6,7 @@ use App\Models\Gestion;
 use App\Models\Tipo;
 use App\Models\Club_Participacion;
 use App\Models\Jugador_Club;
+use App\Models\Seleccion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
@@ -288,6 +289,16 @@ class DisciplinaController extends Controller
 
         flash('Se elimino la participacion en la disciplinaa. ')->info()->important();
         return back()->withInput(['id_club'=>$id]);
+
+    }
+    
+    public function ver_seleccion_club($id_club_part)
+    {
+        //
+        $participacion= Club_Participacion::find($id_club_part);
+
+        
+        return view('seleccion.seleccion_club')->with('participacion',$participacion);
 
     }
 

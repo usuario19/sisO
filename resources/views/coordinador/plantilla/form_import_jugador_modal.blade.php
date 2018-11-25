@@ -7,6 +7,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        {!! Form::open(['route'=>'jugador.importExcel','method'=>'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
         <div class="modal-body">
 
           <!-- <div>inicio</div> -->
@@ -19,27 +20,25 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-      
-              
-            </div>
-            <div class="container col-md-11">
-              <div class="form-row">
-                <div class="form-group">
-                  <img class="rounded mx-auto d-block float-left" src="/storage/fotos/muestra_excel.png" alt="img no encontrada" height="150px" width="650px">
-                </div>
               </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <a href="/storage/archivos/planilla_jugadores.xlsx" class="btn btn-light">
-                    <div class="button-div" style="">
-                        <i class="material-icons float-left">vertical_align_bottom</i>
-                        <span class="letter-size">Descargar planilla</span>
-                    </div>
-                  </a>
+              <div class="container col-md-11">
+                <div class="form-row">
+                  <div class="form-group">
+                    <img class="rounded mx-auto d-block float-left" src="/storage/fotos/muestra_excel.png" alt="img no encontrada" height="150px" width="650px">
+                  </div>
                 </div>
-              </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <a href="/storage/archivos/planilla_jugadores.xlsx" class="btn btn-light">
+                      <div class="button-div" style="">
+                          <i class="material-icons float-left">vertical_align_bottom</i>
+                          <span class="letter-size">Descargar planilla</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
             
-              {!! Form::open(['route'=>'jugador.importExcel','method'=>'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
+             
                 
                 <div class="form-row">
                     <div class="form-group noVista">

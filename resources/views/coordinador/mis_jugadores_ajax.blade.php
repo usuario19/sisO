@@ -165,12 +165,13 @@
                               </div>
                               @include('coordinador.plantilla.form_reg_jugador_modal')
                               @include('coordinador.plantilla.form_import_jugador_modal')
+                             
                             </td>
                             
                           </tr>
                         </tbody>
                     </table>
-                  
+                    
                     <div class="table-responsive">
                         <table class="table table-hover bg-white">
                           <thead>

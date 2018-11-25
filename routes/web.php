@@ -618,6 +618,10 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=> 'DisciplinaController@eliminar',
 				'as' => 'disciplina.eliminar']);
 
+	Route::get('disciplina/{id}/seleccion',[ 
+		'uses'=> 'DisciplinaController@ver_seleccion_club',
+		'as' => 'disciplina.ver_seleccion_club']);
+
 	Route::get('seleccion/{id}/jugadores',[
 				'uses'=>'SeleccionController@create_ajax',
 				'as'=>'seleccion.create_ajax']);
@@ -669,6 +673,10 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::post('coordinador/partidos/club/encuentros',[ 
 		'uses'=> 'PartidoController@obtener_clubs_encuentros',
 		'as' => 'partido.clubs_encuentros']);
+	
+	Route::post('partidos/encuentros',[ 
+		'uses'=> 'PartidoController@listar_partidos',
+		'as' => 'partido.listar_partidos']);
 
 	Route::get('map', 'MapaController@index');
 
@@ -676,6 +684,17 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 			'uses'=> 'CoordinadorController@show',
 			'as' => 'coordinador.show']);
 
+	Route::get('lugares',[ 
+		'uses'=> 'LugarController@index',
+		'as' => 'lugares.index']);
+
+	Route::post('centro/store',[ 
+		'uses'=> 'LugarController@store',
+		'as' => 'centro.store']);
+
+	Route::get('centro/{centro}/delete',[ 
+		'uses'=> 'LugarController@destroy',
+		'as' => 'centro.delete']);
 
 
 });

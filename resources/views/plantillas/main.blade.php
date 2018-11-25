@@ -67,7 +67,6 @@
   </script>
     @yield('scripts')
 
-{{--  </div>  --}}
 
 <footer>
   <br><br>

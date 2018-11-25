@@ -31,7 +31,7 @@
   </ul>
   <br>
   <div id="tabsJustifiedContent" class="tab-content">
-    <div id="clubs1" class="tab-pane fade active">
+    <div id="clubs1" class="tab-pane fade active show">
       <div style="float: left;" class="form-row col-md-12 form-inline">
           <h4>Lista de Clubs:</h4>
           <button class="btn btn-primary " data-toggle="modal" data-target="#v">Agregar</button>
@@ -60,7 +60,7 @@
         </table>
       </div> 
    
- <div id="fechas1" class="tab-pane fade"> 
+ <div id="fechas1" class="tab-pane fade active show"> 
   <h4>Lista de Fechas:</h4>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
   @include('fechas.modal_registrar_fecha') 
@@ -88,7 +88,7 @@
     </div>
      
  </div>
-    <div id="encuentros1" class="tab-pane fade">
+    <div id="encuentros1" class="tab-pane fade active show">
       <h4>Lista de Encuentros:</h4>
       @include('encuentro.modal_agregar_competicion')     
  

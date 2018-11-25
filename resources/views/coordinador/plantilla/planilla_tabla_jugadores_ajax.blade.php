@@ -118,7 +118,6 @@
                                 @include('coordinador.plantilla.form_reg_jugador_modal')
                                 @include('coordinador.plantilla.form_import_jugador_modal')
                               </td>
-                              
                             </tr>
                           </tbody>
                       </table>

@@ -11,15 +11,15 @@ class Fase extends Model
     protected $fillable = [
         'nombre_fase',
         'id_participacion',
-        //'id_fecha'
+        'id_fecha'
     ];
     protected $hidden = ['remember_token'];
 
     public function fase_tipos (){
-    	return $this->hasMany('App\Models\Fase_Tipo');
+    	return $this->hasMany('App\Models\Fase_Tipo','id_fase');
     }
     public function fechas(){
-    	return $this->hasMany('App\Models\Fecha','id_fecha');
+    	return $this->hasMany('App\Models\Fecha','id_fase');
     }
     public function participacion(){
         return $this->belongsTo('App\Models\Participacion','id_participacion');

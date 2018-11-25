@@ -8,8 +8,16 @@
 <div class="container">
     <div class="table-responsive">
             @foreach($datos as $dato)
+
+
             <div class="container">
-                    <h1  class="display-1" style="font-size: 14px; margin:0 0 15px 0"><a href="{{ route('coordinador.mis_gestiones')}}">Gestiones </a>{{" | ".$dato->nombre_gestion}}</h1>
+
+                    <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="{{ route('coordinador.mis_gestiones')}}">Gestiones </a></li>
+                              <li class="breadcrumb-item active" aria-current="page">{{$dato->nombre_gestion}}</li>
+                            </ol>
+                          </nav>
             </div>
             <div class="container col-md-12">
                 

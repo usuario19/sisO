@@ -82,6 +82,14 @@
               <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
             </div>
           </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('lugares.index') }}">
+                lugares
+              </a>
+  
+              
+            </li> 
+
           </ul>
         <ul class="navbar-nav">
           <li class="nav-item dropdown">

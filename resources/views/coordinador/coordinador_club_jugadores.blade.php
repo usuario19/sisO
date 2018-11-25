@@ -113,19 +113,34 @@
                      </div>
                     
                      <div style="float: left;" class="form-group col-lg-3">
-                       <div class="btn-group btn-block">
-                          <button type="button" class="btn btn-warning dropdown-toggle btn-block" data-toggle="dropdown">
-                            <span class="btn_hover_del ">
-
-                              <i class="fas fa-user-plus"></i>
-                              <span  class="letter_size"> Inscribir nuevo jugador</span>
-                            </span>
-                          </button>
-                          <div class="dropdown-menu dropdown-menu-right">
-                           <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg"><span  class="letter_size">Crear nuevo jugador</span></button>
-                          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportJugador"><span  class="letter_size" >Importar jugadores desde excel</span></button>
+                        <div class="btn-group btn-block">
+                            <button type="button" class="btn btn-warning btn-block" data-toggle="dropdown">
+                                <div class="button-div" style="width: 150px">
+                                    <i class="material-icons float-left">settings</i>
+                                    <span class="letter-size">Registrar jugador</span>
+                                </div>
+                              
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                             <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                <div class="button-item">
+                                    <i class="material-icons float-left">
+                                        person_add
+                                     </i>
+                                    <span class="letter-size">Crear nuevo jugador</span>
+                                </div>
+                             </button>
+                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportJugador">
+                                <div class="button-item">
+                                    <i class="material-icons float-left">
+                                        group_add
+                                    </i>
+                                    <span class="letter-size">Importar jugadores de excel</span>
+                                </div>
+                            </button>
+                            
+                            </div>
                           </div>
-                        </div>
                      </div>
                       @include('coordinador.plantilla.form_reg_jugador_modal')
                       @include('coordinador.plantilla.form_import_jugador_modal')

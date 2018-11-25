@@ -30,7 +30,7 @@ class Disciplina extends Model
 		];
 
     public function participaciones(){
-        return $this->hasMany('App\Models\Participacion','id_disciplina');
+        return $this->hasMany('App\Models\Participacion','id_disc','id_disciplina');
     }    
     public function inscripcions(){
         return $this->hasMany('App\Models\Inscripcion','id_disc');

@@ -35,12 +35,18 @@
               <img id="imgOrigen" class="rounded mx-auto d-block float-left imgtam" src="/storage/fotos/usuario-sin-foto.png" alt="" {{--  style="height=200px ; width=200px"  --}}>
               
               <div id="divtexto">
-                
-                <img id="texto" src="/storage/fotos/subir.png"  alt="">
-            
-                <img id="btnCancelar" class="noVista" src="/storage/fotos/cancelar.png"  alt="">
-                
-              </div>
+                  <a id="btnCancelar" class="btn btn-outline-dark button noVista">
+                      <span class="btn_hover ">
+                          <i id="btnCancelar" class="material-icons float-left" style="color:white">clear</i>
+                      </span>
+                  </a>
+                  
+                  <a id="texto" class="btn btn-dark button vista">
+                    <span class="btn_hover ">
+                        <i id="texto" class="material-icons float-left" style="color:white">edit</i>
+                    </span>
+                  </a>
+                </div>
             </div>
           </div>
         </div>

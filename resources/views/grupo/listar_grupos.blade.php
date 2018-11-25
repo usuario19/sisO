@@ -36,7 +36,7 @@
   				<tr>
   					<td>{{ $grupo->id_grupo}}</td>
             <td>{{ $grupo->nombre_grupo }}</td>
-            @if ($disciplina->tipo = 1)
+            @if ($disciplina->tipo == 1)
             <td><a href="{{ route('grupo.listar_clubs_competicion',[$grupo->id_grupo,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}" class="btn btn-success">Competicion</a></td>
                 
             @else

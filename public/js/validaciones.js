@@ -1,5 +1,8 @@
 (function(){
 	window.addEventListener("load", inicilizarEventos, false);
+	
+	if(document.getElementById('button_add'))
+		document.getElementById('button_add').addEventListener("click", inicilizarEventos, false);
 	function inicilizarEventos()
 	{
 		//document.getElementsByTagName("textarea")[0].addEventListener("focusout", validarDescripcion, false);

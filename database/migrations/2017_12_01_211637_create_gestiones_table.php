@@ -18,8 +18,10 @@ class CreateGestionesTable extends Migration
             $table->string('nombre_gestion');
             $table->date('fecha_ini');
             $table->date('fecha_fin');
+            $table->text('sede')->nullable();
             $table->text('desc_gest')->nullable();
-            $table->integer('estado_gestion');
+            $table->boolean('estado_gestion');
+            $table->boolean('periodo_inscrip');
             $table->timestamps();
         });
     }

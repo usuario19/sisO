@@ -15,7 +15,7 @@
          <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
          <li class="breadcrumb-item"><a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">Fases</a></li>
          <li class="breadcrumb-item"><a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">Grupos</a></li>         
-         <li class="breadcrumb-item active" aria-current="page">{{ $grupo->nombre_grupo }}</li>
+         <li class="breadcrumb-item active" id="id_grupo" value="{{$grupo->id_grupo}}"  aria-current="page">{{ $grupo->nombre_grupo }}</li>
        </ol>
     </nav>
 </div>
@@ -113,7 +113,7 @@
                    @foreach ($encuentro->encuentro_club_participaciones as $equipo)
                      <td><img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}</td>
                    @endforeach
-                 <td>{{ $encuentro->fecha}}</td>
+                 <td>{{ $encuentro->fecha }}</td>
                  <td>{{ $encuentro->hora}}</td>
                  <td>{{ $encuentro->ubicacion}}</td>
                  <td>{{ $encuentro->detalle}}</td>                 

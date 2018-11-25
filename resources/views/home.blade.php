@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid" style="padding: 0%">
+<div class="container" style="padding: 0%">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">

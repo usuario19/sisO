@@ -26,13 +26,13 @@
                                           {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
                                   </div>
                                   <div class="col-md-5">
-                                     {!! Form::select('id_club1', $clubsParaEncuentro, null,['class'=>'form-control']) !!}
+                                     {!! Form::select('id_club1', $clubsParaEncuentro, null,['placeholder'=>'seleccione','id'=>'club1','onchange'=>'cargarContrincantes()','class'=>'form-control']) !!}
                                   </div>
                                   <div class="col-md-2">
                                     <h2 style="text-align: center;">Vs.</h2>
                                   </div>
                                   <div class="col-md-5">
-                                     {!! Form::select('id_club2', $clubsParaEncuentro, null, ['class'=>'form-control']) !!}
+                                     {!! Form::select('id_club2',['seleccione'], null, ['id'=>'club2','class'=>'form-control']) !!}
                                   </div>
                               </div>
                               <div class="form-row">

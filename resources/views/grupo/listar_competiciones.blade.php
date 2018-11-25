@@ -63,26 +63,29 @@
   <h4>Lista de Fechas:</h4>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
   @include('fechas.modal_registrar_fecha') 
-     <table class="table table-condensed">
-         <thead>
-           <th width="50px">ID</th>
-           <th>Nombre</th>
-           <th colspan="2" style="text-align: center">Acciones</th>
-         </thead>
-         <tbody>
-            @foreach ($fechas as $fecha)
-             <tr>    
-               <td>{{ $fecha->id_fecha}}</td>
-               <td>{{ $fecha->nombre_fecha}}</td>
-               <td><a href="" class="btn btn-success">Editar</a></td>
-               <td>
-                 <a href=""><i title="Eliminar" class="material-icons">
-                  delete
-                  </i></a></td>
-             </tr>
-           @endforeach            
-         </tbody>
-     </table>
+    <div>
+        <table class="table table-condensed">
+            <thead>
+              <th width="50px">ID</th>
+              <th>Nombre</th>
+              <th colspan="2" style="text-align: center">Acciones</th>
+            </thead>
+            <tbody id="tablas_fechas_competicion">
+                @foreach ($fechas as $fecha)
+                <tr>    
+                  <td>{{ $fecha->id_fecha}}</td>
+                  <td>{{ $fecha->nombre_fecha}}</td>
+                  <td><a href="" class="btn btn-success">Editar</a></td>
+                  <td>
+                    <a href=""><i title="Eliminar" class="material-icons">
+                      delete
+                      </i></a></td>
+                </tr>
+              @endforeach            
+            </tbody>
+        </table>
+    </div>
+     
  </div>
     <div id="encuentros1" class="tab-pane fade">
       <h4>Lista de Encuentros:</h4>
@@ -129,4 +132,27 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Esta seguro de eliminar?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Aceptar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+@section('scripts')
+{!! Html::script('/js/insertar_fecha.js') !!}
 @endsection

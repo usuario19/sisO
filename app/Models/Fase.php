@@ -10,6 +10,7 @@ class Fase extends Model
     protected $primaryKey = 'id_fase';
     protected $fillable = [
         'nombre_fase',
+        'id_participacion',
         //'id_fecha'
     ];
     protected $hidden = ['remember_token'];
@@ -20,4 +21,10 @@ class Fase extends Model
     public function fechas(){
     	return $this->hasMany('App\Models\Fecha','id_fecha');
     }
+    public function participacion(){
+        return $this->belongsTo('App\Models\Participacion','id_participacion');
+   } 
+   public function grupos(){
+    return $this->hasMany('App\Models\Grupo', 'id_fase');
+}
 }

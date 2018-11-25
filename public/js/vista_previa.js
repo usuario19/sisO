@@ -1,14 +1,17 @@
 (function(){
-    window.addEventListener('load', inicializarElementos, false);
+	  window.addEventListener('load', inicializarElementos, false);
+    document.getElementById('texto').addEventListener('mouseover', inicializarElementos, false);
+    if(document.getElementById('texto2'))
+      document.getElementById('texto2').addEventListener('mouseover', inicializarElementos, false)
+    
     var imgO = document.getElementById("imgOrigen").src;
     if(document.getElementById("imgOrigen2"))
       var imgO2 = document.getElementById("imgOrigen2").src;
-    //var tipos = ["image/png","image/jpeg", "image/jpg", "image/bmp"];
+     /*  console.log(imgO2); */
     
- 
     function inicializarElementos(){
-      
-     var img = document.getElementsByTagName("button");
+     
+     var img = document.getElementsByTagName("a");
      var input = document.getElementsByTagName("input");
 
       for (var i = img.length - 1; i >= 0; i--) {
@@ -23,7 +26,8 @@
 
     function clickIMagen(e){
       var elemento = e.target;
-      console.log(e);
+      console.log(elemento.id);
+
       if(elemento.id =="texto")
         inputfile();
 
@@ -48,7 +52,6 @@
         vista_previa();
 
       if(elemento.id =="input2")
-        console.log(e);
         vista_previa2();
     }
 
@@ -90,7 +93,6 @@
                 botones[i].setAttribute("class","btn btn-dark button vista");
               }
             }
-
             document.getElementById("error_foto").innerHTML ="";
           }else {
             document.getElementById("imgOrigen").src = imgO;
@@ -164,81 +166,7 @@
        
       }
   }
-    /* function vista_previa2(){
-      //var origen = document.getElementById("img").src;
-      
-      var archivo = new FileReader();
-
-      archivo.onload = function(){
-        
-        document.getElementById("imgOrigen2").src = archivo.result;
-      }
-
-      if(document.getElementById("input2").files[0])
-      {
-        //VALIDACION
-        var tipo = document.getElementById("input2").files[0].type;
-        if(tipo == "image/png"|| tipo =="image/jpeg" || tipo == "image/jpg" || tipo == "image/bmp")
-        {
-          archivo.readAsDataURL(document.getElementById("input2").files[0]);
-
-          var botones = document.getElementById("divtexto2").children;
-            for (var i = botones.length - 1; i >= 0; i--) {
-              if(botones[i].id.indexOf("btn") != -1)
-              {
-                botones[i].setAttribute("class","btn btn-dark button vista");
-              }
-            }
-
-          document.getElementById("error_foto2").innerHTML ="";
-        }else {
-          document.getElementById("imgOrigen2").src = imgO2;
-          document.getElementById("error_foto2").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg,png."
-        }
-      
-        
-      }else{
-        //console.log(imgO);
-        console.log(document.getElementById("input2").value);
-        document.getElementById("imgOrigen2").src = imgO;
-        document.getElementById("input2").value = "";
-      
-        var botones = document.getElementById("divtexto").children;
-        for (var i = botones.length - 1; i >= 0; i--) {
-          if(botones[i].id.indexOf("btn") != -1)
-          {
-            botones[i].setAttribute("class","btn btn-outline-dark button noVista");
-          }
-        }
-       
-      }
-  } */
-
-
-    /* function vistaprevia2(){
-        var archivo2 = new FileReader();
-
-        archivo2.onload = function(){
-          document.getElementById("imgParcial2").src = archivo2.result;
-
-          document.getElementById("imgParcial2").setAttribute("class","rounded mx-auto d-block float-left");
-        }
-        if(document.getElementById("input2").files[0]){
-
-          archivo2.readAsDataURL(document.getElementById("input2").files[0]);
-
-          document.getElementById("btnCancelar2").setAttribute("class","uploader vista");
-          document.getElementById("imgOrigen2").setAttribute("class","noVista");
-          document.getElementById("texto2").setAttribute("class","noVista");
-          
-        }
-        else {
-          document.getElementById("imgOrigen2").setAttribute("class","rounded mx-auto d-block float-left");
-          document.getElementById("imgParcial2").setAttribute("class","noVista");
-          document.getElementById("btnCancelar2").setAttribute("class","noVista");
-          document.getElementById("texto2").setAttribute("class","vista");
-        }
-    } */
+  
 
     var cancelarImg = function(){
       document.getElementById("imgOrigen").src = imgO;
@@ -266,11 +194,5 @@
       document.getElementById("input2").value = "";
     }
 
-    /* var cancelarImg2 = function(){
-          document.getElementById("imgOrigen2").setAttribute("class","");
-          document.getElementById("imgParcial2").setAttribute("class","noVista");
-          document.getElementById("btnCancela2r").setAttribute("class","noVista");
-          document.getElementById("texto2").setAttribute("class","vista");
-          document.getElementById("input2").value = "";
-    } */
-}())
+    
+})();

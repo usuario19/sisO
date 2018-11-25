@@ -153,6 +153,7 @@
       </div>
     </div>
   </div>
+  
 @endsection
 @section('scripts')
 {!! Html::script('/js/insertar_fecha.js') !!}

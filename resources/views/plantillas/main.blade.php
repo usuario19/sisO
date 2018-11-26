@@ -51,7 +51,7 @@
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}
-   <script>
+   <!-- <script>
       window.addEventListener('load', inicializar, false);
       function inicializar(){
           var elemento = document.getElementsByClassName('nav-link');
@@ -64,7 +64,7 @@
       {
           e.target.className += " active";
       }
-  </script>
+     </script> -->
     @yield('scripts')
 
 

@@ -22,6 +22,9 @@ Route::group(['middleware' => ['web','guest']],function(){
 			'uses'=> 'LoginController@store',
 			'as' => 'login.store']);
 
+	Route::post('password/request',[ 
+			'uses'=> 'Auth\ForgotPasswordController@showLinkRequestForm',
+			'as' => 'password.request']);
 
 	Route::get('login',[ 
 				'uses'=> 'LoginController@index',

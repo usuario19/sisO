@@ -276,10 +276,9 @@
   {!! Html::script('/js/cambiar_club.js') !!}
   <script>
       (function(){
-          window.addEventListener('load', active_link, false);
-          function active_link(){
+         
               document.getElementById('jugadores').className += " active";
-          }
+          
       }());
       </script>
  {{--   {!! Html::script('/js/vista_previa.js') !!}  --}}

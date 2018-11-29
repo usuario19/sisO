@@ -40,6 +40,7 @@
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				{!! Form::submit('Ingresar', ['class'=>'btn btn-info btn-block', 'id'=>'buttonLogin']) !!}
+				<a href="{{ route('password.request') }}" class="btn btn-link">Olvidaste tu contaseña?.</a>
 			</div>
 		</div>
 		

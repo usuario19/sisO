@@ -1,14 +1,14 @@
 <div class="container">	
 		@foreach($datos as $dato)
-		<div class="container col-md-12">    
+		<div class="container col-md-12" style="padding: 0%">    
 			<div class="card">
 				<div class="card-header" style="margin: 0%;padding: 5px">
 					<div class="row">
 						<div class="col-md-6 text-center" style="margin: auto">
-							<p class="display-4 title-select" style="font-size:18px; margin: 0%; color: black">{{ strtoupper($dato->gestiones->nombre_gestion) }}</p>
+							<p class="display-4 title-select" style="font-size:16px; margin: 0%; color: black">{{ strtoupper($dato->gestiones->nombre_gestion) }}</p>
 						</div>          	      	
 						<div class="col-md-6" >
-							<p class="text-center display-4 title-select" style="font-size: 18px; margin: 0%; color: black"><img src="/storage/foto_disc/{{ $dato->disciplina->foto_disc }}" alt="" width="30px" height="30px">
+							<p class="text-center display-4 title-select" style="font-size: 16px; margin: 0%; color: black"><img src="/storage/foto_disc/{{ $dato->disciplina->foto_disc }}" alt="" width="30px" height="30px">
 								@if($dato->disciplina->categoria == 1)
 									{{ strtoupper($dato->disciplina->nombre_disc."( Mujeres )") }}</p>
 								@elseif($dato->disciplina->categoria == 2)
@@ -27,7 +27,7 @@
 								<img src="/storage/logos/{{ $dato->club->logo }}" alt="" width="80px" height="80px">
 							</th>
 							<th style="padding: 0px">
-								<p  class="display-4" style="font-size:18px;margin: 0%; font-weight: bold; padding: 20px 0px">{{ strtoupper($dato->club->nombre_club) }}</p>
+								<p  class="display-4" style="font-size:16px;margin: 0%; font-weight: bold; padding: 20px 0px">{{ strtoupper($dato->club->nombre_club) }}</p>
 							</th>
 						</tr>
 					</table>
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		@endforeach
-		<div class="container">
+		<div class="container" style="padding: 0%">
 			<div class="card">
 				<div class="card-body">
 					<div class="form-row">
@@ -153,11 +153,11 @@
 												</td>
 												
 											</tr>
-									
-										@endforeach
-										@php
+											@php
 											$a++;
 										@endphp
+										@endforeach
+										
 									</tbody>
 								</table>
 								<div>

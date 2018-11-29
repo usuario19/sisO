@@ -1,7 +1,7 @@
 @extends('coordinador.plantilla.plantilla_informacion_club')
 
 @section('content_info')
-   
+
 <div class="container col-md-10">
     <div class="card">
         <div class="card-header" style="padding: 0%">

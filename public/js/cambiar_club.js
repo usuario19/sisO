@@ -1,11 +1,9 @@
-var cambiar = $("#id_club_jugadores").ready(function cambiar_club(event) {
+$("#id_club_jugadores").ready(function (event) {
 		
 		var contenido = $('#contenido');
         var id_club = $('#id_club_jugadores').val();
-        /* var info ="id_club="+id_club;
-        console.log(id_club); */
-
-        $.ajax({
+       if(id_club != null)
+       { $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -31,10 +29,10 @@ var cambiar = $("#id_club_jugadores").ready(function cambiar_club(event) {
       /*   $.getScript("/js/validaciones_ajax_request.js", function(){}); */
 		},
 		error: function(data){
-			console.log('error');
+			console.log(data);
 		},
 
-	});
+	});}
 });
 
 $("#id_club_jugadores").change(function cambiar_club(event) {

@@ -5,9 +5,11 @@
       document.getElementById('texto2').addEventListener('mouseover', inicializarElementos, false)
     
     var imgO = document.getElementById("imgOrigen").src;
-    if(document.getElementById("imgOrigen2"))
+    console.log(imgO);
+    var imgO2= "";
+   /*  if(document.getElementById("imgOrigen2"))
       var imgO2 = document.getElementById("imgOrigen2").src;
-     /*  console.log(imgO2); */
+      console.log(imgO2); */
     
     function inicializarElementos(){
      
@@ -32,7 +34,12 @@
         inputfile();
 
       if(elemento.id =="texto2")
+      {
+        imgO2 = document.getElementById("imgOrigen2").src;
+        console.log(imgO2);
         inputfile2();
+        
+      }
 
       if(elemento.id =="btnCancelar")
         cancelarImg();

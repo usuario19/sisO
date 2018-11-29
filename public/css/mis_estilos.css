@@ -99,6 +99,16 @@
 	/* font-weight: 100; */
 	font-size: 25px;
 }
+ul.menu-nav li a{
+	font-family: 'Oswald', sans-serif;
+	color: rgb(73, 73, 73);
+	font-style: bolder;
+	font-size: 16px;
+	font-weight: 400;
+	font-style: bolder;
+	text-transform: uppercase;
+}
+
 ul li a{
 	font-family: 'Oswald', sans-serif;
 	color: rgb(73, 73, 73);
@@ -107,6 +117,15 @@ ul li a{
 	font-weight: 400;
 	font-style: bolder;
 	text-transform: uppercase;
+}
+a.dropdown-item{
+	font-family: 'Oswald', sans-serif;
+	color: rgb(73, 73, 73);
+	font-style: bolder;
+	font-size: 16px;
+	font-weight: 400;
+	font-style: bolder;
+	/* text-transform: uppercase; */
 }
 ul li a:hover{
 	color: rgb(194, 194, 194);
@@ -140,7 +159,7 @@ font-family: 'Montserrat', sans-serif;
 }
 body{
 	font-size: 80%;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Oxygen', sans-serif;
 	}
 footer{
 	top: 100%;
@@ -165,8 +184,8 @@ a.a-control span{
 }
 /*div*/
 .form-group{
-padding: 2px;
-margin: 0%;
+padding: 5px;
+margin:0%;
 }
 .texto{
 	margin-top: 10px;
@@ -233,8 +252,17 @@ div#contenedor{
 	/* background: blue; */
 	position: relative;
 	margin:10px;
-	width: 120px;
-	height: 120px;
+	width: 150px;
+	height: 150px;
+	/* border: 3px solid rgb(30, 255, 0); */
+	
+}
+div#contenedor_perfil{
+	/* background: blue; */
+	position: relative;
+	margin:10px;
+	width: 250px;
+	height: 250px;
 	/* border: 3px solid rgb(30, 255, 0); */
 	
 }
@@ -268,8 +296,13 @@ img.imgtam{
 	height: 150px;
 }
 img.imginfo{
-	width: 120px;
-	height: 120px;
+	width: 150px;
+	height: 150px;
+}
+
+img.imginfo_perfil{
+	width: 250px;
+	height: 250px;
 }
 
 img#imgOrigen2{
@@ -450,6 +483,7 @@ span.letter-size {
 	font-size: 12px;
 	overflow: hidden;
 	padding-left: 5px;
+	font-weight: bolder;
 	/* top: 1em;
 	left: 2em; */
 	/* background-color: lime; */
@@ -639,7 +673,7 @@ h3.display-1 {
 }
 .modal-title{
 	margin:0;
-	font-weight: 400;
+	font-weight: bolder;
 	font-size: 15px;
 	text-transform: uppercase;
 	/* font-weight: 600; */
@@ -660,6 +694,8 @@ input#ci, input#password{
 
 .errorLogin h6{
 	color: rgb(228, 118, 103);
+	font-size: 12px;
+	font-family: 'Montserrat', sans-serif;
 }
 div.siError{
 	margin: 0;
@@ -734,4 +770,51 @@ a.current:link, a.current:visited {
 	color: white;
 	background-color: blue;
   }
+select.select_jq{
+	background:no-repeat;
+	border:none; 
+	font-size: 14px;
+	text-transform: uppercase;
+	color: white;
+	height: 38px;
+	font-weight: bolder;
+	border-radius: 0;
+	
+}
+select.select_jq:focus{
+	border-color:#FFA500 ;
+	outline: none;
+}
+select.select_jq option:focus{
+	border: none;
+	background: #e1e9f1;
+}
 
+select.select_jq option{
+	background-color: rgb(255, 251, 251);
+	border:#DAE0E5; 
+	font-size: 12px;
+	text-transform: uppercase;
+	color: rgb(32, 30, 30);
+	height: 38px;
+	font-weight: bolder;
+}
+label.input-group-text{
+	font-size: 14px;
+	text-transform: uppercase;
+	color: white;
+	font-weight: bolder;
+	border: none;
+}
+.cabecera{
+	padding: 15px 0px; 
+	min-height: 50px;
+	 background:  rgb(255, 255, 255)  ; 
+	 color: rgb(24, 22, 22);
+	
+	 
+}
+.cabecera h5{
+	padding: 0%;
+	font-weight: bolder;
+}

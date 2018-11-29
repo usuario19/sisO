@@ -168,4 +168,41 @@ class PartidoController extends Controller
     {
         //
     }
+
+    public function listar_partidos(Request $request){
+
+       $this->validate($request, [
+            'id_club' =>'required',
+            'id_gestion' =>'required',
+            'id_disc' =>'required',
+        ],[
+            'id_club.required'=>'El campo club es necesario realizar esta consulta.',
+            'id_gestion.required'=>'El campo gestion es necesario realizar esta consulta.',
+            'id_disc.required'=>'El campo disciplina es necesario realizar esta consulta.',
+        ]);
+        
+        $id_club = $request->id_club;
+        $id_gestion = $request->id_gestion;
+        $id_club_part = $request->id_disc;
+        
+        $club_participacion = Club_Participacion::where('id_club_part',$id_club_part)->get();
+        $id_disc = $club_participacion->first()->disciplina->id_disc;
+
+        $participacion = Participacion::where('id_gestion',$id_gestion)->where('id_disciplina',$id_disc)->get();
+        $id_part = $participacion->first()->id_participacion;
+
+        $encuentros = $club_participacion->first()->encuentro_club_participaciones;
+
+        //return response()->json($disciplinas);
+        //dd($encuentros);
+        /* $view = view('partido.plantilla_listar_partidos')->with('club_part', $club_participacion)->with('participacion',$participacion)->with('encuentros',$encuentros)->render();
+        return response()->json(array('success' => true, 'html'=>$view));
+ */
+        return view('partido.plantilla_listar_partidos')->with('club_part', $club_participacion)->with('participacion',$participacion)->with('encuentros',$encuentros);
+
+        $view =  view('partido.plantilla_listar_partidos')->with('club_part', $club_participacion)->with('participacion',$participacion)->with('encuentros',$encuentros)->render();
+        return response()->json(array('success' => true, 'html'=>$view));
+        //echo($club);
+
+    }
 }

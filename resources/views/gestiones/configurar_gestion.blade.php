@@ -49,8 +49,6 @@ SisO:Configurar gestion
 				<button class="btn btn-secondary">Cancelar</button>
 				{!! Form::submit('Actualizar', ['class'=>'btn btn-primary']) !!}
 
-			</div>
-		</div>
-	{!! Form::close() !!}
 </div>
+
 @endsection

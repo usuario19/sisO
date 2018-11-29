@@ -49,7 +49,7 @@ class GestionController extends Controller
         $gestion->desc_gest = $request->get('descripcion');
         $gestion->sede = $request->get('sede');
         $gestion->estado_gestion = 1;
-        $gestion->periodo_inscrip = 1;
+        $gestion->periodo_inscripcion= 1;
         $gestion->save();
 
         $ultima_gestion = Gestion::all();

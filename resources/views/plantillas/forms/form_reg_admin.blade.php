@@ -59,7 +59,7 @@
 
 	  		<div class="form-group col-md-6 {{ $errors->has('ci') ? 'siError':'noError' }}">
 				{!! Form::label('ci', 'CI', []) !!}
-				{!! Form::text('ci', null , ['class'=>'form-control', 'placeholder'=>'']) !!}
+				{!! Form::text('ci', null , ['class'=>'form-control', 'placeholder'=>'','off']) !!}
 				<div class="form-group errorLogin">
 				    
 		    		<h6 id="error_ci">{{ $errors->has('ci') ? $errors->first('ci'):'' }}</h6>
@@ -68,7 +68,7 @@
 			</div>
   		</div>
 		<div class="form-row">
-	  		<div class="form-group col-md-6 {{ $errors->has('email') ? 'siError':'noError' }}">
+	  		<div class="form-group col-md-12 {{ $errors->has('email') ? 'siError':'noError' }}">
 	  			{!! Form::label('email', 'Correo electronico', []) !!}
 	  			{!! Form::text('email', null , ['class' =>'form-control', 'placeholder'=>'example@example.com']) !!}
 
@@ -78,6 +78,7 @@
 				    
 		 		</div>
 			</div>
+		</div>
 			
     	
 

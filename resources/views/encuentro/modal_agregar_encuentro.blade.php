@@ -1,7 +1,10 @@
 {!! Form::open(['route'=>'encuentro.store','method' => 'POST']) !!}
                     <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEncuentro">
-                        Programar encuentro
+                      <button type="button" class="btn btn-link btn-block" data-toggle="modal" data-target="#modalEncuentro" style="padding: 0%">
+                          <i class="material-icons btn">
+                              query_builder
+                              </i>
+                        <span>Programar encuentro</span>
                       </button>
     
                       <!-- Modal -->
@@ -21,7 +24,7 @@
                               <div class="form-row">                            
                                       <div style="display: none">
                                          
-                                          {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
+                                          {!! Form::text('id_grupo', $grupo->id_grupo, ['id'=>'id_grupo']) !!}
                                           {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                                           {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
                                   </div>
@@ -32,7 +35,7 @@
                                     <h2 style="text-align: center;">Vs.</h2>
                                   </div>
                                   <div class="col-md-5">
-                                     {!! Form::select('id_club2',['seleccione'], null, ['id'=>'club2','class'=>'form-control']) !!}
+                                     {!! Form::select('id_club2',$clubsParaEncuentro, null, ['placeholder'=>'seleccione','id'=>'club2','class'=>'form-control']) !!}
                                   </div>
                               </div>
                               <div class="form-row">
@@ -75,3 +78,7 @@
                            </div>
                          </div>
  {!! Form::close() !!}
+ 
+ @section('scripts')
+   {!! Html::script('/js/cargar_contrincante_encuentro.js') !!}
+@endsection

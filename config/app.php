@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/La_Paz',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +175,9 @@ return [
         
         //alert
         //Softon\SweetAlert\SweetAlertServiceProvider::class,
+        Cornford\Googlmapper\MapperServiceProvider::class,
+        FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
     ],
 
     /*
@@ -237,6 +240,9 @@ return [
         //alerts
         //'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         //'SWAL' => Softon\SweetAlert\Facades\SWAL::class,
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
+        'Date' => Jenssegers\Date\Date::class,
 
     ],
 ];

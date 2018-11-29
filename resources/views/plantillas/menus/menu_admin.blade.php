@@ -11,7 +11,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto menu-nav">
           <li class="nav-item active">
             <a class="nav-link" href="{{url('welcome')}}">Home <span class="sr-only">(current)</span>
             </a>
@@ -82,6 +82,14 @@
               <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
             </div>
           </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('lugares.index') }}">
+                lugares
+              </a>
+  
+              
+            </li> 
+
           </ul>
         <ul class="navbar-nav">
           <li class="nav-item dropdown">

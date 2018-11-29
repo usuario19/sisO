@@ -10,7 +10,7 @@
             <thead>
               <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
                 <div class="container text-center" style="padding: 10px 0px; margin: auto;">
-                    <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px">{{ strtoupper($club->nombre_club)}}</h5>
+                    <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->nombre_club)}}</h5>
                 </div>
             </th>
           {{--  <th class="table"><h3 class="display-4" style="font-size: 20px">Ficha de informacion</h3></th>  --}}
@@ -64,7 +64,7 @@
           <div class="card">
               
                   
-                  <div class="card-body bg-light" style="padding: 0%">
+                  <div class="card-body badge-light" style="padding: 0%">
                       <table class="table table-sm">
                           <thead>
 
@@ -80,10 +80,10 @@
                                 
                                 <div style="float: left;" class="form-group col-lg-3">
                                     <div class="btn-group btn-block">
-                                        <button id="button_add" type="button" class="btn btn-warning btn-block" data-toggle="dropdown">
-                                            <div class="button-div" style="width: 150px">
-                                                <i class="material-icons float-left">settings</i>
-                                                <span class="letter-size">Registrar jugador</span>
+                                        <button id="button_add" type="button" class="btn btn-secondary btn-block" data-toggle="dropdown" style="padding: 0%">
+                                            <div class="button-div" style="width: 200px">
+                                                <i class="material-icons btn float-left" style="padding-bottom: 0%; padding: 2px 0% 0% 0%">settings</i>
+                                                <label class="" style="margin-top: 5px">Registrar jugador</label>
                                             </div>
                                           
                                         </button>
@@ -104,14 +104,20 @@
                                                 <span class="letter-size">Importar jugadores de excel</span>
                                             </div>
                                         </button>
-                                        
+                                        <a href="{{route('coordinador.pdf_jugadores',$club->id_club)}}" class="dropdown-item" style="font-family:'Montserrat', sans-serif; " >
+                                            <div class="button-item">
+                                                <i class="material-icons float-left">
+                                                    assignment
+                                                </i>
+                                                <span class="letter-size">Generar Reporte</span>
+                                            </div>
+                                          </a>
                                         </div>
                                       </div>
                                 </div>
                                 @include('coordinador.plantilla.form_reg_jugador_modal')
                                 @include('coordinador.plantilla.form_import_jugador_modal')
                               </td>
-                              
                             </tr>
                           </tbody>
                       </table>
@@ -141,10 +147,10 @@
                               @foreach($mis_jugadores as $usuario)
                               
                               
-                                <tr  class="link_pointer" style="cursor:pointer" data-href="{{ route('jugador.informacion',$usuario->id_jugador) }}">
+                                <tr  class="link_pointer" style="cursor:pointer" data-href="{{ route('jugador.informacion_jug_club',[$usuario->id_jugador,$club->id_club]) }}">
                                   {{--  <td>{{ $usuario->jugador->id_jugador}}</td>  --}}
                                   <td>{{$i}}</td>
-                                  <td data-href="{{ route('jugador.informacion',$usuario->id_jugador) }}"><img class="mx-auto d-block rounded-circle" src="/storage/fotos/{{ $usuario->jugador->foto_jugador }}" alt="" height=" 50px" width="50px"></td>
+                                  <td data-href="{{ route('jugador.informacion_jug_club',[$usuario->id_jugador,$club->id_club]) }}"><img class="mx-auto d-block rounded-circle" src="/storage/fotos/{{ $usuario->jugador->foto_jugador }}" alt="" height=" 50px" width="50px"></td>
                                   <td>{{ $usuario->jugador->ci_jugador}}</td>
                                   <td>{{ $usuario->jugador->nombre_jugador." ".$usuario->jugador->apellidos_jugador}}</td>
                                   <!--td>{{ $usuario->jugador->apellidos_jugador}}</td-->
@@ -159,8 +165,8 @@
                                   <!--td>{{ $usuario->jugador->descripcion_jugador}}</td-->
                                   {{--  <td><a href="#confirm?" class="btn btn-warning">Editar</a></td>  --}}
                         
-                                  <td>
-                                    <a href="#confirm?"  class="delete_button button_redirect" data-toggle="modal" data-target="#Eliminar{{ $usuario->id_jugador}}" >
+                                  <td style="width: 70px">
+                                    <a href="#confirm?"  class="button_redirect" data-toggle="modal" data-target="#Eliminar{{ $usuario->id_jugador}}" >
                                       <i title="Eliminar" class="material-icons delete_button button_redirect">
                                         delete
                                      </i>

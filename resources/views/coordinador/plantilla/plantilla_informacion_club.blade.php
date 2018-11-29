@@ -7,8 +7,12 @@
 @section('content')
 @if($club)
 <div class="container col-md-10">
-    <h1  class="display-1" style="font-size: 14px; margin:0 0 15px 0"><a href="{{ route('coordinador.index')}}">Clubs </a>|  {{ $club->nombre_club }}</h1>
-    
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('coordinador.index')}}">Clubs</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $club->nombre_club }}</li>
+            </ol>
+        </nav>
 </div>
 
 
@@ -94,7 +98,15 @@
 @endsection
 
 @section('scripts')
-    
+    script>
+
+        (function(){
+            window.addEventListener('load', active_link, false);
+            function active_link(){
+                document.getElementById('mis_clubs').className += " active";
+            }
+        }());
+    </script>
    {!! Html::script('/js/vista_previa.js') !!} 
    {!! Html::script('/js/validacion_ajax_request_update.js') !!}
    {!! Html::script('/js/validaciones.js') !!} 

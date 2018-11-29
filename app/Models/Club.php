@@ -72,4 +72,9 @@ class Club extends Model
         ->count();
         return $pj;
     }
+    public function setNombreClubAttribute($value)
+    {
+        if($value !== null)
+            $this->attributes['nombre_club']= trim(ucwords(strtolower($value)));
+    }
 }

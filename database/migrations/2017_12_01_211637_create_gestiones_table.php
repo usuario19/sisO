@@ -16,12 +16,12 @@ class CreateGestionesTable extends Migration
         Schema::create('gestiones', function (Blueprint $table) {
             $table->increments('id_gestion');
             $table->string('nombre_gestion');
+            $table->string('sede');
             $table->date('fecha_ini');
             $table->date('fecha_fin');
-            $table->text('sede')->nullable();
             $table->text('desc_gest')->nullable();
-            $table->boolean('estado_gestion');
-            $table->boolean('periodo_inscrip');
+            $table->integer('estado_gestion')->default('1');
+            $table->integer('periodo_inscripcion')->default('1');
             $table->timestamps();
         });
     }

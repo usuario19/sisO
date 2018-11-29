@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web','guest']],function(){
 
 	Route::get('login',[ 
 				'uses'=> 'LoginController@index',
-				'as' => 'login.index']);
+				'as' => 'login']);
 
 	Route::get('jugador/mostrar',[ 
 				'uses'=> 'JugadorController@mostrarJugador',
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['web','guest']],function(){
 });
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => 'auth'], function () {
     //
     Route::get('welcome', function () {
    		return view('welcome');
@@ -63,7 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('logout',[ 
 			'uses'=> 'LoginController@logout',
 			'as' => 'logout']);
-});
+	});
+	
 
 
 
@@ -100,6 +101,9 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('administrador/{administrador}/edit',[ 
 				'uses'=> 'AdministradorController@edit',
 				'as' => 'administrador.edit']);
+
+	
+	
 
 	Route::get('administrador/{administrador}/informacion',[ 
 				'uses'=> 'AdministradorController@verInformacion',
@@ -407,6 +411,10 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('administrador/{administrador}/edit',[ 
 		'uses'=> 'AdministradorController@edit',
 		'as' => 'administrador.edit']);
+	
+	Route::get('coordinador/{administrador}/perfil',[ 
+			'uses'=> 'AdministradorController@show',
+			'as' => 'administrador.show']);
 
 	Route::put('administrador/update/{administrador}',[ 
 			'uses'=> 'AdministradorController@update',
@@ -450,6 +458,14 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('jugador/{jugador}/informacion',[ 
 		'uses'=> 'JugadorController@verInformacion',
 		'as' => 'jugador.informacion']);
+
+	Route::get('jugador/{jugador}/{club}/informacion',[ 
+		'uses'=> 'JugadorController@verInformacion_jug_club',
+		'as' => 'jugador.informacion_jug_club']);
+	
+	Route::get('jugador/{jugador}/{club}/participacion',[ 
+			'uses'=> 'JugadorController@verInformacion_jug_participacion',
+			'as' => 'jugador.informacion_jug_participacion']);
 		
 	Route::get('jugador/{jugador}/informacion_club',[ 
 		'uses'=> 'JugadorController@verInformacion_club',
@@ -585,7 +601,9 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 			'uses'=> 'CoordinadorController@club_jugadores',
 			'as' => 'coordinador.club_jugadores']);
 
-	
+	Route::get('coordinador/pdf/jugadores/{id_club}',[ 
+				'uses'=> 'CoordinadorController@pdf_jugadores',
+				'as' => 'coordinador.pdf_jugadores']);
 
 	Route::post('coordinador/club/inf',[ 
 		'uses'=> 'CoordinadorController@index_ajax',
@@ -599,6 +617,10 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('disciplina/{id}/eliminar',[ 
 				'uses'=> 'DisciplinaController@eliminar',
 				'as' => 'disciplina.eliminar']);
+
+	Route::get('disciplina/{id}/seleccion',[ 
+		'uses'=> 'DisciplinaController@ver_seleccion_club',
+		'as' => 'disciplina.ver_seleccion_club']);
 
 	Route::get('seleccion/{id}/jugadores',[
 				'uses'=>'SeleccionController@create_ajax',
@@ -651,11 +673,28 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::post('coordinador/partidos/club/encuentros',[ 
 		'uses'=> 'PartidoController@obtener_clubs_encuentros',
 		'as' => 'partido.clubs_encuentros']);
+	
+	Route::post('partidos/encuentros',[ 
+		'uses'=> 'PartidoController@listar_partidos',
+		'as' => 'partido.listar_partidos']);
+
+	Route::get('map', 'MapaController@index');
 
 	Route::get('coordinador/{coordinador}',[ 
 			'uses'=> 'CoordinadorController@show',
 			'as' => 'coordinador.show']);
 
+	Route::get('lugares',[ 
+		'uses'=> 'LugarController@index',
+		'as' => 'lugares.index']);
+
+	Route::post('centro/store',[ 
+		'uses'=> 'LugarController@store',
+		'as' => 'centro.store']);
+
+	Route::get('centro/{centro}/delete',[ 
+		'uses'=> 'LugarController@destroy',
+		'as' => 'centro.delete']);
 
 
 });

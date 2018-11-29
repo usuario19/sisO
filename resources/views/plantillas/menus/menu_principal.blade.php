@@ -27,7 +27,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto menu-nav">
           <li class="nav-item">
             <a class="nav-link" href={{url('/')}}>HOME <span class="sr-only">(current)</span></a>
           </li>
@@ -70,7 +70,7 @@
           
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href='{{ route('login.index') }}'>LOGIN</a>
+            <a class="nav-link" href='{{ route('login') }}'>LOGIN</a>
           </li>
         </ul> 
         </div>   

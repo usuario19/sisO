@@ -26,6 +26,7 @@ var cambiar = $("#id_club_gestion").ready(function cambiar_club(event) {
     $.getScript("/js/vista_previa.js", function(){});
     $.getScript("/js/validaciones.js", function(){});
     $.getScript("/js/redirect.js", function(){});
+    $.getScript("/js/checkbox.js", function(){});
 
   /*   $.getScript("/js/validaciones_ajax_request.js", function(){}); */
     },
@@ -63,6 +64,7 @@ success: function(data){
     $.getScript("/js/vista_previa.js", function(){});
     $.getScript("/js/validaciones.js", function(){});
     $.getScript("/js/redirect.js", function(){});
+    $.getScript("/js/checkbox.js", function(){});
 },
 error: function(data){
     console.log('error');

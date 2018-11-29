@@ -19,8 +19,8 @@
                 </nav>
         </div>
         <div class="card-body">
-            <div class="container col-lg-10 table-responsive-md">
-                <table class="table  table-bordered">
+            <div class="container col-lg-12 table-responsive-md">
+                <table class="table  table-condensed">
                     <thead>
                       <tr>
                         <th>#</th>
@@ -28,7 +28,7 @@
                         <th>categoria</th>
                         <th>Reglamento</th>
                         <th>Descripcion</th>
-                        <th colspan="2"></th>
+                        <th colspan="3"></th>
       
                       </tr>
                     </thead>
@@ -88,12 +88,22 @@
                             </div>
                           </td> --}}
               
-                          <td class="text-center" style="width: 50px"><a href="{{ route('seleccion.create_ajax', $disc->id_club_part) }}" title="Crear Seleccion" class="btn btn-light">
+                          <td class="text-center" style="width: 50px">
+                            <a href="{{ route('seleccion.create_ajax', $disc->id_club_part) }}" title="Crear Seleccion" class="btn btn-light">
                               <div class="button-div" style="width: 25px">
                                   <i class="material-icons float-left">edit</i>
                                  {{--   <span class="letter-size">Crear Seleccion</span>  --}}
                               </div>
                           </a></td>
+                          <td style="width: 50px" class="text-center">
+                              <a href="{{ route('disciplina.ver_seleccion_club',$disc->id_club_part) }}"class="btn btn-light">
+                                <div class="button-div" style="width: 25px">
+                                  <i title="Ver seleccion" class="material-icons float-left">
+                                      visibility
+                                   </i>
+                                  </div>
+                              </a>
+                            </td>
                           {{--  <td class="text-center" style="width: 50px"><a href="{{ route('seleccion.create_', $disc->id_club_part) }}" title="Ver Seleccion" class="btn btn-light">
                               <div class="button-div" style="width: 25px">
                                   <i class="material-icons float-left">remove_red_eye</i>

@@ -9,9 +9,9 @@
 @section('content')
 <h4>Registrar resultado:</h4>
     {!! Form::open(['route'=>'encuentro.reg_resultado','method' => 'POST']) !!}
-        {{--  <div class="container col-md-10 list-inline-item">  --}}
+         <div class="container">  
             @foreach ($encuentro->encuentro_club_participaciones as $participacion)
-            <div class="container col-md-4">
+            <div class="container col-md-6">
                 <div class="card">
                     <div style="display: none">
                         {!! Form::text('id_encuentro', $encuentro->id_encuentro, []) !!}
@@ -33,12 +33,13 @@
                 </div><br>
             </div>
             @endforeach
-        {{--  </div>  --}}
-                                    
-                <div class="col-md-6">
+            <div class="container col-md-6">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
                 </div>
+          </div> 
+                                    
+          </div>      
              
  {!! Form::close() !!}
 @endsection

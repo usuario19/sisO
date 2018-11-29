@@ -257,6 +257,8 @@ class ClubController extends Controller
                 ->join('jugador_clubs','jugadores.id_jugador','=','jugador_clubs.id_jugador')
                 ->where('jugador_clubs.id_club','=',$id_club)
                 ->paginate(15);
-        return view('club.listar_jugadores')->with('jugadores',$jugadores)->with('gestion',$gestion);
+
+        $club = Club::find($id_club);
+        return view('club.listar_jugadores')->with('jugadores',$jugadores)->with('gestion',$gestion)->with('club',$club);
     }
 }

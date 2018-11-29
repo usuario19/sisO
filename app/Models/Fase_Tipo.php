@@ -11,9 +11,9 @@ class Fase_Tipo extends Model
     protected $hidden = ['remember_token'];
 
     public function fases(){
-    	return $this->belongsTo('App\Models\Fase','id_fase','id_fase');
+    	return $this->belongsTo('App\Models\Fase','id_fase');
     }
     public function tipos(){
-    	return $this->belongsTo('App\Models\Tipo','id_tipo','id_tipo');
+    	return $this->belongsTo('App\Models\Tipo','id_tipo');
     }   
 }

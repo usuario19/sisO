@@ -10,7 +10,10 @@
       </div>
       
       <div class="modal-body">
-       
+        <div style="display:none">
+          {!! Form::text('id_grupo', $grupo->id_grupo, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+
+        </div>
 
           <div class="form-group">
             {!! Form::label('nombre_fecha', 'Nombre', []) !!}

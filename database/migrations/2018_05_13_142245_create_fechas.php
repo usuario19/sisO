@@ -11,10 +11,9 @@ class CreateFechas extends Migration
         Schema::create('fechas', function (Blueprint $table) {
             $table->increments('id_fecha');
             $table->string('nombre_fecha');
-            
             $table->integer('id_fase')->unsigned();
             $table->foreign('id_fase')->references('id_fase')->on('fases')->onDelete('cascade');
-            $table->timestamps();
+             $table->timestamps();
         });
     }
 

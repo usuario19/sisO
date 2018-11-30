@@ -12,8 +12,8 @@ class Fecha extends Model
 
 	
     protected $fillable = [
+        'nombre_fecha', 
         'id_fase',
-    	'nombre_fecha', 
     ];
     protected $hidden = [
         'remember_token',

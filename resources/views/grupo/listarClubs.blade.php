@@ -9,17 +9,17 @@
 @endsection
 
 @section('content')
-<div class="content">
+<div class="container">
     <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
          <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
          <li class="breadcrumb-item"><a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">Fases</a></li>
          <li class="breadcrumb-item"><a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">Grupos</a></li>         
-         <li class="breadcrumb-item active" id="id_grupo" value="{{$grupo->id_grupo}}"  aria-current="page">{{ $grupo->nombre_grupo }}</li>
+         <li class="breadcrumb-item active" id="id_grupo" value="{{ $grupo->id_grupo }}"  aria-current="page">{{ $grupo->nombre_grupo }}</li>
        </ol>
     </nav>
 </div>
-<div class="content"> 
+<div class="container"> 
   <ul id="tabsJustified" class="nav nav-tabs">
       <li class="nav-item">
         <a href="" data-target="#clubs1" data-toggle="tab" class="nav-link">Clubs</a></li>

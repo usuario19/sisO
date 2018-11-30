@@ -7,6 +7,7 @@ use App\Models\Fecha;
 use App\Models\Fase;
 use App\Models\Gestion;
 use App\Models\Disciplina;
+use App\Models\Fecha_Grupo;
 
 class FechaController extends Controller{
     public function store(request $request){
@@ -14,6 +15,12 @@ class FechaController extends Controller{
 		$fecha->nombre_fecha = $request->get('nombre_fecha');
 		$fecha->id_fase = $request->get('id_fase');
 		$fecha->save();
+		
+		$id_fecha = $fecha->id_fecha;
+		$fechas_grupos = new Fecha_Grupo;
+		$fechas_grupos->id_fecha = $id_fecha;
+		$fechas_grupos->id_grupo= $request->get('id_grupo');
+		$fechas_grupos->save();
 
 		$datos = Fecha::all();
 		return response()->json(

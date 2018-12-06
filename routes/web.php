@@ -375,13 +375,17 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'as'=>'fecha.destroy'
 	]);
 	//encuentro
-	Route::post('encuentro/store',[
+	Route::post('store',[
 		'uses'=>'EncuentroController@store',
 		'as'=>'encuentro.store'
 	]);
-	Route::post('encuentro/store_eliminacion',[
+	Route::post('store_eliminacion',[
 		'uses'=>'EncuentroController@store_eliminacion',
 		'as'=>'encuentro.store_eliminacion'
+	]);
+	Route::post('store_competicion_serie',[
+		'uses'=>'EncuentroController@store_competicion_serie',
+		'as'=>'encuentro.store_competicion_serie'
 	]);
 	Route::get('encuentro/{id_encuentro}/destroy',[
 		'uses'=>'EncuentroController@destroy',

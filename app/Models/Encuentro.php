@@ -11,7 +11,7 @@ class Encuentro extends Model
     protected $fillable = [
     	'fecha', 
     	'hora',
-    	'ubicacion',
+    	'id_centro',
         'detalle',
     	'id_fecha',
     ];

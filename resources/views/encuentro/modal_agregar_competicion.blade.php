@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>'encuentro.store','method' => 'POST']) !!}
+{!! Form::open(['route'=>'encuentro.store_competicion_serie','method' => 'POST']) !!}
                     <!-- Button trigger modal -->
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEncuentro">
                         Programar encuentro
@@ -24,12 +24,12 @@
                               <div class="form-row">
                                   <div class="col-md-6">
                                     {!! Form::label('ubicacion', 'Ubicacion', []) !!}
-                                      {!! Form::text('ubicacion',null, ['class'=>'form-control']) !!}
+                                      {!! Form::select('ubicacion',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}
                                       
                                   </div>
                                   <div class="col-md-6">
                                       {!! Form::label('id_fecha', 'Fecha', []) !!}
-                                      {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione...','class'=>'form-control']) !!}
+                                      {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione','class'=>'form-control']) !!}
                                   </div>
                               </div>
                               <div class="form-row">
@@ -51,15 +51,15 @@
                                   </div>
                               </div>
                               <div class="form-row">
+                                  <div class="col-md-12">
+                                  {!! Form::label('texto', 'Seleccione participantes', []) !!}
+                                  <br>
+                                    @foreach ($participantes as $participante)
+                                    {!! Form::checkbox('id_participante[]',$participante->id_jugador, false, ['class'=>'check_us']) !!}
+                                    <img src="/storage/fotos/{{ $participante->foto_jugador }}" alt="" width="50px" height="50px">{{ $participante->nombre_jugador." ".$participante->apellidos_jugador }} <br>
                                     <br>
-                                <h6>Seleccione participantes a enfrentarse:</h6>
-                                <h1>poner lista de jugadores k estan participando</h1>
-                                @foreach ($participantes as $participante)
-                                {!! Form::checkbox('id_participante[]',$participante->id_jugador, false, ['class'=>'check_us']) !!}
-                                <img src="/storage/foto/{{ $participante->foto }}" alt="" width="50px" height="50px">{{ $participante->nombre_jugador." ".$participante->apellidos_jugador }} <br>
-                          
-                                @endforeach
-                            </div>
+                                    @endforeach
+                            </div></div>
                               </div>
                               
                               <div class="modal-footer">

@@ -10,6 +10,7 @@ use App\Models\Encuentro;
 use App\Models\Eliminacion;
 use App\Models\Fecha;
 use App\Models\Encuentro_Club_Participacion;
+use App\Models\Encuentro_Seleccion;
 use App\Models\Tabla_Posicion;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -50,6 +51,65 @@ class EncuentroController extends Controller
         }
         
         for ($i = 1; $i <= 2 ; $i++) {
+            $id_club = $request->get('id_club'.$i);
+            $tabla = DB::table('tabla_posicions')->where('id_club','=',$id_club)->get();
+            //return dd($tabla);
+            if ($tabla->last() != null) {                
+                $pjug = Tabla_Posicion::where('id_club','=',$id_club)->get()->last()->pj;
+                
+                Tabla_Posicion::where('id_club','=',$id_club)
+                ->update(['pj' => $pjug+1]);
+            }else {
+                $tabla_posicion = new Tabla_Posicion();
+                $tabla_posicion->id_club = $request->get('id_club'.$i);
+                $tabla_posicion->id_fase = $id_fase;
+                $tabla_posicion->save();
+            }
+        }
+        return redirect()->back();
+    }
+    public function store_competicion_serie(Request $request){
+        $id_fecha = $request->get('id_fecha');
+        $encuentro = new Encuentro($request->all());
+        $encuentro->id_fecha = $id_fecha;
+        $encuentro->save();
+
+        $id_encuentro = $encuentro->id_encuentro;
+        $id_gestion = $request->get('id_gestion');
+        $id_disc = $request->get('id_disc');
+       // $id_fase = Fecha::where('id_fecha','=',$id_fecha)->select('id_fase')->get()->last()->id_fase;
+        
+        $participantes = $request->get('id_jugador');
+        foreach($participantes as $participante) { 
+            $id_seleccion = DB::table('jugadores')
+                ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
+                ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
+                ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
+                ->where('club_participaciones.id_gestion',$id_gestion)
+                ->where('club_participaciones.id_disc',$id_disc)
+                ->where('jugadores.id_jugador',$participante)
+                ->select('seleccions.*')->get()->last()->id_seleccion;
+           
+            $encuentro_seleccions = new Encuentro_Seleccion();
+            $encuentro_seleccions->id_encuentro = $id_encuentro;
+            $encuentro_seleccions->id_seleccion = $id_seleccion;
+            $encuentro_seleccions->save();
+            //insertar jugadores en la tabla de posicion de los jugadores
+            $tabla = DB::table('tabla_posicion_jugagadors')->where('id_seleccion','=',$id_seleccion)->get();
+            if ($tabla->last() != null) {                
+                $pjug = Tabla_Posicion::where('id_club','=',$id_club)->get()->last()->pj;
+                
+                Tabla_Posicion::where('id_club','=',$id_club)
+                ->update(['pj' => $pjug+1]);
+            }else {
+                $tabla_posicion = new Tabla_Posicion();
+                $tabla_posicion->id_club = $request->get('id_club'.$i);
+                $tabla_posicion->id_fase = $id_fase;
+                $tabla_posicion->save();
+            }
+        }
+        
+        foreach($participantes as $participante) {
             $id_club = $request->get('id_club'.$i);
             $tabla = DB::table('tabla_posicions')->where('id_club','=',$id_club)->get();
             //return dd($tabla);

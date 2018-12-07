@@ -24,7 +24,7 @@
                               <div class="form-row">
                                   <div class="col-md-6">
                                     {!! Form::label('ubicacion', 'Ubicacion', []) !!}
-                                      {!! Form::select('ubicacion',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}
+                                      {!! Form::select('id_centro',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}
                                       
                                   </div>
                                   <div class="col-md-6">

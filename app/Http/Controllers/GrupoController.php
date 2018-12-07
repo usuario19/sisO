@@ -194,10 +194,10 @@ class GrupoController extends Controller
         $grupo = Grupo::find($id_grupo);
 
         $fechasLista = DB::table('fechas')
-        ->join('fechas_grupos','fechas.id_fecha','fechas_grupos.id_fecha')
-        ->join('grupos','fechas_grupos.id_grupo','grupos.id_grupo')
-        ->where('grupos.id_grupo','=',$id_grupo)
-        ->select('fechas.*')->get();
+            ->join('fechas_grupos','fechas.id_fecha','fechas_grupos.id_fecha')
+            ->join('grupos','fechas_grupos.id_grupo','grupos.id_grupo')
+            ->where('grupos.id_grupo','=',$id_grupo)
+            ->select('fechas.*')->get();
         $fechasArreglo = array();
         foreach ($fechasLista as $fecha) {
         $fechasArreglo[$fecha->id_fecha] = ($fecha->id_fecha);
@@ -222,40 +222,7 @@ class GrupoController extends Controller
                         foreach ($centrosLista as $centro) {
                             $centros[$centro->id_centro] = $centro->nombre_centro;
                         }
-        // $clubsParticipantes = DB::table('grupo_club_participaciones')
-        //     ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
-        //     ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
-        //     ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
-        //     ->select('clubs.*')
-        //     ->get()->toArray();
-        // $clubsParaEncuentro = DB::table('grupo_club_participaciones')
-        //     ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
-        //     ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
-        //     ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
-        //     ->select('clubs.*')
-        //     ->get();
-             
-        //$clubsParaEncuentro = array();
-        // foreach ($clubsParticipantes as $club) {
-        //     $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
-        // }
-        // $clubsDisponibles = DB::table('clubs')
-        //     ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
-        //     ->where('club_participaciones.id_gestion','=',$id_gestion)
-        //     ->where('club_participaciones.id_disc','=',$id_disc)
-        //     ->whereNotIn('club_participaciones.id_club_part',$lista)
-        //     ->get();
-        // $clubs = DB::table('clubs')
-        //     ->join('participaciones','fases.id_participacion','=','participaciones.id_participacion')
-        //     ->where('participaciones.id_disciplina','=',$id_disc)
-        //     ->get();
-        // return $fases; 
-        //return $clubsParaEncuentro;
-
-        // $clubsParaEncuentro = array();
-        // foreach ($clubsParticipantes as $club) {
-        //     $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
-        // }
+     
         $clubsDisponibles = DB::table('clubs')
             ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
             ->where('club_participaciones.id_gestion','=',$id_gestion)
@@ -270,16 +237,40 @@ class GrupoController extends Controller
             ->where('grupos.id_grupo','=',$id_grupo)
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
-        // $encuentros = Encuentro::all();
+        $encuentros = DB::table('grupos')
+                ->join('fechas_grupos','grupos.id_grupo','fechas_grupos.id_grupo')
+                ->join('fechas','fechas_grupos.id_fecha','fechas.id_fecha')
+                ->join('encuentros','fechas.id_fecha','encuentros.id_fecha')
+                ->join('encuentro_seleccions','encuentros.id_encuentro','encuentro_seleccions.id_encuentro')
+                ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
+                ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+                ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+                //->where('encuentros.id_fecha',$id_fecha)
+                ->where('grupos.id_grupo','=',$id_grupo)
+                ->select('encuentros.*')
+                ->get();
+        $lista_encuentros = array();
+        foreach ($encuentros as $encuentro) {
+            $lista_encuentros[] = $encuentro->id_encuentro;
+        }
+        //return dd($lista_encuentros);
+        // $jugadores = $participantes = DB::table('jugadores')
+        //     ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
+        //     ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
+        //     ->join('encuentro_seleccion','selecciones.id_seleccion','encuentro_seleccion.id_seleccion')
+        //     ->whereIn('encuentro_seleccion.id_encuentro',$lista_encuentros)
+        //     //->where('club_participaciones.id_disc',$id_disc)
+        //     ->select('jugadores.*')->get();
         $participantes = DB::table('jugadores')
                 ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
                 ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
                 ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
+                ->join('grupo_club_participaciones','club_participaciones.id_club_part','grupo_club_participaciones.id_club_part')
                 ->where('club_participaciones.id_gestion',$id_gestion)
                 ->where('club_participaciones.id_disc',$id_disc)
+                ->where('grupo_club_participaciones.id_grupo',$id_grupo)
                 ->select('jugadores.*')->get();
-
-                //return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','encuentros'));
+                
                 return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','encuentros','centros'));
     }
     public function edit($id){

@@ -14,8 +14,12 @@ class CreateEncuentroSeleccionsTable extends Migration
     public function up()
     {
         Schema::create('encuentro_seleccions', function (Blueprint $table) {
-            $table->integer('id_encuentro');
-            $table->integer('id_seleccion');
+            $table->integer('id_encuentro')->unsigned();
+            $table->foreign('id_encuentro')->references('id_encuentro')->on('encuentros')->onDelete('cascade');
+                
+            $table->integer('id_seleccion')->unsigned();
+            $table->foreign('id_seleccion')->references('id_seleccion')->on('selecciones')->onDelete('cascade');
+                
             $table->timestamps();
         });
     }

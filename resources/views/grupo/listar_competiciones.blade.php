@@ -101,7 +101,7 @@
        <table class="table table-condensed">
            <thead>
              <th width="50px">ID</th>
-             <th colspan="2" style="text-align: center;">Equipos</th>
+             
              <th>Fecha</th>
              <th>Hora</th>
              <th>Ubicacion</th>
@@ -109,12 +109,18 @@
              <th colspan="2">Acciones</th>
            </thead>
            <tbody>
+             
              @foreach($fecha->encuentros as $encuentro)
+             <tr>
+                @foreach ($encuentro->jugadores($encuentro->id_encuentro) as $jugador)
+                <img class="img-thumbnail" src="/storage/fotos/{{ $jugador->foto_jugador}}"  height=" 50px" width="50px">{{ $jugador->nombre_jugador}}
+                  <br>
+              @endforeach
+              </tr>
                <tr>
                  <td>{{ $encuentro->id_encuentro }}</td> 
-                   @foreach ($encuentro->encuentro_club_participaciones as $equipo)
-                     <td><img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}</td>
-                   @endforeach
+                   
+                 
                  <td>{{ $encuentro->fecha}}</td>
                  <td>{{ $encuentro->hora}}</td>
                  <td>{{ $encuentro->ubicacion}}</td>

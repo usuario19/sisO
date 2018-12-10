@@ -201,6 +201,9 @@ class EncuentroController extends Controller
         //return dd($datos_menu->id_gestion);
         return view('encuentro.reg_resultado_encuentro',compact('encuentro','gestion','disciplina'));
     }
+    public function mostrar_resultado_competicion($id_encuentro){
+       return "en construccion ggg";
+    }
     public function reg_resultado(request $request){
         $id_encuentro = $request->get('id_encuentro');
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('submenu')
-@include('plantillas.menus.menu_gestion')
+  @include('plantillas.menus.menu_gestion')
 @endsection
 
 @section('content')
@@ -98,47 +98,47 @@
                 event_note</i></a></h4>
           
        </div>
-       <table class="table table-condensed">
-           <thead>
-             <th width="50px">ID</th>
-             
-             <th>Fecha</th>
-             <th>Hora</th>
-             <th>Ubicacion</th>
-             <th>Detalle</th>
-             <th colspan="2">Acciones</th>
-           </thead>
-           <tbody>
-             
-             @foreach($fecha->encuentros as $encuentro)
-             <tr>
-                @foreach ($encuentro->jugadores($encuentro->id_encuentro) as $jugador)
+       @foreach($fecha->encuentros as $encuentro)
+       <div class="row">
+          <div class="col-md-6">
+          @foreach ($encuentro->jugadores($encuentro->id_encuentro) as $jugador)
                 <img class="img-thumbnail" src="/storage/fotos/{{ $jugador->foto_jugador}}"  height=" 50px" width="50px">{{ $jugador->nombre_jugador}}
-                  <br>
-              @endforeach
-              </tr>
-               <tr>
-                 <td>{{ $encuentro->id_encuentro }}</td> 
-                   
-                 
-                 <td>{{ $encuentro->fecha}}</td>
-                 <td>{{ $encuentro->hora}}</td>
-                 <td>{{ $encuentro->ubicacion}}</td>
-                 <td>{{ $encuentro->detalle}}</td>                 
-                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" ><i title="Eliminar" class="material-icons">
-                    delete</i></a></td>
-                 
-                 <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
-                    description</i></a></td>
-               </tr>
-             @endforeach            
-           </tbody>
-       </table>
-    @endforeach
+          @endforeach   
+        </div>
+            <div class="col-md-6">
+                <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapse".{{ $encuentro->id_encuentro }} role="button" aria-expanded="false" aria-controls="collapse".{{ $encuentro->id_encuentro }}>
+                     Detalles
+                    </a>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#colapsado".$encuentro->id_encuentro aria-expanded="false" aria-controls="colapsado">
+                      Button with data-target
+                    </button>
+                  </p>
+                  <div class="collapse" id="colapsado".$encuentro->id_encuentro>
+                    <div class="card card-body">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">Detalles</div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Id: {{ $encuentro->id_encuentro }}</li>
+                              <li class="list-group-item">{{ $encuentro->fecha }}</li>
+                              <li class="list-group-item">{{ $encuentro->hora}}</li>
+                              <li class="list-group-item">{{ $encuentro->ubicacion}}</li>
+                              <li class="list-group-item">{{ $encuentro->detalle}}</li>
+                              <li class="list-group-item"><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" ><i title="Eliminar" class="material-icons">
+                                  delete</i></a><a href="{{ route('encuentro.mostrar_resultado_competicion',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
+                                      description</i></a></li>
+                            </ul>
+                          </div> </div>
+                  </div>
+                
+            </div>
+       </div>
+       @endforeach 
+       @endforeach 
     </div>
   </div>
 </div>
-
+{{-- 
 <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -157,7 +157,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   
 @endsection
 @section('scripts')

@@ -399,6 +399,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@mostrar_resultado',
 		'as'=>'encuentro.mostrar_resultado'
 	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_competicion',[
+		'uses'=>'EncuentroController@mostrar_resultado_competicion',
+		'as'=>'encuentro.mostrar_resultado_competicion'
+	]);
 	Route::post('encuentro/reg_resultado',[
 		'uses'=>'EncuentroController@reg_resultado',
 		'as'=>'encuentro.reg_resultado'

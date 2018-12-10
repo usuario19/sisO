@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCentrosTable extends Migration
+class CreateTablaPosicionJugadorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateCentrosTable extends Migration
      */
     public function up()
     {
-        Schema::create('centros', function (Blueprint $table) {
-            $table->increments('id_centro');
-            $table->string('nombre_centro');
-            $table->string('ubicacion_centro');
+        Schema::create('tabla_posicion_jugadors', function (Blueprint $table) {
+            $table->increments('id_tabla_posicion_jugadors');
+            $table->integer('id_seleccion');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateCentrosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('centros');
+        Schema::dropIfExists('tabla_posicion_jugadors');
     }
 }

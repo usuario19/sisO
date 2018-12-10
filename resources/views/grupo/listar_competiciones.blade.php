@@ -5,11 +5,11 @@
 @endsection
 
 @section('submenu')
-@include('plantillas.menus.menu_gestion')
+  @include('plantillas.menus.menu_gestion')
 @endsection
 
 @section('content')
-<div class="content">
+<div class="container">
     <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
          <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
@@ -19,15 +19,14 @@
        </ol>
     </nav>
 </div>
-<div class="content"> 
+<div class="container"> 
   <ul id="tabsJustified" class="nav nav-tabs">
       <li class="nav-item">
         <a href="" data-target="#clubs1" data-toggle="tab" class="nav-link">Clubs</a></li>
       <li class="nav-item">
         <a href="" data-target="#fechas1" data-toggle="tab" class="nav-link">Fechas</a></li>
       <li class="nav-item">
-          <a href="" data-target="#encuentros1" data-toggle="tab" class="nav-link">Encuentros</a></li>
-    
+          <a href="" data-target="#encuentros1" data-toggle="tab" class="nav-link">Encuentros</a></li>  
   </ul>
   <br>
   <div id="tabsJustifiedContent" class="tab-content">
@@ -99,41 +98,47 @@
                 event_note</i></a></h4>
           
        </div>
-       <table class="table table-condensed">
-           <thead>
-             <th width="50px">ID</th>
-             <th colspan="2" style="text-align: center;">Equipos</th>
-             <th>Fecha</th>
-             <th>Hora</th>
-             <th>Ubicacion</th>
-             <th>Detalle</th>
-             <th colspan="2">Acciones</th>
-           </thead>
-           <tbody>
-             @foreach($fecha->encuentros as $encuentro)
-               <tr>
-                 <td>{{ $encuentro->id_encuentro }}</td> 
-                   @foreach ($encuentro->encuentro_club_participaciones as $equipo)
-                     <td><img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}</td>
-                   @endforeach
-                 <td>{{ $encuentro->fecha}}</td>
-                 <td>{{ $encuentro->hora}}</td>
-                 <td>{{ $encuentro->ubicacion}}</td>
-                 <td>{{ $encuentro->detalle}}</td>                 
-                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" data-toggle="modal" data-target="#modalEliminar"><i title="Eliminar" class="material-icons">
-                    delete</i></a></td>
-                 
-                 <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
-                    description</i></a></td>
-               </tr>
-             @endforeach            
-           </tbody>
-       </table>
-    @endforeach
+       @foreach($fecha->encuentros as $encuentro)
+       <div class="row">
+          <div class="col-md-6">
+          @foreach ($encuentro->jugadores($encuentro->id_encuentro) as $jugador)
+                <img class="img-thumbnail" src="/storage/fotos/{{ $jugador->foto_jugador}}"  height=" 50px" width="50px">{{ $jugador->nombre_jugador}}
+          @endforeach   
+        </div>
+            <div class="col-md-6">
+                <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapse".{{ $encuentro->id_encuentro }} role="button" aria-expanded="false" aria-controls="collapse".{{ $encuentro->id_encuentro }}>
+                     Detalles
+                    </a>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#colapsado".$encuentro->id_encuentro aria-expanded="false" aria-controls="colapsado">
+                      Button with data-target
+                    </button>
+                  </p>
+                  <div class="collapse" id="colapsado".$encuentro->id_encuentro>
+                    <div class="card card-body">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">Detalles</div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Id: {{ $encuentro->id_encuentro }}</li>
+                              <li class="list-group-item">{{ $encuentro->fecha }}</li>
+                              <li class="list-group-item">{{ $encuentro->hora}}</li>
+                              <li class="list-group-item">{{ $encuentro->ubicacion}}</li>
+                              <li class="list-group-item">{{ $encuentro->detalle}}</li>
+                              <li class="list-group-item"><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" ><i title="Eliminar" class="material-icons">
+                                  delete</i></a><a href="{{ route('encuentro.mostrar_resultado_competicion',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
+                                      description</i></a></li>
+                            </ul>
+                          </div> </div>
+                  </div>
+                
+            </div>
+       </div>
+       @endforeach 
+       @endforeach 
     </div>
   </div>
 </div>
-
+{{-- 
 <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -152,7 +157,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   
 @endsection
 @section('scripts')

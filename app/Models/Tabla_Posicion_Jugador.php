@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Encuentro_Seleccion extends Model
+class Tabla_Posicion_Jugador extends Model
 {
-    protected $table = 'encuentro_seleccions';
-	//protected $primaryKey = 'id_encuentro_club_part';
+    protected $table = 'tabla_posicion_jugadors';
+	protected $primaryKey = 'id_tabla_posicion_jugador';
     protected $fillable = [
-        'id_encuentro',
         'id_seleccion'
     ];
     protected $hidden = ['remember_token'];

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<div class="content">
+<div class="container">
      <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
@@ -18,7 +18,7 @@
         </ol>
       </nav>
 </div>
-<div class="content"> 
+<div class="container"> 
     <ul id="tabsJustified" class="nav nav-tabs">
         <li class="nav-item">
           <a href="" data-target="#clubs1" data-toggle="tab" class="nav-link active">Clubs</a></li>
@@ -30,7 +30,7 @@
     </ul>
     <br>
     <div id="tabsJustifiedContent" class="tab-content">
-        <div id="clubs1" class="tab-pane fade active show">
+        <div id="clubs1" class="tab-pane fade">
           <div style="float: left;" class="form-row col-md-12 form-inline">
               <h4>Lista de Clubs:</h4>
               <button class="btn btn-primary " data-toggle="modal" data-target="#v">
@@ -58,7 +58,8 @@
         </tbody>
       </table>
      </div>
-     <div id="fechas1" class="tab-pane fade active show"> 
+
+     <div id="fechas1" class="tab-pane fade"> 
       <h4>Lista de Fechas:</h4>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
       @include('fechas.modal_registrar_fecha') 
@@ -80,7 +81,8 @@
              </tbody>
          </table>
      </div>
-        <div id="encuentros1" class="tab-pane fade active show">
+
+        <div id="encuentros1" class="tab-pane fade">
             <h4>Lista de Encuentros:</h4>
             @include('encuentro.modal_agregar_encuentro_eliminacion') 
             @foreach ($fechas as $fecha)

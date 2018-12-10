@@ -12,11 +12,14 @@ class CreateEncuentros extends Migration
             $table->increments('id_encuentro');
             $table->date('fecha');
             $table->time('hora');
-            $table->string('ubicacion');
+            //$table->string('ubicacion');
             $table->text('detalle')->nullable();
            
             $table->integer('id_fecha')->unsigned();
             $table->foreign('id_fecha')->references('id_fecha')->on('fechas')->onDelete('cascade');
+            
+            $table->integer('id_centro')->unsigned();
+            $table->foreign('id_centro')->references('id_centro')->on('centros');
            
             $table->timestamps();
         });

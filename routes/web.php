@@ -271,7 +271,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 				'uses'=> 'GestionController@create',
 				'as' => 'gestion.create']);
 
-	Route::post('gestion/{id_gestion}',[ 
+	Route::post('gestion_update',[ 
 				'uses'=> 'GestionController@update',
 				'as' => 'gestion.update']);
 
@@ -424,7 +424,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@eliminar_club',
 		'as'=>'grupo.eliminar_club'
 	]);
-	Route::get('grupo/{id}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs_competicion',[
+	Route::get('grupo/{id_grupo}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs_competicion',[
 		'uses'=>'GrupoController@listar_clubs_competicion',
 		'as'=>'grupo.listar_clubs_competicion'
 	]);
@@ -443,13 +443,17 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'as'=>'fecha.destroy'
 	]);
 	//encuentro
-	Route::post('encuentro/store',[
+	Route::post('store',[
 		'uses'=>'EncuentroController@store',
 		'as'=>'encuentro.store'
 	]);
-	Route::post('encuentro/store_eliminacion',[
+	Route::post('store_eliminacion',[
 		'uses'=>'EncuentroController@store_eliminacion',
 		'as'=>'encuentro.store_eliminacion'
+	]);
+	Route::post('store_competicion_serie',[
+		'uses'=>'EncuentroController@store_competicion_serie',
+		'as'=>'encuentro.store_competicion_serie'
 	]);
 	Route::get('encuentro/{id_encuentro}/destroy',[
 		'uses'=>'EncuentroController@destroy',
@@ -462,6 +466,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('encuentro/{id_encuentro}/mostrar_resultado',[
 		'uses'=>'EncuentroController@mostrar_resultado',
 		'as'=>'encuentro.mostrar_resultado'
+	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_competicion',[
+		'uses'=>'EncuentroController@mostrar_resultado_competicion',
+		'as'=>'encuentro.mostrar_resultado_competicion'
 	]);
 	Route::post('encuentro/reg_resultado',[
 		'uses'=>'EncuentroController@reg_resultado',

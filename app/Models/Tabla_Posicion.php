@@ -15,7 +15,7 @@ class Tabla_Posicion extends Model
     	'pe',
         'puntos',
     	'id_club',
-    	'id_fase',
+    	//'id_fase',
     ];
 	protected $hidden = ['remember_token'];
 	public function club(){

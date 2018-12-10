@@ -10,8 +10,6 @@
 					  </div>
 					  <div class="container col-md-11">
 							<div class="modal-body">
-
-					
 									<div class="form-row">
 										<div class="form-group col-md-12">
 											{!! Form::label('nombre', 'Nombre', []) !!}

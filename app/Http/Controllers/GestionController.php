@@ -49,6 +49,7 @@ class GestionController extends Controller
         $gestion->desc_gest = $request->get('descripcion');
         $gestion->sede = $request->get('sede');
         $gestion->estado_gestion = 1;
+        $gestion->periodo_inscripcion= 1;
         $gestion->save();
 
         $ultima_gestion = Gestion::all();
@@ -120,15 +121,16 @@ class GestionController extends Controller
 
     }
 
-    public function update(Request $request, $id)
-    {
-        //return dd($Request);
+    public function update(Request $request)
+    {   //return dd($request);
+        $id_gestion = $request->get('id_gestion');
         DB::table('gestiones')
-            ->where('id_gestion', $id)
+            ->where('id_gestion', $id_gestion)
             ->update(['nombre_gestion' => $request->get('nombre_gestion'),
                 'fecha_ini' => $request->get('fecha_ini'),
                 'fecha_fin' => $request->get('fecha_fin'),
                 'desc_gest' => $request->get('descripcion'),
+                'sede' => $request->get('sede'),
             ]);
 
         return redirect()->back();

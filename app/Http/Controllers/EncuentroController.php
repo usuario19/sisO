@@ -10,7 +10,9 @@ use App\Models\Encuentro;
 use App\Models\Eliminacion;
 use App\Models\Fecha;
 use App\Models\Encuentro_Club_Participacion;
+use App\Models\Encuentro_Seleccion;
 use App\Models\Tabla_Posicion;
+use App\Models\Tabla_Posicion_Jugador;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
@@ -18,6 +20,9 @@ use PDF;
 use App\Models\Disciplina;
 class EncuentroController extends Controller
 {
+	public function __construct()
+	{
+	}
     public function index()
     {  
     }
@@ -65,6 +70,73 @@ class EncuentroController extends Controller
                 $tabla_posicion->save();
             }
         }
+        return redirect()->back();
+    }
+    public function store_competicion_serie(Request $request){
+        $id_fecha = $request->get('id_fecha');
+       // $id_centro = $request->get('id_centro');
+        $encuentro = new Encuentro($request->all());
+        $encuentro->id_fecha = $id_fecha;
+        //$encuentro->id_centro = $id_centro;
+        $encuentro->save();
+
+        $id_encuentro = $encuentro->id_encuentro;
+        $id_gestion = $request->get('id_gestion');
+        $id_disc = $request->get('id_disc');
+       // $id_fase = Fecha::where('id_fecha','=',$id_fecha)->select('id_fase')->get()->last()->id_fase;
+        
+        $participantes = $request->get('id_participante');
+        //return dd($participantes);
+        foreach($participantes as $participante) { 
+            $id_seleccion = DB::table('jugadores')
+                ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
+                ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
+                ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
+                ->where('club_participaciones.id_gestion',$id_gestion)
+                ->where('club_participaciones.id_disc',$id_disc)
+                ->where('jugadores.id_jugador','=',$participante)
+                ->select('selecciones.*')->get()->last()->id_seleccion;
+           
+            $encuentro_seleccions = new Encuentro_Seleccion();
+            $encuentro_seleccions->id_encuentro = $id_encuentro;
+            $encuentro_seleccions->id_seleccion = $id_seleccion;
+            $encuentro_seleccions->save();
+            //insertar jugadores en la tabla de posicion de los jugadores
+            $tabla = DB::table('tabla_posicion_jugadors')->where('id_seleccion','=',$id_seleccion)->get();
+            if ($tabla->last() == null) { 
+                $tabla_posicion = new Tabla_Posicion_Jugador();
+                $tabla_posicion->id_seleccion = $id_seleccion;
+                //$tabla_posicion->id_fase = $id_fase;
+                $tabla_posicion->save();
+                // $pjug = Tabla_Posicion::where('id_club','=',$id_club)->get()->last()->pj;
+                
+                // Tabla_Posicion::where('id_club','=',$id_club)
+                // ->update(['pj' => $pjug+1]);
+            // }else {
+            //     // $tabla_posicion = new Tabla_Posicion();
+            //     // $tabla_posicion->id_club = $request->get('id_club'.$i);
+            //     // $tabla_posicion->id_fase = $id_fase;
+            //     // $tabla_posicion->save();
+            }
+        }
+        //flash('Se registro correctamente el encuentro.')->success()->important();
+        
+        // foreach($participantes as $participante) {
+        //     $id_club = $request->get('id_club'.$i);
+        //     $tabla = DB::table('tabla_posicions')->where('id_club','=',$id_club)->get();
+        //     //return dd($tabla);
+        //     if ($tabla->last() != null) {                
+        //         $pjug = Tabla_Posicion::where('id_club','=',$id_club)->get()->last()->pj;
+                
+        //         Tabla_Posicion::where('id_club','=',$id_club)
+        //         ->update(['pj' => $pjug+1]);
+        //     }else {
+        //         $tabla_posicion = new Tabla_Posicion();
+        //         $tabla_posicion->id_club = $request->get('id_club'.$i);
+        //         $tabla_posicion->id_fase = $id_fase;
+        //         $tabla_posicion->save();
+        //     }
+        // }
         return redirect()->back();
     }
     public function store_eliminacion(Request $request){
@@ -128,6 +200,9 @@ class EncuentroController extends Controller
         $encuentro = Encuentro::find($id_encuentro);
         //return dd($datos_menu->id_gestion);
         return view('encuentro.reg_resultado_encuentro',compact('encuentro','gestion','disciplina'));
+    }
+    public function mostrar_resultado_competicion($id_encuentro){
+       return "en construccion ggg";
     }
     public function reg_resultado(request $request){
         $id_encuentro = $request->get('id_encuentro');

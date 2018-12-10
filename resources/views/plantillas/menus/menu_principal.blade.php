@@ -5,7 +5,7 @@
             <a class="navbar-brand col-md-12" href={{url('/')}}>
               <div class="row">
                   <div class="col-xl-1 text-center float-left" style="padding:0% ;height: 60px"><img src="/storage/logos/abcd.jpg" height="60" class="d-inline-block align-top" alt=""></div>
-                  <div class="col-xl-4" style="padding:0%"><p class="title text-center" style="height: 60px;">OLIMPIADAS SITUMSS</p></div>
+                  <div class="col-xl-5" style="padding:0%"><p class="title text-left" style="height: 60px; padding-block-start: 20px">OLIMPIADAS SI.T.UMSS</p></div>
               </div>
               
             </a>
@@ -14,10 +14,10 @@
     </div>
 </div>
 </div>  
-<div class="container-fluid bg-light" style="padding: 0%">
+<div id="menu_principal" class="container-fluid bg-white" style="padding: 0%">
     <div class="container">
     {{--  <div class="container-fluid bg-light" style="padding: 0%">  --}}
-    <nav class="navbar navbar-expand-lg bg-light  text-center">
+    <nav class="navbar navbar-expand-lg  text-center">
 
       <button class="navbar-toggler btn-block navbar-light" {{--  style="border: solid 1px grey"  --}} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="material-icons" style="color:grey">
@@ -40,11 +40,11 @@
           
           
             
-          <li class="nav-item dropdown">
+          {{--  <li class="nav-item dropdown">
             
               <a class="nav-link" href={{ route('jugador.mostrar') }}>JUGADORES</a>
             
-          </li> 
+          </li>   --}}
 
           <li class="nav-item dropdown">
             
@@ -54,23 +54,23 @@
 
           <li class="nav-item dropdown">
             
-              <a class="nav-link" href={{ route('disciplina.mostrar') }}>DISCIPLINAS</a>
+              <a class="nav-link" href={{ route('principal.listar_disciplinas') }}>DISCIPLINAS</a>
             
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link" href={{ route('gestion.mostrar') }}>RESULTADOS</a>
+              <a class="nav-link" href={{ route('principal.consultar_resultados') }}>RESULTADOS</a>
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link" href={{ route('gestion.mostrar') }}>PARTIDOS</a>
+              <a class="nav-link" href={{ route('principal.consultar_partidos') }}>PARTIDOS</a>
           </li>
           <li class="nav-item dropdown">
-                <a class="nav-link" href={{ route('gestion.mostrar') }}>NOTICIAS</a>
+                <a class="nav-link" href={{ route('principal.noticias') }}>NOTICIAS</a>
             </li>
         </ul>
           
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href='{{ route('login') }}'>LOGIN</a>
+            <a class="nav-link" href='{{ route('login') }}'>Iniciar Sesión</nav></a>
           </li>
         </ul> 
         </div>   

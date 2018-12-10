@@ -15,19 +15,48 @@ Route::group(['middleware' => ['web','guest']],function(){
 
 	//Route::resource('login','LoginController');
 	Route::get('/', function () {
+		return view('home');
+	 });
+ 
+	 Route::post('log',[ 
+			 'uses'=> 'AutentificacionController@store',
+			 'as' => 'login.store']);
+ 
+	 Route::get('iniciarSesion',[ 
+				 'uses'=> 'AutentificacionController@index',
+				 'as' => 'login']);
+
+
+	/*login*/
+		/* Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+        Route::post('login', 'Auth\LoginController@login');
+        Route::post('logout', 'Auth\LoginController@logout')->name('logout'); */
+
+        // Registration Routes...
+       /* Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+       	Route::post('register', 'Auth\RegisterController@register');
+	*/
+        // Password Reset Routes...
+        Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+	/*..........................................*/
+	Route::get('/home', 'HomeController@index')->name('home');
+
+
+	//Route::resource('login','LoginController');
+	Route::get('/', function () {
    	return view('home');
 	});
 
 	Route::post('log',[ 
-			'uses'=> 'LoginController@store',
+			'uses'=> 'AutentificacionController@store',
 			'as' => 'login.store']);
 
-	Route::post('password/request',[ 
-			'uses'=> 'Auth\ForgotPasswordController@showLinkRequestForm',
-			'as' => 'password.request']);
-
-	Route::get('login',[ 
-				'uses'=> 'LoginController@index',
+	Route::get('iniciar sesion',[ 
+				'uses'=> 'AutentificacionController@index',
 				'as' => 'login']);
 
 	Route::get('jugador/mostrar',[ 
@@ -50,10 +79,49 @@ Route::group(['middleware' => ['web','guest']],function(){
 		'uses'=> 'GestionController@mostrarGestion_principal',
 		'as' => 'gestion.mostrar_principal'
 	]);
-
 	Route::get('clubs',[ 
 		'uses'=> 'ClubController@clubs_principal',
-		'as' => 'club.mostrar_principal']);
+		'as' => 'club.mostrar_principal'
+	]);
+
+	Route::get('disicplinas',[ 
+		'uses'=> 'PrincipalController@listar_disciplinas',
+		'as' => 'principal.listar_disciplinas'
+	]);
+
+	Route::get('gestiones/{gestion}/informacion',[ 
+		'uses'=> 'PrincipalController@gestion_info',
+		'as' => 'principal.gestion_info'
+	]);
+
+	Route::get('clubs/{club}/informacion',[ 
+		'uses'=> 'PrincipalController@club_info',
+		'as' => 'principal.club_info'
+	]);
+
+	Route::get('resultados',[ 
+		'uses'=> 'PrincipalController@consultar_resultados',
+		'as' => 'principal.consultar_resultados'
+	]);
+	Route::get('partidos',[ 
+		'uses'=> 'PrincipalController@consultar_partidos',
+		'as' => 'principal.consultar_partidos'
+	]);
+
+	Route::get('noticias',[ 
+		'uses'=> 'PrincipalController@noticias',
+		'as' => 'principal.noticias'
+	]);
+
+	Route::get('disciplinas/{disciplina}/informacion',[ 
+		'uses'=> 'PrincipalController@disciplina_info',
+		'as' => 'principal.disciplina_info'
+	]);
+
+	Route::post('coordinador/partidos/participaciones',[ 
+		'uses'=> 'PrincipalController@obtener_disciplinas',
+		'as' => 'principal.obtener_part']);
+	
 });
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS
@@ -64,7 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
 	//return view('disciplina.reg_disc');
 	});
 	Route::get('logout',[ 
-			'uses'=> 'LoginController@logout',
+			'uses'=> 'AutentificacionController@logout',
 			'as' => 'logout']);
 	});
 	
@@ -698,7 +766,4 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('centro/{centro}/delete',[ 
 		'uses'=> 'LugarController@destroy',
 		'as' => 'centro.delete']);
-
-
 });
-

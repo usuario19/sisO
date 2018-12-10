@@ -11,6 +11,7 @@
         {!! Html::style('/css/mis_estilos.css') !!}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet">
+        @yield('cdn')
 </head>
 <body>
 {{--   <div class="container-fluid" style="padding: 0%">  --}}

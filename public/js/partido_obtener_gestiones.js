@@ -42,9 +42,6 @@ $("#id_partido_club").change(function(event) {
     
 });
 $("#id_partido_gest").change(function(event) {
-    /* var club = $("#id_partido_club").val();
-    var gestiones = $('#id_partido_gest');
-    var disciplinas = $('#id_partido_disc'); */
     
         $.ajax({
             headers: {
@@ -66,13 +63,12 @@ $("#id_partido_gest").change(function(event) {
                 data.forEach(element => {
                     $("#id_partido_disc").append("<option class='form-control' value='"+element.id_club_part+"'>"+element.nombre_disc+"</option>");
                 });
-                //console.log(data);  
+                
             },
             error: function(data){
                 console.log(data);
             },
         
             });
-    /* } */
     
 });

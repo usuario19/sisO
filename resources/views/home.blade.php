@@ -6,11 +6,11 @@
 @endsection
 
 @section('content')
-<div class="container" style="padding: 0%">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div class="container-fluid" style="padding: 0%">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height: 500px; overflow: hidden">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="/storage/logos/h1.jpg" alt="First slide">
+            <img class="img-fluid d-block w-100" src="/storage/logos/h1.jpg" alt="First slide">
           </div>
           <div class="carousel-item">
             <img class="d-block w-100" src="/storage/logos/h2.jpg" alt="Second slide">

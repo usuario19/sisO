@@ -175,9 +175,10 @@ return [
         
         //alert
         //Softon\SweetAlert\SweetAlertServiceProvider::class,
-        Cornford\Googlmapper\MapperServiceProvider::class,
-        FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
+        /* Cornford\Googlmapper\MapperServiceProvider::class,
+        FarhanWazir\GoogleMaps\GMapsServiceProvider::class, */
         Jenssegers\Date\DateServiceProvider::class,
+        
     ],
 
     /*
@@ -243,6 +244,7 @@ return [
         'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
         'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
         'Date' => Jenssegers\Date\Date::class,
+        
 
     ],
 ];

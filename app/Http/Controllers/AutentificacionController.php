@@ -7,7 +7,7 @@ use App\Models\Administrador;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 
-class LoginController extends Controller
+class AutentificacionController extends Controller
 {
     public function __construct()
     {
@@ -22,7 +22,7 @@ class LoginController extends Controller
     {
         //
 		//dd("hola");
-		return view('login.login');
+		return view('autentificar.login');
     }
 
     /**
@@ -43,10 +43,10 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $errores = [
+        /*$errores = [
                 'e'=>'El usuario no coincide con nuestros registros.',
                 'pass'=> 'La contraseña es incorrecta.',
-            ];
+            ];*/
 
 		$datos = $request->only(['ci','password']);
 		
@@ -67,7 +67,7 @@ class LoginController extends Controller
             //dd($errores);
             //return back()->withInput()->with('errores', $errores);
             return back()->withErrors([
-                'email'=>'Ingrese el nombre de Usuario correcto',
+                'ci'=>'Ingrese el nombre de Usuario correcto',
                 'password'=> 'Ingrese la Contraseña correcta',
             ]);
 

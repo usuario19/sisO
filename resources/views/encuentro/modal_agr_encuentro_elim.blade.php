@@ -22,15 +22,6 @@
                         {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                         {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
                     </div>
-                    <div class="col-md-5">
-                        {!! Form::select('id_club1', $clubsParaEncuentro, null,['placeholder'=>'seleccione','class'=>'form-control']) !!}
-                    </div>
-                    <div class="col-md-2">
-                        <h2 style="text-align: center;">Vs.</h2>
-                    </div>
-                    <div class="col-md-5">
-                        {!! Form::select('id_club2', $clubsParaEncuentro, null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}
-                    </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6">

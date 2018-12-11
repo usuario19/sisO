@@ -51,7 +51,6 @@
               <br>
               <table class="table table-condensed">
                   <thead>
-                    
                     <th colspan="2" width="50px" class="text-center">#</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
@@ -73,10 +72,17 @@
                               group
                               </i></a></td>
                         @else
-                        <td style="width: "><a href="{{ route('fase.eliminacion_encuentro',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
-                          <i title="Grupo" class="material-icons delete_button">
-                            group
-                            </i></a></td>
+                          @if ($fase->nombre_tipo == 'eliminacion' && $disciplina->tipo == 0)
+                              <td style="width: "><a href="{{ route('fase.eliminacion_encuentro',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
+                              <i title="Grupo" class="material-icons delete_button">
+                                group
+                                </i></a></td>
+                          @else
+                            <td style="width: "><a href="{{ route('fase.eliminacion_encuentro_competicion',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
+                              <i title="Grupo" class="material-icons delete_button">
+                                group
+                                </i></a></td>
+                          @endif
                         @endif
                       
                             <td style="width: 70px"><a href="{{ route('fase.destroy',$fase->id_fase) }}">

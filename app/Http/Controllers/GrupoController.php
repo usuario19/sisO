@@ -273,12 +273,6 @@ class GrupoController extends Controller
                 
                 return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','encuentros','centros'));
     }
-    public function edit($id){
-    }
-
-    public function update(Request $request, $id){
-        //
-    }
 
     public function destroy($id){
         $grupo = Grupo::find($id);

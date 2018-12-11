@@ -13,6 +13,7 @@ use App\Models\Encuentro;
 use App\Models\Eliminacion;
 use App\Models\Participacion;
 use App\Models\Fase_Tipo;
+use App\Models\Centro;
 use Illuminate\Support\Facades\DB;
 
 class FaseController extends Controller
@@ -47,24 +48,6 @@ class FaseController extends Controller
 
         return redirect()->back();
     }
-    public function show($id)
-    {
-
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    public function destroy($id)
-    {
-        //
-    }
     public function listar_grupos($id_fase, $id_gestion, $id_disc)
     {
         $gestion = Gestion::find($id_gestion);
@@ -79,7 +62,11 @@ class FaseController extends Controller
     }
     //lista de encuentros y clubs inscritos
     public function eliminacion_encuentro($id_fase, $id_gestion, $id_disc)
-    {
+    {   $centros_lista = Centro::all();
+        $centros = array();
+        foreach($centros_lista as $centro){
+            $centros[$centro->id_centro] = $centro->nombre_centro;
+        }
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase = Fase::find($id_fase);
@@ -107,8 +94,98 @@ class FaseController extends Controller
             ->where('club_participaciones.id_disc', '=', $id_disc)
             ->whereNotIn('clubs.id_club',$clubs->pluck('id_club')->toArray())
             ->get();
-        $encuentros = Encuentro::all();
-        return view('fases.listar_encuentros_eliminacion')->with('clubs', $clubs)->with('clubsDisponibles', $clubsDisponibles)->with('gestion', $gestion)->with('disciplina', $disciplina)->with('fase', $fase)->with('fechas', $fechas)->with('fechas2', $fechas2)->with('clubsParaEncuentro', $clubsParaEncuentro)->with('encuentros', $encuentros);
+        //$encuentros = Encuentro::all();
+        return view('fases.listar_encuentros_eliminacion',compact('centros','clubs','clubsDisponibles','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro'));
+    }
+    public function eliminacion_encuentro_competicion($id_fase, $id_gestion, $id_disc)
+    {   $centros_lista = Centro::all();
+        $centros = array();
+        foreach($centros_lista as $centro){
+            $centros[$centro->id_centro] = $centro->nombre_centro;
+        }
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+        $fechas = Fecha::where('id_fase', '=', $id_fase)->get();
+        // $fechasLista = DB::table('fechas')
+        //     ->join('fechas_grupos','fechas.id_fecha','fechas_grupos.id_fecha')
+        //     ->join('grupos','fechas_grupos.id_grupo','grupos.id_grupo')
+        //     ->where('grupos.id_grupo','=',$id_grupo)
+        //     ->select('fechas.*')->get();
+        // $fechasArreglo = array();
+        // foreach ($fechasLista as $fecha) {
+        // $fechasArreglo[$fecha->id_fecha] = ($fecha->id_fecha);
+        // }
+        // $fechas = Fecha::whereIn('id_fecha',$fechasArreglo)->get();
+        // $fechas2 = array();
+        foreach ($fechas as $fecha) {
+            $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
+        }
+        //clubs inscritos en esa fase
+        $clubs = DB::table('fases')
+            ->join('eliminaciones', 'fases.id_fase', '=', 'eliminaciones.id_fase')
+            ->join('club_participaciones', 'eliminaciones.id_club_part', '=', 'club_participaciones.id_club_part')
+            ->join('clubs', 'club_participaciones.id_club', '=', 'clubs.id_club')
+            ->where('eliminaciones.id_fase', '=', $id_fase)
+            ->get();
+        //revisar para que sirve
+       
+        $clubsDisponibles = DB::table('clubs')
+            ->join('club_participaciones', 'clubs.id_club', '=', 'club_participaciones.id_club')
+            ->where('club_participaciones.id_gestion', '=', $id_gestion)
+            ->where('club_participaciones.id_disc', '=', $id_disc)
+            ->whereNotIn('clubs.id_club',$clubs->pluck('id_club')->toArray())
+            ->get();
+       //desde aki
+     
+        // $clubsInscritos = DB::table('grupo_club_participaciones')
+        //     ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+        //     //->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
+        //     ->select('grupo_club_participaciones.id_club_part')
+        //     ->get()->toArray();
+        // $lista = array();
+        //                 foreach ($clubsInscritos as $club) {
+        //                     $lista[] = $club->id_club_part;
+        //                 }
+        //                 $centrosLista = Centro::all();
+        //                 $centros = array();
+        //                 foreach ($centrosLista as $centro) {
+        //                     $centros[$centro->id_centro] = $centro->nombre_centro;
+        //                 }
+     
+        // $clubsDisponibles = DB::table('clubs')
+        //     ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
+        //     ->where('club_participaciones.id_gestion','=',$id_gestion)
+        //     ->where('club_participaciones.id_disc','=',$id_disc)
+        //     ->whereNotIn('club_participaciones.id_club_part',$lista)
+        //     ->get();
+        
+       
+        $encuentros = DB::table('fases')
+                ->join('fechas','fases.id_fase','fechas.id_fase')
+                ->join('encuentros','fechas.id_fecha','encuentros.id_fecha')
+                ->join('encuentro_seleccions','encuentros.id_encuentro','encuentro_seleccions.id_encuentro')
+                ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
+                ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+                ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+                //->where('encuentros.id_fecha',$id_fecha)
+                ->where('fases.id_fase','=',$id_fase)
+                ->select('encuentros.*')
+                ->get();
+        // $lista_encuentros = array();
+        // foreach ($encuentros as $encuentro) {
+        //     $lista_encuentros[] = $encuentro->id_encuentro;
+        // }
+        $participantes = DB::table('jugadores')
+                ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
+                ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
+                ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
+                // ->join('grupo_club_participaciones','club_participaciones.id_club_part','grupo_club_participaciones.id_club_part')
+                ->where('club_participaciones.id_gestion',$id_gestion)
+                ->where('club_participaciones.id_disc',$id_disc)
+                // ->where('grupo_club_participaciones.id_grupo',$id_grupo)
+                ->select('jugadores.*')->get();
+        return view('fases.list_encuentros_elim_comp',compact('participantes','encuentros','centros','clubs','clubsDisponibles','gestion','disciplina','fase','fechas','fechas2'));
     }
     public function store_club_eliminacion(Request $request)
     {

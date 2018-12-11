@@ -379,6 +379,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@eliminacion_encuentro',
 		'as'=>'fase.eliminacion_encuentro'
 	]);
+	Route::get('fase/{id_fase}/{id_gestion}/{id_disc}/eliminacion_encuentro_competicion',[
+		'uses'=>'FaseController@eliminacion_encuentro_competicion',
+		'as'=>'fase.eliminacion_encuentro_competicion'
+	]);
 	Route::post('fase/store_club_eliminacion',[
 		'uses'=>'FaseController@store_club_eliminacion',
 		'as'=>'fase.store_club_eliminacion'
@@ -430,9 +434,13 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	]);
 	
 	//FECHA
-	Route::post('fecha/store',[
+	Route::post('store',[
 		'uses'=>'FechaController@store',
 		'as'=>'fecha.store'
+	]);
+	Route::post('store_fecha_eliminacion',[
+		'uses'=>'FechaController@store_fecha_eliminacion',
+		'as'=>'fecha.store_fecha_eliminacion'
 	]);
 	Route::get('fecha/{id_fase}/{id_gestion}/{id_disc}/listar_fechas',[
 		'uses'=>'FechaController@listar_fechas',

@@ -62,7 +62,7 @@
      <div id="fechas1" class="tab-pane fade"> 
       <h4>Lista de Fechas:</h4>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
-      @include('fechas.modal_registrar_fecha') 
+      @include('fechas.modal_reg_fecha_eliminacion') 
          <table class="table table-condensed">
              <thead>
                <th width="50px">ID</th>

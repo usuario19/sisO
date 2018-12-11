@@ -94,8 +94,8 @@
     @foreach ($fechas as $fecha)
        <div>
           <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}
-            <a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons">
-                event_note</i></a></h4>
+            <a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons delete_button">
+                assignment</i></a></h4>
           
        </div>
        @foreach($fecha->encuentros as $encuentro)
@@ -107,33 +107,40 @@
         </div>
             <div class="col-md-6">
                 <p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapse".{{ $encuentro->id_encuentro }} role="button" aria-expanded="false" aria-controls="collapse".{{ $encuentro->id_encuentro }}>
-                     Detalles
-                    </a>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#colapsado".$encuentro->id_encuentro aria-expanded="false" aria-controls="colapsado">
-                      Button with data-target
-                    </button>
+                    <a data-toggle="collapse" href={{ "#colapsado". $encuentro->id_encuentro }}  aria-expanded="false" aria-controls={{ "#colapsado". $encuentro->id_encuentro }}><i title="Descripcion" class="material-icons delete_button">
+                        description</i></a>
+                    <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" ><i title="Eliminar" class="material-icons delete_button">delete
+                    </i></a>
+                    <a href="{{ route('encuentro.mostrar_resultado_competicion',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons delete_button">
+                        collections_bookmark</i></a>
                   </p>
-                  <div class="collapse" id="colapsado".$encuentro->id_encuentro>
-                    <div class="card card-body">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-header">Detalles</div>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">Id: {{ $encuentro->id_encuentro }}</li>
-                              <li class="list-group-item">{{ $encuentro->fecha }}</li>
-                              <li class="list-group-item">{{ $encuentro->hora}}</li>
-                              <li class="list-group-item">{{ $encuentro->ubicacion}}</li>
-                              <li class="list-group-item">{{ $encuentro->detalle}}</li>
-                              <li class="list-group-item"><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" ><i title="Eliminar" class="material-icons">
-                                  delete</i></a><a href="{{ route('encuentro.mostrar_resultado_competicion',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
-                                      description</i></a></li>
-                            </ul>
-                          </div> </div>
+                  <div class="collapse" id={{ "colapsado".$encuentro->id_encuentro }} >
+                      <table class="table table-responsive" style="width:50%">
+                          <tr>
+                            <th>Id:</th>
+                            <td>{{ $encuentro->id_encuentro }}</td>
+                          </tr>
+                          <tr>
+                            <th>Fecha:</th>
+                            <td>{{ $encuentro->fecha }}</td>
+                          </tr>
+                          <tr>
+                            <th>Hora:</th>
+                            <td>{{ $encuentro->hora}}</td>
+                          </tr>
+                          <tr>
+                              <th>Ubicacion:</th>
+                              <td>{{ $encuentro->ubicacion}}</td>
+                            </tr>
+                            <tr>
+                                <th>Detalle:</th>
+                                <td>{{ $encuentro->detalle}}</td>
+                              </tr>
+                        </table>
+                    </div> 
                   </div>
-                
-            </div>
-       </div>
-       @endforeach 
+                </div>
+         @endforeach 
        @endforeach 
     </div>
   </div>

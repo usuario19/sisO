@@ -46,7 +46,7 @@
         <div class="col-md-12 mx-auto">
             <div class="form-row">
                 @foreach($clubs->sortBy('ciudad') as $club)
-                <div class="col-md-3">
+                <div class="col-md-2">
                         <a class="title-span" href="{{ route('principal.club_info',$club->id_club) }}">
                             <div class="text-center" style="margin: 20px">
                                 <img class="rounded-circle mx-auto d-block" src="/storage/logos/{{ $club->logo}}" alt="" width="100px" height="100px">

@@ -61,7 +61,7 @@
               <div class="form-row">
                   @foreach($disciplinas->sortBy('nombre_disc') as $disciplina)
                     @if ($disciplina->tipo == 1)
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <a class="title-span" href="{{ route('principal.disciplina_info',$disciplina->id_disc) }}">
                                 <div class="text-center" style="margin: 20px">
                                     <img class="rounded-circle mx-auto d-block" src="/storage/foto_disc/{{ $disciplina->foto_disc}}" alt="" width="100px" height="100px">

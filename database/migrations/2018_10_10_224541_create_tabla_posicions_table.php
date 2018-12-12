@@ -24,8 +24,8 @@ class CreateTablaPosicionsTable extends Migration
             $table->integer('id_club')->unsigned();
             $table->foreign('id_club')->references('id_club')->on('clubs')->onDelete('cascade');
             
-            // $table->integer('id_fase')->unsigned();
-            // $table->foreign('id_fase')->references('id_fase')->on('fases')->onDelete('cascade');
+            $table->integer('id_disc')->unsigned();
+            $table->foreign('id_disc')->references('id_disc')->on('disciplinas')->onDelete('cascade');
            
             $table->timestamps();
         });

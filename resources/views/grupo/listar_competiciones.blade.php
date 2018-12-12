@@ -50,7 +50,9 @@
                   <td>{{ $club->id_club }}</td>
                   <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
                   <td>{{ $club->nombre_club }}</td>
-                  <td><a href="{{ route('grupo.eliminar_club',[$club->id_grupo,$club->id_club_part]) }}" class="btn btn-danger">Eliminar</a></td>
+                  <td><a href="{{ route('grupo.eliminar_club',[$club->id_grupo,$club->id_club_part]) }}"><i title="Eliminar" class="material-icons delete_button">
+                    delete
+                    </i></a></td>
                  
                 </tr>
               @endforeach
@@ -68,16 +70,18 @@
             <thead>
               <th width="50px">ID</th>
               <th>Nombre</th>
-              <th colspan="2" style="text-align: center">Acciones</th>
+              <th>Acciones</th>
             </thead>
             <tbody id="tablas_fechas_competicion">
                 @foreach ($fechas as $fecha)
                 <tr>    
                   <td>{{ $fecha->id_fecha}}</td>
                   <td>{{ $fecha->nombre_fecha}}</td>
-                  <td><a href="" class="btn btn-success">Editar</a></td>
-                  <td>
-                    <a href=""><i title="Eliminar" class="material-icons">
+                  <td><a href=""><i title="Editar" class="material-icons delete_button">
+                    edit
+                    </i></a>
+                 
+                    <a href=""><i title="Eliminar" class="material-icons delete_button">
                       delete
                       </i></a></td>
                 </tr>

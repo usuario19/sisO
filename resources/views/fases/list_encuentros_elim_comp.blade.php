@@ -61,13 +61,13 @@
 
      <div id="fechas1" class="tab-pane fade"> 
       <h4>Lista de Fechas:</h4>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregarr</button>
       @include('fechas.modal_reg_fecha_eliminacion') 
          <table class="table table-condensed">
              <thead>
                <th width="50px">ID</th>
                <th>Nombre</th>
-               <th colspan="2">Acciones</th>
+               <th colspan="2" style="align-content: center">Acciones</th>
              </thead>
              <tbody>
                 @foreach ($fechas as $fecha)

@@ -205,7 +205,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 
 	//Route::resource('disciplina','DisciplinaController');
 
-	Route::post('disciplina',[ 
+	Route::post('disciplina/store',[ 
 				'uses'=> 'DisciplinaController@store',
 				'as' => 'disciplina.store']);
 
@@ -241,7 +241,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=> 'ClubController@datos',
 			'as' => 'datosclub']);
 
-	Route::post('club',[ 
+	Route::post('club/store',[ 
 				'uses'=> 'ClubController@store',
 				'as' => 'club.store']);
 
@@ -387,6 +387,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@store_club_eliminacion',
 		'as'=>'fase.store_club_eliminacion'
 	]);
+	Route::post('fase/store_club_eliminacion_competicion',[
+		'uses'=>'FaseController@store_club_eliminacion_competicion',
+		'as'=>'fase.store_club_eliminacion_competicion'
+	]);
 	Route::get('fase/{id_fase}/{id_club_part}eliminar_club_eliminacion',[
 		'uses'=>'FaseController@eliminar_club_eliminacion',
 		'as'=>'fase.eliminar_club_eliminacion'
@@ -434,11 +438,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	]);
 	
 	//FECHA
-	Route::post('store',[
+	Route::post('fecha/store',[
 		'uses'=>'FechaController@store',
 		'as'=>'fecha.store'
 	]);
-	Route::post('store_fecha_eliminacion',[
+	Route::post('fecha/store_fecha_eliminacion',[
 		'uses'=>'FechaController@store_fecha_eliminacion',
 		'as'=>'fecha.store_fecha_eliminacion'
 	]);
@@ -451,15 +455,15 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'as'=>'fecha.destroy'
 	]);
 	//encuentro
-	Route::post('store',[
+	Route::post('encuentro/store',[
 		'uses'=>'EncuentroController@store',
 		'as'=>'encuentro.store'
 	]);
-	Route::post('store_eliminacion',[
+	Route::post('encuentro/store_eliminacion',[
 		'uses'=>'EncuentroController@store_eliminacion',
 		'as'=>'encuentro.store_eliminacion'
 	]);
-	Route::post('store_competicion_serie',[
+	Route::post('encuentro/store_competicion_serie',[
 		'uses'=>'EncuentroController@store_competicion_serie',
 		'as'=>'encuentro.store_competicion_serie'
 	]);
@@ -486,6 +490,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('encuentro/{id_club}/{id_grupo}/select_contrincante',[
 		'uses'=>'EncuentroController@select_contrincante',
 		'as'=>'encuentro.select_contrincante'
+	]);
+	Route::get('encuentro/{id_club}/{id_fase}/select_contrincante_eliminacion',[
+		'uses'=>'EncuentroController@select_contrincante_eliminacion',
+		'as'=>'encuentro.select_contrincante_eliminacion'
 	]);
 });
 
@@ -717,7 +725,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=>'SeleccionController@create',
 				'as'=>'seleccion.create']);
 
-	Route::post('seleccion',[
+	Route::post('seleccion/store',[
 				'uses'=>'SeleccionController@store',
 				'as'=>'seleccion.store']);
 

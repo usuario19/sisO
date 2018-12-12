@@ -51,7 +51,9 @@
                   <td>{{ $club->id_club }}</td>
                   <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
                   <td>{{ $club->nombre_club }}</td>
-                  <td><a href="{{ route('grupo.eliminar_club',[$club->id_grupo,$club->id_club_part]) }}" class="btn btn-danger">Eliminar</a></td>
+                  <td><a href="{{ route('grupo.eliminar_club',[$club->id_grupo,$club->id_club_part]) }}"><i title="Eliminar" class="material-icons delete_button">
+                    delete
+                    </i></a></td>
                  
                 </tr>
               @endforeach
@@ -68,16 +70,18 @@
          <thead>
            <th width="50px">ID</th>
            <th>Nombre</th>
-           <th colspan="2" style="text-align: center">Acciones</th>
+           <th>Acciones</th>
          </thead>
          <tbody>
             @foreach ($fechas as $fecha)
              <tr>    
                <td>{{ $fecha->id_fecha}}</td>
                <td>{{ $fecha->nombre_fecha}}</td>
-               <td><a href="" class="btn btn-success">Editar</a></td>
-               <td>
-                 <a href=""><i title="Eliminar" class="material-icons">
+               <td><a href=""><i title="Eliminar" class="material-icons delete_button">
+                edit
+                </i></a>
+               
+                 <a href=""><i title="Eliminar" class="material-icons delete_button">
                   delete
                   </i></a></td>
              </tr>
@@ -92,8 +96,8 @@
     @foreach ($fechas as $fecha)
        <div>
           <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}
-            <a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons">
-                event_note</i></a></h4>
+            <a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons delete_button">
+                assignment</i></a></h4>
           
        </div>
        <table class="table table-condensed">
@@ -115,13 +119,13 @@
                    @endforeach
                  <td>{{ $encuentro->fecha }}</td>
                  <td>{{ $encuentro->hora}}</td>
-                 <td>{{ $encuentro->ubicacion}}</td>
+                 <td>{{ $encuentro->centro->ubicacion_centro}}</td>
                  <td>{{ $encuentro->detalle}}</td>                 
-                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" data-toggle="modal" data-target="#modalEliminar"><i title="Eliminar" class="material-icons">
+                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" data-toggle="modal" data-target="#modalEliminar"><i title="Eliminar" class="material-icons delete_button">
                     delete</i></a></td>
                  
-                 <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons">
-                    description</i></a></td>
+                 <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons delete_button">
+                  collections_bookmark</i></a></td>
                </tr>
              @endforeach            
            </tbody>

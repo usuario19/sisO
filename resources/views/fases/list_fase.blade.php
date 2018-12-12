@@ -75,12 +75,12 @@
                           @if ($fase->nombre_tipo == 'eliminacion' && $disciplina->tipo == 0)
                               <td style="width: "><a href="{{ route('fase.eliminacion_encuentro',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
                               <i title="Grupo" class="material-icons delete_button">
-                                group
+                                person
                                 </i></a></td>
                           @else
                             <td style="width: "><a href="{{ route('fase.eliminacion_encuentro_competicion',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
                               <i title="Grupo" class="material-icons delete_button">
-                                group
+                                person
                                 </i></a></td>
                           @endif
                         @endif

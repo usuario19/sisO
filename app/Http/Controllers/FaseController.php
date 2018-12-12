@@ -11,6 +11,7 @@ use App\Models\Fecha;
 use App\Models\Disciplina;
 use App\Models\Encuentro;
 use App\Models\Eliminacion;
+use App\Models\Eliminacion_Competencia;
 use App\Models\Participacion;
 use App\Models\Fase_Tipo;
 use App\Models\Centro;
@@ -55,10 +56,8 @@ class FaseController extends Controller
             ->where('grupos.id_fase', '=', $id_fase)
             ->paginate(10);
         $disciplina = Disciplina::find($id_disc);
-        //$fase = Fase::where("id_fase","=",$id_fase)->first();
         $fase = Fase::find($id_fase);
         return view('grupo.listar_grupos')->with('grupos', $grupos)->with('fase', $fase)->with('gestion', $gestion)->with('disciplina', $disciplina);
-        //return dd($fase);
     }
     //lista de encuentros y clubs inscritos
     public function eliminacion_encuentro($id_fase, $id_gestion, $id_disc)
@@ -116,8 +115,8 @@ class FaseController extends Controller
         // foreach ($fechasLista as $fecha) {
         // $fechasArreglo[$fecha->id_fecha] = ($fecha->id_fecha);
         // }
-        // $fechas = Fecha::whereIn('id_fecha',$fechasArreglo)->get();
-        // $fechas2 = array();
+        //$fechas = Fecha::whereIn('id_fecha',$fechasArreglo)->get();
+        $fechas2 = array();
         foreach ($fechas as $fecha) {
             $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
         }
@@ -180,9 +179,11 @@ class FaseController extends Controller
                 ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
                 ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
                 ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
-                // ->join('grupo_club_participaciones','club_participaciones.id_club_part','grupo_club_participaciones.id_club_part')
+                ->join('eliminaciones','club_participaciones.id_club_part','eliminaciones.id_club_part')
+                ->join('fases','eliminaciones.id_fase','fases.id_fase')
                 ->where('club_participaciones.id_gestion',$id_gestion)
                 ->where('club_participaciones.id_disc',$id_disc)
+                ->where('fases.id_fase',$id_fase)
                 // ->where('grupo_club_participaciones.id_grupo',$id_grupo)
                 ->select('jugadores.*')->get();
         return view('fases.list_encuentros_elim_comp',compact('participantes','encuentros','centros','clubs','clubsDisponibles','gestion','disciplina','fase','fechas','fechas2'));
@@ -191,7 +192,22 @@ class FaseController extends Controller
     {
         $clubs = $request->get('id_club');
         foreach ($clubs as $club) {
-            $datos = new eliminacion;
+            $datos = new Eliminacion;
+            $datos->id_fase = $request->get('id_fase');
+            $id_club_part = DB::table('club_participaciones')
+                ->where('club_participaciones.id_gestion', '=', $request->get('id_gestion'))
+                ->where('club_participaciones.id_disc', '=', $request->get('id_disciplina'))
+                ->where('club_participaciones.id_club', '=', $club)->get()->last()->id_club_part;
+            $datos->id_club_part = $id_club_part;
+            $datos->save();
+        }
+        return redirect()->back();
+    }
+    public function store_club_eliminacion_competicion(Request $request)
+    {
+        $clubs = $request->get('id_club');
+        foreach ($clubs as $club) {
+            $datos = new Eliminacion_Compet;
             $datos->id_fase = $request->get('id_fase');
             $id_club_part = DB::table('club_participaciones')
                 ->where('club_participaciones.id_gestion', '=', $request->get('id_gestion'))

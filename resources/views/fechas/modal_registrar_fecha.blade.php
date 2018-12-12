@@ -1,7 +1,7 @@
  {!! Form::open(['route'=>'fecha.store','method' => 'POST' ,'enctype' => 'multipart/form-data','id'=>'boton_aceptar'] ) !!}
-<div class="modal fade" id="modalFecha" tabindex="-1" role="dialog" aria-labelledby="modalLabelFecha" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+  <div class="modal fade" id="modalFecha" tabindex="-1" role="dialog" aria-labelledby="modalLabelFecha" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalLabelFecha">Agregar fecha</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,7 +12,6 @@
       <div class="modal-body">
         <div style="display:none">
           {!! Form::text('id_grupo', $grupo->id_grupo, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
-
         </div>
 
           <div class="form-group">

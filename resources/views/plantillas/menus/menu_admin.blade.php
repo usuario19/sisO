@@ -17,16 +17,10 @@
             </a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item">
+            <a class="nav-link " href={{ route('gestion.index') }}>
               Campeonatos
             </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('gestion.index') }}>Listar Campeonatos</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
           </li>
     		  <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,7 +41,6 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('jugador.create') }}>Registrar Jugador</a>
               <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de jugadores</a>
             </div>
           </li> 
@@ -63,32 +56,22 @@
             </div>
           </li> 
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('club.index') }}">
               Clubs
             </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('club.index') }}>Lista de Clubs</a>
-            </div>
           </li> 
 
-           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="{{ route('disciplina.index') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <li class="nav-item ">
+            <a class="nav-link" href="{{ route('disciplina.index')}}">
               Disciplinas
             </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('disciplina.index') }}>Lista de Disciplinas</a>
-            </div>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="{{ route('lugares.index') }}">
                 lugares
               </a>
-  
-              
-            </li> 
+          </li> 
 
           </ul>
         <ul class="navbar-nav">

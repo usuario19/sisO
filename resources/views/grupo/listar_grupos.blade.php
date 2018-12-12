@@ -10,7 +10,9 @@
 
 @section('content')
 <div class="container">
-    <div class="card">
+<div class="card">
+    
+            @include('grupo.modal_agregar_grupos')
         <div class="content">
             <nav aria-label="breadcrumb" style="margin: 0%">
                <ol class="breadcrumb alert-info" style="margin:0%">
@@ -21,17 +23,16 @@
                </ol>
             </nav>
         </div>
-     
         <div class="card-body container col-md-10">
           <div class="table-responsive-xl">
               <table class="table table-sm table-bordered" style="margin: 0%; padding: 0%">
-                  <thead>
+                    <thead>
                       <th>
                           <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                              <h4 class="" style="font-size: 18px">LISTA DE GRUPOS</h4></td>
+                              <h4 class="" style="font-size: 18px">LISTA DE GRUPOS</h4>
                           </div>
                       </th>
-                      </thead>
+                    </thead>
                   <tbody>
                   <tr> 
                         <td>
@@ -39,9 +40,12 @@
                                 {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                              </div>
                              <div style="float: left;" class="form-group col-md-2">
-                                   
-                                <a href="{{ route('grupo.create',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-primary btn-block">Agregar</a>
-                             </div>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGrupo">
+                                            Agregar
+                                          </button>
+                                {{-- <a href="{{ route('grupo.create',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-primary btn-block">Agregar</a>
+                                 --}}
+                            </div>
                         </td>
                   </tr>
                 </tbody>
@@ -50,7 +54,7 @@
             <div class="table-responsive-xl">
                 <table class="table table-condensed">
                     <thead>
-                      <th colspan="2" width="50px" class="text-center">#</th>
+                      <th colspan="2" width="50px" class="text-center">Id</th>
                       <th>Nombre</th>
                       <th>Encuentros</th>
                       <th colspan="2">Acciones</th>
@@ -59,7 +63,6 @@
               
                       @foreach($grupos as $grupo)
                         <tr>
-                          <td></td>
                           <td>{{ $grupo->id_grupo}}</td>
                           <td>{{ $grupo->nombre_grupo }}</td>
                           @if ($disciplina->tipo == 1)
@@ -77,17 +80,12 @@
                           </a></td>
                         </tr>
                       @endforeach
-                    
                     </tbody>
                 </table>
             </div>
-              
-                
         </div>
-      </div>
-    
+    </div>
 </div>
-
   {{ $grupos->links() }}
 @endsection
 @section('scripts')

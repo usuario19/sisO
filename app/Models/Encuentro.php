@@ -28,6 +28,9 @@ class Encuentro extends Model
     public function fecha(){
     	return $this->belongsTo('App\Models\Fecha','id_fecha');
     }
+    public function centro(){
+    	return $this->belongsTo('App\Models\Centro','id_centro');
+    }
     public function jugadores($id_encuentro){
         $jugadores = DB::table('jugadores')
             ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')

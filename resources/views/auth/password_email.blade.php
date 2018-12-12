@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<div class="container table-responsive-xl col-md-4">
+<!-- <div class="container table-responsive-xl col-md-4">
 	<div class="card">
 		<div class="card-header text-center">
 				<h5>RECUPERAR CONTRASEÑA</h5>
@@ -34,7 +34,7 @@
 			{!! Form::close() !!}
 		</div>
 	 </div>
-</div>
+</div> -->
 @endsection
 @section('scripts')
 	{!! Html::script('/js/login.js') !!}

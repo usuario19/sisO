@@ -59,8 +59,8 @@
                             <td><a href="{{ $dato->ubicacion_centro}}">
                                     <i class="material-icons float-left">location_on</i>
                                     <span class="letter-size">{{$dato->nombre_centro}}</span>
-                            </a>
-                                </td>
+                                </a>
+                            </td>
                                 <td></td>
                             
                             <td style="width: 70px"><a{{--   onclick="MostrarDisc({{ $disciplina->id_disc }});"  --}}  class="" data-toggle="modal" data-target="#modalEditDisc">

@@ -88,27 +88,197 @@
   src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+/* .......................................................................................................................... */
 
-  /* PAGINA HOME */
-.title{
-	height: 60px;
-	padding: 15px 0 0 15px;
-	margin: 0%;
-	font-family: 'Montserrat', sans-serif;
-	color: rgb(185, 183, 183);
-	/* font-weight: 100; */
-	font-size: 25px;
+/* devanagari */
+@font-face {
+  font-family: 'Pragati Narrow';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pragati Narrow'), local('PragatiNarrow-Regular'), url(https://fonts.gstatic.com/s/pragatinarrow/v3/vm8vdRf0T0bS1ffgsPB7WZ-mD275wNJHMw.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
 }
+/* latin-ext */
+@font-face {
+  font-family: 'Pragati Narrow';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pragati Narrow'), local('PragatiNarrow-Regular'), url(https://fonts.gstatic.com/s/pragatinarrow/v3/vm8vdRf0T0bS1ffgsPB7WZ-mD272wNJHMw.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Pragati Narrow';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pragati Narrow'), local('PragatiNarrow-Regular'), url(https://fonts.gstatic.com/s/pragatinarrow/v3/vm8vdRf0T0bS1ffgsPB7WZ-mD274wNI.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Unica One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Unica One'), local('UnicaOne-Regular'), url(https://fonts.gstatic.com/s/unicaone/v5/DPEuYwWHyAYGVTSmalsRf93eiEY.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Unica One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Unica One'), local('UnicaOne-Regular'), url(https://fonts.gstatic.com/s/unicaone/v5/DPEuYwWHyAYGVTSmalsRcd3e.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Carrois Gothic SC';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Carrois Gothic SC Regular'), local('CarroisGothicSC-Regular'), url(https://fonts.gstatic.com/s/carroisgothicsc/v7/ZgNJjOVHM6jfUZCmyUqT2A2HVKjc-18gPnc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Annie Use Your Telescope';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Annie Use Your Telescope Regular'), local('AnnieUseYourTelescope-Regular'), url(https://fonts.gstatic.com/s/annieuseyourtelescope/v8/daaLSS4tI2qYYl3Jq9s_Hu74xwktnlKxH6osGVGTkz3A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Baumans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Baumans Regular'), local('Baumans-Regular'), url(https://fonts.gstatic.com/s/baumans/v7/-W_-XJj9QyTd3Qfpd_04aw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Pompiere';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pompiere '), local('Pompiere-Regular'), url(https://fonts.gstatic.com/s/pompiere/v7/VEMyRoxis5Dwuyeov5Wq7DE.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* vietnamese */
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Exo Regular'), local('Exo-Regular'), url(https://fonts.gstatic.com/s/exo/v7/4UaOrEtFpBISfH6jyDM.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Exo Regular'), local('Exo-Regular'), url(https://fonts.gstatic.com/s/exo/v7/4UaOrEtFpBISfX6jyDM.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Exo Regular'), local('Exo-Regular'), url(https://fonts.gstatic.com/s/exo/v7/4UaOrEtFpBISc36j.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* .......................................................................................................................... */
+  /* PAGINA HOME */
 ul.menu-nav li a{
 	font-family: 'Oswald', sans-serif;
 	color: rgb(73, 73, 73);
 	font-style: bolder;
-	font-size: 16px;
-	font-weight: 400;
-	font-style: bolder;
+	font-size: 18px;
+	font-weight:;
 	text-transform: uppercase;
 }
 
+.title{
+	height: 60px;
+	padding: 15px 0 0 15px;
+	margin: 0%;
+	font-weight:;
+	font-family: 'Annie Use Your Telescope', sans-serif;
+	color: rgb(144, 144, 144);
+	/* font-weight: 100; */
+	font-size: 32px;
+}
+
+
+.title-principal{
+	/* padding: 1px 0 0 15px; */
+	color:#ffffff;
+	font-family: 'Oswald', sans-serif;
+	text-transform: uppercase;
+	/* font-weight: 100; */
+	
+}
+h6.title-principal{
+	padding:0 15px 0 15px ;
+	color:#ffffff;
+	margin: 0px;
+	font-weight: bolder;
+	/* font-weight: 100; */
+	
+}
+.title-span{
+	font-family: 'Exo', sans-serif;
+	font-weight: bolder;
+	text-transform: uppercase;
+	color: #A69999;
+	/* color: #121213; */
+}
+.title-span:hover{
+	cursor: pointer;
+	/* color: #717881; */
+	color: #121213;
+	text-decoration: none;
+}
+.div-title-principal{
+	padding:20px;
+}
+.sub-title{
+	font-family: 'Oswald', sans-serif;
+	font-size: 18px;
+	font-weight:400;
+	text-transform: uppercase;
+	color: #3c3c3d;
+}
+.link-change{
+	font-family: 'Exo', sans-serif;
+	font-weight:bolder;
+	text-transform: uppercase;
+	color: #78787a;
+}
+
+.link-change:hover{
+	cursor: pointer;
+	color: #242425;
+}
+.div-title-sub{
+	padding:5px;
+	text-transform: uppercase;
+}
+#menu_principal::-webkit-scrollbar{
+	position: fixed;
+	top: 0;
+	width:100%; 
+}
+.boton-focus{
+	font-weight: bolder;
+}
+.boton-focus:hover{
+	opacity: 0.8;
+}
 ul li a{
 	font-family: 'Oswald', sans-serif;
 	color: rgb(73, 73, 73);
@@ -119,7 +289,7 @@ ul li a{
 	text-transform: uppercase;
 }
 a.dropdown-item{
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Oxygen', sans-serif;
 	color: rgb(73, 73, 73);
 	font-style: bolder;
 	font-size: 16px;
@@ -159,7 +329,7 @@ font-family: 'Montserrat', sans-serif;
 }
 body{
 	font-size: 80%;
-	font-family: 'Oxygen', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	}
 footer{
 	top: 100%;

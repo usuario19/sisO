@@ -174,11 +174,6 @@ class EncuentroController extends Controller
                     ->join('clubs','club_participaciones.id_club','clubs.id_club')
                     ->where('encuentros.id_encuentro',$id_encuentro)
                     ->get()->toArray();
-        // $id_fase = DB::table('fechas')
-        //         ->join('encuentros','fechas.id_fecha','encuentros.id_fecha')
-        //         ->where('id_encuentro',$id_encuentro)
-        //         ->get()->last()->id_fase;
-     
          $j = 1;
         for ($i=0; $i < 2; $i++) { 
             $puntos = $request->get('punto'.$clubs[$i]->{'id_encuentro_club_part'});
@@ -193,7 +188,7 @@ class EncuentroController extends Controller
             $id_club = $clubs[$i]->id_club;
             
             $puntos_total = Tabla_Posicion::where('id_club', $id_club)
-                ->where('id_fase', $id_fase)
+                ->where('id_disc', $id_disc)
                 ->select('puntos')->get()->last()->puntos;
             $puntos_total = $puntos_total + $puntos;
             
@@ -201,7 +196,7 @@ class EncuentroController extends Controller
             $puntos2 = $request->get('punto'.$clubs[$j]->{'id_encuentro_club_part'});
             if ($puntos1 > $puntos2) {
                 $pg = Tabla_Posicion::where('id_club', $id_club)
-                ->where('id_fase', $id_fase)
+                ->where('id_disc', $id_disc)
                 ->select('pg')->get()->last()->pg;
                 $pg = $pg + 1;
                 //return dd($pg);
@@ -213,22 +208,22 @@ class EncuentroController extends Controller
             else {
                 if ($puntos1 < $puntos2) {
                     $pp = Tabla_Posicion::where('id_club', $id_club)
-                        ->where('id_fase', $id_fase)
+                        ->where('id_disc', $id_disc)
                         ->select('pp')->get()->last()->pp;
                         $pp = $pp + 1;
                     Tabla_Posicion::where('id_club', $id_club)
-                        ->where('id_fase', $id_fase)
+                        ->where('id_disc', $id_disc)
                         ->update(['puntos' => $puntos_total,'pp'=>$pp]);   
                 }
                 else {
                     $pe = Tabla_Posicion::where('id_club', $id_club)
-                    ->where('id_fase', $id_fase)
+                    ->where('id_disc', $id_disc)
                     ->select('pe')->get()->last()->pe;
                     
                     $pe = $pe + 1;
                     
                     Tabla_Posicion::where('id_club', $id_club)
-                    ->where('id_fase', $id_fase)
+                    ->where('id_disc', $id_disc)
                     ->update(['puntos' => $puntos_total,'pe'=>$pe]);
                         
                 }

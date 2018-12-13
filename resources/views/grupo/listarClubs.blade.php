@@ -92,6 +92,7 @@
     <div id="encuentros1" class="tab-pane fade">
       <h4>Lista de Encuentros:</h4>
       @include('encuentro.modal_agregar_encuentro')     
+      @include('encuentro.modal_agregar_resultado')     
  
     @foreach ($fechas as $fecha)
        <div>
@@ -123,9 +124,12 @@
                  <td>{{ $encuentro->detalle}}</td>                 
                  <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" data-toggle="modal" data-target="#modalEliminar"><i title="Eliminar" class="material-icons delete_button">
                     delete</i></a></td>
-                 
-                 <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons delete_button">
-                  collections_bookmark</i></a></td>
+                 <td>
+                 {{--  <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons delete_button">
+                  collections_bookmark</i></a>  --}}
+                  
+                    <button data-toggle="modal" data-target="#modalResultado" style="padding: 0%"><i title="Resultados" class="material-icons delete-button">collections_bookmark</i></button>
+                </td>
                </tr>
              @endforeach            
            </tbody>

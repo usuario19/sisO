@@ -14,8 +14,7 @@ class Tabla_Posicion extends Model
     	'pp',
     	'pe',
         'puntos',
-    	'id_club',
-    	'id_disc',
+    	'id_club_part',
     ];
 	protected $hidden = ['remember_token'];
 	public function club(){

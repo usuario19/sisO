@@ -21,21 +21,12 @@ class CreateTablaPosicionsTable extends Migration
             $table->integer('pe')->default(0);
             $table->integer('puntos')->default(0);
 
-            $table->integer('id_club')->unsigned();
-            $table->foreign('id_club')->references('id_club')->on('clubs')->onDelete('cascade');
-            
-            $table->integer('id_disc')->unsigned();
-            $table->foreign('id_disc')->references('id_disc')->on('disciplinas')->onDelete('cascade');
+            $table->integer('id_club_part')->unsigned();
+            $table->foreign('id_club_part')->references('id_club_part')->on('club_participaciones')->onDelete('cascade');
            
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('tabla_posicions');

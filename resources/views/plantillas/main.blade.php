@@ -52,6 +52,7 @@
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}
+   
    <!-- <script>
       window.addEventListener('load', inicializar, false);
       function inicializar(){

@@ -72,3 +72,8 @@ error: function(data){
 
 });
 });
+$(function () {
+    $('.example-popover').popover({
+        container: 'body'
+    })
+  })

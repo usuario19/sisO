@@ -11,8 +11,9 @@
       
       <div class="modal-body">
         <div style="display:none">
-          {!! Form::text('id_grupo', $grupo->id_grupo, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
-
+          @if ($fase->grupos)
+            {!! Form::text('id_grupo', ''{{--  $fase->grupos->id_grupo  --}}, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+          @endif
         </div>
 
           <div class="form-group">

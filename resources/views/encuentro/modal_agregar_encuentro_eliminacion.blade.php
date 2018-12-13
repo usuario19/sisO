@@ -33,10 +33,10 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="col-md-6">
+                   {{--   <div class="col-md-6">
                         {!! Form::label('ubicacion', 'Ubicacion', []) !!}
                         {!! Form::select('ubicacion',$centros,null, ['class'=>'form-control']) !!}          
-                    </div>
+                    </div>  --}}
                     <div class="col-md-6">
                         {!! Form::label('id_fecha', 'Fecha', []) !!}
                         {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione...','class'=>'form-control']) !!}

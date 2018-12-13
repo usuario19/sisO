@@ -1,7 +1,9 @@
 @foreach($mis_clubs as $club)
 
     <table class="table table-bordered">
-  
+      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+        Tooltip on top
+      </button>
         <thead>
           <tr>
             <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
@@ -67,13 +69,13 @@
         </thead>
         <tbody>
           @foreach($club->club->inscripciones->sortByDesc('id_inscripcion') as $inscripcion)
-            @if ($inscripcion->gestion->estado_gestion == 1)
+            @if ($inscripcion->gestion->estado_gestion == '1')
               <tr class="badge-secondary">
                 <th colspan="4" style="padding: 0%">
                   <div style="color: white; margin: auto; padding: 10px">{{ $inscripcion->gestion->nombre_gestion }}</div>
                 </th>
                 <td style="padding: 5px; margin: 0px">
-                  @if ($inscripcion->gestion->estado_inscripcion == 1)
+                  @if ($inscripcion->gestion->periodo_inscripcion == 1)
                   <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="btn btn-secondary">
                       <div class="button-div" style="width: 150px">
                           <i class="material-icons float-left">settings</i>
@@ -81,7 +83,7 @@
                       </div>
                   </a>
                   @else
-                  <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                  <button type="button" class="btn btn-secondary example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                       <div class="button-div" style="width: 150px">
                           <i class="material-icons float-left">check_circle_outline</i>
                           <span class="letter-size">Crear Seleccion</span>
@@ -111,7 +113,7 @@
               </tr>
                <tr>  
                   <th colspan="4" class="bg-light">DISCIPLINAS</th>
-                  @if ($inscripcion->gestion->estado_inscripcion == 1)
+                  @if ($inscripcion->gestion->periodo_inscripcion == 1)
                   <td class="text-center bg-light" style="padding: 5px;width: 50px">   
                       <!-- Button trigger modal -->
                         <a href="" class="btn btn-light" data-toggle="modal" data-target="#V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}">
@@ -213,15 +215,14 @@
                     </td>
                   @else
                   <td class="text-center bg-light" style="padding: 5px;width: 50px">   
-                      <button type="button" class="btn btn-light" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                          <div class="button-div" style="width: 110px">
-                              <i class="material-icons float-left">check_circle_outline</i>
-                              <span class="letter-size">Disciplinas</span>
-                          </div>
-                        </button>
+                    <button type="button" class="btn btn-light example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                      <div class="button-div" style="width: 110px">
+                          <i class="material-icons float-left">check_circle_outline</i>
+                          <span class="letter-size">Disciplinas</span>
+                      </div>
+                    </button>
                   </td>
                   @endif
-                  
                       @if (count($inscripcion->gestion->club_participaciones->where('id_club',$club->id_club))>0)
                       @php
                       $i =  1
@@ -240,7 +241,7 @@
                                       {{$disc->disciplina->categoria == 1 ? '( Mujeres )':($disc->disciplina->categoria == 2 ? '( Hombres )':'( Mixto )')}}</td>
                                   </div>
 
-                                @if ($inscripcion->gestion->estado_inscripcion == 1)
+                                @if ($inscripcion->gestion->periodo_inscripcion == 1)
                                 <td style="width: 50px; padding: 0%" class="text-center">
                                     <a href="{{ route('disciplina.eliminar',$disc->id_club_part) }}" data-toggle="modal" class="delete_button" data-target="#Eliminar{{ $disc->id_club_part}}" >
                                         <i title="Eliminar" class="material-icons delete_button button_redirect">

@@ -471,6 +471,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@destroy',
 		'as'=>'encuentro.destroy'
 	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_ajax',[
+		'uses'=>'EncuentroController@mostrar_resultado_ajax',
+		'as'=>'encuentro.mostrar_resultado_ajax'
+	]);
 	Route::get('encuentro/fixture',[
 		'uses'=>'EncuentroController@fixture',
 		'as'=>'encuentro.fixture'

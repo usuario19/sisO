@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Jugador;
 use App\Models\Jugador_Club;
 use App\Models\Seleccion;
+use App\Models\Fecha;
+use App\Models\Fecha_Grupo;
+use App\Models\Encuentro;
+use App\Models\Encuentro_Club_Participacion;
+use App\Models\Club_Participacion;
 use App\Models\Encuentro_Seleccion;
 use Illuminate\Support\Facades\DB;
 class Encuentro extends Model
@@ -41,5 +46,16 @@ class Encuentro extends Model
             ->select('jugadores.*')->get();
         
         return $jugadores;
+    }
+    public function participaciones($id_encuentro){
+        $participantes = DB::table('fechas_grupos')
+            ->join('fechas','fechas_grupos.id_fecha','fechas.id_fecha')
+            ->join('encuentros','fechas.id_fecha','encuentros.id_fecha')
+            ->join('encuentro_club_participaciones','encuentros.id_encuentro','encuentro_club_participaciones.id_encuentro')
+            ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+            ->join('clubs','club_participaciones.id_club','clubs.id_club')
+            ->where('encuentros.id_encuentro',$id_encuentro)
+            ->get();
+        return $participantes;
     }
 }

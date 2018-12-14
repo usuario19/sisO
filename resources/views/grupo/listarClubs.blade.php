@@ -127,8 +127,12 @@
                  <td>
                  {{--  <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons delete_button">
                   collections_bookmark</i></a>  --}}
-                  
-                    <button data-toggle="modal" data-target="#modalResultado" style="padding: 0%"><i title="Resultados" class="material-icons delete-button">collections_bookmark</i></button>
+                  <a href=" " onclick="MostrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                    <i title="Resultados" class="material-icons delete_button button_redirect">
+                      collections_bookmark
+                     </i>
+                </a>
+                    {{--  <button data-toggle="modal" data-target="#modalResultado" style="padding: 0%"><i title="Resultados" class="material-icons delete-button">collections_bookmark</i></button>  --}}
                 </td>
                </tr>
              @endforeach            
@@ -158,4 +162,26 @@
       </div>
     </div>
   </div>
+  <script>
+    var MostrarResultado = function(id_encuentro) {
+      var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_ajax";
+      $.get(route, function(data) {
+          var i = 1;
+          $(data).each(function(key,value){
+              $("#id_encuentro"+i).val(value.id_encuentro);
+              $("#id_encuentro_club_part"+i).val(value.id_encuentro_club_part);
+             // alert("#nombre_club"+i);
+              $("#nombre_club"+i).val(value.nombre_club);
+              $("#puntos"+i).val(value.puntos);
+              $("#observacion"+i).val(value.observacion);
+              i++;
+          });
+      });
+  }
+  </script>
 @endsection
+  @section('scripts')
+     {!! Html::script('/js/filtrar_por_nombre.js') !!}
+    {!! Html::script('/js/vista_previa.js') !!}
+  
+  @endsection

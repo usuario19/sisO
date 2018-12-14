@@ -170,7 +170,8 @@ class EncuentroController extends Controller
        return "en construccion ggg";
     }
     public function reg_resultado(request $request){
-        $id_encuentro = $request->get('id_encuentro');
+        //return dd($request);
+        $id_encuentro = $request->get('id_encuentro1');
         $id_disc = $request->get('id_disc');
         $id_gestion = $request->get('id_gestion');
         $clubs = DB::table('encuentros')
@@ -179,23 +180,22 @@ class EncuentroController extends Controller
                     ->join('clubs','club_participaciones.id_club','clubs.id_club')
                     ->where('encuentros.id_encuentro',$id_encuentro)
                     ->get()->toArray();
+        $id_encuentro_club_part1 = $request->get('id_encuentro_club_part1');
+        $id_encuentro_club_part2 = $request->get('id_encuentro_club_part2');
         $puntos_ant1 = -1;
         $puntos_ant2 = -1;
         for ($i=0; $i < 2; $i++) { 
-            //$id_encuentro_club_part = $request->get('id_encuentro_club_part'.$clubs[$i]->{'id_encuentro_club_part'});
-            $id_encuentro_club_part = $request->get('id_encuentro_club_part'.$clubs[$i]->{'id_encuentro_club_part'});
-            $encuentro_club_part = Encuentro_Club_Participacion::find($id_encuentro_club_part);
-            //return dd($request);
-            //$puntos_ant.$i = $encuentro_club_part->puntos;
+            if ($i=0) {
+                $puntos_ant1 = Encuentro_Club_Participacion::find($request->get('id_encuentro_club_part1'))->id_encuentro_club_part;
+                $puntos_ant2 = Encuentro_Club_Participacion::find($request->get('id_encuentro_club_part2'))->id_encuentro_club_part;
+            }           
         }
         $j = 1;
         for ($i=0; $i < 2; $i++) { 
-            
-            $puntos = $request->get('punto'.$clubs[$i]->{'id_encuentro_club_part'});
-            $observacion = $request->get('observacion'.$clubs[$i]->{'id_encuentro_club_part'});
-            
+            $puntos = $request->get('puntos'.$i);
+            $observacion = $request->get('observacion'.$i);
             //para encuentro club participacion
-            $id_encuentro_club_part = $request->get('id_encuentro_club_part'.$clubs[$i]->{'id_encuentro_club_part'});
+            $id_encuentro_club_part = $request->get('id_encuentro_club_part'.$i);
             $encuentro_club_part = Encuentro_Club_Participacion::find($id_encuentro_club_part);
 
             $id_club = $clubs[$i]->id_club;
@@ -325,5 +325,16 @@ class EncuentroController extends Controller
             ->where('clubs.id_club','!=',$id_club)
             ->select('clubs.*')->distinct()->get();
         return response()->json($clubsParaEncuentro);      
+    }
+    public function mostrar_resultado_ajax($id_encuentro){
+        $data = DB::table('fechas_grupos')
+            ->join('fechas','fechas_grupos.id_fecha','fechas.id_fecha')
+            ->join('encuentros','fechas.id_fecha','encuentros.id_fecha')
+            ->join('encuentro_club_participaciones','encuentros.id_encuentro','encuentro_club_participaciones.id_encuentro')
+            ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+            ->join('clubs','club_participaciones.id_club','clubs.id_club')
+            ->where('encuentros.id_encuentro',$id_encuentro)
+            ->get();
+        return response()->json($data);
     }
 }

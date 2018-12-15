@@ -1,18 +1,15 @@
 @foreach($mis_clubs as $club)
 
-    <table class="table table-bordered">
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-        Tooltip on top
-      </button>
+    <table class="table">
         <thead>
-          <tr>
+          {{--  <tr>
             <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
               <div class="container text-center" style="padding: 10px 0px; margin: auto;">
-                  <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->club->nombre_club)}}</h5>
+                  <h5 style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->club->nombre_club)}}</h5>
               </div>
           </th>
-          </tr>
-            <tr>
+          </tr>  --}}
+            <tr class="table-bordered">
                 <td colspan="5" class="text-center" style="padding: 0%">
                   <div id="contenedor_info"  {{--  class="form-group col-md-12"  --}} class="text-center">
 
@@ -70,35 +67,54 @@
         <tbody>
           @foreach($club->club->inscripciones->sortByDesc('id_inscripcion') as $inscripcion)
             @if ($inscripcion->gestion->estado_gestion == '1')
-              <tr class="badge-secondary">
-                <th colspan="4" style="padding: 0%">
-                  <div style="color: white; margin: auto; padding: 10px">{{ $inscripcion->gestion->nombre_gestion }}</div>
+              <tr class="" style="padding-top: 20px">
+                <th colspan="4" style="padding-top: 20px; ">
+                  <div class="title-principal" style="color: #333333; font-size: 16px; padding: 10px">{{ $inscripcion->gestion->nombre_gestion }}</div>
                 </th>
-                <td style="padding: 5px; margin: 0px">
+                <td style="padding:0px; margin: 0px; padding-top: 20px; ">
                   @if ($inscripcion->gestion->periodo_inscripcion == 1)
-                  <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="btn btn-secondary">
-                      <div class="button-div" style="width: 150px">
-                          <i class="material-icons float-left">settings</i>
-                          <span class="letter-size">Crear Seleccion</span>
+
+                  <div class="btn-group" role="group">
+                      <button id="btnGroupDrop1" type="button" class="btn btn-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div class="button-div" style="width: 150px">
+                              <i class="material-icons float-left">settings</i>
+                              <span class="letter-size">Configuracion</span>
+                          </div>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                          <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="dropdown-item btn-light">
+                              <div class="button-div" style="width: 150px">
+                                  <i class="material-icons float-left">settings</i>
+                                  <span class="letter-size">Crear Seleccion</span>
+                              </div>
+                          </a>
+                        <a href="" class="dropdown-item btn-light" data-toggle="modal" data-target="#V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}">
+                            <div class="button-div" style="width: 150px">
+                                <i class="material-icons float-left">edit</i>
+                                <span class="letter-size">Añadir Disciplinas</span>
+                            </div>
+                              
+                        </a>
                       </div>
-                  </a>
+                    </div>
+                  
                   @else
-                  <button type="button" class="btn btn-secondary example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                  <button type="button" title="El periodo de inscripcion termino." class="btn btn-secondary example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                       <div class="button-div" style="width: 150px">
-                          <i class="material-icons float-left">check_circle_outline</i>
-                          <span class="letter-size">Crear Seleccion</span>
+                          <i  class="material-icons float-left">check_circle_outline</i>
+                          <span class="letter-size">Cerrado</span>
                       </div>
                   </button>
                   @endif
                   </td>
               </tr>
-              <tr class="bg-light">
+              <tr class="table-bordered">
                 <th style="width: 120px">Fecha Inicio</th>
                 <th style="width: 110px">Fecha Fin</th>
-                <th colspan="4">Descripcion</th>
+                <th colspan="3">Descripcion</th>
                 
               </tr>
-              <tr>  
+              <tr class="table-bordered">  
                   
                   <td>
                     <div class="form-row">{{ $inscripcion->gestion->fecha_ini }}</div>
@@ -106,129 +122,109 @@
                   <td>
                     <div class="form-row">{{ $inscripcion->gestion->fecha_fin }}</div>
                   </td>
-                  <td colspan="4">
-                      <div class="form-row">{{ $inscripcion->gestion->descripcion_gestion }}</div>
+                  <td colspan="3">
+                      <div class="form-row">{{ $inscripcion->gestion->desc_gest }}</div>
                   </td>
                   
               </tr>
                <tr>  
-                  <th colspan="4" class="bg-light">DISCIPLINAS</th>
-                  @if ($inscripcion->gestion->periodo_inscripcion == 1)
-                  <td class="text-center bg-light" style="padding: 5px;width: 50px">   
-                      <!-- Button trigger modal -->
-                        <a href="" class="btn btn-light" data-toggle="modal" data-target="#V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}">
-                            <div class="button-div" style="width: 110px">
-                                <i class="material-icons float-left">edit</i>
-                                <span class="letter-size">Disciplinas</span>
+                  <th colspan="5" class="table-bordered">DISCIPLINAS
+
+                      <!-- Modal -->
+                      {!! Form::open(['route'=>'disciplina.store_disc','method' => 'POST']) !!}
+                      <div class="modal fade" id="V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalCenterTitle">{{ $inscripcion->gestion->nombre_gestion }} </h5>
+    
+    
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                             </div>
-                              
-                        </a>
-      
-                        <!-- Modal -->
-                        {!! Form::open(['route'=>'disciplina.store_disc','method' => 'POST']) !!}
-                        <div class="modal fade" id="V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">{{ $inscripcion->gestion->nombre_gestion }} </h5>
-      
-      
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
+                            <div class="modal-body container col-md-10">
+    
+                              {{--  <h6>Seleccione las disciplinas en las que participara:</h6><br>  --}}
+    
+                              <div style="display: none;"> 
+                                  {!! Form::text('id_club', $club->club->id_club, ['class'=>'form-control']) !!}
+                                  {!! Form::text('id_gestion', $inscripcion->gestion->id_gestion, ['class'=>'form-control']) !!}
                               </div>
-                              <div class="modal-body container col-md-10">
-      
-                                {{--  <h6>Seleccione las disciplinas en las que participara:</h6><br>  --}}
-      
-                                <div style="display: none;"> 
-                                    {!! Form::text('id_club', $club->club->id_club, ['class'=>'form-control']) !!}
-                                    {!! Form::text('id_gestion', $inscripcion->gestion->id_gestion, ['class'=>'form-control']) !!}
-                                </div>
-                                <table class="table-bordered">
-                                    <thead>
-                                      <th>
-                                          {!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}
-                                      </th>
-                                      <th>
-                                          Seleccione las disciplinas en las que participara:
-                                      </th>
-                                    </thead>
-                                  
-                                <!--$inscripcion->gestion->participaciones muestra todos los id de las disciplinas-->
+                              <table class="table-bordered">
+                                  <thead>
+                                    <th>
+                                        {!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}
+                                    </th>
+                                    <th>
+                                        Seleccione las disciplinas en las que participara:
+                                    </th>
+                                  </thead>
                                 
-                                    <tbody>
-                                @foreach($inscripcion->gestion->participaciones as $participacion)
-                                {{--  {{ $participacion->disciplina}}  --}}
-  
-                                  @if(count($participacion->disciplina->club_participaciones->where('id_gestion',$inscripcion->gestion->id_gestion)->where('id_club',$club->club->id_club)) == 0)
-                                 
-                                        <tr>
-                                            <td style="width: 30px">
-                                                {!! Form::checkbox('id_disciplinas[]',$participacion->disciplina->id_disc, false, ['id'=>'disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,'class'=>'check_us']) !!}
-                                            </td>
-                                            <td >
-                                                <img src="/storage/foto_disc/{{ $participacion->disciplina->foto_disc }}" alt="" width="30px" height="30px">
-                                              
-                                                @if($participacion->disciplina->categoria == 1)
-                                              
-                                                {!! Form::label('disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,$participacion->disciplina->nombre_disc. " "."(Mujeres)", []) !!}
-                                                @elseif($participacion->disciplina->categoria == 2)
-                                                {!! Form::label('disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,$participacion->disciplina->nombre_disc. " "."(Varones)", []) !!}
-                                                @else
-                                                {!! Form::label('disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,$participacion->disciplina->nombre_disc. " "."(Mixto)", []) !!}
-                                                @endif
+                              <!--$inscripcion->gestion->participaciones muestra todos los id de las disciplinas-->
                               
-                                            </td>
-                                        </tr>
-                                          
+                                  <tbody>
+                              @foreach($inscripcion->gestion->participaciones as $participacion)
+                              {{--  {{ $participacion->disciplina}}  --}}
+
+                                @if(count($participacion->disciplina->club_participaciones->where('id_gestion',$inscripcion->gestion->id_gestion)->where('id_club',$club->club->id_club)) == 0)
+                               
+                                      <tr>
+                                          <td style="width: 30px">
+                                              {!! Form::checkbox('id_disciplinas[]',$participacion->disciplina->id_disc, false, ['id'=>'disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,'class'=>'check_us']) !!}
+                                          </td>
+                                          <td >
+                                              <img src="/storage/foto_disc/{{ $participacion->disciplina->foto_disc }}" alt="" width="30px" height="30px">
+                                            
+                                              @if($participacion->disciplina->categoria == 1)
+                                            
+                                              {!! Form::label('disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,$participacion->disciplina->nombre_disc. " "."(Mujeres)", []) !!}
+                                              @elseif($participacion->disciplina->categoria == 2)
+                                              {!! Form::label('disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,$participacion->disciplina->nombre_disc. " "."(Varones)", []) !!}
+                                              @else
+                                              {!! Form::label('disc'.$club->club->id_club.$inscripcion->gestion->id_gestion.$participacion->disciplina->id_disc,$participacion->disciplina->nombre_disc. " "."(Mixto)", []) !!}
+                                              @endif
+                            
+                                          </td>
+                                      </tr>
                                         
+                                      
+                                @endif
+                                
+                                  {{--  {!! Form::checkbox('check','0', true, ['class'=>'check_us','disabled']) !!}
+
+                                    <img src="/storage/foto_disc/{{ $participacion->disciplina->foto_disc }}" alt="" width="50px" height="50px">
+
+                                  @if($participacion->disciplina->categoria == 1)
+    
+                                  {!! Form::label('disc',$participacion->disciplina->nombre_disc. " "."(Mujeres)", []) !!}
+                                  @elseif($participacion->disciplina->categoria == 2)
+                                  {!! Form::label('disc',$participacion->disciplina->nombre_disc. " "."(Varones)", []) !!}
+                                  @else
+                                  {!! Form::label('disc',$participacion->disciplina->nombre_disc. " "."(Mixto)", []) !!}
                                   @endif
-                                  
-                                    {{--  {!! Form::checkbox('check','0', true, ['class'=>'check_us','disabled']) !!}
-  
-                                      <img src="/storage/foto_disc/{{ $participacion->disciplina->foto_disc }}" alt="" width="50px" height="50px">
-  
-                                    @if($participacion->disciplina->categoria == 1)
-      
-                                    {!! Form::label('disc',$participacion->disciplina->nombre_disc. " "."(Mujeres)", []) !!}
-                                    @elseif($participacion->disciplina->categoria == 2)
-                                    {!! Form::label('disc',$participacion->disciplina->nombre_disc. " "."(Varones)", []) !!}
-                                    @else
-                                    {!! Form::label('disc',$participacion->disciplina->nombre_disc. " "."(Mixto)", []) !!}
-                                    @endif
-                                    <br>
-                                  @endif  --}}
-      
-                                @endforeach
-                              </tbody>
-                            </table>
+                                  <br>
+                                @endif  --}}
+    
+                              @endforeach
+                            </tbody>
+                          </table>
+                              </div>
+                              <div class="modal-footer">
+                                  {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 </div>
-                                <div class="modal-footer">
-                                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                  </div>
-                            </div>
                           </div>
                         </div>
-                        {!! Form::close() !!}
-                    </td>
-                  @else
-                  <td class="text-center bg-light" style="padding: 5px;width: 50px">   
-                    <button type="button" class="btn btn-light example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                      <div class="button-div" style="width: 110px">
-                          <i class="material-icons float-left">check_circle_outline</i>
-                          <span class="letter-size">Disciplinas</span>
                       </div>
-                    </button>
-                  </td>
-                  @endif
+                      {!! Form::close() !!}
+                  </th>
                       @if (count($inscripcion->gestion->club_participaciones->where('id_club',$club->id_club))>0)
                       @php
                       $i =  1
                       @endphp
                         @foreach ($inscripcion->gestion->club_participaciones->where('id_club',$club->id_club) as $disc)
-                            <tr>
+                            <tr class="table-bordered">
                                 <td class="text-center" style="padding: 0%">
                                   <div style="padding: 5px">{{$i}}</div>
                                 </td>
@@ -303,7 +299,4 @@
           
         </tbody>
     </table>
-
-
-<br>
 @endforeach

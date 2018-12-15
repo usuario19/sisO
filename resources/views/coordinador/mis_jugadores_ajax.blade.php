@@ -8,11 +8,11 @@
 
 <div class="container">
   <div class="container col-md-12" style="padding:  0% 15px">
-    <div class="container" style="background: #FDA400;height: 40px; margin:20px 0% 0% 0%">
+    <div class="container" style="background: #2A3C7C;height: 40px; margin:20px 0% 0% 0%">
         <div class="form-row">
             <div class="container input-group col-md-10" style="margin-bottom: 5px ">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="id_club_jugadores" style="color: white; background: no-repeat; border: none;font-size: 14px;padding: 0%">MIS CLUBS 
+                    <label class="input-group-text title-principal" for="id_club_jugadores" style="font-weight: 100;color: white; background: no-repeat; border: none;font-size: 16px;padding: 0%">MIS CLUBS 
                         <i class = "material-icons btn" style="padding: 5px"> 
                                 keyboard_arrow_right
                         </i></label>
@@ -22,15 +22,15 @@
             </div>
             <div class=" input-group mb-3 col-md-12">
                 <div id="cargando" style="display:none ; padding:0% ; z-index: 10" class="col-md-12">
-                    <img src="/storage/logos/loader2.gif" alt="" height="30">
+                    <img src="/storage/logos/loader.gif" alt="" height="30">
                 </div> 
             </div>
         </div>
     </div>
 
-    <div class="container col-md-12 text-center" style="padding: 10px 0px;background: #FCB131; margin-bottom: 10px">
+    <div class="container col-md-12 text-center" style="padding: 10px 0px;background: #374FA2; margin-bottom: 10px">
        
-          <h4 class="" style="color: white;font-weight: bolder; font-size: 14px;padding: 0%">JUGADORES</h4>
+          <h4 class="title-principal" style="color: white;font-weight: bolder; font-size: 20px; font-weight: 400; padding: 0%">JUGADORES</h4>
        
     </div>
       
@@ -56,11 +56,11 @@
     
         <table class="table table-sm table-bordered">
           <thead>
-            <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
+           {{--   <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
               <div class="container text-center" style="padding: 10px 0px; margin: auto;">
-                  <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->nombre_club)}}</h5>
+                  <h5 style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->nombre_club)}}</h5>
               </div>
-          </th>
+          </th>  --}}
         {{--  <th class="table"><h3 class="display-4" style="font-size: 20px">Ficha de informacion</h3></th>  --}}
           </thead>
           <tbody>
@@ -128,10 +128,10 @@
                               
                               <div style="float: left;" class="form-group col-lg-3">
                                   <div class="btn-group btn-block">
-                                      <button id="button_add" type="button" class="btn btn-secondary btn-block" data-toggle="dropdown" style="padding: 0%">
+                                      <button id="button_add" type="button" class="btn btn-success btn-block" data-toggle="dropdown" style="padding: 0%">
                                           <div class="button-div" style="width: 200px">
                                               <i class="material-icons btn float-left" style="padding-bottom: 0%; padding: 2px 0% 0% 0%">settings</i>
-                                              <label class="" style="margin-top: 5px">Registrar jugador</label>
+                                              <label class="" style="margin-top: 5px">configuracion</label>
                                           </div>
                                         
                                       </button>
@@ -274,13 +274,13 @@
 @endsection
 @section('scripts')
   {!! Html::script('/js/cambiar_club.js') !!}
-  <script>
+  {{--  <script>
       (function(){
          
               document.getElementById('jugadores').className += " active";
           
       }());
-      </script>
+      </script>  --}}
  {{--   {!! Html::script('/js/vista_previa.js') !!}  --}}
  {{--   {!! Html::script('/js/validacion_ajax_request_update.js') !!}
   {!! Html::script('/js/validaciones.js') !!}  --}}

@@ -288,6 +288,9 @@ ul li a{
 	font-style: bolder;
 	text-transform: uppercase;
 }
+tr td{
+	font-weight: bold;
+}
 a.dropdown-item{
 	font-family: 'Oxygen', sans-serif;
 	color: rgb(73, 73, 73);
@@ -830,7 +833,7 @@ input#inputEditDisc{
 }
 thead, tr th, .title-select{
 text-transform: uppercase;
- color: rgb(124, 121, 121);
+ color:#999999;
  font-weight:bolder;
 }
 h3{
@@ -943,12 +946,14 @@ a.current:link, a.current:visited {
 select.select_jq{
 	background:no-repeat;
 	border:none; 
-	font-size: 14px;
+	font-size: 16px;
 	text-transform: uppercase;
 	color: white;
 	height: 38px;
-	font-weight: bolder;
+	font-weight: ;
 	border-radius: 0;
+	text-align: left;
+	font-family: 'Oswald', sans-serif;
 	
 }
 select.select_jq:focus{

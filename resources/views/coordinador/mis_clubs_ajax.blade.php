@@ -10,11 +10,11 @@
 <div class="container">
     
         <div class="container col-md-12 table-responsive">
-            <div class="container col-md-12" style="background: #FFA500;height: 40px; margin:10px 0%">
+            <div class="container col-md-12" style="background: #F69D04;height: 40px; margin:10px 0%">
                 <div class="form-row" >
                     <div class="container input-group mb-3 col-md-10">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="id_club_inf" style="color: white; background: no-repeat; border: none;font-size: 14px;padding: 0%">MIS CLUBS 
+                            <label class="input-group-text title-principal" for="id_club_inf" style="color: white; background: no-repeat; border: none;font-size: 16px;font-weight: 100; padding: 0%">MIS CLUBS 
                                 <i class = "material-icons btn" style="padding: 5px"> 
                                         keyboard_arrow_right
                                 </i></label>
@@ -24,7 +24,7 @@
                     </div>
                     <div class=" input-group mb-3 col-md-12">
                         <div id="cargando" style="display: none; padding:0 0 10px 0" class="col-md-12">
-                            <img src="/storage/logos/loader2.gif" alt="" height="50">
+                            <img src="/storage/logos/loader.gif" alt="" height="50">
                         </div> 
                     </div>
                 </div>
@@ -222,14 +222,14 @@
 @section('scripts')
 {!! Html::script('/js/vista_previa.js') !!} 
 
-<script>
+{{--  <script>
         (function(){
             window.addEventListener('load', active_link, false);
             function active_link(){
                 document.getElementById('mis_clubs').className += " active";
             }
         }());
-        </script>
+        </script>  --}}
  {!! Html::script('/js/cambiar_club_inf.js') !!}
     
 @endsection

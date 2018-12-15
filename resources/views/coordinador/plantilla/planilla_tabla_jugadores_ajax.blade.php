@@ -8,11 +8,11 @@
       
           <table class="table table-sm table-bordered">
             <thead>
-              <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
+              {{--  <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
                 <div class="container text-center" style="padding: 10px 0px; margin: auto;">
-                    <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->nombre_club)}}</h5>
+                    <h5 style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->nombre_club)}}</h5>
                 </div>
-            </th>
+            </th>  --}}
           {{--  <th class="table"><h3 class="display-4" style="font-size: 20px">Ficha de informacion</h3></th>  --}}
             </thead>
             <tbody>
@@ -80,10 +80,10 @@
                                 
                                 <div style="float: left;" class="form-group col-lg-3">
                                     <div class="btn-group btn-block">
-                                        <button id="button_add" type="button" class="btn btn-secondary btn-block" data-toggle="dropdown" style="padding: 0%">
+                                        <button id="button_add" type="button" class="btn btn-success btn-block" data-toggle="dropdown" style="padding: 0%">
                                             <div class="button-div" style="width: 200px">
                                                 <i class="material-icons btn float-left" style="padding-bottom: 0%; padding: 2px 0% 0% 0%">settings</i>
-                                                <label class="" style="margin-top: 5px">Registrar jugador</label>
+                                                <label class="" style="margin-top: 5px">configuracion</label>
                                             </div>
                                           
                                         </button>

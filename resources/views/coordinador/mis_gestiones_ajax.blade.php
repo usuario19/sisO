@@ -7,28 +7,28 @@
 @section('content')
 <div class="container">
     <div class="container col-md-12" style="padding:  0% 15px">
-        <div class="container" style="background: #FDA400;height: 40px; margin:20px 0% 0% 0%">
+        <div class="container" style="background: #947B3E;height: 40px; margin:20px 0% 0% 0%">
             <div class="form-row">
-                <div class="container input-group col-md-10" style="margin-bottom: 5px ">
+                <div class="container input-group col-md-10" style="margin-bottom: 5px">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="id_club_gestion" style="color: white; background: no-repeat; border: none;font-size: 14px;padding: 0%">MIS CLUBS 
+                        <label class="input-group-text title-principal" for="id_club_jugadores" style="font-weight: 100;color: white; background: no-repeat; border: none;font-size: 16px;padding: 0%">MIS CLUBS 
                             <i class = "material-icons btn" style="padding: 5px"> 
                                     keyboard_arrow_right
                             </i></label>
                         </label>
-                    </div>
                         {!! Form::select('id_club',$id_clubs,'0', ['class'=>'custom-select btn select_jq','id'=>'id_club_gestion']) !!}</td>
+                    </div>
                 </div>
-                <div class=" input-group mb-3 col-md-12">
-                    <div id="cargando" style="display: ; padding:0% ; z-index: 10" class="col-md-12">
-                        <img src="/storage/logos/loader2.gif" alt="" height="30">
+                <div class="input-group mb-3 col-md-12">
+                    <div id="cargando" style="display:none; padding:0px ; z-index: 10" class="col-md-12">
+                        <img src="/storage/logos/loader.gif" alt="" height="30">
                     </div> 
                 </div>
             </div>
         </div>
-        <div class="container col-md-12 text-center" style="padding: 10px 0px;background: #FBC02D   ; margin-bottom: 10px">
+        <div class="container col-md-12 text-center" style="padding: 10px 0px;background: #B6984F   ; margin-bottom: 10px">
     
-            <h4 class="" style="color: white;font-weight: bolder; font-size: 14px;padding: 0%">GESTIONES</h4>
+            <h4 class="title-principal" style="color: white;font-weight: bolder; font-size: 20px; font-weight: 400; padding: 0%">GESTIONES</h4>
             
         </div>
         
@@ -39,16 +39,16 @@
         <div id="contenido" class="table-responsive-xl" style="padding: 0%">
             @if ($mis_clubs)
                 @foreach($mis_clubs as $club)
-                    <table class="table table-bordered">
+                    <table class="table">
                 
                         <thead>
-                        <tr>
+                        {{--  <tr>
                             <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
                             <div class="container text-center" style="padding: 10px 0px; margin: auto;">
-                                <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->club->nombre_club)}}</h5>
+                                <h5 style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->club->nombre_club)}}</h5>
                             </div>
                         </th>
-                        </tr>
+                        </tr>  --}}
                             <tr>
                                 <td colspan="5" class="text-center" style="padding: 0%">
                                 <div id="contenedor_info"  {{--  class="form-group col-md-12"  --}} class="text-center">
@@ -108,36 +108,53 @@
                 
                         @foreach($club->club->inscripciones->sortByDesc('id_inscripcion') as $inscripcion)
                             @if ($inscripcion->gestion->estado_gestion == 1)
-                            <tr class="badge-secondary">
-                                <th colspan="4" style="padding: 0%">
-                                <div style="color: white; margin: auto; padding: 10px">{{ $inscripcion->gestion->nombre_gestion }}</div>
+                            <tr class="" style="padding-top: 20px">
+                                <th colspan="4" style="padding-top: 20px; ">
+                                  <div class="title-principal" style="color: #333333; font-size: 16px; padding: 10px">{{ $inscripcion->gestion->nombre_gestion }}</div>
                                 </th>
 
-                                <td style="padding: 5px; margin: 0px">
+                                <td style="padding:0px; margin: 0px; padding-top: 20px; ">
                                     @if ($inscripcion->gestion->periodo_inscripcion == 1)
-                                        <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="btn btn-secondary">
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="button-div" style="width: 150px">
                                                 <i class="material-icons float-left">settings</i>
-                                                <span class="letter-size">Crear Seleccion</span>
+                                                <span class="letter-size">Configuracion</span>
                                             </div>
-                                        </a>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="dropdown-item btn-light">
+                                                <div class="button-div" style="width: 150px">
+                                                    <i class="material-icons float-left">settings</i>
+                                                    <span class="letter-size">Crear Seleccion</span>
+                                                </div>
+                                            </a>
+                                          <a href="" class="dropdown-item btn-light" data-toggle="modal" data-target="#V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}">
+                                              <div class="button-div" style="width: 150px">
+                                                  <i class="material-icons float-left">edit</i>
+                                                  <span class="letter-size">Añadir Disciplinas</span>
+                                              </div>
+                                                
+                                          </a>
+                                        </div>
+                                      </div> 
                                         @else
-                                        <button type="button" class="btn btn-secondary example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                                        <button type="button" title="El periodo de inscripcion termino." class="btn btn-secondary example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                                             <div class="button-div" style="width: 150px">
-                                                <i class="material-icons float-left">check_circle_outline</i>
-                                                <span class="letter-size">Crear Seleccion</span>
+                                                <i  class="material-icons float-left">check_circle_outline</i>
+                                                <span class="letter-size">Cerrado</span>
                                             </div>
                                         </button>
                                         @endif
                                 </td>
                             </tr>
-                            <tr class="bg-light">
+                            <tr class="table-bordered">
                                 <th style="width: 120px">Fecha Inicio</th>
                                 <th style="width: 110px">Fecha Fin</th>
-                                <th colspan="4">Descripcion</th>
+                                <th colspan="3">Descripcion</th>
                                 
                             </tr>
-                            <tr>  
+                            <tr class="table-bordered">  
                                 
                                 <td>
                                     <div class="form-row">{{ $inscripcion->gestion->fecha_ini }}</div>
@@ -145,24 +162,13 @@
                                 <td>
                                     <div class="form-row">{{ $inscripcion->gestion->fecha_fin }}</div>
                                 </td>
-                                <td colspan="4">
-                                    <div class="form-row">{{ $inscripcion->gestion->descripcion_gestion }}</div>
+                                <td colspan="3">
+                                    <div class="form-row">{{ $inscripcion->gestion->desc_gest }}</div>
                                 </td>
                                 
                             </tr>
                             <tr>  
-                                <th colspan="4" class="bg-light">DISCIPLINAS</th>
-                                @if ($inscripcion->gestion->periodo_inscripcion == 1)
-                                <td class="text-center bg-light" style="padding: 5px;width: 50px">   
-                                    <!-- Button trigger modal -->
-                                        <a href="" class="btn btn-light" data-toggle="modal" data-target="#V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}">
-                                            <div class="button-div" style="width: 110px">
-                                                <i class="material-icons float-left">edit</i>
-                                                <span class="letter-size">Disciplinas</span>
-                                            </div>
-                                            
-                                        </a>
-                    
+                                <th colspan="5" class="table-bordered">DISCIPLINAS
                                         <!-- Modal -->
                                         {!! Form::open(['route'=>'disciplina.store_disc','method' => 'POST']) !!}
                                         <div class="modal fade" id="V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -250,23 +256,14 @@
                                         </div>
                                         </div>
                                         {!! Form::close() !!}
-                                    </td>
-                                @else
-                                <td class="text-center bg-light" style="padding: 5px;width: 50px">   
-                                    <button type="button" class="btn btn-light example-popover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                                        <div class="button-div" style="width: 110px">
-                                            <i class="material-icons float-left">check_circle_outline</i>
-                                            <span class="letter-size">Disciplinas</span>
-                                        </div>
-                                        </button>
-                                </td>
-                                @endif
+                                </th>
+                                
                                     @if (count($inscripcion->gestion->club_participaciones->where('id_club',$club->id_club))>0)
                                     @php
                                     $i =  1
                                     @endphp
                                         @foreach ($inscripcion->gestion->club_participaciones->where('id_club',$club->id_club) as $disc)
-                                            <tr>
+                                        <tr class="table-bordered">
                                                 <td class="text-center" style="padding: 0%">
                                                 <div style="padding: 5px">{{$i}}</div>
                                                 </td>
@@ -350,7 +347,7 @@
 
 @endsection
 @section('scripts')
-
+{{--  
 <script>
         
         {{--  (function(){
@@ -359,7 +356,7 @@
                 document.getElementById('gestiones').className += " active";
             }
         }());  --}}
-        </script>
+        </script>  --}}
  {!! Html::script('/js/cambiar_club_gestion.js') !!}
  {!! Html::script('/js/checkbox.js') !!}
 @endsection

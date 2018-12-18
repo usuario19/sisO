@@ -73,7 +73,7 @@
                   <div style="color: white; margin: auto; padding: 10px">{{ $inscripcion->gestion->nombre_gestion }}</div>
                 </th>
                 <td style="padding: 5px; margin: 0px">
-                  @if ($inscripcion->gestion->estado_inscripcion == 1)
+                  @if ($inscripcion->gestion->periodo_inscripcion == 1)
                   <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="btn btn-secondary">
                       <div class="button-div" style="width: 150px">
                           <i class="material-icons float-left">settings</i>
@@ -111,7 +111,7 @@
               </tr>
                <tr>  
                   <th colspan="4" class="bg-light">DISCIPLINAS</th>
-                  @if ($inscripcion->gestion->estado_inscripcion == 1)
+                  @if ($inscripcion->gestion->periodo_inscripcion == 1)
                   <td class="text-center bg-light" style="padding: 5px;width: 50px">   
                       <!-- Button trigger modal -->
                         <a href="" class="btn btn-light" data-toggle="modal" data-target="#V{{ $inscripcion->gestion->id_gestion.$club->club->id_club }}">
@@ -240,7 +240,7 @@
                                       {{$disc->disciplina->categoria == 1 ? '( Mujeres )':($disc->disciplina->categoria == 2 ? '( Hombres )':'( Mixto )')}}</td>
                                   </div>
 
-                                @if ($inscripcion->gestion->estado_inscripcion == 1)
+                                @if ($inscripcion->gestion->periodo_inscripcion == 1)
                                 <td style="width: 50px; padding: 0%" class="text-center">
                                     <a href="{{ route('disciplina.eliminar',$disc->id_club_part) }}" data-toggle="modal" class="delete_button" data-target="#Eliminar{{ $disc->id_club_part}}" >
                                         <i title="Eliminar" class="material-icons delete_button button_redirect">

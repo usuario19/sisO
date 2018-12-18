@@ -27,12 +27,12 @@
     @endif
    
     <div class="container">
-     <div  style="margin: 10px 0px">
+     <div  style="margin: 10px 0px 0px 0px">
        @include('flash::message')
      </div>
 
       @if(count($errors) > 0)
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 0%">
                 <ul style="margin: 0%">
                 @foreach($errors->all() as $error)
                 <li style="list-style: circle">{{ $error }}</li>

@@ -8,7 +8,7 @@
 
 <div class="container">
   <div class="container col-md-12" style="padding:  0% 15px">
-    <div class="container" style="background: #2A3C7C;height: 40px; margin:20px 0% 0% 0%">
+    <div class="container" style="background:#374FA2;height: 40px; margin:20px 0% 0% 0%">
         <div class="form-row">
             <div class="container input-group col-md-10" style="margin-bottom: 5px ">
                 <div class="input-group-prepend">
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="container col-md-12 text-center" style="padding: 10px 0px;background: #374FA2; margin-bottom: 10px">
+    <div class="container col-md-12 text-center" style="padding: 10px 0px;background:#4261C9   ; margin-bottom: 10px">
        
           <h4 class="title-principal" style="color: white;font-weight: bolder; font-size: 20px; font-weight: 400; padding: 0%">JUGADORES</h4>
        
@@ -112,8 +112,8 @@
         <div class="card">
             
                 
-                <div class="card-body badge-light" style="padding: 0%">
-                    <table class="table table-sm">
+                <div class="card-body" style="padding: 0%">
+                    <table class="table table-sm table-borderless" style="margin: 0%">
                         <thead>
 
                         </thead>

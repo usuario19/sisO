@@ -1,7 +1,7 @@
 @extends('plantillas.main')
 
 @section('title')
-    SisO - Lista de Usuarios
+    SisO - Informacion
 @endsection
 
 @section('content')

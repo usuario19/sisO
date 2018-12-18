@@ -81,10 +81,10 @@
                               <span class="letter-size">Configuracion</span>
                           </div>
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
                           <a href="{{ route('disciplina.ver_disciplinas',[$club->club->id_club,$inscripcion->gestion->id_gestion]) }}" class="dropdown-item btn-light">
                               <div class="button-div" style="width: 150px">
-                                  <i class="material-icons float-left">settings</i>
+                                  <i class="material-icons float-left">group_add</i>
                                   <span class="letter-size">Crear Seleccion</span>
                               </div>
                           </a>
@@ -239,17 +239,28 @@
 
                                 @if ($inscripcion->gestion->periodo_inscripcion == 1)
                                 <td style="width: 50px; padding: 0%" class="text-center">
-                                    <a href="{{ route('disciplina.eliminar',$disc->id_club_part) }}" data-toggle="modal" class="delete_button" data-target="#Eliminar{{ $disc->id_club_part}}" >
-                                        <i title="Eliminar" class="material-icons delete_button button_redirect">
-                                            delete
-                                         </i>
-                                    </a>
+                                    <div class="row">
+                                      <div class="col-6 text-center">
+                                        <a href="{{ route('disciplina.eliminar',$disc->id_club_part) }}" data-toggle="modal" class="" data-target="#Eliminar{{ $disc->id_club_part}}" >
+                                            <i title="Eliminar" class="material-icons delete_button button_redirect">
+                                                delete
+                                             </i>
+                                        </a>
+                                      </div>
+                                      <div class="col-6 text-center">
+                                        <a href="{{ route('disciplina.ver_seleccion_club',$disc->id_club_part) }}" class="" >
+                                            <i title="Ver seleccion" class="material-icons delete_button button_redirect">
+                                                group
+                                             </i>
+                                        </a>
+                                      </div>
+                                    </div>
                                   </td>
                                 @else
                                 <td style="width: 50px; padding: 0%" class="text-center">
-                                    <a href="{{ route('disciplina.ver_seleccion_club',$disc->id_club_part) }}" class="delete_button" >
-                                        <i title="Ver seleccion" class="material-icons delete_button button_redirect">
-                                            visibility
+                                    <a href="{{ route('disciplina.ver_seleccion_club',$disc->id_club_part) }}" class="" >
+                                        <i title="Ver seleccion" class="material-icons delete_button">
+                                            group
                                          </i>
                                     </a>
                                   </td>

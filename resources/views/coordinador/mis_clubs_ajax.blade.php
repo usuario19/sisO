@@ -8,9 +8,8 @@
 
 
 <div class="container">
-    
         <div class="container col-md-12 table-responsive">
-            <div class="container col-md-12" style="background: #F69D04;height: 40px; margin:10px 0%">
+            <div class="container col-md-12" style="background: #F39C12 ;height: 40px; margin:10px 0%">
                 <div class="form-row" >
                     <div class="container input-group mb-3 col-md-10">
                         <div class="input-group-prepend">
@@ -24,7 +23,7 @@
                     </div>
                     <div class=" input-group mb-3 col-md-12">
                         <div id="cargando" style="display: none; padding:0 0 10px 0" class="col-md-12">
-                            <img src="/storage/logos/loader.gif" alt="" height="50">
+                            <img src="/storage/logos/loader.gif" alt="" height="30">
                         </div> 
                     </div>
                 </div>
@@ -37,13 +36,14 @@
                     <tr class="table table-bordered">
                         <td colspan="3" style="margin: 0%; padding: 0%">
                             <div class="container text-center cabecera">
-                                <h5 {{-- class="display-4" --}} style="margin: AUTO">{{ strtoupper($club->club->nombre_club)}}</h5>
-                            </div> 
+                                <h5 class="title-principal" style="margin: AUTO; color: black; font-weight: 400; font-size: 20px">
+                                {{ strtoupper($club->club->nombre_club)}}</h5>
+                        </div> 
                         </td>
-                        <td style="width: 70px" rowspan="2">
+                        <td style="width: 70px;padding: 0%"  class="table table-bordered text-center">
                             <a href="{{ route('coordinador.informacion_club', $club->first()->id_club) }}" data-toggle="modal" data-target=".bd-example-modal-lg" class="" title="Editar" style="padding: 0%" > 
                                 <span class="">
-                                    <i id="btnCancelar" class="material-icons delete_button" >settings</i>
+                                    <i id="btnCancelar" class="material-icons delete_button">settings</i>
                                 </span>
                             </a>
                         </td>

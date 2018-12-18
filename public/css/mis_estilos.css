@@ -327,12 +327,13 @@ font-family: 'Montserrat', sans-serif;
 }
 .btn {
 	font-size: 12px;
+	
 	font-family: 'Montserrat', sans-serif;
 	text-transform: uppercase;
 }
 body{
 	font-size: 80%;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Exo', sans-serif;
 	}
 footer{
 	top: 100%;
@@ -834,7 +835,7 @@ input#inputEditDisc{
 thead, tr th, .title-select{
 text-transform: uppercase;
  color:#999999;
- font-weight:bolder;
+ font-weight:bold;
 }
 h3{
 	padding: 0%;
@@ -962,17 +963,14 @@ select.select_jq:focus{
 }
 select.select_jq option:focus{
 	border: none;
-	background: #e1e9f1;
 }
 
 select.select_jq option{
-	background-color: rgb(255, 251, 251);
-	border:#DAE0E5; 
 	font-size: 12px;
 	text-transform: uppercase;
-	color: rgb(32, 30, 30);
+	color: rgb(129, 122, 122);
 	height: 38px;
-	font-weight: bolder;
+	font-weight: 400;
 }
 label.input-group-text{
 	font-size: 14px;
@@ -982,8 +980,8 @@ label.input-group-text{
 	border: none;
 }
 .cabecera{
-	padding: 15px 0px; 
-	min-height: 50px;
+	padding: 10px 0px; 
+	min-height: 40px;
 	 background:  rgb(255, 255, 255)  ; 
 	 color: rgb(24, 22, 22);
 	

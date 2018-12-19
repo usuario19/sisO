@@ -51,7 +51,7 @@
             <td>{{ $club->id_club }}</td>
             <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
             <td>{{ $club->nombre_club }}</td>
-            <td><a href="{{ route('fase.eliminar_club_eliminacion',[$fase->id_fase,$club->id_club_part]) }}"><i title="Eliminar" class="material-icons">delete</i></a></td>
+            <td><a href="{{ route('fase.eliminar_club_eliminacion',[$fase->id_fase,$club->id_club_part]) }}"><i title="Eliminar" class="material-icons delete_button">delete</i></a></td>
            
           </tr>
         @endforeach
@@ -62,8 +62,8 @@
      <div id="fechas1" class="tab-pane fade"> 
       <h4>Lista de Fechas:</h4>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button>
-      @include('fechas.modal_registrar_fecha') 
-         <table class="table table-condensed">
+      @include('fechas.modal_reg_fecha_eliminacion') 
+         <table class="table table-condensed" id="tablas_fechas_competicion">
              <thead>
                <th width="50px">ID</th>
                <th>Nombre</th>
@@ -74,8 +74,8 @@
                  <tr>    
                    <td>{{ $fecha->id_fecha}}</td>
                    <td>{{ $fecha->nombre_fecha}}</td>
-                   <td><a href=""><i title="Editar" class="material-icons">edit</i></a></td>
-                   <td><a href=""><i title="Eliminar" class="material-icons">delete</i></a></td>
+                   <td><a href=""><i title="Editar" class="material-icons delete_button">edit</i></a></td>
+                   <td><a href=""><i title="Eliminar" class="material-icons delete_button">delete</i></a></td>
                  </tr>
                @endforeach            
              </tbody>
@@ -88,6 +88,8 @@
             @foreach ($fechas as $fecha)
                <div>
                   <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}</h4>
+                  <a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons delete_button">assignment</i></a>
+
                </div>
                <table class="table table-condensed">
                    <thead>
@@ -108,11 +110,10 @@
                            @endforeach
                          <td>{{ $encuentro->fecha}}</td>
                          <td>{{ $encuentro->hora}}</td>
-                         <td>{{ $encuentro->ubicacion}}</td>
+                         <td>{{ $encuentro->centro->ubicacion_centro}}</td>
                          <td>{{ $encuentro->detalle}}</td>
-                        <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons">delete</i></a></td>
-                         <td><a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons">list</i></a></td>
-                         <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultado" class="material-icons">list</i></a></td>
+                        <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">delete</i></a></td>
+                         <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultado" class="material-icons delete_button">collections_bookmark</i></a></td>
                        </tr>
                      @endforeach            
                    </tbody>

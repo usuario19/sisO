@@ -15,31 +15,32 @@
                             </div>
             <div class="modal-body">
     
-                <h6>Seleccione los clubs a enfrentarse:</h6><br>
+                <h6>Seleccione los clubs a enfrentarseeee:</h6><br>
       
                 <div class="form-row">                            
                     <div style="display: none">                 
                         {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                         {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
+                        {{-- {!! Form::text('id_fase', $fase->id_fase, ['id'=>'id_fase']) !!} --}}
                     </div>
                     <div class="col-md-5">
-                        {!! Form::select('id_club1', $clubsParaEncuentro, null,['class'=>'form-control']) !!}
+                        {!! Form::select('id_club1', $clubsParaEncuentro, null,['onchange'=>'cargarContrincantesEliminacion()','id'=>'club1','placeholder'=>'seleccione','class'=>'form-control']) !!}
                     </div>
                     <div class="col-md-2">
                         <h2 style="text-align: center;">Vs.</h2>
                     </div>
                     <div class="col-md-5">
-                        {!! Form::select('id_club2', $clubsParaEncuentro, null, ['class'=>'form-control']) !!}
+                        {!! Form::select('id_club2', $clubsParaEncuentro, null, ['id'=>'club2','placeholder'=>'seleccione','class'=>'form-control']) !!}
                     </div>
                 </div>
                 <div class="form-row">
                    {{--   <div class="col-md-6">
                         {!! Form::label('ubicacion', 'Ubicacion', []) !!}
-                        {!! Form::select('ubicacion',$centros,null, ['class'=>'form-control']) !!}          
-                    </div>  --}}
+                        {!! Form::select('id_centro',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}          
+                    </div>
                     <div class="col-md-6">
                         {!! Form::label('id_fecha', 'Fecha', []) !!}
-                        {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione...','class'=>'form-control']) !!}
+                        {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione','class'=>'form-control']) !!}
                     </div>
                 </div>
                 <div class="form-row">
@@ -68,3 +69,7 @@
     </div>
 </div>
  {!! Form::close() !!}
+ 
+ @section('scripts')
+   {!! Html::script('/js/cargar_contrincante_encuentro.js') !!}
+@endsection

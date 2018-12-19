@@ -10,6 +10,9 @@
 <h4>Registrar resultado:</h4>
     {!! Form::open(['route'=>'encuentro.reg_resultado','method' => 'POST']) !!}
          <div class="container">  
+            <div style="display: none">
+                {!! Form::text('id_disc',$disciplina->id_disc, []) !!}
+            </div>
             @foreach ($encuentro->encuentro_club_participaciones as $participacion)
             <div class="container col-md-6">
                 <div class="card">
@@ -17,6 +20,7 @@
                         {!! Form::text('id_encuentro', $encuentro->id_encuentro, []) !!}
                         {!! Form::text('id_encuentro_club_part'.$participacion->id_encuentro_club_part, $participacion->id_encuentro_club_part, []) !!}
                         {!! Form::text('id_club'.$participacion->id_encuentro_club_part, $participacion->id_encuentro_club_part, []) !!}
+                        
                     </div>
                     <div class="col-md-12">
                         {!! Form::label('equipo'.$participacion->id_encuentro_club_part, 'Equipo', []) !!}
@@ -37,8 +41,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
                 </div>
-          </div> 
-                                    
+          </div>                  
           </div>      
              
  {!! Form::close() !!}

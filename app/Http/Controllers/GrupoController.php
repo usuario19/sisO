@@ -160,16 +160,8 @@ class GrupoController extends Controller
             ->where('grupos.id_grupo','=',$id_grupo)
             ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
             ->get();
-        $encuentros = DB::table('grupo_club_participaciones')
-        ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
-        ->join('encuentro_club_participaciones','club_participaciones.id_club_part','encuentro_club_participaciones.id_club_part')
-        ->join('encuentros','encuentro_club_participaciones.id_encuentro','encuentros.id_encuentro')
-        ->where('grupo_club_participaciones.id_grupo',$id_grupo)
-        ->select('encuentros.*')
-        ->get();
-        
-        //return view('grupo.listarClubs',compact('clubs',))->with('clubs',$clubs)->with('clubsDisponibles',$clubsDisponibles)->with('grupo',$grupo)->with('gestion',$gestion)->with('disciplina',$disciplina)->with('fase',$fase)->with('fechas',$fechas)->with('fechas2',$fechas2)->with('clubsParaEncuentro',$clubsParaEncuentro);
-        return view('grupo.listarClubs',compact('clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','centros'));
+        $encuentros = Encuentro::all();
+        return view('grupo.listarClubs',compact('encuentros','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','centros'));
     }
     public function select_contrincante_grupos($id_club,$id_grupo){
         $clubsInscritos = DB::table('grupo_club_participaciones')
@@ -272,12 +264,6 @@ class GrupoController extends Controller
                 ->select('jugadores.*')->get();
                 
                 return view('grupo.listar_competiciones',compact('participantes','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','encuentros','centros'));
-    }
-    public function edit($id){
-    }
-
-    public function update(Request $request, $id){
-        //
     }
 
     public function destroy($id){

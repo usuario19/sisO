@@ -10,7 +10,9 @@ use App\Models\Disciplina;
 use App\Models\Fecha_Grupo;
 
 class FechaController extends Controller{
+
     public function store(request $request){
+
     	$fecha = new Fecha;
 		$fecha->nombre_fecha = $request->get('nombre_fecha');
 		$fecha->id_fase = $request->get('id_fase');
@@ -22,6 +24,20 @@ class FechaController extends Controller{
 		$fechas_grupos->id_grupo= $request->get('id_grupo');
 		$fechas_grupos->save();
 
+		$datos = Fecha::all();
+		return response()->json(
+			$datos->toArray()
+		);
+
+		//return redirect()->back();
+	}
+	public function store_fecha_eliminacion(request $request){
+		
+    	$fecha = new Fecha;
+		$fecha->nombre_fecha = $request->get('nombre_fecha');
+		$fecha->id_fase = $request->get('id_fase');
+		$fecha->save();
+		
 		$datos = Fecha::all();
 		return response()->json(
 			$datos->toArray()

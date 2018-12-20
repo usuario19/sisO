@@ -269,6 +269,9 @@ class EncuentroController extends Controller
                     $j = 0;
             }
             else {
+                Encuentro_Club_Participacion::where('id_encuentro_club_part', $id_encuentro_club_part)
+                    ->update(['puntos' => $puntos, 'observacion'=>$observacion,'resultado'=>"1"]);
+                    
                 $puntos_total = Tabla_Posicion::where('id_club_part',$id_club_part)
                     ->select('puntos')->get()->last()->puntos;
                 $puntos_total = $puntos_total + $puntos;

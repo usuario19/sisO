@@ -16,7 +16,7 @@ class DisciplinaController extends Controller
 {
     public function index()
     {
-        $disciplinas = DB::table('disciplinas')->get();
+        $disciplinas = Disciplina::all();
         SWAL::message('Good Job','You have successfully logged In!','info');  
         return view('disciplina.listar_disciplina')->with('disciplinas',$disciplinas);
     }

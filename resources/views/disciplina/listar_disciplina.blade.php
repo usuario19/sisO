@@ -57,6 +57,7 @@
                                 <th width="100px">Logo</th>
                                 <th>Nombre</th>
                                 <th>Categoria</th>
+                                <th>Tipo</th>
                                 <th>Descripcion</th>
                                 <th>Reglamento</th>
                                 
@@ -76,31 +77,19 @@
                     
                                     <td><img class="rounded mx-auto d-block" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 50px" width="50px"></td>
                                     <td>{{ $disciplina->nombre_disc}}</td>
-                                    @switch($disciplina->categoria)
-                                        @case(0)
-                                            <td>{{ 'Mixto' }}</td>
-                                            @break
-                                    
-                                        @case(1)
-                                            <td>{{ 'Damas' }}</td>
-                                            @break
-                                            @case(2)
-                                            <td>{{ 'Varones' }}</td>
-                                            @break
-                                    @endswitch
-                                    
-                                        
-                                        <td>{{ $disciplina->descripcion_disc}}</td>
-                                        <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">
+                                    <td>{{ $disciplina->nombre_categoria($disciplina->categoria) }}</td>
+                                    <td>{{ $disciplina->nombre_tipo($disciplina->tipo) }}</td>
+                                    <td>{{ $disciplina->descripcion_disc}}</td>
+                                    <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">
                                         
                                             <div class="button-div" style="">
                                                 <i class="material-icons float-left">vertical_align_bottom</i>
                                                 <span class="letter-size">Descargar</span>
                                             </div></td>
                                     @if(Auth::check() && Auth::user()->tipo == 'Administrador')
-                                        <td><a onclick="MostrarDisc({{ $disciplina->id_disc }});"  class="btn btn-primary" data-toggle="modal" data-target="#modalEditDisc">Editar</a></td>
+                                        <td><a href="" onclick="MostrarDisc({{ $disciplina->id_disc }});"  data-toggle="modal" data-target="#modalEditDisc"><i title="Editar" class="material-icons delete_button button_redirect">edit</i></a></td>
                     
-                                        <td><a href="{{ route('disciplina.destroy',$disciplina->id_disc) }}" onclick = "return Alert::info('Esta seguro de eliminar la disciplina,'jej')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a></td>
+                                        <td><a href="{{ route('disciplina.destroy',$disciplina->id_disc) }}" onclick = "return Alert::info('Esta seguro de eliminar la disciplina,'jej')" ><i title="Eliminar" class="material-icons delete_button">delete </i></a></td>
                                     @endif   
                                     
                     

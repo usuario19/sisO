@@ -1,7 +1,7 @@
 @extends('plantillas.main')
 
 @section('title')
-    SisO - Lista de Usuarios
+    SisO - Informacion
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
   <div class="table-responsive-xl">
 
       <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
+          <ol class="breadcrumb alert-info">
             <li class="breadcrumb-item"><a href="{{ route('coordinador.club_jugadores_ajax') }}">Jugadores</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $usuario->nombre_jugador ." ". $usuario->apellidos_jugador }}</li>
           </ol>
@@ -26,13 +26,13 @@
       </div>
     <table class="table table-sm table-bordered">
       <thead>
-        <th class="">
+        <th class="" style="padding: 0%">
             <div class=" row text-center" style="height:; margin: 5px">
               <div class="col-md-1" style="margin: auto; padding: 0%">
                 <img id="" class="float-md-right rounded mx-auto d-block" src="/storage/logos/{{ $club->logo }}" alt="" width="40" height="40">
               </div>
               <div class="col-md-11">
-                <span class="float-left" style="font-size: 18px; padding-top: 5px">{{$club->nombre_club}}</span>
+                <span class="float-md-left text-xl-center title-principal" style="font-size: 16px; padding-top: 5px ; color: black; font-weight: 400">{{$club->nombre_club}}</span>
               </div>
             </div>
         </th>
@@ -67,16 +67,19 @@
 
                           </div>
                     </div>
-                    <div class="form-group col-5" style="position: relative; height:65px ;">
+                    <div class="form-group col-5" style="position: relative; height:150px ;">
                             <div style="bottom: 0px; position: absolute; ">
-                              <h3 class="display-1" style="font-size: 20px; font-weight:bold;">JUGADOR</h3>
-                              <h3 class="display-4" style="font-size: 18px">{{ $usuario->nombre_jugador ." ". $usuario->apellidos_jugador }}</h3>
+                                  <h5 class="title-principal" style="font-size: 16px; font-weight:400;color: black">JUGADOR</h5>
+                                  <h3 class="display-4" style="font-size: 18px">{{ $usuario->nombre_jugador ." ". $usuario->apellidos_jugador }}</h3>
                             </div>
                           <div class="form-row errorLogin">
                             <span>
                               <h6 id="error_foto">{{ $errors->has('foto_jugador') ? $errors->first('foto_jugador'):'' }}</h6>
                             </span>
                           </div>
+                    </div>
+                    <div class="">
+
                     </div>
                   </div>  
                 </div>
@@ -168,14 +171,6 @@
 @endsection
 
 @section('scripts')
-<script>
-  (function(){
-      window.addEventListener('load', active_link, false);
-      function active_link(){
-          document.getElementById('jugadores').className += " active";
-      }
-  }());
-  </script>
   {!! Html::script('/js/vista_previa.js') !!}
  {{--   {!! Html::script('/js/validacion_ajax_request_update.js') !!}  --}}
   {!! Html::script('/js/validaciones.js') !!}

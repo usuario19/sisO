@@ -8,11 +8,11 @@
       
           <table class="table table-sm table-bordered">
             <thead>
-              <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
+              {{--  <th colspan="5" class="title-table-club" colspan="4" style="padding: 0px">
                 <div class="container text-center" style="padding: 10px 0px; margin: auto;">
-                    <h5 {{-- class="display-4" --}} style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->nombre_club)}}</h5>
+                    <h5 style="margin: AUTO; font-size: 15px; font-weight: bolder">{{ strtoupper($club->nombre_club)}}</h5>
                 </div>
-            </th>
+            </th>  --}}
           {{--  <th class="table"><h3 class="display-4" style="font-size: 20px">Ficha de informacion</h3></th>  --}}
             </thead>
             <tbody>
@@ -59,73 +59,67 @@
               </tr>
             </tbody>
           </table>
-              
-
-          <div class="card">
+          <table class="table table-sm table-borderless" style="margin: 0%">
+              <tbody >
+                <tr>
+                  <td>
+                    <div style="float: left;" class="form-group col-lg-9">
+                      {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+                    </div>
+                    
+                    <div style="float: left;" class="form-group col-lg-3">
+                        <div class="btn-group btn-block">
+                            <button id="button_add" type="button" class="btn btn-success btn-block" data-toggle="dropdown" style="padding: 0%">
+                                <div class="button-div" style="width: 200px">
+                                    <i class="material-icons btn float-left" style="padding-bottom: 0%; padding: 2px 0% 0% 0%">settings</i>
+                                    <label class="" style="margin-top: 5px">configuracion</label>
+                                </div>
+                              
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                             <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                <div class="button-item">
+                                    <i class="material-icons float-left">
+                                        person_add
+                                     </i>
+                                    <span class="letter-size">Crear nuevo jugador</span>
+                                </div>
+                             </button>
+                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportJugador">
+                                <div class="button-item">
+                                    <i class="material-icons float-left">
+                                        group_add
+                                    </i>
+                                    <span class="letter-size">Importar jugadores de excel</span>
+                                </div>
+                            </button>
+                            <a href="{{route('coordinador.pdf_jugadores',$club->id_club)}}" class="dropdown-item" style="font-family:'Montserrat', sans-serif; " >
+                                <div class="button-item">
+                                    <i class="material-icons float-left">
+                                        assignment
+                                    </i>
+                                    <span class="letter-size">Generar Reporte</span>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                    @include('coordinador.plantilla.form_reg_jugador_modal')
+                    @include('coordinador.plantilla.form_import_jugador_modal')
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+          {{--  <div class="card">
               
                   
-                  <div class="card-body badge-light" style="padding: 0%">
-                      <table class="table table-sm">
-                          <thead>
-
-                          </thead>
-                          
-                          <tbody class="">
-                            <tr class="">
-                              
-                              <td>
-                                <div style="float: left;" class="form-group col-lg-9">
-                                  {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-                                </div>
-                                
-                                <div style="float: left;" class="form-group col-lg-3">
-                                    <div class="btn-group btn-block">
-                                        <button id="button_add" type="button" class="btn btn-secondary btn-block" data-toggle="dropdown" style="padding: 0%">
-                                            <div class="button-div" style="width: 200px">
-                                                <i class="material-icons btn float-left" style="padding-bottom: 0%; padding: 2px 0% 0% 0%">settings</i>
-                                                <label class="" style="margin-top: 5px">Registrar jugador</label>
-                                            </div>
-                                          
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                         <button type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                            <div class="button-item">
-                                                <i class="material-icons float-left">
-                                                    person_add
-                                                 </i>
-                                                <span class="letter-size">Crear nuevo jugador</span>
-                                            </div>
-                                         </button>
-                                        <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalImportJugador">
-                                            <div class="button-item">
-                                                <i class="material-icons float-left">
-                                                    group_add
-                                                </i>
-                                                <span class="letter-size">Importar jugadores de excel</span>
-                                            </div>
-                                        </button>
-                                        <a href="{{route('coordinador.pdf_jugadores',$club->id_club)}}" class="dropdown-item" style="font-family:'Montserrat', sans-serif; " >
-                                            <div class="button-item">
-                                                <i class="material-icons float-left">
-                                                    assignment
-                                                </i>
-                                                <span class="letter-size">Generar Reporte</span>
-                                            </div>
-                                          </a>
-                                        </div>
-                                      </div>
-                                </div>
-                                @include('coordinador.plantilla.form_reg_jugador_modal')
-                                @include('coordinador.plantilla.form_import_jugador_modal')
-                              </td>
-                            </tr>
-                          </tbody>
-                      </table>
+                  <div class="card-body" style="padding: 0%">  --}}
+                      
                     
                       <div class="table-responsive">
-                          <table class="table table-hover bg-white">
+                          <table class="table table-hover table-borderless">
                             <thead>
-                              <tr>
+                              <tr class="border-bottom-6">
                                 <th width="20px" scope="col">#</th>
                                 <th width="100px" scope="col">FOTO</th>
                                 <th width="50px" scope="col" >CI</th>
@@ -147,7 +141,7 @@
                               @foreach($mis_jugadores as $usuario)
                               
                               
-                                <tr  class="link_pointer" style="cursor:pointer" data-href="{{ route('jugador.informacion_jug_club',[$usuario->id_jugador,$club->id_club]) }}">
+                                <tr  class="link_pointer border-top" style="cursor:pointer" data-href="{{ route('jugador.informacion_jug_club',[$usuario->id_jugador,$club->id_club]) }}">
                                   {{--  <td>{{ $usuario->jugador->id_jugador}}</td>  --}}
                                   <td>{{$i}}</td>
                                   <td data-href="{{ route('jugador.informacion_jug_club',[$usuario->id_jugador,$club->id_club]) }}"><img class="mx-auto d-block rounded-circle" src="/storage/fotos/{{ $usuario->jugador->foto_jugador }}" alt="" height=" 50px" width="50px"></td>
@@ -207,8 +201,8 @@
                             </tbody>
                           </table>
                       </div>
-                  </div>
-          </div>
+                  {{--  </div>
+          </div>  --}}
         </div>
         @endif
     

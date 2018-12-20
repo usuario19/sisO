@@ -4,14 +4,14 @@
         <tr class="table table-bordered">
             <td colspan="3" style="margin: 0%; padding: 0%">
                 <div class="container text-center cabecera">
-                    <h5 {{-- class="display-4" --}} style="margin: AUTO">
+                    <h5 class="title-principal" style="margin: AUTO; color: black; font-weight: 400; font-size: 20px">
                     {{ strtoupper($club->first()->nombre_club)}}</h5>
             </div> 
             </td>
-            <td style="width: 70px"  class="table table-bordered">
+            <td style="width: 70px;padding: 0%"  class="table table-bordered text-center">
                 <a href="{{ route('coordinador.informacion_club', $club->first()->id_club) }}" data-toggle="modal" data-target=".bd-example-modal-lg" class="" title="Editar" style="padding: 0%" > 
                     <span class="">
-                        <i id="btnCancelar" class="material-icons delete_button" >settings</i>
+                        <i id="btnCancelar" class="material-icons delete_button">settings</i>
                     </span>
                 </a>
             </td>
@@ -26,7 +26,6 @@
                 </td>
                 <td style=""></td>
             </tr>
-                
         @else
         <tr>
                 <td style="width: 50px">

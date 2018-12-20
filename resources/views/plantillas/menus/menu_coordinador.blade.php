@@ -3,7 +3,7 @@
 
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark text-center" style="padding: 4px">
         <a class="navbar-brand" href={{url('/')}}>
-          <div class="float-left" style="width: 80px"><img src="/storage/logos/abcd1.png" height="40" class="d-inline-block align-top" alt="">
+          <div class="float-left" style="width: 80px"><img src="/storage/logos/abcd.png" height="40" class="d-inline-block align-top" alt="">
           {{--   <div class="row">
           <div class="col-xl-1 text-center float-left" style="padding:0% ;height: 60px"><img src="/storage/logos/abcd.jpg" height="60" class="d-inline-block align-top" alt=""></div>
           <div class="col-xl-4" style="padding:0%"><p class="title text-center" style="height: 60px;">OLIMPIADAS SITUMSS</p></div>

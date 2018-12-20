@@ -23,13 +23,13 @@
               </div>
               <div class="container col-md-11">
                 <div class="form-row">
-                  <div class="form-group">
+                  <div class="form-group table-responsive">
                     <img class="rounded mx-auto d-block float-left" src="/storage/fotos/muestra_excel.png" alt="img no encontrada" height="150px" width="650px">
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group">
-                    <a href="/storage/archivos/planilla_jugadores.xlsx" class="btn btn-light">
+                    <a href="/storage/archivos/planilla_jugadores.xlsx" class="btn btn-link">
                       <div class="button-div" style="">
                           <i class="material-icons float-left">vertical_align_bottom</i>
                           <span class="letter-size">Descargar planilla</span>

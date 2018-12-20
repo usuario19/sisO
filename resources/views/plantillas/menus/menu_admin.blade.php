@@ -70,7 +70,32 @@
               </div>
             </li>
           </ul>
-        <ul class="navbar-nav">
+          <ul class="navbar-nav text-center">
+              <li class="nav-item dropdown">
+                <a class="nav-link text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="row mx-auto">
+                      <span class="mx-auto row">
+                        <img class="rounded-circle d-block text-center" src="/storage/fotos/{{ Auth::User()->foto_admin }}" alt="" height=" 40px" width="38px">
+                        <i class="material-icons btn text-center float-left">
+                            keyboard_arrow_down
+                        </i>
+                      </span>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('administrador.show',Auth::User()->id_administrador) }}">Usuario: <strong>{{Auth::User()->nombre}} <br>{{Auth::User()->apellidos}}</strong></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href={{ route('administrador.edit',Auth::User()->id_administrador) }}>Editar perfil</a>
+                    
+                    <a class="dropdown-item" href={{ route('logout') }}>Cerrar Sesión</a>
+                  </div>
+                {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href={{ route('logout') }}>Logout</a>
+                  <a class="dropdown-item" href={{ route('administrador.edit',Auth::User()->id_administrador) }}>Editar perfil</a>
+                </div> --}}
+              </li>
+          </ul>  
+        {{--  <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ Auth::User()->nombre." ".Auth::User()->apellidos }}
@@ -80,7 +105,7 @@
               <a class="dropdown-item" href={{ route('logout') }}>Logout</a>
             </div>
           </li>
-        </ul>  
+        </ul>    --}}
     	  </div>
       </nav>
     </div>

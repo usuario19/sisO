@@ -26,7 +26,7 @@
                                          
                                           {!! Form::text('id_grupo', $grupo->id_grupo, ['id'=>'id_grupo']) !!}
                                           {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
-                                          {{-- {!! Form::text('id_fase', $fase->id_fase, []) !!} --}}
+                                          {!! Form::text('id_fase', $fase->id_fase, []) !!}
                                           {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
                                   </div>
                                   <div class="col-md-5">

@@ -59,7 +59,8 @@ class EncuentroController extends Controller
                 ->where('id_gestion',$id_gestion)
                 ->get()->last()->id_club_part;
             $tabla = DB::table('tabla_posicions')
-            ->where('id_club_part','=',$id_club_part)->get();
+            ->where('id_club_part',$id_club_part)
+            ->where('id_fase',$id_fase)->get();
             if ($tabla->last() != null) {                
                 $pjug = Tabla_Posicion::where('id_club_part','=',$id_club_part)->get()->last()->pj;
                 

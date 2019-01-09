@@ -53,7 +53,6 @@
 																				{!! Form::label('disciplina', 'Disciplinas', []) !!}
 																		</td>
 															</tr>
-															
 														</thead>
 														<tbody>
 															@foreach ($disciplinas as $disciplina)

@@ -47,4 +47,12 @@ class Gestion extends Model
         if($value !== null)
             $this->attributes['nombre_gestion']= trim(ucwords(strtolower($value)));
     }
+    // public function ver_estado_gestion($estado_gestion){
+    //     if ($estado_gestion = 1) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
 }

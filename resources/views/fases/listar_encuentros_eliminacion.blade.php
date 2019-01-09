@@ -85,6 +85,8 @@
         <div id="encuentros1" class="tab-pane fade">
             <h4>Lista de Encuentros:</h4>
             @include('encuentro.modal_agregar_encuentro_eliminacion') 
+            @include('encuentro.modal_agregar_resultado') 
+            @include('encuentro.modal_ver_resultado') 
             @foreach ($fechas as $fecha)
                <div>
                   <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}</h4>
@@ -112,9 +114,27 @@
                          <td>{{ $encuentro->hora}}</td>
                          <td>{{ $encuentro->centro->ubicacion_centro}}</td>
                          <td>{{ $encuentro->detalle}}</td>
-                        <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">delete</i></a></td>
-                         <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultado" class="material-icons delete_button">collections_bookmark</i></a></td>
-                       </tr>
+                          <td>
+                              @if ($encuentro->tiene_resultado($encuentro->id_encuentro) == 1)
+
+                              <a href=" " onclick="VerResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
+                                  <i title="Ver resultados" class="material-icons delete_button button_redirect">
+                                    collections_bookmark
+                                  </i>
+                                </a>
+                              @else
+                              <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
+                                delete</i></a>
+                              
+                                <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                                  <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                    collections_bookmark
+                                  </i>
+                                </a>
+                              @endif
+                          </td>
+                            
+                        </tr>
                      @endforeach            
                    </tbody>
                </table>

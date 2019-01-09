@@ -10,14 +10,13 @@
 
 @section('content')
 <div class="container">
-   
     <div class="card">
         <div class="card-header">
             <table class="table table-sm table-bordered" style="margin: 0%">
                 <thead>
                     <th>
-                        <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                            <h4 class="" style="font-size: 18px">DISICPLINAS PARTICIPANTES</h4></td>
+                        <div class=" container col-md-12 text-center" style="padding: 10px 0px">
+                            <h4 class="" style="font-size: 18px">DISCIPLINAS PARTICIPANTES</h4>
                         </div>
                     </th>
                 </thead>
@@ -26,7 +25,7 @@
                 <td>
                 <div style="float: left;" class="form-group col-md-12">
                     {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-                </div>
+                </div> </td>
                 
                 </tr>
             </tbody>
@@ -57,13 +56,10 @@
                   </tbody>
               </table>
           </div>
-            
+          {{ $disciplinas->links() }}
         </div>
       </div>
-  
- {{ $disciplinas->links() }}
 </div>
-
 @endsection
 @section('scripts')
   {!! Html::script('/js/filas.js') !!}

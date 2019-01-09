@@ -24,12 +24,12 @@ class FechaController extends Controller{
 		$fechas_grupos->id_grupo= $request->get('id_grupo');
 		$fechas_grupos->save();
 
-		$datos = Fecha::all();
-		return response()->json(
-			$datos->toArray()
-		);
+		//$datos = Fecha::all();
+		// return response()->json(
+		// 	$datos->toArray()
+		// );
 
-		//return redirect()->back();
+		return redirect()->back();
 	}
 	public function store_fecha_eliminacion(request $request){
 		

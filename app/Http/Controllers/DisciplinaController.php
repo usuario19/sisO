@@ -98,6 +98,7 @@ class DisciplinaController extends Controller
                             'foto_disc'=>$nombre_foto,
                             'categoria'=>$request->get('categoria'),
                             'reglamento_disc'=>$nombre_reglamento,
+                            'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]); 
             }
@@ -107,6 +108,7 @@ class DisciplinaController extends Controller
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'foto_disc'=>$nombre_foto,
                             'categoria'=>$request->get('categoria'),
+                            'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]);  
             }                  
@@ -130,6 +132,7 @@ class DisciplinaController extends Controller
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'reglamento_disc'=>$nombre_reglamento,
                             'categoria'=>$request->get('categoria'),
+                            'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]); 
             }
@@ -138,6 +141,7 @@ class DisciplinaController extends Controller
                     ->where('id_disc', $id)
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'categoria'=>$request->get('categoria'),
+                            'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]);  
             }     

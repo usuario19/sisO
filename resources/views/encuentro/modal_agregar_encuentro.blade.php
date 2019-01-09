@@ -79,7 +79,6 @@
                            </div>
                          </div>
  {!! Form::close() !!}
- 
  @section('scripts')
    {!! Html::script('/js/cargar_contrincante_encuentro.js') !!}
 @endsection

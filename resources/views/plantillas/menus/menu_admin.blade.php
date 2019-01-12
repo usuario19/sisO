@@ -71,6 +71,11 @@
               <a class="nav-link" href="{{ route('lugares.index') }}">
                 lugares
               </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('lugares.index') }}">
+                avisos
+              </a>
           </li> 
 
           </ul>

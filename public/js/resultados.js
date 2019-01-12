@@ -1,13 +1,16 @@
-var MostrarResultado = function(id_encuentro) {
+function MostrarResultado(id_encuentro) {
     var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_ajax";
     $.get(route, function(data) {
-        $i = 0;
-        array.forEach(dara => {
-            $("#id_encuentro_club_part").val(data.id_encuentro_club_part);
-            //alert("/storage/logos/"+data.logo);
-            $("#nombre_club".$i).val(data.nombre_club);
-            $("#puntos_club".$i).val(data.puntos);
-            $("#observ_club".$i).val(data.observacion);
+        var i = 1;
+        $(data).each(function(key, value) {
+            $("#id_encuentro" + i).val(value.id_encuentro);
+            $("#id_encuentro_club_part" + i).val(value.id_encuentro_club_part);
+            // alert("#nombre_club"+i);
+            $("#nombre_club" + i).val(value.nombre_club);
+            $("#id_club" + i).val(value.id_club);
+            $("#puntos" + i).val(value.puntos);
+            $("#observacion" + i).val(value.observacion);
+            i++;
         });
     });
 }

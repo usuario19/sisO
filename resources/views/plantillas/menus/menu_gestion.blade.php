@@ -5,54 +5,64 @@
 @endsection
 
 @section('submenu')
-<div class="container">
-    <div class="content">
+<div class="container"> 
+ {{--  <div class="content">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ route('gestion.index') }}">Gestiones</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $gestion->nombre_gestion }}</li>
             </ol>
           </nav>
-      </div>
-      
-      <div class="content">
-            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <i class="material-icons">
-                      settings
-                      </i>
-              </button>
-      
-              <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-      
-              <ul class="navbar-nav mr-auto menu-nav">
-                <li class="nav-item active">
-                   <a class="nav-item nav-link text-white" href="{{ route('gestion.configurar',$gestion->id_gestion) }}">Configuracion</a>
-                </li>
-      
-                <li class="nav-item">
-                 <a class="nav-item nav-link text-white" href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}">Disciplinas</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-item nav-link text-white" href="{{ route('gestion.clubs',$gestion->id_gestion) }}">Inscripcion</a>
-                </li>
-                
-                <li class="nav-item">
-                  <a class="nav-item nav-link text-white" href="{{ route('gestion.listar_clubs',$gestion->id_gestion) }}">Clubs</a>
-                </li> 
-      
-                <li class="nav-item">
-                   <a class="nav-item nav-link text-white" href="{{ route('gestion.clasificacion',$gestion->id_gestion) }}">Clasificacion</a>
-                </li> 
-      
-                <li class="nav-item">
-                  <a class="nav-item nav-link text-white" href="{{ route('gestion.resultados',$gestion->id_gestion) }}">Resultados</a>
-                </li> 
-              </ul>  
-              </div>
-            </nav>
-      </div>
-</div>
+      </div>   --}}
+    
+      {!! Html::style('/css/estilo_menu_vertical.css') !!}
+      {{--  {!! Html::style('/css/bootstrap.min.css') !!}  --}}
 
-@endsection
+<nav id = "menu_lateral">
+<ul class="nav flex-column">
+    <li id="cabecera">
+        <a href=""><span>{{ $gestion->nombre_gestion }}</span></a> 
+    </li>
+    <li>
+        <a href="{{ route('gestion.configurar',$gestion->id_gestion) }}"><i class="material-icons">
+                settings
+                </i>Configuracion</a> 
+    </li> 
+    <li>
+        <a href="{{ route('gestion.disciplinas',$gestion->id_gestion) }}"><i class="material-icons">
+                directions_bike
+                </i>Disciplinas</a>  
+    </li> 
+    <li>
+        <a href="{{ route('gestion.clubs',$gestion->id_gestion) }}"><i class="material-icons">
+                create
+                </i>Inscripcion</a> 
+    </li> 
+    <li>
+        <a href="{{ route('gestion.listar_clubs',$gestion->id_gestion) }}"><i class="material-icons">
+                group
+                </i>Clubs</a>
+    </li> 
+    <li>
+        <a href="{{ route('gestion.clasificacion',$gestion->id_gestion) }}"><i class="material-icons">
+                star
+                </i>Clasificacion</a>
+    </li> 
+    <li>
+        <a href="{{ route('gestion.resultados',$gestion->id_gestion) }}"><i class="material-icons">
+                poll
+                </i>Resultados</a>
+    </li>
+</ul>
+</nav>
+</div>
+<script>
+    $(document).ready(function(){
+        
+        $('#submenu li a').on('click', function(e){
+            $('#submenu').removeClass('in');
+        });
+        
+     });
+</script>
+@endsection 

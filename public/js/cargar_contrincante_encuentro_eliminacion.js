@@ -1,9 +1,10 @@
-function cargarContrincantes() {
+function cargarContrincantesEliminacion() {
     var id_club1 = $('#club1').val();
-    var id_grupo = $('#id_grupo').val();
+    var id_fase = $('#id_fase').val();
+    //alert(id_fase);
     // alert(id_grupo);
     //peticion ajax
-    $.get('/encuentro/' + id_club1 + "/" + id_grupo + '/select_contrincante', function(data) {
+    $.get('/encuentro/' + id_club1 + "/" + id_fase + '/select_contrincante_eliminacion', function(data) {
         //alert(data[0]);
         $('#club2').empty();
         //var html_club2 = '<option value="">seleccione equip1</option>';

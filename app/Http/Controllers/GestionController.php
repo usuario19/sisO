@@ -131,6 +131,8 @@ class GestionController extends Controller
                 'fecha_fin' => $request->get('fecha_fin'),
                 'desc_gest' => $request->get('descripcion'),
                 'sede' => $request->get('sede'),
+                'estado_gestion' => $request->get('estado_gestion'),
+                'periodo_inscripcion' => $request->get('periodo_inscripcion')
             ]);
 
         return redirect()->back();

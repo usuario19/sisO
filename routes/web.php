@@ -383,6 +383,18 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@eliminacion_encuentro_competicion',
 		'as'=>'fase.eliminacion_encuentro_competicion'
 	]);
+	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/clubs_eliminacion_competicion',[
+		'uses'=>'FaseController@clubs_eliminacion_competicion',
+		'as'=>'fase.clubs_eliminacion_competicion'
+	]);
+	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/fechas_eliminacion_competicion',[
+		'uses'=>'FaseController@fechas_eliminacion_competicion',
+		'as'=>'fase.fechas_eliminacion_competicion'
+	]);
+	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/encuentros_eliminacion_competicion',[
+		'uses'=>'FaseController@encuentros_eliminacion_competicion',
+		'as'=>'fase.encuentros_eliminacion_competicion'
+	]);
 	Route::post('fase/store_club_eliminacion',[
 		'uses'=>'FaseController@store_club_eliminacion',
 		'as'=>'fase.store_club_eliminacion'
@@ -423,6 +435,18 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('grupo/{id}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs',[
 		'uses'=>'GrupoController@listar_clubs',
 		'as'=>'grupo.listar_clubs'
+	]);
+	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/clubs_grupo_competicion',[
+		'uses'=>'GrupoController@clubs_grupo_competicion',
+		'as'=>'grupo.clubs_grupo_competicion'
+	]);
+	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/fechas_grupo_competicion',[
+		'uses'=>'GrupoController@fechas_grupo_competicion',
+		'as'=>'grupo.fechas_grupo_competicion'
+	]);
+	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/encuentros_grupo_competicion',[
+		'uses'=>'GrupoController@encuentros_grupo_competicion',
+		'as'=>'grupo.encuentros_grupo_competicion'
 	]);
 	Route::post('grupo/store_club',[
 		'uses'=>'GrupoController@store_club',

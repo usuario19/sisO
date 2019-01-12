@@ -68,8 +68,7 @@
       }
      </script> -->
     @yield('scripts')
-
-
+    </body>
 <footer>
   <br><br>
   <div class="container-fluid navbar navbar-light bg-light">

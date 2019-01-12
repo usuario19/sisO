@@ -58,4 +58,13 @@ class Encuentro extends Model
             ->get();
         return $participantes;
     }
+    public function tiene_resultado($id_encuentro){
+        $res = Encuentro_Club_participacion::where('id_encuentro',$id_encuentro)->get()->last();
+        if ($res->resultado == null) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
 }

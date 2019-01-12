@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>'encuentro.store_eliminacion','method' => 'POST']) !!}
+{!! Form::open(['route'=>'encuentro.store','method' => 'POST']) !!}
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEncuentro">
         Programar encuentro
     </button>
@@ -21,7 +21,7 @@
                     <div style="display: none">                 
                         {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                         {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
-                        {{-- {!! Form::text('id_fase', $fase->id_fase, ['id'=>'id_fase']) !!} --}}
+                        {!! Form::text('id_fase', $fase->id_fase, ['id'=>'id_fase']) !!}
                     </div>
                     <div class="col-md-5">
                         {!! Form::select('id_club1', $clubsParaEncuentro, null,['onchange'=>'cargarContrincantesEliminacion()','id'=>'club1','placeholder'=>'seleccione','class'=>'form-control']) !!}
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                   {{--   <div class="col-md-6">
+                   <div class="col-md-6">
                         {!! Form::label('ubicacion', 'Ubicacion', []) !!}
                         {!! Form::select('id_centro',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}          
                     </div>
@@ -71,5 +71,5 @@
  {!! Form::close() !!}
  
  @section('scripts')
-   {!! Html::script('/js/cargar_contrincante_encuentro.js') !!}
+   {!! Html::script('/js/cargar_contrincante_encuentro_eliminacion.js') !!}
 @endsection

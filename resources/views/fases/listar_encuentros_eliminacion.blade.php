@@ -18,6 +18,16 @@
         </ol>
       </nav>
 </div>
+<div class="dropdown container">
+  <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Configuracion
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{{ route('grupo.clubs_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Clubs</a>
+    <a class="dropdown-item" href="{{ route('grupo.fechas_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Fechas</a>
+    <a class="dropdown-item" href="{{ route('grupo.encuentros_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Encuentros</a>
+  </div>
+</div> 
 <div class="container"> 
     <ul id="tabsJustified" class="nav nav-tabs">
         <li class="nav-item">
@@ -85,6 +95,8 @@
         <div id="encuentros1" class="tab-pane fade">
             <h4>Lista de Encuentros:</h4>
             @include('encuentro.modal_agregar_encuentro_eliminacion') 
+            @include('encuentro.modal_agregar_resultado') 
+            @include('encuentro.modal_ver_resultado') 
             @foreach ($fechas as $fecha)
                <div>
                   <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}</h4>
@@ -112,9 +124,27 @@
                          <td>{{ $encuentro->hora}}</td>
                          <td>{{ $encuentro->centro->ubicacion_centro}}</td>
                          <td>{{ $encuentro->detalle}}</td>
-                        <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">delete</i></a></td>
-                         <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultado" class="material-icons delete_button">collections_bookmark</i></a></td>
-                       </tr>
+                          <td>
+                              @if ($encuentro->tiene_resultado($encuentro->id_encuentro) == 1)
+
+                              <a href=" " onclick="VerResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
+                                  <i title="Ver resultados" class="material-icons delete_button button_redirect">
+                                    collections_bookmark
+                                  </i>
+                                </a>
+                              @else
+                              <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
+                                delete</i></a>
+                              
+                                <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                                  <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                    collections_bookmark
+                                  </i>
+                                </a>
+                              @endif
+                          </td>
+                            
+                        </tr>
                      @endforeach            
                    </tbody>
                </table>

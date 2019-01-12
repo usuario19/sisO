@@ -14,6 +14,7 @@
        <ol class="breadcrumb">
          <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
          <li class="breadcrumb-item"><a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">Fases</a></li>
+         <li class="breadcrumb-item active" aria-current="page">{{ $fase->nombre_fase }}</li>
          <li class="breadcrumb-item"><a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">Grupos</a></li>         
          <li class="breadcrumb-item active" id="id_grupo" value="{{ $grupo->id_grupo }}"  aria-current="page">{{ $grupo->nombre_grupo }}</li>
        </ol>
@@ -93,6 +94,7 @@
       <h4>Lista de Encuentros:</h4>
       @include('encuentro.modal_agregar_encuentro')     
       @include('encuentro.modal_agregar_resultado')     
+      @include('encuentro.modal_ver_resultado')     
  
     @foreach ($fechas as $fecha)
        <div>
@@ -122,16 +124,25 @@
                  <td>{{ $encuentro->hora}}</td>
                  <td>{{ $encuentro->centro->ubicacion_centro}}</td>
                  <td>{{ $encuentro->detalle}}</td>                 
-                 <td><a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}" data-toggle="modal" data-target="#modalEliminar"><i title="Eliminar" class="material-icons delete_button">
-                    delete</i></a></td>
                  <td>
                  {{--  <td><a href="{{ route('encuentro.mostrar_resultado',$encuentro->id_encuentro) }}"><i title="Resultados" class="material-icons delete_button">
                   collections_bookmark</i></a>  --}}
-                  <a href=" " onclick="MostrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
-                    <i title="Resultados" class="material-icons delete_button button_redirect">
-                      collections_bookmark
-                     </i>
-                </a>
+                  @if ($encuentro->tiene_resultado($encuentro->id_encuentro) == 1)
+                    <a href=" " onclick="VerResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
+                      <i title="Ver resultados" class="material-icons delete_button button_redirect">
+                        collections_bookmark
+                      </i>
+                    </a>
+                  @else
+                  <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
+                    delete</i></a>
+                 
+                    <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                      <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                        collections_bookmark
+                      </i>
+                    </a>
+                  @endif
                     {{--  <button data-toggle="modal" data-target="#modalResultado" style="padding: 0%"><i title="Resultados" class="material-icons delete-button">collections_bookmark</i></button>  --}}
                 </td>
                </tr>
@@ -162,23 +173,7 @@
       </div>
     </div>
   </div>
-  <script>
-    var MostrarResultado = function(id_encuentro) {
-      var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_ajax";
-      $.get(route, function(data) {
-          var i = 1;
-          $(data).each(function(key,value){
-              $("#id_encuentro"+i).val(value.id_encuentro);
-              $("#id_encuentro_club_part"+i).val(value.id_encuentro_club_part);
-             // alert("#nombre_club"+i);
-              $("#nombre_club"+i).val(value.nombre_club);
-              $("#puntos"+i).val(value.puntos);
-              $("#observacion"+i).val(value.observacion);
-              i++;
-          });
-      });
-  }
-  </script>
+ 
 @endsection
   @section('scripts')
      {!! Html::script('/js/filtrar_por_nombre.js') !!}

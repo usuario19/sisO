@@ -58,7 +58,7 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{{ route('lugares.index') }}">
+              <a class="nav-link" href="{{ route('aviso.index') }}">
                 avisos
               </a>
           </li> 

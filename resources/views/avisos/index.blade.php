@@ -22,7 +22,7 @@
                     </div>
                     <div style="float: left;" class="form-group col-md-2">
                             
-                            @include('avisos.modal_agregar_aviso')
+                           <a href="{{ route('aviso.create') }}">Nuevo aviso</a>
                     </div>
                         {{--  <button type="button" class="btn   btn-primary" data-toggle="modal" data-target="#modal">Agregar</button></div>  --}}
                 </td>
@@ -53,35 +53,7 @@
                            $i=1;
                        @endphp
            
-                       @foreach($datos as $dato)
                        
-                           <tr>
-                           <td>{{$i}}{{-- {{ $disciplina->id_disc}} --}}</td>
-           
-                           <td>{{ $dato->nombre_centro}}</td>
-                            <td><a href="{{ $dato->ubicacion_centro}}">
-                                    <i class="material-icons float-left">location_on</i>
-                                    <span class="letter-size">{{$dato->nombre_centro}}</span>
-                                </a>
-                            </td>
-                                <td></td>
-                            
-                            <td style="width: 70px"><a{{--   onclick="MostrarDisc({{ $disciplina->id_disc }});"  --}}  class="" data-toggle="modal" data-target="#modalEditDisc">
-                                <i title="Editar" class="material-icons delete_button button_redirect">
-                                    edit
-                                 </i></a></td>
-        
-                            <td style="width: 70px">
-                                <a href="{{ route('centro.delete',$dato->id_centro) }}" class="">
-                                    <i title="Eliminar" class="material-icons delete_button button_redirect">
-                                            delete
-                                         </i></td>
-                           
-                           </tr>
-                           @php
-                           $i++;
-                           @endphp
-                       @endforeach
                        
                        </tbody>
                    </table>

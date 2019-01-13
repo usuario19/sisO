@@ -38,6 +38,9 @@ class Disciplina extends Model
     public function club_participaciones(){
         return $this->hasMany('App\Models\Club_Participacion','id_disc');  
     }
+    public function avisos(){
+        return $this->hasMany('App\Models\Aviso','id_disc');  
+    }
 
 
 

@@ -523,6 +523,16 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@select_contrincante_eliminacion',
 		'as'=>'encuentro.select_contrincante_eliminacion'
 	]);
+
+	//Avisos
+	Route::get('avisos',[
+		'uses'=>'AvisoController@index',
+		'as'=>'aviso.index'
+	]);
+	Route::get('avisos/nuevo_aviso',[
+		'uses'=>'AvisoController@create',
+		'as'=>'aviso.create'
+	]);
 });
 
 //COORDINADOR

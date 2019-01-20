@@ -21,6 +21,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^11.2.0",
         "jscs": "^3.0.7",
         "sweetalert2": "^7.26.14"
     }

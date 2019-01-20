@@ -533,6 +533,15 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'AvisoController@create',
 		'as'=>'aviso.create'
 	]);
+	Route::post('avisos',[
+		'uses'=>'AvisoController@store',
+		'as'=>'aviso.store'
+	]);
+
+	Route::get('avisos/consultar/{id_gestion}/participacion',[
+		'uses'=>'AvisoController@consultar_participacion',
+		'as'=>'aviso.participaciones'
+	]);
 });
 
 //COORDINADOR

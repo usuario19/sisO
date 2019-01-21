@@ -45,12 +45,16 @@ class AvisoController extends Controller
     {
         //
         $texto = $request->contenido;
-        echo $texto;
+        $texto1 = "<img ";
+        $texto2 = "<img class='img-fluid mx-auto' ";
+        $contenido = str_replace($texto1, $texto2, $texto);
+        /* echo $contenido; */
 
-        /* $datos = new Aviso($request->all());
+        $datos = new Aviso($request->all());
+        $datos->contenido = $contenido;
         $datos->save();
         flash('Se registro exitosamente el nuevo aviso.')->success()->important();
-            return redirect()->route('aviso.index'); */
+            return redirect()->route('aviso.index');
     }
 
     /**

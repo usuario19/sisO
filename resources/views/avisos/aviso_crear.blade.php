@@ -55,7 +55,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     {!! Form::label('fecha_ini_aviso', 'Fecha de inicio *', []) !!}
-                    {!! Form::date('fecha_ini_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                    {!! Form::datetime('fecha_ini_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group col-md-6">
                     {!! Form::label('fecha_fin_aviso', 'Fecha de Fin', []) !!}

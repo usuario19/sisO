@@ -60,7 +60,7 @@
                         <i title="Editar" class="material-icons delete_button button_redirect">
                             edit
                          </i>
-                    </a>
+                      </a>
                     </td>
                     <td class="text-center" style="width: 100px">
                     

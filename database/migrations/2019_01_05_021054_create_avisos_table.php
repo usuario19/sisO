@@ -16,9 +16,8 @@ class CreateAvisosTable extends Migration
         Schema::create('avisos', function (Blueprint $table) {
             $table->increments('id_aviso');
             $table->string('titulo');
-            $table->date('fecha_ini_aviso');
-            $table->date('fecha_fin_aviso');
-            $table->string('imagen_aviso')->nullable();
+            $table->timestamp('fecha_ini_aviso');
+            $table->date('fecha_fin_aviso')->nullable();
             $table->text('contenido');
             $table->integer('id_administrador')->unsigned();
             $table->foreign('id_administrador')->references('id_administrador')->on('administradores')->onDelete('cascade');

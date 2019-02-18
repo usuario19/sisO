@@ -375,9 +375,22 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@listar_grupos',
 		'as'=>'fase.listar_grupos'
 	]);
+	
 	Route::get('fase/{id_fase}/{id_gestion}/{id_disc}/eliminacion_encuentro',[
 		'uses'=>'FaseController@eliminacion_encuentro',
 		'as'=>'fase.eliminacion_encuentro'
+	]);
+	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/clubs_eliminacion_equipo',[
+		'uses'=>'FaseController@clubs_eliminacion_equipo',
+		'as'=>'fase.clubs_eliminacion_equipo'
+	]);
+	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/fechas_eliminacion_equipo',[
+		'uses'=>'FaseController@fechas_eliminacion_equipo',
+		'as'=>'fase.fechas_eliminacion_equipo'
+	]);
+	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/encuentros_eliminacion_equipo',[
+		'uses'=>'FaseController@encuentros_eliminacion_equipo',
+		'as'=>'fase.encuentros_eliminacion_equipo'
 	]);
 	Route::get('fase/{id_fase}/{id_gestion}/{id_disc}/eliminacion_encuentro_competicion',[
 		'uses'=>'FaseController@eliminacion_encuentro_competicion',
@@ -432,9 +445,21 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@mostrar_grupos',
 		'as'=>'grupo.mostrar_grupos'
 	]);
-	Route::get('grupo/{id}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs',[
+	Route::get('grupo/{id_grupo}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs',[
 		'uses'=>'GrupoController@listar_clubs',
 		'as'=>'grupo.listar_clubs'
+	]);
+	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/clubs_grupo_equipo',[
+		'uses'=>'GrupoController@clubs_grupo_equipo',
+		'as'=>'grupo.clubs_grupo_equipo'
+	]);
+	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/fechas_grupo_equipo',[
+		'uses'=>'GrupoController@fechas_grupo_equipo',
+		'as'=>'grupo.fechas_grupo_equipo'
+	]);
+	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/encuentros_grupo_equipo',[
+		'uses'=>'GrupoController@encuentros_grupo_equipo',
+		'as'=>'grupo.encuentros_grupo_equipo'
 	]);
 	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/clubs_grupo_competicion',[
 		'uses'=>'GrupoController@clubs_grupo_competicion',
@@ -503,17 +528,13 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@fixture',
 		'as'=>'encuentro.fixture'
 	]);
-	Route::get('encuentro/{id_encuentro}/mostrar_resultado',[
-		'uses'=>'EncuentroController@mostrar_resultado',
-		'as'=>'encuentro.mostrar_resultado'
-	]);
-	Route::get('encuentro/{id_encuentro}/mostrar_resultado_competicion',[
-		'uses'=>'EncuentroController@mostrar_resultado_competicion',
-		'as'=>'encuentro.mostrar_resultado_competicion'
-	]);
 	Route::post('encuentro/reg_resultado',[
 		'uses'=>'EncuentroController@reg_resultado',
 		'as'=>'encuentro.reg_resultado'
+	]);
+	Route::post('encuentro/reg_resultado_competicion',[
+		'uses'=>'EncuentroController@reg_resultado_competicion',
+		'as'=>'encuentro.reg_resultado_competicion'
 	]);
 	Route::get('encuentro/{id_club}/{id_grupo}/select_contrincante',[
 		'uses'=>'EncuentroController@select_contrincante',

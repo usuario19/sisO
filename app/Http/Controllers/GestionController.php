@@ -330,6 +330,7 @@ class GestionController extends Controller
         $disciplina = Disciplina::find($request->get('id_disciplina'));
         $id_fase = $request->get('id_fase');
         $fase = Fase::find($id_fase);
+        
         $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->orderBy('puntos','desc')->paginate(15);
         return view('gestiones.mostrar_resultados',compact('tabla_posiciones','gestion','disciplina','fase'));
     }

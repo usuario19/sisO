@@ -94,37 +94,16 @@ class GrupoController extends Controller
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase = Fase::find($id_fase);
-        
-        $fechasLista = DB::table('fechas')
-                    ->join('fechas_grupos','fechas.id_fecha','fechas_grupos.id_fecha')
-                    ->join('grupos','fechas_grupos.id_grupo','grupos.id_grupo')
-                    ->where('grupos.id_grupo','=',$id_grupo)
-                    ->select('fechas.*')->get();
-       
-        $fechasArreglo = array();
-        foreach ($fechasLista as $fecha) {
-            $fechasArreglo[$fecha->id_fecha] = ($fecha->id_fecha);
-        }
-        
-        //$fechas = Fecha::where('id_fase',$id_fase)->get();
-        //return dd($id_fecha);
-        $fechas = Fecha::whereIn('id_fecha',$fechasArreglo)->get();
-        //return dd($fechas);
-        //$fechas = Fecha::find($id_fecha)->get();
-        //$fechas = Fecha::where('id_fecha',$id_fecha)->get();
-        //return dd($fechas);
-        $fechas2 = array();
-        foreach ($fechas as $fecha) {
-            $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
-        }
-        $centrosLista = Centro::all();
-        $centros = array();
-        foreach ($centrosLista as $centro) {
-            $centros[$centro->id_centro] = $centro->nombre_centro;
-        }
-        //$fechas = DB::table('fechas');
         $grupo = Grupo::find($id_grupo);
-        //clubs inscritos en un grupo determinado dentro una fase
+     
+        return view('grupo.listar_grupo_equipos',compact('grupo','gestion','disciplina','fase'));
+    }
+    public function clubs_grupo_equipo($id_grupo, $id_fase,$id_disc,$id_gestion){
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+        $grupo = Grupo::find($id_grupo);
+
         $clubsInscritos = DB::table('grupos')
             ->join('grupo_club_participaciones','grupos.id_grupo','grupo_club_participaciones.id_grupo')
             ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
@@ -136,34 +115,83 @@ class GrupoController extends Controller
                         foreach ($clubsInscritos as $club) {
                             $lista[] = $club->id_club_part;
                         }
+        
+            //clubs inscritos en la disciplina
+            $clubsDisponibles = DB::table('clubs')
+                ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
+                ->where('club_participaciones.id_gestion','=',$id_gestion)
+                ->where('club_participaciones.id_disc','=',$id_disc)
+                ->whereNotIn('club_participaciones.id_club_part',$lista)
+                ->get();
+            //clubs inscritos en el grupo
+            $clubs = DB::table('grupos')
+                ->join('grupo_club_participaciones','grupos.id_grupo','=','grupo_club_participaciones.id_grupo')
+                ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
+                ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
+                ->where('grupos.id_grupo','=',$id_grupo)
+                ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
+                ->get();
+            return view('grupo.clubs_grupo_equipo',compact('clubs','clubsDisponibles','grupo','gestion','disciplina','fase'));
+            
+        
+    }
+    public function fechas_grupo_equipo($id_grupo, $id_fase,$id_disc,$id_gestion){
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+        $grupo = Grupo::find($id_grupo);
+
+        $fechas = DB::table('fechas')
+                    ->join('fechas_grupos','fechas.id_fecha','fechas_grupos.id_fecha')
+                    ->join('grupos','fechas_grupos.id_grupo','grupos.id_grupo')
+                    ->where('grupos.id_grupo','=',$id_grupo)
+                    ->select('fechas.*')->get();
+        return view('grupo.fechas_grupo_equipo',compact('grupo','gestion','disciplina','fase','fechas'));
+        
+    }
+    public function encuentros_grupo_equipo($id_grupo, $id_fase,$id_disc,$id_gestion){
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+        $grupo = Grupo::find($id_grupo);
+        //fechas del grupo
+        $fechasLista = DB::table('fechas')
+                    ->join('fechas_grupos','fechas.id_fecha','fechas_grupos.id_fecha')
+                    ->join('grupos','fechas_grupos.id_grupo','grupos.id_grupo')
+                    ->where('grupos.id_grupo','=',$id_grupo)
+                    ->select('fechas.*')->get();
+        //convertimos en arreglo para tener sus ids          
+        $fechasArreglo = array();
+        foreach ($fechasLista as $fecha) {
+            $fechasArreglo[$fecha->id_fecha] = ($fecha->id_fecha);
+        }
+        //buscamos esas fechas
+        $fechas = Fecha::whereIn('id_fecha',$fechasArreglo)->get();
+        //los convetimos en arreglo para el encuentro
+        $fechas2 = array();
+        foreach ($fechas as $fecha) {
+            $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
+        }
+        $centrosLista = Centro::all();
+        $centros = array();
+        foreach ($centrosLista as $centro) {
+            $centros[$centro->id_centro] = $centro->nombre_centro;
+        }
+        //clubs habilitados en el grupo para participar de los encuentros
         $clubsParticipantes = DB::table('grupo_club_participaciones')
             ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
             ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
             ->where('grupo_club_participaciones.id_grupo','=',$id_grupo)
             ->select('clubs.*')
             ->get()->toArray();
-
-        $clubsParaEncuentro = array();
-        foreach ($clubsParticipantes as $club) {
-            $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
-        }
-        $clubsDisponibles = DB::table('clubs')
-            ->join('club_participaciones','clubs.id_club','=','club_participaciones.id_club')
-            ->where('club_participaciones.id_gestion','=',$id_gestion)
-            ->where('club_participaciones.id_disc','=',$id_disc)
-            ->whereNotIn('club_participaciones.id_club_part',$lista)
-            ->get();
-       
-        $clubs = DB::table('grupos')
-            ->join('grupo_club_participaciones','grupos.id_grupo','=','grupo_club_participaciones.id_grupo')
-            ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
-            ->join('clubs','club_participaciones.id_club','=','clubs.id_club')
-            ->where('grupos.id_grupo','=',$id_grupo)
-            ->select('clubs.*','grupo_club_participaciones.id_club_part','grupos.id_grupo')
-            ->get();
-        $encuentros = Encuentro::all();
-        return view('grupo.listarClubs',compact('encuentros','clubs','clubsDisponibles','grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','centros'));
+            $clubsParaEncuentro = array();
+            foreach ($clubsParticipantes as $club) {
+                $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
+            }
+        return view('grupo.encuentros_grupo_equipo',compact('grupo','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro','centros'));
+        
     }
+
     public function select_contrincante_grupos($id_club,$id_grupo){
         $clubsInscritos = DB::table('grupo_club_participaciones')
              ->join('club_participaciones','grupo_club_participaciones.id_club_part','=','club_participaciones.id_club_part')
@@ -321,7 +349,7 @@ class GrupoController extends Controller
                 ->where('club_participaciones.id_disc',$id_disc)
                 ->where('grupo_club_participaciones.id_grupo',$id_grupo)
                 ->select('jugadores.*')->get();
-        return view('grupo.encuentros_grupo_competicion',compact('participantes','grupo','gestion','disciplina','fase','fechas2','fechas','encuentros','centros'));
+        return view('grupo.encuentros_grupo_competicion',compact('participantes','grupo','gestion','disciplina','fase','fechas2','fechas','centros'));
         
     }
 

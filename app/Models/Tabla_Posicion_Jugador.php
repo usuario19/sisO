@@ -10,8 +10,8 @@ class Tabla_Posicion_Jugador extends Model
 	protected $primaryKey = 'id_tabla_posicion_jugador';
     protected $fillable = [
         'id_seleccion',
-        'id_fase',
-        'id_disc'
+        'id_disc',
+        'id_fase'
     ];
     protected $hidden = ['remember_token'];
 }

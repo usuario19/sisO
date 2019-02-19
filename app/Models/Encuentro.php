@@ -29,7 +29,9 @@ class Encuentro extends Model
     public function encuentro_club_participaciones(){
     	return $this->hasMany('App\Models\Encuentro_Club_Participacion','id_encuentro');
     }
-    
+    public function encuentro_seleccion(){
+    	return $this->hasMany('App\Models\Encuentro_Seleccion','id_encuentro_seleccion');
+    }
     public function fecha(){
     	return $this->belongsTo('App\Models\Fecha','id_fecha');
     }

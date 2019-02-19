@@ -28,4 +28,32 @@
     <a class="dropdown-item" href="{{ route('fase.encuentros_eliminacion_equipo',[$fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Encuentros</a>
   </div>
 </div> 
+    <div class="card">
+          <div style="float: left;" class="form-row col-md-12 form-inline">
+              <h4>Lista de Clubs:</h4>
+              <button class="btn btn-primary " data-toggle="modal" data-target="#v">
+                  Agregar
+                </button>
+          </div>
+              @include('fases.modal_agregar_equipos_eliminacion') 
+              <table class="table table-condensed">
+                  <thead>
+                    <th width="50px">ID</th>
+                    <th>Logo</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                  </thead>
+                  <tbody>
+        @foreach($clubs as $club)
+          <tr>
+            <td>{{ $club->id_club }}</td>
+            <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
+            <td>{{ $club->nombre_club }}</td>
+            <td><a href="{{ route('fase.eliminar_club_eliminacion',[$fase->id_fase,$club->id_club_part]) }}"><i title="Eliminar" class="material-icons delete_button">delete</i></a></td>
+           
+          </tr>
+        @endforeach
+        </tbody>
+      </table>
+     </div>
 @endsection

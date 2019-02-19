@@ -21,7 +21,10 @@ class CreateTablaPosicionJugadorsTable extends Migration
             
             $table->integer('id_disc')->unsigned();
             $table->foreign('id_disc')->references('id_disc')->on('disciplinas')->onDelete('cascade');
+<<<<<<< HEAD
             
+=======
+>>>>>>> bc3c64aa194172058df79c76fe89128dc95de7ea
             $table->integer('id_fase')->unsigned();
             $table->foreign('id_fase')->references('id_fase')->on('fases')->onDelete('cascade');
             $table->timestamps();

@@ -10,9 +10,9 @@
                                 <span aria-hidden="true">&times;</span>
                               </button>
                         </div>
-                        <div class="container col-md-10">
+                        
                             <div class="modal-body">
-                                <div class="row">
+                                <div class="container col-md-12">
                                     <div class="form-group col-md-12">
                                       <div class="row">
                                           <div class="form-group col-md-6">
@@ -77,7 +77,6 @@
                               
                               
                              </div>
-                              </div>
                              </div>
                         </div>
 

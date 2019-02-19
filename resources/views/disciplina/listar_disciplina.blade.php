@@ -5,47 +5,47 @@
 @endsection
 
 @section('content')
+
 <div class="container">
-            <div class="container">
-                    <div class="form-row">
-                            <div class="form-group col-md-12">
-                              <table class="table table-sm table-bordered">
-                                  <thead>
-                                      <th>
-                                          <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                                              <h4 class="">DISCIPLINAS</h4></td>
-                                          </div>
-                                      </th>
-                                      </thead>
-                                  <tbody>
-                                  <tr> 
-                                    
-                                        @if(Auth::check() && Auth::user()->tipo == 'Administrador')
-                                        <td>
-                                            <div style="float: left;" class="form-group col-md-10">
-                                                {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-                                             </div>
-                                             <div style="float: left;" class="form-group col-md-2">
-                                                   
+        @if(Auth::check() && Auth::user()->tipo == 'Administrador')
+        @include('disciplina.modal_editar_disc')
+    @endif
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <th>
+                        <div class=" container col-md-10 text-center" style="padding: 10px 0px">
+                            <h4 class="">DISCIPLINAS</h4>
+                        </div>
+                    </th>
+                    </thead>
+                    <tbody>
+                        <tr> 
+                            @if(Auth::check() && Auth::user()->tipo == 'Administrador')
+                            <td>
+                                <div style="float: left;" class="form-group col-md-10">
+                                {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+                                </div>
+                                <div style="float: left;" class="form-group col-md-2">
                                                     @include('disciplina.modal_agregar_disc')
-                                             </div>
-                                                 {{--  <button type="button" class="btn   btn-primary" data-toggle="modal" data-target="#modal">Agregar</button></div>  --}}
-                                        </td>
-                                        @else
-                                        <td>
+                                </div>
+                            </td>
+                            @else
+                                <td>
                                             <div style="float: left;" class="form-group col-md-12">
                                                 {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                                             </div>
                                         </td>
-                                        @endif
+                             @endif
                                      
-                                  </tr>
-                                </tbody>
-                              </table>
+                        </tr>
+                    </tbody>
+               </table>
                               
-                            </div>
-                    </div>
             </div>
+        </div>
+            
                 <div class="card container">
             
                      <div class="card-body" style="padding: 10px">
@@ -105,13 +105,8 @@
                         
                     </div>
                    
-                </div>
-        </div>
-        @if(Auth::check() && Auth::user()->tipo == 'Administrador')
-                        @include('disciplina.modal_editar_disc')
-                    @endif
+    </div>
 </div>
-
 
 @endsection
 @section('scripts')

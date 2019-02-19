@@ -7,6 +7,16 @@
 
 @section('content')
 <div class="container-fluid" style="padding: 0%">
+  <div class="mx-auto col-md-11">
+    <div class="row">
+      <div class="col-md-10">
+        fixture
+      </div>
+      <div class="col-md-2">
+        avisos
+      </div>
+    </div>
+  </div>
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height: 500px; overflow: hidden">
         <div class="carousel-inner">
           <div class="carousel-item active">

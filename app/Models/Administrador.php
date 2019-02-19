@@ -38,7 +38,11 @@ class Administrador extends Authenticatable
     public function admin_clubs(){
 
         return $this->hasMany('App\Models\Admin_club','id_administrador');
-    } 
+    }
+    public function avisos(){
+
+        return $this->hasMany('App\Models\Aviso','id_administrador');
+    }
     
     public function setPasswordAttribute($value)
     {

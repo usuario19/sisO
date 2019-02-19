@@ -36,6 +36,9 @@ class Gestion extends Model
 
         return $this->hasMany('App\Models\Club_Participacion','id_gestion');  
     }
+    public function avisos(){
+        return $this->hasMany('App\Models\Aviso','id_gestion');  
+    }
 	public function setSedeAttribute($value)
     {
         if($value !== null)

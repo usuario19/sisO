@@ -5,7 +5,7 @@
             <a class="navbar-brand col-md-12" href={{url('/')}}>
               <div class="row">
                   <div class="col-xl-1 text-center float-left" style="padding:0% ;height: 60px"><img src="/storage/logos/abcd.jpg" height="60" class="d-inline-block align-top" alt=""></div>
-                  <div class="col-xl-5" style="padding:0%"><p class="title text-left" style="height: 60px; padding-block-start: 20px">OLIMPIADAS SI.T.UMSS</p></div>
+                  <div class="col-xl-5" style="padding:0%"><p class="title text-left" style="height: 60px; padding-block-start: 20px; padding-inline-start:50px">OLIMPIADAS SI.T.UMSS</p></div>
               </div>
               
             </a>

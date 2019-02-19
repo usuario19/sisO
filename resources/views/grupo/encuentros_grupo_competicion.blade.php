@@ -63,7 +63,7 @@
                     <a data-toggle="collapse" href={{ "#colapsado". $encuentro->id_encuentro }}  aria-expanded="false" aria-controls={{ "#colapsado". $encuentro->id_encuentro }}><i title="Descripcion" class="material-icons delete_button">
                         description</i></a>
                     
-                    @if ($encuentro->tiene_resultado_competicion($encuentro->id_encuentro) == 1)
+                  @if ($encuentro->tiene_resultado_competicion($encuentro->id_encuentro) == 1)
                     <a href=" " onclick="VerResultadoCompeticion({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
                       <i title="Ver resultados" class="material-icons delete_button button_redirect">
                         collections_bookmark

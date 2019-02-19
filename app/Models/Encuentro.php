@@ -69,4 +69,10 @@ class Encuentro extends Model
             return 1;
         }
     }
+    public function tiene_resultado_competicion($id_encuentro){
+        $res = Encuentro_Seleccion::where('id_encuentro',$id_encuentro)->get()->last();
+        if($res->posicion == null)
+            return 0;
+        else return 1;
+    }
 }

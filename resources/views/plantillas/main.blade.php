@@ -43,12 +43,13 @@
                   </button>
               </div>
       @endif
-   </div>
+  
    
 
     @yield('submenu')
     @yield('gestiones')
     @yield('content')
+    </div>
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}

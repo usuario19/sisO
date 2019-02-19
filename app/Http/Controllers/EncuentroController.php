@@ -206,14 +206,13 @@ public function reg_resultado_competicion(){
         ->get();
         return response()->json($data);
     }
-    public function mostrar_resultado__competicion_ajax($id_encuentro){
-        $data = DB::table('encuentros')
-        ->join('encuentro_seleccions','encuentros.id_encuentro','encuentro_seleccions.id_encuentro')
+    public function mostrar_resultado_competicion_ajax($id_encuentro){
+        $data = DB::table('encuentro_seleccions')
         ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
-        ->join('jugador_clubs','jugador_participaciones.id_jug_club','jugador_clubs.id_jug_club')
-        ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugadores')
-        ->join('clubs','jugador_clubs.id_jugador','clubs.id_jugador')
-        ->where('encuentros.id_encuentro',$id_encuentro)
+        ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+        ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+        ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+        ->where('encuentro_seleccions.id_encuentro',$id_encuentro)
         ->get();
         return response()->json($data);
     }

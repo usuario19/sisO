@@ -65,7 +65,7 @@
  {!! Form::close() !!}
  <script>
     var VerResultadoCompeticion = function(id_encuentro) {
-      var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_ajax";
+      var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_competicion_ajax";
       $.get(route, function(data) {
           var i = 1;
           $(data).each(function(key,value){

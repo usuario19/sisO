@@ -524,6 +524,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@mostrar_resultado_ajax',
 		'as'=>'encuentro.mostrar_resultado_ajax'
 	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_competicion_ajax',[
+		'uses'=>'EncuentroController@mostrar_resultado_competicion_ajax',
+		'as'=>'encuentro.mostrar_resultado_competicion_ajax'
+	]);
 	Route::get('encuentro/fixture',[
 		'uses'=>'EncuentroController@fixture',
 		'as'=>'encuentro.fixture'
@@ -553,6 +557,15 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('avisos/nuevo_aviso',[
 		'uses'=>'AvisoController@create',
 		'as'=>'aviso.create'
+	]);
+	Route::post('avisos',[
+		'uses'=>'AvisoController@store',
+		'as'=>'aviso.store'
+	]);
+
+	Route::get('avisos/consultar/{id_gestion}/participacion',[
+		'uses'=>'AvisoController@consultar_participacion',
+		'as'=>'aviso.participaciones'
 	]);
 });
 

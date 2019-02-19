@@ -34,15 +34,14 @@
         </div>
  {!! Form::close() !!}
  <script>
-    //$("#cardJugador").append("<div>Hello, Stack Overflow users</div>");
-    //$ (document.createElement ('div'));
     var RegistrarResultadoCompeticion = function(id_encuentro) {
       var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_competicion_ajax";
       $.get(route, function(data) {
           var i = 1;
           $(data).each(function(key,value){
               $("#cardJugador").append("<div>"+value.id_encuentro+"</div>");
-              $("#cardJugador").append("<input type='text'>");
+              $("#cardJugador").append("<input type='text' id='id_encuentro'.i>");
+              $("#")
               //$("#id_encuentro"+i).val(value.id_encuentro);
               //$("#id_encuentro_seleccion"+i).val(value.id_encuentro_seleccion);
               //$("#nombre_club"+i).val(value.nombre_club);

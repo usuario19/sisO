@@ -56,7 +56,7 @@
 </ul>
 </nav>
 </div>
-<script>
+<!-- <script>
     $(document).ready(function(){
         
         $('#submenu li a').on('click', function(e){
@@ -64,5 +64,5 @@
         });
         
      });
-</script>
+</script> -->
 @endsection 

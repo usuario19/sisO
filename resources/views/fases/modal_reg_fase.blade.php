@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>'fase.store','method' => 'POST' ,'enctype' => 'multipart/form-data'] ) !!}
+{!! Form::open(['route'=>'fase.store','method' => 'POST' ,'enctype' => 'multipart/form-data','id'=>'reg_fase'] ) !!}
 <div class="modal fade" id="modalFase" tabindex="-1" role="dialog" aria-labelledby="modalLabelFase" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -14,10 +14,17 @@
 
           <div class="form-group">
             {!! Form::label('nombre', 'Nombre', []) !!}
+            
             {!! Form::text('nombre', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+            <div id ="error_nombre" class="">
+              
+            </div>
           </div>
           <div class="form-group">
             {!! Form::label('tipo', 'Tipo', []) !!}
+            <div class="">
+              You must agree before submitting.
+            </div>
             <br>
             <div class="card">
               <div class="card-body">
@@ -50,3 +57,6 @@
   </div>
 </div>
 {!! Form::close() !!}
+
+   
+

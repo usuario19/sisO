@@ -29,7 +29,15 @@ class FaseController extends Controller
         return view('fases.reg_fase')->with('tipos', $tipos)->with('id_disc', $id_disc)->with('id_gestion', $id_gestion);
     }
     public function store(Request $request)
-    {
+    {   
+        $this->validate($request,[
+            
+            'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
+             
+            'tipo' =>'required',
+            
+            ]);
+
         $id_disc = $request->get('id_disc');
         $id_gestion = $request->get('id_gestion');
         $id_participacion = DB::table('participaciones')

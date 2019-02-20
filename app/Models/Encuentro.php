@@ -29,7 +29,9 @@ class Encuentro extends Model
     public function encuentro_club_participaciones(){
     	return $this->hasMany('App\Models\Encuentro_Club_Participacion','id_encuentro');
     }
-    
+    public function encuentro_seleccion(){
+    	return $this->hasMany('App\Models\Encuentro_Seleccion','id_encuentro_seleccion');
+    }
     public function fecha(){
     	return $this->belongsTo('App\Models\Fecha','id_fecha');
     }
@@ -66,5 +68,11 @@ class Encuentro extends Model
         else {
             return 1;
         }
+    }
+    public function tiene_resultado_competicion($id_encuentro){
+        $res = Encuentro_Seleccion::where('id_encuentro',$id_encuentro)->get()->last();
+        if($res->posicion == null)
+            return 0;
+        else return 1;
     }
 }

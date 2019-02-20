@@ -61,11 +61,35 @@ class FaseController extends Controller
     }
     //lista de encuentros y clubs inscritos
     public function eliminacion_encuentro($id_fase, $id_gestion, $id_disc)
-    {   $centros_lista = Centro::all();
-        $centros = array();
-        foreach($centros_lista as $centro){
-            $centros[$centro->id_centro] = $centro->nombre_centro;
-        }
+    {   
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+        return view('fases.listar_encuentros_eliminacion',compact('centros','clubs','clubsDisponibles','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro'));
+    }
+    public function clubs_eliminacion_equipo($id_fase, $id_disc, $id_gestion)
+    {   
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+        //clubs inscritos en esa fase
+        $clubs = DB::table('fases')
+            ->join('eliminaciones', 'fases.id_fase', '=', 'eliminaciones.id_fase')
+            ->join('club_participaciones', 'eliminaciones.id_club_part', '=', 'club_participaciones.id_club_part')
+            ->join('clubs', 'club_participaciones.id_club', '=', 'clubs.id_club')
+            ->where('eliminaciones.id_fase', '=', $id_fase)
+            ->get();
+        $clubsDisponibles = DB::table('clubs')
+            ->join('club_participaciones', 'clubs.id_club', '=', 'club_participaciones.id_club')
+            ->where('club_participaciones.id_gestion', '=', $id_gestion)
+            ->where('club_participaciones.id_disc', '=', $id_disc)
+            ->whereNotIn('clubs.id_club',$clubs->pluck('id_club')->toArray())
+            ->get();
+        return view('fases.clubs_eliminacion_equipo',compact('clubs','clubsDisponibles','gestion','disciplina','fase'));
+        
+    }
+    public function fechas_eliminacion_equipo($id_fase, $id_disc, $id_gestion)
+    {   
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase = Fase::find($id_fase);
@@ -75,7 +99,26 @@ class FaseController extends Controller
         foreach ($fechas as $fecha) {
             $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
         }
-        //clubs inscritos en esa fase
+        return view('fases.fechas_eliminacion_equipo',compact('gestion','disciplina','fase','fechas','fechas2'));
+
+    }
+    public function encuentros_eliminacion_equipo($id_fase, $id_disc, $id_gestion)
+    {   
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase = Fase::find($id_fase);
+
+        $centros_lista = Centro::all();
+        $centros = array();
+        foreach($centros_lista as $centro){
+            $centros[$centro->id_centro] = $centro->nombre_centro;
+        }
+        $fechas = Fecha::where('id_fase', '=', $id_fase)->get();
+
+        $fechas2 = array();
+        foreach ($fechas as $fecha) {
+            $fechas2[$fecha->id_fecha] = ($fecha->nombre_fecha);
+        }
         $clubs = DB::table('fases')
             ->join('eliminaciones', 'fases.id_fase', '=', 'eliminaciones.id_fase')
             ->join('club_participaciones', 'eliminaciones.id_club_part', '=', 'club_participaciones.id_club_part')
@@ -87,14 +130,8 @@ class FaseController extends Controller
         foreach ($clubs as $club) {
             $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
         }
-        $clubsDisponibles = DB::table('clubs')
-            ->join('club_participaciones', 'clubs.id_club', '=', 'club_participaciones.id_club')
-            ->where('club_participaciones.id_gestion', '=', $id_gestion)
-            ->where('club_participaciones.id_disc', '=', $id_disc)
-            ->whereNotIn('clubs.id_club',$clubs->pluck('id_club')->toArray())
-            ->get();
-        //$encuentros = Encuentro::all();
-        return view('fases.listar_encuentros_eliminacion',compact('centros','clubs','clubsDisponibles','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro'));
+        return view('fases.encuentros_eliminacion_equipo',compact('centros','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro'));
+
     }
     public function eliminacion_encuentro_competicion($id_fase, $id_gestion, $id_disc)
     { 

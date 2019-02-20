@@ -18,7 +18,7 @@ class Tabla_Posicion extends Model
     	'id_fase',
     ];
 	protected $hidden = ['remember_token'];
-	public function club(){
-		return $this->belongsTo('App\Models\Club','id_club');
+	public function club_participacion(){
+		return $this->belongsTo('App\Models\Club_Participacion','id_club_part');
    }
 }

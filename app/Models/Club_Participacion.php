@@ -33,4 +33,7 @@ class Club_Participacion extends Model{
     public function encuentro_club_participaciones(){
          return $this->hasMany('App\Models\Encuentro_Club_Participacion','id_club_part');
     }
+    public function tabla_posiciones(){
+     return $this->hasMany('App\Models\Tabla_Posicion','id_tabla_posicion');
+}
 }

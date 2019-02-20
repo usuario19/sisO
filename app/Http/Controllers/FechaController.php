@@ -38,12 +38,12 @@ class FechaController extends Controller{
 		$fecha->id_fase = $request->get('id_fase');
 		$fecha->save();
 		
-		$datos = Fecha::all();
-		return response()->json(
-			$datos->toArray()
-		);
+		// $datos = Fecha::all();
+		// return response()->json(
+		// 	$datos->toArray()
+		// );
 
-		//return redirect()->back();
+		return redirect()->back();
     }
     public function listar_fechas($id_fase,$id_gestion,$id_disc){
         $gestion = Gestion::find($id_gestion);

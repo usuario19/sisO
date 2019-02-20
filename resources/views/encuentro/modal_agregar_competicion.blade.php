@@ -36,15 +36,14 @@
                               </div>
                               <div class="form-row">
                                   <div class="col-md-6">
-                                    {!! Form::label('fecha', 'Fecha', []) !!}
-                                      {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
-                                    
-                                  </div>
+                                    {!! Form::label('fechas', 'Fecha', []) !!}
+											              {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                              </div>
                                   <div class="col-md-6">
                                       {!! Form::label('hora', 'Hora', []) !!}
                                       {!! Form::time('hora', \Illuminate\Support\Carbon::now()->format('H:i'), ['class'=>'form-control']) !!}
-                                   
                                 </div>
+                                
                                   </div>
                                 <div class="form-row">
                                   <div class="col-md-12">

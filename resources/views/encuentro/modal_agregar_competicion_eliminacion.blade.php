@@ -35,7 +35,7 @@
                               </div>
                               <div class="form-row">
                                   <div class="col-md-6">
-                                    {!! Form::label('fecha', 'Fecha', []) !!}
+                                    {!! Form::label('fechas', 'Fecha', []) !!}
                                       {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
                                     
                                   </div>

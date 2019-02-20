@@ -45,7 +45,7 @@
                       @foreach ($disciplinas as $item)
                       <div class="dropdown-divider"></div>
                         <li class="nav-item" style="border-block-end: 0px solid #9090AD">
-                          <a class="disc-nlink nav-link" href="#"><span style="padding-left: 40px">{{ $item->nombre_disc." ".$item->nombre_categoria($item->categoria) }}</span><span class="sr-only">(current)</span></a>
+                          <a class="disc-nlink nav-link" href="{{ route('principal.index_partidos',[$item->id_disc]) }}"><span style="padding-left: 40px">{{ $item->nombre_disc." ".$item->nombre_categoria($item->categoria) }}</span><span class="sr-only">(current)</span></a>
                         </li>
                       @endforeach
                     </ul>
@@ -59,20 +59,22 @@
             <div class="form-row" style="padding: 0px">
               @php
                 $date = new Date($fecha);
-                $fecha = $date->format('l, j F Y');
+                $fecha_formato = $date->format('l, j F Y');
               @endphp
               <div class="form-group">
-                <a href="#" class="button_change float-left">
+                <button id="yesterday" class="button_change float-left">
                   <i class="material-icons">
                     chevron_left
                     </i>
-                </a>
-                <h5 style="padding-top: 5px; min-width: 200px; width: 230px; max-width: 250px" class="letter-size text-capitalize text-center float-left">{{ $fecha }}</h5>
-                <a href="#" class="button_change float-left">
+                </button>
+                
+                <h5 id="fecha_title" title="Ver Partidos" style="padding-top: 5px; min-width: 200px; width: 230px; max-width: 250px" class="letter-size text-capitalize text-center float-left">{{ $fecha_formato }}</h5>
+                
+                <button id="tomorrow" class="button_change float-left">
                   <i class="material-icons">
                     chevron_right
                     </i>
-                </a>
+                </button>
               </div>
               <div class="form-group">
                 <div class="content_home">
@@ -82,7 +84,8 @@
                   {{--  <i class="icon_fecha float-right material-icons" style="margin-top: 10px;font-size: 24px;color: #619DDB">
                       keyboard_arrow_right
                   </i>  --}}
-                  <input type="text" name="" id="fecha">
+                  <input type="text" name="" value="{{ $fecha }}" id="fecha">
+                  <input class="d-none" type="text" name="" value="{{ $disc }}" id="disc">
                 </div>
               </div>
             </div>
@@ -91,7 +94,7 @@
           </div>
           
         </div>
-        <div class="table-responsive-xl">
+        <div id="partidos_hoy"  class="table-responsive-xl">
           <div class="calendario form-row col-md-12">
             @if ($disciplinas->where('id_disc',$disc)->first()->tipo == 0)
             {{--  EQUIPO  --}}
@@ -106,12 +109,12 @@
                           </h5>
                         </div>
                         <div class="col-md-6 col-4">
-                          <a href="" class="">
-                            <i class="material-icons">
+                          <button href="" class="btn btn-link">
+                            <i class="{{--  d-md-block float-left  --}} material-icons">
                                 insert_chart_outlined
                             </i>
-                            <span class="float-right d-md-block d-none">Tabla de posiciones</span>
-                          </a>
+                            <span class="{{--  float-left d-md-block d-none  --}}">Tabla de posiciones</span>
+                          </button>
                         </div>
                       </div>
                     </th>
@@ -133,13 +136,29 @@
                         </div>
                       </td>
                       <td class="puntos">
-                        <span class="puntos">{{ 1 }}</span>
+                        @if ($item->first()->puntos)
+                        <span class="puntos">{{ $item->first()->puntos }}</span>
+                       
+                        @else
+                            
+                        <span class="puntos">{{ " " }}</span>
+                        
+                        @endif
+                        
                       </td>
                       <td class="puntos">
                             <span class="vs">{{ " vs " }}</span>
                       </td>
                       <td class="puntos">
-                        <span class="puntos">{{ 2 }}</span>
+                          @if ($item->first()->puntos)
+                          <span class="puntos">{{ $item->last()->puntos }}</span>
+                         
+                          @else
+                              
+                          <span class="puntos">{{ " " }}</span>
+                          
+                          @endif
+                        
                       </td>
                       <td style="max-width: 250px">
                         <div class="form-row">
@@ -252,4 +271,5 @@
     {!! Html::script('/jquery-ui/external/jquery/jquery.js') !!}
     {!! Html::script('/jquery-ui/jquery-ui.js') !!}
     {!! Html::script('/js/resultados_home.js') !!}
+    {!! Html::script('/js/fechas_partidos.js') !!}
 @endsection

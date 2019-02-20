@@ -20,6 +20,16 @@ Route::group(['middleware' => ['web','guest']],function(){
 	/* function () {
 		return view('home'); */
 	 );
+	 Route::get('encuentro/{disc}',[
+		'uses'=>'PrincipalController@index',
+		'as'=>'principal.index_partidos'] 
+	 );
+	 Route::post('partidos',[
+		'uses'=>'PrincipalController@partidos_hoy',
+		'as'=>'principal.partidos'] 
+	/* function () {
+		return view('home'); */
+	 );
  
 	 Route::post('log',[ 
 			 'uses'=> 'AutentificacionController@store',

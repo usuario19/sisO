@@ -47,7 +47,35 @@ class PrincipalController extends Controller
         
         return view('home')->with('avisos',$avisos)->with('encuentros',$encuentro_clubs_part)->with('disciplinas',$disciplinas)->with('disc',$disc)->with('fecha',$hoy);
     }
+    
+    public function partidos_hoy(Request $request)
+    {
+        $hoy = $request->hoy;
+        $disc = $request->disc;
 
+        
+        //ENCUENTROS
+
+        $encuentros = DB::table('encuentro_club_participaciones')
+                            ->join('club_participaciones', 'encuentro_club_participaciones.id_club_part', '=', 'club_participaciones.id_club_part')
+                            ->join('gestiones', 'club_participaciones.id_gestion', '=', 'gestiones.id_gestion')
+                            ->join('clubs', 'club_participaciones.id_club', '=', 'clubs.id_club')
+                            ->join('encuentros', 'encuentro_club_participaciones.id_encuentro', '=', 'encuentros.id_encuentro')
+                            ->join('centros', 'centros.id_centro', '=', 'encuentros.id_centro')
+                            ->where('club_participaciones.id_disc',$disc)
+                            ->where('encuentros.fecha',$hoy)
+                            ->select('encuentro_club_participaciones.*', 'gestiones.id_gestion','gestiones.nombre_gestion', 'encuentros.*','clubs.*','centros.*')
+                            ->orderBy('gestiones.id_gestion','ASC')
+                            ->orderBy('encuentros.hora','ASC')
+                            ->orderBy('encuentro_club_participaciones.id_encuentro_club_part','ASC')
+                            ->get();
+        $disciplinas = Disciplina::all();
+        $encuentros2 = $encuentros->groupBy('id_gestion');
+
+        $view = view('principal.plantilla_partidos_hoy')->with('encuentros',$encuentros2)->with('disciplinas',$disciplinas)->with('disc',$disc)->render();
+        return response()->json(array('success' => true, 'html'=>$view));
+         
+    }
     public function index($disc = '2' , $hoy = null )
     {
         if ($hoy == null) {

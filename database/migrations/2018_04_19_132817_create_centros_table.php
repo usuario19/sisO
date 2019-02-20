@@ -17,6 +17,7 @@ class CreateCentrosTable extends Migration
             $table->increments('id_centro');
             $table->String('nombre_centro');
             $table->String('ubicacion_centro');
+            $table->text('descripcion_centro')->nullable();
             $table->timestamps();
         });
     }

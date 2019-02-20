@@ -2,7 +2,7 @@
   <div class="container">
     <div class="col-md-12">
         <nav class="col-md-12 navbar navbar-light bg-white" style="padding: 5px 0% 0% 0%">
-            <a class="navbar-brand col-md-12" href={{url('/')}}>
+            <a class="navbar-brand col-md-12" href="{{route('principal.index')}}">
               <div class="row">
                   <div class="col-xl-1 text-center float-left" style="padding:0% ;height: 60px"><img src="/storage/logos/abcd.jpg" height="60" class="d-inline-block align-top" alt=""></div>
                   <div class="col-xl-5" style="padding:0%"><p class="title text-left" style="height: 60px; padding-block-start: 20px; padding-inline-start:50px">OLIMPIADAS SI.T.UMSS</p></div>
@@ -29,15 +29,15 @@
 
         <ul class="navbar-nav mr-auto menu-nav">
           <li class="nav-item">
-            <a class="nav-link" href={{url('/')}}>HOME <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{route('principal.index')}}">HOME <span class="sr-only">(current)</span></a>
           </li>
-
+          <div class="dropdown-divider"></div>
           <li class="nav-item dropdown">
             
               <a class="nav-link" href={{ route('gestion.mostrar_principal') }}>GESTIONES</a>
               
           </li>
-          
+          <div class="dropdown-divider"></div>
           
             
           {{--  <li class="nav-item dropdown">
@@ -51,21 +51,25 @@
               <a class="nav-link" href={{ route('club.mostrar_principal') }}>CLUBS</a>
             
           </li> 
-
+          <div class="dropdown-divider"></div>
           <li class="nav-item dropdown">
             
               <a class="nav-link" href={{ route('principal.listar_disciplinas') }}>DISCIPLINAS</a>
             
           </li>
+          <div class="dropdown-divider"></div>
           <li class="nav-item dropdown">
               <a class="nav-link" href={{ route('principal.consultar_resultados') }}>RESULTADOS</a>
           </li>
+          <div class="dropdown-divider"></div>
           <li class="nav-item dropdown">
               <a class="nav-link" href={{ route('principal.consultar_partidos') }}>PARTIDOS</a>
           </li>
+          <div class="dropdown-divider"></div>
           <li class="nav-item dropdown">
                 <a class="nav-link" href={{ route('principal.noticias') }}>NOTICIAS</a>
             </li>
+            <div class="dropdown-divider"></div>
         </ul>
           
         <ul class="navbar-nav">

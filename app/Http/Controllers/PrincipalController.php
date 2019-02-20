@@ -8,6 +8,10 @@ use App\Models\Jugador_Club;
 use App\Models\Disciplina;
 use App\Models\Club_Participacion;
 use App\Models\Participacion;
+use App\Models\Aviso;
+use App\Models\Encuentro;
+use App\Models\Encuentro_Club_Participacion;
+use Illuminate\Support\Facades\DB;
 
 class PrincipalController extends Controller
 {
@@ -16,9 +20,74 @@ class PrincipalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index2($disc = '2' , $hoy = null )
     {
-        //
+        if ($hoy == null) {
+            $dato = new \DateTime();
+            $hoy = $dato->format('Y-m-d');
+        }
+
+        $avisos = Aviso::where('fecha_fin_aviso','>=',$hoy)->orderBy('fecha_ini_aviso','DESC')->orderBy('hora_publicacion','DESC')->get();
+        
+        //ENCUENTROS
+        $clubs_part = Club_Participacion::where('id_disc',$disc)->select('id_club_part')->orderBy('id_gestion','ASC')->get();
+        $id_clubs_part =[];
+        foreach($clubs_part as $dato){
+            array_push($id_clubs_part, $dato->id_club_part);
+        }
+
+        $encuentros = Encuentro::where('fecha',$hoy)->select('id_encuentro')->get();
+        $id_encuentros =[];
+        foreach($encuentros as $dato_e){
+            array_push($id_encuentros, $dato_e->id_encuentro);
+        }
+
+        $encuentro_clubs_part = Encuentro_Club_Participacion::whereIn('id_encuentro',$id_encuentros)->whereIn('id_club_part',$id_clubs_part)->get();
+        $disciplinas = Disciplina::all();
+        
+        return view('home')->with('avisos',$avisos)->with('encuentros',$encuentro_clubs_part)->with('disciplinas',$disciplinas)->with('disc',$disc)->with('fecha',$hoy);
+    }
+
+    public function index($disc = '2' , $hoy = null )
+    {
+        if ($hoy == null) {
+            $dato = new \DateTime();
+            $hoy = $dato->format('Y-m-d');
+        }
+
+        $avisos = Aviso::where('fecha_fin_aviso','>=',$hoy)->orderBy('fecha_ini_aviso','DESC')->orderBy('hora_publicacion','DESC')->get();
+        
+        //ENCUENTROS
+
+        $encuentros = DB::table('encuentro_club_participaciones')
+                            ->join('club_participaciones', 'encuentro_club_participaciones.id_club_part', '=', 'club_participaciones.id_club_part')
+                            ->join('gestiones', 'club_participaciones.id_gestion', '=', 'gestiones.id_gestion')
+                            ->join('clubs', 'club_participaciones.id_club', '=', 'clubs.id_club')
+                            ->join('encuentros', 'encuentro_club_participaciones.id_encuentro', '=', 'encuentros.id_encuentro')
+                            ->join('centros', 'centros.id_centro', '=', 'encuentros.id_centro')
+                            ->where('club_participaciones.id_disc',$disc)
+                            ->where('encuentros.fecha',$hoy)
+                            ->select('encuentro_club_participaciones.*', 'gestiones.id_gestion','gestiones.nombre_gestion', 'encuentros.*','clubs.*','centros.*')
+                            ->orderBy('gestiones.id_gestion','ASC')
+                            ->orderBy('encuentros.hora','ASC')
+                            ->orderBy('encuentro_club_participaciones.id_encuentro_club_part','ASC')
+                            ->get();
+        /* $clubs_part = Club_Participacion::where('id_disc',$disc)->select('id_club_part')->orderBy('id_gestion','ASC')->get();
+        $id_clubs_part =[];
+        foreach($clubs_part as $dato){
+            array_push($id_clubs_part, $dato->id_club_part);
+        }
+
+        $encuentros = Encuentro::where('fecha',$hoy)->select('id_encuentro')->get();
+        $id_encuentros =[];
+        foreach($encuentros as $dato_e){
+            array_push($id_encuentros, $dato_e->id_encuentro);
+        }
+        
+        $encuentro_clubs_part = Encuentro_Club_Participacion::whereIn('id_encuentro',$id_encuentros)->whereIn('id_club_part',$id_clubs_part)->get();
+         */$disciplinas = Disciplina::all();
+        $encuentros2 = $encuentros->groupBy('id_gestion');
+        return view('home')->with('avisos',$avisos)->with('encuentros',$encuentros2)->with('disciplinas',$disciplinas)->with('disc',$disc)->with('fecha',$hoy);
     }
 
     /**
@@ -103,6 +172,7 @@ class PrincipalController extends Controller
         $dato = Disciplina::all();
         return view('principal.listar_disciplinas')->with('disciplinas',$dato);
     }
+
     public function disciplina_info($id){
         $dato = Disciplina::find($id);
 
@@ -119,14 +189,15 @@ class PrincipalController extends Controller
         /*  $dato = Disciplina::find($id); */
         $datos = Gestion::where('estado_gestion',1)->get();
         return view('principal.consultar_partidos')->with('gestiones',$datos);
-     }
+    }
 
-     public function noticias(){
+    public function noticias(){
         /*  $dato = Disciplina::find($id); */
  
          return view('principal.noticias');
-     }
-     public function obtener_gestiones()
+    }
+
+    public function obtener_gestiones()
     {
         //
         $gestiones = [];

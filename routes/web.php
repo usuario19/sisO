@@ -14,9 +14,12 @@
 Route::group(['middleware' => ['web','guest']],function(){
 
 	//Route::resource('login','LoginController');
-	Route::get('/', function () {
-		return view('home');
-	 });
+	Route::get('/',[
+		'uses'=>'PrincipalController@index',
+		'as'=>'principal.index'] 
+	/* function () {
+		return view('home'); */
+	 );
  
 	 Route::post('log',[ 
 			 'uses'=> 'AutentificacionController@store',
@@ -47,9 +50,9 @@ Route::group(['middleware' => ['web','guest']],function(){
 
 
 	//Route::resource('login','LoginController');
-	Route::get('/', function () {
+	/* Route::get('/', function () {
    	return view('home');
-	});
+	}); */
 
 	Route::post('log',[ 
 			'uses'=> 'AutentificacionController@store',
@@ -537,11 +540,38 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'AvisoController@store',
 		'as'=>'aviso.store'
 	]);
+	Route::get('aviso/{aviso}/edit',[ 
+		'uses'=> 'AvisoController@edit',
+		'as' => 'aviso.edit']);
+
+	Route::put('aviso/update/{aviso}',[ 
+			'uses'=> 'AvisoController@update',
+			'as' => 'aviso.update']);
+
+	Route::get('avisos/{id}/destroy',[ 
+		'uses'=> 'AvisoController@destroy',
+		'as' => 'aviso.destroy']);
 
 	Route::get('avisos/consultar/{id_gestion}/participacion',[
 		'uses'=>'AvisoController@consultar_participacion',
 		'as'=>'aviso.participaciones'
 	]);
+	//LUGARES
+	Route::get('lugares',[ 
+		'uses'=> 'LugarController@index',
+		'as' => 'lugares.index']);
+
+	Route::post('centro/store',[ 
+		'uses'=> 'LugarController@store',
+		'as' => 'centro.store']);
+
+	Route::get('centro/{centro}/delete',[ 
+		'uses'=> 'LugarController@destroy',
+		'as' => 'centro.delete']);
+
+	Route::put('centro/update/{centro}',[ 
+		'uses'=> 'LugarController@update',
+		'as' => 'centro.update']);
 });
 
 //COORDINADOR
@@ -826,15 +856,5 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 			'uses'=> 'CoordinadorController@show',
 			'as' => 'coordinador.show']);
 
-	Route::get('lugares',[ 
-		'uses'=> 'LugarController@index',
-		'as' => 'lugares.index']);
-
-	Route::post('centro/store',[ 
-		'uses'=> 'LugarController@store',
-		'as' => 'centro.store']);
-
-	Route::get('centro/{centro}/delete',[ 
-		'uses'=> 'LugarController@destroy',
-		'as' => 'centro.delete']);
+	
 });

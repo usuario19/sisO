@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Date\Date;
 
 class Aviso extends Model
 {
@@ -16,8 +17,8 @@ class Aviso extends Model
     	'id_gestion', 
         'id_disc',
         'fecha_ini_aviso',
-    	'fecha_fin_aviso',
-        'imagen_aviso',
+        'fecha_fin_aviso',
+        'hora_publicacion',
     	'contenido',
     ];
 
@@ -36,4 +37,11 @@ class Aviso extends Model
     public function administrador(){
         return $this->belongsTo('App\Models\Administrador','id_administrador');
    }
+
+   public function fecha_hora_publicacion($fecha,$hora){
+
+    $date = new Date($fecha."".$hora);
+    $fecha_hora = $date->format('l j F Y g:i a');
+    return $fecha_hora;
+    }
 }

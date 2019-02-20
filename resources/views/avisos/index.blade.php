@@ -8,9 +8,9 @@
     <div class="form-group col-md-12">
         <table class="table table-sm table-bordered">
             <thead>
-                <th>
-                    <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                        <h4 class="">AVISOS</h4></td>
+                <th {{--  style="background: #E74C3C"  --}}>
+                    <div class=" container col-md-12 text-center" style="padding: 0px 0px;">
+                            <h4 class="title-principal" style="color:darkslategray">AVISOS</h4></td>
                     </div>
                 </th>
             </thead>
@@ -35,15 +35,16 @@
             <div class="card-body" style="padding: 10px">  --}}
                            
                <div class="container table-responsive-xl">
-                   <table class="table table-condensed">
-                       <thead>
+                   <table class="table table-bordered">
+                       <thead class="table-borderless">
                        <th width="50px">#</th>
                        <th>Administrador</th>
                        <th>Titulo</th>
                        <th>Gestion</th>
                        <th>Disciplina</th>
-                       <th>Fecha inicio</th>
-                       <th>Fecha fin</th>
+                       <th>Fecha de publicacion</th>
+                       <th>Hora de publicacion</th>
+                       <th>Fecha fin de publicacion</th>
                        <th>Contenido</th>
                        <th colspan="2"></th>
                          
@@ -68,22 +69,23 @@
                                 <td>-</td>
                             @endif
                             <td>{{$aviso->fecha_ini_aviso}}</td>
+                            <td>{{$aviso->hora_publicacion}}</td>
                             <td>{{$aviso->fecha_fin_aviso}}</td>
-                            <td>
+                            <td class="text-center">
                                 <a  href="#vista_previa"  class="button_delete" data-toggle="modal" data-target="#{{ 'vista_previa'.$aviso->id_aviso }}" >
                                     <i title="Ver contenido" class="material-icons delete_button">
                                         description
                                     </i>
                                 </a>
                             </td>
-                            <td class="text-center" style="width: 100px">
-                                <a href=" " class="button_delete" data-toggle="modal" data-target="#edit">
+                            <td class="text-center" style="width: 70px">
+                                <a href="{{ route('aviso.edit',$aviso->id_aviso)}}" class="button_delete">
                                     <i title="Editar" class="material-icons delete_button button_redirect">
                                         edit
                                     </i>
                                 </a>
                             </td>
-                            <td class="text-center" style="width: 100px">
+                            <td class="text-center" style="width: 70px">
                                 <a  href="#confirm?"  class="button_delete" data-toggle="modal" data-target="#exampleModal{{ $aviso->id_aviso }}" >
                                     <i title="Eliminar" class="material-icons delete_button">
                                         delete
@@ -110,7 +112,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                <a href="" class="btn btn-primary"> Eliminar </a>
+                                <a href="{{ route('aviso.destroy', $aviso->id_aviso)}}" class="btn btn-primary"> Eliminar </a>
                                 </div>
                             </div>
                             </div>
@@ -121,7 +123,7 @@
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">SisO: Vista previa</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Título: {{$aviso->titulo}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -149,5 +151,5 @@
 </div>
 @endsection
 @section('scripts')
-	
+    {!! Html::script('/js/filtrar_por_nombre.js') !!}
 @endsection

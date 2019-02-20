@@ -44,6 +44,13 @@ class AvisoController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request,[
+            'titulo'=>'required',
+            'fecha_ini_aviso'=>'required|date',
+            'fecha_ini_fin'=>'date',
+            'contenido'=>'required',
+        ]);
         $texto = $request->contenido;
         $texto1 = "<img ";
         $texto2 = "<img class='img-fluid mx-auto' ";
@@ -52,6 +59,9 @@ class AvisoController extends Controller
 
         $datos = new Aviso($request->all());
         $datos->contenido = $contenido;
+        $now = new \DateTime();
+        $now->format('H:i:s');
+        $datos->hora_publicacion = $now;
         $datos->save();
         flash('Se registro exitosamente el nuevo aviso.')->success()->important();
             return redirect()->route('aviso.index');
@@ -76,7 +86,9 @@ class AvisoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aviso = Aviso::find($id);
+        $gestiones = Gestion::where('estado_gestion',1)->get() ;
+        return view('avisos.aviso_editar')->with('aviso', $aviso)->with('gestiones',$gestiones);
     }
 
     /**
@@ -89,6 +101,25 @@ class AvisoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'titulo'=>'required',
+            'fecha_ini_aviso'=>'required|date',
+            'fecha_ini_fin'=>'date',
+            'contenido'=>'required',
+        ]);
+        $aviso = Aviso::find($id);
+        $aviso->fill($request->all());
+
+        $texto = $request->contenido;
+        $texto1 = "<img src";
+        $texto2 = "<img class='img-fluid mx-auto' src";
+        $contenido = str_replace($texto1, $texto2, $texto);
+        $aviso->contenido = $contenido;
+        
+        $aviso->save();
+        flash('Se actualizo correctamente el aviso. ')->info()->important();
+        return redirect()->route('aviso.index');
+        
     }
 
     /**
@@ -99,7 +130,11 @@ class AvisoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario= Aviso::find($id);
+        $usuario->delete();
+        flash('Se elimino exitosamente el aviso.')->info()->important();
+        
+        return redirect()->route('aviso.index');
     }
 
     public function consultar_participacion($id){
@@ -107,11 +142,11 @@ class AvisoController extends Controller
         $datos = [];
         if(count($participaciones)>0)
         {
-            array_push ($datos,['id_disc'=>0 , 'nombre_disc'=>'Seleccione']);
+            
 
             foreach($participaciones as $item)
             {
-                array_push ($datos,['id_disc'=>$item->id_disc , 'nombre_disc'=>$item->disciplina->nombre_disc." ".$item->disciplina->nombre_categoria($item->disciplina->categoria)]);
+                array_push ($datos,['id_disc'=>$item->id_disciplina , 'nombre_disc'=>$item->disciplina->nombre_disc." ".$item->disciplina->nombre_categoria($item->disciplina->categoria)]);
             }
         }
 

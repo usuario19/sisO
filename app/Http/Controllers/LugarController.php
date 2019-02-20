@@ -37,6 +37,10 @@ class LugarController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'nombre_centro'=>'required',
+            'ubicacion_centro'=>'required',
+        ]);
         $datos = new Centro($request->all());
         $datos->save();
         flash('Se registro correctamente el centro.')->success()->important();
@@ -82,6 +86,22 @@ class LugarController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'nombre_centro'=>'required',
+            'ubicacion_centro'=>'required',
+        ]);
+        $datos = Centro::find($id);
+        $datos->fill($request->all());
+        $datos->save();
+        flash('Se actualizo correctamente el centro.')->info()->important();
+        /* $admin_club = new Admin_club();
+        $admin_club->id_administrador = $request->get('id_administrador');
+        $ultimo_club = Club::all();
+        $ultimo = $ultimo_club->last()->id_club;
+        $admin_club->id_club = $ultimo;
+        $admin_club->estado_coordinador = 1;
+        $admin_club->save(); */
+        return redirect()->back();
     }
 
     /**

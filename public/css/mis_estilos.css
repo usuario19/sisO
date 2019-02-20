@@ -302,7 +302,11 @@ h6.title-principal {
     color: #A69999;
     /* color: #121213; */
 }
-
+.fecha{
+   font-size: 10px;
+   color: rgb(7, 10, 211);
+   font-style: oblique;
+}
 .title-span:hover {
     cursor: pointer;
     /* color: #717881; */
@@ -784,6 +788,16 @@ span.letter-size {
 	left: 2em; */
     /* background-color: lime; */
 }
+.letter-size {
+    font-size: 16px;
+    overflow: hidden;
+   /*  padding-left: 5px; */
+    font-weight: bold;
+}
+
+.ck-content {
+    min-height:200px; max-height:400px; 
+}
 
 button {
     padding: 25px;
@@ -1231,4 +1245,76 @@ label.input-group-text {
 
 #submenu li a:hover {
     background: rgba(0, 0, 0, .5);
+}
+/* HOME */
+.content_home{
+    position: relative;
+    height: 20px;
+    width: 40px;
+}
+i.icon_fecha{
+    font-size: 35px;
+    color:rgb(53, 53, 53);
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+}
+i.icon_fecha:hover{
+    color: rgb(128, 128, 128);
+}
+a.disc-nlink{
+    font-size: 14px;
+}
+#fecha{
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: -1;
+}
+img.calendario{
+    height: 70px;
+    width: 70px;
+}
+span.vs,  span.puntos{
+   
+    font-size: 18px;
+    font-weight: bolder;
+    padding: auto;
+    vertical-align: middle;
+    
+    text-align: center; 
+    color: rgb(0, 0, 0); 
+}
+div.calendario{
+    font-family: 'Monserat' , sans-serif ;
+    /* background: rgba(219, 219, 219, 0.658); */
+}
+span.puntos{
+    font-size: 30px;
+    color: rgb(7, 7, 7);
+}
+table.calendario td.puntos{
+    vertical-align: middle;
+    max-width: 50px;
+}
+span.calendario_club{
+    text-transform: ;
+
+}
+a.button_change{
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    border: solid #9b9b9c 1px;
+    width: 27px;
+    text-align: center;
+    height: 27px;
+}
+a.button_change:hover{
+    background: #cbcbce2a;
+    color: #9b9b9c;
+}
+a.button_change i{
+   padding-top: px;
+   font-weight: 100;
 }

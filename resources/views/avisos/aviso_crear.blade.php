@@ -8,76 +8,89 @@
 @endsection
 @section('content')
 
-<div class="container table-responsive-xl">
-    <div class="form-group col-md-12">
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <th>
-                    <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                        <h4 class=""> CREAR AVISO</h4></td>
-                    </div>
-                </th>
-            </tbody>
-        </table>
-    </div>
-    <div class="card container">
-        
-        {!! Form::open(['route'=>'aviso.store','method' => 'POST']) !!}
-            <div class="form-row">
-                <div class="form-group" style="display: none">
-                    {!! Form::label('id_administrador', 'Administrador', []) !!}
-                    {!! Form::text('id_administrador',  Auth::user()->id_administrador, ['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::label('administrador', 'Administrador', []) !!}
-                    {!! Form::text('administrador',  Auth::user()->nombre." ".Auth::user()->apellidos, ['class'=>'form-control', 'disabled']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::label('titulo', 'Titulo *', []) !!}
-                    {!! Form::text('titulo', null, ['class'=>'form-control']) !!}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {!! Form::label('id_gestion', 'Gestion', []) !!}
-                        <select class="form-control form-control-sm" name="id_gestion" id="id_gestion">
-                            <option value=" ">{{ "Seleccione" }}</option>
-                            @foreach ($gestiones as $gestion)
-                                <option value="{{ $gestion->id_gestion}}">{{$gestion->nombre_gestion}}</option>
-                            @endforeach
-                        </select>
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::label('id_disc', 'Disciplina', []) !!}
-                    {!! Form::select('id_disc', [], null, ['id'=>'id_disc','class'=>'form-control form-control-sm','disabled']) !!}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {!! Form::label('fecha_ini_aviso', 'Fecha de inicio *', []) !!}
-                    {!! Form::datetime('fecha_ini_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
-                </div>
-                <div class="form-group col-md-6">
-                    {!! Form::label('fecha_fin_aviso', 'Fecha de Fin', []) !!}
-                    {!! Form::date('fecha_fin_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
-                </div>
-            </div>
-            <div class="form-row">
-                    <div class="form-group col-md-12">
-                        {!! Form::label('contenido', 'Contenido *', []) !!}
-                        <textarea name="contenido" id="editor" class="form-control">
-                        </textarea>
-                    </div>
-            </div>
 
-            <div class="form-row col-md-12">
-                <div class="form-group col-md-4 float-right">
-                  {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-block']) !!}
+    <div class="container">
+        <div class="form-group container col-md-12">
+                <div class="container-fluid" style="background: #FFC107">
+                    <div class="div-title-sub container text-left">
+                        <div class="row">
+                            <a class="" href="{{ route('aviso.index') }}" style="text-decoration:none">
+                                <h5 style="margin:4px 0 0 0; padding-inline-start: 5px; color: #274B12; font-size: 16px" class="title-principal">Avisos
+                                        <i class = "material-icons btn" style="padding: 0px"> 
+                                                keyboard_arrow_right
+                                        </i>
+                                        
+                                </h5>
+                            </a>
+                            <h5 style="margin: auto 0; font-size: 16px; color: #274B12" class="title-principal">Crear aviso</h5>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {!! Form::close() !!}
+            {{--  <table class="table table-sm table-borderless">
+                <tbody>
+                    <th>
+                        <div class=" container col-md-10 text-center" style="padding: 5px 0px">
+                            <h4 class=""> CREAR AVISO</h4></td>
+                        </div>
+                    </th>
+                </tbody>
+            </table>  --}}
+        </div><br>
+        <div class="card container col-md-11">
+            
+            {!! Form::open(['route'=>'aviso.store','method' => 'POST']) !!}
+                <div class="form-row">
+                    <div class="form-group" style="display: none">
+                        {!! Form::label('id_administrador', 'Administrador', []) !!}
+                        {!! Form::text('id_administrador',  Auth::user()->id_administrador, ['class'=>'form-control']) !!}
+                    </div>
+                    
+                    <div class="form-group col-md-12">
+                        {!! Form::label('titulo', 'Titulo *', []) !!}
+                        {!! Form::text('titulo', null, ['class'=>'form-control']) !!}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {!! Form::label('id_gestion', 'Gestion', []) !!}
+                            <select class="form-control form-control-sm" name="id_gestion" id="id_gestion">
+                                <option value=" ">{{ "Seleccione" }}</option>
+                                @foreach ($gestiones as $gestion)
+                                    <option value="{{ $gestion->id_gestion}}">{{$gestion->nombre_gestion}}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::label('id_disc', 'Disciplina', []) !!}
+                        {!! Form::select('id_disc', [], null, ['id'=>'id_disc','class'=>'form-control form-control-sm','disabled']) !!}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {!! Form::label('fecha_ini_aviso', 'Fecha de inicio *', []) !!}
+                        {!! Form::date('fecha_ini_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {!! Form::label('fecha_fin_aviso', 'Fecha de Fin', []) !!}
+                        {!! Form::date('fecha_fin_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                    </div>
+                </div>
+                <div class="form-row">
+                        <div class="form-group col-md-12">
+                            {!! Form::label('contenido', 'Contenido *', []) !!}
+                            <textarea name="contenido" id="editor" class="form-control" rows="13"></textarea>
+                        </div>
+                </div>
+    
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-4 text-right">
+                      {!! Form::submit('Publicar aviso', ['class'=>'btn btn-secondary btn-block letter-size']) !!}
+                    </div>
+                </div>
+            {!! Form::close() !!}
+        </div>
     </div>
-</div>
+    
 @endsection
 @section('scripts')
     <script>
@@ -97,28 +110,13 @@
                 ]
             },
         
-            removePlugins: [ 'MediaEmbed'],
+            
             
             ckfinder: {
                 uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
                 openerMethod: 'popup'
             },
 
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
-    
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-    
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-    
-                    // This represents an image aligned to the right.
-                    'alignRight'
-                ]
-            }
         } 
         )
         .then( editor => {

@@ -37,7 +37,7 @@ class GestionController extends Controller
             }
             $disciplinas[$disciplina->id_disc] = $disciplina->nombre_disc . " " . $categoria;
         }
-        return dd($disciplinas);
+        //return dd($disciplinas);
         return view('admin.reg_gest')->with('disciplinas', $disciplinas);
     }
     public function store(Request $request)
@@ -68,12 +68,6 @@ class GestionController extends Controller
     public function show($id)
     {
         $gestiones = Gestion::all();
-        //$gestiones2 = array();
-        //foreach ($gestiones2 as $gestion) {
-        //  $gestiones[$id_gestion] = $gestion->nombre_gestion;
-        //return dd($gestion);
-        //}
-        //return dd($gestiones);
         $gestion = Gestion::find($id);
         return view('plantillas.menus.menu_gestion')->with('gestion', $gestion)->with('gestiones', $gestiones);
     }

@@ -79,10 +79,6 @@
         </div>
         
 </div>
-
-
-    @include('sweetalert::cdn') 
- @include('vendor.sweetalert.view') 
 @endsection
   @section('scripts')
   {!! Html::script('/js/filtrar_por_nombre.js') !!}

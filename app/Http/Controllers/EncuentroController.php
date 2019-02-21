@@ -166,8 +166,9 @@ class EncuentroController extends Controller
         }
         return redirect()->back();  
     }
-public function reg_resultado_competicion(){
-        return ggg;
+public function reg_resultado_competicion(Request $request){
+        if($request->ajax())
+        return $request;
     }
     public function select_contrincante($id_club, $id_grupo){
         $clubsParaEncuentro = DB::table('grupo_club_participaciones')

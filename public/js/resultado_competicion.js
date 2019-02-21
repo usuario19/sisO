@@ -1,10 +1,9 @@
-window.addEventListener("load", function() {
-    document.getElementById('form_reg_resultado_competicion').addEventListener("submit", function(e) {
+
+$(document).ready(function()
+{   
+     $("#form_reg_resultado_competicion").submit(function(e) {
         e.preventDefault();
-        //alert('hi');
-        $.ajaxSetup({
-            headers: { 'X-CSRF-Token': $('meta[name=_token]').attr('content') }
-        });
+        
         valores = new Array();
         $('#tabla_res tbody tr').each(function() {
             var id_jugador = $(this).find('td').eq(0).html();
@@ -13,29 +12,40 @@ window.addEventListener("load", function() {
             valor = new Array(id_jugador, posicion);
             valores.push(valor);
         });
+        valores = valores.serialize()
         //console.log(valores);
 
-        var id_fase = $('#id_fase').val();
-        var id_gestion = $('#id_gestion').val();
-        var id_disc = $('#id_disc').val();
-
+        var id_fase = $('#id_fase').val().serialize();
+        var id_gestion = $('#id_gestion').val().serialize();
+        var id_disc = $('#id_disc').val().serialize();
+        var token = '{{csrf_token()}}';
+        var data = { fase: id_fase,
+            gestion: id_gestion,
+             disc: id_disc ,
+             table:valores,_token:token};
         $.ajax({
-            type: 'POST',
+            data: data,
+                  
             //headers: { 'X-CSRF-TOKEN': token },
-            url: '/encuentro/reg_resultado_competicion',
-            //data: { fase: id_fase, gestion: id_gestion, disc: id_disc, tabla: valores },
-            data: $(this).serialize(),
+            url: '/encuentro_reg_resultado_competicion',
+            type: 'POST',
             contentType: false,
-            cache: false,
             processData: false,
+            //data: $(this).serialize(),
+            contentType: false,
+            //cache: false,
+            //processData: false,
 
-            success: function(data) {
+            success: function(respose) {
                 console.log("dddd");
             },
-            error: function(data) {
-                console.log(data);
+            error: function(respose) {
+                console.log(respose);
             },
 
         });
+        
+        $("#modalResultado").modal('hide');
+        //location.reload();
     });
 });

@@ -549,7 +549,7 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@reg_resultado',
 		'as'=>'encuentro.reg_resultado'
 	]);
-	Route::post('encuentro/reg_resultado_competicion',[
+	Route::post('encuentro_reg_resultado_competicion',[
 		'uses'=>'EncuentroController@reg_resultado_competicion',
 		'as'=>'encuentro.reg_resultado_competicion'
 	]);

@@ -267,5 +267,9 @@ class FaseController extends Controller
             ->get();
         return $fases; 
     }
+    public function destroy($id_fase){
+        DB::table('fases')->where('id_fase',$id_fase)->delete();
+        return redirect()->back();
+    }
 }
 

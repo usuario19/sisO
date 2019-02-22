@@ -7,40 +7,53 @@ $(document).ready(function()
         valores = new Array();
         $('#tabla_res tbody tr').each(function() {
             var id_jugador = $(this).find('td').eq(0).html();
-            var posicion = $(this).find('td').eq(3).html();
+            var id_club = $(this).find('td').eq(4).html();
+            var posicion = $(this).find('td select option').eq(5).html();
             //var id_fase= $();
             valor = new Array(id_jugador, posicion);
             valores.push(valor);
         });
-        valores = valores.serialize()
+        
         //console.log(valores);
 
-        var id_fase = $('#id_fase').val().serialize();
-        var id_gestion = $('#id_gestion').val().serialize();
-        var id_disc = $('#id_disc').val().serialize();
-        var token = '{{csrf_token()}}';
+        var id_fase = $('#id_fase').val();
+        var id_gestion = $('#id_gestion').val();
+        var id_disc = $('#id_disc').val();
+        
+        //var token = {{csrf_token()}};
+        
         var data = { fase: id_fase,
             gestion: id_gestion,
              disc: id_disc ,
-             table:valores,_token:token};
+             table:valores,
+            // _token:document.csrf._token.value,
+            };
         $.ajax({
-            data: data,
-                  
-            //headers: { 'X-CSRF-TOKEN': token },
-            url: '/encuentro_reg_resultado_competicion',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             type: 'POST',
+            url: '/encuentro_reg_resultado_competicion',
+            data: {'fase' : $('#id_fase').val(),'gestion':$('#id_gestion').val(),'disc':$('#id_disc').val(),'tabla':valores },
+            dataType: "json",
+            async:true,
+           /* type: 'POST',
+            url: '/encuentro_reg_resultado_competicion',
+            data: new FormData(this),
             contentType: false,
-            processData: false,
-            //data: $(this).serialize(),
-            contentType: false,
+            cache: false,
+            processData:false,*/
+            
+            //dataType: "json",
+            //data: $(data).serialize(),
+            //contentType: false,
             //cache: false,
             //processData: false,
-
             success: function(respose) {
-                console.log("dddd");
+                console.log(respose);
             },
             error: function(respose) {
-                console.log(respose);
+                console.log("error");
             },
 
         });

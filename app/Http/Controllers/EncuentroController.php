@@ -168,12 +168,14 @@ class EncuentroController extends Controller
     }
 public function reg_resultado_competicion(Request $request){
         if($request->ajax()){
-            $arre=$_REQUEST["fase"];
-            //$tabla_Posicion_Jugador = new Tabla_Posicion_Jugador();
-            //$tabla_Posicion_Jugador->save();
-            return $arre;
+            // $id_seleccion = 
+            // $tabla_Posicion_Jugador = new Tabla_Posicion_Jugador();
+            // $tabla_Posicion_Jugador->id_fase = $request->fase;
+            // $tabla_Posicion_Jugador->id_disc = $request->disc;
+            // $tabla_Posicion_Jugador->save();
+            return $request;
         }
-        //return $request;
+        
     }
     public function select_contrincante($id_club, $id_grupo){
         $clubsParaEncuentro = DB::table('grupo_club_participaciones')

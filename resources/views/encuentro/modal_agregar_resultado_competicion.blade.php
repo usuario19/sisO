@@ -1,4 +1,6 @@
 {!! Form::open(['route'=>'encuentro.reg_resultado_competicion','method' => 'POST','id'=>'form_reg_resultado_competicion']) !!}
+
+ 
         <!-- Modal -->
         <div class="modal fade" id="modalResultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -54,6 +56,7 @@
                     '<td><img class="rounded-circle mx-auto d-block" height=" 30px" width="30px" src=/storage/fotos/'+value.foto_jugador +' '+'/></td>'+
                     '<td>' + value.nombre_jugador +' '+value.apellidos_jugador+ '</td>'+
                     '<td>' + value.nombre_club + '</td>'+
+                    '<td style=display:none >' + value.id_club + '</td>'+
                     '<td>' +
                         '<select name="" id=nombre_jugador' + i +' '+'class="form-control" style="width:80px">' +
                         '<option value="">1</option>' +

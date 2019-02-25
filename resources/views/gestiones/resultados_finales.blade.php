@@ -80,13 +80,13 @@
                                 {{--  <a href="{{ route('gestion.definir_ganadores',[$gestion->id_gestion,$disciplina->id_disc]) }}">
                                     <i title="Registrar ganadores" class="material-icons delete_button">star_border</i>
                                 </a>  --}}
-                                <a href=" " onclick="RegistrarGanadores({{$gestion->id_gestion,$disciplina->id_disc }});"  class="button_delete" data-toggle="modal" data-target="#modalGanadores">
+                                <a href=" " onclick="RegistrarGanadores({{$disciplina->disciplina->id_disc}});"  class="button_delete" data-toggle="modal" data-target="#modalGanadores">
                                         <i title="Registrar resultados" class="material-icons delete_button button_redirect">
                                                 star_border
                                         </i>
                                 </a>
                             @else
-                                <a href="{{ route('gestion.mostrar_ganadores',[$gestion->id_gestion,$disciplina->id_disc]) }}">
+                                <a href="{{ route('gestion.mostrar_ganadores',[$gestion->id_gestion,$disciplina->disciplina->id_disc]) }}">
                                     <i title="Ganadores" class="material-icons delete_button">star</i>
                                 </a>
                             @endif

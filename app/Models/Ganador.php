@@ -14,4 +14,11 @@ class Ganador extends Model
     	'id_participacion',
     ];
     protected $hidden = ['remember_token'];
+    
+    public function participacion(){
+    	return $this->hasMany('App\Models\Participacion','id_participacion');
+    } 
+    public function club(){
+    	return $this->hasMany('App\Models\Club','id_club');
+    } 
 }

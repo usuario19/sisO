@@ -5,6 +5,7 @@ use App\Models\Disciplina;
 use App\Models\Fase;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
+use App\Models\Ganador;
 use App\Models\Participacion;
 use App\Models\Tabla_Posicion;
 use App\Models\Tabla_Posicion_Jugador;
@@ -399,17 +400,36 @@ class GestionController extends Controller
     }
     public function array_clubs_ajax($id_gestion, $id_disc){
         $data = DB::table('club_participaciones')
-        ->join('clubs','club_participaciones.id_club','clubs.id_club')
-        ->where('club_participaciones.id_disc',$id_disc)
-        ->where('club_participaciones.id_gestion',$id_gestion)
-        ->get();
+            ->join('clubs','club_participaciones.id_club','clubs.id_club')
+            ->where('club_participaciones.id_disc',$id_disc)
+            ->where('club_participaciones.id_gestion',$id_gestion)
+            ->get();
         return response()->json($data);
     }
     public function registrar_ganadores(request $request){
-        //nos envian los datos por ajax para que los almacenems
-        return $request;
+        for ($i=1; $i <= 3; $i++) { 
+            $id_participacion = Participacion::where('id_gestion',$request->get('id_gestion'))
+                    ->where('id_disciplina',$request->get('id_disc'))
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+                    $ganadores = new Ganador(); 
+                    $ganadores->posicion_ganador = $i;
+                    $ganadores->id_participacion = $id_participacion;
+                    $ganadores->id_club = $request->get($i);
+                    $ganadores->save();
+                }
+        
+        return redirect()->back();
     }
     public function mostrar_ganadores($id_gestion, $id_disc){
-        //vista normal con opcion a imprimir ganadores
+        //$disciplinas = Participacion::where('id_gestion',$id_gestion)->get();
+        $gestion = Gestion::find($id_gestion);
+        $id_part = Participacion::where('id_gestion',$id_gestion)
+                    ->where('id_disciplina',$id_disc)
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+        $ganadores = Ganador::where('id_participacion',$id_part)->orderBy('posicion_ganador','desc')->get();
+        //return dd($ganadores);
+        return view('gestiones.medallero',compact('gestion','ganadores'));
     }
 }

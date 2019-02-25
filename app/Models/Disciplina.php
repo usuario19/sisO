@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use App\Models\Participacion;
 use App\Models\Inscripcion;
+use App\Models\Ganador;
 use App\Models\Club_participacion;
 
 
@@ -98,6 +99,16 @@ class Disciplina extends Model
             $this->attributes['nombre_disc']= trim(ucwords(strtolower($value)));
     }
     public function tiene_ganadores($id_disc, $id_gestion){
-        return 0;
+
+        $id_part = Participacion::where('id_gestion',$id_gestion)
+                    ->where('id_disciplina',$id_disc)
+                    ->select('id_participacion')
+                    ->get()->last();
+        $ganadores = Ganador::where('id_participacion',$id_part)->get();
+        if ($ganadores == null) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

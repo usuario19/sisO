@@ -17,12 +17,10 @@
             <th>Club</th>
         </thead>
         <tbody>
-                
                 @foreach ($ganadores as $ganador)
-                  
                 <tr>
                     <td>{{ $ganador->posicion_ganador }} </td>
-                    <!-- <td><img class="rounded mx-auto d-block float-left" src="/storage/logos/{{ $ganador->club->logo}}" alt="" height=" 30px" width="30px"></td> -->
+                    <td><img class="rounded mx-auto d-block float-left" src="/storage/logos/{{ $ganador->club->logo}}" alt="" height=" 30px" width="30px"></td>
                     <td>{{ $ganador->club->nombre_club }}</td>
                 </tr>
             @endforeach

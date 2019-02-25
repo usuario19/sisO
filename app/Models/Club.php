@@ -77,4 +77,8 @@ class Club extends Model
         if($value !== null)
             $this->attributes['nombre_club']= trim(ucwords(strtolower($value)));
     }
+    public function ganador(){
+        return $this->belongsTo('App\Models\Ganador', 'id_club');
+        
+    }
 }

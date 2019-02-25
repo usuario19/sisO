@@ -345,11 +345,34 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'as'=> 'gestion.listar_fases'
 
 	]);
-	Route::post('gestion',[
+	Route::post('gestion/',[
 	    'uses'=> 'GestionController@mostrar_resultados',
 	    'as'=> 'gestion.mostrar_resultados'
 	]);
-
+	Route::get('gestion/{id_fase}/mostrar_resultado_competicion_fase_ajax',[
+	    'uses'=> 'GestionController@mostrar_resultado_competicion_fase_ajax',
+	    'as'=> 'gestion.mostrar_resultado_competicion_fase_ajax'
+	]);
+	Route::post('reg_res_competicion_fase',[
+	    'uses'=> 'GestionController@reg_res_competicion_fase',
+	    'as'=> 'gestion.reg_res_competicion_fase'
+	]);
+	Route::get('gestion/{id_gestion}/resultados_finales',[
+	    'uses'=> 'GestionController@resultados_finales',
+	    'as'=> 'gestion.resultados_finales'
+	]);
+	Route::get('gestion/{id_gestion}/{id_fase}/array_clubs_ajax',[
+	    'uses'=> 'GestionController@array_clubs_ajax',
+	    'as'=> 'gestion.array_clubs_ajax'
+	]);
+	Route::post('registrar_ganadores',[
+	    'uses'=> 'GestionController@registrar_ganadores',
+	    'as'=> 'gestion.registrar_ganadores'
+	]);
+	Route::get('gestion/{id_gestion}/{id_fase}/mostrar_ganadores',[
+	    'uses'=> 'GestionController@mostrar_ganadores',
+	    'as'=> 'gestion.mostrar_ganadores'
+	]);
 	//JUGADOR_INSCRIPCION
 	Route::post('inscripcion_jugador',[ 
 				'uses'=> 'JugadorClubController@store',
@@ -541,17 +564,17 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@mostrar_resultado_competicion_ajax',
 		'as'=>'encuentro.mostrar_resultado_competicion_ajax'
 	]);
-	Route::get('encuentro/fixture',[
-		'uses'=>'EncuentroController@fixture',
-		'as'=>'encuentro.fixture'
+	Route::get('encuentro/{id_fecha}/fixture_porfecha',[
+		'uses'=>'EncuentroController@fixture_porfecha',
+		'as'=>'encuentro.fixture_porfecha'
 	]);
 	Route::post('encuentro/reg_resultado',[
 		'uses'=>'EncuentroController@reg_resultado',
 		'as'=>'encuentro.reg_resultado'
 	]);
-	Route::post('encuentro_reg_resultado_competicion',[
-		'uses'=>'EncuentroController@reg_resultado_competicion',
-		'as'=>'encuentro.reg_resultado_competicion'
+	Route::post('reg_res_competicion',[
+		'uses'=>'EncuentroController@reg_res_competicion',
+		'as'=>'encuentro.reg_res_competicion'
 	]);
 	Route::get('encuentro/{id_club}/{id_grupo}/select_contrincante',[
 		'uses'=>'EncuentroController@select_contrincante',

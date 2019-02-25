@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>'encuentro.reg_resultado_competicion','method' => 'POST']) !!}
+{!! Form::open(['route'=>'encuentro.reg_res_competicion','method' => 'POST']) !!}
         <!-- Modal -->
         <div class="modal fade" id="modalVerResultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -15,44 +15,30 @@
                                 {!! Form::text('id_disc',$disciplina->id_disc, []) !!}
                                 {!! Form::text('id_gestion',$gestion->id_gestion, []) !!}
                             </div>
-                                <div class="container col-md-12">
-                                    <div class="card">
-                                        <div style="display: none">
-                                            {!! Form::text('id_encuentro1', null, ['id'=>'id_encuentro_ver1']) !!}
-                                            {!! Form::text('id_encuentro_club_part1',null, ['id'=>'id_encuentro_club_part_ver1']) !!}
+                                        <div class="container">  
+                                            <div style="display: none">
+                                                {!! Form::text('id_disc',$disciplina->id_disc, ['id'=>'id_disc']) !!}
+                                                {!! Form::text('id_gestion',$gestion->id_gestion, ['id'=>'id_gestion']) !!}
+                                                {!! Form::text('id_fase',$fase->id_fase, ['id'=>'id_fase']) !!}
+                                                {!! Form::text('id_encuentro',null, ['id'=>'id_encuentro']) !!}
+                                            </div>
+                                                <div class="container col-md-12" id="resultado">
+                                                        <table id="tabla_mostrar_res" class="table">
+                                                            <thead>
+                                                                <th>Id</th>
+                                                                <th>Foto</th>
+                                                                <th>Jugador</th>
+                                                                <th>Club</th>
+                                                                <th>Posicion</th>
+                                                            </thead>
+                                                            <tbody>
+                                                               
+                                                            </tbody>
+                                                            
+                                                        </table>
+                                                </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            {!! Form::label('equipo', 'Equipo', []) !!}
-                                            {!! Form::text('equipo1',null, ['id'=>'nombre_club_ver1','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('punto', 'Puntos', []) !!}
-                                            {!! Form::text('punto1', null, ['id'=>'puntos_ver1','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('observacion', 'Observacion', []) !!}
-                                            {!! Form::textarea('observacion1', null, ['id'=>'observacion_ver1','class'=>'form-control','rows'=>'2','readonly'=>'true']) !!} 
-                                        </div><br>  
-                                    </div><br>
-                                    <div class="card">
-                                        <div style="display: none">
-                                            {!! Form::text('id_encuentro2',null,['id'=>'id_encuentro_ver2']) !!}
-                                            {!! Form::text('id_encuentro_club_part2', null, ['id'=>'id_encuentro_club_part_ver2']) !!}
-                                        </div>
-                                        <div class="col-md-12">
-                                            {!! Form::label('equipo', 'Equipo', []) !!}
-                                            {!! Form::text('equipo2', null, ['id'=>'nombre_club_ver2','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('punto', 'Puntos', []) !!}
-                                            {!! Form::text('punto2', null, ['id'=>'puntos_ver2','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('observacion', 'Observacion', []) !!}
-                                            {!! Form::textarea('observacion2', null, ['id'=>'observacion_ver2','class'=>'form-control','rows'=>'2','readonly'=>'true']) !!} 
-                                        </div><br>  
-                                    </div><br>
-                                </div>
+                                
                         </div>
                     </div>    
                     <div class="modal-footer">
@@ -65,22 +51,27 @@
  {!! Form::close() !!}
  <script>
     var VerResultadoCompeticion = function(id_encuentro) {
+        //$('#id_encuentro').val(id_encuentro);
+        $('#tabla_mostrar_res tbody tr').slice(0).remove();
       var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_competicion_ajax";
       $.get(route, function(data) {
           var i = 1;
           $(data).each(function(key,value){
-              $("#id_encuentro_ver"+i).val(value.id_encuentro);
-              $("#id_encuentro_club_part_ver"+i).val(value.id_encuentro_club_part);
-             // alert("#nombre_club"+i);
-              $("#nombre_club_ver"+i).val(value.nombre_club);
-              $("#id_club_ver"+i).val(value.id_club);
-              $("#puntos_ver"+i).val(value.puntos);
-              $("#observacion_ver"+i).val(value.observacion);
-              i++;
-          });
+            var nuevaFila = '<tr>'+
+                '<td>'+value.id_jugador +'</td>'+
+                '<td><img class="rounded-circle mx-auto d-block" height=" 30px" width="30px" src=/storage/fotos/'+value.foto_jugador +' '+'/></td>'+
+                '<td>' + value.nombre_jugador +' '+value.apellidos_jugador+ '</td>'+
+                '<td>' + value.nombre_club + '</td>'+
+                '<td style=display:none >' + value.id_club + '</td>'+
+                '<td>' +value.posicion + '</td>'+
+                    
+              '</tr>';
+        $("#tabla_mostrar_res").append(nuevaFila);
+          i++;
       });
-  }
+  });
+}
   </script>
  @section('scripts')
-   {!! Html::script('/js/resultado.js') !!}
+   {{--  {!! Html::script('/js/resultado.js') !!}  --}}
 @endsection

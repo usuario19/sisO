@@ -9,14 +9,16 @@
 @endsection
 
 @section('content')
+
+@include('gestiones.modal_registrar_ganadores')
 <div class="container">
     <div class="card">
       <div class="card-header">
           <table class="table table-sm table-bordered" style="margin: 0%">
               <thead>
                   <th>
-                      <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                          <h4 class="" style="font-size: 18px">DISCIPLINAS HABILITADAS</h4></td>
+                      <div class=" container col-md-12 text-center" style="padding: 10px 0px">
+                          <h4 class="" style="font-size: 18px">DISCIPLINAS PARTICIPANTES</h4></td>
                       </div>
                   </th>
                   </thead>
@@ -25,12 +27,8 @@
                 
                     @if(Auth::check() && Auth::user()->tipo == 'Administrador')
                     <td>
-                        <div style="float: left;" class="form-group col-md-10">
+                        <div style="float: left;" class="form-group col-md-12">
                             {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-                         </div>
-                         <div style="float: left;" class="form-group col-md-2">
-                               
-                            @include('admin.modal_registrar_disciplinas')
                          </div>
                              {{--  <button type="button" class="btn   btn-primary" data-toggle="modal" data-target="#modal">Agregar</button></div>  --}}
                     </td>
@@ -49,26 +47,23 @@
         <div class="card-body">
           <div class="table-responsive-xl">
               <table class="table table-condensed">
-             
                   <thead>
                     <th width="50px">ID</th>
                     <th width="100px">Logo</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
-                    <th>Reglamento</th>
-                    <th width="150px">Descripcion</th>
-                    <th>Accion</th>
+                    <th>Ganadores</th>
                   </thead>
                   <tbody id="datos">
             
                     @foreach($disciplinas as $disciplina)
                     
                       <tr>
-                        <td>{{ $disciplina->id_disc}}</td>
+                        <td>{{ $disciplina->disciplina->id_disc}}</td>
             
-                        <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
-                        <td>{{ $disciplina->nombre_disc}}</td>
-                         @switch($disciplina->categoria)
+                        <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
+                        <td>{{ $disciplina->disciplina->nombre_disc}}</td>
+                         @switch($disciplina->disciplina->categoria)
                             @case(0)
                                 <td>{{ 'Mixto' }}</td>
                                 @break
@@ -80,17 +75,24 @@
                                 <td>{{ 'Hombres' }}</td>
                                 @break
                         @endswitch
-                        <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">
-                          <div class="button-div" style="">
-                              <i class="material-icons float-left">vertical_align_bottom</i>
-                              <span class="letter-size">Descargar</span>
-                          </div>
-                        </td>
-                        <td> {{ $disciplina->descripcion_disc}}</td>
-                        <td><a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}">
-                          <i title="Eliminar" class="material-icons delete_button">delete</i>
-                        </a></td>
+                        <td>
+                            @if ($disciplina->disciplina->tiene_ganadores($disciplina->id_disc,$gestion->id_gestion) == 0)
+                                {{--  <a href="{{ route('gestion.definir_ganadores',[$gestion->id_gestion,$disciplina->id_disc]) }}">
+                                    <i title="Registrar ganadores" class="material-icons delete_button">star_border</i>
+                                </a>  --}}
+                                <a href=" " onclick="RegistrarGanadores({{$gestion->id_gestion,$disciplina->id_disc }});"  class="button_delete" data-toggle="modal" data-target="#modalGanadores">
+                                        <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                                star_border
+                                        </i>
+                                </a>
+                            @else
+                                <a href="{{ route('gestion.mostrar_ganadores',[$gestion->id_gestion,$disciplina->id_disc]) }}">
+                                    <i title="Ganadores" class="material-icons delete_button">star</i>
+                                </a>
+                            @endif
+                            
                         
+                        </td>
                       </tr>
                     @endforeach
                   </tbody>

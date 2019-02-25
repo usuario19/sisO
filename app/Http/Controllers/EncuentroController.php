@@ -166,16 +166,45 @@ class EncuentroController extends Controller
         }
         return redirect()->back();  
     }
-public function reg_resultado_competicion(Request $request){
+public function reg_res_competicion(Request $request){
         if($request->ajax()){
-            // $id_seleccion = 
-            // $tabla_Posicion_Jugador = new Tabla_Posicion_Jugador();
-            // $tabla_Posicion_Jugador->id_fase = $request->fase;
-            // $tabla_Posicion_Jugador->id_disc = $request->disc;
-            // $tabla_Posicion_Jugador->save();
-            return $request;
+            $id_fase = $request->fase;
+            $id_disc = $request->disc;
+            $id_gestion = $request->gestion;
+            $id_encuentro = $request->encuentro;
+            foreach ($request->tabla as $jugador) {
+                $id_seleccion = DB::table('jugador_clubs')
+                                ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
+                                ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
+                                ->where('jugador_clubs.id_jugador',$jugador[0])
+                                ->where('jugador_clubs.id_club',$jugador[1])
+                                ->where('club_participaciones.id_club',$jugador[1])
+                                ->where('club_participaciones.id_disc',$id_disc)
+                                ->where('club_participaciones.id_gestion',$id_gestion)
+                                ->select('selecciones.id_seleccion')->get()->last()->id_seleccion;
+                Encuentro_Seleccion::where('id_seleccion',$id_seleccion)->where('id_encuentro',$id_encuentro)
+                            ->update(['posicion' => $jugador[2]]);
+                $tabla = DB::table('tabla_posicion_jugadors')
+                    ->where('id_seleccion',$id_seleccion)
+                    ->where('id_fase',$id_fase)->get()->last();
+                //return $tabla;
+                if ($tabla != null) {
+                    $cantidad_encuentros = Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)->get()->last()->cantidad_encuentros;
+                    Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)
+                            ->update(['cantidad_encuentros' => $cantidad_encuentros+1]);
+                }
+                else{
+                    $tabla_posicion_jugador = new Tabla_Posicion_Jugador();
+                    $tabla_posicion_jugador->id_fase = $id_fase;
+                    $tabla_posicion_jugador->id_disc = $id_disc;
+                    $tabla_posicion_jugador->id_seleccion = $id_seleccion;
+                    $tabla_posicion_jugador->cantidad_encuentros = 1;
+                    $tabla_posicion_jugador->save();
+                }
+            }
+            
         }
-        
+        return $request;  
     }
     public function select_contrincante($id_club, $id_grupo){
         $clubsParaEncuentro = DB::table('grupo_club_participaciones')
@@ -224,9 +253,9 @@ public function reg_resultado_competicion(Request $request){
         ->get();
         return response()->json($data);
     }
-    public function fixture(){        
-        $fechas = Fecha::all(); 
-        $pdf = PDF::loadView('grupo.fixture',['fechas'=>$fechas ]);
+    public function fixture_porfecha($id_fecha){        
+        $fecha = Fecha::find($id_fecha); 
+        $pdf = PDF::loadView('grupo.fixture',['fecha'=>$fecha]);
         return $pdf->download('fixture.pdf');
     }
 }

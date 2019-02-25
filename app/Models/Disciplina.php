@@ -97,4 +97,7 @@ class Disciplina extends Model
         if($value !== null)
             $this->attributes['nombre_disc']= trim(ucwords(strtolower($value)));
     }
+    public function tiene_ganadores($id_disc, $id_gestion){
+        return 0;
+    }
 }

@@ -58,7 +58,7 @@
                                 <th>Nombre</th>
                                 <th>Categoria</th>
                                 <th>Tipo</th>
-                                <th>Descripcion</th>
+                                <th width="150px">Descripcion</th>
                                 <th>Reglamento</th>
                                 
                                 @if(Auth::check() && Auth::user()->tipo == 'Administrador')

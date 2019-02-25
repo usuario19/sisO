@@ -7,6 +7,7 @@ use App\Models\Gestion;
 use App\Models\Inscripcion;
 use App\Models\Participacion;
 use App\Models\Tabla_Posicion;
+use App\Models\Tabla_Posicion_Jugador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -324,8 +325,91 @@ class GestionController extends Controller
         $disciplina = Disciplina::find($request->get('id_disciplina'));
         $id_fase = $request->get('id_fase');
         $fase = Fase::find($id_fase);
+        if ($disciplina->tipo == 0) {
+            $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->orderBy('puntos','desc')->paginate(15);
+            return view('gestiones.tabla_pos_equipo',compact('tabla_posiciones','gestion','disciplina','fase'));
+    
+        } 
+        else {
+            $tabla_posiciones = DB::table('tabla_posicion_jugadors')
+                    ->join('selecciones','tabla_posicion_jugadors.id_seleccion','selecciones.id_seleccion')
+                    ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+                    ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+                    ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+                    ->where('tabla_posicion_jugadors.id_fase',$id_fase)
+                    ->paginate(15);
+            return view('gestiones.tabla_pos_competicion',compact('tabla_posiciones','gestion','disciplina','fase'));
+
+        }
         
-        $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->orderBy('puntos','desc')->paginate(15);
-        return view('gestiones.mostrar_resultados',compact('tabla_posiciones','gestion','disciplina','fase'));
+        }
+    public function mostrar_resultado_competicion_fase_ajax($id_fase){
+        $data = DB::table('tabla_posicion_jugadors')
+        ->join('selecciones','tabla_posicion_jugadors.id_seleccion','selecciones.id_seleccion')
+        ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+        ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+        ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+        ->where('tabla_posicion_jugadors.id_fase',$id_fase)
+        ->get();
+        return response()->json($data);
+    }
+    public function reg_res_competicion_fase(request $request){
+        if($request->ajax()){
+            $id_fase = $request->fase;
+            $id_disc = $request->disc;
+            $id_gestion = $request->gestion;
+            foreach ($request->tabla as $jugador) {
+                $id_seleccion = DB::table('jugador_clubs')
+                                ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
+                                ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
+                                ->where('jugador_clubs.id_jugador',$jugador[0])
+                                ->where('jugador_clubs.id_club',$jugador[1])
+                                ->where('club_participaciones.id_club',$jugador[1])
+                                ->where('club_participaciones.id_disc',$id_disc)
+                                ->where('club_participaciones.id_gestion',$id_gestion)
+                                ->select('selecciones.id_seleccion')->get()->last()->id_seleccion;
+                Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)
+                            ->update(['posicion' => $jugador[2]]);
+                // $tabla = DB::table('tabla_posicion_jugadors')
+                //     ->where('id_seleccion',$id_seleccion)
+                //     ->where('id_fase',$id_fase)->get()->last();
+                // //return $tabla;
+                // if ($tabla != null) {
+                //     $cantidad_encuentros = Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)->get()->last()->cantidad_encuentros;
+                //     Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)
+                //             ->update(['cantidad_encuentros' => $cantidad_encuentros+1]);
+                // }
+                // else{
+                //     $tabla_posicion_jugador = new Tabla_Posicion_Jugador();
+                //     $tabla_posicion_jugador->id_fase = $id_fase;
+                //     $tabla_posicion_jugador->id_disc = $id_disc;
+                //     $tabla_posicion_jugador->id_seleccion = $id_seleccion;
+                //     $tabla_posicion_jugador->cantidad_encuentros = 1;
+                //     $tabla_posicion_jugador->save();
+                // }
+            }
+            
+        }
+        return $request;
+    }
+    public function resultados_finales($id_gestion){
+        $disciplinas = Participacion::where('id_gestion',$id_gestion)->get();
+        $gestion = Gestion::find($id_gestion);
+        return view('gestiones.resultados_finales',compact('disciplinas','gestion'));
+    }
+    public function array_clubs_ajax($id_gestion, $id_disc){
+        $data = DB::table('club_participaciones')
+        ->join('clubs','club_participaciones.id_club','clubs.id_club')
+        ->where('club_participaciones.id_disc',$id_disc)
+        ->where('club_participaciones.id_gestion',$id_gestion)
+        ->get();
+        return response()->json($data);
+    }
+    public function registrar_ganadores(request $request){
+        //nos envian los datos por ajax para que los almacenems
+        return $request;
+    }
+    public function mostrar_ganadores($id_gestion, $id_disc){
+        //vista normal con opcion a imprimir ganadores
     }
 }

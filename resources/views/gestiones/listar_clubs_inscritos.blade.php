@@ -9,32 +9,26 @@
 
 @section('content')
 <div class="container">
-
     <div class="card">
       <div class="card-header">
           <table class="table table-sm table-bordered" style="margin: 0%">
               <thead>
                   <th>
                       <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                          <h4 class="" style="font-size: 18px">CLUBS INSCRITOS</h4></td>
+                          <h4 class="" style="font-size: 18px">CLUBS INSCRITOS</h4>
                       </div>
                   </th>
                   </thead>
               <tbody>
               <tr> 
-                
-                   
                     <td>
                             <div style="float: left;" class="form-group col-md-12">
                                     {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                                 </div>
                     </td>
-                   
-                 
               </tr>
             </tbody>
           </table>
-         
       </div>
         <div class="card-body">
            <div class="container table-responsive-xl">
@@ -54,19 +48,16 @@
                             <td><img class="img-thumbnail" src="/storage/logos/{{ $club->logo}}" alt="" height=" 70px" width="70px"></td>
                             <td>{{ $club->nombre_club}}</td>
                             <td>{{ $club->ciudad}}</td>
-                            <td>{{ $club->descripcion_club}}</td>
+                            <td><div class="d-inline-block text-truncate" style="max-width: 150px;">
+                                {{ $club->descripcion_club}}</div></td>
                         </tr>
                         @endforeach
                   </tbody>
             </table>
-           </div>
-           
-            
-                
+           </div>   
       </div>
-  
 </div>
-
+</div>
 @endsection
 @section('scripts')
 {!! Html::script('/js/filtrar_por_nombre.js') !!}

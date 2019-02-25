@@ -1,12 +1,4 @@
 {!! Form::open(['route'=>'encuentro.store','method' => 'POST']) !!}
-                    <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-link btn-block" data-toggle="modal" data-target="#modalEncuentro" style="padding: 0%">
-                          <i class="material-icons btn">
-                              query_builder
-                              </i>
-                        <span>Programar encuentro</span>
-                      </button>
-    
                       <!-- Modal -->
                       <div class="modal fade" id="modalEncuentro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">

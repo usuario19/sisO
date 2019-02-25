@@ -15,7 +15,8 @@ class CreateTablaPosicionJugadorsTable extends Migration
     {
         Schema::create('tabla_posicion_jugadors', function (Blueprint $table) {
             $table->increments('id_tabla_posicion_jugadors');
-            
+            $table->integer('cantidad_encuentros')->nullable();
+            $table->integer('posicion')->nullable();
             $table->integer('id_seleccion')->unsigned();
             $table->foreign('id_seleccion')->references('id_seleccion')->on('selecciones')->onDelete('cascade');
             

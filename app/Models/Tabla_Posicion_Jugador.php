@@ -11,7 +11,13 @@ class Tabla_Posicion_Jugador extends Model
     protected $fillable = [
         'id_seleccion',
         'id_disc',
-        'id_fase'
+        'id_fase',
+        'cantidad_encuentros',
+        'posicion'
     ];
     protected $hidden = ['remember_token'];
+
+    public function selecciones(){
+        return $this->hasMany('App\Models\Seleccion','id_seleccion');
+    }
 }

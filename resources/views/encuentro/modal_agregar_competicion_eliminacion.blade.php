@@ -1,9 +1,4 @@
 {!! Form::open(['route'=>'encuentro.store_competicion_serie','method' => 'POST']) !!}
-                    <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEncuentro">
-                        Programar encuentro
-                      </button>
-    
                       <!-- Modal -->
                       <div class="modal fade" id="modalEncuentro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Paricipante_Ganador extends Model
+class Participante_Ganador extends Model
 {
     protected $table = 'participante_ganadors';
 	protected $primaryKey = 'id_participante_ganador';

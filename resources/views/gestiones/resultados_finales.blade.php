@@ -11,6 +11,7 @@
 @section('content')
 
 @include('gestiones.modal_registrar_ganadores')
+@include('gestiones.modal_registrar_ganadores_competicion')
 <div class="container">
     <div class="card">
       <div class="card-header">
@@ -63,24 +64,19 @@
             
                         <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
                         <td>{{ $disciplina->disciplina->nombre_disc}}</td>
-                         @switch($disciplina->disciplina->categoria)
-                            @case(0)
-                                <td>{{ 'Mixto' }}</td>
-                                @break
-                        
-                           @case(1)
-                                <td>{{ 'Mujeres' }}</td>
-                                @break
-                                @case(2)
-                                <td>{{ 'Hombres' }}</td>
-                                @break
-                        @endswitch
+                        <td>{{ $disciplina->disciplina->nombre_categoria($disciplina->disciplina->categoria) }}</td>
+                         
                         <td>
-                            @if ($disciplina->disciplina->tiene_ganadores($disciplina->id_disc,$gestion->id_gestion) == 0)
-                                {{--  <a href="{{ route('gestion.definir_ganadores',[$gestion->id_gestion,$disciplina->id_disc]) }}">
-                                    <i title="Registrar ganadores" class="material-icons delete_button">star_border</i>
-                                </a>  --}}
+                            @if ($disciplina->disciplina->tiene_ganadores($disciplina->disciplina->id_disc,$gestion->id_gestion) == 0 & $disciplina->disciplina->tipo==0)
+                               
                                 <a href=" " onclick="RegistrarGanadores({{$disciplina->disciplina->id_disc}});"  class="button_delete" data-toggle="modal" data-target="#modalGanadores">
+                                        <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                                star_border
+                                        </i>
+                                </a>
+                            @else
+                            @if ($disciplina->disciplina->tiene_ganadores($disciplina->disciplina->id_disc,$gestion->id_gestion) == 0)
+                                <a href=" " onclick="RegistrarGanadoresCompeticion({{$disciplina->disciplina->id_disc}});"  class="button_delete" data-toggle="modal" data-target="#modalGanadoresCompeticion">
                                         <i title="Registrar resultados" class="material-icons delete_button button_redirect">
                                                 star_border
                                         </i>
@@ -89,6 +85,7 @@
                                 <a href="{{ route('gestion.mostrar_ganadores',[$gestion->id_gestion,$disciplina->disciplina->id_disc]) }}">
                                     <i title="Ganadores" class="material-icons delete_button">star</i>
                                 </a>
+                            @endif
                             @endif
                             
                         

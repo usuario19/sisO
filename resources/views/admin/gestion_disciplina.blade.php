@@ -74,10 +74,10 @@
                                 @break
                         
                            @case(1)
-                                <td>{{ 'Mujeres' }}</td>
+                                <td>{{ 'Damas' }}</td>
                                 @break
                                 @case(2)
-                                <td>{{ 'Hombres' }}</td>
+                                <td>{{ 'Varones' }}</td>
                                 @break
                         @endswitch
                         <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">

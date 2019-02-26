@@ -365,14 +365,23 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@array_clubs_ajax',
 	    'as'=> 'gestion.array_clubs_ajax'
 	]);
+	Route::get('gestion/{id_gestion}/{id_fase}/array_jugadores_ajax',[
+	    'uses'=> 'GestionController@array_jugadores_ajax',
+	    'as'=> 'gestion.array_jugadores_ajax'
+	]);
 	Route::post('registrar_ganadores',[
 	    'uses'=> 'GestionController@registrar_ganadores',
 	    'as'=> 'gestion.registrar_ganadores'
 	]);
-	Route::get('gestion/{id_gestion}/{id_fase}/mostrar_ganadores',[
+	Route::post('registrar_ganadores_competicion',[
+	    'uses'=> 'GestionController@registrar_ganadores_competicion',
+	    'as'=> 'gestion.registrar_ganadores_competicion'
+	]);
+	Route::get('gestion/{id_gestion}/{id_disc}/mostrar_ganadores',[
 	    'uses'=> 'GestionController@mostrar_ganadores',
 	    'as'=> 'gestion.mostrar_ganadores'
 	]);
+
 	//JUGADOR_INSCRIPCION
 	Route::post('inscripcion_jugador',[ 
 				'uses'=> 'JugadorClubController@store',

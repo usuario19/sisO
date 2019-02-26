@@ -8,6 +8,8 @@ use App\Models\Participacion;
 use App\Models\Inscripcion;
 use App\Models\Ganador;
 use App\Models\Club_participacion;
+use Illuminate\Support\Facades\DB;
+
 
 
 use Storage;
@@ -99,16 +101,27 @@ class Disciplina extends Model
             $this->attributes['nombre_disc']= trim(ucwords(strtolower($value)));
     }
     public function tiene_ganadores($id_disc, $id_gestion){
-
-        $id_part = Participacion::where('id_gestion',$id_gestion)
-                    ->where('id_disciplina',$id_disc)
-                    ->select('id_participacion')
-                    ->get()->last();
-        $ganadores = Ganador::where('id_participacion',$id_part)->get();
-        if ($ganadores == null) {
-            return 0;
+        $disciplina = Disciplina::find($id_disc);
+        if ($disciplina->tipo==0) {
+            $ganadores = DB::table('ganadors')
+                ->join('participaciones','ganadors.id_participacion','participaciones.id_participacion')
+                ->where('participaciones.id_gestion',$id_gestion)
+                ->where('participaciones.id_disciplina',$id_disc)->get()->last();
+            if (empty($ganadores)) {
+                return 0;
+            } else {
+                return 1;
+            }
         } else {
-            return 1;
+            $ganadores = DB::table('participante_ganadors')
+                ->join('participaciones','participante_ganadors.id_participacion','participaciones.id_participacion')
+                ->where('participaciones.id_gestion',$id_gestion)
+                ->where('participaciones.id_disciplina',$id_disc)->get()->last();
+            if (empty($ganadores)) {
+                return 0;
+            } else {
+                return 1;
+            }
         }
     }
 }

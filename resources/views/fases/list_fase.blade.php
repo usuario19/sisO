@@ -78,7 +78,7 @@
                                 person
                                 </i></a></td>
                           @else
-                            <td style="width: "><a href="{{ route('fase.encuentros_eliminacion_competicion',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
+                            <td style="width: "><a href="{{ route('fase.encuentros_eliminacion_competicion',[$fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">
                               <i title="Grupo" class="material-icons delete_button">
                                 person
                                 </i></a></td>

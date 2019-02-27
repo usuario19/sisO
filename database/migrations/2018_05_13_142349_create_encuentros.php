@@ -12,7 +12,6 @@ class CreateEncuentros extends Migration
             $table->increments('id_encuentro');
             $table->date('fecha');
             $table->time('hora');
-            //$table->string('ubicacion');
             $table->text('detalle')->nullable();
            
             $table->integer('id_fecha')->unsigned();

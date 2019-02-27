@@ -593,7 +593,22 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@select_contrincante_eliminacion',
 		'as'=>'encuentro.select_contrincante_eliminacion'
 	]);
-
+	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/{id_grupo}/seleccion_equipo',[
+		'uses'=>'EncuentroController@seleccion_equipo',
+		'as'=>'encuentro.seleccion_equipo'
+	]);
+	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/seleccion_competicion',[
+		'uses'=>'EncuentroController@seleccion_competicion',
+		'as'=>'encuentro.seleccion_competicion'
+	]);
+	Route::post('encuentro/agregar_jugador_encuentro',[
+		'uses'=>'EncuentroController@agregar_jugador_encuentro',
+		'as'=>'encuentro.agregar_jugador_encuentro'
+	]);
+	Route::get('encuentro/{id_encuentro}/{id_jug}/eliminar_jugador_encuentro',[
+		'uses'=>'EncuentroController@eliminar_jugador_encuentro',
+		'as'=>'encuentro.eliminar_jugador_encuentro'
+	]);
 	//Avisos
 	Route::get('avisos',[
 		'uses'=>'AvisoController@index',

@@ -16,9 +16,7 @@
     <table class="table  table-sm table-bordered" style="margin: 0%"">
         <thead>
             <th width="100px">Posicion</th>
-            <th>Logo</th>
             <th>Club</th>
-            <th>Foto</th>
             <th>Jugador</th>
         </thead>
         <tbody>
@@ -46,10 +44,10 @@
                         @default
                     @endswitch
                    
-                    <td><img class="rounded mx-auto d-block float-left" src="/storage/logos/{{ $ganador->logo}}" alt="" height=" 30px" width="30px"></td>
-                    <td>{{ $ganador->nombre_club }}</td>
-                    <td><img class="rounded mx-auto d-block float-left" src="/storage/fotos/{{ $ganador->foto_jugador}}" alt="" height=" 30px" width="30px"></td>
-                    <td>{{ $ganador->nombre_jugador.' '.  $ganador->apellidos_jugador}}</td>
+                    <td><img class="rounded mx-auto d-block float-left" src="/storage/logos/{{ $ganador->logo}}" alt="" height=" 30px" width="30px">
+                    {{ $ganador->nombre_club }}</td>
+                    <td><img class="rounded mx-auto d-block float-left" src="/storage/fotos/{{ $ganador->foto_jugador}}" alt="" height=" 30px" width="30px">
+                    {{ $ganador->nombre_jugador.' '.  $ganador->apellidos_jugador}}</td>
                 </tr>
             @endforeach
         </tbody>

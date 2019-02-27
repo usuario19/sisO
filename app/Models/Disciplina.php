@@ -26,6 +26,7 @@ class Disciplina extends Model
 		'reglamento_disc',
 		'descripcion_disc',
 		'id_disc',
+		//'futbol',
 		];
 
 	protected $hidden = [
@@ -123,5 +124,14 @@ class Disciplina extends Model
                 return 1;
             }
         }
+    }
+    public function es_futbol($id_disc){
+        $nombre = Disciplina::find($id_disc)->nombre_disc;
+        if (str_contains($nombre, 'futbol')) {
+            return 1;
+        } else {
+            return 0;
+        }
+        
     }
 }

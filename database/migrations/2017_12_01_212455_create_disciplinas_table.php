@@ -17,6 +17,7 @@ class CreateDisciplinasTable extends Migration
             $table->increments('id_disc');
             $table->integer('categoria');
             $table->integer('tipo');
+            //$table->integer('futbol')->nullable();
             $table->string('nombre_disc');
             $table->string('foto_disc')->default('sin_imagen.png');
             $table->string('reglamento_disc')->nullable();

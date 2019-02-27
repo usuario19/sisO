@@ -91,6 +91,9 @@
                    <td>                     
                       {{ $encuentro->detalle}}</td>                 
                    <td>
+                      <a href="{{ route('encuentro.seleccion_equipo',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase,$grupo->id_grupo]) }}">
+                        <i title="Jugadores" class="material-icons delete_button">
+                          star</i></a>
                     @if ($encuentro->tiene_resultado($encuentro->id_encuentro) == 1)
                       <a href=" " onclick="VerResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
                         <i title="Ver resultados" class="material-icons delete_button button_redirect">
@@ -107,8 +110,7 @@
                         </i>
                       </a>
                     @endif
-                      {{--  <button data-toggle="modal" data-target="#modalResultado" style="padding: 0%"><i title="Resultados" class="material-icons delete-button">collections_bookmark</i></button>  --}}
-                  </td>
+                    </td>
                  </tr>
                @endforeach            
              </tbody>

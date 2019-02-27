@@ -9,6 +9,9 @@ use App\Models\Inscripcion;
 use App\Models\Encuentro;
 use App\Models\Eliminacion;
 use App\Models\Fecha;
+use App\Models\Jugador;
+use App\Models\Grupo;
+use App\Models\Fase;
 use App\Models\Encuentro_Club_Participacion;
 use App\Models\Encuentro_Seleccion;
 use App\Models\Tabla_Posicion;
@@ -130,7 +133,7 @@ class EncuentroController extends Controller
                      ->get()->last()->id_club_part;
 
                 Encuentro_Club_Participacion::where('id_encuentro_club_part', $id_encuentro_club_part)
-                    ->update(['puntos' => $puntos, 'observacion'=>$observacion,'resultado'=>"1"]);
+                    ->update(['puntos' => $puntos, 'observacion'=>$observacion]);
                 $puntos_total = Tabla_Posicion::where('id_club_part',$id_club_part)->where('id_fase',$id_fase)
                     ->select('puntos')->get()->last()->puntos;
                     $puntos_total = $puntos_total + $puntos;
@@ -257,5 +260,120 @@ public function reg_res_competicion(Request $request){
         $fecha = Fecha::find($id_fecha); 
         $pdf = PDF::loadView('grupo.fixture',['fecha'=>$fecha]);
         return $pdf->download('fixture.pdf');
+    }
+    public function seleccion_equipo($id_enc,$id_gestion,$id_disc,$id_fase,$id_grupo){  
+        $gestion = Gestion::find($id_gestion);
+        $disciplina = Disciplina::find($id_disc);
+        $fase= Fase::find($id_fase);
+        $grupo= Grupo::find($id_grupo);
+        $club1 = 0;
+        $club2 = 0;
+        $encuentro = Encuentro::find($id_enc);
+        $i=0;
+        foreach ($encuentro->encuentro_club_participaciones as $value) {
+            if ($i==0) {
+                $club1=$value->id_club_part;
+            } else {
+                $club2=$value->id_club_part;
+            }
+            $i++;
+        }
+        $id_club1 = Club_Participacion::find($club1)->id_club;
+        $id_club2 = Club_Participacion::find($club2)->id_club;
+        //return dd($id_club2);
+        
+        $jug_hab1 = DB::table('encuentro_seleccions')
+            ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_seleccions.id_encuentro',$id_enc)
+            ->where('jugador_clubs.id_club',$id_club1)
+            ->get();
+        $selec1  = array();
+            foreach ($jug_hab1 as $value) {
+               $selec1[] = $value->id_jugador;
+            }
+        $jug_hab2 = DB::table('encuentro_seleccions')
+            ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_seleccions.id_encuentro',$id_enc)
+            ->where('jugador_clubs.id_club',$id_club2)
+            ->get();
+        $selec2  = array();
+            foreach ($jug_hab2 as $value) {
+               $selec1[] = $value->id_jugador;
+            }
+        $jug_disp1 = DB::table('encuentro_club_participaciones')
+            ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+            ->join('selecciones','club_participaciones.id_club_part','selecciones.id_club_part')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_club_participaciones.id_encuentro',$id_enc)
+            ->where('jugador_clubs.id_club',$id_club1)
+            ->whereNotIn('jugadores.id_jugador', $selec1)
+            ->select('jugadores.*')
+            ->get();
+        
+        $jug_disp2 = DB::table('encuentro_club_participaciones')
+            ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+            ->join('selecciones','club_participaciones.id_club_part','selecciones.id_club_part')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_club_participaciones.id_encuentro',$id_enc)
+            ->where('jugador_clubs.id_club',$id_club2)
+            ->whereNotIn('jugadores.id_jugador', $selec1)
+            ->select('jugadores.*')
+            ->get(); 
+        
+        //$jug_disp2 = Jugador::whereNotIn('id_jugador',$seleccion2);
+        $club1 =Club::find($id_club1);
+        $club2 =Club::find($id_club2);
+        //return dd($jug_disp1); 
+        return view('encuentro.jugadores_seleccionados_equipo',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+    }
+    public function agregar_jugador_encuentro(request $request){
+        $id_encuentro = $request->get('id_encuentro');
+        // $id_gestion = $request->get('id_gestion');
+        // $id_disc = $request->get('id_disc');
+        // $id_club = $request->get('id_club');
+        $id_jugador = $request->get('id_jugador');
+
+        foreach($id_jugador as $id_jug){
+
+            $id_seleccion = DB::table('encuentro_club_participaciones')
+            ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+            ->join('selecciones','club_participaciones.id_club_part','selecciones.id_club_part')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_club_participaciones.id_encuentro',$id_encuentro)
+            ->where('jugadores.id_jugador', $id_jug)
+            ->select('selecciones.id_seleccion')
+            ->get()->last()->id_seleccion;
+
+            $encuentro_selec = new Encuentro_Seleccion();
+            $encuentro_selec->id_encuentro = $id_encuentro;
+            $encuentro_selec->id_seleccion = $id_seleccion;
+            $encuentro_selec->save();
+            //return dd($id_seleccion);
+        }
+        return redirect()->back();
+    }
+    public function eliminar_jugador_encuentro($id_encuentro,$id_jugador){
+        $id_seleccion = DB::table('encuentro_club_participaciones')
+            ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+            ->join('selecciones','club_participaciones.id_club_part','selecciones.id_club_part')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_club_participaciones.id_encuentro',$id_encuentro)
+            ->where('jugadores.id_jugador', $id_jugador)
+            ->select('selecciones.id_seleccion')
+            ->get()->last()->id_seleccion;
+
+        DB::table('encuentro_seleccions')
+        ->where('id_encuentro',$id_encuentro)
+        ->where('id_seleccion',$id_seleccion)
+        ->delete();
+        return redirect()->back();
     }
 }

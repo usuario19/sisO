@@ -62,7 +62,7 @@ class Encuentro extends Model
     }
     public function tiene_resultado($id_encuentro){
         $res = Encuentro_Club_participacion::where('id_encuentro',$id_encuentro)->get()->last();
-        if ($res->resultado == null) {
+        if ($res->puntos == null) {
             return 0;
         }
         else {

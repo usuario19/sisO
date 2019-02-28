@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-				{!! Form::open(['route'=>'jugador.store','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true]) !!}
+				{!! Form::open(['route'=>'jugador.store','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true ,'id'=>'form-create-jug']) !!}
 		
 
 		<div class="container col-md-12">
@@ -69,10 +69,9 @@
 					<div class="form-row">
 							<div class="form-group col-md-6">
 								{!! Form::submit('Crear cuenta', ['class'=>'btn btn-primary btn-block','id'=>'buttonReg']) !!}
-								<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> -->
 							</div>
 							<div class="form-group col-md-6">
-								<a href="" class="btn btn-block btn-secondary" data-dismiss="modal" id="buttonClose">Cancelar</a>
+								<a href="" class="btn btn-block btn-outline-secondary" data-dismiss="modal" id="buttonClose">Cancelar</a>
 							</div>
 						</div>
 				</div>
@@ -81,11 +80,10 @@
 		
 		
 		</div>
-      <div class="modal-footer">
+      
        {{--   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         {!! Form::submit('Registrar Jugador', ['class'=>'btn btn-primary']) !!}  --}}
         {!! Form::close() !!}
-      </div>
     </div>
   </div>
 </div>

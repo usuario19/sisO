@@ -60,8 +60,6 @@
                 @endif
             </thead>
               <tbody>
-                 
-            
                       <tr id="fila.{{ $gestion->id_gestion }}" onMouseOver="ResaltarFila('fila.{{ $gestion->id_gestion }}');" onMouseOut="RestablecerFila('fila.{{ $gestion->id_gestion}}')" onClick="CrearEnlace('{{ route('principal.gestion_info',$gestion->id_gestion) }}');" style="cursor:pointer">
                           {{--  <td>{{ $gestion->id_gestion}}</td>  --}}
                           <td class="text-right" style="width: 50%"><strong>{{ strtoupper ($gestion->nombre_gestion)}}</strong></td>

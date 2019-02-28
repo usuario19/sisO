@@ -13,6 +13,7 @@ use Storage;
 use Auth;
 use Hash;
 use App\Rules\VerificarCi;
+use App\Rules\verificar_genero;
 
 
 class AdministradorController extends Controller
@@ -128,7 +129,7 @@ class AdministradorController extends Controller
                 'genero' =>'required',
                 'fecha_nac' =>['required','date', new \App\Rules\birthdate],
                 'descripcion_admin'=>'between:0,200',
-                'email'=>'required|email',
+                'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                 'mi_password'=>['required', new \App\Rules\password, new \App\Rules\hash_password],
                 'newpassword'=>['required','confirmed','between:6,100', new \App\Rules\password],
                 ]);
@@ -141,13 +142,13 @@ class AdministradorController extends Controller
                 'genero' =>'required',
                 'fecha_nac' =>['required','date', new \App\Rules\birthdate],
                 'descripcion_admin'=>'between:0,200',
-                'email'=>'required|email',
+                'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                 'mi_password'=>['required', new \App\Rules\password, new \App\Rules\hash_password],
                 ]);
             }
             $usuario->tipo=$request->tipo;
             $usuario->save();
-            flash('Se actualizo correctamente los datos del Usuario. ')->success();
+            flash('Se actualizo correctamente los datos del Usuario. ')->success()->important();
             return redirect()->route('administrador.informacion',$id);
         
         }else{
@@ -162,7 +163,7 @@ class AdministradorController extends Controller
                         'fecha_nac' =>['required','date', new \App\Rules\birthdate],
                         'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',
                         'descripcion_admin'=>'between:0,200',
-                        'email'=>'required|email',
+                        'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                         'newpassword'=>['required','confirmed','between:6,100', new \App\Rules\password],
                         ]);
 
@@ -174,7 +175,7 @@ class AdministradorController extends Controller
                     'fecha_nac' =>['required','date', new \App\Rules\birthdate],
                     'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',
                     'descripcion_admin'=>'between:0,200',
-                    'email'=>'required|email',
+                    'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                     'newpassword'=> ['required','confirmed','between:6,100', new \App\Rules\password],
                     ]);
                 }
@@ -190,7 +191,7 @@ class AdministradorController extends Controller
                         'fecha_nac' =>['required','date', new \App\Rules\birthdate],
                         'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',
                         'descripcion_admin'=>'between:0,200',
-                        'email'=>'required|email',
+                        'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                         ]);
 
                 }else{
@@ -202,14 +203,14 @@ class AdministradorController extends Controller
                         'fecha_nac' =>['required','date', new \App\Rules\birthdate],
                         'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',
                         'descripcion_admin'=>'between:0,200',
-                        'email'=>'required|email',
+                        'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                         ]);
                 }
                 $usuario->fill($request->all()); 
             } 
             $usuario->tipo=$request->tipo;
             $usuario->save();
-            flash('Se actualizo correctamente los datos del Usuario. ')->success();
+            flash('Se actualizo correctamente los datos del Usuario. ')->success()->important();
             return redirect()->route('administrador.informacion',$id);
         }
     }
@@ -225,10 +226,11 @@ class AdministradorController extends Controller
         {
             //echo "entro";
             $this->validate($request, [
-                'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',
+                'foto_admin' =>'mimes:jpg,jpeg|max:5120',
             ]);
 
-            $nombre = time().'-'.'image';
+            $nombre = time().'-'.'image.'.'jpg';
+            /* $nombre = time().'-'.'image.'.$request->file('foto_admin')->getClientOriginalExtension(); */
             
             //obtiene el nombre del archivo
             if(Storage::disk('fotos')->put($nombre, file_get_contents($request->foto_admin)))
@@ -330,12 +332,13 @@ class AdministradorController extends Controller
             'ci'=>$row[1],
             'nombre'=>$row[2], 
             'apellidos' =>$row[3], 
-            'genero' =>$row[4] == 'F' ? '1':'2',
+            'genero' =>(trim(strtolower($row[4])) == 'f' )? 1:(trim( strtolower($row[4])) == 'm')? 2:0,
             'fecha_nac' =>$row[5],
             'email'=>$row[6],
             'descripcion_admin'=>$row[7], 
             'password'=>$row[8],
         ];
+        
     }
 
     public function importExcel(Request $request)
@@ -351,6 +354,7 @@ class AdministradorController extends Controller
 
         $worksheet = $spreadsheet->getActiveSheet()->toArray();
         $errores=[];
+        $errores_detalle=[];
         foreach($worksheet as $row)
         {
             $datos = [];
@@ -362,19 +366,19 @@ class AdministradorController extends Controller
                     'ci'=>'required|unique:administradores|numeric|digits_between:6,10',
                     'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                     'apellidos' =>['required','between:2,150', new \App\Rules\Alpha_spaces], 
-                    'genero' =>'required',
+                    'genero' =>['required',new \App\Rules\verificar_genero],
                     'fecha_nac' =>['required','date'/* , new \App\Rules\birthdate */],
                     //'6' =>'mimes:jpeg,bmp,png,jpg|max:5120',
                     'descripcion_admin'=>'between:0,200',
-                    'email'=>'required|email',
+                    'email'=>'required|email|unique:administradores',
                     'password'=>['required','between:6,100', new \App\Rules\password],
                 ]);
                 
 
                 if ($validator->fails()) {
                     array_push($errores,$datos['numero']);
+                    array_push($errores_detalle,$validator->messages());
                 }else{
-
                     $administrador = new Administrador;
                     $administrador->ci = $datos['ci'];
                     $administrador->nombre = $datos['nombre'];
@@ -397,13 +401,48 @@ class AdministradorController extends Controller
             ]); */
             if (count($errores) > 2) {
                 $var = "";
-                for($i = 2; $i<count($errores) ; $i++ )
+                $texto = "";
+                $array =  (array) $errores_detalle;
+
+                for($i = 2; $i<count($errores) ; $i++ ){
                     $var.= $errores[$i]." , ";
-                    flash('Los siguientes usuarios correspondientes a los No de la lista '.$var.'no fueron registrados.')->error();
+                    $texto.= "Fila ".$errores[$i].': <br><ol>';
+                    foreach ($errores_detalle[$i]->all() as $value) {
+                        $texto.='<li>  '.$value.'</li>';
+                    }
+                    $texto.='</ol>';
+                }
+                echo $texto;
+                
+                   /*  echo($errores_detalle[2]->first()); */
+                   /*  flash(''.dd($errores))->error()->important(); */
+                    flash('Los siguientes usuarios correspondientes a los Nro de la lista '
+                    .$var.'no fueron registrados. 
+                    <a class="mas_detalle" data-toggle="modal" data-target="#modalDetalle">Mas detalle</a>
+                    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                              <h5 class="modal-title" id="modalLabel">Detalle</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                        <div class="modal-body" style="height:400px; color:red;overflow:auto;">'.
+                        $texto
+                        .'</div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <button class="btn btn-outline-secondary" data-dismiss="modal" id="buttonClose">cerrar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>')->error()->important();
                return back();
             }
             else{
-                flash('Se registraron todos los usuarios exitosamente.')->success();
+                flash('Se registraron todos los usuarios exitosamente.')->success()->important();
                
                 return back();
             }

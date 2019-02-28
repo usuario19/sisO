@@ -1,8 +1,15 @@
 $("#fecha").change(function (event) {
-    
+    consultar_partidos();
+});
+$("#tomorrow").click(function(event){
+    consultar_partidos();
+});
+$("#yesterday").click(function(event){
+    consultar_partidos();
+});
+
+function consultar_partidos(){
     var contenido = $('#partidos_hoy');
-    
-    
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -29,7 +36,9 @@ $("#fecha").change(function (event) {
         },
         
         });
-    });
+}
+
+
     $("#fecha_title").click(function (event) {
     
         var contenido = $('#partidos_hoy');

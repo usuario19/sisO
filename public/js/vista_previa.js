@@ -5,7 +5,7 @@
       document.getElementById('texto2').addEventListener('mouseover', inicializarElementos, false)
     
     var imgO = document.getElementById("imgOrigen").src;
-    console.log(imgO);
+    /* console.log(imgO); */
     var imgO2= "";
    /*  if(document.getElementById("imgOrigen2"))
       var imgO2 = document.getElementById("imgOrigen2").src;
@@ -36,7 +36,7 @@
       if(elemento.id =="texto2")
       {
         imgO2 = document.getElementById("imgOrigen2").src;
-        console.log(imgO2);
+        /* console.log(imgO2); */
         inputfile2();
         
       }
@@ -89,7 +89,7 @@
         {
           //VALIDACION
           var tipo = document.getElementById("input").files[0].type;
-          if(tipo == "image/png"|| tipo =="image/jpeg" || tipo == "image/jpg" || tipo == "image/bmp")
+          if(tipo =="image/jpeg" || tipo == "image/jpg")
           {
             archivo.readAsDataURL(document.getElementById("input").files[0]);
 
@@ -103,7 +103,7 @@
             document.getElementById("error_foto").innerHTML ="";
           }else {
             document.getElementById("imgOrigen").src = imgO;
-            document.getElementById("error_foto").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg,png."
+            document.getElementById("error_foto").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg."
           }
         
           

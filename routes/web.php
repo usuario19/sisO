@@ -607,6 +607,14 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::put('centro/update/{centro}',[ 
 		'uses'=> 'LugarController@update',
 		'as' => 'centro.update']);
+	//REPORTES
+	Route::get('reportes',[
+		'uses'=>'ReporteController@index',
+		'as'=>'reporte.index'
+	]);
+	Route::post('reportes/pdf/gestion',[ 
+		'uses'=> 'ReporteController@pdf_gestiones',
+		'as' => 'reportes.gestiones']);
 });
 
 //COORDINADOR
@@ -650,7 +658,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 				'uses'=> 'JugadorController@create',
 				'as' => 'jugador.create']);
 
-	Route::put('jugador/{jugador}',[ 
+	Route::put('jugador/{id}',[ 
 				'uses'=> 'JugadorController@update',
 				'as' => 'jugador.update']);
 
@@ -890,6 +898,9 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('coordinador/{coordinador}',[ 
 			'uses'=> 'CoordinadorController@show',
 			'as' => 'coordinador.show']);
-
+	//CROP
+	Route::post('crop',[
+		'uses'=>'CropImageController@store',
+		'as'=>'crop.store']);
 	
 });

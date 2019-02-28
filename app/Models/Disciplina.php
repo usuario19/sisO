@@ -18,6 +18,7 @@ class Disciplina extends Model
     protected $fillable = [
 		'nombre_disc',
         'categoria',
+        'sub_categoria',
         'tipo',
 		'foto_disc',
 		'reglamento_disc',

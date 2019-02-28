@@ -18,19 +18,21 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " href={{ route('gestion.index') }}>
-              Campeonatos
-            </a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Campeonatos
+                </a>
+    
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href={{ route('gestion.index') }}>Lista de Campeonatos</a>
+                  <div class="dropdown-divider"></div>
+                  <a id="gestiones" class="dropdown-item" href={{ route('coordinador.mis_gestiones') }}>Mis Campeonatos</a>
+                </div>
+              
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="{{ route('administrador.index') }}" >
               Coordinadores
             </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href={{ route('administrador.create') }}>Registrar Coordinador</a>
-              <a class="dropdown-item" href={{ route('administrador.index') }}>Lista de coordinadores</a>
-            </div>
           </li> 
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,12 +41,18 @@
   
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de jugadores</a>
+                <a id="jugadores" class="dropdown-item" href={{ route('coordinador.club_jugadores_ajax') }}>MIS JUGADORES</a>
               </div>
             </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('club.index') }}">
-              Clubs
-            </a>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Clubs
+                </a>
+    
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('club.index') }}">Lista de clubs</a>
+                  <a class="dropdown-item" href={{ route('coordinador.index') }}>MIS CLUBS</a>
+                </div>
           </li> 
 
            <li class="nav-item ">
@@ -74,6 +82,11 @@
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('reporte.index') }}">
+                  Reportes
+                </a>
+              </li>
           </ul>
           <ul class="navbar-nav text-center">
               <li class="nav-item dropdown">

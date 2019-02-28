@@ -222,16 +222,9 @@
       }
     }())
   </script>
-<script>
-  
-  $("#buttonClose , #close").click(function(event) {
-    window.location.reload();
-  });
-</script>
+
   {!! Html::script('/js/vista_previa.js') !!}
   {!! Html::script('/js/validaciones.js') !!}
   {!! Html::script('/js/filtrar_por_nombre.js') !!}
-  {!! Html::script('/js/validacion_ajax_request.js') !!}
-  {!! Html::script('/js/validaciones.js') !!}
-
+  {!! Html::script('/js/validacion_ajax_request_jugador.js') !!}
 @endsection

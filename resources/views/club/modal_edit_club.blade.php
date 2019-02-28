@@ -55,7 +55,7 @@
                                                <div class="form-row">
                                                   <div class="form-group col-md-12">
                                                       {!! Form::label('nombre_club', 'Nombre del Club', []) !!}
-                                                  {!! Form::text('nombre_club', null, ['id'=>'nombre_club','class'=>'form-control']) !!}
+                                                      {!! Form::text('nombre_club', null, ['id'=>'nombre_club','class'=>'form-control']) !!}
                                                   </div>
                                                 </div>
                                                 <div class="form-row">

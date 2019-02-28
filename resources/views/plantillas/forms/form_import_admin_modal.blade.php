@@ -11,18 +11,7 @@
 
           <!-- <div>inicio</div> -->
           <div class="table-responsive-xl">
-            <div class="container col-md-12">
-      
-                <div id="mensaje" class="alert alert-success alert-dismissible show" role="alert" style="display: none">
-                  <strong>El Usuario fue registrado exitosamente!!!!</strong>
-                  <button type="button" class="close" aria-label="Close" onclick="document.getElementById('mensaje').style.display = 'none';">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-      
-              
-            </div>
-            <br>
+           
             <div class="container col-md-12">
               <div class="form-row">
                 <div class="form-group">
@@ -39,31 +28,33 @@
                 </div>
               </div>
             
-              {!! Form::open(['route'=>'administrador.importExcel','method'=>'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
+              {!! Form::open(['route'=>'administrador.importExcel','method'=>'POST','enctype'=>'multipart/form-data','files'=>true,'id'=>'form-import-admin']) !!}
                 
-                <div class="form-row">
+                <div class="row">
                   
-                  <div class="form-group">
-                    <div class="form-group col-md-12 {{ $errors->has('file_excel') ? 'siError':'noError' }}">
-                      {!! Form::label('file_excel', 'Archivo Excel:', []) !!}
-                      {!! Form::file('file_excel', ['class'=>'form-control']) !!}
+                    <div class="form-group col-12">
+                        <div class="custom-file">
+                          <input name="file_excel" type="file" class="custom-file-input" id="excel_file" accept=".xlsx,.xls">
+                          <div class="form-group"></div>
+                          <label class="custom-file-label" for="excel_file">Seleccionar Archivo</label>
+                        </div>
+                        
+                      {{--  {!! Form::label('file_excel', 'Archivo Excel:', []) !!}
+                      {!! Form::file('file_excel', ['class'=>'form-control']) !!}  --}}
                     </div>
-                    <div class="form-group errorLogin">               
-                        <h6 id="error_file_excel">{{ $errors->has('file_excel') ? $errors->first('file_excel'):'' }}</h6>
-                      </div>
                   </div>
                 </div>
             </div>
           </div>
 
         
-        <div class="modal-footer">
-            <div  class="form-row">
+        <div class="modal-footer col-md-12">
+            <div  class="form-row col-md-12">
                 <div class="form-group col-md-6">
-                  {!! Form::submit('Importar', ['class'=>'btn btn-primary btn-block']) !!}
+                  {!! Form::submit('Importar', ['class'=>'btn btn-success btn-block','id'=>'buttonSubmit','disabled']) !!}
                 </div>
                 <div class="form-group col-md-6">
-                  <a href="" class="btn btn-block btn-secondary" data-dismiss="modal" id="buttonClose">Cancelar</a>
+                  <button "reset" class="btn btn-block btn-outline-secondary" data-dismiss="modal" id="buttonClose">Cancelar</button>
                 </div>
               </div>
             {!! Form::close() !!}

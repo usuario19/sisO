@@ -53,21 +53,6 @@
    {!! Html::script('/js/jquery.js') !!}
    {!! Html::script('/js/popper.min.js') !!}
    {!! Html::script('/js/bootstrap.min.js') !!}
-   
-   <!-- <script>
-      window.addEventListener('load', inicializar, false);
-      function inicializar(){
-          var elemento = document.getElementsByClassName('nav-link');
-          for(var i = 0; i < elemento.length; i++)
-                  elemento[i].addEventListener('click',active_link_menu,false);
-          
-          
-      }
-      function active_link_menu(e)
-      {
-          e.target.className += " active";
-      }
-     </script> -->
     @yield('scripts')
     </body>
 <footer>

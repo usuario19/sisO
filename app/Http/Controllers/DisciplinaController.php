@@ -69,17 +69,18 @@ class DisciplinaController extends Controller
             $foto_antiguo = DB::table('disciplinas')
                             ->where('id_disc',$id)
                             ->select('foto_disc')
-                            ->get()->last();
-            $foto_disc = $foto_antiguo->foto_disc;
-                if ($foto_disc != 'sin_imagen.png') {
-                    Storage::disk('foto_disc')->delete($foto_disc);
-                }    
+                            ->get()->last()->foto_disc;
+
+                if ($foto_antiguo != 'sin_imagen.png') {
+                    Storage::disk('foto')->delete($foto);
+                }
             $foto_nueva = $request->file('foto_disc');
 
-                    $nombre_foto = time().'-'.$foto_nueva->getClientOriginalExtension();
+                    $nombre_foto = time().'-disciplina.'.$foto_nueva->getClientOriginalExtension();
                     Storage::disk('foto_disc')->put($nombre_foto, file_get_contents($foto_nueva));
-
-            if ($request->hasFile('reglamento_disc')) {
+            
+            
+                    if ($request->hasFile('reglamento_disc')) {
                 $reglamento_antiguo = DB::table('disciplinas')
                                     ->where('id_disc',$id)
                                     ->select('reglamento_disc')
@@ -88,7 +89,7 @@ class DisciplinaController extends Controller
                         Storage::disk('archivos')->delete($reglamento_antiguo);
                 //}    
                 $reglamento_nuevo = $request->file('reglamento_disc');
-                $nombre_reglamento= time().'-'.$reglamento_nuevo->getClientOriginalExtension();
+                $nombre_reglamento= time().'-reg-disciplina.'.$reglamento_nuevo->getClientOriginalExtension();
                 Storage::disk('archivos')->put($nombre_reglamento, file_get_contents($reglamento_nuevo));
 
                 
@@ -123,7 +124,7 @@ class DisciplinaController extends Controller
                         Storage::disk('archivos')->delete($reglamento_disc->reglamento_disc);
                 }    
                 $reglamento_nuevo = $request->file('reglamento_disc');
-                $nombre_reglamento= time().'-'.$reglamento_nuevo->getClientOriginalExtension();
+                $nombre_reglamento= time().'-reg-disciplina.'.$reglamento_nuevo->getClientOriginalExtension();
                 Storage::disk('archivos')->put($nombre_reglamento, file_get_contents($reglamento_nuevo));
 
                 

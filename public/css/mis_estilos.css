@@ -286,6 +286,9 @@ ul.menu-nav li a {
     text-transform: uppercase;
     /* font-weight: 100; */
 }
+h4.title-principal {
+    color:darkslategray;
+}
 
 h6.title-principal {
     padding: 0 15px 0 15px;
@@ -414,12 +417,15 @@ input.form-control,
 
 .btn {
     font-size: 12px;
+    font-weight: 500;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
 }
 
 body {
-    font-size: 80%;
+    height: 100%;
+    
+    font-size: 12px;
     font-family: 'Exo', sans-serif;
 }
 
@@ -497,8 +503,8 @@ div#contenedor{
 div.contenedor {
     position: relative;
     margin: 10px;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     /* border: 3px solid rgb(255, 0, 242);
 	 */
 }
@@ -506,8 +512,8 @@ div.contenedor {
 div.contenedor_modal {
     position: relative;
     margin: 10px;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     /* border: 3px solid rgb(255, 0, 242);
 	 */
 }
@@ -529,9 +535,9 @@ div#contenedor_club {
 div#contenedor {
     /* background: blue; */
     position: relative;
-    margin: 10px;
-    width: 150px;
-    height: 150px;
+    margin: 0px;
+    width: 230px;
+    height: 230px;
     /* border: 3px solid rgb(30, 255, 0); */
 }
 
@@ -567,16 +573,19 @@ img#btnCancelar {
     float: left;
 }
 
-img#imgOrigen {}
+img#imgOrigen {
+    width: 230px;
+    height: 230px;
+}
 
 img.imgtam {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 
 img.imginfo {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 
 img.imginfo_perfil {
@@ -604,7 +613,7 @@ img#imgOrigenEditDisc {
 }
 
 .vista {
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 .vista:hover {
@@ -689,7 +698,7 @@ img#btnCancelarAgrDisc:hover {
 }
 
 .btn_hover {
-    opacity: 0.7;
+    opacity: 0.9;
     font-size: 16px;
     /* width: 20px;
 	height: 20px; */
@@ -1010,12 +1019,11 @@ h3.display-1 {
 }
 
 .modal-title {
-    margin: 0;
     font-weight: bolder;
     font-size: 15px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     /* font-weight: 600; */
-    color: rgb(151, 151, 151);
+    color: #24292E;
 }
 
 .title-table h3 {
@@ -1038,23 +1046,32 @@ input#ci, input#password{
     font-size: 12px;
     font-family: 'Montserrat', sans-serif;
 }
+.invalid-feedback{
+    color: rgb(228, 118, 103);
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
 
 div.siError {
     margin: 0;
 }
 
 div.siError input {
-    border: 2px solid rgb(228, 118, 103);
+    /* border: 1px solid rgb(228, 118, 103); */
     /* background-color: #FADBD8; */
-    border-radius: 8px;
+    /* border-radius: 8px; */
 }
 
 div.noError input {
     border-bottom: 2px solid rgba(75, 238, 60, 0.363);
     /* background-color: #FADBD8; */
-    border-radius: 8px;
+   /*  border-radius: 8px; */
 }
-
+input.noError {
+    border-bottom: 1px solid rgba(75, 238, 60, 0.363);
+    /* background-color: #FADBD8; */
+    /* border-radius: 8px; */
+}
 
 /* nav */
 
@@ -1067,11 +1084,7 @@ div.noError input {
     color: black;
 }
 
-a.link {
-    color: dimgray;
-    margin: auto;
-    /* background: aqua; */
-}
+
 
 .card-header {
     background: white;
@@ -1080,7 +1093,22 @@ a.link {
 a.link {
     /* border-right: 1px solid darkgray; */
     text-align: center;
-    color: rgb(102, 102, 102);
+    color: rgb(43, 42, 42);
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight:100;
+}
+a.link:hover {
+    color: rgb(43, 42, 42);
+}
+ul li.link{
+    padding: 0;
+}
+ul li.link a:hover{
+    border-bottom: rgba(255, 166, 0, 0.479) solid 2px;
+}
+ul li.link a.active{
+    border-bottom: rgb(255, 166, 0) solid 2px;
 }
 
 .link {
@@ -1089,14 +1117,7 @@ a.link {
     color: rgb(102, 102, 102);
 }
 
-.link :hover {
-    /* border-bottom: 2px solid rgba(1, 10, 1, 0.603); */
-    color: #474c52;
-    font-weight: bold;
-    background: #DAE0E5;
-    /* border-radius: 16px; */
-    /* background: rgb(177, 175, 175); */
-}
+
 
 .active {
     /* border-radius: 16px; */
@@ -1106,7 +1127,7 @@ a.link {
 a.active {
     /* border-bottom: 2px solid rgba(1, 10, 1, 0.603); */
     color: #474c52;
-    font-weight: bold;
+    font-weight: 400;
     /* background:  rgb(251, 253, 255); */
     /* border-radius: 16px; */
     /* background: gray; */
@@ -1294,9 +1315,13 @@ span.puntos{
     font-size: 30px;
     color: rgb(7, 7, 7);
 }
-table.calendario td.puntos{
+table.calendario td.puntos {
     vertical-align: middle;
     max-width: 50px;
+}
+table.mi_tabla td , table.mi_tabla th {
+    vertical-align: middle;
+    
 }
 span.calendario_club{
     text-transform: ;
@@ -1332,4 +1357,88 @@ a.button_change i{
     color: blue;
     font-size: 16px;
     font-family:'Oswald', sans-serif;
+}
+.descripcion{
+    width: 200px;
+}
+
+i{
+    font-size: 35px;
+    /* padding-inline-end: 5px;  */
+    position: relative;
+    /* top: 5px */
+}
+.reporte{
+    border-bottom: rgb(0, 102, 255) solid 2px;
+}
+div.reporte span{
+    font-size: 20px;
+    font-weight: lighter;
+    color: rgb(0, 102, 255);
+}
+div.reporte_title{
+    border-bottom: #1D3B6D solid 2px;
+    font-size: 14px;
+    font-weight: lighter;
+}
+div.reporte_title span{
+    color: #1D3B6D;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+div.reporte_info table tr td, div.reporte_info table tr th {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+div.reporte_sub_title span{
+    color: #1D3B6D;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+div.reporte_sub_title{
+    border-bottom: #1D3B6D solid 1px;
+    font-size: 14px;
+    font-weight: lighter;
+}
+table.table_report tr td{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 11px;
+    font-weight: 100;
+}
+i.reporte_icon{
+    color: white;
+    top: 4px; 
+}
+
+div.reporte_menu a{
+    font-family: 'Oswald', sans-serif;
+    color:rgba(255, 255, 255, 0.644);
+    text-transform: uppercase;
+    font-size: 16px;
+}
+div.reporte_menu a:active{
+    color: white;
+    font-weight: 400;
+}
+div.tab-pane{
+    width: 100% ;
+}
+tr.border-table{
+    border-bottom: rgb(189, 188, 188) solid 1px;
+}
+div.modal-header{
+    background: #F6F8FA;
+}
+.custom-file-label::after{
+    content: "Elegir";
+}
+label.custom-control-label::after{ 
+    content: "Buscar";
+}
+a.mas_detalle{
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+a.mas_detalle:hover{
+    text-decoration: underline rgb(160, 4, 4);
 }

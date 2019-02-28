@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Alpha_spaces;
+use App\Rules\birthdate;
 
 class JugadorRequest extends FormRequest
 {
@@ -26,12 +28,12 @@ class JugadorRequest extends FormRequest
         return [
             //
             'ci_jugador'=>'required|unique:jugadores|numeric',
-            'nombre_jugador'=>'required|alpha|min:3|max:100', 
-            'apellidos_jugador' =>'required|alpha|min:4|max:150', 
+            'nombre_jugador'=>['required','between:2,150', new Alpha_spaces],
+            'apellidos_jugador' =>['required','between:2,150', new Alpha_spaces],
             'genero_jugador' =>'required',
-            'fecha_nac_jugador' =>'required|date',
+            'fecha_nac_jugador' =>['required','date', new birthdate],
             'foto_jugador' =>'mimes:jpeg,bmp,png,jpg|max:5120',//5mb
-            'descripcion_jugador'=>'required|max:200',
+            'descripcion_jugador'=>'between:0,200',
             'email_jugador'=>'required|unique:jugadores|email',
             //'password'=>'required|confirmed|min:6|max:100|alpha_num',
         ];

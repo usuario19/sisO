@@ -4,6 +4,7 @@
     SisO - Lista de Administradores
 @endsection
 
+
 @section('content')
 <div class="container">
     <div class="table-responsive-xl">
@@ -12,7 +13,7 @@
           <thead>
             <th>
                 <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                    <h4 class="">LISTA DE COORDINADORES</h4></td>
+                    <h4 class="title-principal">COORDINADORES</h4></td>
                 </div>
             </th>
           </thead>
@@ -27,14 +28,14 @@
                     <div{{--    style="float: left;"  --}} class="form-group col-xl-3">
                       
                       <div class="btn-group btn-block" style="margin: auto">
-                            <button type="button_add" class="btn btn-warning btn-block" data-toggle="dropdown">
+                            <button class="btn btn-warning btn-block" data-toggle="dropdown">
                                 <div class="button-div" style="width: 200px">
                                     <i class="material-icons float-left" style="font-size: 18px">settings</i>
                                     <span class="letter-size">Registrar coordinador</span>
                                 </div>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                              <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalRegADmin">
+                              <button id="button_add" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalRegADmin">
                                 
                                   <div class="button-item">
                                       <i class="material-icons float-left">
@@ -66,7 +67,7 @@
       </table>
     </div>
       <div class="table-responsive-xl">
-        <table class="table table-sm table-hover">
+        <table class="mi_tabla table table-sm table-hover">
               <thead>
                 <th scope="col" width="50px">#</th>
                 <th scope="col" width="100px">Foto</th>
@@ -85,7 +86,8 @@
                 @foreach($usuarios as $usuario)
                   <tr class="link_pointer" style="cursor:pointer" data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}">
                     <th scope="row">{{ $usuario->id_administrador}}</th>
-                    <td data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}"><img class="rounded mx-auto d-block" src="/storage/fotos/{{ $usuario->foto_admin }}" alt="" height=" 70px" width="70px"></td>
+                    <td data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}">
+                      <img class="rounded-circle mx-auto d-block text-center" src="/storage/fotos/{{ $usuario->foto_admin }}" alt="" height=" 70px" width="70px"></td>
                     <td>{{ $usuario->ci}}</td>
                     <td>{{ $usuario->nombre." ".$usuario->apellidos}}</td>
                     <td>@if($usuario->genero == "2")
@@ -96,11 +98,15 @@
                     </td>
                     <td>{{ $usuario->email}}</td>
                     <td>{{ $usuario->fecha_nac}}</td>
-                    <td>{{ $usuario->descripcion_admin}}</td>
+                    <td data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}"><div data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="descripcion row">
+                        <div data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="col-12 text-truncate">
+                            {{ $usuario->descripcion_admin}}
+                        </div>
+                    </div></td>
                    {{--   <td><a href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="btn btn-warning">Editar</a></td>
                     <td><a href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="btn btn-success">Mas info</a></td>  --}}
                     <td class="text-center">
-                      <a  href="#confirm?"  class="delete_button" data-toggle="modal" data-target="#exampleModal{{ $usuario->id_administrador }}" >
+                      <a  href="#confirm?"  class="button_delete" data-toggle="modal" data-target="#exampleModal{{ $usuario->id_administrador }}" >
                           <i title="Eliminar" class="material-icons delete_button">
                               delete
                            </i>
@@ -133,7 +139,6 @@
       </div>
 </div>
 
-
 @endsection
 @section('scripts')
 <script>
@@ -156,16 +161,11 @@
       }
     }())
   </script>
-<script>
-  
-  $("#buttonClose , #close").click(function(event) {
-    window.location.reload();
-  });
-</script>
+ 
   {!! Html::script('/js/vista_previa.js') !!}
   {!! Html::script('/js/validaciones.js') !!}
   {!! Html::script('/js/filtrar_por_nombre.js') !!}
   {!! Html::script('/js/validacion_ajax_request.js') !!}
-  {!! Html::script('/js/validaciones.js') !!}
-
+  {!! Html::script('/js/input_file.js') !!}
+  
 @endsection

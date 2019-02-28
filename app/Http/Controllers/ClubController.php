@@ -176,9 +176,11 @@ class ClubController extends Controller
                 Storage::disk('logos')->delete($logo->logo);  }  
             }
             $logo = $request->file('logo');
-            $nombre_logo= time().'-'.$logo->getClientOriginalExtension();
+            echo($logo);
+            $nombre_logo= time().'-logo.'.$logo->getClientOriginalExtension();
             Storage::disk('logos')->put($nombre_logo, file_get_contents($logo));
             //Image::make($avatar)->resize(300, 300)->save(public_path('/storage/logo/'.$nombre_logo));
+            echo ($nombre_logo);
             DB::table('clubs')
                 ->where('id_club', $request->get('id_club'))
                 ->update(['nombre_club' => $request->get('nombre_club'),

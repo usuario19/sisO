@@ -8,9 +8,15 @@
 		//document.getElementsByTagName("textarea")[0].addEventListener("focusout", validarDescripcion, false);
 		var inputs = document.getElementsByTagName('input');
 		for (var i = inputs.length - 1; i >= 0; i--) {
-			inputs[i].addEventListener("focusout", validarFormulario, false);
-			inputs[i].addEventListener("keyup", validarFormulario, false);
+			/* inputs[i].addEventListener("focusout", validarFormulario, false); */
+			inputs[i].addEventListener("keyup", quitar_clase, false);
+			inputs[i].classList.add('noError');
 		}
+	}
+	function quitar_clase(e){
+		var elemento = e.target;
+		elemento.classList.remove("is-valid");
+		elemento.classList.remove("is-invalid");
 	}
 
 	/*function validarDescripcion(){

@@ -1,11 +1,20 @@
-
+$(document).ready(function(e){
+	$('input[name=email]').attr('autocomplete','false');
+	$('input[name=password]').attr('autocomplete','false');
+});
+  $('#button_add').click(function(){
+	
+	$('input[name=email]').val('');
+	
+	$('input[name=password]').val('');
+	
+});
 $("#form_create").submit(function(event) {
 	/* Act on the event */
 		event.preventDefault();
 		var input = $('#form_create').find('input');
 		var imagen = $('#imgOrigen');
 		var textarea = $("#form_create").find('textarea');
-		var archivo = new FileReader();
 
         $.ajax({
             type: 'POST',
@@ -25,113 +34,103 @@ $("#form_create").submit(function(event) {
 					input[i].value ="";
 			}
 			textarea.val("");
+			$("#buttonClose").click();
+			window.location.reload();
+			  
 			//console.log(imagen);
 
 
 			
 		},
 		error:function(data){
-			console.log(data)
+			/* console.log(data) */
 			document.getElementById("mensaje").style.display = 'none';
 
 			if(data.responseJSON.errors.nombre )
 			{
 				console.log("entro")
-				document.getElementById("error_nombre").innerHTML =data.responseJSON.errors.nombre;
-				document.getElementById("nombre").parentNode.setAttribute("class", "form-group col-md-6 siError");
+				$('#nombre').addClass('is-invalid');
+				$('#nombre').next().addClass('invalid-feedback').text(data.responseJSON.errors.nombre);
 			}
 			else
 			{
-				document.getElementById("error_nombre").innerHTML = " " ;
-				document.getElementById("nombre").parentNode.setAttribute("class", "form-group col-md-6 noError");
-
+				$('#nombre').removeClass('is-invalid');
+				$('#nombre').addClass('is-valid');
+				$('#nombre').next().addClass('invalid-feedback').text(" ");
 			}
 
 			if (data.responseJSON.errors.apellidos ) {
-				document.getElementById("error_apellidos").innerHTML =data.responseJSON.errors.apellidos;
-				document.getElementById("apellidos").parentNode.setAttribute("class", "form-group col-md-6 siError");
-					
+				$('#apellidos').addClass('is-invalid');
+				$('#apellidos').next().addClass('invalid-feedback').text(data.responseJSON.errors.apellidos);
 			}
 			else
 			{
-				document.getElementById("error_apellidos").innerHTML = " " ;
-				document.getElementById("apellidos").parentNode.setAttribute("class", "form-group col-md-6 noError");
+				$('#apellidos').removeClass('is-invalid');
+				$('#apellidos').addClass('is-valid');
+				$('#apellidos').next().addClass('invalid-feedback').text(" ");
 			}
 			if (data.responseJSON.errors.fecha_nac ) {
-				document.getElementById("error_fecha").innerHTML =data.responseJSON.errors.fecha_nac;
-				document.getElementById("fecha_nac").parentNode.setAttribute("class", "form-group col-md-6 siError");
-					
+				$('#fecha_nac').addClass('is-invalid');
+				$('#fecha_nac').next().addClass('invalid-feedback').text(data.responseJSON.errors.fecha_nac);
 			}
 			else
 			{
-				document.getElementById("error_fecha").innerHTML = " " ;
-				document.getElementById("fecha_nac").parentNode.setAttribute("class", "form-group col-md-6 noError");
+				$('#fecha_nac').removeClass('is-invalid');
+				$('#fecha_nac').addClass('is-valid');
+				$('#fecha_nac').next().addClass('invalid-feedback').text(" ");
 			}
 
 			if (data.responseJSON.errors.ci ) {
-				document.getElementById("error_ci").innerHTML =data.responseJSON.errors.ci;
-				document.getElementById("ci").parentNode.setAttribute("class", "form-group col-md-6 siError");
-					
+				$('#ci').addClass('is-invalid');
+				$('#ci').next().addClass('invalid-feedback').text(data.responseJSON.errors.ci);
 			}
 			else
 			{
-				document.getElementById("error_ci").innerHTML = " " ;
-				document.getElementById("ci").parentNode.setAttribute("class", "form-group col-md-6 noError");
+				$('#ci').removeClass('is-invalid');
+				$('#ci').addClass('is-valid');
+				$('#ci').next().addClass('invalid-feedback').text(" ");
 			}
 
 			if (data.responseJSON.errors.email ) {
-				document.getElementById("error_email").innerHTML =data.responseJSON.errors.email;
-				document.getElementById("email").parentNode.setAttribute("class", "form-group col-md-12 siError");
-					
+				$('#email').addClass('is-invalid');
+				$('#email').next().addClass('invalid-feedback').text(data.responseJSON.errors.email);
 			}
 			else
 			{
-				document.getElementById("error_email").innerHTML = " " ;
-				document.getElementById("email").parentNode.setAttribute("class", "form-group col-md-12 noError");
+				$('#email').removeClass('is-invalid');
+				$('#email').addClass('is-valid');
+				$('#email').next().addClass('invalid-feedback').text(" ");
 			}
 
 			if (data.responseJSON.errors.password ) {
-				document.getElementById("error_password").innerHTML =data.responseJSON.errors.password;
-				document.getElementById("password").parentNode.setAttribute("class", "form-group col-md-6 siError");
-					
+				$('#password').addClass('is-invalid');
+				$('#password').next().addClass('invalid-feedback').text(data.responseJSON.errors.password);
 			}
 			else
 			{
-				document.getElementById("error_password").innerHTML = " " ;
-				document.getElementById("password").parentNode.setAttribute("class", "form-group col-md-6 noError");
-			}
+				$('#password').removeClass('is-invalid');
+				$('#password').addClass('is-valid');
+				$('#password').next().addClass('invalid-feedback').text(" ");
 
-			if (data.responseJSON.errors.password ) {
-				document.getElementById("error_password").innerHTML =data.responseJSON.errors.password;
-				document.getElementById("password").parentNode.setAttribute("class", "form-group col-md-6 siError");
-					
+				if (data.responseJSON.errors.password_confirmation ) {
+					$('#password_confirmation').addClass('is-invalid');
+					$('#password_confirmation').next().addClass('invalid-feedback').text(data.responseJSON.errors.password_confirmation);
+				}
+				else
+				{
+					$('#password_confirmation').removeClass('is-invalid');
+					$('#password_confirmation').addClass('is-valid');
+					$('#password_confirmation').next().addClass('invalid-feedback').text(" ");
+				}
 			}
-			else
-			{
-				document.getElementById("error_password").innerHTML = " " ;
-				document.getElementById("password").parentNode.setAttribute("class", "form-group col-md-6 noError");
-			}
-
-			if (data.responseJSON.errors.password_confirmation ) {
-				document.getElementById("error_confirmation").innerHTML =data.responseJSON.errors.password_confirmation;
-				document.getElementById("password_confirmation").parentNode.setAttribute("class", "form-group col-md-6 siError");
-					
-			}
-			else
-			{
-				document.getElementById("error_confirmation").innerHTML = " " ;
-				document.getElementById("password_confirmation").parentNode.setAttribute("class", "form-group col-md-6 noError");
-			}
-
 			if (data.responseJSON.errors.descripcion_admin ) {
-				document.getElementById("error_desc").innerHTML =data.responseJSON.errors.descripcion_admin;
-				document.getElementById("descripcion_admin").parentNode.setAttribute("class", "form-group col-md-12 siError");
-					
+				$('#descripcion_admin').addClass('is-invalid');
+				$('#descripcion_admin').next().addClass('invalid-feedback').text(data.responseJSON.errors.descripcion_admin);
 			}
 			else
 			{
-				document.getElementById("error_desc").innerHTML = " " ;
-				document.getElementById("descripcion_admin").parentNode.setAttribute("class", "form-group col-md-12 noError");
+				$('#descripcion_admin').removeClass('is-invalid');
+				$('#descripcion_admin').next().addClass('invalid-feedback').text(" ");
 			}
 		}
 

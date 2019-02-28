@@ -42,9 +42,9 @@
                           <td><img class="rounded mx-auto d-block" src="/storage/foto_disc/{{ $disc->disciplina->foto_disc }}" alt="" height="30" width="30"></td>
                           <td>{{ strtoupper($disc->disciplina->nombre_disc)}}</td>
                           <td>@if($disc->disciplina->categoria == 1)
-                                {{ 'Mujeres'}}
+                                {{ 'Damas'}}
                               @elseif($disc->disciplina->categoria == 2)
-                                {{ 'Hombres' }}
+                                {{ 'Varones' }}
                               @else
                                 {{ 'Mixto' }}
                               @endif

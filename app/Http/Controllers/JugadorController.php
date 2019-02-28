@@ -17,6 +17,7 @@ use Validator;
 use Auth;
 use App\Models\Club_Participacion;
 use Laracasts\Flash\Flash;
+use App\Http\Requests\UpdateJugadorRequest;
 
 class JugadorController extends Controller
 {
@@ -144,7 +145,7 @@ class JugadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateJugadorRequest $request, $id)
     {
         //
         $usuario = Jugador::find($id);
@@ -375,7 +376,7 @@ class JugadorController extends Controller
                 'foto_jugador' =>'mimes:jpeg,bmp,png,jpg|max:5120',
             ]);
 
-            $nombre = time().'-'.'image_jugador';
+            $nombre = time().'-'.'image_jugador.'.$request->file('foto_jugador')->getClientOriginalExtension();
             
             //obtiene el nombre del archivo
             if(Storage::disk('fotos')->put($nombre, file_get_contents($request->foto_jugador)))

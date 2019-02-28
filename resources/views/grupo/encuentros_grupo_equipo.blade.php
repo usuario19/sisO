@@ -100,7 +100,7 @@
                       </a>
                     @else
                     @if ($encuentro->es_futbol($encuentro->id_encuentro)==1)
-                      <a href="{{ route('encuentro.seleccion_equipo',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase,$grupo->id_grupo]) }}">
+                      <a href="{{ route('encuentro.seleccion_series',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase,$grupo->id_grupo]) }}">
                         <i title="Jugadores" class="material-icons delete_button">
                           star</i></a>
                           <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">

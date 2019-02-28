@@ -569,6 +569,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@mostrar_resultado_ajax',
 		'as'=>'encuentro.mostrar_resultado_ajax'
 	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_futbol_ajax',[
+		'uses'=>'EncuentroController@mostrar_resultado_futbol_ajax',
+		'as'=>'encuentro.mostrar_resultado_futbol_ajax'
+	]);
 	Route::get('encuentro/{id_encuentro}/mostrar_resultado_competicion_ajax',[
 		'uses'=>'EncuentroController@mostrar_resultado_competicion_ajax',
 		'as'=>'encuentro.mostrar_resultado_competicion_ajax'
@@ -593,13 +597,13 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@select_contrincante_eliminacion',
 		'as'=>'encuentro.select_contrincante_eliminacion'
 	]);
-	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/{id_grupo}/seleccion_equipo',[
-		'uses'=>'EncuentroController@seleccion_equipo',
-		'as'=>'encuentro.seleccion_equipo'
+	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/{id_grupo}/seleccion_series',[
+		'uses'=>'EncuentroController@seleccion_series',
+		'as'=>'encuentro.seleccion_series'
 	]);
-	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/seleccion_competicion',[
-		'uses'=>'EncuentroController@seleccion_competicion',
-		'as'=>'encuentro.seleccion_competicion'
+	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/seleccion_eliminacion',[
+		'uses'=>'EncuentroController@seleccion_eliminacion',
+		'as'=>'encuentro.seleccion_eliminacion'
 	]);
 	Route::post('encuentro/agregar_jugador_encuentro',[
 		'uses'=>'EncuentroController@agregar_jugador_encuentro',

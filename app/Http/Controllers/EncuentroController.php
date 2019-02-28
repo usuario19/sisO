@@ -246,6 +246,40 @@ public function reg_res_competicion(Request $request){
         ->get();
         return response()->json($data);
     }
+    public function mostrar_resultado_futbol_ajax($id_enc){
+        $encuentro = Encuentro::find($id_enc);
+        $i=0;
+        foreach ($encuentro->encuentro_club_participaciones as $value) {
+            if ($i==0) {
+                $club1=$value->id_club_part;
+            } else {
+                $club2=$value->id_club_part;
+            }
+            $i++;
+        }
+        $id_club1 = Club_Participacion::find($club1)->id_club;
+        $id_club2 = Club_Participacion::find($club2)->id_club;
+        $goles1 = DB::table('encuentro_seleccions')
+            ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_seleccions.id_encuentro',$id_enc)
+            ->where('jugador_clubs.id_club',$id_club1)
+            ->select('encuentro_seleccions.posicion')->sum('encuentro_seleccions.posicion');
+        $goles2 = DB::table('encuentro_seleccions')
+            ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('encuentro_seleccions.id_encuentro',$id_enc)
+            ->where('jugador_clubs.id_club',$id_club2)
+            ->select('encuentro_seleccions.posicion')->sum('encuentro_seleccions.posicion');
+        //$data = array($goles1,$goles2);
+        $data = new array('club1'  => $goles1,
+                'club2' => $goles2);
+       // return view('encuentro.jugadores_seleccionados_eliminacion',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));
+        
+        return response()->json(data);
+    }
     public function mostrar_resultado_competicion_ajax($id_encuentro){
         $data = DB::table('encuentro_seleccions')
         ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
@@ -261,7 +295,7 @@ public function reg_res_competicion(Request $request){
         $pdf = PDF::loadView('grupo.fixture',['fecha'=>$fecha]);
         return $pdf->download('fixture.pdf');
     }
-    public function seleccion_equipo($id_enc,$id_gestion,$id_disc,$id_fase,$id_grupo){  
+    public function seleccion_series($id_enc,$id_gestion,$id_disc,$id_fase,$id_grupo){  
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase= Fase::find($id_fase);
@@ -328,10 +362,9 @@ public function reg_res_competicion(Request $request){
         
         $club1 =Club::find($id_club1);
         $club2 =Club::find($id_club2);
-        return view('encuentro.jugadores_seleccionados_equipo',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+        return view('encuentro.jugadores_seleccionados_series',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
     }
-    public function seleccion_competicion($id_enc,$id_gestion,$id_disc,$id_fase){  
-        //revisar
+    public function seleccion_eliminacion($id_enc,$id_gestion,$id_disc,$id_fase){  
         $gestion = Gestion::find($id_gestion);
         $disciplina = Disciplina::find($id_disc);
         $fase= Fase::find($id_fase);
@@ -349,8 +382,7 @@ public function reg_res_competicion(Request $request){
         }
         $id_club1 = Club_Participacion::find($club1)->id_club;
         $id_club2 = Club_Participacion::find($club2)->id_club;
-        //return dd($id_club2);
-        
+
         $jug_hab1 = DB::table('encuentro_seleccions')
             ->join('selecciones','encuentro_seleccions.id_seleccion','selecciones.id_seleccion')
             ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
@@ -397,7 +429,7 @@ public function reg_res_competicion(Request $request){
         
         $club1 =Club::find($id_club1);
         $club2 =Club::find($id_club2);
-        return view('encuentro.jugadores_seleccionados_equipo',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+        return view('encuentro.jugadores_seleccionados_eliminacion',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
     }
     
     public function agregar_jugador_encuentro(request $request){

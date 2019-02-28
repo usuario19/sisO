@@ -95,7 +95,7 @@
                                 </a>
                               @else
                               @if ($encuentro->es_futbol($encuentro->id_encuentro)==1)
-                              <a href="{{ route('encuentro.seleccion_competicion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
+                              <a href="{{ route('encuentro.seleccion_eliminacion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
                                 <i title="Jugadores" class="material-icons delete_button">
                                   star</i>
                                 </a>

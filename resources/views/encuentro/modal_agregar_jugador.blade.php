@@ -52,7 +52,8 @@
                 {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
                 {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
               </div>
-                {!! Form::close() !!}
+                
             </div>
           </div>
         </div>
+        {!! Form::close() !!}

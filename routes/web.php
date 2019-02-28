@@ -609,6 +609,14 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@eliminar_jugador_encuentro',
 		'as'=>'encuentro.eliminar_jugador_encuentro'
 	]);
+	Route::get('encuentro/{id_encuentro}/{id_jug}/reg_gol_jugador_ajax',[
+		'uses'=>'EncuentroController@reg_gol_jugador_ajax',
+		'as'=>'encuentro.reg_gol_jugador_ajax'
+	]);
+	Route::post('encuentro/store_gol_jugador',[
+		'uses'=>'EncuentroController@store_gol_jugador',
+		'as'=>'encuentro.store_gol_jugador'
+	]);
 	//Avisos
 	Route::get('avisos',[
 		'uses'=>'AvisoController@index',

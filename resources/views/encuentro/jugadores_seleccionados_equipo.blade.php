@@ -11,6 +11,7 @@
 @section('content')
 @include('encuentro.modal_agregar_jugador')
 @include('encuentro.modal_agregar_jugador2')
+@include('encuentro.modal_reg_gol_jugador')
   <div class="container">
         <nav aria-label="breadcrumb" >
             <ol class="breadcrumb">
@@ -44,26 +45,32 @@
         </div>
     </div>
       
-      <table class="table table-condensed">
+      <table class="table table-responsive">
           <thead>
             <th width="50px">ID</th>
-            <th>Foto</th>
-            <th>Nombre</th>
-            <th>Apelidos</th>
-          <th>Eliminar</th>
+          <th>Jugador</th>
+          <th>Goles</th>
+          <th>Acciones</th>
 
           </thead>
           <tbody>
             @foreach($jug_hab1 as $jugadores)
               <tr>
                 <td>{{ $jugadores->id_jugador }}</td> 
-                <td><img class="img-thumbnail" src="/storage/fotos/{{ $jugadores->foto_jugador}}" alt="" height=" 50px" width="50px">{{ $jugadores->nombre_jugador}}</td>
-                  
-                <td>{{ $jugadores->nombre_jugador }}</td>
-                <td>{{ $jugadores->apellidos_jugador}}</td>
                 <td>
-                    <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
-                        delete</i></a>
+                  <img class="img-thumbnail" src="/storage/fotos/{{ $jugadores->foto_jugador}}" alt="" height=" 50px" width="50px">
+                  {{ $jugadores->nombre_jugador.' '.$jugadores->apellidos_jugador }}
+                </td>
+                <td>{{ $jugadores->posicion }}</td>
+                <td><a href=" " onclick="reg_gol_jugador({{ $jugadores->id_jugador }});"  class="button_delete" data-toggle="modal" data-target="#modalRegGol">
+                    <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                        control_point
+                    </i>
+            </a>
+                  <a href="{{ route('encuentro.eliminar_jugador_encuentro',[$encuentro->id_encuentro,$jugadores->id_jugador]) }}">
+                    <i title="Eliminar" class="material-icons delete_button">
+                  delete</i></a>
+                  
                 </td>
               </tr>
             @endforeach            
@@ -83,26 +90,31 @@
           </button>
       </div>
     </div>
-    <table class="table table-condensed">
+    <table class="table table-responsive">
         <thead>
           <th width="50px">ID</th>
-          <th>Foto</th>
-          <th>Nombre</th>
-          <th>Apelidos</th>
-          <th>Eliminar</th>
+          <th>Jugador</th>
+          <th>Goles</th>
+          <th>Acciones</th>
         </thead>
         <tbody>
           @foreach($jug_hab2 as $jugadores)
             <tr>
-              <td>{{ $jugadores->id_jugador }}</td> 
-              <td><img class="img-thumbnail" src="/storage/fotos/{{ $jugadores->foto_jugador}}" alt="" height=" 50px" width="50px">{{ $jugadores->nombre_jugador}}</td>
-                
-              <td>{{ $jugadores->nombre_jugador }}</td>
-              <td>{{ $jugadores->apellidos_jugador}}</td>
-              <td>
-                  <a href="{{ route('encuentro.eliminar_jugador_encuentro',[$encuentro->id_encuentro,$jugadores->id_jugador]) }}"><i title="Eliminar" class="material-icons delete_button">
-                      delete</i></a>
-              </td>
+                <td>{{ $jugadores->id_jugador }}</td> 
+                <td>
+                  <img class="img-thumbnail" src="/storage/fotos/{{ $jugadores->foto_jugador}}" alt="" height=" 50px" width="50px">
+                  {{ $jugadores->nombre_jugador.' '.$jugadores->apellidos_jugador }}
+                </td>
+                <td>{{ $jugadores->posicion }}</td>
+                <td>
+                    <a href=" " onclick="reg_gol_jugador({{ $jugadores->id_jugador }});"  class="button_delete" data-toggle="modal" data-target="#modalRegGol">
+                            <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                control_point
+                            </i>
+                    </a>
+                    <a href="{{ route('encuentro.eliminar_jugador_encuentro',[$encuentro->id_encuentro,$jugadores->id_jugador]) }}"><i title="Eliminar" class="material-icons delete_button">
+                        delete</i></a>
+                </td>
             </tr>
           @endforeach            
         </tbody>
@@ -114,6 +126,6 @@
 </div>     
 @endsection
 @section('scripts')
-{!! Html::script('/js/filtrar_por_nombre.js') !!}
+{{--  {!! Html::script('/js/filtrar_por_nombre.js') !!}  --}}
 {!! Html::script('/js/checkbox.js') !!}
 @endsection

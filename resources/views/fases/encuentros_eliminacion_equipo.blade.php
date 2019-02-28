@@ -94,14 +94,29 @@
                                   </i>
                                 </a>
                               @else
-                              <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
-                                delete</i></a>
-                              
-                                <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                              @if ($encuentro->es_futbol($encuentro->id_encuentro)==1)
+                              <a href="{{ route('encuentro.seleccion_competicion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
+                                <i title="Jugadores" class="material-icons delete_button">
+                                  star</i>
+                                </a>
+                                  <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
+                                      delete</i></a>
+                                    
+                                      <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                                <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                  collections_bookmark
+                                </i>
+                              </a>
+                                    @else
+                                      <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
+                                        delete</i></a>
+                                      
+                                        <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
                                   <i title="Registrar resultados" class="material-icons delete_button button_redirect">
                                     collections_bookmark
                                   </i>
                                 </a>
+                              @endif
                               @endif
                           </td>
                             

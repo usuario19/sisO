@@ -14,7 +14,7 @@
                   <thead>
                       <tr>
                           <th class="text-center" style="width: 50px">
-                              {!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}
+                              {!! Form::checkbox('todo','todo', false, ['id'=>'todo2']) !!}
                           </th>
                           <th style="font-size: 12px">
                               <span>Seleccione los jugadores que participaran:</span>
@@ -26,9 +26,6 @@
                     <td>
                         <div>
                             {!! Form::text('id_encuentro', $encuentro->id_encuentro, []) !!}
-                            {{--  {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
-                            {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
-                            {!! Form::text('id_club', $club1->id_id_club, []) !!}  --}}
                           </div>
                     </td>
                   </tr>
@@ -52,7 +49,8 @@
                 {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
                 {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
               </div>
-                {!! Form::close() !!}
+               
             </div>
           </div>
         </div>
+        {!! Form::close() !!}

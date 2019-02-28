@@ -127,7 +127,7 @@ class Disciplina extends Model
     }
     public function es_futbol($id_disc){
         $nombre = Disciplina::find($id_disc)->nombre_disc;
-        if (str_contains($nombre, 'futbol')) {
+        if (str_contains(strtoupper($nombre), 'FUTBOL')) {
             return 1;
         } else {
             return 0;

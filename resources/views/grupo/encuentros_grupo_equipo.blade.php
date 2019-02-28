@@ -83,6 +83,7 @@
                      @endforeach
                    <td>{{ $encuentro->fecha }}</td>
                    <td>{{ $encuentro->hora}}</td>
+                   
                    <td><a href="{{ $encuentro->centro->ubicacion_centro}}" style="color: #EA4335">
                       <i class="material-icons float-left">location_on</i>
                       <span class="letter-size">{{ $encuentro->centro->nombre_centro}}</span>
@@ -91,9 +92,6 @@
                    <td>                     
                       {{ $encuentro->detalle}}</td>                 
                    <td>
-                      <a href="{{ route('encuentro.seleccion_equipo',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase,$grupo->id_grupo]) }}">
-                        <i title="Jugadores" class="material-icons delete_button">
-                          star</i></a>
                     @if ($encuentro->tiene_resultado($encuentro->id_encuentro) == 1)
                       <a href=" " onclick="VerResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
                         <i title="Ver resultados" class="material-icons delete_button button_redirect">
@@ -101,14 +99,29 @@
                         </i>
                       </a>
                     @else
+                    @if ($encuentro->es_futbol($encuentro->id_encuentro)==1)
+                      <a href="{{ route('encuentro.seleccion_equipo',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase,$grupo->id_grupo]) }}">
+                        <i title="Jugadores" class="material-icons delete_button">
+                          star</i></a>
+                          <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
+                              delete</i></a>
+                           
+                              <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                                <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                  collections_bookmark
+                                </i>
+                              </a>
+                    @else
                     <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
-                      delete</i></a>
-                   
-                      <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
-                        <i title="Registrar resultados" class="material-icons delete_button button_redirect">
-                          collections_bookmark
-                        </i>
-                      </a>
+                        delete</i></a>
+                     
+                        <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                          <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                            collections_bookmark
+                          </i>
+                        </a>
+                    @endif
+                    
                     @endif
                     </td>
                  </tr>

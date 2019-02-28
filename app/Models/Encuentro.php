@@ -75,4 +75,17 @@ class Encuentro extends Model
             return 0;
         else return 1;
     }
+    public function es_futbol($id_enc){
+        $nombre = DB::table('encuentro_club_participaciones')
+            ->join('club_participaciones','encuentro_club_participaciones.id_club_part','club_participaciones.id_club_part')
+            ->join('disciplinas','club_participaciones.id_disc','disciplinas.id_disc')
+            ->where('encuentro_club_participaciones.id_encuentro',$id_enc)
+            ->select('disciplinas.nombre_disc')->get()->last()->nombre_disc;
+            if (str_contains(strtoupper($nombre), 'FUTBOL')) {
+            //if($nombre.equalsIgnoreCase('futbol')){ 
+                return 1;
+            } else {
+                return 0;
+            }
+    }
 }

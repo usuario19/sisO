@@ -24,15 +24,20 @@
                                         </div>
                                         <div class="col-md-12">
                                             {!! Form::label('equipo', 'Equipo', []) !!}
-                                            {!! Form::text('equipo1',null, ['id'=>'nombre_club1','class'=>'form-control','readonly'=>'true']) !!} 
+                                            {!! Form::text('equipo1',$club1->nombre_club, ['id'=>'nombre_club1','class'=>'form-control','readonly'=>'true']) !!} 
                                         </div> 
                                         <div style="display: none">
                                             {!! Form::text('id_club1', null, ['id'=>'id_club1','class'=>'form-control','readonly'=>'true']) !!} 
                                         </div> 
                                         <div class="col-md-12">
+                                            {!! Form::label('goles', 'Total goles', []) !!}
+                                            {!! Form::text('goles1', null, ['id'=>'goles1','class'=>'form-control']) !!} 
+                                        </div> 
+                                        <div class="col-md-12">
                                             {!! Form::label('punto', 'Puntos', []) !!}
                                             {!! Form::text('punto1', null, ['id'=>'puntos1','class'=>'form-control']) !!} 
                                         </div> 
+                                        
                                         <div class="col-md-12">
                                             {!! Form::label('observacion', 'Observacion', []) !!}
                                             {!! Form::textarea('observacion1', null, ['id'=>'observacion1','class'=>'form-control','rows'=>'2']) !!} 
@@ -45,15 +50,20 @@
                                         </div>
                                         <div class="col-md-12">
                                             {!! Form::label('equipo', 'Equipo', []) !!}
-                                            {!! Form::text('equipo2', null, ['id'=>'nombre_club2','class'=>'form-control','readonly'=>'true']) !!} 
+                                            {!! Form::text('equipo2', $club2->nombre_club, ['id'=>'nombre_club2','class'=>'form-control','readonly'=>'true']) !!} 
                                         </div> 
                                         <div style="display: none">
                                             {!! Form::text('id_club2', null, ['id'=>'id_club2','class'=>'form-control','readonly'=>'true']) !!} 
                                         </div> 
                                         <div class="col-md-12">
+                                            {!! Form::label('goles', 'Total goles', []) !!}
+                                            {!! Form::text('goles2', null, ['id'=>'goles2','class'=>'form-control']) !!} 
+                                        </div> 
+                                        <div class="col-md-12">
                                             {!! Form::label('punto', 'Puntos', []) !!}
                                             {!! Form::text('punto2', null, ['id'=>'puntos2','class'=>'form-control']) !!} 
                                         </div> 
+
                                         <div class="col-md-12">
                                             {!! Form::label('observacion', 'Observacion', []) !!}
                                             {!! Form::textarea('observacion2', null, ['id'=>'observacion2','class'=>'form-control','rows'=>'2']) !!} 
@@ -74,19 +84,23 @@
     var RegistrarResultadoFutbol = function(id_encuentro) {
         
       var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_futbol_ajax";
-      //console.log(route)
+      //console.log(route);
       $.get(route, function(data) {
-          console.log(data)
+          console.log(data);
           var i = 1;
-          $(data).each(function(key,value){
-              $("#id_encuentro"+i).val(value.id_encuentro);
-              $("#id_encuentro_club_part"+i).val(value.id_encuentro_club_part);
-              $("#nombre_club"+i).val(value.nombre_club);
-              $("#id_club"+i).val(value.id_club);
-              $("#puntos"+i).val(value.puntos);
-              $("#observacion"+i).val(value.observacion);
-              i++;
-          });
+         // $(data).each(function(key,value){
+          //console.log(value);
+
+              //$("#id_encuentro"+i).val(value.id_encuentro);
+             // $("#id_encuentro_club_part"+i).val(value.id_encuentro_club_part);
+              //$("#nombre_club"+i).val(value.nombre_club);
+              //$("#id_club"+i).val(value.id_club);
+              $("#goles1").val(data.club1);
+              $("#goles2").val(data.club2);
+              //$("#puntos"+i).val(value.puntos);
+              //$("#observacion"+i).val(value.observacion);
+              //i++;
+          //});
       });
   }
   </script>

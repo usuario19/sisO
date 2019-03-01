@@ -1,7 +1,7 @@
-<div class="container-fluid bg-dark">
+<div class="container-fluid" style="background:#DA4640">
   <div class="container">
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark text-center" style="padding: 4px">
+    <nav class="navbar navbar-expand-lg navbar-dark text-center" style="padding: 4px">
         <a class="navbar-brand" href={{url('/')}}>
           <div class="float-left" style="width: 80px"><img src="/storage/logos/abcd.png" height="40" class="d-inline-block align-top" alt="">
           {{--   <div class="row">

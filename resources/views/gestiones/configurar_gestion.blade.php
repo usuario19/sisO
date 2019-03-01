@@ -10,6 +10,7 @@ SisO:Configurar gestion
 @section('content')
 
 <div class="container col-md-6">
+<div class="card" style="background:#E8E6E7">
 	{!! Form::open(['route'=>['gestion.update'],'metod'=>'POST','enctype'=>'multipart/formdata']) !!}	
 		<div style="display:none">
 			<div class="form-group col-md-12">
@@ -106,4 +107,5 @@ SisO:Configurar gestion
 </div>
 </div>
 
+</div>
 @endsection

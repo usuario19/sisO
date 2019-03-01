@@ -3,7 +3,8 @@
 	SisO: Centros
 @endsection
 @section('content')
-
+<div class="container">
+<div class="card">
 <div class="container table-responsive-xl">
     <div class="form-group col-md-12">
         <table class="table table-sm table-bordered">
@@ -144,6 +145,8 @@
         </table>
     </div>
                
+</div>
+</div>
 </div>
 @endsection
 @section('scripts')

@@ -1,9 +1,25 @@
-<div class="container-fluid bg-dark ">
-
-
+<div class="container-fluid " style="background:#ffffff">
+<div class="container-fluid -whitebg" style="padding: 0%">
+  <div class="container">
+    <div class="col-md-12">
+        <nav class="col-md-12 navbar navbar-light bg-white" style="padding: 5px 0% 0% 0%">
+            <a class="navbar-brand col-md-12" href="{{route('principal.index')}}">
+              <div class="row">
+                  <div class="col-xl-1 text-center float-left" style="padding:0% ;height: 60px"><img src="/storage/logos/abcd.jpg" height="60" class="d-inline-block align-top" alt=""></div>
+                  <div class="col-xl-5" style="padding:0%"><p class="title text-left" style="height: 60px; padding-block-start: 20px; padding-inline-start:50px">OLIMPIADAS SI.T.UMSS</p></div>
+              </div>
+              
+            </a>
+            
+          </nav>
+    </div>
+</div>
+</div>  
+</div>
+<div class="container-fluid " style="background:#DA4640">
 <div class="container ">
 
-      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <nav class="navbar navbar-expand-lg  navbar-dark">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

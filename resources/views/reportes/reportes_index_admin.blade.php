@@ -8,9 +8,10 @@
 @endsection
 @section('content')
 <div class="container">
+
         <div class="row">
             <div class="col-md-3">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <nav class="navbar navbar-expand-lg navbar-dark">
                         <div class="col-md-12" style="padding: 0%">
                             <a class="navbar-brand">
                                 <i class="material-icons reporte_icon">
@@ -44,6 +45,7 @@
                 </nav>
             </div>
             <div class="col-md-9">
+            <div class="card"> 
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                         <div class="reporte col-md-12">
@@ -278,7 +280,7 @@
             
             </div>
         </div>
-</div>
+</div></div>
 @endsection
 @section('scripts')
 <script>

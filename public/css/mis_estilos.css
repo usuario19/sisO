@@ -1252,6 +1252,11 @@ div.reporte_menu a{
 div.reporte_menu a:active{
     color: white;
     font-weight: 400;
+    background-color: #396798;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #406fa2;
 }
 div.tab-pane{
     width: 100% ;
@@ -1293,3 +1298,11 @@ td.dato{
     overflow: hidden;
     text-overflow: ellipsis;
 } */
+footer {
+    background-color: #0C1F2C;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 500px;
+    color: white;
+  }

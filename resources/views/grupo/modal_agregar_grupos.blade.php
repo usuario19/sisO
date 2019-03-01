@@ -115,7 +115,7 @@
                             
                                 <div class="modal-footer">
                                   {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
-                                {!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}
+                                {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
                                 
                                 </div>
                           {!! Form::close() !!}

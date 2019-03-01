@@ -1,4 +1,6 @@
-{!! Form::open(['route'=>'encuentro.reg_resultado_competicion','method' => 'POST']) !!}
+{!! Form::open(['route'=>'encuentro.reg_res_competicion','method' => 'POST','id'=>'form_reg_resultado_competicion']) !!}
+
+ 
         <!-- Modal -->
         <div class="modal fade" id="modalResultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -12,13 +14,16 @@
                     <div class="modal-body">
                         <div class="container">  
                             <div style="display: none">
-                                {!! Form::text('id_disc',$disciplina->id_disc, []) !!}
-                                {!! Form::text('id_gestion',$gestion->id_gestion, []) !!}
-                                {!! Form::text('id_fase',$fase->id_fase, []) !!}
+                                {!! Form::text('id_disc',$disciplina->id_disc, ['id'=>'id_disc']) !!}
+                                {!! Form::text('id_gestion',$gestion->id_gestion, ['id'=>'id_gestion']) !!}
+                                {!! Form::text('id_fase',$fase->id_fase, ['id'=>'id_fase']) !!}
+                                {!! Form::text('id_encuentro',null, ['id'=>'id_encuentro']) !!}
                             </div>
                                 <div class="container col-md-12" id="resultado">
-                                        <table id="tabla" class="table">
+                                        <table id="tabla_res" class="table">
                                             <thead>
+                                                <th>Id</th>
+                                                <th>Foto</th>
                                                 <th>Jugador</th>
                                                 <th>Club</th>
                                                 <th>Posicion</th>
@@ -33,7 +38,7 @@
                     </div>    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Aceptar', ['class'=>'btn btn-primary','id'=>'aceptar_resultado']) !!}
                     </div>
                 </div>      
             </div>
@@ -41,31 +46,21 @@
  {!! Form::close() !!}
  <script>
     var RegistrarResultadoCompeticion = function(id_encuentro) {
-        //$("#tabla: td").empty();
-        $('#tabla tbody tr').slice(0).remove();
+        $('#id_encuentro').val(id_encuentro);
+        $('#tabla_res tbody tr').slice(0).remove();
       var route = "{{ url('encuentro') }}/" + id_encuentro + "/mostrar_resultado_competicion_ajax";
       $.get(route, function(data) {
          var i = 1;
          
           $(data).each(function(key,value){
-              /*$("#formulario").append('<div id=cardJugador'+i+' '+'class="card"></div>');
-              $("#cardJugador"+i).append('<input type=text class="input form-control" id=nombre_jugador' + i + ' ' +
-              'value=" " />' );
-              $("#cardJugador"+i).append('<input type=text class="input form-control" id=nombre_jugador' + i + ' ' +
-              'value=" " />' );
-              
-              $("#nombre_jugador"+i).val(value.nombre_jugador+' '+value.apellidos_jugador);
-              $("#nombre_jugador"+i).prop("readonly", true);
-              $("#cardJugador"+i).append('<input type=text class="input form-control" id=nombre_jugador' + i + ' ' +
-              'value=" " />' );
-              $("#cardJugador"+i).append('<input type=text class="input form-control" id=posicion_jugador' + i + ' ' +
-              'value=" " />' );*/
-
-              var nuevaFila = '<tr>'+
+                var nuevaFila = '<tr>'+
+                    '<td>'+value.id_jugador +'</td>'+
+                    '<td><img class="rounded-circle mx-auto d-block" height=" 30px" width="30px" src=/storage/fotos/'+value.foto_jugador +' '+'/></td>'+
                     '<td>' + value.nombre_jugador +' '+value.apellidos_jugador+ '</td>'+
                     '<td>' + value.nombre_club + '</td>'+
+                    '<td style=display:none >' + value.id_club + '</td>'+
                     '<td>' +
-                        '<select name="" id=nombre_jugador' + i +' '+'class="form-control" style="width:80px">' +
+                        /*'<select name="" id=id_jugador' + value.id_jugador +' '+'class="form-control" style="width:80px">' +
                         '<option value="">1</option>' +
                         '<option value="">2</option>' +
                         '<option value="">3</option>' +
@@ -77,24 +72,18 @@
                         '<option value="">9</option>' +
                         '<option value="">10</option>' +
                         '</select>' +
-                        '</td>' +
+                        '</td>' +*/
+                        '<input value="" id=id_jugador'+value.id_jugador+' '+'type="text" class="form-control" style="width:50px"/>'
+                        + '</td>'+
+                        
                   '</tr>';
-            $("#tabla").append(nuevaFila);
-             
-             
-              //$("#posicion_jugador"+i).val(value.nombre_jugador+' '+value.apellidos_jugador);
-              //$("#id_encuentro"+i).val(value.id_encuentro);
-              //$("#id_encuentro_seleccion"+i).val(value.id_encuentro_seleccion);
-              //$("#nombre_club"+i).val(value.nombre_club);
-              //$("#id_club"+i).val(value.id_club);
-              //$("#posicion"+i).val(value.posicion);
-              //$("#observacion"+i).val(value.observacion);
+            $("#tabla_res").append(nuevaFila);
               i++;
           });
       });
   }
+
   </script>
- 
- @section('scripts')
-   {!! Html::script('/js/resultado.js') !!}
-@endsection
+  @section('scripts')
+  {!! Html::script('/js/resultado_competicion.js') !!}
+  @endsection

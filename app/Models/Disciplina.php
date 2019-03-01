@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use App\Models\Participacion;
 use App\Models\Inscripcion;
+use App\Models\Ganador;
 use App\Models\Club_participacion;
+use Illuminate\Support\Facades\DB;
+
 
 
 use Storage;
@@ -24,6 +27,7 @@ class Disciplina extends Model
 		'reglamento_disc',
 		'descripcion_disc',
 		'id_disc',
+		//'futbol',
 		];
 
 	protected $hidden = [
@@ -97,5 +101,38 @@ class Disciplina extends Model
     {
         if($value !== null)
             $this->attributes['nombre_disc']= trim(ucwords(strtolower($value)));
+    }
+    public function tiene_ganadores($id_disc, $id_gestion){
+        $disciplina = Disciplina::find($id_disc);
+        if ($disciplina->tipo==0) {
+            $ganadores = DB::table('ganadors')
+                ->join('participaciones','ganadors.id_participacion','participaciones.id_participacion')
+                ->where('participaciones.id_gestion',$id_gestion)
+                ->where('participaciones.id_disciplina',$id_disc)->get()->last();
+            if (empty($ganadores)) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else {
+            $ganadores = DB::table('participante_ganadors')
+                ->join('participaciones','participante_ganadors.id_participacion','participaciones.id_participacion')
+                ->where('participaciones.id_gestion',$id_gestion)
+                ->where('participaciones.id_disciplina',$id_disc)->get()->last();
+            if (empty($ganadores)) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+    }
+    public function es_futbol($id_disc){
+        $nombre = Disciplina::find($id_disc)->nombre_disc;
+        if (str_contains(strtoupper($nombre), 'FUTBOL')) {
+            return 1;
+        } else {
+            return 0;
+        }
+        
     }
 }

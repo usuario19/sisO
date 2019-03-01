@@ -9,7 +9,7 @@ SisO:Configurar gestion
 
 @section('content')
 
-<div class="container col-md-4">
+<div class="container col-md-6">
 	{!! Form::open(['route'=>['gestion.update'],'metod'=>'POST','enctype'=>'multipart/formdata']) !!}	
 		<div style="display:none">
 			<div class="form-group col-md-12">
@@ -94,17 +94,13 @@ SisO:Configurar gestion
 							{!! Form::label('activo', 'Desactivada', []) !!}
 							{!! Form::radio('periodo_inscripcion', 0, true,['class'=>'form-check form-check-inline']) !!}
 						</div>
-					@endif
-					
-			
-					
-					
+					@endif	
 			</div>
 			</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<button class="btn btn-secondary">Cancelar</button>
-				{!! Form::submit('Actualizar', ['class'=>'btn btn-primary']) !!}
+				{!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
 
 </div>
 </div>

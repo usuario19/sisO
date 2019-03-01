@@ -29,7 +29,15 @@ class FaseController extends Controller
         return view('fases.reg_fase')->with('tipos', $tipos)->with('id_disc', $id_disc)->with('id_gestion', $id_gestion);
     }
     public function store(Request $request)
-    {
+    {   
+        $this->validate($request,[
+            
+            'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
+             
+            'tipo' =>'required',
+            
+            ]);
+
         $id_disc = $request->get('id_disc');
         $id_gestion = $request->get('id_gestion');
         $id_participacion = DB::table('participaciones')
@@ -60,13 +68,13 @@ class FaseController extends Controller
         return view('grupo.listar_grupos')->with('grupos', $grupos)->with('fase', $fase)->with('gestion', $gestion)->with('disciplina', $disciplina);
     }
     //lista de encuentros y clubs inscritos
-    public function eliminacion_encuentro($id_fase, $id_gestion, $id_disc)
-    {   
-        $gestion = Gestion::find($id_gestion);
-        $disciplina = Disciplina::find($id_disc);
-        $fase = Fase::find($id_fase);
-        return view('fases.listar_encuentros_eliminacion',compact('centros','clubs','clubsDisponibles','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro'));
-    }
+    // public function eliminacion_encuentro($id_fase, $id_gestion, $id_disc)
+    // {   
+    //     $gestion = Gestion::find($id_gestion);
+    //     $disciplina = Disciplina::find($id_disc);
+    //     $fase = Fase::find($id_fase);
+    //     return view('fases.listar_encuentros_eliminacion',compact('centros','clubs','clubsDisponibles','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro'));
+    // }
     public function clubs_eliminacion_equipo($id_fase, $id_disc, $id_gestion)
     {   
         $gestion = Gestion::find($id_gestion);
@@ -130,6 +138,7 @@ class FaseController extends Controller
         foreach ($clubs as $club) {
             $clubsParaEncuentro[$club->id_club] = ($club->nombre_club);
         }
+        //return dd($gestion);
         return view('fases.encuentros_eliminacion_equipo',compact('centros','gestion','disciplina','fase','fechas','fechas2','clubsParaEncuentro'));
 
     }
@@ -258,6 +267,10 @@ class FaseController extends Controller
             ->where('participaciones.id_disciplina','=',$id_disc)
             ->get();
         return $fases; 
+    }
+    public function destroy($id_fase){
+        DB::table('fases')->where('id_fase',$id_fase)->delete();
+        return redirect()->back();
     }
 }
 

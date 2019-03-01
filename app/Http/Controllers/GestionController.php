@@ -5,8 +5,11 @@ use App\Models\Disciplina;
 use App\Models\Fase;
 use App\Models\Gestion;
 use App\Models\Inscripcion;
+use App\Models\Ganador;
+use App\Models\Participante_Ganador;
 use App\Models\Participacion;
 use App\Models\Tabla_Posicion;
+use App\Models\Tabla_Posicion_Jugador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,7 +40,7 @@ class GestionController extends Controller
             }
             $disciplinas[$disciplina->id_disc] = $disciplina->nombre_disc . " " . $categoria;
         }
-        return dd($disciplinas);
+        //return dd($disciplinas);
         return view('admin.reg_gest')->with('disciplinas', $disciplinas);
     }
     public function store(Request $request)
@@ -68,12 +71,6 @@ class GestionController extends Controller
     public function show($id)
     {
         $gestiones = Gestion::all();
-        //$gestiones2 = array();
-        //foreach ($gestiones2 as $gestion) {
-        //  $gestiones[$id_gestion] = $gestion->nombre_gestion;
-        //return dd($gestion);
-        //}
-        //return dd($gestiones);
         $gestion = Gestion::find($id);
         return view('plantillas.menus.menu_gestion')->with('gestion', $gestion)->with('gestiones', $gestiones);
     }
@@ -330,8 +327,149 @@ class GestionController extends Controller
         $disciplina = Disciplina::find($request->get('id_disciplina'));
         $id_fase = $request->get('id_fase');
         $fase = Fase::find($id_fase);
+        if ($disciplina->tipo == 0) {
+            $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->orderBy('puntos','desc')->paginate(15);
+            return view('gestiones.tabla_pos_equipo',compact('tabla_posiciones','gestion','disciplina','fase'));
+    
+        } 
+        else {
+            $tabla_posiciones = DB::table('tabla_posicion_jugadors')
+                    ->join('selecciones','tabla_posicion_jugadors.id_seleccion','selecciones.id_seleccion')
+                    ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+                    ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+                    ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+                    ->where('tabla_posicion_jugadors.id_fase',$id_fase)
+                    ->paginate(15);
+            return view('gestiones.tabla_pos_competicion',compact('tabla_posiciones','gestion','disciplina','fase'));
+
+        }
         
-        $tabla_posiciones = Tabla_Posicion::where('id_fase','=',$id_fase)->orderBy('puntos','desc')->paginate(15);
-        return view('gestiones.mostrar_resultados',compact('tabla_posiciones','gestion','disciplina','fase'));
+        }
+    public function mostrar_resultado_competicion_fase_ajax($id_fase){
+        $data = DB::table('tabla_posicion_jugadors')
+        ->join('selecciones','tabla_posicion_jugadors.id_seleccion','selecciones.id_seleccion')
+        ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+        ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+        ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+        ->where('tabla_posicion_jugadors.id_fase',$id_fase)
+        ->get();
+        return response()->json($data);
     }
+    public function reg_res_competicion_fase(request $request){
+        if($request->ajax()){
+            $id_fase = $request->fase;
+            $id_disc = $request->disc;
+            $id_gestion = $request->gestion;
+            foreach ($request->tabla as $jugador) {
+                $id_seleccion = DB::table('jugador_clubs')
+                                ->join('selecciones','jugador_clubs.id_jug_club','selecciones.id_jug_club')
+                                ->join('club_participaciones','selecciones.id_club_part','club_participaciones.id_club_part')
+                                ->where('jugador_clubs.id_jugador',$jugador[0])
+                                ->where('jugador_clubs.id_club',$jugador[1])
+                                ->where('club_participaciones.id_club',$jugador[1])
+                                ->where('club_participaciones.id_disc',$id_disc)
+                                ->where('club_participaciones.id_gestion',$id_gestion)
+                                ->select('selecciones.id_seleccion')->get()->last()->id_seleccion;
+                Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)
+                            ->update(['posicion' => $jugador[2]]);
+                // $tabla = DB::table('tabla_posicion_jugadors')
+                //     ->where('id_seleccion',$id_seleccion)
+                //     ->where('id_fase',$id_fase)->get()->last();
+                // //return $tabla;
+                // if ($tabla != null) {
+                //     $cantidad_encuentros = Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)->get()->last()->cantidad_encuentros;
+                //     Tabla_Posicion_Jugador::where('id_seleccion',$id_seleccion)->where('id_fase',$id_fase)
+                //             ->update(['cantidad_encuentros' => $cantidad_encuentros+1]);
+                // }
+                // else{
+                //     $tabla_posicion_jugador = new Tabla_Posicion_Jugador();
+                //     $tabla_posicion_jugador->id_fase = $id_fase;
+                //     $tabla_posicion_jugador->id_disc = $id_disc;
+                //     $tabla_posicion_jugador->id_seleccion = $id_seleccion;
+                //     $tabla_posicion_jugador->cantidad_encuentros = 1;
+                //     $tabla_posicion_jugador->save();
+                // }
+            }
+            
+        }
+        return $request;
+    }
+    public function resultados_finales($id_gestion){
+        $disciplinas = Participacion::where('id_gestion',$id_gestion)->get();
+        $gestion = Gestion::find($id_gestion);
+        return view('gestiones.resultados_finales',compact('disciplinas','gestion'));
+    }
+    public function array_clubs_ajax($id_gestion, $id_disc){
+        $data = DB::table('club_participaciones')
+            ->join('clubs','club_participaciones.id_club','clubs.id_club')
+            ->where('club_participaciones.id_disc',$id_disc)
+            ->where('club_participaciones.id_gestion',$id_gestion)
+            ->get();
+        return response()->json($data);
+    }
+    public function array_jugadores_ajax($id_gestion, $id_disc){
+        $data = DB::table('club_participaciones')
+            ->join('clubs','club_participaciones.id_club','clubs.id_club')
+            ->join('selecciones','club_participaciones.id_club_part','selecciones.id_club_part')
+            ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+            ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+            ->where('club_participaciones.id_disc',$id_disc)
+            ->where('club_participaciones.id_gestion',$id_gestion)
+            ->get();
+        return response()->json($data);
+    }
+    public function registrar_ganadores(request $request){
+        for ($i=1; $i <= 3; $i++) { 
+            $id_participacion = Participacion::where('id_gestion',$request->get('id_gestion'))
+                    ->where('id_disciplina',$request->get('id_disc'))
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+                    $ganadores = new Ganador(); 
+                    $ganadores->posicion_ganador = $i;
+                    $ganadores->id_participacion = $id_participacion;
+                    $ganadores->id_club = $request->get($i);
+                    $ganadores->save();
+                }
+        
+        return redirect()->back();
+    }
+    public function registrar_ganadores_competicion(request $request){
+        //
+        for ($i=1; $i <= 3; $i++) { 
+            $id_participacion = Participacion::where('id_gestion',$request->get('id_gestion'))
+                    ->where('id_disciplina',$request->get('id_disc'))
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+                    //return dd($request);
+                    $ganadores = new Participante_Ganador(); 
+                    $ganadores->posicion_participante = $i;
+                    $ganadores->id_participacion = $id_participacion;
+                    $ganadores->id_jugador = $request->get($i);
+                    $ganadores->save();
+                }
+        
+        return redirect()->back();
+    }
+    public function mostrar_ganadores($id_gestion, $id_disc){
+        $disc = Disciplina::find($id_disc);
+        $gestion = Gestion::find($id_gestion);
+        $id_part = Participacion::where('id_gestion',$id_gestion)
+                    ->where('id_disciplina',$id_disc)
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+        if ($disc->tipo==0) {
+            $ganadores = DB::table('ganadors')
+            ->join('clubs','ganadors.id_club','clubs.id_club')
+            ->where('ganadors.id_participacion',$id_part)->orderBy('posicion_ganador','asc')->get();
+             return view('gestiones.medallero_clubs',compact('gestion','ganadores'));
+        } else {
+            $ganadores = DB::table('participante_ganadors')
+                ->join('jugadores','participante_ganadors.id_jugador','jugadores.id_jugador')
+                ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
+                ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+                ->where('participante_ganadors.id_participacion',$id_part)->orderBy('posicion_participante','asc')->get();
+        return view('gestiones.medallero_jugadores',compact('gestion','ganadores'));
+        } 
+    }
+
 }

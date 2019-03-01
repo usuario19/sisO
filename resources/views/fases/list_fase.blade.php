@@ -73,12 +73,12 @@
                               </i></a></td>
                         @else
                           @if ($fase->nombre_tipo == 'eliminacion' && $disciplina->tipo == 0)
-                              <td style="width: "><a href="{{ route('fase.eliminacion_encuentro',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
+                              <td style="width: "><a href="{{ route('fase.encuentros_eliminacion_equipo',[$fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">
                               <i title="Grupo" class="material-icons delete_button">
                                 person
                                 </i></a></td>
                           @else
-                            <td style="width: "><a href="{{ route('fase.eliminacion_encuentro_competicion',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">
+                            <td style="width: "><a href="{{ route('fase.encuentros_eliminacion_competicion',[$fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">
                               <i title="Grupo" class="material-icons delete_button">
                                 person
                                 </i></a></td>
@@ -106,4 +106,5 @@
 @endsection
 @section('scripts')
   {!! Html::script('/js/filtrar_por_nombre.js') !!}
+  {!! Html::script('/js/validacion_reg_fase.js') !!}
 @endsection

@@ -12,7 +12,7 @@ class CreateEncuentroClubParticipaciones extends Migration
             $table->increments('id_encuentro_club_part');
             $table->integer('puntos')->nullable();
             $table->text('observacion')->nullable();
-            $table->string('resultado')->nullable();
+            $table->integer('goles')->nullable();
 
             $table->integer('id_encuentro')->unsigned();
             $table->foreign('id_encuentro')->references('id_encuentro')->on('encuentros')->onDelete('cascade');

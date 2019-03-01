@@ -67,7 +67,7 @@
       </table>
     </div>
       <div class="table-responsive-xl">
-        <table class="mi_tabla table table-sm table-hover">
+        <table class="mi_tabla table table-hover">
               <thead>
                 <th scope="col" width="50px">#</th>
                 <th scope="col" width="100px">Foto</th>
@@ -98,11 +98,9 @@
                     </td>
                     <td>{{ $usuario->email}}</td>
                     <td>{{ $usuario->fecha_nac}}</td>
-                    <td data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}"><div data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="descripcion row">
-                        <div data-href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="col-12 text-truncate">
-                            {{ $usuario->descripcion_admin}}
-                        </div>
-                    </div></td>
+                    <td class="text-justify">
+                      {{ $usuario->descripcion_admin}}
+                    </td>
                    {{--   <td><a href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="btn btn-warning">Editar</a></td>
                     <td><a href="{{ route('administrador.informacion',$usuario->id_administrador) }}" class="btn btn-success">Mas info</a></td>  --}}
                     <td class="text-center">

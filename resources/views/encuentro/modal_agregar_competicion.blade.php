@@ -1,8 +1,6 @@
 {!! Form::open(['route'=>'encuentro.store_competicion_serie','method' => 'POST']) !!}
                     <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEncuentro">
-                        Programar Encuentro
-                      </button>
+                      
     
                       <!-- Modal -->
                       <div class="modal fade" id="modalEncuentro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -36,7 +34,7 @@
                               </div>
                               <div class="form-row">
                                   <div class="col-md-6">
-                                    {!! Form::label('fechas', 'Fecha', []) !!}
+                                    {!! Form::label('fecha', 'Fecha', []) !!}
 											              {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
                               </div>
                                   <div class="col-md-6">

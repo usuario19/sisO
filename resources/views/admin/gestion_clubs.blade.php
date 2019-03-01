@@ -9,31 +9,28 @@
 
 @section('content')
 <div class="container">
-
     <div class="card">
       <div class="card-header">
+          @include('gestiones.modal_inscribir_clubs')
           <table class="table table-sm table-bordered" style="margin: 0%">
               <thead>
                   <th>
                       <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                          <h4 class="" style="font-size: 18px">INSCRIPCION DE CLUBS</h4></td>
+                          <h4 class="" style="font-size: 18px">INSCRIPCION DE CLUBS</h4>
                       </div>
                   </th>
                   </thead>
               <tbody>
               <tr> 
-                
                     @if(Auth::check() && Auth::user()->tipo == 'Administrador')
                     <td>
                         <div style="float: left;" class="form-group col-md-10">
                             {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                          </div>
                          <div style="float: left;" class="form-group col-md-2">
-                               
                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalAgregarclub">Agregar</button>
                          </div>
-                             {{--  <button type="button" class="btn   btn-primary" data-toggle="modal" data-target="#modal">Agregar</button></div>  --}}
-                    </td>
+                        </td>
                     @else
                     <td>
                         <div style="float: left;" class="form-group col-md-12">
@@ -41,20 +38,18 @@
                         </div>
                     </td>
                     @endif
-                 
               </tr>
             </tbody>
           </table>
-          @include('gestiones.modal_inscribir_clubs')
       </div>
         <div class="card-body">
            <div class="container table-responsive-xl">
               <table class="table table-condensed">
                   <thead class="">
-                    <th>ID</th>
+                    <th width="50px">ID</th>
                     <th>Logo</th>
                     <th>Nombre</th>
-                    <th>Descripcion</th>
+                    <th width="150px">Descripcion</th>
                     <th>Acciones</th>        
                   </thead>
                   <tbody id="datos">
@@ -71,12 +66,9 @@
                     @endforeach
                   </tbody>
             </table>
-           </div>
-           
-            
-                
+           </div>    
       </div>
-  
+</div>
 </div>
 
 @endsection

@@ -36,11 +36,11 @@
                 <th width="50px">ID</th>
                 <th width="100px">Logo</th>
                 
-                <th scope="col">Nombre</th>
-                <th scope="col">Coordinador</th>
-                <th scope="col">Ciudad</th>
-                <th width="50px" scope="col">Descripcion</th>
-                <th scope="col" colspan="2" >Acciones</th>  
+                <th >Nombre</th>
+                <th >Coordinador</th>
+                <th >Ciudad</th>
+                <th width="150px">Descripcion</th>
+                <th colspan="2" >Acciones</th>  
               </thead>
       
               <tbody id="datos">

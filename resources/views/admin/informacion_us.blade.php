@@ -41,7 +41,7 @@
         {!! Form::label('descripcion_admin', 'Descripcion', []) !!}
         {!! Form::textArea('descripcion_admin',null , ['class'=>'form-control','rows'=>4]) !!}
       
-        <div class="form-group errorLogin">
+        <div class="form-group">
             <h6 id="error_desc">{{ $errors->has('descripcion_admin') ? $errors->first('descripcion_admin'):'' }}</h6>    
         </div>
 </div>
@@ -81,8 +81,7 @@
     <div class="form-group col-md-6" >
       {!! Form::label('newpassword_confirmation', 'Confirma tu nueva contraseña', []) !!}  
       {!! Form::password('newpassword_confirmation', ['class' => 'form-control']) !!}
-      <div class="form-group errorLogin">
-          <h6 id="error_confirmation"></h6>   
+      <div class="form-group">
       </div>
     </div>
   </div>
@@ -121,11 +120,11 @@
        }
       }())
     </script>
+  {!! Html::script('/Jcrop/js/jquery.min.js') !!}
+  {!! Html::script('/Jcrop/js/jquery.Jcrop.min.js') !!}
   {!! Html::script('/js/vista_previa.js') !!}
   {!! Html::script('/js/validacion_ajax_request_update.js') !!}
   {!! Html::script('/js/validaciones.js') !!}
-  {!! Html::script('/Jcrop/js/jquery.min.js') !!}
-  {!! Html::script('/Jcrop/js/jquery.Jcrop.min.js') !!}
   {!! Html::script('/js/jcrop_imagen.js') !!}
 
 @endsection

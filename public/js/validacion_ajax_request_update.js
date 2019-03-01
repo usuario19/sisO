@@ -29,7 +29,6 @@ $("#form_update").submit(function(event) {
 			processData:false,
 			
 		success: function(data){
-			
 			toTop();
 			document.getElementById("mensaje").style.display = 'block';
 			timeout();
@@ -37,8 +36,8 @@ $("#form_update").submit(function(event) {
 		},
 		error:function(data){
 			//document.getElementById("mensaje").style.display = 'none';
-			//console.log(data);
-			if(data.responseJSON.errors.nombre )
+			console.log(data);
+			if(data.responseText.errors.nombre )
 			{
 				console.log("entro")
 				$('#nombre').addClass('is-invalid');

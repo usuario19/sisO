@@ -17,6 +17,7 @@ class CreateEncuentroSeleccionsTable extends Migration
             $table->increments('id_encuentro_seleccion');
             $table->integer('posicion')->nullable();
             $table->string('observacion')->nullable();
+
             $table->integer('id_encuentro')->unsigned();
             $table->foreign('id_encuentro')->references('id_encuentro')->on('encuentros')->onDelete('cascade');
                 

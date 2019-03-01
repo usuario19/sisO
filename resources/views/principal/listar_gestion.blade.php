@@ -11,22 +11,7 @@
     </div>
 </div>
 
-<script language="javascript" type="text/javascript">
-    // RESALTAR LAS FILAS AL PASAR EL MOUSE
-    function ResaltarFila(id_fila) {
-        document.getElementById(id_fila).style.backgroundColor = 'rgb(229, 235, 235)';
-    }
-     
-    // RESTABLECER EL FONDO DE LAS FILAS AL QUITAR EL FOCO
-    function RestablecerFila(id_fila) {
-        document.getElementById(id_fila).style.backgroundColor = '#FFFFFF';
-    }
-     
-    // CONVERTIR LAS FILAS EN LINKS
-    function CrearEnlace(url) {
-        location.href=url;
-    }
-</script>
+
 <div class="container">
     <div class="table-responsive-xl">
         <table class="table table-condensed">
@@ -82,10 +67,21 @@
         </table>
     </div>
 </div>
-
-
-    @include('sweetalert::cdn') 
- @include('vendor.sweetalert.view') 
 @endsection
-  
+<script language="javascript" type="text/javascript">
+    // RESALTAR LAS FILAS AL PASAR EL MOUSE
+    function ResaltarFila(id_fila) {
+        document.getElementById(id_fila).style.backgroundColor = 'rgb(229, 235, 235)';
+    }
+     
+    // RESTABLECER EL FONDO DE LAS FILAS AL QUITAR EL FOCO
+    function RestablecerFila(id_fila) {
+        document.getElementById(id_fila).style.backgroundColor = '#FFFFFF';
+    }
+     
+    // CONVERTIR LAS FILAS EN LINKS
+    function CrearEnlace(url) {
+        location.href=url;
+    }
+</script>
 

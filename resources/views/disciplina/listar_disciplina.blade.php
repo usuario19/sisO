@@ -78,11 +78,9 @@
                     <td>{{ $disciplina->nombre_categoria($disciplina->categoria) }}</td>
                     <td>{{ $disciplina->sub_categoria}}</td>
                     <td>{{ $disciplina->nombre_tipo($disciplina->tipo) }}</td>
-                    <td><div class="descripcion row">
-                        <div class="col-12 text-truncate">
-                            {{ $disciplina->descripcion_disc}}
-                        </div>
-                    </div></td>
+                    <td>
+                        {{ $disciplina->descripcion_disc}}
+                    </td>
                     <td>
                         @if ($disciplina->reglamento_disc)
                             <a href="storage/archivos/{{ $disciplina->reglamento_disc }}">

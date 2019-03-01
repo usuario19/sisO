@@ -27,7 +27,6 @@ $("#form_create").submit(function(event) {
 
 			//window.location.reload();
 			//document.getElementById("mensaje").style.visibility = 'visible';
-			document.getElementById("mensaje").style.display = 'block';
         	$("#btnCancelar").click();
 			for (var i = 1; i < input.length; i++) {
 				if(input[i].type != 'radio' && input[i].type != "date" && input[i].type != "submit")
@@ -44,7 +43,6 @@ $("#form_create").submit(function(event) {
 		},
 		error:function(data){
 			/* console.log(data) */
-			document.getElementById("mensaje").style.display = 'none';
 
 			if(data.responseJSON.errors.nombre )
 			{

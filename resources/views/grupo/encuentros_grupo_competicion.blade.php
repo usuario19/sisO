@@ -10,42 +10,57 @@
 
 @section('content')
 <div class="container">
-        <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
+  
+    <div class="row">
+    <div class="form-group col-md-11">
+        <nav aria-label="breadcrumb" >
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">{{ $disciplina->nombre_disc.' '.$disciplina->nombre_categoria($disciplina->categoria) }}</li>
             <li class="breadcrumb-item"><a href="{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}">Fases</a></li>
             <li class="breadcrumb-item"><a href="{{ route('fase.listar_grupos',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}">Grupos</a></li>         
             <li class="breadcrumb-item active" aria-current="page">{{ $grupo->nombre_grupo }}</li>
-        </ol>
-        </nav>
+              </ol>
+            </nav>
     </div>
-<div class="dropdown">
-  <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Configuracion
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="{{ route('grupo.clubs_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Clubs</a>
-      <a class="dropdown-item" href="{{ route('grupo.fechas_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Fechas</a>
-      <a class="dropdown-item" href="{{ route('grupo.encuentros_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Encuentros</a>
-    </div>
-</div> 
-<div class="container"> 
-        @include('encuentro.modal_agregar_competicion')    
-        @include('encuentro.modal_agregar_resultado_competicion')     
-        @include('encuentro.modal_ver_resultado_competicion')     
-
-        <div class="card"> 
-    <div style="float: left;" class="form-row col-md-12 form-inline">
-        <h4>Lista de Encuentros:</h4>
+    <div class="form-group col-md-1">
+        <div class="dropdown" >
+            <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i title="Configuracion" class="material-icons delete_button">
+                    settings
+                    </i></a> 
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{{ route('grupo.clubs_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Clubs</a>
+                  <a class="dropdown-item" href="{{ route('grupo.fechas_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Fechas</a>
+                  <a class="dropdown-item" href="{{ route('grupo.encuentros_grupo_competicion',[$grupo->id_grupo, $fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}">Encuentros</a>
+                </div>
+          </div>
       </div>
-      @foreach ($fechas as $fecha)
+    </div>
+@include('encuentro.modal_agregar_competicion')    
+@include('encuentro.modal_agregar_resultado_competicion')     
+@include('encuentro.modal_ver_resultado_competicion')
+<div class="card">    
+<div class="card-body"> 
+    <div class="row table table-bordered">
+         <div class="form-group container col-md-10" style="padding: 10px 0px">
+            <h4>LISTA DE ENCUENTROS</h4>
+        </div>
+        <div style="float: left;" class="form-group col-md-2">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEncuentro">
+             Agregar
+          </button>
+        </div>      
+    </div>
+        
+         @foreach ($fechas as $fecha)
          <div>
             <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}
-              <a href="{{ route('encuentro.fixture') }}"><i title="Fixture" class="material-icons delete_button">
+              <a href="{{ route('encuentro.fixture_porfecha',$fecha->id_fecha) }}"><i title="Fixture" class="material-icons delete_button">
                   assignment</i></a></h4>
             
          </div>
-        <table class="table table-condensed">
+        <div class="table-responsive-xl">
+            <table class="table table-condensed">
           <thead>
             <th>Participantes</th>
             <th>Acciones</th>
@@ -66,7 +81,7 @@
                   @if ($encuentro->tiene_resultado_competicion($encuentro->id_encuentro) == 1)
                     <a href=" " onclick="VerResultadoCompeticion({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
                       <i title="Ver resultados" class="material-icons delete_button button_redirect">
-                        collections_bookmark
+                        poll
                       </i>
                     </a>
                   @else
@@ -110,10 +125,14 @@
             </td> 
           </tr>
             @endforeach 
-          
           </tbody>
-        </table>  
+        </table> 
+        </div> 
          @endforeach 
 </div>
 </div>
+</div>
+@endsection
+@section('scripts')
+  {!! Html::script('/js/filtrar_por_nombre.js') !!}
 @endsection

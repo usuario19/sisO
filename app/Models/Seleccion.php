@@ -16,10 +16,11 @@ class Seleccion extends Model
     	 return $this->belongsTo('App\Models\Jugador_Club','id_jug_club');
     }
 
-    
     public function club_participacion(){
-
         return $this->belongsTo('App\Models\Club_Participacion','id_club_part');  
+    }
+    public function tabla_posicion_jugador(){
+        return $this->belongsTo('App\Models\Tabla_Posicion_Jugador','id_seleccion');  
     }
     
 }

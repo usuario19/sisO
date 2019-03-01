@@ -56,7 +56,7 @@
                     <th>Nombre</th>
                     <th>Categoria</th>
                     <th>Reglamento</th>
-                    <th>Descripcion</th>
+                    <th width="150px">Descripcion</th>
                     <th>Accion</th>
                   </thead>
                   <tbody id="datos">
@@ -74,10 +74,10 @@
                                 @break
                         
                            @case(1)
-                                <td>{{ 'Mujeres' }}</td>
+                                <td>{{ 'Damas' }}</td>
                                 @break
                                 @case(2)
-                                <td>{{ 'Hombres' }}</td>
+                                <td>{{ 'Varones' }}</td>
                                 @break
                         @endswitch
                         <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">
@@ -86,7 +86,7 @@
                               <span class="letter-size">Descargar</span>
                           </div>
                         </td>
-                        <td>{{ $disciplina->descripcion_disc}}</td>
+                        <td> {{ $disciplina->descripcion_disc}}</td>
                         <td><a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}">
                           <i title="Eliminar" class="material-icons delete_button">delete</i>
                         </a></td>

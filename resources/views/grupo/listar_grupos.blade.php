@@ -11,8 +11,7 @@
 @section('content')
 <div class="container">
 <div class="card">
-    
-            @include('grupo.modal_agregar_grupos')
+ @include('grupo.modal_agregar_grupos')
         <div class="content">
             <nav aria-label="breadcrumb" style="margin: 0%">
                <ol class="breadcrumb alert-info" style="margin:0%">
@@ -42,9 +41,7 @@
                              <div style="float: left;" class="form-group col-md-2">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGrupo">
                                             Agregar
-                                          </button>
-                                {{-- <a href="{{ route('grupo.create',[$fase->id_fase,$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-primary btn-block">Agregar</a>
-                                 --}}
+                                    </button>
                             </div>
                         </td>
                   </tr>
@@ -54,7 +51,7 @@
             <div class="table-responsive-xl">
                 <table class="table table-condensed">
                     <thead>
-                      <th colspan="2" width="50px" class="text-center">Id</th>
+                      <th colspan="1" width="50px" class="text-center">Id</th>
                       <th>Nombre</th>
                       <th>Encuentros</th>
                       <th colspan="2">Acciones</th>
@@ -66,10 +63,16 @@
                           <td>{{ $grupo->id_grupo}}</td>
                           <td>{{ $grupo->nombre_grupo }}</td>
                           @if ($disciplina->tipo == 1)
-                          <td><a href="{{ route('grupo.listar_clubs_competicion',[$grupo->id_grupo,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}" class="btn btn-success">Competicion</a></td>
+                          <td><a href="{{ route('grupo.encuentros_grupo_competicion',[$grupo->id_grupo,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}" 
+                            ><i title="Competiciones" class="material-icons delete_button">
+                              directions_run
+                              </i></a></td>
                               
                           @else
-                          <td><a href="{{ route('grupo.listar_clubs',[$grupo->id_grupo,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}" class="btn btn-success">Encuentros</a></td>
+                          <td><a href="{{ route('grupo.encuentros_grupo_equipo',[$grupo->id_grupo,$fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}" 
+                            ><i title="Encuentros" class="material-icons delete_button">
+                                transfer_within_a_station
+                                </i></a></td>
                           
                           @endif
                           <td style="width: 70px"><a href="" class="">

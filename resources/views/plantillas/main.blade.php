@@ -57,12 +57,12 @@
     </body>
 <footer>
   <br><br>
-  <div class="container-fluid navbar navbar-light bg-light">
+  <div class="container-fluid navbar navbar-dark bg-dark">
     <div class="container">
-      <p>
+      <p class="text-light">
           Universidad Mayor de San Simon
       </p>
-      <p>
+      <p class="text-light">
           SITUMSS-Administrador de Olimpiadas Deportivas
       </p>
       

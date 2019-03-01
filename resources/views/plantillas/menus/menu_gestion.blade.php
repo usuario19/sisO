@@ -53,10 +53,15 @@
                 poll
                 </i>Resultados</a>
     </li>
+    <li>
+        <a href="{{ route('gestion.resultados_finales',$gestion->id_gestion) }}"><i class="material-icons">
+            favorite
+            </i>Ganadores</a>
+    </li>
 </ul>
 </nav>
 </div>
-<script>
+<!-- <script>
     $(document).ready(function(){
         
         $('#submenu li a').on('click', function(e){
@@ -64,5 +69,5 @@
         });
         
      });
-</script>
+</script> -->
 @endsection 

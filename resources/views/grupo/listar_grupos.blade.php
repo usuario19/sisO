@@ -12,7 +12,7 @@
 <div class="container">
 <div class="card">
  @include('grupo.modal_agregar_grupos')
-        <div class="content">
+  <div class="content">
             <nav aria-label="breadcrumb" style="margin: 0%">
                <ol class="breadcrumb alert-info" style="margin:0%">
                   <li class="breadcrumb-item"><a href="{{ route('gestion.clasificacion',[$gestion->id_gestion]) }}">Disciplinas</a></li>
@@ -39,7 +39,7 @@
                                 {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                              </div>
                              <div style="float: left;" class="form-group col-md-2">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGrupo">
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalGrupo">
                                             Agregar
                                     </button>
                             </div>
@@ -51,16 +51,17 @@
             <div class="table-responsive-xl">
                 <table class="table table-condensed">
                     <thead>
-                      <th colspan="1" width="50px" class="text-center">Id</th>
+                      <th colspan="1" width="50px" class="text-center">NO</th>
                       <th>Nombre</th>
                       <th>Encuentros</th>
                       <th colspan="2">Acciones</th>
                     </thead>
                     <tbody id="datos">
+                        @php($i=1)
               
                       @foreach($grupos as $grupo)
                         <tr>
-                          <td>{{ $grupo->id_grupo}}</td>
+                          <td>{{ $i}}</td>
                           <td>{{ $grupo->nombre_grupo }}</td>
                           @if ($disciplina->tipo == 1)
                           <td><a href="{{ route('grupo.encuentros_grupo_competicion',[$grupo->id_grupo,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}" 
@@ -82,6 +83,8 @@
                             <i title="Eliminar" class="material-icons delete_button">delete</i>
                           </a></td>
                         </tr>
+                        @php($i++)
+
                       @endforeach
                     </tbody>
                 </table>

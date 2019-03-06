@@ -28,7 +28,7 @@
                             {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                          </div>
                          <div style="float: left;" class="form-group col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalAgregarclub">Agregar</button>
+                            <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modalAgregarclub">Agregar</button>
                          </div>
                         </td>
                     @else

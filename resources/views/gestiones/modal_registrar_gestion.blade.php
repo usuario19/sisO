@@ -68,10 +68,10 @@
 																					@break
 																			
 																				@case(1)
-																					{!! $disciplina->nombre_disc." Mujeres"!!}
+																					{!! $disciplina->nombre_disc." Damas"!!}
 																					@break
 																				@case(2)
-																					{!! $disciplina->nombre_disc." Hombres" !!}
+																					{!! $disciplina->nombre_disc." Varones" !!}
 																				@break
 																			@endswitch
 																	</td>
@@ -86,8 +86,14 @@
 					  </div>
                       
 					 <div class="modal-footer">
-						{!! Form::submit('aceptar', ['class'=>'btn btn-primary']) !!}
-						{!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
+						 <div class="row col-md-12">
+								<div class="form-group col-md-6">
+						{!! Form::submit('aceptar', ['class'=>'btn btn-primary btn-block btn_aceptar']) !!}
+						</div>
+						<div class="form-group col-md-6">
+						{!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+						</div>
+						 </div>
 					</div>
 		</div>
 	</div>

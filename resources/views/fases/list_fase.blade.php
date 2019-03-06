@@ -38,7 +38,7 @@
                                   {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                                </div>
                                <div style="float: left;" class="form-group col-md-2">
-                                  <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalFase">Agregar</button>
+                                  <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modalFase">Agregar</button>
                                </div>
                           </td>
                           
@@ -51,18 +51,18 @@
               <br>
               <table class="table table-condensed">
                   <thead>
-                    <th colspan="2" width="50px" class="text-center">#</th>
+                    <th colspan="2" width="50px" class="text-center">NO</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
                     <th>Grupos</th>
                     <th colspan="2">Acciones</th>
                   </thead>
                   <tbody id="datos">
-            
+                    @php($i=1)
                     @foreach($fases as $fase)
                       <tr>
                         <td></td>
-                        <td>{{ $fase->id_fase}}</td>
+                        <td>{{ $i}}</td>
 
                         <td>{{ $fase->nombre_fase }}</td>
                         <td>{{ $fase->nombre_tipo}}</td>
@@ -91,6 +91,8 @@
                               <td style="width: 70px"><a href="{{ route('fase.destroy',$fase->id_fase) }}"><i title="Editar" class="material-icons delete_button">edit</i></td>
                         
                       </tr>
+                    @php($i++)
+
                     @endforeach
                     
                   </tbody>

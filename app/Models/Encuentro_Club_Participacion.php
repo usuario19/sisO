@@ -13,7 +13,7 @@ class Encuentro_Club_Participacion extends Model
         'id_club_part',
     	'puntos', 
     	'observacion',
-        'resultado',
+        'goles',
         
     	
     ];

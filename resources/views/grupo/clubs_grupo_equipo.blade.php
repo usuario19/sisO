@@ -26,7 +26,7 @@
   <div class="form-group col-md-1">
       <div class="dropdown" >
           <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i title="Configuracion" class="material-icons delete_button">
+              <i title="Configuracion" class="material-icons config_encuentro">
                   settings
                   </i></a> 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -45,12 +45,12 @@
       <div class="row container">
           <div class="form-group col-md-10"><h4>Lista de Clubs:</h4></div>
           <div class="form-group col-md-2">
-              <button class="btn btn-primary " data-toggle="modal" data-target="#v">Agregar</button>
+              <button class="btn btn-warning " data-toggle="modal" data-target="#v">Agregar</button>
         </div>
       @include('grupo.modal_agregar_equipos') 
-      <table class="table table-condensed">
+      <table class="table table-bordered">
           <thead>
-            <th width="50px">ID</th>
+            <th width="50px">NO</th>
             <th>Logo</th>
             <th>Nombre</th>
             <th>Acciones</th>

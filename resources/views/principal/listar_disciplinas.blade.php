@@ -4,6 +4,9 @@
 @endsection
 
 @section('content')
+<div class="container">
+<div class="card">
+
 
 <div class="container-fluid"  style="background: #C40F31" >
     <div class="div-title-principal container text-center">
@@ -11,11 +14,6 @@
     </div>
 </div>
 <br>
-{{-- <div class="container">
-    <div class="ontainer form-group col-md-12">
-        {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-    </div>
-</div> --}}
   <div class="container">
     <div class="table-responsive-xl">
         <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
@@ -77,6 +75,8 @@
               </div>
           </div>
       </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')

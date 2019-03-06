@@ -5,6 +5,7 @@
     src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752HT8Ghe4.woff2) format('woff2');
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
+
 @font-face {
     font-family: 'Oswald';
     font-style: normal;
@@ -12,6 +13,7 @@
     src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752Fj8Ghe4.woff2) format('woff2');
     unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
 }
+
 @font-face {
     font-family: 'Oswald';
     font-style: normal;
@@ -19,6 +21,7 @@
     src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752Fz8Ghe4.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
 @font-face {
     font-family: 'Oswald';
     font-style: normal;
@@ -26,6 +29,7 @@
     src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752GT8G.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
     font-family: 'Unica One';
     font-style: normal;
@@ -33,6 +37,7 @@
     src: local('Unica One'), local('UnicaOne-Regular'), url(https://fonts.gstatic.com/s/unicaone/v5/DPEuYwWHyAYGVTSmalsRf93eiEY.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
 @font-face {
     font-family: 'Unica One';
     font-style: normal;
@@ -40,6 +45,7 @@
     src: local('Unica One'), local('UnicaOne-Regular'), url(https://fonts.gstatic.com/s/unicaone/v5/DPEuYwWHyAYGVTSmalsRcd3e.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
     font-family: 'Carrois Gothic SC';
     font-style: normal;
@@ -47,6 +53,7 @@
     src: local('Carrois Gothic SC Regular'), local('CarroisGothicSC-Regular'), url(https://fonts.gstatic.com/s/carroisgothicsc/v7/ZgNJjOVHM6jfUZCmyUqT2A2HVKjc-18gPnc.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
     font-family: 'Exo';
     font-style: normal;
@@ -54,6 +61,7 @@
     src: local('Exo Regular'), local('Exo-Regular'), url(https://fonts.gstatic.com/s/exo/v7/4UaOrEtFpBISfH6jyDM.woff2) format('woff2');
     unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
 }
+
 @font-face {
     font-family: 'Exo';
     font-style: normal;
@@ -61,6 +69,7 @@
     src: local('Exo Regular'), local('Exo-Regular'), url(https://fonts.gstatic.com/s/exo/v7/4UaOrEtFpBISfX6jyDM.woff2) format('woff2');
     unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
 @font-face {
     font-family: 'Exo';
     font-style: normal;
@@ -102,8 +111,9 @@ ul.menu-nav li a {
     text-transform: uppercase;
     /* font-weight: 100; */
 }
+
 h4.title-principal {
-    color:darkslategray;
+    color: darkslategray;
 }
 
 h6.title-principal {
@@ -140,7 +150,7 @@ h6.title-principal {
 }
 
 .sub-title {
-   /*  font-family: 'Oswald', sans-serif; */
+    /*  font-family: 'Oswald', sans-serif; */
     font-size: 18px;
     font-weight: 400;
     text-transform: uppercase;
@@ -865,10 +875,11 @@ input#ci, input#password{
     font-size: 12px;
     /* font-family: 'Montserrat', sans-serif; */
 }
-.invalid-feedback{
+
+.invalid-feedback {
     color: rgb(228, 118, 103);
     font-size: 12px;
-   /*  font-family: 'Montserrat', sans-serif; */
+    /*  font-family: 'Montserrat', sans-serif; */
 }
 
 div.siError {
@@ -884,26 +895,26 @@ div.siError input {
 div.noError input {
     border-bottom: 2px solid rgba(75, 238, 60, 0.363);
     /* background-color: #FADBD8; */
-   /*  border-radius: 8px; */
+    /*  border-radius: 8px; */
 }
+
 input.noError {
     border-bottom: 1px solid rgba(75, 238, 60, 0.363);
     /* background-color: #FADBD8; */
     /* border-radius: 8px; */
 }
 
+
 /* nav */
 
 .submenu {
     color: black;
-    }
+}
 
 .submenu :hover {
     background: rgb(253, 253, 253);
     color: black;
 }
-
-
 
 .card-header {
     background: white;
@@ -915,18 +926,22 @@ a.link {
     color: rgb(43, 42, 42);
     text-transform: capitalize;
     font-size: 14px;
-    font-weight:100;
+    font-weight: 100;
 }
+
 a.link:hover {
     color: rgb(43, 42, 42);
 }
-ul li.link{
+
+ul li.link {
     padding: 0;
 }
-ul li.link a:hover{
+
+ul li.link a:hover {
     border-bottom: rgba(255, 166, 0, 0.479) solid 2px;
 }
-ul li.link a.active{
+
+ul li.link a.active {
     border-bottom: rgb(255, 166, 0) solid 2px;
     font-weight: 500;
 }
@@ -936,8 +951,6 @@ ul li.link a.active{
     text-align: center;
     color: rgb(102, 102, 102);
 }
-
-
 
 .active {
     /* border-radius: 16px; */
@@ -971,7 +984,7 @@ select.select_jq {
     height: 38px;
     border-radius: 0;
     text-align: left;
-   /*  font-family: 'Oswald', sans-serif; */
+    /*  font-family: 'Oswald', sans-serif; */
 }
 
 select.select_jq:focus {
@@ -1144,13 +1157,15 @@ span.puntos {
     font-size: 30px;
     color: rgb(7, 7, 7);
 }
+
 table.calendario td.puntos {
     vertical-align: middle;
     max-width: 50px;
 }
-table.mi_tabla td , table.mi_tabla th {
+
+table.mi_tabla td,
+table.mi_tabla th {
     vertical-align: middle;
-    
 }
 
 button.button_change {
@@ -1190,103 +1205,127 @@ a.button_change i {
 #fecha_title:hover {
     color: blue;
     font-size: 16px;
-   /*  font-family:'Oswald', sans-serif; */
+    /*  font-family:'Oswald', sans-serif; */
 }
-.descripcion{
+
+.descripcion {
     width: 200px;
 }
 
-i{
+i {
     font-size: 35px;
     /* padding-inline-end: 5px;  */
     position: relative;
     /* top: 5px */
 }
-.reporte{
+
+.reporte {
     border-bottom: rgb(0, 102, 255) solid 2px;
 }
-div.reporte span{
+
+div.reporte span {
     font-size: 20px;
     font-weight: lighter;
     color: rgb(0, 102, 255);
 }
-div.reporte_title{
+
+div.reporte_title {
     border-bottom: #1D3B6D solid 2px;
     font-size: 14px;
     font-weight: lighter;
 }
-div.reporte_title span{
+
+div.reporte_title span {
     color: #1D3B6D;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-div.reporte_info table tr td, div.reporte_info table tr th {
+
+div.reporte_info table tr td,
+div.reporte_info table tr th {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 100;
     font-size: 14px;
 }
-div.reporte_sub_title span{
+
+div.reporte_sub_title span {
     color: #1D3B6D;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-div.reporte_sub_title{
+
+div.reporte_sub_title {
     border-bottom: #1D3B6D solid 1px;
     font-size: 14px;
     font-weight: lighter;
 }
-table.table_report tr td{
+
+table.table_report tr td {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 11px;
     font-weight: 100;
 }
-i.reporte_icon{
+
+i.reporte_icon {
     color: white;
-    top: 4px; 
+    top: 4px;
 }
 
-div.reporte_menu a{
+div.reporte_menu a {
     font-family: 'Oswald', sans-serif;
-    color:rgba(255, 255, 255, 0.644);
+    color: rgba(255, 255, 255, 0.644);
     text-transform: uppercase;
     font-size: 16px;
 }
-div.reporte_menu a:active{
+
+div.reporte_menu a:active {
     color: white;
     font-weight: 400;
     background-color: #396798;
 }
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     color: #fff;
     background-color: #406fa2;
 }
-div.tab-pane{
-    width: 100% ;
+
+div.tab-pane {
+    width: 100%;
 }
-tr.border-table{
+
+tr.border-table {
     border-bottom: rgb(189, 188, 188) solid 1px;
 }
-div.modal-header{
+
+div.modal-header {
     background: #F6F8FA;
 }
-.custom-file-label::after{
+
+.custom-file-label::after {
     content: "Elegir";
 }
-label.custom-control-label::after{ 
+
+label.custom-control-label::after {
     content: "Buscar";
 }
-a.mas_detalle{
+
+a.mas_detalle {
     cursor: pointer;
     color: red;
     font-weight: bold;
 }
-a.mas_detalle:hover{
+
+a.mas_detalle:hover {
     text-decoration: underline rgb(160, 4, 4);
     /* font-family: 'Oswald', sans-serif; */
 }
-td.dato{
+
+td.dato {
     /* border: #60bfdb59 solid 1px; */
     font-size: 18px;
     color: #7b7b7e;
 }
+
+
 /* #detalles {
     display: block;
     display: -webkit-box;
@@ -1298,11 +1337,29 @@ td.dato{
     overflow: hidden;
     text-overflow: ellipsis;
 } */
+
 footer {
     background-color: #0C1F2C;
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     width: 100%;
-    height: 500px;
+    height: 450px;
     color: white;
-  }
+}
+
+a.config_encuentro {
+    text-align: center;
+    opacity: 0.7;
+    font-size: 16px;
+    height: 41px;
+    margin: auto;
+    border: none;
+}
+
+i.config_encuentro {
+    text-align: center;
+    font-size: 30px;
+    padding: 5px;
+    color: white;
+    /*  float: none; */
+}

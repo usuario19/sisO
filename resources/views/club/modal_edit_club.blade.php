@@ -7,7 +7,6 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                       </div>
-                      <div class="container col-md-11">
                           <div class="modal-body">
                               {!! Form::open(['route'=>'club.update','method' => 'PUT' ,'enctype' => 'multipart/form-data', 'files'=>true] ) !!}
                                 <div class="row">
@@ -79,14 +78,22 @@
                                             </div>
                                         </div>
                                    </div>
-                                </div>                    
+                                </div>    
+                              </div>                
                                     <div class="modal-footer">
-                                    {!! Form::submit('Actualizar', ['class'=>'btn btn-primary']) !!}
-                                    {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
+                                        <div class="row col-md-12">
+                                            <div class="form-group col-md-6">
+                                                {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
+                                                </div>
+                                            <div class="form-group col-md-6">
+                                        {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+                                        </div>
+                                        
+                                        </div>
                                     </div>
                               {!! Form::close() !!}
-                        </div>
-                      </div>
+                        
+           
                                             
                 </div>
           </div>

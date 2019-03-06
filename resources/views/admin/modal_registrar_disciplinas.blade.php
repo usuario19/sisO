@@ -1,5 +1,5 @@
 
-  <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalAgregarDisc">Agregar</button>
+  <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modalAgregarDisc">Agregar</button>
   {!! Form::open(['route'=>'gestion.agregar_disciplinas','method' => 'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
     <div class="modal fade" id="modalAgregarDisc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -58,8 +58,15 @@
                                     </div>
                             </div>
                             <div class="modal-footer">
-                              {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
-                                {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
+                                <div class="row col-md-12">
+                                    <div class="form-group col-md-6">
+                                        {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
+                                        </div>
+                                    <div class="form-group col-md-6">
+                                {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+                                </div>
+                                
+                                </div>
                                 </div>
                           </div>
                         </div>

@@ -7,29 +7,33 @@
 @endsection
 
 @section('content')
-
+<div class="container">
+    <div class="card">
+        <h4>RESULTADOS POR FASE</h4>
 {!! Form::open(['route'=>'gestion.mostrar_resultados','method' => 'POST'] ) !!}
-    <div style="display: none">
-        
-        {!! Form::text('id_gestion', $gestion->id_gestion) !!}
-        
-    </div>
-    <div class="container col-md-4">
-        <div class="form-row col-md-12">
-            {!! Form::label('disciplina','Disciplina:', []) !!}
-            {!! Form::select('id_disciplina', $disciplinas, null, ['onchange'=>'cargarFases()','placeholder' => 'Seleccione...','id'=>'disciplinas2','class'=>'form-control']) !!}
-        </div> 
-        <div class="form-row col-md-12">
-            {!! Form::label('fases','Fases:', []) !!}
-            {!! Form::select('id_fase', ['placeholder'=>'seleccione fase'],null, ['id'=>'fases2','class'=>'form-control']) !!}
-        </div><br>
-        <div class="form-row col-md-12">
-            {!! Form::submit('Buscar', ['class'=>'btn btn-primary']) !!}
-            <button class="btn btn-secondary">Cancelar</button>
-        </div>   
-    </div>
+<div style="display: none">
+    
+    {!! Form::text('id_gestion', $gestion->id_gestion) !!}
+    
+</div>
+<div class="container col-md-4">
+    <div class="form-row col-md-12">
+        {!! Form::label('disciplina','Disciplina:', []) !!}
+        {!! Form::select('id_disciplina', $disciplinas, null, ['onchange'=>'cargarFases()','placeholder' => 'Seleccione...','id'=>'disciplinas2','class'=>'form-control']) !!}
+    </div> 
+    <div class="form-row col-md-12">
+        {!! Form::label('fases','Fases:', []) !!}
+        {!! Form::select('id_fase', ['placeholder'=>'seleccione fase'],null, ['id'=>'fases2','class'=>'form-control']) !!}
+    </div><br>
+    <div class="form-row col-md-12">
+        {!! Form::submit('Buscar', ['class'=>'btn btn-primary']) !!}
+        <button class="btn btn-secondary">Cancelar</button>
+    </div>   
+</div>
 
-{!! Form::close() !!}
+{!! Form::close() !!}   
+    </div>
+</div>
 
 @endsection
 

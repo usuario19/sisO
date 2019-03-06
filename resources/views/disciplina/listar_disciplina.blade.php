@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-
 <div class="container">
+    <div class="card">
         @if(Auth::check() && Auth::user()->tipo == 'Administrador')
             @include('disciplina.modal_editar_disc')
         @endif
+        <div class="card-header">
         <div class="table-responsive-xl">
-
             <table class="table table-sm table-bordered">
                 <thead>
                     <th>
@@ -25,7 +25,7 @@
                             @if(Auth::check() && Auth::user()->tipo == 'Administrador')
                             <td>
                                 <div class="form-row col-md-12">
-                                    <div{{--    style="float: left;"  --}} class="form-group col-xl-9">
+                                    <div class="form-group col-xl-9">
                                         {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                                     </div>
                                     <div class="form-group col-xl-3">
@@ -35,7 +35,7 @@
                             </td>
                             @else
                                 <td>
-                                    <div{{--    style="float: left;"  --}} class="form-group col-md-12">
+                                    <div class="form-group col-md-12">
                                         {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                                     </div>
                                 </td>
@@ -43,17 +43,17 @@
                                      
                         </tr>
                     </tbody>
-            </table>
-                              
+            </table>              
         </div>
+    </div>
+    <div class="card-body">
         <div class="table-responsive-xl">
-            <table class="mi_tabla table table-sm table-hover">
+            <table class="mi_tabla table table-sm table-bordered">
                 <thead>
-                <th scope="col" width="50px">#</th>
+                <th scope="col" width="50px">NO</th>
                 <th scope="col" width="100px">Logo</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Categoria</th>
-                <th scope="col">Subcategoria</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Reglamento</th>
@@ -63,12 +63,8 @@
                     @endif  
                 </thead>
                 <tbody id="datos">
-                @php
-                    $i=1;
-                @endphp
-
+                @php($i=1)
                 @foreach($disciplinas as $disciplina)
-                
                     <tr>
                     <th scope="row">{{$i}}</th>
 
@@ -76,7 +72,6 @@
                     <td class="text-center"><img class="rounded-circle mx-auto d-block" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height="70px" width="70px"></td>
                     <td>{{ $disciplina->nombre_disc}}</td>
                     <td>{{ $disciplina->nombre_categoria($disciplina->categoria) }}</td>
-                    <td>{{ $disciplina->sub_categoria}}</td>
                     <td>{{ $disciplina->nombre_tipo($disciplina->tipo) }}</td>
                     <td>
                         {{ $disciplina->descripcion_disc}}
@@ -102,18 +97,16 @@
 
                         <td><a href="{{ route('disciplina.destroy',$disciplina->id_disc) }}" onclick = "return Alert::info('Esta seguro de eliminar la disciplina,'jej')" ><i title="Eliminar" class="material-icons delete_button">delete </i></a></td>
                     @endif   
-                    
 
                     </tr>
-                    @php
-                    $i++;
-                    @endphp
+                    @php($i++)
                 @endforeach
-                
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+</div>
 @endsection
 
 @section('scripts')

@@ -26,8 +26,15 @@
          </div>
       </div>
         <div class="modal-footer">
-          {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
-          {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
+            <div class="row col-md-12">
+                <div class="form-group col-md-6">
+                    {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
+                    </div>
+                <div class="form-group col-md-6">
+            {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+            </div>
+            
+            </div>
         </div>
         
         </div>

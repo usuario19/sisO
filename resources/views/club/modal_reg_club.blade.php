@@ -8,15 +8,13 @@
                             </button>
                       </div>
                       <div class="modal-body">
-                        <div class="container col-md-11">
                             {!! Form::open(['route'=>'club.store','method' => 'POST' ,'enctype' => 'multipart/form-data', 'files'=>true] ) !!}
-                            <div class="row">
-                                <div class="col-md-12">
+                            
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-row">
                                                 <div class="contenedor">
-                                                    <img id="imgOrigen" class="rounded mx-auto d-block float-left imgtam" src="/storage/logos/sin_imagen.png" alt="" {{--  style="height=200px ; width=200px"  --}}>
+                                                    <img id="imgOrigen" class="rounded mx-auto d-block float-left imgtam" src="/storage/logos/sin_imagen.png" alt="">
                                                     
                                                       <div id="divtexto">
                                                         <a id="btnCancelar" class="btn btn-outline-dark button noVista">
@@ -75,18 +73,21 @@
                                               {!! Form::textarea('descripcion_club', null, ['class'=>'form-control','rows'=>4]) !!}
                                         </div>
                                     </div>
-                               </div>
                             </div>
                                 <div class="modal-footer">
-                                  {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-secondary']) !!}
-                                {!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}
+                                    <div class="row col-md-12">
+                                        <div class="form-group col-md-6">
+                                            {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
+                                            </div>
+                                        <div class="form-group col-md-6">
+                                    {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+                                    </div>
+                                    
+                                    </div>
                                 
                                 </div>
                           {!! Form::close() !!}
-                        </div>
-                            
-                           
-                      </div>                
+                        </div>             
                 </div>
           </div>
       </div>

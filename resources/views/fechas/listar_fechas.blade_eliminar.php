@@ -20,17 +20,20 @@
 
 	<table class="table table-condensed">
   		<thead>
-  			<th width="50px">ID</th>
+  			<th width="50px">NO</th>
 			<th>Nombre</th>
 			<th>Acciones</th>
   		</thead>
   		<tbody>
+			  @php($i=1)
   			@foreach($fechas as $fecha)
   				<tr>
-  					<td>{{ $fecha->id_fecha}}</td>
+  					<td>{{ $i}}</td>
             		<td>{{ $fecha->nombre_fecha}}</td>
             		<td><a href="{{ route('fecha.destroy',$fecha->id_fecha) }}" class="btn btn-danger">eliminar</a></td>
-  				</tr>
+				  </tr>
+			  @php($i++)
+				  
   			@endforeach
   		</tbody>
 	</table>

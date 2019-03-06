@@ -3,8 +3,8 @@
 	SisO: Avisos
 @endsection
 @section('content')
-
 <div class="container table-responsive-xl">
+    <div class="card">
     <div class="form-group col-md-12">
         <table class="table table-sm table-bordered">
             <thead>
@@ -144,10 +144,7 @@
                        </tbody>
                    </table>
                </div>
-               
-           {{--  </div>
-          
-       </div>  --}}
+</div>
 </div>
 @endsection
 @section('scripts')

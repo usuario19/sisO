@@ -89,8 +89,9 @@ class EncuentroController extends Controller
         DB::table('encuentros')->where('id_encuentro', '=',$id_encuentro)->delete();
         return redirect()->back();            
     }
-   
+
     public function reg_resultado(request $request){
+        //return $request;
         $id_encuentro = $request->get('id_encuentro1');
         $id_disc = $request->get('id_disc');
         $id_gestion = $request->get('id_gestion');
@@ -98,42 +99,62 @@ class EncuentroController extends Controller
         //registrar en la tabla de posicion
         for ($i = 1; $i <= 2 ; $i++) {
             $id_club = $request->get('id_club'.$i);
+            
             $id_club_part = Club_Participacion::where('id_club',$id_club)
                 ->where('id_disc',$id_disc)
                 ->where('id_gestion',$id_gestion)
                 ->get()->last()->id_club_part;
+                //return dd($id_club_part);
             $tabla = DB::table('tabla_posicions')
             ->where('id_club_part',$id_club_part)
-            ->where('id_fase',$id_fase)->get();
-            if ($tabla->last() != null) {                
-                $pjug = Tabla_Posicion::where('id_club_part',$id_club_part)->where('id_fase',$id_fase)->get()->last()->pj;
-                
-                Tabla_Posicion::where('id_club_part','=',$id_club_part)->where('id_fase',$id_fase)
-                ->update(['pj' => $pjug+1]);
-            }else {
+            ->where('id_fase',$id_fase)->get()->last();
+            if (empty($tabla)){ 
                 $tabla_posicion = new Tabla_Posicion();
                 $tabla_posicion->id_club_part = $id_club_part;
                 $tabla_posicion->id_fase = $id_fase;
                 $tabla_posicion->pj= 1;
-                $tabla_posicion->save();
+                $tabla_posicion->save();               
+                
+            }else {
+                $pjug = Tabla_Posicion::where('id_club_part',$id_club_part)->where('id_fase',$id_fase)->get()->last()->pj;
+                
+                Tabla_Posicion::where('id_club_part','=',$id_club_part)->where('id_fase',$id_fase)
+                ->update(['pj' => $pjug+1]);
             }
         }
+        $disc = Disciplina::find($request->get('id_disc'));
         $j = 2;
         for ($i=1; $i <= 2; $i++) { 
             $puntos = $request->get('punto'.$i);
             $observacion = $request->get('observacion'.$i);
             //para encuentro club participacion
-            $id_encuentro_club_part = $request->get('id_encuentro_club_part'.$i);
-            $encuentro_club_part = Encuentro_Club_Participacion::find($id_encuentro_club_part);
+            if ($disc->es_futbol($disc->id_disc)) {
+                $goles = $request->get('goles'.$i);
+                $id_encuentro_club_part = $request->get('id_encuentro_club_part'.$i);
+                $encuentro_club_part = Encuentro_Club_Participacion::find($id_encuentro_club_part);
 
-            $id_club = $request->get('id_club'.$i);
-            $id_club_part = Club_Participacion::where('id_club',$id_club)
+                $id_club = $request->get('id_club'.$i);
+                $id_club_part = Club_Participacion::where('id_club',$id_club)
+                     ->where('id_disc',$id_disc)
+                     ->where('id_gestion',$id_gestion)
+                     ->get()->last()->id_club_part;
+
+                Encuentro_Club_Participacion::where('id_encuentro_club_part', $id_encuentro_club_part)
+                    ->update(['puntos' => $puntos, 'goles'=>$goles,'observacion'=>$observacion]);
+            } else {
+                $id_encuentro_club_part = $request->get('id_encuentro_club_part'.$i);
+                $encuentro_club_part = Encuentro_Club_Participacion::find($id_encuentro_club_part);
+
+                $id_club = $request->get('id_club'.$i);
+                $id_club_part = Club_Participacion::where('id_club',$id_club)
                      ->where('id_disc',$id_disc)
                      ->where('id_gestion',$id_gestion)
                      ->get()->last()->id_club_part;
 
                 Encuentro_Club_Participacion::where('id_encuentro_club_part', $id_encuentro_club_part)
                     ->update(['puntos' => $puntos, 'observacion'=>$observacion]);
+            }
+            
                 $puntos_total = Tabla_Posicion::where('id_club_part',$id_club_part)->where('id_fase',$id_fase)
                     ->select('puntos')->get()->last()->puntos;
                     $puntos_total = $puntos_total + $puntos;
@@ -241,11 +262,25 @@ public function reg_res_competicion(Request $request){
     public function mostrar_resultado_futbol_ajax($id_enc){
         $encuentro = Encuentro::find($id_enc);
         $i=0;
+        $id_encuentro_club_part1=0;
+        $id_encuentro_club_part2=0;
+        $puntos1=null;
+        $puntos2=null;
+        $observacion1=null;
+        $observacion2=null;
         foreach ($encuentro->encuentro_club_participaciones as $value) {
             if ($i==0) {
                 $club1=$value->id_club_part;
+                $id_encuentro_club_part1 = $value->id_encuentro_club_part;
+                $puntos1 = $value->puntos;
+                $observacion1 = $value->observacion;
+
             } else {
                 $club2=$value->id_club_part;
+                $id_encuentro_club_part2 = $value->id_encuentro_club_part;
+                $puntos2 = $value->puntos;
+                $observacion2 = $value->observacion;
+
             }
             $i++;
         }
@@ -265,8 +300,15 @@ public function reg_res_competicion(Request $request){
             ->where('encuentro_seleccions.id_encuentro',$id_enc)
             ->where('jugador_clubs.id_club',$id_club2)
             ->select('encuentro_seleccions.posicion')->sum('encuentro_seleccions.posicion');
-           $data = array('club1'  => $goles1,  
-                'club2' => $goles2);
+        $data = array('club1'  => $goles1,  
+                'club2' => $goles2,
+                'id_encuentro_club_part1'=> $id_encuentro_club_part1,
+                'id_encuentro_club_part2'=> $id_encuentro_club_part2,
+                'puntos1'=>$puntos1,
+                'puntos2'=>$puntos2,
+                'observacion1'=>$observacion1,
+                'observacion2'=>$observacion2,
+            );
         
        // return view('encuentro.jugadores_seleccionados_eliminacion',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));
         
@@ -354,7 +396,13 @@ public function reg_res_competicion(Request $request){
         
         $club1 =Club::find($id_club1);
         $club2 =Club::find($id_club2);
-        return view('encuentro.jugadores_seleccionados_series',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+        if ($disciplina->es_futbol($disciplina->id_disc)) {
+            return view('encuentro.jugadores_seleccionados_series_futbol',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+       
+        } else {
+            return view('encuentro.jugadores_seleccionados_series',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+            
+        }
     }
     public function seleccion_eliminacion($id_enc,$id_gestion,$id_disc,$id_fase){  
         $gestion = Gestion::find($id_gestion);

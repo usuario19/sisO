@@ -26,7 +26,7 @@
             <div class="form-group col-md-1">
                 <div class="dropdown" >
                     <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i title="Configuracion" class="material-icons delete_button">
+                        <i title="Configuracion" class="material-icons config_encuentro">
                             settings
                             </i></a> 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -43,31 +43,37 @@
 <div class="row container">
   <div class="form-group col-md-10"><h4>Lista de Fechas:</h4></div>
   <div class="form-group col-md-2">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFecha">Agregar</button></div>
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalFecha">Agregar</button></div>
 </div>
     @include('fechas.modal_registrar_fecha') 
-       <table class="table table-condensed">
+    <div class="table table-responsive">
+       <table class="table table-bordered">
            <thead>
-             <th width="50px">ID</th>
+             <th width="50px">NO</th>
              <th>Nombre</th>
-             <th>Acciones</th>
+             <th colspan="2">Acciones</th>
            </thead>
            <tbody>
+			  @php($i=1)
               @foreach ($fechas as $fecha)
                <tr>    
-                 <td>{{ $fecha->id_fecha}}</td>
+                 <td>{{ $i}}</td>
                  <td>{{ $fecha->nombre_fecha}}</td>
                  <td><a href=""><i title="Eliminar" class="material-icons delete_button">
                   edit
                   </i></a>
-                 
-                   <a href=""><i title="Eliminar" class="material-icons delete_button">
+                 </td>
+                 <td>
+                   <a href="{{ route('fecha.destroy',$fecha->id_fecha) }}"><i title="Eliminar" class="material-icons delete_button">
                     delete
                     </i></a></td>
                </tr>
+			  @php($i++)
+
              @endforeach            
            </tbody>
        </table>
+      </div>
     </div> 
 </div> 
 @endsection

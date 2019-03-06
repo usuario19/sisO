@@ -14,6 +14,7 @@
 @include('encuentro.modal_agregar_jugador2')
 @include('encuentro.modal_reg_gol_jugador')
 @include('encuentro.modal_agregar_resultado_futbol')
+@include('encuentro.modal_ver_res_futbol')
   <div class="container">
         <nav aria-label="breadcrumb" >
             <ol class="breadcrumb">
@@ -33,9 +34,15 @@
 
       <div class="form-group col-md-10" ><h4>Conformacion de equipos</h4></div>
       <div class="form-group col-md-2" >
-                    <button type="button" onclick="RegistrarResultadoFutbol({{ $encuentro->id_encuentro }});" class="btn btn-warning" data-toggle="modal" data-target="#modalResultadoFutbol">
-                        <span>Resultado</span>
-                     </button>
+        @if ($encuentro->tiene_resultado($encuentro->id_encuentro)==1)
+        <button type="button" onclick="VerResultadoFutbol({{ $encuentro->id_encuentro }});" class="btn btn-warning" data-toggle="modal" data-target="#modalVerResultadoFutbol">
+            <span>Resultado</span>
+         </button>
+        @else
+        <button type="button" onclick="RegistrarResultadoFutbol({{ $encuentro->id_encuentro }});" class="btn btn-warning" data-toggle="modal" data-target="#modalResultadoFutbol">
+            <span>Resultado</span>
+         </button>
+        @endif  
       </div>
     </div>
   <div class="row container col-md-12">
@@ -57,6 +64,7 @@
           <thead>
             <th width="50px">ID</th>
           <th>Jugador</th>
+          <th>Goles</th>
           <th>Acciones</th>
 
           </thead>
@@ -68,6 +76,7 @@
                   <img class="img-thumbnail" src="/storage/fotos/{{ $jugadores->foto_jugador}}" alt="" height=" 50px" width="50px">
                   {{ $jugadores->nombre_jugador.' '.$jugadores->apellidos_jugador }}
                 </td>
+                <td style="text-align:center;">{{ $jugadores->posicion }}</td>
                 <td><a href=" " onclick="reg_gol_jugador({{ $jugadores->id_jugador }});"  class="button_delete" data-toggle="modal" data-target="#modalRegGol">
                     <i title="Registrar resultados" class="material-icons delete_button button_redirect">
                         control_point

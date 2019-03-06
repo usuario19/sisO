@@ -5,14 +5,17 @@
 
 @section('content')
 @include('club.modal_reg_club')
+      @include('club.modal_edit_club')
 <div class="container">
-    <div class="form-row">
-        <div class="form-group col-md-12">
+    
+  <div class="card">
+      
+    <div class="card-header">
           <table class="table table-sm table-bordered">
               <thead>
                   <th>
                       <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                          <h4 class="">LISTA DE CLUBS</h4></td>
+                          <h4 class="">LISTA DE CLUBS</h4>
                       </div>
                   </th>
                   </thead>
@@ -22,23 +25,22 @@
                  <div style="float: left;" class="form-group col-md-10">
                     {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
                  </div>
-                 <div style="float: left;" class="form-group col-md-2"><button type="button" class="btn  btn-block btn-primary" data-toggle="modal" data-target="#modal">Agregar</button></div>
+                 <div style="float: left;" class="form-group col-md-2"><button type="button" class="btn  btn-block btn-warning" data-toggle="modal" data-target="#modal">Agregar</button></div>
                  </td>
               </tr>
             </tbody>
           </table>
-          
-        </div>
-      
-          <div class="table-responsive">
-            <table class="table">
+    </div>
+    <div class="card-body">
+          <div class="container table-responsive-xl">
+            <table class="table table-bordered">
+              @php($i=1)
               <thead>
-                <th width="50px">ID</th>
+                <th width="50px">NO</th>
                 <th width="100px">Logo</th>
-                
-                <th >Nombre</th>
-                <th >Coordinador</th>
-                <th >Ciudad</th>
+                <th>Nombre</th>
+                <th>Coordinador</th>
+                <th>Ciudad</th>
                 <th width="150px">Descripcion</th>
                 <th colspan="2" >Acciones</th>  
               </thead>
@@ -46,7 +48,7 @@
               <tbody id="datos">
                 @foreach($clubs as $club)
                   <tr>
-                    <td scope="row">{{ $club->id_club}}</td>            
+                    <td scope="row">{{ $i }}</td>            
                     <td><img class="rounded mx-auto d-block float-left" src="/storage/logos/{{ $club->logo}}" alt="" height=" 50px" width="50px"></td>
                     <td>{{ $club->nombre_club}}</td>
                     <td>{{ $club->nombre." ".$club->apellidos}}</td>
@@ -71,16 +73,17 @@
                         </a>
                     </td>
                   </tr>
+                  @php($i++)
                 @endforeach
               </tbody>
           </table>
         </div>
       </div>
-       {{ $clubs->links() }}
-</div>
-
-@include('club.modal_edit_club')
-
+      {{ $clubs->links() }}
+    </div>
+       
+      </div>
+@endsection
 <script> 
 var Mostrar = function(id){
   var route = "{{ url('club') }}/"+id+"/edit";
@@ -97,7 +100,7 @@ var Mostrar = function(id){
   });
 }
 </script>
-@endsection
+
 
 @section('scripts')
    {!! Html::script('/js/filtrar_por_nombre.js') !!}

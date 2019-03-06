@@ -22,7 +22,6 @@
                   </thead>
               <tbody>
               <tr> 
-                
                     @if(Auth::check() && Auth::user()->tipo == 'Administrador')
                     <td>
                         <div style="float: left;" class="form-group col-md-10">
@@ -41,7 +40,6 @@
                         </div>
                     </td>
                     @endif
-                 
               </tr>
             </tbody>
           </table>
@@ -49,7 +47,6 @@
         <div class="card-body">
           <div class="table-responsive-xl">
               <table class="table table-condensed">
-             
                   <thead>
                     <th width="50px">ID</th>
                     <th width="100px">Logo</th>
@@ -60,12 +57,9 @@
                     <th>Accion</th>
                   </thead>
                   <tbody id="datos">
-            
                     @foreach($disciplinas as $disciplina)
-                    
                       <tr>
                         <td>{{ $disciplina->id_disc}}</td>
-            
                         <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
                         <td>{{ $disciplina->nombre_disc}}</td>
                          @switch($disciplina->categoria)
@@ -82,8 +76,7 @@
                         @endswitch
                         <td><a href="storage/archivos/{{ $disciplina->reglamento_disc }}">
                           <div class="button-div" style="">
-                              <i class="material-icons float-left">vertical_align_bottom</i>
-                              <span class="letter-size">Descargar</span>
+                              <i title="Descargar" class="material-icons delete_button">vertical_align_bottom</i>
                           </div>
                         </td>
                         <td> {{ $disciplina->descripcion_disc}}</td>

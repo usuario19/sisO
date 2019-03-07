@@ -469,7 +469,13 @@ public function reg_res_competicion(Request $request){
         
         $club1 =Club::find($id_club1);
         $club2 =Club::find($id_club2);
-        return view('encuentro.jugadores_seleccionados_eliminacion',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+        if ($disciplina->es_futbol($disciplina->id_disc)) {
+            return view('encuentro.jugadores_seleccionados_eliminacion_futbol',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+
+        } else {
+            return view('encuentro.jugadores_seleccionados_eliminacion',compact('club1','club2','jug_hab1','jug_hab2','jug_disp1','jug_disp2','gestion','disciplina','fase','grupo','encuentro'));  
+            
+        }
     }
     
     public function agregar_jugador_encuentro(request $request){

@@ -18,20 +18,16 @@
           </div>
           <div class="form-group">
             {!! Form::label('tipo', 'Tipo', []) !!}
-            <div class="">
-              You must agree before submitting.
-            </div>
             <br>
             <div class="card">
               <div class="card-body">
                 <div class="form-row">
-                  
                     @foreach ($tipos2 as $tipo)
                     <div class="form-group col-md-4">
-                      {!! Form::radio('tipo',$tipo->id_tipo,null,['id'=>'series','class'=>'radio']) !!}
+                      {!! Form::radio('tipo',$tipo->id_tipo,2,['id'=>'series','class'=>'radio']) !!}
                       {!! Form::label('series',$tipo->nombre_tipo, []) !!}
                       </div>
-                    @endforeach       
+                    @endforeach    
                 </div>  
               </div>
            </div>
@@ -62,5 +58,7 @@
 </div>
 {!! Form::close() !!}
 
-   
+@section('scripts')
+  {!! Html::script('/js/validacion_reg_fase.js') !!}
+@endsection
 

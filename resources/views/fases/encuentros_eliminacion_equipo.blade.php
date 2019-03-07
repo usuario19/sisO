@@ -49,8 +49,6 @@
       </div>
             
             @include('encuentro.modal_agregar_encuentro_eliminacion') 
-            @include('encuentro.modal_agregar_resultado') 
-            @include('encuentro.modal_ver_resultado') 
             @foreach ($fechas as $fecha)
                <div>
                   <h4 style="text-align: center; ">{{ $fecha->nombre_fecha }}
@@ -61,7 +59,7 @@
                </div>
                <table class="table table-condensed">
                    <thead>
-                     <th width="50px">ID</th>
+                     <th width="50px">#</th>
                      <th colspan="2" style="text-align: center;">Equipos</th>
                      <th>Fecha</th>
                      <th>Hora</th>
@@ -72,7 +70,8 @@
                    <tbody>
                      @foreach($fecha->encuentros as $encuentro)
                        <tr>
-                         <td>{{ $encuentro->id_encuentro }}</td> 
+                     @php($i=1)
+                         <td>{{ $i }}</td> 
                            @foreach ($encuentro->encuentro_club_participaciones as $equipo)
                              <td><img class="img-thumbnail" src="/storage/logos/{{ $equipo->club_participacion->club->logo}}" alt="{{ $equipo->club_participacion->club->nombre_club}}" height=" 50px" width="50px">{{ $equipo->club_participacion->club->nombre_club}}</td>
                            @endforeach
@@ -87,40 +86,62 @@
                          <td>{{ $encuentro->detalle}}</td>
                           <td>
                               @if ($encuentro->tiene_resultado($encuentro->id_encuentro) == 1)
-
-                              <a href=" " onclick="VerResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
+                                @if ($encuentro->es_futbol($encuentro->id_encuentro)==1)
+                                <a href="{{ route('encuentro.seleccion_eliminacion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
+                                    <i title="Jugadores" class="material-icons delete_button">
+                                      star</i>
+                                    </a>
+                              {{-- <a href=" " onclick="VerResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalVerResultado">
                                   <i title="Ver resultados" class="material-icons delete_button button_redirect">
                                     collections_bookmark
                                   </i>
-                                </a>
+                                </a> --}}
                               @else
-                              @if ($encuentro->es_futbol($encuentro->id_encuentro)==1)
-                              <a href="{{ route('encuentro.seleccion_eliminacion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
-                                <i title="Jugadores" class="material-icons delete_button">
-                                  star</i>
-                                </a>
-                                  <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
-                                      delete</i></a>
+                                <a href="{{ route('encuentro.seleccion_eliminacion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
+                                  <i title="Jugadores" class="material-icons delete_button">
+                                    star</i>
+                                  </a>
+                                  {{-- <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
+                                      delete</i></a> --}}
                                     
-                                      <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                                      {{-- <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
                                 <i title="Registrar resultados" class="material-icons delete_button button_redirect">
                                   collections_bookmark
                                 </i>
-                              </a>
+                              </a> --}}
+                              @endif
+
                                     @else
                                       <a href="{{ route('encuentro.destroy',$encuentro->id_encuentro) }}"><i title="Eliminar" class="material-icons delete_button">
                                         delete</i></a>
+                                        @if ($encuentro->es_futbol($encuentro->id_encuentro)==1)
+                                        <td>
+                                            <a href="{{ route('encuentro.seleccion_eliminacion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
+                                                <i title="Jugadores" class="material-icons delete_button">
+                                                  star</i>
+                                                </a>                            
+                                                  {{--  <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
+                                                    <i title="Registrar resultados" class="material-icons delete_button button_redirect">
+                                                      collections_bookmark
+                                                    </i>
+                                                  </a>  --}}
+                                                </td>
+                                        @else
+                                          <td>
+                                              <a href="{{ route('encuentro.seleccion_eliminacion',[$encuentro->id_encuentro,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}">
+                                                  <i title="Jugadores" class="material-icons delete_button">
+                                                    star</i>
+                                                  </a>
+                                          </td>
+                  
+                                        @endif
                                       
-                                        <a href=" " onclick="RegistrarResultado({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultado">
-                                  <i title="Registrar resultados" class="material-icons delete_button button_redirect">
-                                    collections_bookmark
-                                  </i>
-                                </a>
-                              @endif
                               @endif
                           </td>
                             
                         </tr>
+                     @php($i++)
+
                      @endforeach            
                    </tbody>
                </table>

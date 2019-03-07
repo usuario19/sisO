@@ -108,5 +108,4 @@
 @endsection
 @section('scripts')
   {!! Html::script('/js/filtrar_por_nombre.js') !!}
-  {!! Html::script('/js/validacion_reg_fase.js') !!}
 @endsection

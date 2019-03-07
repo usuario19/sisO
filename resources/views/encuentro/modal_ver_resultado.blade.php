@@ -15,48 +15,48 @@
                                 {!! Form::text('id_disc',$disciplina->id_disc, []) !!}
                                 {!! Form::text('id_gestion',$gestion->id_gestion, []) !!}
                             </div>
-                                <div class="container col-md-12">
-                                    <div class="card">
-                                        <div style="display: none">
-                                            {!! Form::text('id_encuentro1', null, ['id'=>'id_encuentro_ver1']) !!}
-                                            {!! Form::text('id_encuentro_club_part1',null, ['id'=>'id_encuentro_club_part_ver1']) !!}
+                            <div class="row col-md-12">
+                                    <div class="form-group col-md-4">
+                                                    <div style="display: none">
+                                                        {!! Form::text('id_encuentro1', null, ['id'=>'id_encuentro_ver2']) !!}
+                                                        {!! Form::text('id_encuentro_club_part1',null, ['id'=>'id_encuentro_club_part_ver1']) !!}
+                                                    </div>
+                                                    <div class="col-md-12" style="text-align: center;">
+                                                            <img id="imgClub1" class="rounded mx-auto d-block float-left" src="" alt="" height=" 100px" width="100px">
+                                                        {!! Form::label('club1',null, ['id'=>'nombre_club_ver2']) !!} 
+                                                            </div>
+                                                </div>
+                                    <div class="form-group col-md-4">
+                                        <div class="row">
+                                                <div class="form-group col-md-4" style="text-align: center;">
+                                                        <div class="col-md-12" style="text-align: center;">
+                                                                <h1 id='puntos_ver1'></h1>
+                                                            </div> 
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <h3>vs</h3>
+                                                </div>
+                                                <div class="form-group col-md-4" style="text-align: center;">
+                                                        <h1 id='puntos_ver2'></h1>
+                                                </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            {!! Form::label('equipo', 'Equipo', []) !!}
-                                            {!! Form::text('equipo1',null, ['id'=>'nombre_club_ver1','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('punto', 'Puntos', []) !!}
-                                            {!! Form::text('punto1', null, ['id'=>'puntos_ver1','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('observacion', 'Observacion', []) !!}
-                                            {!! Form::textarea('observacion1', null, ['id'=>'observacion_ver1','class'=>'form-control','rows'=>'2','readonly'=>'true']) !!} 
-                                        </div><br>  
-                                    </div><br>
-                                    <div class="card">
+                                    </div>
+                                            <div class="form-group col-md-4">
                                         <div style="display: none">
                                             {!! Form::text('id_encuentro2',null,['id'=>'id_encuentro_ver2']) !!}
                                             {!! Form::text('id_encuentro_club_part2', null, ['id'=>'id_encuentro_club_part_ver2']) !!}
                                         </div>
-                                        <div class="col-md-12">
-                                            {!! Form::label('equipo', 'Equipo', []) !!}
-                                            {!! Form::text('equipo2', null, ['id'=>'nombre_club_ver2','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('punto', 'Puntos', []) !!}
-                                            {!! Form::text('punto2', null, ['id'=>'puntos_ver2','class'=>'form-control','readonly'=>'true']) !!} 
-                                        </div> 
-                                        <div class="col-md-12">
-                                            {!! Form::label('observacion', 'Observacion', []) !!}
-                                            {!! Form::textarea('observacion2', null, ['id'=>'observacion_ver2','class'=>'form-control','rows'=>'2','readonly'=>'true']) !!} 
-                                        </div><br>  
-                                    </div><br>
+                                        <div class="col-md-12" style="text-align: center;">
+                                                <img id="imgClub2" class="rounded mx-auto d-block float-left" src="" alt="" height=" 100px" width="100px">
+                                                {!! Form::label('club2',null, ['id'=>'nombre_club_ver2']) !!}
+                                                 </div>     
                                 </div>
+                                </div>
+                                
                         </div>
                     </div>    
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">ACEPTAR</button>
+                        <button type="button" class="btn btn-primary btn-block btn_aceptar" data-dismiss="modal">ACEPTAR</button>
                             {{-- {!! Form::submit('Editar', ['class'=>'btn btn-primary']) !!} --}}
                     </div>
                 </div>      
@@ -74,8 +74,10 @@
              // alert("#nombre_club"+i);
               $("#nombre_club_ver"+i).val(value.nombre_club);
               $("#id_club_ver"+i).val(value.id_club);
-              $("#puntos_ver"+i).val(value.puntos);
-              $("#observacion_ver"+i).val(value.observacion);
+              $("#puntos_ver"+i).text(value.puntos);
+              var url = '/storage/logos/'+value.logo
+                var file = $.get(url);
+                    $('#imgClub'+i).attr('src', url);
               i++;
           });
       });

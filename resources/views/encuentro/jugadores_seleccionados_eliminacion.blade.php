@@ -12,7 +12,8 @@
 @include('encuentro.modal_agregar_jugador')
 @include('encuentro.modal_agregar_jugador2')
 @include('encuentro.modal_reg_gol_jugador')
-@include('encuentro.modal_agregar_resultado_futbol')
+@include('encuentro.modal_agregar_resultado') 
+@include('encuentro.modal_ver_resultado') 
   <div class="container">
         <nav aria-label="breadcrumb" >
             <ol class="breadcrumb">
@@ -29,12 +30,17 @@
     <div class="row col-md-12">
       <div class="form-group col-md-10" style="text-align: center"><h4>Conformacion de equipos</h4></div>
       <div class="form-group col-md-2" >
-                    <a href=" " onclick="RegistrarResultadoFutbol({{ $encuentro->id_encuentro }});"  class="button_delete" data-toggle="modal" data-target="#modalResultadoFutbol">
-                            <i title="Registrar resultados" class="material-icons delete_button button_redirect">
-                                control_point
-                            </i>
-                    </a>
-            </div>
+          @if ($encuentro->tiene_resultado($encuentro->id_encuentro)==1)
+          <button type="button" onclick="VerResultado({{ $encuentro->id_encuentro }});" class="btn btn-warning" data-toggle="modal" data-target="#modalVerResultado">
+              <span>Resultado</span>
+           </button>
+          @else
+          <button type="button" onclick="RegistrarResultado({{ $encuentro->id_encuentro }});" class="btn btn-warning" data-toggle="modal" data-target="#modalResultado">
+              <span>Resultado</span>
+            </button>
+          @endif 
+          
+      </div>
     </div>
   <div class="row container col-md-12">
     
@@ -46,40 +52,34 @@
            
           </div>
         <div class="form-group col-md-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarJugador1">
-               <span>Agregar</span>
-            </button>
+            <a href=""  data-toggle="modal" data-target="#modalAgregarJugador1">
+                <i title="Agregar" class="material-icons delete_button">
+              add</i></a>
         </div>
     </div>
-      
-      <table class="table table-responsive">
+    <table class="table table-responsive table-striped">
           <thead>
-            <th width="50px">ID</th>
-          <th>Jugador</th>
-          <th>Goles</th>
-          <th>Acciones</th>
-
+            <th width="50px">#</th>
+            <th>Jugador</th>
+            <th>Acciones</th>
           </thead>
           <tbody>
+            @php($i=1)
             @foreach($jug_hab1 as $jugadores)
               <tr>
-                <td>{{ $jugadores->id_jugador }}</td> 
+                <td>{{ $i }}</td> 
                 <td>
                   <img class="img-thumbnail" src="/storage/fotos/{{ $jugadores->foto_jugador}}" alt="" height=" 50px" width="50px">
                   {{ $jugadores->nombre_jugador.' '.$jugadores->apellidos_jugador }}
                 </td>
                 <td style="text-align:center;">{{ $jugadores->posicion }}</td>
-                <td><a href=" " onclick="reg_gol_jugador({{ $jugadores->id_jugador }});"  class="button_delete" data-toggle="modal" data-target="#modalRegGol">
-                    <i title="Registrar resultados" class="material-icons delete_button button_redirect">
-                        control_point
-                    </i>
-            </a>
+                <td>
                   <a href="{{ route('encuentro.eliminar_jugador_encuentro',[$encuentro->id_encuentro,$jugadores->id_jugador]) }}">
                     <i title="Eliminar" class="material-icons delete_button">
                   delete</i></a>
-                  
                 </td>
               </tr>
+            @php($i=1)
             @endforeach            
           </tbody>
       </table>
@@ -92,16 +92,16 @@
               <div class="form-group col-md-10"><h4>{{ $club2->nombre_club }}</h4></div>
             </div>
           <div class="form-group col-md-2">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarJugador2">
-             <span>Agregar</span>
-          </button>
+
+              <a href=""  data-toggle="modal" data-target="#modalAgregarJugador2">
+                  <i title="Agregar" class="material-icons delete_button">
+                add</i></a>
       </div>
     </div>
-    <table class="table table-responsive">
+    <table class="table table-responsive table-striped">
         <thead>
-          <th width="50px">ID</th>
+          <th width="50px">#</th>
           <th>Jugador</th>
-          <th>Goles</th>
           <th>Acciones</th>
         </thead>
         <tbody>
@@ -114,11 +114,6 @@
                 </td>
                 <td style="text-align:center;">{{ $jugadores->posicion }}</td>
                 <td>
-                    <a href=" " onclick="reg_gol_jugador({{ $jugadores->id_jugador }});"  class="button_delete" data-toggle="modal" data-target="#modalRegGol">
-                            <i title="Registrar resultados" class="material-icons delete_button button_redirect">
-                                control_point
-                            </i>
-                    </a>
                     <a href="{{ route('encuentro.eliminar_jugador_encuentro',[$encuentro->id_encuentro,$jugadores->id_jugador]) }}"><i title="Eliminar" class="material-icons delete_button">
                         delete</i></a>
                 </td>

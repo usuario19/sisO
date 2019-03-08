@@ -20,23 +20,23 @@
                         {!! Form::text('id_fase', $fase->id_fase, ['id'=>'id_fase']) !!}
                     </div>
                     <div class="col-md-5">
-                        {!! Form::select('id_club1', $clubsParaEncuentro, null,['onchange'=>'cargarContrincantesEliminacion()','id'=>'club1','placeholder'=>'seleccione','class'=>'form-control']) !!}
+                        {!! Form::select('id_club1', $clubsParaEncuentro, null,['onchange'=>'cargarContrincantesEliminacion()','id'=>'club1','placeholder'=>'seleccione','class'=>'form-control custom-select','required'=>'required']) !!}
                     </div>
                     <div class="col-md-2">
                         <h2 style="text-align: center;">Vs.</h2>
                     </div>
                     <div class="col-md-5">
-                        {!! Form::select('id_club2', $clubsParaEncuentro, null, ['id'=>'club2','placeholder'=>'seleccione','class'=>'form-control']) !!}
+                        {!! Form::select('id_club2', $clubsParaEncuentro, null, ['id'=>'club2','placeholder'=>'seleccione','class'=>'form-control custom-select','required'=>'required']) !!}
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="col-md-6">
                         {!! Form::label('ubicacion', 'Ubicacion', []) !!}
-                        {!! Form::select('id_centro',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}          
+                        {!! Form::select('id_centro',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control custom-select','required'=>'required']) !!}     
                     </div>
                     <div class="col-md-6">
                         {!! Form::label('id_fecha', 'Fecha', []) !!}
-                        {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione','class'=>'form-control']) !!}
+                        {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione','class'=>'form-control custom-select','required'=>'required']) !!}
                     </div>
                 </div>
                 <div class="form-row">
@@ -58,8 +58,15 @@
             </div>
                               
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                {!! Form::submit('Aceptar', ['class'=>'btn btn-primary']) !!}
+                    <div class="row col-md-12">
+                            <div class="form-group col-md-6">
+                                {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
+                                </div>
+                            <div class="form-group col-md-6">
+                        {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+                        </div>
+                        
+                        </div>
             </div>
         </div>            
     </div>

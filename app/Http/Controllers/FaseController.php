@@ -44,7 +44,7 @@ class FaseController extends Controller
             ->select('participaciones.id_participacion')
             ->get()->toArray();
         $fases = new Fase;
-        $fases->nombre_fase = $request->get('nombre');
+        $fases->nombre_fase = $request->get('nombre_fase');
         $fases->id_participacion = $id_participacion[0]->{'id_participacion'};
         $fases->save();
 

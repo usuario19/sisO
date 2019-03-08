@@ -31,7 +31,7 @@
                                         <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre', 'Nombre', []) !!}
-                                                    {!! Form::text('nombre',null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre',null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>	
                                     </div>	
@@ -45,7 +45,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre', 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i,null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i,null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                         {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                        {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                        {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>

@@ -31,7 +31,6 @@
                                
                             @include('admin.modal_registrar_disciplinas')
                          </div>
-                             {{--  <button type="button" class="btn   btn-primary" data-toggle="modal" data-target="#modal">Agregar</button></div>  --}}
                     </td>
                     @else
                     <td>
@@ -48,7 +47,7 @@
           <div class="table-responsive-xl">
               <table class="table table-condensed">
                   <thead>
-                    <th width="50px">ID</th>
+                    <th width="50px">#</th>
                     <th width="100px">Logo</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
@@ -57,9 +56,10 @@
                     <th>Accion</th>
                   </thead>
                   <tbody id="datos">
+                    @php($i=1)
                     @foreach($disciplinas as $disciplina)
                       <tr>
-                        <td>{{ $disciplina->id_disc}}</td>
+                        <td>{{ $i}}</td>
                         <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
                         <td>{{ $disciplina->nombre_disc}}</td>
                          @switch($disciplina->categoria)
@@ -80,11 +80,40 @@
                           </div>
                         </td>
                         <td> {{ $disciplina->descripcion_disc}}</td>
-                        <td><a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}">
+                        <td><a  href="" data-toggle="modal" data-target="#modalEliminar{{ $disciplina->id_disc }}">
                           <i title="Eliminar" class="material-icons delete_button">delete</i>
                         </a></td>
-                        
+                        {{--  modal eliminar  --}}
+      <div class="modal fade" id="modalEliminar{{ $disciplina->id_disc}}" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalEliminarLabel">Advertencia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Esta seguro de eliminar?
+              </div>
+              <div class="modal-footer">
+                <div class="row col-md-12">
+                  <div class="form-group col-md-6">
+                 <a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn_aceptar btn-block"> Aceptar </a>
+
+                  </div>
+                  <div class="form-group col-md-6">
+                      <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">cancelar</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        {{--  fin de modal eliminar  --}}
                       </tr>
+                      @php($i++)
                     @endforeach
                   </tbody>
               </table>
@@ -97,5 +126,5 @@
 @endsection
 @section('scripts')
 {!! Html::script('/js/filtrar_por_nombre.js') !!}
-{!! Html::script('/js/checkbox.js') !!}
+
 @endsection

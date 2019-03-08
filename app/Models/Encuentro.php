@@ -62,18 +62,21 @@ class Encuentro extends Model
     }
     public function tiene_resultado($id_encuentro){
         $res = Encuentro_Club_participacion::where('id_encuentro',$id_encuentro)->get()->last();
-        if ($res->puntos == null) {
-            return 0;
+        if (empty($res)) {
+            return 1;
         }
         else {
-            return 1;
+            return 0;
         }
     }
     public function tiene_resultado_competicion($id_encuentro){
         $res = Encuentro_Seleccion::where('id_encuentro',$id_encuentro)->get()->last();
-        if($res->posicion == null)
+        if (empty($res)) {
+            return 1;
+        }
+        else {
             return 0;
-        else return 1;
+        }
     }
     public function es_futbol($id_enc){
         $nombre = DB::table('encuentro_club_participaciones')

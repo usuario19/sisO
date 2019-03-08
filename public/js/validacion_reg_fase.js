@@ -13,7 +13,7 @@ $("#reg_fase").submit(function(event) {
         error: function(error) {
             //console.log(data);
             if (error.responseJSON.errors.nombre_fase) {
-                $('input[name=nombre]').addClass("is-invalid");
+                $('input[name=nombre_fase]').addClass("is-invalid");
                 $("#error_nombre").addClass("invalid-feedback");
                 $("#error_nombre").html(error.responseJSON.errors.nombre_fase);
             }

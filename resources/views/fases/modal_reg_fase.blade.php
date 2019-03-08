@@ -12,7 +12,7 @@
       <div class="modal-body">
           <div class="form-group">
             {!! Form::label('nombre', 'Nombre', []) !!}
-            {!! Form::text('nombre', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+            {!! Form::text('nombre_fase', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
             <div id ="error_nombre" class="">
             </div>
           </div>

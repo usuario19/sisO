@@ -21,25 +21,29 @@
                                           {!! Form::text('id_fase', $fase->id_fase, []) !!}
                                           {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
                                   </div>
+                                  
+
                                   <div class="col-md-5">
-                                     {!! Form::select('id_club1', $clubsParaEncuentro, null,['placeholder'=>'seleccione','id'=>'club1','onchange'=>'cargarContrincantes()','class'=>'form-control']) !!}
-                                  </div>
+                                     {!! Form::select('id_club1', $clubsParaEncuentro, null,['placeholder'=>'seleccione','id'=>'club1','onchange'=>'cargarContrincantes()','class'=>'form-control custom-select','required'=>'required']) !!}
+                                     <div class="invalid-feedback">Example invalid custom select feedback</div>
+
+                                    </div>
                                   <div class="col-md-2">
                                     <h2 style="text-align: center;">Vs.</h2>
                                   </div>
                                   <div class="col-md-5">
-                                     {!! Form::select('id_club2',$clubsParaEncuentro, null, ['placeholder'=>'seleccione','id'=>'club2','class'=>'form-control']) !!}
+                                     {!! Form::select('id_club2',$clubsParaEncuentro, null, ['placeholder'=>'seleccione','id'=>'club2','class'=>'form-control custom-select','required'=>'required']) !!}
                                   </div>
                               </div>
                               <div class="form-row">
                                   <div class="col-md-6">
                                     {!! Form::label('ubicacion', 'Ubicacion', []) !!}
-                                      {!! Form::select('id_centro',$centros, null, ['placeholder'=>'seleccione','class'=>'form-control']) !!}
+                                      {!! Form::select('id_centro',$centros, null, ['placeholder'=>'seleccione','class'=>'form-control custom-select','required'=>'required']) !!}
                                       
                                   </div>
                                   <div class="col-md-6">
                                       {!! Form::label('id_fecha', 'Fecha', []) !!}
-                                      {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione...','class'=>'form-control']) !!}
+                                      {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione...','class'=>'form-control custom-select','required'=>'required']) !!}
                                   </div>
                               </div>
                               <div class="form-row">

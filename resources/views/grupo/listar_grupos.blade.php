@@ -64,7 +64,7 @@
                           <td>{{ $i}}</td>
                           <td>{{ $grupo->nombre_grupo }}</td>
                           @if ($disciplina->tipo == 1)
-                          <td><a href="{{ route('grupo.encuentros_grupo_competicion',[$grupo->id_grupo,$gestion->id_gestion,$disciplina->id_disc,$fase->id_fase]) }}" 
+                          <td><a href="{{ route('grupo.encuentros_grupo_competicion',[$grupo->id_grupo,$fase->id_fase,$disciplina->id_disc,$gestion->id_gestion]) }}" 
                             ><i title="Competiciones" class="material-icons delete_button">
                               directions_run
                               </i></a></td>

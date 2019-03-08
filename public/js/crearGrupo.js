@@ -17,6 +17,8 @@ function grupos() {
             formulario4.style.display = 'none';
             formulario5.style.display = 'none';
             formulario10.style.display = 'none';
+            document.querySelectorAll("#formGrupo1 .nombre_grupo").required = true;
+
             break;
 
         case 2:
@@ -60,4 +62,4 @@ function grupos() {
             formulario5.style.display = 'none';
             break;
     }
-}
+};

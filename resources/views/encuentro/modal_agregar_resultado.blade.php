@@ -32,7 +32,7 @@
                                         </div> 
                                         <div class="col-md-12">
                                             {!! Form::label('punto', 'Puntos', []) !!}
-                                            {!! Form::text('punto1', null, ['id'=>'puntos1','class'=>'form-control']) !!} 
+                                            {!! Form::text('punto1', null, ['id'=>'puntos1','class'=>'form-control','required'=>'required']) !!} 
                                         </div> 
                                         <div class="col-md-12">
                                             {!! Form::label('observacion', 'Observacion', []) !!}
@@ -55,7 +55,7 @@
                                         </div> 
                                         <div class="col-md-12">
                                             {!! Form::label('punto', 'Puntos', []) !!}
-                                            {!! Form::text('punto2', null, ['id'=>'puntos2','class'=>'form-control']) !!} 
+                                            {!! Form::text('punto2', null, ['id'=>'puntos2','class'=>'form-control','required'=>'required']) !!} 
                                         </div> 
                                         <div class="col-md-12">
                                             {!! Form::label('observacion', 'Observacion', []) !!}

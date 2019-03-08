@@ -1,6 +1,6 @@
 
   <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modalAgregarDisc">Agregar</button>
-  {!! Form::open(['route'=>'gestion.agregar_disciplinas','method' => 'POST','enctype'=>'multipart/form-data','files'=>true]) !!}
+  {!! Form::open(['route'=>'gestion.agregar_disciplinas','method' => 'POST','enctype'=>'multipart/form-data','id'=>'form_reg_disc']) !!}
     <div class="modal fade" id="modalAgregarDisc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
@@ -11,6 +11,9 @@
                               </button>
                             </div>
                             <div class="modal-body container col-10">
+                                <div id ="error_disc" class="mensaje_error">
+                                  
+                                  </div>
                               <table class="table table-condensed table-bordered ">
                                 <thead>
                                   <tr>
@@ -32,19 +35,20 @@
                                         </div>
                                     </td>
                                   </tr>
-                                    
+                                  
                                     @foreach($disciplinasDisponibles as $disciplina)
                                       <tr>
                                         <td class="text-center" style="margin: auto; padding: 5px">
-                                            {!! Form::checkbox('id_disc[]',$disciplina->id_disc, false, ['class'=>'check_us']) !!}
+                                            {!! Form::checkbox('id_disc[]',$disciplina->id_disc, false, ['class'=>'check_us','id'=>'id_disc']) !!}
                                           </td>
                                           <td>
                                               <img src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" width="30px" height="30px">
                                               <span class="letter-size" style="font-size: 14px">{{ $disciplina->nombre_disc." ".$disciplina->nombre_categoria($disciplina->categoria) }}</span>
                                           </td>
                                       </tr>
+
                                     @endforeach
-                                 
+                                      
                                 </tbody>
                               </table>
                               
@@ -72,3 +76,7 @@
                         </div>
   </div>
 {!! Form::close() !!}
+@section('scripts')
+{!! Html::script('/js/validacion_agr_disc.js') !!}
+{!! Html::script('/js/checkbox.js') !!}
+@endsection

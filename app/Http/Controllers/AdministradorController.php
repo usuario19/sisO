@@ -116,7 +116,10 @@ class AdministradorController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $usuario = Administrador::find($id);
+
+
         //si un usuario edita su propia cuenta
         if (Auth::user()->id_administrador == $id) 
         {
@@ -132,6 +135,7 @@ class AdministradorController extends Controller
                 'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                 'mi_password'=>['required', new \App\Rules\password, new \App\Rules\hash_password],
                 'newpassword'=>['required','confirmed','between:6,100', new \App\Rules\password],
+                'newpassword_confirmation'=>'required',
                 ]);
                 $usuario->password = $request->newpassword;
             }else{
@@ -146,17 +150,17 @@ class AdministradorController extends Controller
                 'mi_password'=>['required', new \App\Rules\password, new \App\Rules\hash_password],
                 ]);
             }
-            $usuario->tipo=$request->tipo;
+            //$usuario->tipo=$request->tipo;
             $usuario->save();
             flash('Se actualizo correctamente los datos del Usuario. ')->success()->important();
             return redirect()->route('administrador.informacion',$id);
         
-        }else{
-            if ($request->editar == '1' ) {
-                if($usuario->ci != $request->ci)
-                {
+        }else{//si admin edita otra cuenta
+            if ($request->editar == '1' ) {//si edita password
+                /* if($usuario->ci != $request->ci)//si cambia el ci
+                { */
                     $this->validate($request,[
-                        'ci'=>'required|unique:administradores|numeric|digits_between:6,10',
+                        'ci'=>'required|numeric|digits_between:6,10|unique:administradores,ci,'.$id.',id_administrador',
                         'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                         'apellidos' =>['required','between:2,150',  new \App\Rules\Alpha_spaces], 
                         'genero' =>'required',
@@ -165,10 +169,12 @@ class AdministradorController extends Controller
                         'descripcion_admin'=>'between:0,200',
                         'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                         'newpassword'=>['required','confirmed','between:6,100', new \App\Rules\password],
+                        'newpassword_confirmation'=>'required',
                         ]);
 
-                }else{
+                /* }else{
                     $this->validate($request,[
+                    //'ci'=>'required',
                     'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                     'apellidos' =>['required','between:2,150',  new \App\Rules\Alpha_spaces], 
                     'genero' =>'required',
@@ -177,12 +183,13 @@ class AdministradorController extends Controller
                     'descripcion_admin'=>'between:0,200',
                     'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                     'newpassword'=> ['required','confirmed','between:6,100', new \App\Rules\password],
+                    'newpassword_confirmation'=>'required',
                     ]);
-                }
+                } */
                 $usuario->fill($request->all());
                 $usuario->password = $request->newpassword;
-            }else{
-                if($usuario->ci == $request->ci)
+            }else{//si no edita password
+                /* if($usuario->ci == $request->ci)//si no cambia ci
                 {
                     $this->validate($request,[
                         'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
@@ -194,9 +201,9 @@ class AdministradorController extends Controller
                         'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                         ]);
 
-                }else{
+                }else{//si cambia ci */
                     $this->validate($request,[
-                        'ci'=>'required|unique:administradores|numeric|digits_between:6,10',
+                        'ci'=>'required|numeric|digits_between:6,10|unique:administradores,ci,'.$id.',id_administrador',
                         'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                         'apellidos' =>['required','between:2,150',  new \App\Rules\Alpha_spaces], 
                         'genero' =>'required',
@@ -205,7 +212,7 @@ class AdministradorController extends Controller
                         'descripcion_admin'=>'between:0,200',
                         'email'=>'required|email|unique:administradores,email,'.$id.',id_administrador',
                         ]);
-                }
+                /* } */
                 $usuario->fill($request->all()); 
             } 
             $usuario->tipo=$request->tipo;
@@ -226,11 +233,12 @@ class AdministradorController extends Controller
         {
             //echo "entro";
             $this->validate($request, [
-                'foto_admin' =>'mimes:jpg,jpeg|max:5120',
+                'foto_admin' =>'mimes:jpg,jpeg,gif,png|max:5120',
             ]);
 
-            $nombre = time().'-'.'image.'.'jpg';
-            /* $nombre = time().'-'.'image.'.$request->file('foto_admin')->getClientOriginalExtension(); */
+            /* $nombre = time().'-'.'image.'.'jpg'; */
+            //$nombre = time().'-'.'image.'.$request->file('foto_admin')->getClientOriginalExtension();
+            $nombre = time().'-'.'image.'.$request->file('foto_admin')->guessClientExtension();
             
             //obtiene el nombre del archivo
             if(Storage::disk('fotos')->put($nombre, file_get_contents($request->foto_admin)))
@@ -367,7 +375,7 @@ class AdministradorController extends Controller
                     'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                     'apellidos' =>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                     'genero' =>['required',new \App\Rules\verificar_genero],
-                    'fecha_nac' =>['required','date'/* , new \App\Rules\birthdate */],
+                    'fecha_nac' =>['required','date', new \App\Rules\birthdate],
                     //'6' =>'mimes:jpeg,bmp,png,jpg|max:5120',
                     'descripcion_admin'=>'between:0,200',
                     'email'=>'required|email|unique:administradores',
@@ -399,12 +407,12 @@ class AdministradorController extends Controller
         
            /*  $validator = Validator::make($worksheet, [
             ]); */
-            if (count($errores) > 2) {
+            if (count($errores) > 1) {
                 $var = "";
                 $texto = "";
                 $array =  (array) $errores_detalle;
 
-                for($i = 2; $i<count($errores) ; $i++ ){
+                for($i = 1; $i<count($errores) ; $i++ ){
                     $var.= $errores[$i]." , ";
                     $texto.= "Fila ".$errores[$i].': <br><ol>';
                     foreach ($errores_detalle[$i]->all() as $value) {
@@ -412,7 +420,7 @@ class AdministradorController extends Controller
                     }
                     $texto.='</ol>';
                 }
-                echo $texto;
+                //echo $texto;
                 
                    /*  echo($errores_detalle[2]->first()); */
                    /*  flash(''.dd($errores))->error()->important(); */

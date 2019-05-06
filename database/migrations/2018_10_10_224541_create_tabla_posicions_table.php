@@ -19,6 +19,9 @@ class CreateTablaPosicionsTable extends Migration
             $table->integer('pg')->default(0);
             $table->integer('pp')->default(0);
             $table->integer('pe')->default(0);
+            $table->integer('gf')->default(0);
+            $table->integer('gc')->default(0);
+            $table->integer('dg')->default(0);
             $table->integer('puntos')->default(0);
 
             $table->integer('id_club_part')->unsigned();

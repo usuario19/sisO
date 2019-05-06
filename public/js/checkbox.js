@@ -1,4 +1,13 @@
-(function(){
+$(document).ready(function(){
+	$('input:checkbox').prop('checked', false);
+});
+$('.check_all').on('click',function(e){
+	var checkbox_input = e.target;
+	//console.log(checkbox_input);
+	$("."+checkbox_input.id ).prop('checked', checkbox_input.checked);
+});
+
+/* (function(){
 	//window.addEventListener("load", inicializarEventos);
 	if(document.getElementById("todo")){
 		document.getElementById("todo").addEventListener("mouseover", inicializarEventos);
@@ -22,6 +31,7 @@
 		
 	}
 
+
 	function check(e){
 		
 		var checkbox = e.target;
@@ -39,4 +49,4 @@
 		}
 		
 	}
-})();
+})(); */

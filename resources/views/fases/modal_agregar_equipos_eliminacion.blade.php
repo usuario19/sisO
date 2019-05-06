@@ -12,21 +12,35 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <h6>Seleccione los clubs que desea agregar:</h6><br>
-                                    <div class="col-md-6">
+                              <h6></h6><br>
+                                    <div class="col-md-12">
                                               <div class="form-row">
                                                 <div class="form-group col-md-12">
-                                                  @foreach($clubsDisponibles as $club)
-                                                    <div style="display: none">
-                                                        {!! Form::text('id_gestion', $club->id_gestion, []) !!}
-                                                        {!! Form::text('id_disciplina', $club->id_disc, []) !!}
-                                                        {!! Form::text('id_fase', $fase->id_fase, []) !!}
-                                                       
-                                                    </div>
-                                                        {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us']) !!}
-                                                        <img src="/storage/logos/{{ $club->logo }}" alt="" width="50px" height="50px">{{ $club->nombre_club }} <br>
-                                                  @endforeach
-                                                  </div>
+                                                  <table class="table mi_tabla table-sm table-bordered">
+                                                    <thead>
+                                                      <th> {!! Form::checkbox('todo','check', false, ['class'=>'check_all','id'=>'check_us']) !!}</th>
+                                                      <th>Seleccione los clubs que desea agregar:</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($clubsDisponibles as $club)
+                                                        <tr>
+                                                            <div style="display: none">
+                                                                {!! Form::text('id_gestion', $club->id_gestion, []) !!}
+                                                                {!! Form::text('id_disciplina', $club->id_disc, []) !!}
+                                                                {!! Form::text('id_fase', $fase->id_fase, []) !!}
+                                                            </div>
+                                                          <td>
+                                                              {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us','id'=>'club'.$club->id_club]) !!}
+                                                          </td>
+                                                          <td>
+                                                              <img class="img_tb_info" src="/storage/logos/{{ $club->logo }}" alt="">
+                                                              {!! Form::label('club'.$club->id_club, $club->nombre_club, []) !!}
+                                                          </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                  </table>
+                                                </div>
                                               </div>
                                     </div>
                             </div>

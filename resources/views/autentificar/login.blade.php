@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<div class="container" style="background: #F9F9F9">
+<div class="container" style="background: #F6F6F6">
 	<br>
 	<div class="form-row"  style="margin-bottom: 20px">
 		<img class="rounded-circle" src="/storage/logos/user.png" alt="" height="80" width="80" style="margin: auto;">

@@ -6,7 +6,7 @@
   
 @section('content')
 @if($club)
-<div class="container col-md-10">
+<div class="container col-md-12">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('coordinador.index')}}">Clubs</a></li>
@@ -18,11 +18,11 @@
 
 
 <div class="container">
-        <div class="table-responsive">
+        {{-- <div class="table-responsive"> --}}
     
 
                 <div class="row">
-                        <div class=" container col-md-10">
+                        <div class=" container">
                             <div class="card">
                                 <div class="card-header" style="padding: 0%">
                                         <div class="container text-center" style="padding: 15px 0px; margin: auto; min-height: 50px; background: white  ; color: ">
@@ -35,7 +35,7 @@
                                 <div class="text-center" {{--  style="position:relative"  --}}>
                                     
                                         <div id="contenedor_club">
-                                            <img id="imgOrigen" class="rounded mx-auto d-block" src="/storage/logos/{{ $club->logo }}" alt="" height=" 150px" width="150px">
+                                            <img id="imgOrigen" class="rounded mx-auto d-block img-thumbnail" src="/storage/logos/{{ $club->logo }}" alt="" height=" 150px" width="150px">
                 
                                             <div id="divtexto">
                                                 <a id="btnCancelar" class="btn btn-outline-dark button noVista">
@@ -93,23 +93,5 @@
     @yield('content_info')
                     
     </div>
-</div>
 @endif
-@endsection
-
-@section('scripts')
-    script>
-
-        (function(){
-            window.addEventListener('load', active_link, false);
-            function active_link(){
-                document.getElementById('mis_clubs').className += " active";
-            }
-        }());
-    </script>
-   {!! Html::script('/js/vista_previa.js') !!} 
-   {!! Html::script('/js/validacion_ajax_request_update.js') !!}
-   {!! Html::script('/js/validaciones.js') !!} 
-  
-
 @endsection

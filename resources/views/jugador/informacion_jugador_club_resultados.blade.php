@@ -6,13 +6,13 @@
            
                 <nav class="navbar navbar-expand-lg menu">
                     <ul class="navbar-nav btn-block">
-                      <li class="nav-item link col-md-4">
+                      <li class="nav-item link jugador col-md-4">
                         <a class="nav-link link  col-md-12" href={{ route('jugador.informacion',$usuario->id_jugador) }}>Configuración <span class="sr-only">(current)</span></a>
                       </li>
-                      <li class="nav-item link col-md-4">
-                        <a class="nav-link link  col-md-12" href="{{ route('jugador.informacion_club',$usuario->id_jugador) }}">Mis clubs</a>
+                      <li class="nav-item link jugador col-md-4">
+                        <a class="nav-link link col-md-12" href="{{ route('jugador.informacion_club',$usuario->id_jugador) }}">Mis clubs</a>
                       </li>
-                      <li class="nav-item link col-md-4">
+                      <li class="nav-item link jugador col-md-4">
                         <a class="nav-link link active col-md-12" href="{{ route('jugador.informacion_club_resultados',$usuario->id_jugador) }}">Participación</a>
                       </li>
                     </ul>
@@ -21,24 +21,50 @@
            
 @endsection
 @section('contenido_nav')
-            <div class="col-md-12 table-responsive-xl">
                 <div class="container col-md-12">
-                  <table class="mi_tabla table table-borderless table-hover">
+                  <div class="form-group title-table">
+                    Participacion en gestiones activas:
+                  </div>
+                  <br>
+                  <table class="mi_tabla table table-bordered">
                     <thead>
                       <tr class="border-table">
                         {{--  <th scope="col">#</th>  --}}
-                        <th style="width: 150px" scope="col">GESTION</th>
                         <th style="width: 150px" scope="col">CLUB</th>
+                        <th {{--  style="width: 150px"  --}} scope="col">GESTION</th>
                         <th scope="col">DISCIPLINA</th>
-                        <th scope="col">RESULTADO</th>
+                        {{--  <th scope="col">RESULTADO</th>  --}}
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($usuario->jugador_clubs as $jug_club )
-                          <tr class="border-table">
-                            <td>{{$jug_club->club->club_participaciones}}</td>
-                            <td>{{ 'columna' }}</td>
-                          </tr>
+                      {{--  {{  dd($participaciones->groupBy('id_club')) }}  --}}
+
+                      @foreach ($participaciones->groupBy('id_club') as $participacion )
+                      <tr>
+                        <td class="text-center" rowspan="{{ count($participacion->groupBy('id_gestion')) }}">
+                            <img class="mx-auto rounded-circle img-thumbnail d-block" src="/storage/logos/{{ $participacion->first()->logo}}" alt="" style="height: 70px; width:70px">
+                            {{ $participacion->first()->nombre_club }}
+                        </td>
+                      
+                        {{--  {{ dd($participacion->groupBy('id_gestion')) }}  --}}
+                        @foreach ($participacion->groupBy('id_gestion') as $gestion)
+                          {{--  <tr style="height:100% ">  --}}
+                              <td>
+                                {{ $gestion->first()->nombre_gestion }}
+                              </td>
+                              <td>
+                                <ol>
+                                @foreach ($gestion->groupBy('id_seleccion') as $item)
+                                  <li>
+                                    {{ $item->first()->nombre_disc ." - "}}
+                                    {{ $item->first()->categoria == 1 ?  'Damas':$item->first()->categoria == 2 ?  'Varones':'Mixto' }}
+                                  </li>
+                                @endforeach
+                                </ol>
+                              </td>
+                            </tr>
+                        @endforeach
+                      
                       @endforeach
                        {{--  {{$selecciones}}
                       {{count($selecciones)}}
@@ -78,11 +104,7 @@
                     </tbody>
                   </table>
                 </div>
-               
-                
-                
-
-            </div>
+                </div>
 @endsection
 
 @section('scripts')
@@ -108,6 +130,6 @@
   {!! Html::script('/js/vista_previa.js') !!}
   {!! Html::script('/js/validacion_ajax_request_update.js') !!}
   {!! Html::script('/js/validaciones.js') !!}
-  
-
+  {!! Html::script('/Jcrop/js/jquery.Jcrop.min.js') !!}
+  {!! Html::script('/js/jcrop_imagen.js') !!}
 @endsection

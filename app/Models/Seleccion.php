@@ -22,5 +22,11 @@ class Seleccion extends Model
     public function tabla_posicion_jugador(){
         return $this->belongsTo('App\Models\Tabla_Posicion_Jugador','id_seleccion');  
     }
+    public function seleccion_eliminacions (){
+    	return $this->hasMany('App\Models\Seleccion_Eliminacion','id_seleccion');
+    }
+    public function grupo_seleccions(){
+    	return $this->hasMany('App\Models\Grupo_seleccion');
+    }
     
 }

@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>'gestion.store','metod'=>'POST','enctype'=>'multipart/formdata','file'=>true]) !!}	
+{!! Form::open(['route'=>'gestion.store','metod'=>'POST','enctype'=>'multipart/formdata','file'=>true,'id'=>'form_create']) !!}	
 <div class="modal fade" id="modalGestion" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -12,45 +12,51 @@
 							<div class="modal-body">
 									<div class="form-row">
 										<div class="form-group col-md-12">
-											{!! Form::label('nombre', 'Nombre', []) !!}
-											{!! Form::text('nombre', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+											{!! Form::label('nombre_gestion', 'Nombre', []) !!}
+											{!! Form::text('nombre_gestion', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                    						<div class="form-group"></div>
 										</div>
 									</div>
 		
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											{!! Form::label('fechaIni', 'Fecha de inicio', []) !!}
-											{!! Form::date('fechaIni', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+											{!! Form::label('fecha_inicio', 'Fecha de inicio', []) !!}
+											{!! Form::date('fecha_inicio', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                    						<div class="form-group"></div>
 										</div>
 										<div class="form-group col-md-6">
-											{!! Form::label('fechaFin', 'Fecha de Fin', []) !!}
-											{!! Form::date('fechaFin', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+											{!! Form::label('fecha_fin', 'Fecha de Fin', []) !!}
+											{!! Form::date('fecha_fin', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                    						<div class="form-group"></div>
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-12">
 											{!! Form::label('sede', 'Sede', []) !!}
 											{!! Form::text('sede', null, ['class'=>'form-control','placeholder'=>'Sede']) !!}
+                    						<div class="form-group"></div>
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-12">
 											{!! Form::label('descripcion', 'Descripcion', []) !!}
 											{!! Form::textarea('descripcion', null, ['class'=>'form-control','placeholder'=>'Descripcion', 'rows'=> 4]) !!}
+                    						<div class="form-group"></div>
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-12">
 												{!! Form::label('disciplina', 'Selecciona', []) !!}
 											<br>
+                    								<div class="check_info form-group"></div>
 													<table class="table table-striped table-bordered">
 														<thead>
 															<tr>
-																	<th class="text-center">
-																			{!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}
-																		</th>
+																	<td class="text-center">
+																			{!! Form::checkbox('todo','todo', false, ['id'=>'check_us','class'=>'check_all']) !!}
+																		</td>
 																		<td>
-																				{!! Form::label('disciplina', 'Disciplinas', []) !!}
+																				{!! Form::label('check_us', 'Disciplinas', []) !!}
 																		</td>
 															</tr>
 														</thead>
@@ -59,21 +65,25 @@
 														
 																<tr>
 																	<td class="text-center" style="color: black">
-																			{!! Form::checkbox('id_disciplinas[]',$disciplina->id_disc, false, ['class'=>'check_us']) !!}
+																			{!! Form::checkbox('disciplinas[]',$disciplina->id_disc, false, ['id'=>'c'.$disciplina->id_disc,'class'=>'check_us']) !!}
 																	</td>
 																	<td>
-																			@switch($disciplina->categoria)
+																			{!! Form::label('c'.$disciplina->id_disc, $disciplina->nombre_disc." ".$disciplina->nombre_categoria($disciplina->categoria)." - ".$disciplina->nombre_subcateg($disciplina->sub_categoria), []) !!}
+																			{{--  @switch($disciplina->categoria)
 																				@case(0)
-																					{!! ($disciplina->nombre_disc." Mixto") !!}
+																					{!! Form::label('c'.$disciplina->id_disc, $disciplina->nombre_disc." Mixto", []) !!}
+																					
 																					@break
 																			
 																				@case(1)
-																					{!! $disciplina->nombre_disc." Damas"!!}
+																					{!! Form::label('c'.$disciplina->id_disc, $disciplina->nombre_disc." Damas", []) !!}
+																					
 																					@break
 																				@case(2)
-																					{!! $disciplina->nombre_disc." Varones" !!}
+																					{!! Form::label('c'.$disciplina->id_disc, $disciplina->nombre_disc." Varones", []) !!}
+																					
 																				@break
-																			@endswitch
+																			@endswitch  --}}
 																	</td>
 																		</tr>
 															@endforeach
@@ -86,14 +96,18 @@
 					  </div>
                       
 					 <div class="modal-footer">
-						 <div class="row col-md-12">
-								<div class="form-group col-md-6">
-						{!! Form::submit('aceptar', ['class'=>'btn btn-primary btn-block btn_aceptar']) !!}
+						<div class="row col-md-12">
+							<div class="form-group col-md-6">
+								<button class="button_spiner btn btn-block btn-success" type="button" disabled style="display:none">
+									<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+									Cargando...
+								</button>
+								{!! Form::submit('aceptar', ['class'=>'btn btn-block btn_aceptar']) !!}
+							</div>
+							<div class="form-group col-md-6">
+								{!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary btn_cerrar']) !!}
+							</div>
 						</div>
-						<div class="form-group col-md-6">
-						{!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
-						</div>
-						 </div>
 					</div>
 		</div>
 	</div>

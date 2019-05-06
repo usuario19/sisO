@@ -1,3 +1,13 @@
+/* $(".btn_cancelar_form").on("click",function(event){ 
+	$(this).parents('form').trigger("reset");
+    $.each($(this).parents('form').find(':input'),function(){
+        $(this).removeClass('is-invalid');
+		$(this).removeClass('is-valid');
+    });
+     
+}); */
+
+
 (function(){
 	window.addEventListener("load", inicilizarEventos, false);
 	
@@ -5,12 +15,16 @@
 		document.getElementById('button_add').addEventListener("click", inicilizarEventos, false);
 	function inicilizarEventos()
 	{
-		//document.getElementsByTagName("textarea")[0].addEventListener("focusout", validarDescripcion, false);
-		var inputs = document.getElementsByTagName('input');
+		var inputs = $(document).find(':input');
 		for (var i = inputs.length - 1; i >= 0; i--) {
-			/* inputs[i].addEventListener("focusout", validarFormulario, false); */
-			inputs[i].addEventListener("keyup", quitar_clase, false);
-			inputs[i].classList.add('noError');
+			/* console.log((inputs[i].classList).contains('btn')); */
+			if ((inputs[i].id).indexOf('file') == -1 && !(inputs[i].classList).contains('btn')) {
+				inputs[i].addEventListener("keyup", quitar_clase, false);
+				inputs[i].addEventListener("change", quitar_clase, false);
+				inputs[i].classList.add('noError');
+			}
+			/* inputs[i].addEventListener("focusout", quitar_clase, false); */
+			
 		}
 	}
 	function quitar_clase(e){
@@ -33,8 +47,8 @@
 			}
 	}*/
 
-	function validarTexto(texto){
-	/*Esta expresion indica permite letras 0 o mas mas un espacio puede haber varias palabras*/
+	/* function validarTexto(texto){
+	//Esta expresion indica permite letras 0 o mas mas un espacio puede haber varias palabras
 		var res = texto.match(/^[A-Za-z.\s]+$/);
 		 return res;		
 	}
@@ -73,7 +87,7 @@
 				});
 					
 				elemento.parentNode.className +=" noError";
-				/* elemento.parentNode.setAttribute("class", "form-group col-md-6 noError"); */
+				//elemento.parentNode.setAttribute("class", "form-group col-md-6 noError"); 
 			}
 			else
 			{
@@ -84,7 +98,7 @@
 					elemento.parentNode.classList.remove("noError");
 				});
 				elemento.parentNode.className +=" siError";
-				/* elemento.parentNode.setAttribute("class", "form-group col-md-6 siError"); */
+				/* elemento.parentNode.setAttribute("class", "form-group col-md-6 siError");
 			}
 
 		}else if (elemento.name.indexOf("apellidos") != -1  ) {
@@ -206,8 +220,8 @@
 				elemento.parentNode.setAttribute("class", "form-group col-md-6 siError");
 			}
 		}else if (elemento.name == "password_confirmation") {
-			/*console.log(document.getElementsByName("password")[0].value)
-			console.log(document.getElementsByName("password_confirmation")[0].value)*/
+			console.log(document.getElementsByName("password")[0].value)
+			console.log(document.getElementsByName("password_confirmation")[0].value)
 			if(elemento.value == document.getElementsByName("password")[0].value)
 			{
 				//console.log("entro")
@@ -231,6 +245,6 @@
 				elemento.parentNode.setAttribute("class", "form-group col-md-6 siError");
 			}
 		}
-	}
+	}*/
 
-}())
+}()) 

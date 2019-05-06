@@ -9,7 +9,7 @@ function cargarContrincantes() {
         //var html_club2 = '<option value="">seleccione equip1</option>';
         if (data.length > 0) {
             //alert(data[0].id_club);
-            var html_club2 = '<option value="">seleccione contrincante</option>';
+            var html_club2 = '<option value="">Equipo 2</option>';
 
             for (var i = 0; i < data.length; i++) {
                 html_club2 += '<option value=" ' + data[i].id_club + '"> ' + data[i].nombre_club + '</option>';

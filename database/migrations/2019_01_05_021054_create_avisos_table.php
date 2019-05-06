@@ -22,10 +22,10 @@ class CreateAvisosTable extends Migration
             $table->text('contenido');
             $table->integer('id_administrador')->unsigned();
             $table->foreign('id_administrador')->references('id_administrador')->on('administradores')->onDelete('cascade');
-            $table->integer('id_gestion')->unsigned()->nullable();
+            /* $table->integer('id_gestion')->unsigned()->nullable();
             $table->foreign('id_gestion')->references('id_gestion')->on('gestiones')->onDelete('cascade');
             $table->integer('id_disc')->unsigned()->nullable();
-            $table->foreign('id_disc')->references('id_disc')->on('disciplinas')->onDelete('cascade');
+            $table->foreign('id_disc')->references('id_disc')->on('disciplinas')->onDelete('cascade'); */
             $table->timestamps();
         });
     }

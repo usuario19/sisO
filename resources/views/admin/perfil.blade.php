@@ -11,16 +11,16 @@
   </div>
 </div>
 
-<div class=" container col-md-8 table-responsive-xl">
+<div class=" container col-md-11 table-responsive-xl">
 
-    <div class="card">
-      <div class="card-header" style="padding-top: 5px; height: 35px">
-          <div class="row title-table col-md-12" >
-              <h3 class="display-6" style="float: left; padding: 0%">INFORMACION</h3>
+    <div class="">
+      <div class="card-" style="padding-top: 5px; height: 35px">
+          <div class="reporte col-md-12" >
+              <h4 class="lista_sub">INFORMACION</h4>
           </div>
           <br>
       </div>
-        <div class="card-body">
+        <div class="margin_top card-body">
           <div class="form-row col-md-12 table-responsive-xl">
             <div class="" id="contenedor_info"  style="width: 260px">
                         
@@ -53,7 +53,7 @@
                 </div>  --}}
             </div>
         
-            <div class="informacion container col-md-7" style="margin-right: 0%">
+            <div class="informacion container col-md-8" style="margin-right: 0%">
 
               
                   <div class="form-row noVista">
@@ -125,6 +125,8 @@
         </div>
 
       </div>
+</div>
+</div>
 </div>
 
 

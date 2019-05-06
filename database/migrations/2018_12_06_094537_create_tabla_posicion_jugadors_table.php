@@ -17,6 +17,18 @@ class CreateTablaPosicionJugadorsTable extends Migration
             $table->increments('id_tabla_posicion_jugadors');
             $table->integer('cantidad_encuentros')->nullable();
             $table->integer('posicion')->nullable();
+            $table->integer('pj')->default(0);
+            $table->integer('pg')->default(0);
+            $table->integer('pp')->default(0);
+            $table->integer('pe')->default(0);
+            $table->integer('sf')->default(0);
+            $table->integer('sc')->default(0);
+            $table->integer('ds')->default(0);
+            $table->integer('pf')->default(0);
+            $table->integer('pc')->default(0);
+            $table->integer('dp')->default(0);
+            $table->integer('puntos')->default(0);
+            $table->time('tiempo_total')->nullable();
             $table->integer('id_seleccion')->unsigned();
             $table->foreign('id_seleccion')->references('id_seleccion')->on('selecciones')->onDelete('cascade');
             

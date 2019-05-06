@@ -14,8 +14,8 @@ class Aviso extends Model
     protected $fillable = [
     	'titulo',
     	'id_administrador', 
-    	'id_gestion', 
-        'id_disc',
+    	/* 'id_gestion', 
+        'id_disc', */
         'fecha_ini_aviso',
         'fecha_fin_aviso',
         'hora_publicacion',

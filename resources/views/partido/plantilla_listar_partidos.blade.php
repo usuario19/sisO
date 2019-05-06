@@ -37,7 +37,7 @@
                                                     </h5>
                                                 </div>
                                             
-                                                <div class="collapse" id="{{$fase->id_fase}}" {{--  id="{{$elemento->nombre_fase}}" class="collapse" aria-labelledby="{{$elemento->id_fase}}" data-parent="#accordionExample"  --}}>
+                                                <div class="" id="{{$fase->id_fase}}" {{--  id="{{$elemento->nombre_fase}}" class="collapse" aria-labelledby="{{$elemento->id_fase}}" data-parent="#accordionExample"  --}}>
                                                     <div class="card-body">
                                                     
                                                         @foreach ($fase->grupos as $grupo)
@@ -132,7 +132,7 @@
                                                 </h5>
                                             </div>
                                         
-                                            <div class="collapse" id="{{$fase->id_fase}}" {{--  id="{{$elemento->nombre_fase}}" class="collapse" aria-labelledby="{{$elemento->id_fase}}" data-parent="#accordionExample"  --}}>
+                                            <div class="" id="{{$fase->id_fase}}" {{--  id="{{$elemento->nombre_fase}}" class="collapse" aria-labelledby="{{$elemento->id_fase}}" data-parent="#accordionExample"  --}}>
                                                 <div class="card-body">
                                                 
                                                     {{--  @foreach ($fase->grupos as $grupo)  --}}

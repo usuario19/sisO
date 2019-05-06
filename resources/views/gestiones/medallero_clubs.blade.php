@@ -2,18 +2,20 @@
 @section('title')
     SisO - Lista de Disciplinas
 @endsection
-@section('submenu')
-@include('plantillas.menus.menu_gestion')
-@endsection
+
 
 @section('content')
-<div class="container">
-        <div class="card ">
+<div class="form-row">
+@include('plantillas.menus.menu_gestion')
+
+<div class="col-md-9">
+    <div class="">
+      <div class="card-">
             
                 <div class="card-body col-md-12">
                         <div class="table-responsive">
-    <h4>Ganadores:</h4>
-    <table class="table  table-sm table-bordered" style="margin: 0%"">
+    <h4 class="lista" style="font-size:20px">Ganadores:</h4>
+    <table class="table  table-sm table-bordered" style="margin: 0%">
         <thead>
             <th width="100px">Posicion</th>
             <th>Logo</th>
@@ -50,6 +52,8 @@
             @endforeach
         </tbody>
     </table>
+</div>
+</div>
 </div>
 </div>
 </div>

@@ -211,7 +211,7 @@ class JugadorController extends Controller
             'ci_jugador'=>$row[1],
             'nombre_jugador'=>$row[2], 
             'apellidos_jugador' =>$row[3], 
-            'genero_jugador' =>$row[4] == 'F' ? '1':'2',
+            'genero_jugador' =>(trim(strtolower($row[4])) == 'f' )? 1:(trim( strtolower($row[4])) == 'm')? 2:0,
             'fecha_nac_jugador' =>$row[5],
             'email_jugador'=>$row[6],
             'descripcion_jugador'=>$row[7], 
@@ -231,19 +231,20 @@ class JugadorController extends Controller
 
         $worksheet = $spreadsheet->getActiveSheet()->toArray();
         $errores=[];
+        $errores_detalle=[];
         foreach($worksheet as $row)
         {
             $datos = [];
             if(!is_null($row[1]))
             {
                 $datos = JugadorController::array_jugador($row);
-                //dd($datos);
+                var_dump($datos);
                 $validator = Validator::make($datos, [
                     'ci_jugador'=>'required|unique:jugadores|numeric|digits_between:6,10',
                     'nombre_jugador'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                     'apellidos_jugador' =>['required','between:2,150', new \App\Rules\Alpha_spaces], 
                     'genero_jugador' =>'required',
-                    'fecha_nac_jugador' =>['required','date'/* , new \App\Rules\birthdate */],
+                    'fecha_nac_jugador' =>['required','date', new \App\Rules\birthdate],
                     //'6' =>'mimes:jpeg,bmp,png,jpg|max:5120',
                     'descripcion_jugador'=>'between:0,200',
                     'email_jugador'=>'required|email',
@@ -253,6 +254,7 @@ class JugadorController extends Controller
 
                 if ($validator->fails()) {
                     array_push($errores,$datos['numero']);
+                    array_push($errores_detalle,$validator->messages());
                 }else{
 
                     $jugador = new Jugador;
@@ -277,16 +279,56 @@ class JugadorController extends Controller
                         $Jugador_Club->id_jugador = $id_jugador;
                         $Jugador_Club->save();
                     }
-                }
+                } 
             }       
         }
  
-        if (count($errores) > 2) {
-            $var = "";
+        if (count($errores) > 1) {
+                $var = "";
+                $texto = "";
+                $array =  (array) $errores_detalle;
+
+                for($i = 1; $i<count($errores) ; $i++ ){
+                    $var.= $errores[$i]." , ";
+                    $texto.= "Fila ".$errores[$i].': <br><ol>';
+                    foreach ($errores_detalle[$i]->all() as $value) {
+                        $texto.='<li>  '.$value.'</li>';
+                    }
+                    $texto.='</ol>';
+                }
+                //echo $texto;
+                
+                   /*  echo($errores_detalle[2]->first()); */
+                   /*  flash(''.dd($errores))->error()->important(); */
+                    flash('Los siguientes usuarios correspondientes a los Nro de la lista '
+                    .$var.'no fueron registrados. 
+                    <a class="mas_detalle" data-toggle="modal" data-target="#modalDetalle">Mas detalle</a>
+                    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                              <h5 class="modal-title" id="modalLabel">Detalle</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                        <div class="modal-body" style="height:400px; color:red;overflow:auto;">'.
+                        $texto
+                        .'</div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <button class="btn btn-block btn-outline-secondary" data-dismiss="modal" id="buttonClose">cerrar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>')->error()->important();
+               return back();
+            /* $var = "";
             for($i = 2; $i<count($errores) ; $i++ )
                 $var.= $errores[$i]." , ";
                 flash('Los siguientes usuarios correspondientes a los No de la lista '.$var.'no fueron registrados.')->error()->important();
-            return back();
+            return back(); */
         }
         else{
             flash('Se registraron todos los usuarios exitosamente.')->success()->important();
@@ -313,12 +355,24 @@ class JugadorController extends Controller
     public function verInformacion_jug_participacion($id,$id_club)
     {
         $usuario = Jugador::find($id);
+
+        $participaciones = DB::table('selecciones')
+                            ->join('jugador_clubs', 'selecciones.id_jug_club', '=', 'jugador_clubs.id_jug_club')
+                            ->join('club_participaciones', 'selecciones.id_club_part', '=', 'club_participaciones.id_club_part')
+                            ->join('disciplinas','club_participaciones.id_disc','=','disciplinas.id_disc')
+                            ->join('gestiones', 'club_participaciones.id_gestion', '=', 'gestiones.id_gestion')
+                            ->where('jugador_clubs.id_jugador',$id)
+                            ->where('jugador_clubs.id_club',$id_club)
+                            ->where('gestiones.estado_gestion','1')
+                            ->select('gestiones.id_gestion','gestiones.nombre_gestion','disciplinas.id_disc','disciplinas.nombre_disc','disciplinas.categoria')
+                            ->orderBy('gestiones.id_gestion','ASC')
+                            ->get();
         //var_dump($usuario);
         $club = Club::find($id_club);
-        $jug_club = Jugador_Club::where('id_jugador',$id)->where('id_club',$id_club)->select('id_jug_club')->get();
-        $club_part = Club_Participacion::where('id_club',$id_club)->get();
 
-        return view('coordinador.plantilla.informacion_jug_participacion')->with('jug_club',$jug_club)->with('club',$club)->with('club_part',$club_part)->with('usuario',$usuario);//url
+        $jug_club = Jugador_Club::where('id_jugador',$id)->where('id_club',$id_club)->select('id_jug_club')->get();
+
+        return view('coordinador.plantilla.informacion_jug_participacion')->with('participaciones',$participaciones)->with('club',$club)->with('usuario',$usuario);//url
     }
 
     public function verInformacion_club($id)
@@ -332,7 +386,7 @@ class JugadorController extends Controller
     public function verInformacion_club_resultados($id)
     {
         $usuario = Jugador::find($id);
-        $jug_club = Jugador_Club::where('id_jugador',$id)->select('id_jug_club')->get();
+       /*  $jug_club = Jugador_Club::where('id_jugador',$id)->select('id_jug_club')->get();
         $jug_clubs =[];
         foreach($jug_club as $dato){
             array_push($jug_clubs, $dato->id_jug_club);
@@ -340,7 +394,20 @@ class JugadorController extends Controller
        // dd($jug_clubs);
         $selecciones = Seleccion::whereIn('id_jug_club',$jug_clubs)->get();
         //echo($selecciones);
-        $jug_club = Jugador_Club::where('id_jugador',$id)->get();
+        $jug_club = Jugador_Club::where('id_jugador',$id)->get(); */
+        $participaciones = DB::table('clubs')
+                            ->join('jugador_clubs', 'clubs.id_club', '=', 'jugador_clubs.id_club')
+                            ->join('selecciones', 'jugador_clubs.id_jug_club', '=', 'selecciones.id_jug_club')
+                            //->join('jugador_clubs', 'selecciones.id_jug_club', '=', 'jugador_clubs.id_jug_club')
+                            ->join('club_participaciones', 'selecciones.id_club_part', '=', 'club_participaciones.id_club_part')
+                            ->join('disciplinas','club_participaciones.id_disc','=','disciplinas.id_disc')
+                            ->join('gestiones', 'club_participaciones.id_gestion', '=', 'gestiones.id_gestion')
+                            ->where('jugador_clubs.id_jugador',$id)
+                            ->where('gestiones.estado_gestion','1')
+                            ->select('clubs.id_club','clubs.nombre_club','clubs.logo', 'gestiones.id_gestion','gestiones.nombre_gestion','selecciones.id_seleccion','disciplinas.nombre_disc','disciplinas.categoria')
+                            ->orderBy('clubs.id_club','ASC')
+                            ->orderBy('gestiones.id_gestion','ASC')
+                            ->get();
 
        /*  $jug_club = Jugador_Club::where('id_jugador',$id)->get();
         $clubs =[];
@@ -359,7 +426,7 @@ class JugadorController extends Controller
 
         //var_dump($usuario);
         return view('jugador.informacion_jugador_club_resultados')->with('usuario',$usuario)->with('gestiones',$gestiones)->with('id_participaciones',$id_participaciones);//url */
-        return view('jugador.informacion_jugador_club_resultados')->with('usuario',$usuario)->with('selecciones',$selecciones)->with('jug_clubs',$jug_club);
+        return view('jugador.informacion_jugador_club_resultados')->with('usuario',$usuario)->with('participaciones',$participaciones);
     }
 
     public function updateFoto(Request $request)
@@ -373,10 +440,10 @@ class JugadorController extends Controller
         {
             //echo "entro";
             $this->validate($request, [
-                'foto_jugador' =>'mimes:jpeg,bmp,png,jpg|max:5120',
+                'foto_jugador' =>'mimes:jpeg,gif,png,jpg|max:5120',
             ]);
 
-            $nombre = time().'-'.'image_jugador.'.$request->file('foto_jugador')->getClientOriginalExtension();
+            $nombre = time().'-'.'image_jugador.'.$request->file('foto_jugador')->guessClientExtension();
             
             //obtiene el nombre del archivo
             if(Storage::disk('fotos')->put($nombre, file_get_contents($request->foto_jugador)))

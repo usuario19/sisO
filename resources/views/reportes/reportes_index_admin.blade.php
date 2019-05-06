@@ -1,7 +1,7 @@
 @extends('plantillas.main')
 
 @section('title')
-    SisO - Lista de Clubs
+    SisO - Generar Reportes
 @endsection
 @section('cdn')
     {!!  Html::style('/select2/dist/css/select2.min.css') !!}
@@ -9,32 +9,54 @@
 @section('content')
 <div class="container">
 
-        <div class="row">
+        <div class="form-row">
             <div class="col-md-3">
-                <nav class="navbar navbar-expand-lg navbar-dark">
-                        <div class="col-md-12" style="padding: 0%">
-                            <a class="navbar-brand">
-                                <i class="material-icons reporte_icon">
-                                    list_alt
-                                </i><span class="title-principal" style="padding: 0%">REPORTES</span>
-                            </a>
-                            <a class="btn float-right" type=" " data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                                    <i class="material-icons d-block d-md-none" style="padding-top: 7px; color: white">
-                                        keyboard_arrow_down
-                                    </i>
-                            </a>
+                <nav class="navbar navbar-expand-lg navbar-dark reporte_navbar" style="padding: 9px 0px">
+                        <div class="col-md-12 " style="padding: 0%">
+                            <div class="header-nav col-md-12" style="padding: 10px">
+                            	    {{--  <i class="material-icons reporte_icon_title">
+                                            developer_board
+                            	    </i>  --}}
+                            	    <span class="lista_sub" style="padding-left: 20px;color:white">REPORTES</span>
+                            	<a class="btn float-right reporte_header" type=" " data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                            	        <i class="material-icons d-block d-md-none reporte_icon_title" style="padding-top: 0px;">
+                            	            keyboard_arrow_down
+                            	        </i>
+                            	</a>
+                            </div>
                             <div class="collapse navbar-collapse btn-block" id="navbarText">
 
                                 <div class="reporte_menu col-12" style="padding: 0%">
                                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        <div class="dropdown-divider"></div>
-                                        <a class="nav-item nav-link active btn-block" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Gestiones</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="nav-link btn-block" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Clubs</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="nav-link btn-block" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Fixture</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="nav-link btn-block" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Resultado</a>
+                                        <div class="dropdown-divider reporte_divider"></div>
+                                        <a class="nav-item nav-link active btn-block" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                            
+                                                <i class="material-icons reporte_icon" style="padding-top: 0px;">
+                                                    storage
+                                                </i>
+                                                Gestiones
+                                        </a>
+                                        <div class="dropdown-divider reporte_divider"></div>
+                                        <a class="nav-link btn-block" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                            <i class="material-icons reporte_icon" style="padding-top: 0px;">
+                                                group
+                                            </i>
+                                            Clubs
+                                        </a>
+                                        <div class="dropdown-divider reporte_divider"></div>
+                                        <a class="nav-link btn-block" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                                            <i class="material-icons reporte_icon" style="padding-top: 0px;">
+                                                date_range
+                                            </i>
+                                            Fixture
+                                        </a>
+                                        <div class="dropdown-divider reporte_divider"></div>
+                                        <a class="nav-link btn-block" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                                            <i class="material-icons reporte_icon" style="padding-top: 0px;">
+                                                equalizer
+                                            </i>
+                                            Resultado
+                                        </a>
                                     </div>
                                 </div>
                               <span class="navbar-text">
@@ -45,22 +67,23 @@
                 </nav>
             </div>
             <div class="col-md-9">
-            <div class="card"> 
+            <div class="card-body" style="padding:5px;"> 
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                         <div class="reporte col-md-12">
-                            <span class="title-principal">Reporte de gestion</span>
+                            <span class="reporte_header">Reporte de gestion</span>
                         </div>
                         <br>
                         {!! Form::open(['route'=>'reportes.gestiones','method' => 'POST']) !!}
                         
                         <div class="mx-auto col-md-10">
-                                <small id="passwordHelpBlock" class="form-text text-justify text-muted">
+                                {{--  <small id="passwordHelpBlock" class="form-text text-justify text-muted">
                                     Seleccione una gestión para imprimir información. Si necesita mas informacion seleccione las demás opciones.
-                                </small>
-                            <div class="form-group">
+                                </small>  --}}
+                            <div class="form-group col-md-12" style="padding:0%">
                                 {!! Form::label('id_gestion', 'Gestion', ['class'=>'label-control']) !!}
                                 <select name="id_gestion" id="buscador" class="form-control form-control-sm">
+                                        <option value=null disabled selected>Seleccione una gestion</option>
                                     @foreach ($gestiones as $gestion)
                                         <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
                                     @endforeach
@@ -91,7 +114,7 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <button class="btn float-right btn-success"type="submit" formtarget = "_ blank" >Generar Reporte</button>
+                                <button class="btn float-right btn_aceptar"type="submit" formtarget = "_ blank" >Generar Reporte</button>
                             </div>
                         </div>
                         
@@ -102,15 +125,16 @@
                                 <span class="title-principal">Reporte de club</span>
                             </div>
                             <br>
-                            {!! Form::open(['route'=>'reportes.gestiones','method' => 'POST']) !!}
+                            {!! Form::open(['route'=>'reportes.clubs','method' => 'POST']) !!}
                                 
                                 <div class="mx-auto col-md-10">
-                                        <small id="passwordHelpBlock" class="form-text text-justify text-muted">
+                                        {{--  <small id="passwordHelpBlock" class="form-text text-justify text-muted">
                                             Seleccione un Club para imprimir información. Si necesita mas informacion seleccione las demás opciones.
-                                        </small>
+                                        </small>  --}}
                                     <div class="form-group">
                                         {!! Form::label('i_club', 'Club', ['class'=>'label-control']) !!}
                                         <select name="id_club" id="buscador_club" class="form-control form-control-sm">
+                                                <option value=null disabled selected>Seleccione un club</option>
                                             @foreach ($clubs as $club)
                                                 <option value="{{ $club->id_club }}">{{ $club->nombre_club }}</option>
                                             @endforeach
@@ -118,18 +142,18 @@
                                     </div>
                                     <div class="form-group">
                                         {!! Form::label('id_gestion_club', 'Gestion', ['class'=>'label-control']) !!}
-                                        <select name="id_gestion_club" id="buscador_club_gestion" class="form-control form-control-sm">
-                                            @foreach ($gestiones as $gestion)
-                                                <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
-                                            @endforeach
+                                        <div class="spinner-grow spinner-grow-sm loading" role="status" style="display:none">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <select name="id_gestion_club" id="buscador_club_gestion" class="form-control form-control-sm" disabled>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         {!! Form::label('id_disc_club', 'Disciplina', ['class'=>'label-control']) !!}
-                                        <select name="id_disc_club" id="buscador_club_disc" class="form-control form-control-sm">
-                                            @foreach ($gestiones as $gestion)
-                                                <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
-                                            @endforeach
+                                        <div class="spinner-grow spinner-grow-sm loading" role="status" style="display:none">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <select name="id_disc_club" id="buscador_club_disc" class="form-control form-control-sm" disabled>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -157,7 +181,7 @@
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <button class="btn float-right btn-success"type="submit" formtarget = "_ blank" >Generar Reporte</button>
+                                        <button class="btn float-right btn_aceptar"type="submit" formtarget = "_ blank" >Generar Reporte</button>
                                     </div>
                                 </div>
                             {!! Form::close() !!}   
@@ -167,26 +191,27 @@
                             <span class="title-principal">Fixture</span>
                         </div>
                         <br>
-                        {!! Form::open(['route'=>'reportes.gestiones','method' => 'POST']) !!}
+                        {!! Form::open(['route'=>'reportes.fixture','method' => 'POST']) !!}
                             
                             <div class="mx-auto col-md-10">
-                                <small id="passwordHelpBlock" class="form-text text-justify text-muted">
+                                {{--  <small id="passwordHelpBlock" class="form-text text-justify text-muted">
                                     Seleccione un Club para imprimir información. Si necesita mas informacion seleccione las demás opciones.
-                                </small>
+                                </small>  --}}
                                 <div class="form-group">
                                     {!! Form::label('id_gestion_fix', 'Gestion', ['class'=>'label-control']) !!}
                                     <select name="id_gestion_fix" id="buscador_fix_gest" class="form-control form-control-sm">
-                                        @foreach ($gestiones as $gestion)
+                                                <option value=null disabled selected>Seleccione una gestion</option>
+                                                @foreach ($gestiones as $gestion)
                                             <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('id_disc_fix', 'Disciplina', ['class'=>'label-control']) !!}
-                                    <select name="id_disc_fix" id="buscador_fix_disc" class="form-control form-control-sm">
-                                        @foreach ($gestiones as $gestion)
-                                            <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
-                                        @endforeach
+                                    <div class="spinner-grow spinner-grow-sm loading" role="status" style="display:none">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <select name="id_disc_fix" id="buscador_fix_disc" class="form-control form-control-sm"disabled>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -196,16 +221,21 @@
                                                 <tr>
                                                     <td>
                                                         <div class="form-check">
-                                                            {!! Form::radio('opcion', 'fixture', true, ['class'=>'form-check-input check_us','id'=>'fix0']) !!}
-                                                            {!! Form::label('fix0', 'Fixture ordenado por fechas', ['class'=>'form-check-label']) !!}
+                                                            {!! Form::radio('opcion', 'fix_fecha', true, ['class'=>'form-check-input check_us','id'=>'fix0']) !!}
+                                                            {!! Form::label('fix0', 'Partidos de una fecha :', ['class'=>'form-check-label']) !!}
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group col-md">
+                                                            {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                                                            <div class="form-group"></div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
+                                                    <td colspan="2">
                                                         <div class="form-check">
                                                             {!! Form::radio('opcion', 'fix_fases', false, ['class'=>'form-check-input check_us','id'=>'fix1']) !!}
-                                                            {!! Form::label('fix1', 'Fixture ordenado por fases', ['class'=>'form-check-label']) !!}
+                                                            {!! Form::label('fix1', 'Fixture', ['class'=>'form-check-label']) !!}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -214,7 +244,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <button class="btn float-right btn-success"type="submit" formtarget = "_ blank" >Generar Reporte</button>
+                                    <button class="btn float-right btn_aceptar"type="submit" formtarget = "_ blank" >Generar Reporte</button>
                                 </div>
                             </div>
                         {!! Form::close() !!}
@@ -224,29 +254,44 @@
                                     <span class="title-principal">Resultados</span>
                                 </div>
                                 <br>
-                                {!! Form::open(['route'=>'reportes.gestiones','method' => 'POST']) !!}
+                                {!! Form::open(['route'=>'reportes.resultados','method' => 'POST']) !!}
                                     
                                     <div class="mx-auto col-md-10">
-                                        <small id="passwordHelpBlock" class="form-text text-justify text-muted">
+                                        {{--  <small id="passwordHelpBlock" class="form-text text-justify text-muted">
                                             Seleccione un Club para imprimir información. Si necesita mas informacion seleccione las demás opciones.
-                                        </small>
+                                        </small>  --}}
                                         <div class="form-group">
                                             {!! Form::label('id_gestion_res', 'Gestion', ['class'=>'label-control']) !!}
                                             <select name="id_gestion_res" id="buscador_res_gest" class="form-control form-control-sm">
-                                                @foreach ($gestiones as $gestion)
+                                               @foreach ($gestiones as $gestion)
                                                     <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
+                                                    <option value=null disabled selected>Seleccione una gestion</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             {!! Form::label('id_disc_res', 'Disciplina', ['class'=>'label-control']) !!}
-                                            <select name="id_disc_res" id="buscador_res_disc" class="form-control form-control-sm">
-                                                @foreach ($gestiones as $gestion)
+                                            <div class="spinner-grow spinner-grow-sm loading" role="status" style="display:none">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <select name="id_disc_res" id="buscador_res_disc" class="form-control form-control-sm" disabled>
+                                               {{--   @foreach ($gestiones as $gestion)
                                                     <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
-                                                @endforeach
+                                                @endforeach  --}}
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            {!! Form::label('id_fase_res', 'Fase', ['class'=>'label-control']) !!}
+                                            <div class="spinner-grow spinner-grow-sm loading" role="status" style="display:none">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <select name="id_fase_res" id="buscador_res_fase" class="form-control form-control-sm" disabled>
+                                               {{--   @foreach ($gestiones as $gestion)
+                                                    <option value="{{ $gestion->id_gestion }}">{{ $gestion->nombre_gestion }}</option>
+                                                @endforeach  --}}
+                                            </select>
+                                        </div>
+                                        {{--  <div class="form-group">
                                             {!! Form::label('opciones', 'Generar reporte :', ['class'=>'label-control']) !!}
                                                 <table class="table table-bordered">
                                                     <tbody>
@@ -268,10 +313,10 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                        </div>
+                                        </div>  --}}
                                         <br>
                                         <div class="form-group">
-                                            <button class="btn float-right btn-success"type="submit" formtarget = "_ blank" >Generar Reporte</button>
+                                            <button class="btn float-right btn_aceptar"type="submit" formtarget = "_ blank" >Generar Reporte</button>
                                         </div>
                                     </div>
                                 {!! Form::close() !!}
@@ -309,10 +354,13 @@
         $('#buscador_res_disc').select2({
             width: '100%'
         });
+         $('#buscador_res_fase').select2({
+            width: '100%'
+        });
         
     });
 </script>
     {!! Html::script('/select2/dist/js/select2.min.js') !!}
-{{--  {!! Html::script('/js/filtrar_por_nombre.js') !!}
-{!! Html::script('/js/checkbox.js') !!}  --}}
+    {!! Html::script('/js/consultar.js') !!}
+    {{-- {!! Html::script('/js/checkbox.js') !!}  --}}
 @endsection

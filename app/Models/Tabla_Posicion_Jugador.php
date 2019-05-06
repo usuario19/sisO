@@ -13,7 +13,19 @@ class Tabla_Posicion_Jugador extends Model
         'id_disc',
         'id_fase',
         'cantidad_encuentros',
-        'posicion'
+        'tiempo_total',
+        'posicion',
+        'pj', 
+    	'pg',
+    	'pp',
+    	'pe',
+    	'sf',
+    	'sc',
+    	'ds',
+    	'pf',
+        'pe',
+    	'dp',
+    	'puntos',
     ];
     protected $hidden = ['remember_token'];
 

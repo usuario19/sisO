@@ -28,7 +28,7 @@ class Alpha_spaces implements Rule
         //
         $valor=trim($value);
 
-        return (preg_match("/^[A-Za-z*.\s]+$/",$valor));
+        return (preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ*.\s]+$/",$valor));
 
         
     }

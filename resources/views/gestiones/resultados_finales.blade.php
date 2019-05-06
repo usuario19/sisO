@@ -5,21 +5,23 @@
 @endsection
 
 @section('submenu')
-@include('plantillas.menus.menu_gestion')
 @endsection
 
 @section('content')
 
 @include('gestiones.modal_registrar_ganadores')
-@include('gestiones.modal_registrar_ganadores_competicion')
-<div class="container">
-    <div class="card">
-      <div class="card-header">
+@include('gestiones.modal_registrar_ganadores_competicion')<div class="form-row">
+@include('plantillas.menus.menu_gestion')
+
+<div class="margin_top col-md-9">
+    <div class="">
+      <div class="card-">
+      <div class="card-">
           <table class="table table-sm table-bordered" style="margin: 0%">
               <thead>
                   <th>
-                      <div class=" container col-md-12 text-center" style="padding: 10px 0px">
-                          <h4 class="" style="font-size: 18px">DISCIPLINAS PARTICIPANTES</h4></td>
+                      <div class="container col-md-12" style="padding: 10px 0px">
+                          <h4 class="lista_sub">DISCIPLINAS PARTICIPANTES</h4></td>
                       </div>
                   </th>
                   </thead>
@@ -45,7 +47,7 @@
             </tbody>
           </table>
       </div>
-        <div class="card-body">
+        <div class="card-">
           <div class="table-responsive-xl">
               <table class="table table-condensed">
                   <thead>
@@ -53,6 +55,7 @@
                     <th width="100px">Logo</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
+                    <th>SubCategoria</th>
                     <th>Ganadores</th>
                   </thead>
                   <tbody id="datos">
@@ -60,13 +63,14 @@
                     @foreach($disciplinas as $disciplina)
                     
                       <tr>
-                        <td>{{ $disciplina->disciplina->id_disc}}</td>
+                        <td class="text-center">{{ $disciplina->disciplina->id_disc}}</td>
             
-                        <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
+                        <td class="text-center"><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
                         <td>{{ $disciplina->disciplina->nombre_disc}}</td>
                         <td>{{ $disciplina->disciplina->nombre_categoria($disciplina->disciplina->categoria) }}</td>
+                        <td>{{ $disciplina->disciplina->nombre_subcateg($disciplina->disciplina->sub_categoria) }}</td>
                          
-                        <td>
+                        <td class="text-center">
                             @if ($disciplina->disciplina->tiene_ganadores($disciplina->disciplina->id_disc,$gestion->id_gestion) == 0 & $disciplina->disciplina->tipo==0)
                                
                                 <a href=" " onclick="RegistrarGanadores({{$disciplina->disciplina->id_disc}});"  class="button_delete" data-toggle="modal" data-target="#modalGanadores">
@@ -98,6 +102,8 @@
             
         </div>
       </div>
+</div>
+</div>
 </div>
 
 @endsection

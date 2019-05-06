@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 use Softon\SweetAlert\Facades\SWAL; 
+use App\Http\Requests\DisciplinaRequest;
+
 
 class DisciplinaController extends Controller
 {
@@ -27,7 +29,8 @@ class DisciplinaController extends Controller
         return view('disciplina.reg_disc');
     }
 
-    public function store(Request $request){
+    public function store(DisciplinaRequest $request){
+        
         $datos = new Disciplina($request->all());
         $datos->save();
         return redirect()->route('disciplina.index');
@@ -62,7 +65,7 @@ class DisciplinaController extends Controller
         return response()->json($disciplina);
     }
 
-    public function update(Request $request){
+    public function update(DisciplinaRequest $request){
         $id = $request->get('id_disc');
         if($request->hasFile('foto_disc'))
         {   
@@ -72,7 +75,7 @@ class DisciplinaController extends Controller
                             ->get()->last()->foto_disc;
 
                 if ($foto_antiguo != 'sin_imagen.png') {
-                    Storage::disk('foto')->delete($foto);
+                    Storage::disk('foto_disc')->delete($foto_antiguo);
                 }
             $foto_nueva = $request->file('foto_disc');
 
@@ -98,6 +101,7 @@ class DisciplinaController extends Controller
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'foto_disc'=>$nombre_foto,
                             'categoria'=>$request->get('categoria'),
+                            'sub_categoria'=>$request->get('sub_categoria'),
                             'reglamento_disc'=>$nombre_reglamento,
                             'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
@@ -109,6 +113,7 @@ class DisciplinaController extends Controller
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'foto_disc'=>$nombre_foto,
                             'categoria'=>$request->get('categoria'),
+                            'sub_categoria'=>$request->get('sub_categoria'),
                             'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]);  
@@ -133,6 +138,7 @@ class DisciplinaController extends Controller
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'reglamento_disc'=>$nombre_reglamento,
                             'categoria'=>$request->get('categoria'),
+                            'sub_categoria'=>$request->get('sub_categoria'),
                             'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]); 
@@ -142,6 +148,7 @@ class DisciplinaController extends Controller
                     ->where('id_disc', $id)
                     ->update(['nombre_disc' => $request->get('nombre_disc'),
                             'categoria'=>$request->get('categoria'),
+                            'sub_categoria'=>$request->get('sub_categoria'),
                             'tipo'=>$request->get('tipo'),
                             'descripcion_disc'=>$request->get('descripcion_disc')
                         ]);  
@@ -186,7 +193,7 @@ class DisciplinaController extends Controller
         $this->validate($request, [
                         'id_disciplinas' => 'required'
                     ],[
-                        'id_disciplinas.required'=>'Seleccione una disciplina.']); 
+                        'id_disciplinas.required'=>'Debe seleccionar por lo menos una opcion.']); 
         
         $id_club = $request->id_club;
         $id_gestion = $request->id_gestion;

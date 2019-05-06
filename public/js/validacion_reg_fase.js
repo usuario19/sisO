@@ -1,5 +1,7 @@
 $("#reg_fase").submit(function(event) {
-	/* Act on the event */
+    /* Act on the event */
+        $('.button_spiner').show();
+		$('.btn_aceptar').hide();
 		event.preventDefault();
 		/* var input = $('#form_create').find('input');
 		var imagen = $('#imgOrigen');
@@ -17,6 +19,8 @@ $("#reg_fase").submit(function(event) {
             location.reload();
 		},
 		error:function(data){
+            $('.button_spiner').hide();
+		    $('.btn_aceptar').show();
             if(data.responseJSON.errors.nombre )
 			{
                 $('input[name=nombre]').addClass( "is-invalid" );

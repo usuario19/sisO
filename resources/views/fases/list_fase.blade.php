@@ -5,13 +5,16 @@
 @endsection
 
 @section('submenu')
-@include('plantillas.menus.menu_gestion')
 @endsection
 
 @section('content')
-<div class="container">
     @include('fases.modal_reg_fase')
-    <div class="card">
+<div class="form-row">
+@include('plantillas.menus.menu_gestion')
+
+<div class="margin_top col-md-9">
+    <div class="">
+      <div class="card-">
         <div class="content">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb alert-info" style="margin:0%">
@@ -20,26 +23,33 @@
             </ol>
           </nav>
         </div>
-       
-        <div class="card-body container col-md-10">
+        <div class="card-body container col-md-12">
                 <div class="table-responsive">
                     <table class="table table-sm table-bordered" style="margin: 0%">
                         <thead>
                             <th>
                                 <div class=" container col-md-10 text-center" style="padding: 10px 0px">
-                                    <h4 class="" style="font-size: 18px">LISTA DE FASES</h4></td>
+                                    <h4 class="lista" style="font-size: 18px">LISTA DE FASES</h4></td>
                                 </div>
                             </th>
                         </thead>
                         <tbody>
                         <tr> 
                           <td>
-                              <div style="float: left;" class="form-group col-md-10">
-                                  {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
-                               </div>
-                               <div style="float: left;" class="form-group col-md-2">
-                                  <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modalFase">Agregar</button>
-                               </div>
+                          <div class="contenido_lista form-row">
+                <div class="form-group col-xl-9">
+                          {!! Form::text('Buscador',null, ['class'=>'form-control','id'=>'buscar','placeholder'=>'Buscar.....']) !!}
+                      </div>
+            <div class="form-group col-xl-3">
+            <button type="button_add" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modalFase">
+                              <div class="button-div" style="width: 100px">
+                                  <i class="material-icons float-left" style="font-size: 22px">add</i>
+                                  <span class="letter-size">Agregar</span>
+                              </div>
+                          </button>
+            </div>
+                </div>
+                              
                           </td>
                           
                         </tr>
@@ -49,9 +59,9 @@
                   
             <div class="table-responsive">
               <br>
-              <table class="table table-condensed">
+              <table class="text-center table-hover table table-bordered">
                   <thead>
-                    <th colspan="2" width="50px" class="text-center">NO</th>
+                    <th {{--  colspan="2"  --}} width="50px" class="text-center">NO</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
                     <th>Grupos</th>
@@ -61,7 +71,6 @@
                     @php($i=1)
                     @foreach($fases as $fase)
                       <tr>
-                        <td></td>
                         <td>{{ $i}}</td>
 
                         <td>{{ $fase->nombre_fase }}</td>
@@ -104,9 +113,13 @@
       </div>
    
 </div>
+</div>
+</div>
 
 @endsection
 @section('scripts')
   {!! Html::script('/js/filtrar_por_nombre.js') !!}
+  {!! Html::script('/js/validaciones.js') !!}
+  {!! Html::script('/js/reset_inputs.js') !!}
   {!! Html::script('/js/validacion_reg_fase.js') !!}
 @endsection

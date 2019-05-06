@@ -1,7 +1,7 @@
 @extends('plantillas.main')
 
 @section('title')
-    SisO - Mis Clubs
+    SisO - Mis Clubs Coordinador
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
                     </div>
                     <div class=" input-group mb-3 col-md-12">
                         <div id="cargando" style="display: none; padding:0 0 10px 0" class="col-md-12">
-                            <img src="/storage/logos/loader.gif" alt="" height="30">
+                            <img src="/storage/logos/loader22.gif" alt="" height="30">
                         </div> 
                     </div>
                 </div>
@@ -60,10 +60,16 @@
                                 
                         @else
                         <tr>
+                                <td style="padding: 10px 0%" colspan="3">
+                                        <img class="rounded mx-auto d-block" src="/storage/logos/{{$club->club->logo}}" alt="" height=" 200px" width="200px">
+                                </td>
+                                <td style="border-left-color: solid 2px antiquewhite"></td>
+                            </tr>
+                        {{--  <tr>
                                 <td style="width: 50px">
                                     <a href="{{ route('coordinador.informacion_club', $club->id_club) }}" title="Editar" class="" {{-- style="background-color: #63686e" --}}> 
                                     
-                                        <span class="">
+                                        {{--  <span class="">
                                             <i id="btnCancelar" class="material-icons delete_button">settings</i>
                                             
                                         </span>
@@ -74,18 +80,18 @@
                                     <tr>
                                         <td>
                                             <a href="{{ route('coordinador.show', $club->first()->id_club) }}" title="Ver jugadores" class="delete_button" {{-- style="background-color: #ff9f68" --}}>
-                                                <span class="btn_hover ">
+                                                {{--  <span class="btn_hover ">
                                                         <i id="btnCancelar" class="material-icons delete_button" style="color:darkslategrey">group</i>
                                                         
                                                 </span>
                                             </a>
-                                        </td>
+                                        </td>  --}} 
                                         
-                                    </tr>
+                                   {{--   </tr>
                                     <tr>
                                         <td rowspan="10">
-                                                <a href="{{ route('coordinador.informacion_club_gestiones', $club->first()->id_club) }}" title="Ver Gestiones" class="delete_button" {{-- style="background-color: #ff9f68" --}}>
-                                                        <span class="btn_hover ">
+                                                <a href{{--  {{--  ="{{ route('coordinador.informacion_club_gestiones', $club->first()->id_club) }}" title="Ver Gestiones" class="delete_button" {{-- style="background-color: #ff9f68" --}}>
+                                                        {{--  <span class="btn_hover ">
                                                                 <i id="btnCancelar" class="material-icons delete_button" style="color:darkslategrey">flag</i>
                                                                 
                                                         </span>
@@ -93,9 +99,9 @@
                                         </td>
                                         
                                     </tr>
-                                </td>
-                            </tr>
-                            <tr></tr>
+                                </td> 
+                            </tr>  --}} 
+                            <tr></tr>  
                         @endif
                         
                         

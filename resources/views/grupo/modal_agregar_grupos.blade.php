@@ -16,6 +16,7 @@
                                     {!! Form::select('cant_grupos', ['1'=> '1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','10'=>'10'], null ,['placeholder'=>'seleccione...','id'=>'cant_grupos','onclick'=>'grupos()','onchange'=>'grupos()','class'=>'form-control']) !!}
                                 </div>
                             </div>
+                           
                             <div style="display: none">
                                         <div class="form-row">
                                                 <div class="form-group col-md-12">
@@ -26,12 +27,15 @@
                                         </div>	
                             </div>		
                             <div id="formGrupo1" style="display: none">
-                                <div class="card">	
+                                <div class="card">
+                                    @php
+                                        $j = 65;
+                                    @endphp	
                                     <div class="card-body">
                                         <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre', 'Nombre', []) !!}
-                                                    {!! Form::text('nombre',null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre',"Grupo ".chr($j), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>	
                                     </div>	
@@ -45,12 +49,15 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre', 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i,null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i,"Grupo ".chr($j+$i), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div> 
                                     <br>
+                                    @php
+                                       ""
+                                    @endphp
                                     @endfor	
                             </div>
                         
@@ -61,12 +68,15 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-2), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div> 
                                     <br>
+                                     @php
+                                       ""
+                                    @endphp
                                 @endfor		
                             </div>
                             <div id="formGrupo4" style="display: none">
@@ -76,11 +86,14 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-5), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div> <br>
+                                    @php
+                                       ""
+                                    @endphp
                                 @endfor	
                             </div>
                             <div id="formGrupo5" style="display: none">
@@ -90,11 +103,14 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                    {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                    {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-9), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div><br>
+                                     @php
+                                       ""
+                                    @endphp
                                 @endfor	
                             </div>
                             <div id="formGrupo10" style="display: none">
@@ -104,11 +120,14 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                         {!! Form::label('nombre'.$i, 'Nombre', []) !!}
-                                                        {!! Form::text('nombre'.$i, null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+                                                        {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-14), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div><br>
+                                     @php
+                                       ""
+                                    @endphp
                                 @endfor		
                             </div>
                             </div>

@@ -34,8 +34,21 @@
                         </div>
                     </div>    
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            {!! Form::submit('Aceptar', ['class'=>'btn btn-primary','id'=>'aceptar_resultado']) !!}
+                        <div class="row col-md-12">
+								
+                            <div class="form-group col-md-6">
+                                                            
+                            <button class="button_spiner btn btn-block btn-success" type="button" disabled style="display:none">
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true">
+                            </span>
+                            Cargando...
+                            </button>
+                            {!! Form::submit('aceptar', ['class'=>'btn btn-block btn_aceptar']) !!}
+                            </div>
+                            <div class="form-group col-md-6">
+                            {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary btn_cerrar']) !!}
+                            </div>
+                            </div>
                     </div>
                 </div>      
             </div>

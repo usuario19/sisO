@@ -72,6 +72,6 @@
   });
 }
   </script>
- @section('scripts')
-   {{--  {!! Html::script('/js/resultado.js') !!}  --}}
-@endsection
+ {{--  @section('scripts')
+   {!! Html::script('/js/resultado.js') !!}
+@endsection  --}}

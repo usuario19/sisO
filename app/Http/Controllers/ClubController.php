@@ -10,7 +10,10 @@ use App\Models\Jugador_Club;
 use App\Models\Jugador;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\ClubRequest;
+use App\Http\Requests\UpdateClubRequest;
 use Storage;
+
 class ClubController extends Controller
 {
     public function index(){
@@ -59,7 +62,7 @@ class ClubController extends Controller
             return view('club.reg_club')->with('administradores', $administradores);    
         }
     }
-    public function store(Request $request)
+    public function store(ClubRequest $request)
     {
         $datos = new Club($request->all());
         $datos->save();
@@ -74,8 +77,29 @@ class ClubController extends Controller
     }
     public function show($id)
     {
-        //
+        $mis_jugadores = Jugador_Club::where('id_club',$id)->get();
+        $club = Club::where('id_club',$id)->get();
+        //$club = DB::table('clubs')->select('id_club','nombre_club','logo')->where('id_club',$id)->get();
+        //dd($mis_jugadores);
+        //dd($mi_club);
+        //dd('hola');
+        /* return view('coordinador.mis_jugadores')->with('mis_jugadores', $mis_jugadores)->with('mi_club',$mi_club[0]); */ 
+        return view('club.informacion_club_jugadores')->with('mis_jugadores', $mis_jugadores)->with('club',$club->first());
     }
+
+    public function informacion_club_gestiones($id_club){
+        $club = Club::find($id_club);
+        $id = $club->admin_clubs->first()->id_adminClub;
+        $inscripciones = Inscripcion::where('id_adminClub',$id)->get();
+        return view('club.informacion_club_gestiones')->with('club',$club)->with('inscripciones',$inscripciones);
+    }
+    public function informacion_club_logros($id_club){
+        $club = Club::find($id_club);
+        $id = $club->admin_clubs->first()->id_adminClub;
+        $inscripciones = Inscripcion::where('id_adminClub',$id)->get();
+        return view('club.informacion_club_logros')->with('club',$club)->with('inscripciones',$inscripciones);
+    }
+
     public function mostrarClub()
     {
         //
@@ -164,7 +188,7 @@ class ClubController extends Controller
         }
         return redirect()->route('club.index');
     }
-    public function update(Request $request)
+    public function update(UpdateClubRequest $request)
     {
         if($request->hasFile('logo'))
         {   $logo_antiguo = DB::table('clubs')

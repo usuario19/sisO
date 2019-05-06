@@ -32,7 +32,7 @@ class JugadorRequest extends FormRequest
             'apellidos_jugador' =>['required','between:2,150', new Alpha_spaces],
             'genero_jugador' =>'required',
             'fecha_nac_jugador' =>['required','date', new birthdate],
-            'foto_jugador' =>'mimes:jpeg,bmp,png,jpg|max:5120',//5mb
+            'foto_jugador' =>'mimes:jpeg,png,gif,jpg|max:5120',//5mb
             'descripcion_jugador'=>'between:0,200',
             'email_jugador'=>'required|unique:jugadores|email',
             //'password'=>'required|confirmed|min:6|max:100|alpha_num',

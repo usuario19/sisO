@@ -1,9 +1,7 @@
-
-
 var x,y,w,h;
 var src = $('#imgCrop').attr('src');
 $(document).ready(function(){
-    if (src.indexOf('usuario-sin-foto') != -1) {
+    if (src.indexOf('usuario-sin-foto') > -1 || src.indexOf('sin_imagen') > -1 ) {
         $('#crop').hide();
     } else {
         $('#crop').show();
@@ -24,7 +22,7 @@ jQuery(function($){
             onSelect: showCords,
             bgColor:     'black',
             bgOpacity:   .4,
-            setSelect:   [ 100, 100, 50, 50 ],
+            setSelect:   [ 300, 300, 50, 50 ],
             aspectRatio: 1
     });
 });

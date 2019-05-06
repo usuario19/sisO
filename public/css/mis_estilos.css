@@ -78,29 +78,56 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-
+/* vietnamese */
+@font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Quicksand Regular'), local('Quicksand-Regular'), url(https://fonts.gstatic.com/s/quicksand/v9/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+  }
+  /* latin-ext */
+  @font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Quicksand Regular'), local('Quicksand-Regular'), url(https://fonts.gstatic.com/s/quicksand/v9/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Quicksand Regular'), local('Quicksand-Regular'), url(https://fonts.gstatic.com/s/quicksand/v9/6xKtdSZaM9iE8KbpRA_hK1QN.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
 /* .......................................................................................................................... */
 
 
-/* PAGINA HOME */
+/* menu */
 
 ul.menu-nav li a {
     font-family: 'Oswald', sans-serif;
-    color: rgb(73, 73, 73);
-    font-style: bolder;
+    color: rgb(255, 254, 254);
+    font-style: 100;
     font-size: 18px;
-    font-weight: ;
     text-transform: uppercase;
 }
+.banner{
+    min-height: 100px;
+    background-color: #c40f31; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #c40f31, #0C1F2C); 
+    /* background-image: linear-gradient(to right,#c40f31,#CC2129,#054D97, #0C1F2C);  */
+  }
 
 .title {
     height: 60px;
     padding: 15px 0 0 15px;
     margin: 0%;
-    font-weight: ;
-    f/* ont-family: 'Annie Use Your Telescope', sans-serif; */
-    color: rgb(144, 144, 144);
-    /* font-weight: 100; */
+    font-family: 'Unica One', cursive;
+    /* ont-family: 'Annie Use Your Telescope', sans-serif; */
+    color: rgb(247, 243, 243);
     font-size: 32px;
 }
 
@@ -112,6 +139,18 @@ ul.menu-nav li a {
     /* font-weight: 100; */
 }
 
+div.menu_style{
+    /* background-color: #c40f31;  */
+    background-image: linear-gradient(to right, #c40f31, #0C1F2C); 
+    color: white;
+    /* For browsers that do not support gradients */
+    /* background-image: linear-gradient(to right, #c40f31, #0C1F2C);  */
+   /*  background: #c40f31; */
+}
+
+div.menu_lateral{
+    color: #173D58;
+}
 h4.title-principal {
     color: darkslategray;
 }
@@ -128,22 +167,75 @@ h6.title-principal {
     /* font-family: 'Exo', sans-serif; */
     font-weight: bolder;
     text-transform: uppercase;
-    color: #A69999;
-    /* color: #121213; */
+    color: rgba(0, 0, 0, 0.705);
+    margin: auto;
 }
-
+.title-span:hover{
+    /* display: block; */
+    cursor: pointer;
+    /* color: #717881; */
+    color: #000000;
+    text-decoration: none;
+}
+/* clubs */
+a.eliminar_card{
+    padding: 5px;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 0%;
+    right: 0%;
+    background: rgba(255, 255, 255, 0.658);
+    color: black;
+}
+a.eliminar_card i{
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    opacity: 0.5;
+}
+a.eliminar_card i:hover{
+    font-size: 25px;
+    opacity: 1;
+    color: white;
+    
+}
+a.eliminar_card:hover{
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.637);
+    border-radius: 2px;
+}
+table.tabla_info_club , table.tabla_info_club td{
+    padding: 0% 0% 10px 0px;
+    /* background: #F1F8FF; */
+    /* color: #; */ 
+    color: white;
+    font-size: 12px;
+    vertical-align: middle;
+    
+}
+table.tabla_info_club td a{
+    opacity: 1;
+    font-size: 12px;
+}
+table.tabla_info_club td a i{
+    font-size: 16px;
+    top: 3px;
+}
+img.img_info_club{
+    height: 150px;
+    width: 150px;
+}
+.jcrop-holder{
+    margin: auto;
+    
+}
 .fecha {
     font-size: 10px;
     color: rgb(7, 10, 211);
     font-style: oblique;
 }
 
-.title-span:hover {
-    cursor: pointer;
-    /* color: #717881; */
-    color: #121213;
-    text-decoration: none;
-}
+
 
 .div-title-principal {
     padding: 20px;
@@ -159,7 +251,7 @@ h6.title-principal {
 
 .link-change {
     font-family: 'Exo', sans-serif;
-    font-weight: bolder;
+    font-weight: 400;
     text-transform: uppercase;
     color: #78787a;
 }
@@ -199,17 +291,17 @@ ul li a {
 }
 
 tr td {
-    font-weight: bold;
+    font-weight: 400;
 }
 
 a.dropdown-item {
     /* font-family: 'Oxygen', sans-serif; */
-    color: rgb(73, 73, 73);
+    color: rgb(0, 0, 0);
     font-style: bolder;
     font-size: 16px;
     font-weight: 400;
     font-style: bolder;
-    /* text-transform: uppercase; */
+    text-transform: initial;
 }
 
 ul li a:hover {
@@ -236,6 +328,11 @@ div .card-header h5 {
     margin: 0%;
     font-weight: bold;
 }
+.nav-info-club{
+    font-size: 14px;
+    margin: 0%;
+    font-weight: bold;
+}
 
 input.form-control,
 .form-control {
@@ -244,22 +341,15 @@ input.form-control,
 }
 
 .btn {
-    font-size: 14px;
+    font-size: 70%;
     font-weight: bold;
     /* font-family: 'Montserrat', sans-serif; */
     text-transform: uppercase;
 }
 
-body {
-    height: 100%;
-    font-size: 14px;
-    font-family: 'Exo', sans-serif;
-}
-
-footer {
-    top: 100%;
-}
-
+/* body {
+    
+} */
 table tr th {
     text-align: center;
 }
@@ -276,20 +366,21 @@ a.a-control {
 a.a-control span {
     opacity: 1;
     color: rgb(51, 50, 50);
+    color: #818181;
 }
 
-.radio {
-    height: 18px;
-    width: 18px;
+/* .radio {
+    /* height: 18px;
+    width: 18px; */
 }
 
 
-/*div*/
+/*div
 
 .form-group {
-    padding: 5px;
-    margin: 0%;
-}
+   /*  padding: 5px;
+    margin: 0%; 
+} */
 
 .texto {
     margin-top: 10px;
@@ -338,7 +429,6 @@ div.contenedor {
 
 div.contenedor_modal {
     position: relative;
-    margin: 10px;
     width: 200px;
     height: 200px;
     /* border: 3px solid rgb(255, 0, 242);
@@ -352,10 +442,10 @@ div#contenedor_info {
 div#contenedor_club {
     /* background: blue; */
     position: relative;
-    box-align: center;
+   /*  box-align: center; */
     margin: 10px auto;
-    width: 150px;
-    height: 150px;
+    width: 230px;
+    height: 230px;
     /* border: 3px solid rgb(30, 255, 0); */
 }
 
@@ -386,6 +476,20 @@ div#divtexto2 {
     height: 25px;
     /* border: 3px solid crimson; */
 }
+div#img_club{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+}
+div#img_club img{
+    height: 60px;
+    width: 60px;
+    border: solid 3px rgba(0, 0, 0, 0);
+    opacity: .9;
+    border-radius: 10px;
+}
 
 div#divdetalle {
     position: absolute;
@@ -400,6 +504,10 @@ img#btnCancelar {
     float: left;
 }
 
+div.contenedor_modal img#imgOrigen {
+    width: 200px;
+    height: 200px;
+}
 img#imgOrigen {
     width: 230px;
     height: 230px;
@@ -557,25 +665,27 @@ img#btnCancelarAgrDisc:hover {
 a.delete_button {
     text-align: center;
     opacity: 0.7;
-    font-size: 16px;
+    font-size: 30px;
     height: 41px;
     margin: auto;
     border: none;
     /* background: white; */
 }
 
-i.delete_button {
+i.material-icons.delete_button {
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     padding: 5px;
-    color: darkslategray;
+    color: rgb(0, 0, 0);
+    margin: auto;
     /*  float: none; */
 }
 
 i.delete_button:hover {
-    font-size: 35px;
-    padding: 0%;
-    /* opacity: 0.5; */
+    /* font-size: 30px;
+    padding: 0%; */
+    /* color: #C40F31; */
+    opacity: 0.5;
     /*  float: none; */
 }
 
@@ -626,7 +736,7 @@ span.letter-size {
 }
 
 .letter-size {
-    font-size: 16px;
+    font-size: 14px;
     overflow: hidden;
     /*  padding-left: 5px; */
     font-weight: bold;
@@ -640,9 +750,9 @@ span.letter-size {
 button {
     padding: 25px;
 }
-
-i {
-    font-size: 78px;
+div.contenido_lista{
+    margin: 0%;
+    padding: 15px 15px 0px 15px;
 }
 
 .btn_add {
@@ -788,18 +898,20 @@ input#inputEditDisc {
     opacity: 0.6;
 }
 
+.check_all,
 .check_us,
 #todo,
 .check_hab,
-#todo_hab {
+#todo_hab, input[type=checkbox] {
     width: 15px;
     height: 15px;
 }
 
 .title-table {
-    height: 50px;
-    height: 30px;
-    margin: auto;
+    /* height: 50px;
+    height: 30px; */
+    margin: 10px auto;
+    /* margin-bottom: 10px; */
     font-weight: bold;
     /*height: 100px;*/
     text-align: center;
@@ -831,12 +943,15 @@ input#inputEditDisc {
 
 thead,
 tr th,
-.title-select {
+.title-select , span.title_lista_check{
     text-transform: uppercase;
-    color: #999999;
-    font-weight: bold;
+    color: #495065;
+    font-weight: bolder;
 }
-
+img.img_foto{
+    height: 50px;
+    width: 50px;
+}
 h3 {
     padding: 0%;
     margin: 0%;
@@ -848,12 +963,23 @@ h3.display-1 {
 }
 
 .modal-title {
-    font-weight: bolder;
-    font-size: 15px;
-    text-transform: capitalize;
+    font-size: 18px;
+    font-family: 'Unica One', sans-serif;
+    color: #173D58;
+    font-weight: 500;
+    text-transform: uppercase;
     /* font-weight: 600; */
-    color: #24292E;
+    color: #173D58;
 }
+.modal-title.us_nombre {
+    text-transform: initial;
+    /* font-weight: 600; */
+}
+span.modal_us_nombre{
+    text-transform: capitalize;
+    color: rgb(88, 100, 112);
+}
+
 
 .title-table h3 {
     padding: 0%;
@@ -870,9 +996,9 @@ input#ci, input#password{
 	border:3px solid #E74C3C;
 }*/
 
-.errorLogin h6 {
-    color: rgb(228, 118, 103);
-    font-size: 12px;
+.errorLogin h6 , .errorLogin span, .errorLogin{
+    color: #E15562;
+    font-size: 14px;
     /* font-family: 'Montserrat', sans-serif; */
 }
 
@@ -925,27 +1051,75 @@ a.link {
     text-align: center;
     color: rgb(43, 42, 42);
     text-transform: capitalize;
-    font-size: 14px;
-    font-weight: 100;
+    font-size: 13px;
+    font-weight: 300;
 }
 
 a.link:hover {
-    color: rgb(43, 42, 42);
+    color: rgb(54, 53, 53);
+}
+ul li.link{
+    padding: 10px 0px 0px 0px;
+}
+ul li.link a {
+    padding: 0;
+    font-size: 14px;
+    color: #000000;
+    padding: 10px 1px 10px 1px;
+    border-bottom: #FFC83D solid 8px;
+    background: rgb(255, 255, 255);
+    text-transform: initial;
+}
+ul li.link.jugador a {
+    border-bottom: #4F5D95 solid 8px;
+}
+ul li.link.competicion a {
+    border-bottom: #42B72A solid 8px;
+}
+ul li.link.competicion a:hover {
+    border-bottom:  rgba(66, 103, 178, 0.5) solid 8px;
 }
 
-ul li.link {
-    padding: 0;
+ul li.link.competicion a.active {
+    border-bottom: #4267B2 solid 8px;
+    color: #24293B;
+    font-weight: bold;
+}
+ul li.link.eliminacion a {
+    border-bottom: #FBBC05 solid 8px;
+}
+ul li.link.eliminacion a:hover {
+    border-bottom:  rgba(66, 103, 178, 0.5) solid 8px;
+}
+
+ul li.link.eliminacion a.active {
+    border-bottom: #4267B2 solid 8px;
+    color: #24293B;
+    font-weight: bold;
 }
 
 ul li.link a:hover {
-    border-bottom: rgba(255, 166, 0, 0.479) solid 2px;
+    border-bottom: rgba(227, 76, 38, 0.685) solid 8px;
+    color: rgba(36, 41, 59, 0.7);
+    font-weight: BOLD;
 }
 
 ul li.link a.active {
-    border-bottom: rgb(255, 166, 0) solid 2px;
-    font-weight: 500;
+    border-bottom: #E34C26 solid 8px;
+    color: #24293B;
+    font-weight: bold;
 }
-
+ol.breadcrumb{
+    background: rgb(255, 255, 255);
+    border: rgb(206, 202, 202) solid 1px;
+    border-left: #007BFF solid 5px;
+    /* font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bolder; */
+}
+.breadcrumb-item+.breadcrumb-item::before {
+    /* content:none; */
+}
 .link {
     /* border-right: 1px solid darkgray; */
     text-align: center;
@@ -959,7 +1133,7 @@ ul li.link a.active {
 
 a.active {
     /* border-bottom: 2px solid rgba(1, 10, 1, 0.603); */
-    color: #474c52;
+    color: #5a5a5a;
     font-weight: 400;
     /* background:  rgb(251, 253, 255); */
     /* border-radius: 16px; */
@@ -1109,10 +1283,13 @@ label.input-group-text {
     width: 40px;
 }
 
-i.icon_fecha {
+i.material-icons.icon_fecha {
     font-size: 35px;
     color: rgb(53, 53, 53);
     cursor: pointer;
+    position: relative;
+    padding-left: 10px;
+    top: 0%;
     background: rgb(255, 255, 255);
 }
 
@@ -1142,10 +1319,28 @@ span.vs,
 span.puntos {
     font-size: 18px;
     font-weight: bolder;
-    padding: auto;
-    vertical-align: middle;
     text-align: center;
-    color: rgb(0, 0, 0);
+}
+span.puntos{
+    position: relative;
+    top: 12px;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+div.puntos{
+    position: relative;
+    background: #1D3B6D;
+    font-size: 30px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    color: white;
+    margin: auto;
+}
+td.puntos{
+    min-width: 70px;
+    vertical-align: middle;
 }
 
 div.calendario {
@@ -1153,19 +1348,26 @@ div.calendario {
     /* background: rgba(219, 219, 219, 0.658); */
 }
 
-span.puntos {
-    font-size: 30px;
-    color: rgb(7, 7, 7);
-}
 
 table.calendario td.puntos {
     vertical-align: middle;
     max-width: 50px;
 }
+table.calendario tr td {
+    padding: 10px;
+    vertical-align: middle;
+    max-width: 50px;
+}
+table.calendario tr{
+    /* border: #000000 solid 0px; */
+}
 
 table.mi_tabla td,
 table.mi_tabla th {
     vertical-align: middle;
+}
+table.mi_tabla{
+    margin-bottom: 20px;
 }
 
 button.button_change {
@@ -1195,6 +1397,7 @@ a.button_change i {
 
 #tomorrow,
 #yesterday {
+    margin: 7px;
     cursor: pointer;
 }
 
@@ -1203,8 +1406,8 @@ a.button_change i {
 }
 
 #fecha_title:hover {
-    color: blue;
-    font-size: 16px;
+    color: #0F4583;
+    /* font-size: 16px; */
     /*  font-family:'Oswald', sans-serif; */
 }
 
@@ -1212,21 +1415,33 @@ a.button_change i {
     width: 200px;
 }
 
-i {
-    font-size: 35px;
+i.material-icons{
+    font-size: 24px;
     /* padding-inline-end: 5px;  */
     position: relative;
     /* top: 5px */
 }
 
 .reporte {
-    border-bottom: rgb(0, 102, 255) solid 2px;
+    padding-top: 10px;
+    border-bottom: #1D3B6D solid 2px;
+    margin-bottom: 20px;
 }
-
+.reporte_navbar{
+    background: rgba(255, 255, 255, 0.377);
+    
+}
+.header-nav{
+    background: #173D58;
+    color: white;
+    border-radius: 0px;
+    min-height: 50px;
+}
 div.reporte span {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: lighter;
-    color: rgb(0, 102, 255);
+    font-family: 'Oswald', sans-serif;
+    color:#1D3B6D;
 }
 
 div.reporte_title {
@@ -1236,7 +1451,7 @@ div.reporte_title {
 }
 
 div.reporte_title span {
-    color: #1D3B6D;
+    color: rgb(209, 216, 228);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -1244,12 +1459,25 @@ div.reporte_info table tr td,
 div.reporte_info table tr th {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 100;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 div.reporte_sub_title span {
     color: #1D3B6D;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+table.table_report tr td.nombre_club_report{
+    vertical-align: middle;
+    font-size: 16px;
+    color: white;
+    background: #1D3B6D;
+}
+
+table.table_report tr td.nombre_disc_report{
+    vertical-align: middle;
+    font-size: 16px;
+    color: white;
+    background: #C40F31;
 }
 
 div.reporte_sub_title {
@@ -1257,35 +1485,63 @@ div.reporte_sub_title {
     font-size: 14px;
     font-weight: lighter;
 }
-
-table.table_report tr td {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 11px;
-    font-weight: 100;
+table.table_report{
+    width: 100%;
 }
-
-i.reporte_icon {
-    color: white;
+table.table_report tr td {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px;
+}
+table.table_report tr th {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+img.img_report{
+    height: 50px;
+    width: 50px;
+}
+i.reporte_icon_title {
+    color: #F1F1F1;
+    padding-right: 10px;
     top: 4px;
+}
+div.reporte_divider{
+    border-top:1px solid #1B547A;
 }
 
 div.reporte_menu a {
     font-family: 'Oswald', sans-serif;
-    color: rgba(255, 255, 255, 0.644);
+    color: #1B547A;
     text-transform: uppercase;
     font-size: 16px;
 }
+a.reporte_header span , .reporte_header{
+    font-family: 'Unica One', sans-serif;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 18px;
+}
 
 div.reporte_menu a:active {
-    color: white;
+    color: rgb(197, 35, 35);
     font-weight: 400;
-    background-color: #396798;
+    /* background-color: #396798; */
+    background-color: #ffffff;
+}
+a.active i.reporte_icon {
+    font-weight: 400;
+}
+a i.reporte_icon{
+    color: #1B547A;
+    padding-right: 15px;
+    top: 4px;
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
-    color: #fff;
-    background-color: #406fa2;
+    color: #1B547A;
+    background-color: rgb(255, 255, 255);
 }
 
 div.tab-pane {
@@ -1298,6 +1554,29 @@ tr.border-table {
 
 div.modal-header {
     background: #F6F8FA;
+}
+div.modal-header.modal_advertencia{
+
+    text-transform: uppercase;
+    background: rgba(230, 100, 100, 0.473); 
+}
+
+.btn_eliminar{
+}
+.btn_aceptar{
+    background: #173D58;
+    color: white;
+    border: #173D58 solid 1px;
+    margin: 0%;
+}
+.btn_aceptar:hover{
+    background: rgb(33, 87, 126);
+    color: white;
+    border: rgb(33, 87, 126) solid 1px;
+    margin: 0%;
+}
+.btn-block+.btn-block {
+    margin-top: 0rem;
 }
 
 .custom-file-label::after {
@@ -1322,7 +1601,8 @@ a.mas_detalle:hover {
 td.dato {
     /* border: #60bfdb59 solid 1px; */
     font-size: 18px;
-    color: #7b7b7e;
+    color: #000000;
+    
 }
 
 
@@ -1338,14 +1618,40 @@ td.dato {
     text-overflow: ellipsis;
 } */
 
-footer {
-    background-color: #0C1F2C;
-    /*position: absolute;*/
+/* footer {
+    position: absolute;
+    bottom: 0;
+    margin-top: 300px;
+    
+}
+html {
+    min-height: 100%;
+    position: relative;
+  } */
+
+  html {
+    min-height: 100%;
+    position: relative;
+  }
+  body {
+    margin: 0;
+    margin-bottom: 200px;
+    font-weight: lighter;
+    font-size: 80%;
+    
+    font-family: 'Quicksand', sans-serif;
+  }
+  footer {
+    position: absolute;
     bottom: 0;
     width: 100%;
-    height: 450px;
+    height:200px;
     color: white;
-}
+    background-color: #0C1F2C;
+    bottom: 0;
+    width: 100%;
+    color: white;
+  }
 
 a.config_encuentro {
     text-align: center;
@@ -1354,6 +1660,7 @@ a.config_encuentro {
     height: 41px;
     margin: auto;
     border: none;
+    color: #000000;
 }
 
 i.config_encuentro {
@@ -1362,4 +1669,367 @@ i.config_encuentro {
     padding: 5px;
     color: white;
     /*  float: none; */
+}
+
+label.custom-control-label::after {
+    content:"" ;
+}
+div.info_club{
+    background: #1B547A  ;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding: 10px 0px; 
+    margin: auto; 
+    color:white;
+    height: 50px;
+    /* border-radius: 0px 30px 30px 0px; */
+}
+div.info_club h5, div.info_club2 h5{
+    margin: 7px; 
+}
+div.info_club_img{
+    margin: auto; 
+    padding: 5px;
+    border-radius: 30px 0px 0px 30px;
+    border: rgb(206, 202, 202) solid 1px;
+    height: 50px;
+}
+div.info_club2{
+    background: #1B547A  ;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding: 10px 0px; 
+    margin:auto; 
+    color:white;
+    min-height: 50px;
+    border-radius:0px 0px 0px 20px;
+}
+div.info_club_img2{
+    margin: auto; 
+    padding: 5px;
+    border-radius:0px 20px 0px 0px;
+    border: rgb(206, 202, 202) solid 1px;
+    height: 50px;
+}
+h5.title_gestion_home{
+    /* font-family: 'Oswald', sans-serif; */
+    color: rgb(255, 255, 255);
+    font-style: 100;
+    font-size: 2rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin: auto;
+    font-weight: lighter;
+}
+h5.title_gestion{
+    /* font-family: 'Oswald', sans-serif; */
+    color: rgb(255, 255, 255);
+    font-style: 100;
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin: auto;
+    font-weight: lighter;
+}
+div.div_gestion{
+    padding: 5px;
+    background: #0F4583;
+}
+h5.title_gestion_nombre{
+    
+}
+h4.lista, .lista{
+    font-family: 'Unica One', sans-serif;
+    color: #173D58;
+    font-size: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: auto;
+}
+h4.lista_sub , span.lista_sub{
+    font-family: 'Unica One', sans-serif;
+    color: #173D58;
+    font-size: 22px;
+    font-weight: 500;
+    margin: auto;
+    text-transform: uppercase;
+}
+h4.lista_sub_rep , span.lista_sub_rep{
+    font-family: 'Unica One', sans-serif;
+    color: #173D58;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: auto;
+}
+span.lista{
+    font-family: 'Unica One', sans-serif;
+    color: rgba(0, 0, 0, 0.698);
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: auto;
+}
+button.button_tb{
+    padding: 0%;
+}
+button.button_tb i ,button.button_tb span{
+    
+    color: white;
+}
+i.icon_calendario{
+    top: 5px;
+}
+span.icon_calendario{
+    color: #000000;
+}
+span.icon_calendario_lugar{
+    color: #1A73E8;
+    text-transform: initial;
+}
+.dropdown-menu{
+    color: black;
+}
+div.margin_top{
+    margin-top: 10px;
+}
+div.margin_bottom_none{
+    margin-bottom: 0%;
+}
+div.padd_bottom_none{
+    padding-bottom: 0%;
+}
+div.padd_none, .padd_none{
+    padding: 0%;
+}
+div.padd_left_none{
+    padding-left: 0%;
+}
+div.padd_right_none{
+    padding-right: 0%;
+}
+div.margin_none, .margin_none{
+    margin: 0%;
+}
+div.pad_side_none, nav.pad_side_none ,.pad_side_none{
+    padding-left: 0%;
+    padding-right: 0%;
+}
+i.icon_white{
+    color: white;
+}
+
+
+.container::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    display: none;  /* Ocultar scroll */
+}
+.menu_h{/* this */
+    height: 90px;
+    background: rgb(40, 47, 54);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+div.card-a{
+    height: 100%;
+    width: 110px;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.068);
+}
+/* .menu_h li a:hover {
+    margin-top:-2px;
+    padding-bottom:12px;
+    } */
+.menu_h a {
+    /* font-family: Arial; */
+    font-size:14px;
+    text-decoration: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0%;
+    padding-right: 0%;
+    float:left;
+    color: #fff;
+    }
+span.span_disc{
+    font-size: 12px;
+}
+/* .card-a li a div{
+    width: 130px;
+    text-align: center;
+    align-content: center; */
+    
+/* } */
+div.grupo{
+    background: #1E3D71;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+    text-transform: uppercase; margin: 0%;     
+}
+img.img_tb_info{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+table.tabla_playoff tr td{
+    min-height: 100px;
+}
+
+div.eq_tres{
+    position: relative;
+    bottom: 40%;
+    right: 0%;
+    width: 274px;
+}
+div.playoff{
+    font-size: 11px;
+    border: solid 1px #D1ECF1;
+    align-content: center;
+   
+
+}
+div.playoff-2{
+    font-size: 11px;
+    border: solid 1px rgb(255, 255, 255);
+    text-align: center;
+    align-content: center;
+}
+div.playoff-row div{
+    font-size: 11px;
+    border: solid 1px rgb(255, 255, 255);
+    padding: 5px;
+}
+#puntos_fut1 , #puntos_fut2 {
+    color: #218838;
+    font-size: 30px;
+}
+#puntos_fut1 , #puntos_fut2 , #goles_fut1, #goles_fut2, #puntos_extras_fut1, #puntos_extras_fut2 {
+    font-size: 30px;
+}
+.div_set div.col-2{
+    padding:0px;
+    height: 19px;
+    text-align: center;
+}
+.div_set_home div.col-2{
+    padding:0px;
+    height: 19px;
+    text-align: center;
+    font-size: 11px;
+}
+.div_set_home{
+    width:120px;
+    margin: auto;
+    text-align:center;
+}   
+.div_set_h{
+    width: 100px;
+    margin: auto;
+    text-align:center;
+}
+.div_set_h div.col-3{
+    padding:0px;
+    height: 19px;
+    text-align: center;
+    font-size: 11px;
+}
+.div_set{
+    width:150px;
+    margin: auto;
+    text-align:center;
+}
+.div_set_jugador{
+    width:500px;
+    margin: auto;
+}
+.div_set_jugador div{
+    padding:3px;
+}
+.div_set_rf{
+    min-width:100px;
+    margin: auto;
+}
+.div_set_rf div.col-3{
+    /* padding:5px; */
+    height: 19px;
+    text-align: center;
+    
+}
+.div_set div.col-3{
+    /* padding:5px; */
+    height: 19px;
+    text-align: center;
+    
+}
+
+.div_sets{
+    width:200px;
+    margin: auto;
+}
+.div_sets div.col-2, .div_sets div.col-3{
+    padding:3px;
+    height: 25px;
+    text-align: center;
+}
+.div_gestion_fase{
+    background: #A8A8A8;
+    padding: 5px;
+}
+span.nombre_club{
+    color: #212121;
+    font-weight: bolder;
+}
+.calendario td.td_equipo{
+    max-width: 200px;
+    min-width: 80px;
+}
+.calendario td.td_res{
+    max-width: 120px;
+    min-width: 110px;
+    vertical-align: middle
+}
+.div_set_tr{
+    width:110px;
+    margin: auto;
+    text-align:center;
+}
+.div_set_tr div.col-3{
+    /* padding:5px; */
+    height: 24px;
+    text-align: center;
+    
+}
+div.pintar{
+    background: #FF6868;
+    color: white;
+    /* color: #FF6977; */
+}
+table.calendario td.td_posicion{
+    padding: 5px;
+    background: rgb(255, 255, 255);
+    font-weight: bolder
+
+}
+table.calendario td.td_posicion a{
+    color: #EA5823;
+}
+div.punto_set{
+    background: #767676;
+    color: white;
+}
+.navbar_disc{
+    border: solid 1px rgba(0, 0, 0, 0.198);
+    border-radius: 25px ;
+    color: black;
+}
+div.navbar_disc:hover{
+    background:rgba(0, 0, 0, 0.048);
+    border-radius: 25px;
 }

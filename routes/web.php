@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +13,18 @@
 Route::group(['middleware' => ['web','guest']],function(){
 
 	//Route::resource('login','LoginController');
-	Route::get('/',[
+	/* Route::get('/',[
 		'uses'=>'PrincipalController@index',
+		'as'=>'principal.index']  */
+		
+	/* function () {
+		return view('home'); */
+	 /* ); */
+
+	 Route::get('/',[
+		'uses'=>'PrincipalController@index_conjunto',
 		'as'=>'principal.index'] 
+		
 	/* function () {
 		return view('home'); */
 	 );
@@ -24,11 +32,30 @@ Route::group(['middleware' => ['web','guest']],function(){
 		'uses'=>'PrincipalController@index',
 		'as'=>'principal.index_partidos'] 
 	 );
+
+	 Route::get('encuentros/{disc}',[
+		'uses'=>'PrincipalController@index_conjunto',
+		'as'=>'principal.index_partidos_conjunto'] 
+	 );
+	 Route::get('tabla/{gestion}/{disc}/{fase}/ver',[
+		'uses'=>'PrincipalController@tabla_pos',
+		'as'=>'principal.tabla_posiciones'] 
+	 );
+
+	 Route::get('tabla/{gestion}/{fase}/{disc}/mostrar_posiciones',[
+		'uses'=>'PrincipalController@mostrar_posiciones',
+		'as'=>'principal.mostrar_posiciones'] 
+	 );
+
 	 Route::post('partidos',[
 		'uses'=>'PrincipalController@partidos_hoy',
 		'as'=>'principal.partidos'] 
-	/* function () {
-		return view('home'); */
+	
+	 );
+	 
+	 Route::get('principal/tb/{$id_gestion}/{id_disc}/{$id_fase}',[
+		'uses'=>'PrincipalController@mostar_tb_pos',
+		'as'=>'principal.mostrar_tb'] 
 	 );
  
 	 Route::post('log',[ 
@@ -121,7 +148,7 @@ Route::group(['middleware' => ['web','guest']],function(){
 		'as' => 'principal.consultar_partidos'
 	]);
 
-	Route::get('noticias',[ 
+	Route::get('galeria',[ 
 		'uses'=> 'PrincipalController@noticias',
 		'as' => 'principal.noticias'
 	]);
@@ -139,25 +166,34 @@ Route::group(['middleware' => ['web','guest']],function(){
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS
 Route::group(['middleware' => 'auth'], function () {
-    //
-    Route::get('welcome', function () {
-   		return view('welcome');
-	//return view('disciplina.reg_disc');
-	});
+	//
+	Route::get('welcome',[
+		'uses'=>'PrincipalController@index',
+		'as'=>'principal.index_auth'] 
+	 );
+
+	 Route::post('partidos_hoy',[ 
+		'uses'=> 'PrincipalController@partidos_hoy',
+		'as' => 'principal.consultar_partidos2'
+	]);
+	 Route::get('tabla/{gestion}/{disc}/{fase}/ver',[
+		'uses'=>'PrincipalController@tabla_pos',
+		'as'=>'principal.tabla_posiciones'] 
+	 );
+    
 	Route::get('logout',[ 
 			'uses'=> 'AutentificacionController@logout',
 			'as' => 'logout']);
 	});
 	
-
+	
 
 
 //ADMINISTRADOR
 //Route::resource('administrador','AdministradorController');
 Route::group(['middleware' => ['auth','administrador']], function () {
-
 	
-
+	
 	Route::post('administrador',[ 
 				'uses'=> 'AdministradorController@store',
 				'as' => 'administrador.store']);
@@ -174,9 +210,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=> 'AdministradorController@update',
 		'as' => 'administrador.update']); */
 
-	Route::put('administrador/update/{administrador}',[ 
+	/* Route::put('administrador/update/{administrador}',[ 
 		'uses'=> 'AdministradorController@update',
-		'as' => 'administrador.update']);
+		'as' => 'administrador.update']); */
+	
 
 	Route::get('administrador/{administrador}',[ 
 				'uses'=> 'AdministradorController@show',
@@ -395,6 +432,18 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@disciplinas',
 	    'as'=> 'gestion.disciplinas'
 	]);
+	Route::post('gestion/clubs-disciplinas',[
+	    'uses'=> 'GestionController@inscripcion_club_disciplina',
+	    'as'=> 'gestion.inscripcion_club_disciplina'
+	]);
+	Route::get('gestion/{id_gestion}/{id_club}/clubs-disciplinas',[
+	    'uses'=> 'GestionController@vista_inscripcion_club_disc',
+	    'as'=> 'gestion.inscripcion_club_disc'
+	]);
+	Route::post('gestion/eliminar-clubs-disciplinas',[
+		'uses'=>'GestionController@eliminar_club_disciplina',
+		'as'=>'gestion.eliminar_club_disciplina'
+	]);
 	Route::get('gestion/{id_gestion}/configurar',[ 
 				'uses'=> 'GestionController@configurar',
 				'as' => 'gestion.configurar'
@@ -445,6 +494,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@clubs_eliminacion_competicion',
 		'as'=>'fase.clubs_eliminacion_competicion'
 	]);
+	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/clubs_eliminacion_competicion_jug',[
+		'uses'=>'FaseController@clubs_eliminacion_competicion_jug',
+		'as'=>'fase.clubs_eliminacion_competicion_jug'
+	]);
 	Route::get('fase/{id_fase}/{id_disc}/{id_gestion}/fechas_eliminacion_competicion',[
 		'uses'=>'FaseController@fechas_eliminacion_competicion',
 		'as'=>'fase.fechas_eliminacion_competicion'
@@ -461,9 +514,18 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'FaseController@store_club_eliminacion_competicion',
 		'as'=>'fase.store_club_eliminacion_competicion'
 	]);
-	Route::get('fase/{id_fase}/{id_club_part}eliminar_club_eliminacion',[
+	Route::post('fase/store_jug_eliminacion_competicion',[
+		'uses'=>'FaseController@store_jug_eliminacion_competicion',
+		'as'=>'fase.store_jug_eliminacion_competicion'
+	]);
+	Route::get('fase/{id_fase}/{id_club_part}/{id_disc}/eliminar_club_eliminacion',[
 		'uses'=>'FaseController@eliminar_club_eliminacion',
 		'as'=>'fase.eliminar_club_eliminacion'
+	]);
+
+	Route::get('fase/{id_fase}/{id_club_part}eliminar_jug_eliminacion_competicion',[
+		'uses'=>'FaseController@eliminar_jug_eliminacion_competicion',
+		'as'=>'fase.eliminar_jug_eliminacion_competicion'
 	]);
 	Route::get('fase/{id_disc}/select_fases',[
 		'uses'=>'FaseController@select_fases',
@@ -510,6 +572,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@clubs_grupo_competicion',
 		'as'=>'grupo.clubs_grupo_competicion'
 	]);
+	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/clubs_grupo_competicion_jugadores',[
+		'uses'=>'GrupoController@clubs_grupo_competicion_jugadores',
+		'as'=>'grupo.clubs_grupo_competicion_jugadores'
+	]);
 	Route::get('grupo/{id_grupo}/{id_fase}/{id_disc}/{id_gestion}/fechas_grupo_competicion',[
 		'uses'=>'GrupoController@fechas_grupo_competicion',
 		'as'=>'grupo.fechas_grupo_competicion'
@@ -522,9 +588,17 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'GrupoController@store_club',
 		'as'=>'grupo.store_club'
 	]);
-	Route::get('grupo/{id_grupo}/{id_club_part}/eliminar_club',[
+	Route::post('grupo/store_jugador',[
+		'uses'=>'GrupoController@store_jugador',
+		'as'=>'grupo.store_jugador'
+	]);
+	Route::get('grupo/{id_grupo}/{id_club_part}/{id_fase}/eliminar_club',[
 		'uses'=>'GrupoController@eliminar_club',
 		'as'=>'grupo.eliminar_club'
+	]);
+	Route::get('grupo/{id_grupo}/{id_seleccion}/{id_fase}/eliminar_jugador',[
+		'uses'=>'GrupoController@eliminar_jugador',
+		'as'=>'grupo.eliminar_jugador'
 	]);
 	Route::get('grupo/{id_grupo}/{id_gestion}/{id_disc}/{id_fase}/listar_clubs_competicion',[
 		'uses'=>'GrupoController@listar_clubs_competicion',
@@ -561,6 +635,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@store_competicion_serie',
 		'as'=>'encuentro.store_competicion_serie'
 	]);
+	Route::post('encuentro/store_competicion_serie_set',[
+		'uses'=>'EncuentroController@store_competicion_serie_set',
+		'as'=>'encuentro.store_competicion_serie_set'
+	]);
 	Route::get('encuentro/{id_encuentro}/destroy',[
 		'uses'=>'EncuentroController@destroy',
 		'as'=>'encuentro.destroy'
@@ -569,9 +647,21 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@mostrar_resultado_ajax',
 		'as'=>'encuentro.mostrar_resultado_ajax'
 	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_ajax_set',[
+		'uses'=>'EncuentroController@mostrar_resultado_ajax_set',
+		'as'=>'encuentro.mostrar_resultado_ajax_set'
+	]);
 	Route::get('encuentro/{id_encuentro}/mostrar_resultado_futbol_ajax',[
 		'uses'=>'EncuentroController@mostrar_resultado_futbol_ajax',
 		'as'=>'encuentro.mostrar_resultado_futbol_ajax'
+	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_basket_ajax',[
+		'uses'=>'EncuentroController@mostrar_resultado_basket_ajax',
+		'as'=>'encuentro.mostrar_resultado_basket_ajax'
+	]);
+	Route::get('encuentro/{id_encuentro}/mostrar_resultado_set_ajax',[
+		'uses'=>'EncuentroController@mostrar_resultado_set_ajax',
+		'as'=>'encuentro.mostrar_resultado_set_ajax'
 	]);
 	Route::get('encuentro/{id_encuentro}/mostrar_resultado_competicion_ajax',[
 		'uses'=>'EncuentroController@mostrar_resultado_competicion_ajax',
@@ -585,9 +675,21 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@reg_resultado',
 		'as'=>'encuentro.reg_resultado'
 	]);
+	Route::post('encuentro/reg_resultado_basket',[
+		'uses'=>'EncuentroController@reg_resultado_basket',
+		'as'=>'encuentro.reg_resultado_basket'
+	]);
+	Route::post('encuentro/reg_resultado_set',[
+		'uses'=>'EncuentroController@reg_resultado_set',
+		'as'=>'encuentro.reg_resultado_set'
+	]);
 	Route::post('reg_res_competicion',[
 		'uses'=>'EncuentroController@reg_res_competicion',
 		'as'=>'encuentro.reg_res_competicion'
+	]);
+	Route::post('reg_res_competicion_eliminacion',[
+		'uses'=>'EncuentroController@reg_res_competicion_eliminacion',
+		'as'=>'encuentro.reg_res_competicion_eliminacion'
 	]);
 	Route::get('encuentro/{id_club}/{id_grupo}/select_contrincante',[
 		'uses'=>'EncuentroController@select_contrincante',
@@ -601,9 +703,17 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@seleccion_series',
 		'as'=>'encuentro.seleccion_series'
 	]);
+	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/{id_grupo}/seleccion_series_set',[
+		'uses'=>'EncuentroController@seleccion_series_set',
+		'as'=>'encuentro.seleccion_series_set'
+	]);
 	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/seleccion_eliminacion',[
 		'uses'=>'EncuentroController@seleccion_eliminacion',
 		'as'=>'encuentro.seleccion_eliminacion'
+	]);
+	Route::get('encuentro/{id_enc}/{id_gest}/{id_disc}/{id_fase}/seleccion_eliminacion_set',[
+		'uses'=>'EncuentroController@seleccion_eliminacion_set',
+		'as'=>'encuentro.seleccion_eliminacion_set'
 	]);
 	Route::post('encuentro/agregar_jugador_encuentro',[
 		'uses'=>'EncuentroController@agregar_jugador_encuentro',
@@ -613,6 +723,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=>'EncuentroController@eliminar_jugador_encuentro',
 		'as'=>'encuentro.eliminar_jugador_encuentro'
 	]);
+	Route::get('encuentro/{id_encuentro}/{id_jug}/eliminar_jugador_encuentro_set',[
+		'uses'=>'EncuentroController@eliminar_jugador_encuentro_set',
+		'as'=>'encuentro.eliminar_jugador_encuentro_set'
+	]);
 	Route::get('encuentro/{id_encuentro}/{id_jug}/reg_gol_jugador_ajax',[
 		'uses'=>'EncuentroController@reg_gol_jugador_ajax',
 		'as'=>'encuentro.reg_gol_jugador_ajax'
@@ -620,6 +734,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::post('encuentro/store_gol_jugador',[
 		'uses'=>'EncuentroController@store_gol_jugador',
 		'as'=>'encuentro.store_gol_jugador'
+	]);
+	Route::post('encuentro/store_puntos_jugador',[
+		'uses'=>'EncuentroController@store_puntos_jugador',
+		'as'=>'encuentro.store_puntos_jugador'
 	]);
 	//Avisos
 	Route::get('avisos',[
@@ -651,6 +769,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'as'=>'aviso.participaciones'
 	]);
 	//LUGARES
+	Route::put('centro/update',[ 
+		'uses'=> 'LugarController@update',
+		'as' => 'centro.update']);
+		
 	Route::get('lugares',[ 
 		'uses'=> 'LugarController@index',
 		'as' => 'lugares.index']);
@@ -659,13 +781,19 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=> 'LugarController@store',
 		'as' => 'centro.store']);
 
+	Route::get('centro/{centro}/edit',[ 
+		'uses'=> 'LugarController@edit',
+		'as' => 'centro.edit']);
+
 	Route::get('centro/{centro}/delete',[ 
 		'uses'=> 'LugarController@destroy',
 		'as' => 'centro.delete']);
 
-	Route::put('centro/update/{centro}',[ 
+	
+
+	/* Route::put('centro/update',[ 
 		'uses'=> 'LugarController@update',
-		'as' => 'centro.update']);
+		'as' => 'centro.update']); */
 	//REPORTES
 	Route::get('reportes',[
 		'uses'=>'ReporteController@index',
@@ -674,13 +802,40 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::post('reportes/pdf/gestion',[ 
 		'uses'=> 'ReporteController@pdf_gestiones',
 		'as' => 'reportes.gestiones']);
+
+	Route::post('reportes/pdf/resultados',[ 
+		'uses'=> 'ReporteController@pdf_resultados',
+		'as' => 'reportes.resultados']);
+
+	Route::post('reportes/pdf/clubs',[ 
+		'uses'=> 'ReporteController@pdf_clubs',
+		'as' => 'reportes.clubs']);
+
+	Route::post('reportes/pdf/fixture',[ 
+		'uses'=> 'ReporteController@pdf_fixture',
+		'as' => 'reportes.fixture']);
+
+	Route::get('reportes/consultar/{id_club}/gestiones',[
+		'uses'=>'ReporteController@consultar_gestiones',
+		'as'=>'reportes.consultar_gestiones'
+	]);
+
+	Route::get('reportes/consultar/{id_club}/{id_gestion}/disciplinas',[
+		'uses'=>'ReporteController@consultar_disciplinas',
+		'as'=>'reportes.consultar_disciplinas'
+	]);
+	Route::get('reportes/consultar/{id_gestion}/disciplinas',[
+		'uses'=>'ReporteController@consultar_disc',
+		'as'=>'reportes.consultar_disc'
+	]);
+	Route::get('reportes/consultar/{id_part}/fases',[
+		'uses'=>'ReporteController@consultar_fases',
+		'as'=>'reportes.consultar_fases'
+	]);
 });
 
 //COORDINADOR
 Route::group(['middleware' => ['auth','admin_coordinador']], function () {
-
-	
-	
 		
 	Route::get('administrador/{administrador}/edit',[ 
 		'uses'=> 'AdministradorController@edit',
@@ -690,7 +845,7 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 			'uses'=> 'AdministradorController@show',
 			'as' => 'administrador.show']);
 
-	Route::put('administrador/update/{administrador}',[ 
+	Route::put('administrador/{id}',[ 
 			'uses'=> 'AdministradorController@update',
 			'as' => 'administrador.update']);
 
@@ -762,6 +917,14 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::get('club/{club}',[ 
 				'uses'=> 'ClubController@show',
 				'as' => 'club.show']);
+
+	Route::get('club/{id_club}/gestiones',[ 
+		'uses'=> 'ClubController@informacion_club_gestiones',
+		'as' => 'club.informacion_club_gestiones']);
+
+	Route::get('club/{id_club}/logros',[ 
+		'uses'=> 'ClubController@informacion_club_logros',
+		'as' => 'club.informacion_club_logros']);
 
 	Route::get('club/{club}/edit',[ 
 				'uses'=> 'ClubController@edit',

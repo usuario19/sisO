@@ -58,7 +58,7 @@ class Jugador extends Model
     {
         if($value !== null)
         {
-            $nombre = time().'-'.$value->getClientOriginalName();
+            $nombre = time().'-image_jugador.'.$value->guessClientExtension();
             //obtiene eel nombre del archivo
             Storage::disk('fotos')->put($nombre, file_get_contents($value));
             $this->attributes['foto_jugador'] = $nombre;

@@ -89,7 +89,7 @@
         {
           //VALIDACION
           var tipo = document.getElementById("input").files[0].type;
-          if(tipo =="image/jpeg" || tipo == "image/jpg")
+          if(tipo =="image/jpeg" || tipo == "image/jpg" || tipo =="image/png" || tipo =="image/gif")
           {
             archivo.readAsDataURL(document.getElementById("input").files[0]);
 
@@ -137,7 +137,7 @@
       {
         //VALIDACION
         var tipo = document.getElementById("input2").files[0].type;
-        if(tipo == "image/png"|| tipo =="image/jpeg" || tipo == "image/jpg" || tipo == "image/bmp")
+        if(tipo =="image/jpeg" || tipo == "image/jpg" || tipo =="image/png" || tipo =="image/gif")
         {
           console.log('1');
           archivo.readAsDataURL(document.getElementById("input2").files[0]);
@@ -153,7 +153,7 @@
           document.getElementById("error_foto2").innerHTML ="";
         }else {
           document.getElementById("imgOrigen2").src = imgO2;
-          document.getElementById("error_foto2").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg,png."
+          document.getElementById("error_foto2").innerHTML = "Solo se premite archivos de tipo imagen jpeg,jpg."
         }
       
         

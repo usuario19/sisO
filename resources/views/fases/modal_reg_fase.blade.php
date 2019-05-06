@@ -19,17 +19,16 @@
           <div class="form-group">
             {!! Form::label('tipo', 'Tipo', []) !!}
             <div class="">
-              You must agree before submitting.
             </div>
             <br>
             <div class="card">
-              <div class="card-body">
+              <div class="card-body padd_bottom_none">
                 <div class="form-row">
                   
                     @foreach ($tipos2 as $tipo)
                     <div class="form-group col-md-4">
-                      {!! Form::radio('tipo',$tipo->id_tipo,null,['id'=>'series','class'=>'radio']) !!}
-                      {!! Form::label('series',$tipo->nombre_tipo, []) !!}
+                      {!! Form::radio('tipo',$tipo->id_tipo,true,['id'=>'series'.$tipo->id_tipo,'class'=>'radio']) !!}
+                      {!! Form::label('series'.$tipo->id_tipo,ucwords(strtolower($tipo->nombre_tipo)), []) !!}
                       </div>
                     @endforeach       
                 </div>  
@@ -47,13 +46,16 @@
         <div class="modal-footer">
             <div class="row col-md-12">
                 <div class="form-group col-md-6">
-                    {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
-                    </div>
+                  <button class="button_spiner btn btn-block btn-success" type="button" disabled style="display:none">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Cargando...
+                  </button>
+                  {!! Form::submit('aceptar', ['class'=>'btn btn-block btn_aceptar']) !!}
+                </div>
                 <div class="form-group col-md-6">
-            {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
-            </div>
-            
-            </div>
+                  {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary btn_cerrar']) !!}
+                </div>
+              </div>
         </div>
         
         

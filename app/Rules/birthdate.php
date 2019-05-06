@@ -25,7 +25,7 @@ class birthdate implements Rule
      */
     public function passes($attribute, $value)
     {
-        if((date('Y') - substr($value,0,4)) >17 )
+        if((date('Y') - (integer)substr($value,0,4)) >17 && (date('Y') - (integer)substr($value,0,4)) < 100 )
          {
             //echo substr($value,0,3);
             return true;

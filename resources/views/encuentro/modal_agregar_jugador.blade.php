@@ -14,7 +14,7 @@
                   <thead>
                       <tr>
                           <th class="text-center" style="width: 50px">
-                              {!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}
+                              {!! Form::checkbox('todo','todo', false, ['id'=>'check_us1','class'=>'check_all']) !!}
                           </th>
                           <th style="font-size: 12px">
                               <span>Seleccione los jugadores que participaran:</span>
@@ -25,9 +25,9 @@
                   <tr style="display: none">
                     <td>
                         <div>
-                            {!! Form::text('id_encuentro', $encuentro->id_encuentro, []) !!}
-                            {{--  {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
-                            {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
+                            {!! Form::text('id_encuentro', $encuentro->id_encuentro, ['id'=>'check_us1','class'=>'check_all']) !!}
+                            {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
+                            {{--  {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
                             {!! Form::text('id_club', $club1->id_id_club, []) !!}  --}}
                           </div>
                     </td>
@@ -35,7 +35,7 @@
                   @foreach($jug_disp1 as $jugador)
                       <tr>
                         <td class="text-center" style="margin: auto; padding: 5px">
-                            {!! Form::checkbox('id_jugador[]',$jugador->id_jugador, false, ['class'=>'check_us']) !!}
+                            {!! Form::checkbox('id_jugador[]',$jugador->id_jugador, false, ['class'=>'check_us1']) !!}
                         </td>
                         <td>
                             <img src="/storage/fotos/{{ $jugador->foto_jugador }}" alt="" width="50px" height="50px">

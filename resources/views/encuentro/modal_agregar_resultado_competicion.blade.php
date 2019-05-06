@@ -3,7 +3,7 @@
  
         <!-- Modal -->
         <div class="modal fade" id="modalResultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalCenterTitle">Resultados</h5>
@@ -16,23 +16,25 @@
                             <div style="display: none">
                                 {!! Form::text('id_disc',$disciplina->id_disc, ['id'=>'id_disc']) !!}
                                 {!! Form::text('id_gestion',$gestion->id_gestion, ['id'=>'id_gestion']) !!}
+                                {!! Form::text('id_gestion',$grupo->id_grupo, ['id'=>'id_grupo']) !!}
                                 {!! Form::text('id_fase',$fase->id_fase, ['id'=>'id_fase']) !!}
                                 {!! Form::text('id_encuentro',null, ['id'=>'id_encuentro']) !!}
                             </div>
                                 <div class="container col-md-12" id="resultado">
+                                    <div class="table-responsive-xl">
                                         <table id="tabla_res" class="table">
-                                            <thead>
-                                                <th>Id</th>
-                                                <th>Foto</th>
-                                                <th>Jugador</th>
-                                                <th>Club</th>
-                                                <th>Posicion</th>
-                                            </thead>
-                                            <tbody>
-                                               
-                                            </tbody>
-                                            
-                                        </table>
+                                                <thead>
+                                                    <th>Id</th>
+                                                    <th>Foto</th>
+                                                    <th>Jugador</th>
+                                                    <th>Club</th>
+                                                    <th width="150">Tiempo</th>
+                                                    <th width="100">Posicion</th>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                    </div>
                                 </div>
                         </div>
                     </div>    
@@ -59,6 +61,8 @@
                     '<td>' + value.nombre_jugador +' '+value.apellidos_jugador+ '</td>'+
                     '<td>' + value.nombre_club + '</td>'+
                     '<td style=display:none >' + value.id_club + '</td>'+
+                    '<td>'+(value.tiempo ==null ? '<input type="text" name="" id=tiempo'+value.id_jugador+' '+'class="form-control" value="" placeholder="HH:mm:ss">':'<input type="text" name="" id=tiempo'+value.id_jugador+' '+'class="form-control" value='+value.tiempo+' placeholder="HH:mm:ss">')+
+                    '</td>'+
                     '<td>' +
                         /*'<select name="" id=id_jugador' + value.id_jugador +' '+'class="form-control" style="width:80px">' +
                         '<option value="">1</option>' +
@@ -73,7 +77,7 @@
                         '<option value="">10</option>' +
                         '</select>' +
                         '</td>' +*/
-                        '<input value="" id=id_jugador'+value.id_jugador+' '+'type="text" class="form-control" style="width:50px"/>'
+                        '<input      id=id_jugador'+value.id_jugador+' '+'type="text" class="form-control" value='+(value.posicion ==null ? "":value.posicion)+'>'
                         + '</td>'+
                         
                   '</tr>';
@@ -84,6 +88,3 @@
   }
 
   </script>
-  @section('scripts')
-  {!! Html::script('/js/resultado_competicion.js') !!}
-  @endsection

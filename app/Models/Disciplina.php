@@ -26,7 +26,7 @@ class Disciplina extends Model
 		'foto_disc',
 		'reglamento_disc',
 		'descripcion_disc',
-		'id_disc',
+		/* 'id_disc', */
 		//'futbol',
 		];
 
@@ -87,6 +87,39 @@ class Disciplina extends Model
                 break;   
         }
     }
+    public function nombre_subcateg($sub_categoria){
+        switch ($sub_categoria) {
+            case '0':
+                return 'Senior';
+                break;
+            case '1':
+                return 'Libre';
+                break;
+            case '2':
+                return 'Senior - Libre';
+            case '3':
+                return 'Senior y/o Libre';
+                break;
+            case null:
+                return '';
+                break;   
+        }
+    }
+    public function nombre_sub_categoria($sub_categoria){
+        switch ($sub_categoria) {
+            case '0':
+                return 'Senior';
+                break;
+            case '1':
+                return 'Libre';
+                break;
+            case '2':
+                return 'Libre - Senior';
+            case '3':
+                return 'Libre y/o Senior';
+                break;   
+        }
+    }
     public function nombre_tipo($tipo){
         switch ($tipo) {
             case '0':
@@ -130,6 +163,50 @@ class Disciplina extends Model
         $nombre = Disciplina::find($id_disc)->nombre_disc;
         if (str_contains(strtoupper($nombre), 'FUTBOL')) {
             return 1;
+        } else {
+            return 0;
+        }
+        
+    }
+    public function es_ajedrez($id_disc){
+        $nombre = Disciplina::find($id_disc)->nombre_disc;
+        if (str_contains(strtoupper($nombre), 'AJEDREZ')) {
+            return 1;
+        } else {
+            return 0;
+        }
+        
+    }
+    public function es_basket($id_disc){
+        $nombre = Disciplina::find($id_disc)->nombre_disc;
+        if (str_contains(strtoupper($nombre), 'BASKET')) {
+            return 1;
+        } else {
+            return 0;
+        }
+        
+    }
+    public function es_set($id_disc){
+        $nombre = Disciplina::find($id_disc);
+        if (str_contains(strtoupper($nombre->nombre_disc), 'VOLEIBOL') || str_contains(strtoupper($nombre->nombre_disc), 'WALLY')) {
+            if ($nombre->tipo == 0) {
+                return 1;
+            } else {
+                return 2;
+            }
+        } else {
+            return 0;
+        }
+        
+    }
+    public function es_raquetaFronton($id_disc){
+        $nombre = Disciplina::find($id_disc);
+        if (str_contains(strtoupper($nombre->nombre_disc), 'TENIS') || str_contains(strtoupper($nombre->nombre_disc), 'RAQUETA') || str_contains(strtoupper($nombre->nombre_disc), 'RAQUET')) {
+            if ($nombre->tipo == 0) {
+                return 1;//EQUIPO
+            } else {
+                return 2;//SI ES INDIVIDUAL
+            }
         } else {
             return 0;
         }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Gestion;
 use App\Models\Participacion;
 use App\Models\Aviso;
+use App\Http\Requests\AvisoRequest;
 
 class AvisoController extends Controller
 {
@@ -41,16 +42,10 @@ class AvisoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AvisoRequest $request)
     {
         //
 
-        $this->validate($request,[
-            'titulo'=>'required',
-            'fecha_ini_aviso'=>'required|date',
-            'fecha_ini_fin'=>'date',
-            'contenido'=>'required',
-        ]);
         $texto = $request->contenido;
         $texto1 = "<img ";
         $texto2 = "<img class='img-fluid mx-auto' ";

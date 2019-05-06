@@ -11,20 +11,23 @@
   </div>
 </div>
 
-<div class=" container col-md-8 table-responsive-xl">
+<div class=" container col-md-11 table-responsive-xl">
 
-    <div class="card">
-      <div class="card-header" style="padding-top: 5px; height: 35px">
-          <div class="row title-table col-md-12" >
-              <h3 class="display-6" style="float: left; padding: 0%">CONFIGURACION:</h3>
+    <div class="">
+      <div class="card-" style="padding-top: 5px; height: 35px">
+          <div class="reporte col-md-12" >
+              <h4 class="lista_sub">CONFIGURACION</h4>
           </div>
           <br>
-      </div>
+          <br>
+          <br>
+      </div> 
         <div class="card-body">
+         <br>
           <div class="form-row col-md-12 table-responsive-xl">
             <div class="" id="contenedor_info"  style="width: 200px">
                         
-                <div id="contenedor_perfil">
+                <div id="contenedor">
                   <img id="imgOrigen" class="img-thumbnail rounded mx-auto d-block imginfo_perfil" src="/storage/fotos/{{ $usuario->foto_admin }}" alt="">
                   <div id="divtexto">
                       <a id="btnCancelar" title="Cancelar" class="btn btn-outline-dark button noVista">
@@ -53,7 +56,7 @@
                 </div>
             </div>
         
-            <div class="container col-md-7" style="margin-right: 0%">
+            <div class="container col-md-8" style="margin-right: 0%">
               {!! Form::model($usuario,['route'=>['administrador.update',$usuario->id_administrador],'method' => 'PUT' ,'id'=>'form_update','enctype' => 'multipart/form-data', 'files'=>true]) !!}
                 
                   <div class="form-row noVista">
@@ -71,6 +74,13 @@
                   </div>
                     
                   </div>  --}}
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      {!! Form::label('email', 'Correo electronico', []) !!}
+                      {!! Form::text('email', null , ['class' =>'form-control', 'placeholder'=>'example@example.com']) !!}
+                      <div class="form-group"></div>
+                    </div>
+                    </div>
                   <div class="form-row">
                         <div class="form-group col-md-12 {{ $errors->has('descripcion_admin') ? 'siError':'noError' }}">
                           {!! Form::label('descripcion_admin', 'Descripcion', []) !!}
@@ -129,13 +139,20 @@
                     </div>
                   </div>
                   
-                  <div class="form-row col-md-8" >
+                  <div class="form-row col-md-12" style="padding:0px">
+								
                     <div class="form-group col-md-6">
-                      {!! Form::submit('Guardar', ['class'=>'btn btn-primary btn-block']) !!}
+                                    
+                    <button class="button_spiner btn btn-block btn-success" type="button" disabled style="display:none">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true">
+                    </span>
+                    Cargando...
+                    </button>
+                    {!! Form::submit('aceptar', ['class'=>'btn btn-block btn_aceptar']) !!}
                     </div>
                     <div class="form-group col-md-6">
-                      <a href="" class="btn btn-block btn-secondary">Cancelar</a>
-                    </div>                  
+                    {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary btn_cerrar']) !!}
+                    </div>
                   </div>
                 </div>
               {!! Form::close() !!}

@@ -30,41 +30,62 @@
 
      @include('plantillas.forms.form_reg_admin')
 
-    <div class="form-group col-sm-12">
-      {!! Form::label('tipo', 'Tipo de Usuario', []) !!}
-      {!! Form::select('tipo',['Administrador'=>'Administrador','Coordinador'=>'Coordinador'] , $usuario->tipo, ['class'=>'form-control']) !!}
-    </div>
+    
       
 
-<div class="form-row">
-      <div class="form-group col-md-6 {{ $errors->has('descripcion_admin') ? 'siError':'noError' }}">
+
+@if(Auth::User()->id_administrador == $usuario->id_administrador)
+  <div class="form-row">
+    <div class="form-group col-md-12">
+    {!! Form::label('email', 'Correo electronico', []) !!}
+    {!! Form::text('email', null , ['class' =>'form-control', 'placeholder'=>'example@example.com']) !!}
+    <div class="form-group"></div>
+  </div>
+  </div>
+    <div class="form-row">
+      <div class="form-group col-md-12 {{ $errors->has('descripcion_admin') ? 'siError':'noError' }}">
         {!! Form::label('descripcion_admin', 'Descripcion', []) !!}
         {!! Form::textArea('descripcion_admin',null , ['class'=>'form-control','rows'=>4]) !!}
-      
+
         <div class="form-group">
-            <h6 id="error_desc">{{ $errors->has('descripcion_admin') ? $errors->first('descripcion_admin'):'' }}</h6>    
+          <h6 id="error_desc">{{ $errors->has('descripcion_admin') ? $errors->first('descripcion_admin'):'' }}</h6>    
         </div>
-</div>
-@if(Auth::User()->id_administrador == $usuario->id_administrador)
-        
-          <div class="form-group col-md-6">
-            {!! Form::label('mi_password', 'Ingrese su contraseña', []) !!} 
-            {!! Form::password('mi_password', ['class' => 'form-control']) !!}
-            <div class="form-group">
-            </div>
-          </div>
-         
-        </div>
-@else
       </div>
+      <div class="form-group col-md-6">
+        {!! Form::label('mi_password', 'Ingrese su contraseña', []) !!} 
+        {!! Form::password('mi_password', ['class' => 'form-control']) !!}
+        <div class="form-group"></div>
+      </div>
+    </div>
+@else
+<div class="form-row">
+  <div class="form-group col-md-6">
+    {!! Form::label('email', 'Correo electronico', []) !!}
+    {!! Form::text('email', null , ['class' =>'form-control', 'placeholder'=>'example@example.com']) !!}
+    <div class="form-group"></div>
+  </div>
+  <div class="form-group col-md-6">
+    {!! Form::label('tipo', 'Tipo de Usuario', []) !!}
+    {!! Form::select('tipo',['Administrador'=>'Administrador','Coordinador'=>'Coordinador'] , $usuario->tipo, ['class'=>'form-control']) !!}
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-12 {{ $errors->has('descripcion_admin') ? 'siError':'noError' }}">
+    {!! Form::label('descripcion_admin', 'Descripcion', []) !!}
+    {!! Form::textArea('descripcion_admin',null , ['class'=>'form-control','rows'=>4]) !!}
+    <div class="form-group">
+    </div>
+  </div>
+</div>  
 @endif
 
 
 <div class="form-row">
-    
     <div class="form-group col-md-6">
-      {!! Form::checkbox('editar', 1, false, ['class' => 'field','id'=>'editar']) !!}
-      {!! Form::label('editar', 'Editar contraseña', []) !!}
+      <div class="custom-control custom-checkbox">
+        {!! Form::checkbox('editar', 1, false, ['class' => 'custom-control-input field','id'=>'editar']) !!}
+        {!! Form::label('editar', 'Editar contraseña', ['class'=>'custom-control-label']) !!}
+      </div>
     </div>
 </div>
 
@@ -89,10 +110,10 @@
 </div>
 <div class="form-row">
   <div class="form-group col-md-6">
-    {!! Form::submit('Guardar', ['class'=>'btn btn-success btn-block']) !!}
+    {!! Form::submit('Guardar', ['class'=>'btn btn_aceptar btn-block']) !!}
   </div>
   <div class="form-group col-md-6">
-    <a href="" class="btn btn-block btn-outline-secondary">Cancelar</a>
+    <button type='reset'class="btn btn-block btn-outline-secondary btn_cerrar">Cancelar</button>
   </div>                  
 </div>
 </div>  
@@ -120,11 +141,11 @@
        }
       }())
     </script>
-  {!! Html::script('/Jcrop/js/jquery.min.js') !!}
-  {!! Html::script('/Jcrop/js/jquery.Jcrop.min.js') !!}
   {!! Html::script('/js/vista_previa.js') !!}
   {!! Html::script('/js/validacion_ajax_request_update.js') !!}
   {!! Html::script('/js/validaciones.js') !!}
+  {!! Html::script('/Jcrop/js/jquery.Jcrop.min.js') !!}
   {!! Html::script('/js/jcrop_imagen.js') !!}
+  {!! Html::script('/js/reset_inputs.js') !!}
 
 @endsection

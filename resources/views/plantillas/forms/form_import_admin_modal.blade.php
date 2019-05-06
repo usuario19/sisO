@@ -1,3 +1,4 @@
+{!! Form::open(['route'=>'administrador.importExcel','method'=>'POST','enctype'=>'multipart/form-data','files'=>true,'id'=>'form-import-admin']) !!}
 <div class="modal fade" id="modalImportADmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -28,7 +29,6 @@
                 </div>
               </div>
             
-              {!! Form::open(['route'=>'administrador.importExcel','method'=>'POST','enctype'=>'multipart/form-data','files'=>true,'id'=>'form-import-admin']) !!}
                 
                 <div class="row">
                   
@@ -38,27 +38,24 @@
                           <div class="form-group"></div>
                           <label class="custom-file-label" for="excel_file">Seleccionar Archivo</label>
                         </div>
-                        
-                      {{--  {!! Form::label('file_excel', 'Archivo Excel:', []) !!}
-                      {!! Form::file('file_excel', ['class'=>'form-control']) !!}  --}}
                     </div>
-                  </div>
                 </div>
+              </div>
             </div>
           </div>
 
         
-        <div class="modal-footer col-md-12">
+        <div class="modal-footer">
             <div  class="form-row col-md-12">
                 <div class="form-group col-md-6">
-                  {!! Form::submit('Importar', ['class'=>'btn btn-success btn-block','id'=>'buttonSubmit','disabled']) !!}
+                  {!! Form::submit('Importar', ['class'=>'btn btn_aceptar btn-block','id'=>'buttonSubmit','disabled']) !!}
                 </div>
                 <div class="form-group col-md-6">
-                  <button "reset" class="btn btn-block btn-outline-secondary" data-dismiss="modal" id="buttonClose">Cancelar</button>
+                  <button "reset" class="btn btn-block btn-outline-secondary btn_cerrar_modal_import" data-dismiss="modal" id="buttonClose">Cancelar</button>
                 </div>
               </div>
-            {!! Form::close() !!}
         </div>
       </div>
     </div>
   </div>
+{!! Form::close() !!}

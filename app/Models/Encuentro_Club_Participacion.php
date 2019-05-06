@@ -12,6 +12,10 @@ class Encuentro_Club_Participacion extends Model
         'id_encuentro',
         'id_club_part',
     	'puntos', 
+    	'puntos_a', 
+    	'puntos_b', 
+    	'puntos_extras', 
+    	'penales', 
     	'observacion',
         'goles',
         

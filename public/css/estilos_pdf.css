@@ -1,0 +1,101 @@
+table{
+    border: solid 2px #000000;
+    width: 100%;
+    margin: 10px;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 13px;
+    margin: 10px 0% 45px 0%;
+    width: 100%;
+    text-align: left;    
+    border-collapse: collapse; 
+}
+
+th {     
+    font-size: 13px;     
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;     
+    border-top: 2px solid #000000;    
+    border-bottom: 2px solid #000000; 
+    color: rgb(0, 0, 0);
+    background: white;
+}
+th.grupo{
+    text-transform: uppercase;
+    color: #1E3D71;
+}
+th.fecha{
+    text-transform: uppercase;
+    color:#EA2227;
+}
+    
+
+td {    
+    padding: 8px;     
+    border-bottom: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+    text-align: left;
+    color: rgb(0, 0, 0);    
+    border-top: 1px solid transparent; 
+}
+table.title{
+    border: 1px solid rgb(214, 211, 211);
+    text-transform: uppercase;
+    margin: 0% 0% 45px 0%;
+}
+table.title th,table.title td {
+    font-size: 14px;
+    color: #1E3D71;
+    border: 1px solid rgb(196, 196, 196);
+}
+table.title td{
+    text-align: center; 
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px;
+    text-transform: initial; 
+}
+table.title tbody td{
+    text-align: left;
+}
+table.title td.fase{
+    background: #1E3D71;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+    text-transform: uppercase; margin: 0%;
+    text-align: left; 
+}
+div.fase , td.fase{
+    background: #1E3D71;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+    text-transform: uppercase; margin: 0%;     
+}
+span {
+    margin-right: 50px;
+    font-weight: bold;
+}
+tr.cabecera td{
+    text-transform: initial;
+    font-weight: bold;
+}
+img.img_report{
+    width: 50px;
+    height: 50px;
+}
+h4.title{
+    font-size: 20px; 
+    font-weight: bolder; 
+    color:#1D3B6D;
+    text-transform:uppercase;
+    text-align:center;
+}

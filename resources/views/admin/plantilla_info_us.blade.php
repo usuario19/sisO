@@ -12,7 +12,7 @@
     La informacion se actualizo exitosamente!!!!
   </div>
   <nav aria-label="breadcrumb">
-      <ol class="breadcrumb alert-success">
+      <ol class="breadcrumb navegacion">
         <li class="breadcrumb-item"><a href="{{ route('administrador.index')}}">Coordinadores</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $usuario->nombre ." ". $usuario->apellidos }}</li>
       </ol>
@@ -21,7 +21,7 @@
 <div class="row table-responsive-xl">
     <div class="container col-xl-3">
       <table class="table table-sm table-borderless mx-auto" style="width: 230px">
-        <tbody>
+        <tbody class="bg-light">
             <tr>
                 <td style="padding: 0px">
                   <div id="contenedor_info"  {{--  class="form-group col-md-12"  --}}>
@@ -33,7 +33,6 @@
                                 <a id="btnCancelar" title="Cancelar" class="btn btn-outline-dark button noVista">
                                     <span class="btn_hover ">
                                         <i id="btnCancelar" class="material-icons float-left" style="color:white">clear</i>
-                                        
                                     </span>
                                 </a>
                                 <a id="btnUpdate" title="Actualizar imagen"  class="btn btn-outline-dark button noVista">
@@ -53,21 +52,21 @@
                                 </a>
                               </div>
                             </div>
+                          </div>
+                        </div>  
                       </div>
-                      
-                    </div>  
-                  </div>
                   @include('admin.modal_crop')
                 </td>
             </tr>
             <tr>
               <td class="dato">
                 <div class="dato form-row m-1">
-                  <span class="dato display-1" style="font-size:16px; font-weight:450 ">{{ {{--  strtoupper  --}}($usuario->tipo ) }}</span>
-                  <span class="dato display-1" style="font-size:15px">{{ $usuario->nombre ." ". $usuario->apellidos }}</span>
-          
+                  <span class="dato display-1" style="font-size:16px; font-weight:bold;color:#E34C26 ">{{ {{--  strtoupper  --}}($usuario->tipo ) }}</span>
                 </div>
-                <div class="form-row errorLogin">
+                <div class="dato form-row m-1">
+                  <span class="dato display-1" style="font-size:15px">{{ $usuario->nombre ." ". $usuario->apellidos }}</span>
+                </div>
+                <div class="form-row errorLogin m-1">
                       <h6 id="error_foto">{{ $errors->has('foto_admin') ? $errors->first('foto_admin'):'' }}</h6>
                   </div>
               </td>
@@ -82,7 +81,7 @@
               
           </div>
       </div>
-    <div class="card-body">
+    <div class="card-body info_card">
         @yield('contenido_nav')
   
           

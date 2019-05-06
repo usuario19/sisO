@@ -13,4 +13,11 @@ class Fecha_Grupo extends Model
         'id_grupo',
     ];
     protected $hidden = ['remember_token'];
+
+    public function fecha(){
+    	return $this->belongsTo('App\Models\Fecha','id_fecha');
+    }
+    public function grupo(){
+    	return $this->belongsTo('App\Models\Grupo','id_grupo');
+    }
 }

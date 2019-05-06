@@ -1,4 +1,4 @@
-<div class="modal fade bd-example-moadl-lg" id="modalImportJugador" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal" id="modalImportJugador" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -47,8 +47,17 @@
                           {!! Form::text('id_club',$club->id_club, ['class'=>'form-control']) !!}
                         </div>
                     </div>
-                  
-                  <div class="form-group">
+                    <div class="form-group col-12">
+                      <div class="custom-file">
+                        <input name="file_excel" type="file" class="custom-file-input" id="excel_file" accept=".xlsx,.xls">
+                        <div class="form-group"></div>
+                        <label class="custom-file-label" for="excel_file">Seleccionar Archivo</label>
+                      </div>
+                      
+                    {{--  {!! Form::label('file_excel', 'Archivo Excel:', []) !!}
+                    {!! Form::file('file_excel', ['class'=>'form-control']) !!}  --}}
+                  </div>
+                  {{--  <div class="form-group">
                     <div class="form-group {{ $errors->has('file_excel') ? 'siError':'noError' }}">
                       {!! Form::label('file_excel', 'Archivo Excel:', []) !!}
                       {!! Form::file('file_excel', ['class'=>'form-control']) !!}
@@ -56,21 +65,18 @@
                     <div class="form-group errorLogin">               
                         <h6 id="error_file_excel">{{ $errors->has('file_excel') ? $errors->first('file_excel'):'' }}</h6>
                       </div>
-                  </div>
+                  </div>  --}}
                 </div>
             </div>
           </div>
-
-        
+        </div>
         <div class="modal-footer">
-            <div  class="form-row">
                 <div class="form-group col-md-6">
-                  {!! Form::submit('Importar', ['class'=>'btn btn-primary btn-block']) !!}
+                  {!! Form::submit('Importar', ['class'=>'btn btn_aceptar btn-block','id'=>'buttonSubmit','disabled']) !!}
                 </div>
                 <div class="form-group col-md-6">
-                  <a href="" class="btn btn-block btn-secondary" data-dismiss="modal" id="buttonClose">Cancelar</a>
+                  <a href="" class="btn btn-block btn-outline-secondary" data-dismiss="modal" id="buttonClose">Cancelar</a>
                 </div>
-              </div>
             {!! Form::close() !!}
         </div>
       </div>

@@ -1,23 +1,5 @@
-<div class="container-fluid " style="background:#ffffff">
-<div class="container-fluid -whitebg" style="padding: 0%">
-  <div class="container">
-    <div class="col-md-12">
-        <nav class="col-md-12 navbar navbar-light bg-white" style="padding: 5px 0% 0% 0%">
-            <a class="navbar-brand col-md-12" href="{{route('principal.index')}}">
-              <div class="row">
-                  <div class="col-xl-1 text-center float-left" style="padding:0% ;height: 60px"><img src="/storage/logos/abcd.jpg" height="60" class="d-inline-block align-top" alt=""></div>
-                  <div class="col-xl-5" style="padding:0%"><p class="title text-left" style="height: 60px; padding-block-start: 20px; padding-inline-start:50px">OLIMPIADAS SI.T.UMSS</p></div>
-              </div>
-              
-            </a>
-            
-          </nav>
-    </div>
-</div>
-</div>  
-</div>
-<div class="container-fluid " style="background:#DA4640">
-<div class="container ">
+<div class="container-fluid menu_style">
+<div class="container">
 
       <nav class="navbar navbar-expand-lg  navbar-dark">
 
@@ -33,60 +15,60 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Campeonatos
                 </a>
     
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href={{ route('gestion.index') }}>Lista de Campeonatos</a>
+                  <a class="dropdown-item" href={{ route('gestion.index') }} style="color:black">Lista de Campeonatos</a>
                   <div class="dropdown-divider"></div>
-                  <a id="gestiones" class="dropdown-item" href={{ route('coordinador.mis_gestiones') }}>Mis Campeonatos</a>
+                  <a id="gestiones" class="dropdown-item" href={{ route('coordinador.mis_gestiones') }} style="color:black">Mis Campeonatos</a>
                 </div>
               
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown active">
             <a class="nav-link" href="{{ route('administrador.index') }}" >
               Coordinadores
             </a>
           </li> 
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Jugadores
               </a>
   
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href={{ route('jugador.index') }}>Lista de jugadores</a>
-                <a id="jugadores" class="dropdown-item" href={{ route('coordinador.club_jugadores_ajax') }}>MIS JUGADORES</a>
+                <a class="dropdown-item" href={{ route('jugador.index') }} style="color:black">Lista de jugadores</a>
+                <a id="jugadores" class="dropdown-item" href={{ route('coordinador.club_jugadores_ajax') }} style="color:black">MIS JUGADORES</a>
               </div>
             </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Clubs
                 </a>
     
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('club.index') }}">Lista de clubs</a>
-                  <a class="dropdown-item" href={{ route('coordinador.index') }}>MIS CLUBS</a>
+                  <a class="dropdown-item" href="{{ route('club.index') }}" style="color:black">Lista de clubs</a>
+                  <a class="dropdown-item" href={{ route('coordinador.index') }} style="color:black">MIS CLUBS</a>
                 </div>
           </li> 
 
-           <li class="nav-item ">
+           <li class="nav-item active">
             <a class="nav-link" href="{{ route('disciplina.index')}}">
               Disciplinas
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
               <a class="nav-link" href="{{ route('lugares.index') }}">
                 lugares
               </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
               <a class="nav-link" href="{{ route('aviso.index') }}">
                 avisos
               </a>
           </li> 
-          <li class="nav-item dropdown">
+          {{--  <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Resultados
               </a>
@@ -97,8 +79,8 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
-            </li>
-            <li class="nav-item">
+            </li>  --}}
+            <li class="nav-item active">
                 <a class="nav-link" href="{{ route('reporte.index') }}">
                   Reportes
                 </a>
@@ -110,7 +92,7 @@
                     <div class="row mx-auto">
                       <span class="mx-auto row">
                         <img class="rounded-circle d-block text-center" src="/storage/fotos/{{ Auth::User()->foto_admin }}" alt="" height=" 40px" width="38px">
-                        <i class="material-icons btn text-center float-left">
+                        <i class="material-icons btn text-center float-left" style="color:white">
                             keyboard_arrow_down
                         </i>
                       </span>

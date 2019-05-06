@@ -65,7 +65,8 @@ class Administrador extends Authenticatable
     {
         if($value !== null)
         {
-            $nombre = time().'-'.'image';
+            //$nombre = time().'-'.'image.'.$value->getClientOriginalExtension();
+            $nombre = time().'-'.'image.'.$value->guessClientExtension();
             //obtiene eel nombre del archivo
             Storage::disk('fotos')->put($nombre, file_get_contents($value));
 

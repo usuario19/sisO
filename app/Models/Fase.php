@@ -18,6 +18,9 @@ class Fase extends Model
     public function fase_tipos (){
     	return $this->hasMany('App\Models\Fase_Tipo','id_fase');
     }
+    public function seleccion_eliminacions (){
+    	return $this->hasMany('App\Models\Seleccion_Eliminacion','id_fase');
+    }
     public function fechas(){
     	return $this->hasMany('App\Models\Fecha','id_fase');
     }

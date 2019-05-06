@@ -34,20 +34,82 @@ class CropImageController extends Controller
      */
     public function store(Request $request)
     {
+
         //
-        $targ_w = $targ_h = 400;
-        $jpeg_quality = 400;
+        $targ_w = $targ_h = 300;
+        $jpeg_quality = 300;
 
-        $src = $_SERVER['DOCUMENT_ROOT'].$request->src;
+        //$src = $_SERVER['DOCUMENT_ROOT'].$request->src;
+        $src = public_path($request->src);
         $output_filename=$src;
-        $img_r = imagecreatefromjpeg($src);
-        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+        $informacion = getimagesize($src);
+        $extension = $informacion["mime"];
+        //echo $extension;
+        switch ($extension) {
+            case 'image/jpeg':
+                $img_r = imagecreatefromjpeg($src);
+                $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+                imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+                    $targ_w,$targ_h,$request->w,$request->h);
+                imagejpeg($dst_r, $output_filename, $jpeg_quality);
+                break;
+            case 'image/jpg':
+                $img_r = imagecreatefromjpeg($src);
+                $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+                imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+                    $targ_w,$targ_h,$request->w,$request->h);
+                imagejpeg($dst_r, $output_filename, $jpeg_quality);
+                break;
+            case 'image/png':
+                $img_r = imagecreatefrompng($src);
+                $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+                imagesavealpha($dst_r, TRUE);
+                $empty = imagecolorallocatealpha($dst_r,0x00,0x00,0x00,127);
+                imagefill($dst_r, 0, 0, $empty);
+                imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+                    $targ_w,$targ_h,$request->w,$request->h);
+                imagepng($dst_r, $output_filename);
+                break;
+            case 'image/gif':
+                $img_r = imagecreatefromgif($src);
+                $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+                imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+                $targ_w,$targ_h,$request->w,$request->h);
+                imagegif($dst_r, $output_filename, $jpeg_quality);
+                break;
+        }
+        /* if(strpos($extension, "jpg")|| strpos($extension, "jpeg"))
+        {
+            $img_r = imagecreatefromjpeg($src);
+            $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+            imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+                $targ_w,$targ_h,$request->w,$request->h);
+            imagejpeg($dst_r, $output_filename, $jpeg_quality);
+            
+        }
 
-        imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
-            $targ_w,$targ_h,$request->w,$request->h);
+        if(strpos($extension, "png"))
+        {
+            $img_r = imagecreatefrompng($src);
+            $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+            imagesavealpha($dst_r, TRUE);
+            $empty = imagecolorallocatealpha($dst_r,0x00,0x00,0x00,127);
+            imagefill($dst_r, 0, 0, $empty);
+            imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+                $targ_w,$targ_h,$request->w,$request->h);
+            imagepng($dst_r, $output_filename);
+        }
 
-        /* header('Content-type: image/jpeg'); */
-        imagejpeg($dst_r, $output_filename, $jpeg_quality);
+        if(strpos($extension, "gif"))
+        {
+            $img_r = imagecreatefromgif($src);
+            $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+            imagecopyresampled($dst_r,$img_r,0,0,$request->x,$request->y,
+                $targ_w,$targ_h,$request->w,$request->h);
+            imagegif($dst_r, $output_filename, $jpeg_quality);
+        } */
+
+
         return response()->json(array('success' => true));
     }
 

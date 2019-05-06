@@ -12,8 +12,6 @@ $(document).ready(function(e){
 $("#form_create").submit(function(event) {
 	/* Act on the event */
 		event.preventDefault();
-		var input = $('#form_create').find('input');
-		var imagen = $('#imgOrigen');
 		var textarea = $("#form_create").find('textarea');
 
         $.ajax({
@@ -27,12 +25,12 @@ $("#form_create").submit(function(event) {
 
 			//window.location.reload();
 			//document.getElementById("mensaje").style.visibility = 'visible';
-        	$("#btnCancelar").click();
-			for (var i = 1; i < input.length; i++) {
+        $("#btnCancelar").click();
+			/* for (var i = 1; i < input.length; i++) {
 				if(input[i].type != 'radio' && input[i].type != "date" && input[i].type != "submit")
 					input[i].value ="";
-			}
-			textarea.val("");
+			} */
+			
 			$("#buttonClose").click();
 			window.location.reload();
 			  
@@ -42,95 +40,30 @@ $("#form_create").submit(function(event) {
 			
 		},
 		error:function(data){
-			/* console.log(data) */
-
-			if(data.responseJSON.errors.nombre )
-			{
-				console.log("entro")
-				$('#nombre').addClass('is-invalid');
-				$('#nombre').next().addClass('invalid-feedback').text(data.responseJSON.errors.nombre);
-			}
-			else
-			{
-				$('#nombre').removeClass('is-invalid');
-				$('#nombre').addClass('is-valid');
-				$('#nombre').next().addClass('invalid-feedback').text(" ");
-			}
-
-			if (data.responseJSON.errors.apellidos ) {
-				$('#apellidos').addClass('is-invalid');
-				$('#apellidos').next().addClass('invalid-feedback').text(data.responseJSON.errors.apellidos);
-			}
-			else
-			{
-				$('#apellidos').removeClass('is-invalid');
-				$('#apellidos').addClass('is-valid');
-				$('#apellidos').next().addClass('invalid-feedback').text(" ");
-			}
-			if (data.responseJSON.errors.fecha_nac ) {
-				$('#fecha_nac').addClass('is-invalid');
-				$('#fecha_nac').next().addClass('invalid-feedback').text(data.responseJSON.errors.fecha_nac);
-			}
-			else
-			{
-				$('#fecha_nac').removeClass('is-invalid');
-				$('#fecha_nac').addClass('is-valid');
-				$('#fecha_nac').next().addClass('invalid-feedback').text(" ");
-			}
-
-			if (data.responseJSON.errors.ci ) {
-				$('#ci').addClass('is-invalid');
-				$('#ci').next().addClass('invalid-feedback').text(data.responseJSON.errors.ci);
-			}
-			else
-			{
-				$('#ci').removeClass('is-invalid');
-				$('#ci').addClass('is-valid');
-				$('#ci').next().addClass('invalid-feedback').text(" ");
-			}
-
-			if (data.responseJSON.errors.email ) {
-				$('#email').addClass('is-invalid');
-				$('#email').next().addClass('invalid-feedback').text(data.responseJSON.errors.email);
-			}
-			else
-			{
-				$('#email').removeClass('is-invalid');
-				$('#email').addClass('is-valid');
-				$('#email').next().addClass('invalid-feedback').text(" ");
-			}
-
-			if (data.responseJSON.errors.password ) {
-				$('#password').addClass('is-invalid');
-				$('#password').next().addClass('invalid-feedback').text(data.responseJSON.errors.password);
-			}
-			else
-			{
-				$('#password').removeClass('is-invalid');
-				$('#password').addClass('is-valid');
-				$('#password').next().addClass('invalid-feedback').text(" ");
-
-				if (data.responseJSON.errors.password_confirmation ) {
-					$('#password_confirmation').addClass('is-invalid');
-					$('#password_confirmation').next().addClass('invalid-feedback').text(data.responseJSON.errors.password_confirmation);
+			$.each($('#form_create').find(':input'),function(){
+				var indice =  $(this).attr('name');
+				//console.log(indice);
+				if(indice != "_token" && indice != undefined){
+					if(data.responseJSON.errors[indice] )
+					{
+						$('#'+indice).addClass('is-invalid');
+						$('#'+indice).next().addClass('invalid-feedback').text(data.responseJSON.errors[indice]);
+					}
+					else
+					{
+						$('#'+indice).removeClass('is-invalid');
+						$('#'+indice).addClass('is-valid');
+						$('#'+indice).next().addClass('invalid-feedback').text(" ");
+						if(indice.indexOf('descripcion') > -1)
+						{
+							if($.trim($(this).val()).length < 1){
+								$('#'+indice).removeClass('is-valid');
+							}
+						}
+					}
 				}
-				else
-				{
-					$('#password_confirmation').removeClass('is-invalid');
-					$('#password_confirmation').addClass('is-valid');
-					$('#password_confirmation').next().addClass('invalid-feedback').text(" ");
-				}
-			}
-			if (data.responseJSON.errors.descripcion_admin ) {
-				$('#descripcion_admin').addClass('is-invalid');
-				$('#descripcion_admin').next().addClass('invalid-feedback').text(data.responseJSON.errors.descripcion_admin);
-			}
-			else
-			{
-				$('#descripcion_admin').removeClass('is-invalid');
-				$('#descripcion_admin').next().addClass('invalid-feedback').text(" ");
-			}
-		}
+			});
+		} 
 
 	});
 });

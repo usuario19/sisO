@@ -38,7 +38,7 @@
                               <!--th>Apellidos</th-->
                               <th scope="col">GENERO</th>
                               
-                              <th>{!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}</th>
+                              <th>{!! Form::checkbox('todo','todo', false, ['id'=>'check_jug_reg','class'=>'check_all']) !!}</th>
                               
                             </tr>
                             
@@ -68,7 +68,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {!! Form::checkbox('id_jugadores[]',$usuario->id_jugador, false, ['class'=>'check_us']) !!}
+                                    {!! Form::checkbox('id_jugadores[]',$usuario->id_jugador, false, ['class'=>'check_jug_reg']) !!}
                                 </td>
                                 
                               </tr>
@@ -108,7 +108,7 @@
                               <!--th>Apellidos</th-->
                               <th scope="col">GENERO</th>
                               
-                              <th>{!! Form::checkbox('todo','todo', false, ['id'=>'todo_hab']) !!}</th>
+                              <th>{!! Form::checkbox('todo','todo', false, ['id'=>'check_jug_hab','class'=>'check_all']) !!}</th>
                              
                             </tr>
                             
@@ -137,7 +137,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {!! Form::checkbox('id_jugadores_ins[]',$usuario->jugador->jugador_inscripciones->where('id_inscripcion',$datos->first()->id_inscripcion)->first()->id_insc_jug, false, ['class'=>'check_hab']) !!}
+                                    {!! Form::checkbox('id_jugadores_ins[]',$usuario->jugador->jugador_inscripciones->where('id_inscripcion',$datos->first()->id_inscripcion)->first()->id_insc_jug, false, ['class'=>'check_jug_hab']) !!}
                                 </td>
                                 
                               </tr>

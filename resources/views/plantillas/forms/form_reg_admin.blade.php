@@ -1,4 +1,4 @@
-<div class="form-row">
+		<div class="form-row">
 			<div class="form-group col-md-6">
 				{!! Form::label('nombre', 'Nombre', []) !!}
 		      	{!! Form::text('nombre', null , ['class' =>'form-control', 'placeholder'=>'Nombres']) !!}
@@ -19,22 +19,22 @@
 		</div>
 
 	 	<div class="form-row">
-
-			
 				<div class="form-group col-md-4">
-					{!! Form::radio('genero', 1 ,1,['id'=>'generof','class'=>'radio']) !!}
-					{!! Form::label('generof', 'Femenino', []) !!}
-					
+					<div class="custom-control custom-radio">					
+						{!! Form::radio('genero', 1 ,1,['id'=>'generof','class'=>'custom-control-input']) !!}
+						{!! Form::label('generof', 'Femenino', ['class'=>'custom-control-label']) !!}
+					</div>
 				</div>
-				
-				<div class="form-group col-md-4">
 						
-					{!! Form::radio('genero', 2 ,2,['id'=>'generom','class'=>'radio']) !!}
-					{!! Form::label('generom', 'Masculino', []) !!}
-					
+				<div class="form-group col-md-4">
+					<div class="custom-control custom-radio">	
+						{!! Form::radio('genero', 2 ,2,['id'=>'generom','class'=>'custom-control-input']) !!}
+						{!! Form::label('generom', 'Masculino', ['class'=>'custom-control-label']) !!}
+					</div>
 				</div>
 				<div class="form-group"></div>
-		</div>
+				
+			</div>
    		<div class="form-row">
 			<div class="form-group col-md-6">
 	  			{!! Form::label('fecha_nac', 'Fecha de Nacimiento', []) !!}
@@ -48,13 +48,7 @@
 				<div class="form-group"></div>
 			</div>
   		</div>
-		<div class="form-row">
-	  		<div class="form-group col-md-12">
-				{!! Form::label('email', 'Correo electronico', []) !!}
-				{!! Form::text('email', null , ['class' =>'form-control', 'placeholder'=>'example@example.com']) !!}
-				<div class="form-group"></div>
-			</div>
-		</div>
+		
 			
     	
 

@@ -2,6 +2,7 @@ $("#fecha").change(function (event) {
     consultar_partidos();
 });
 $("#tomorrow").click(function(event){
+    console.log('entro');
     consultar_partidos();
 });
 $("#yesterday").click(function(event){
@@ -9,6 +10,7 @@ $("#yesterday").click(function(event){
 });
 
 function consultar_partidos(){
+    $("#cargando").show();
     var contenido = $('#partidos_hoy');
     $.ajax({
         headers: {
@@ -24,15 +26,18 @@ function consultar_partidos(){
         },
         
         success: function(data){
-        $("#cargando").hide();
-        contenido.html(data.html);
+            $("#cargando").hide();
+            console.log(data);
+            $('#partidos_hoy').html(data.html);
         /* $.getScript("/js/vista_previa.js", function(){});
         $.getScript("/js/validaciones.js", function(){});
         $.getScript("/js/redirect.js", function(){});
         $.getScript("/js/checkbox.js", function(){}); */
         },
         error: function(data){
+            $("#cargando").show();
             console.log(data);
+            $('#partidos_hoy').html(data.html);
         },
         
         });
@@ -67,6 +72,8 @@ function consultar_partidos(){
             },
             error: function(data){
                 console.log(data);
+            
+
             },
             
             });

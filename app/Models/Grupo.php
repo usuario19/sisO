@@ -23,6 +23,9 @@ class Grupo extends Model
     public function grupo_seleccions(){
     	return $this->hasMany('App\Models\Grupo_seleccion');
     }
+    public function fecha_grupos(){
+    	return $this->hasMany('App\Models\Fecha_Grupo','id_grupo');
+    }
 
     public function grupo_club_participaciones(){
     	return $this->hasMany('App\Models\Grupo_Club_Participacion','id_grupo');

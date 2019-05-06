@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Centro;
+use App\Http\Requests\CentroRequest;
 
 class LugarController extends Controller
 {
@@ -35,12 +36,12 @@ class LugarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CentroRequest $request)
     {
-        $this->validate($request,[
+        /* $this->validate($request,[
             'nombre_centro'=>'required',
             'ubicacion_centro'=>'required',
-        ]);
+        ]); */
         $datos = new Centro($request->all());
         $datos->save();
         flash('Se registro correctamente el centro.')->success()->important();
@@ -73,7 +74,18 @@ class LugarController extends Controller
      */
     public function edit($id)
     {
-        //
+        /**$datos = DB::table('disciplinas')
+        ->where('id_disc',$id)
+        ->get();
+
+        foreach ($datos as $dato) {
+            $disciplina = $dato;
+        }
+        return view('disciplina.editar_disc')->with('disciplina',$disciplina);*/
+
+        $centro = Centro::find($id);
+    
+        return response()->json($centro);
     }
 
     /**
@@ -83,13 +95,14 @@ class LugarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CentroRequest $request/* , $id */)
     {
         //
-        $this->validate($request,[
+       /*  $this->validate($request,[
             'nombre_centro'=>'required',
             'ubicacion_centro'=>'required',
-        ]);
+        ]); */
+        $id = $request->get('id_centro');
         $datos = Centro::find($id);
         $datos->fill($request->all());
         $datos->save();

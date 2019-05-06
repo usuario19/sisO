@@ -9,6 +9,8 @@ function toTop() {
 	
 $("#form_update").submit(function(event) {
 	event.preventDefault();
+		$('.button_spiner').show();
+		$('.btn_aceptar').hide();
 
 		var input = $('#form_update').find('input');
 
@@ -21,7 +23,7 @@ $("#form_update").submit(function(event) {
         
         $.ajax({
 			type: 'POST',
-            url: "/administrador/update/"+value+"",
+            url: "/administrador/"+value+"",
 			data: new FormData(this),
 			//dataType: "json",
             contentType: false,
@@ -29,15 +31,70 @@ $("#form_update").submit(function(event) {
 			processData:false,
 			
 		success: function(data){
-			toTop();
-			document.getElementById("mensaje").style.display = 'block';
-			timeout();
+			/* toTop(); */
+			/* document.getElementById("mensaje").style.display = 'block';
+			timeout(); */
 			window.location.reload();
 		},
 		error:function(data){
-			//document.getElementById("mensaje").style.display = 'none';
 			console.log(data);
-			if(data.responseText.errors.nombre )
+			$('.btn_aceptar').show();
+			$('.button_spiner').hide();
+			$.each($('#form_update').find(':input'),function(){
+				var indice =  $(this).attr('name');
+				console.log(indice);
+				if(indice != "_token" && indice != undefined){
+					if(data.responseJSON.errors[indice] )
+				{
+					$('#'+indice).addClass('is-invalid');
+					$('#'+indice).next('div').addClass('invalid-feedback').text(data.responseJSON.errors[indice]);
+				}
+				else
+				{
+					$('#'+indice).removeClass('is-invalid');
+					$('#'+indice).addClass('is-valid');
+					$('#'+indice).next('div').addClass('invalid-feedback').text(" ");
+					if(indice.indexOf('descripcion') > -1){
+						if($.trim($(this).val()).length < 1){
+							$('#'+indice).removeClass('is-valid');
+						}
+					}
+					if(indice.indexOf('editar') > -1){
+						$('#'+indice).removeClass('is-valid');
+					}
+
+					if(indice.indexOf('newpassword') > -1 || indice.indexOf('newpassword_confirmation') > -1){
+						if(!$('#editar').is(':checked')){
+							$('#'+indice).removeClass('is-valid');
+						}
+							
+					}
+				}
+				}
+				
+			});
+
+
+			//document.getElementById("mensaje").style.display = 'none';
+			//console.log(data);
+			/* $.each(data.responseJSON.errors,function(indice,valor){
+				if(data.responseJSON.errors+"."+indice)
+				{
+					console.log("entro")
+					$('#'+indice).addClass('is-invalid');
+					$('#'+indice).next().addClass('invalid-feedback').text(valor);
+				}
+				else
+				{
+					$('#'+indice).removeClass('is-invalid');
+					$('#'+indice).addClass('is-valid');
+					$('#'+indice).next().addClass('invalid-feedback').text(" ");
+				}
+
+				//console.log(indice + ' - ' + valor);
+		  	}); */
+
+			/* if(data.responseJSON.errors.nombre )
 			{
 				console.log("entro")
 				$('#nombre').addClass('is-invalid');
@@ -122,19 +179,8 @@ $("#form_update").submit(function(event) {
 			{
 				$('#newpassword').removeClass('is-invalid');
 				$('#newpassword').next().addClass('invalid-feedback').text(" ");
-
-				/* if (data.responseJSON.errors.password_confirmation ) {
-					$('#password_confirmation').addClass('is-invalid');
-					$('#password_confirmation').next().addClass('invalid-feedback').text(data.responseJSON.errors.password_confirmation);
-				}
-				else
-				{
-					$('#password_confirmation').removeClass('is-invalid');
-					$('#password_confirmation').addClass('is-valid');
-					$('#password_confirmation').next().addClass('invalid-feedback').text(" ");
-				} */
-			}
-		}
+			} */
+		} 
 
 	});
 });

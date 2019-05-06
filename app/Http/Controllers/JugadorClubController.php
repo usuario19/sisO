@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jugador_Club;
+use App\Http\Requests\JugadorClubRequest;
 
 class JugadorClubController extends Controller
 {
@@ -33,12 +34,18 @@ class JugadorClubController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JugadorClubRequest $request)
     {
+        /* $this->validate($request,[
+            'id_jug'=>'required',
+            'club'=>'required', 
+        ],[
+                'required'=>'Debe seleccionar un club.',
+            ]);
         //
-         //
+         // */
           $datos = new Jugador_Club();
-          $datos->id_jugador = $request->id;
+          $datos->id_jugador = $request->id_jug;
           $datos->id_club = $request->club;
           $datos->save();
            

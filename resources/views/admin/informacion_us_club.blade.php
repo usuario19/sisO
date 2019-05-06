@@ -21,51 +21,89 @@
 
 
 @section('contenido_nav')
-        
-          
-            <div class="col-md-12 table-responsive-xl">
-               
-              <table class="mi_tabla table table-borderless">
-                <thead>
-                  <tr class="border-table">
-                    {{--  <th scope="col">#</th>  --}}
-                    
-                    <th style="width: 200px" scope="col">Nombre</th>
-                    <th style="width: 200px" scope="col">CIUDAD</th>
-                    <th scope="col">LOGO</th>
-                    <th><button type="button" style="float: right" class="btn btn-warning" data-toggle="modal" data-target="#modal">Agregar</button></th>
-                    {{--  <th><button type="button" class="btn  btn-block btn-warning" data-toggle="modal" data-target="#modal">Agregar</button></th>  --}}
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($usuario->admin_clubs as $club)
-                  
-                  <tr class="border-table link_pointer" style="cursor:pointer" data-href="{{ route('coordinador.show', $club->id_club) }}">
-                      {{--  <th scope="row">{{ $club->id_club}}</th>  --}}
-                      
-                      <td>{{ $club->club->nombre_club}}</td>
-                      <td>{{ $club->club->ciudad}}</td>
-                      <td data-href="{{ route('coordinador.show', $club->id_club) }}"><img class="rounded float-left" src="/storage/logos/{{$club->club->logo}}" alt="" height=" 50px" width="50px"></td>
-                      <td><a style="float: right" href="{{ route('club.destroy',$club->id_club) }}" class="button_delete">
-                          <i title="Eliminar" class="material-icons delete_button">
-                              delete
-                          </i>
-                          </a>
-                      </td>
-                  </tr>
-                
-                  @endforeach
-                </tbody>
-              </table>
-              
-               
-              @include('admin.modal_reg_club')
+      @include('admin.modal_reg_club')
 
-            </div>
+            <div class="table-responsive-xl">
+                        <div class="col-md-12">
+                            <div class="title-table">
+                                Clubs que administra actualmente:
+                              </div>
+                            <table class="table table-borderless tabla_info_club col-md-12" style="margin: 0%">
+                                  <td>
+                                      <div class="form-group col-xl-3 float-right">
+                                          <a style="float: right" class="btn btn-block btn-success" data-toggle="modal" data-target="#modal">
+                                            <i class="material-icons" style="top: 5px">
+                                                add
+                                            </i>
+                                          Agregar
+                                        </a>
+                                        </div>
+
+                                   {{--  <a style="float: right" class="btn btn-success" data-toggle="modal" data-target="#modal">
+                                      <i class="material-icons" style="top: 5px">
+                                          add
+                                      </i>
+                                    Agregar
+                                  </a> --}}</td>
+                            </table>
+                        </div>
+                      <div class="col-md-12 mx-auto">
+                          <div class="form-row">
+                              @foreach($usuario->admin_clubs as $club)
+                                    <div class="col-md-4 mx-auto bg-white" style="position:relative; border: solid rgb(227, 228, 230) 1px; margin-bottom: 20px;">
+
+                                        <a class="title-span" href="{{ route('coordinador.show', $club->id_club) }}">
+                                            <div class="text-center" style="margin: 10px 0px">
+                                                <img class="img_info_club mx-auto rounded-circle img-thumbnail d-block" src="/storage/logos/{{ $club->club->logo}}" alt="">
+                                                <br>
+                                                <div style="padding:10px">
+                                                  <span style="color: black">
+                                                    {{ $club->club->nombre_club}}<br>
+                                                    {{ $club->club->ciudad}}
+                                                  </span>
+                                                </div>
+                                                
+                                            </div>
+                                        </a>
+                                        <a href="{{ route('club.destroy',$club->id_club) }}" class="eliminar_card" data-toggle="modal" data-target="#exampleModal{{ $club->id_club }}">
+                                          <i title="Eliminar" class="material-icons">
+                                              clear
+                                          </i>
+                                        </a>
+                                        <div class="modal fade" id="exampleModal{{ $club->id_club}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header modal_advertencia">
+                                                <h5 class="modal-title" id="exampleModalLabel">advertencia:</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body modal_advertencia">
+                                                ¿Esta seguro de querer eliminar eliminar el club?
+                                              </div>
+                                              <div class="modal-footer">
+                                                 <div class="col-6">
+                                                   <a href="{{ route('club.destroy',$club->id_club) }}" class="btn btn-danger btn-block btn_eliminar"> Eliminar </a>
+                                                 </div>
+                                                 <div class="col-6">
+                                                   <a class="btn btn-outline-secondary btn-block" data-dismiss="modal">No</a>
+                                                 </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                    </div>
+                              
+                              @endforeach
+                          </div>
+                      </div>
+
         </div>
 
-      </div>
-    </div>
+      {{-- </div>
+    </div> --}}
 
 
 
@@ -90,6 +128,10 @@
     </script>
   {!! Html::script('/js/vista_previa.js') !!}
   {!! Html::script('/js/validaciones.js') !!}
+  {!! Html::script('/js/validacion_ajax_request_club.js') !!}
+  {!! Html::script('/Jcrop/js/jquery.Jcrop.min.js') !!}
+  {!! Html::script('/js/jcrop_imagen.js') !!}
+  {!! Html::script('/js/reset_inputs.js') !!}
   
 
 @endsection

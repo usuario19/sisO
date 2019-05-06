@@ -56,7 +56,7 @@
 											<th>Nombre Completo</th>
 											<th>Genero</th>
 											{{--  <th>club</th>  --}}
-											<th>{!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}</th>
+											<th>{!! Form::checkbox('todo','todo', false, ['id'=>'jug_hab_gest','class'=>'check_all']) !!}</th>
 										</tr>
 									</thead>
 									<tbody id="datos">
@@ -78,7 +78,7 @@
 													</td>
 													
 													<td>
-														{!! Form::checkbox('id_jug_club[]',$usuario->jugador->jugador_clubs->where('id_club',$usuario->inscripcion->admin_club->id_club)->first()->id_jug_club, false, ['class'=>'check_us']) !!}
+														{!! Form::checkbox('id_jug_club[]',$usuario->jugador->jugador_clubs->where('id_club',$usuario->inscripcion->admin_club->id_club)->first()->id_jug_club, false, ['class'=>'jug_hab_gest']) !!}
 													</td>
 												</tr>
 											@elseif($dato->disciplina->categoria ==0)
@@ -129,7 +129,7 @@
 											<th>Foto</th>
 											<th>Nombre Completo</th>
 											<th>Genero</th>
-											<th>{!! Form::checkbox('todo','todo', false, ['id'=>'todo_hab']) !!}</th>
+											<th>{!! Form::checkbox('todo','todo', false, ['id'=>'jug_hab_disc','class'=>'check_all']) !!}</th>
 										</tr>
 									</thead>
 									<tbody id="datos2">
@@ -149,7 +149,7 @@
 												</td>
 												
 												<td>
-													{!! Form::checkbox('id_seleccion[]',$usuario->id_seleccion, false, ['class'=>'check_hab']) !!}
+													{!! Form::checkbox('id_seleccion[]',$usuario->id_seleccion, false, ['class'=>'jug_hab_disc']) !!}
 												</td>
 												
 											</tr>

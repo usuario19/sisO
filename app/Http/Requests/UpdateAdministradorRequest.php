@@ -33,7 +33,7 @@ class UpdateAdministradorRequest extends FormRequest
             'apellidos' =>['required','max:150',  new Alpha_spaces], 
             'genero' =>'required',
             'fecha_nac' =>'required|date',
-            'foto_admin' =>'mimes:jpeg,bmp,png,jpg|max:5120',
+            'foto_admin' =>'mimes:jpeg,gif,png,jpg|max:5120',
             //'descripcion_admin'=>'required|max:200',
             'email'=>'required|email',
             //'password'=>'required',

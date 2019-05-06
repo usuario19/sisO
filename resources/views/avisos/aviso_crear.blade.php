@@ -10,84 +10,80 @@
 
 
     <div class="container">
-        <div class="form-group container col-md-12">
-                <div class="container-fluid" style="background: #FFC107">
-                    <div class="div-title-sub container text-left">
-                        <div class="row">
-                            <a class="" href="{{ route('aviso.index') }}" style="text-decoration:none">
-                                <h5 style="margin:4px 0 0 0; padding-inline-start: 5px; color: #274B12; font-size: 16px" class="title-principal">Avisos
-                                        <i class = "material-icons btn" style="padding: 0px"> 
-                                                keyboard_arrow_right
-                                        </i>
-                                        
-                                </h5>
-                            </a>
-                            <h5 style="margin: auto 0; font-size: 16px; color: #274B12" class="title-principal">Crear aviso</h5>
-                        </div>
-                    </div>
-                </div>
-            {{--  <table class="table table-sm table-borderless">
-                <tbody>
-                    <th>
-                        <div class=" container col-md-10 text-center" style="padding: 5px 0px">
-                            <h4 class=""> CREAR AVISO</h4></td>
-                        </div>
-                    </th>
-                </tbody>
-            </table>  --}}
-        </div><br>
-        <div class="card container col-md-11">
-            
-            {!! Form::open(['route'=>'aviso.store','method' => 'POST']) !!}
-                <div class="form-row">
-                    <div class="form-group" style="display: none">
-                        {!! Form::label('id_administrador', 'Administrador', []) !!}
-                        {!! Form::text('id_administrador',  Auth::user()->id_administrador, ['class'=>'form-control']) !!}
-                    </div>
-                    
-                    <div class="form-group col-md-12">
-                        {!! Form::label('titulo', 'Titulo *', []) !!}
-                        {!! Form::text('titulo', null, ['class'=>'form-control']) !!}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {!! Form::label('id_gestion', 'Gestion', []) !!}
-                            <select class="form-control form-control-sm" name="id_gestion" id="id_gestion">
-                                <option value=" ">{{ "Seleccione" }}</option>
-                                @foreach ($gestiones as $gestion)
-                                    <option value="{{ $gestion->id_gestion}}">{{$gestion->nombre_gestion}}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        {!! Form::label('id_disc', 'Disciplina', []) !!}
-                        {!! Form::select('id_disc', [], null, ['id'=>'id_disc','class'=>'form-control form-control-sm','disabled']) !!}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {!! Form::label('fecha_ini_aviso', 'Fecha de inicio *', []) !!}
-                        {!! Form::date('fecha_ini_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {!! Form::label('fecha_fin_aviso', 'Fecha de Fin', []) !!}
-                        {!! Form::date('fecha_fin_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
-                    </div>
-                </div>
-                <div class="form-row">
-                        <div class="form-group col-md-12">
-                            {!! Form::label('contenido', 'Contenido *', []) !!}
-                            <textarea name="contenido" id="editor" class="form-control" rows="13"></textarea>
-                        </div>
-                </div>
+            <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb navegacion">
+                      <li class="breadcrumb-item"><a href="{{ route('aviso.index') }}">Avisos</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{ "Crear nuevo aviso" }}</li>
+                    </ol>
+                  </nav>
     
-                <div class="form-row col-md-12">
-                    <div class="form-group col-md-4 text-right">
-                      {!! Form::submit('Publicar aviso', ['class'=>'btn btn-secondary btn-block letter-size']) !!}
+        <div class="card">
+            <div class="card-header modal-header modal-title">
+                    <h4 class="modal-title" id="modalLabel">Nuevo aviso</h4>
+            </div>
+            <div class="card-body">
+                    {!! Form::open(['route'=>'aviso.store','method' => 'POST','id'=>'form_create']) !!}
+                    <div class="form-row">
+                        <div class="form-group" style="display: none">
+                            {!! Form::label('id_administrador', 'Administrador', []) !!}
+                            {!! Form::text('id_administrador',  Auth::user()->id_administrador, ['class'=>'form-control']) !!}
+                            <div class="form-group"></div>
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            {!! Form::label('titulo', 'Titulo *', []) !!}
+                            {!! Form::text('titulo', null, ['class'=>'form-control']) !!}
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                    {{-- <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {!! Form::label('id_gestion', 'Gestion', []) !!}
+                                <select class="form-control form-control-sm" name="id_gestion" id="id_gestion">
+                                    <option value=" ">{{ "Seleccione" }}</option>
+                                    @foreach ($gestiones as $gestion)
+                                        <option value="{{ $gestion->id_gestion}}">{{$gestion->nombre_gestion}}</option>
+                                    @endforeach
+                                </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('id_disc', 'Disciplina', []) !!}
+                            {!! Form::select('id_disc', [], null, ['id'=>'id_disc','class'=>'form-control form-control-sm','disabled']) !!}
+                        </div>
+                    </div> --}}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {!! Form::label('fecha_ini_aviso', 'Fecha de inicio *', []) !!}
+                            {!! Form::date('fecha_ini_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                            <div class="form-group"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('fecha_fin_aviso', 'Fecha de Fin', []) !!}
+                            {!! Form::date('fecha_fin_aviso', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {!! Form::label('contenido', 'Contenido *', []) !!}
+                                <textarea name="contenido" id="editor" class="form-control" rows="13"></textarea>
+                            </div>
                     </div>
                 </div>
-            {!! Form::close() !!}
+                <div class="card-footer">
+                                <div class="form-group col-md-3  float-right">
+                                    <button class="btn btn-block btn-primary button_spiner" disabled style="display:none">
+                                        <span class="spinner-grow spinner-grow-sm button_spinner" role="status" aria-hidden="true"></span>
+                                        Cargando...
+                                    </button>
+                                    {!! Form::submit('Publicar aviso', ['class'=>'btn btn-block btn_aceptar btn-primary btn_aceptar']) !!}
+                                </div>
+                                {{-- <div class="form-group col-md-6">
+                                        <button class="btn btn-block btn-outline-secondary btn_cerrar" type="reset">Cancelar</a>
+                                </div> --}}
+                </div>
+                {!! Form::close() !!}
+            
         </div>
     </div>
     
@@ -128,5 +124,6 @@
         
     </script>
     
-    {!! Html::script('/js/cargar_participacion.js') !!}
+    {!! Html::script('/js/validacion_ajax_request_aviso.js') !!}
+    {!! Html::script('/js/validaciones.js') !!}
 @endsection

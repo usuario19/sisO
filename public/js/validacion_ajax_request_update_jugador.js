@@ -9,11 +9,6 @@ function toTop() {
 	
 $("#form-update-jugador").submit(function(event) {
 	event.preventDefault();
-
-		var input = $('#form_update').find('input');
-
-		var textarea = $("#form_update").find('textarea');
-
 		var value = $('#id').val();
 
 		
@@ -33,7 +28,40 @@ $("#form-update-jugador").submit(function(event) {
 				window.location.reload();
 		},
 		error:function(data){
-			if(data.responseJSON.errors.nombre_jugador )
+			/* console.log(data); */
+			/* console.log(data); */
+			$.each($('#form-update-jugador').find(':input'),function(){
+				var indice =  $(this).attr('name');
+
+				if(indice != "_token" && indice != undefined){
+					console.log(indice);
+					if(data.responseJSON.errors[indice])
+					{
+						console.log('entro');
+						$(':input[name='+indice+']').addClass('is-invalid');
+						$(':input[name='+indice+']').next().addClass('invalid-feedback').text(data.responseJSON.errors[indice]);
+					}
+					else
+					{
+						if($(this).attr('type') != 'radio')
+						{	
+								console.log('entro');
+								$(':input[name='+indice+']').removeClass('is-invalid');
+								$(':input[name='+indice+']').addClass('is-valid');
+								$(':input[name='+indice+']').next().text(" ");
+								if(indice.indexOf('descripcion') > -1)
+								{
+									if($.trim($(this).val()).length < 1){
+										$('#'+indice).removeClass('is-valid');
+									}
+								}
+						}
+					}
+				}
+				
+			});
+			  
+			/* if(data.responseJSON.errors.nombre_jugador )
 			{
 				
 				$('input[name=nombre_jugador]').addClass('is-invalid').next().addClass('invalid-feedback').text(data.responseJSON.errors.nombre_jugador);;
@@ -85,7 +113,7 @@ $("#form-update-jugador").submit(function(event) {
 			{
 				$('input[name=descripcion_jugador]').removeClass('is-invalid').addClass('is-valid').next().addClass('invalid-feedback').text(" ");
 				
-			}
+			} */
 		}
 
 	});

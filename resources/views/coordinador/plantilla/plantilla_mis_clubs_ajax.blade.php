@@ -32,7 +32,7 @@
                     <a href="{{ route('coordinador.informacion_club', $club->first()->id_club) }}" title="Editar" class="" {{-- style="background-color: #63686e" --}}> 
                     
                         <span class="">
-                            <i id="btnCancelar" class="material-icons delete_button">settings</i>
+                            <i id="btnCancelar" class="material-icons delete_button"></i>
                             
                         </span>
                             

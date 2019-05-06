@@ -9,5 +9,6 @@
 }
 
 #menu_lateral a:hover {
+    color: rgba(0, 0, 0, 0.5);
     color: rgb(211, 211, 212);
 }

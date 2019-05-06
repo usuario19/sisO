@@ -8,7 +8,9 @@
                   </button>
             </div>
             <div class="modal-body" style="max-height: 500px; overflow: auto">
-                <img id="imgCrop" src="/storage/fotos/{{ $usuario->foto_admin }}" alt="" >
+                <div class="text-center mx-auto">
+                  <img id="imgCrop" src="/storage/fotos/{{ $usuario->foto_admin }}" alt="">
+                </div>
             </div>
             <div class="modal-footer">
                     <div class="form-group col-md-6">

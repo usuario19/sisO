@@ -2,17 +2,16 @@
 
 @section('content_info')
 
-<div class="container col-md-10">
+<div class="container">
     <div class="card">
         <div class="card-header" style="padding: 0%">
-            <div class="card-header" style="padding: 0%">
-                <nav class="navbar navbar-expand-md table-bordered menu">
+                <nav class="navbar navbar-expand-md menu">
                     <ul class="navbar-nav btn-block">
                       <li class="nav-item link col-md-4" style="padding: 0%">
                         <a class="nav-link link active col-md-12" href={{ route('coordinador.informacion_club',$club->id_club) }}>CONFIGURACION <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item link col-md-4" style="padding: 0%">
-                        <a class="nav-link link  col-md-12 " href="{{ route('coordinador.show', $club->id_club) }}">JUGADORES</a>
+                        <a class="nav-link link  col-md-12 " href={{ route('coordinador.show', $club->id_club) }}>JUGADORES</a>
                       </li>
                       <li class="nav-item link col-md-4" style="padding: 0%">
                           <a class="nav-link link col-md-12 " href="{{ route('coordinador.informacion_club_gestiones', $club->id_club) }}">GESTIONES</a>
@@ -23,7 +22,6 @@
                     </ul>
               
                 </nav>
-            </div>
         </div>
             
             <div class="card-body">
@@ -37,8 +35,8 @@
                 </div>
             <br>  --}}
             {!! Form::model($club, ['route'=>['coordinador.update_club',$club->id_club],'method'=>'PUT','enctype'=>'multipart/form-data','file'=>true]) !!}
-            <div class="container col-md-10">
-              <div class="form-row">
+            <div class="container">
+              <div class="form-row col-md-10">
                 {{--  <div class="form-group col-md-4">
                   <div class="form-row">
                       <div class="form-group col-md-12">
@@ -117,10 +115,10 @@
                     <div class="form-row">
                         
                   <div class="form-group col-md-3">
-                    {!! Form::submit('Aceptar', ['class'=>'btn btn-primary btn-block']) !!}
+                    {!! Form::submit('Aceptar', ['class'=>'btn btn_aceptar btn-block']) !!}
                   </div>
                   <div class="form-group col-md-3">
-                    <a href="" class="btn btn-block btn-secondary">Cancelar</a>
+                    <a href="" class="btn btn-block btn-outline-secondary">Cancelar</a>
                   </div>                  
                 </div>
                 </div>
@@ -133,10 +131,5 @@
     
     </div>
 </div>
-
-
-
-        
-
-
-    @endsection
+</div>
+@endsection

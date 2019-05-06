@@ -12,20 +12,23 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <table class="table table-bordered">
+                              <table class="table mi_tabla table-sm table-bordered">
                                 <thead>
                                     <th class="text-center" style="width: 50px">
                         
-                                        {!! Form::checkbox('todo','todo', false, ['id'=>'todo']) !!}
+                                        {!! Form::checkbox('todo','todo', false, ['class'=>'check_all','id'=>'check_us']) !!}
                                         
                                     </th>
                                     <th style="font-size: 14px">
-                                        Seleccione los clubs que desea agregar:
+                                      <label for="check_us">
+                                          Seleccione los clubs que desea agregar:
+                                      </label>
                                     </th>
                                 </thead>
                                 <tbody>
                                     @foreach($clubsDisponibles as $club)
                                     <div style="display: none">
+                                        {!! Form::text('id_fase', $fase->id_fase, []) !!}
                                         {!! Form::text('id_gestion', $club->id_gestion, []) !!}
                                         {!! Form::text('id_disciplina', $club->id_disc, []) !!}
                                         {!! Form::text('id_grupo', $grupo->id_grupo, []) !!}
@@ -36,10 +39,9 @@
                                               {!! Form::checkbox('id_club[]',$club->id_club, false, ['class'=>'check_us']) !!}
                                           </td>
                                           <td>
-                                              <img src="/storage/logos/{{ $club->logo }}" alt="" width="50px" height="50px" style="margin-inline-end:15px"><span>{{ $club->nombre_club }} </span>
+                                              <img class="img_tb_info" src="/storage/logos/{{ $club->logo }}" alt="" style="margin-inline-end:15px"><span>{{ $club->nombre_club }} </span>
                                           </td>
                                         </tr>
-                                    
                                   @endforeach
                                 </tbody>
                               </table>

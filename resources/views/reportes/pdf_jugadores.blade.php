@@ -17,10 +17,10 @@
     <h4 class="text-center display-4" style="font-size: 16px; font-weight: bolder"> LISTA DE JUGADORES REGISTRADOS</h4><br>
     <table class="table table-striped">
         <thead>
-            <tr class="table-bordered" style="border: solid 2px gray">
+            <tr class=" mi_tabla table-bordered" style="border: solid 2px gray">
                 <th colspan="9">
-                    <img id="imgOrigen" class="" src="{{ public_path("storage/logos/".$jugadores->first()->club->logo) }}" alt="/storage/app/public/logos/{{ $jugadores->first()->club->logo }}" height=" 100px" width="100px" style="padding-inline-end: 5px">
-                    <span class="float-left" style="margin: auto; padding-top: 20px;font-size: 30px">{{$jugadores->first()->club->nombre_club}}</span>
+                    <img id="imgOrigen" class="" src="{{ public_path("storage/logos/".$club->logo) }}" alt="/storage/app/public/logos/{{ $club->logo }}" height=" 100px" width="100px" style="padding-inline-end: 5px">
+                    <span class="float-left" style="margin: auto; padding-top: 20px;font-size: 30px">{{$club->nombre_club}}</span>
                 </th>
             </tr>
             <tr>
@@ -41,34 +41,34 @@
             @php
                 $i=1;
             @endphp
-        @foreach ($jugadores as $jug_club)
+        @foreach ($planilla as $jugador)
             <tr style="border: solid 2px gray">
                 <td>
                     {{$i}}
                 </td>
                 <td>
-                    <img id="imgOrigen" class="rounded-circle mx-auto d-block float-left" src="{{ public_path("storage/fotos/".$jug_club->jugador->foto_jugador) }}" alt="" height=" 50px" width="50px">
+                    <img id="imgOrigen" class="rounded-circle mx-auto d-block float-left" src="{{ public_path("storage/fotos/".$jugador->foto_jugador) }}" alt="" height=" 50px" width="50px">
                 </td>
                 <td>
-                    {{$jug_club->jugador->nombre_jugador}}
+                    {{$jugador->nombre_jugador}}
                 </td>
                 <td>
-                    {{$jug_club->jugador->apellidos_jugador}}
+                    {{$jugador->apellidos_jugador}}
                 </td>
                 <td>
-                    {{$jug_club->jugador->ci_jugador}}
+                    {{$jugador->ci_jugador}}
                 </td>
                 <td>
-                    {{($jug_club->jugador->foto_jugador == 1)? "Femenino":"Masculino"}}
+                    {{($jugador->foto_jugador == 1)? "Femenino":"Masculino"}}
                 </td>
                 <td>
-                    {{$jug_club->jugador->fecha_nac_jugador}}
+                    {{$jugador->fecha_nac_jugador}}
                 </td>
                 <td>
-                    {{$jug_club->jugador->email_jugador}}
+                    {{$jugador->email_jugador}}
                 </td>
                 <td>
-                    {{$jug_club->jugador->descripcion_jugador}}
+                    {{$jugador->descripcion_jugador}}
                 </td>
             </tr>
             @php

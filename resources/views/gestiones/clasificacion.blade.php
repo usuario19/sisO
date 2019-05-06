@@ -5,18 +5,21 @@
 @endsection
 
 @section('submenu')
-@include('plantillas.menus.menu_gestion')
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-header">
+<div class="form-row">
+@include('plantillas.menus.menu_gestion')
+
+<div class="margin_top col-md-9">
+    <div class="">
+      <div class="card-">
+        <div class="card-">
             <table class="table table-sm table-bordered" style="margin: 0%">
                 <thead>
                     <th>
                         <div class=" container col-md-12 text-center" style="padding: 10px 0px">
-                            <h4 class="" style="font-size: 18px">DISCIPLINAS PARTICIPANTES</h4>
+                            <h4 class="lista_sub">CLASIFICACION</h4>
                         </div>
                     </th>
                 </thead>
@@ -31,7 +34,7 @@
             </tbody>
         </table>
         </div>
-        <div class="card-body">
+        <div class="card-">
           <div class="table-responsive-xl">
               <table class="table table-condensed">
                   <thead>
@@ -39,6 +42,7 @@
                     <th width="100px">Logo</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
+                    <th>SubCategoria</th>
                     <th>Descripcion</th>
              
                   </thead>
@@ -46,20 +50,23 @@
                     @foreach($disciplinas as $disciplina)
                     
                         <tr id="fila.{{ $disciplina->id_disc }}" onMouseOver="ResaltarFila('fila.{{ $disciplina->id_disc }}');" onMouseOut="RestablecerFila('fila.{{ $disciplina->id_disc}}')" onClick="CrearEnlace('{{ route('disciplina.fases',[$gestion->id_gestion,$disciplina->id_disc]) }}');" style="cursor: pointer">
-                        <td>{{ $disciplina->id_disc}}</td>
-                        <td><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
+                        <td class="text-center">{{ $disciplina->id_disc}}</td>
+                        <td class="text-center"><img class="img-thumbnail" src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" height=" 40px" width="40px"></td>
                         <td>{{ $disciplina->nombre_disc}}</td>
                         <td>{{$disciplina->nombre_categoria($disciplina->categoria)}}</td>
+                        <td>{{$disciplina->nombre_subcateg($disciplina->sub_categoria)}}</td>
                         <td>{{ $disciplina->descripcion_disc}}</td>           
                       </tr>
                     @endforeach
                   </tbody>
               </table>
           </div>
-          {{ $disciplinas->links() }}
         </div>
       </div>
 </div>
+</div>
+</div>
+
 @endsection
 @section('scripts')
   {!! Html::script('/js/filas.js') !!}

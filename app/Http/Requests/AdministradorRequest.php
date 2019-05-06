@@ -35,10 +35,11 @@ class AdministradorRequest extends FormRequest
             'apellidos' =>['required','between:2,150',  new Alpha_spaces], 
             'genero' =>'required',
             'fecha_nac' =>['required','date', new birthdate],
-            'foto_admin' =>'mimes:jpeg,jpg|max:5120',
+        'foto_admin' =>'mimes:jpeg,jpg,gif,png|max:5120',
             'descripcion_admin'=>'between:0,200',
             'email'=>'unique:administradores|required|email',
             'password'=>['required','confirmed','between:6,100', new password],
+            'password_confirmation'=>'required',
         ];
     }
 }

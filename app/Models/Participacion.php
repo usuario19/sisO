@@ -19,7 +19,13 @@ class Participacion extends Model
     }
     public function disciplina(){
     	 return $this->belongsTo('App\Models\Disciplina','id_disciplina', 'id_disc');
-    }  
+    }
+    public function ganadores(){
+    	return $this->hasMany('App\Models\Ganador','id_participacion');
+    }
+    public function participante_ganadors(){
+    	return $this->hasMany('App\Models\Participante_Ganador','id_participacion');
+    } 
     public function club_participaciones(){
 
         return $this->hasMany('App\Models\Club_Participacion','id_participacion');  

@@ -36,6 +36,9 @@ class Disciplina extends Model
 
     public function participaciones(){
         return $this->hasMany('App\Models\Participacion','id_disc','id_disciplina');
+    }
+    public function galerias(){
+        return $this->hasMany('App\Models\Galeria','id_disc','id_disc');
     }    
     public function inscripcions(){
         return $this->hasMany('App\Models\Inscripcion','id_disc');

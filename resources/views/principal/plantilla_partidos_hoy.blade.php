@@ -19,7 +19,6 @@
               <th colspan="3">
                     @php 
                       $date_hoy = new Date();
-                      $date_hoy->format('Y-m-d');
                       $d_h = strtotime($date_hoy->format('Y-m-d'));
 
                       $date_bd = new Date($e->first()->fecha); 
@@ -27,13 +26,13 @@
                       $d_bd = strtotime($date_bd->format('Y-m-d'));
 
 
-                      $date_m = strtotime($date_bd."+ 1 days");
+                      $date_m = strtotime($date_hoy."+ 1 days");
                       $m = new Date($date_m);
                       $m->format('Y-m-d');
                       $d_m = strtotime($m->format('Y-m-d'));
 
 
-                      $date_a = strtotime($date_bd."- 1 days");
+                      $date_a = strtotime($date_hoy."- 1 days");
                       $a = new Date($date_a);
                       $a->format('Y-m-d');
                       $d_a = strtotime($a->format('Y-m-d'));
@@ -41,7 +40,7 @@
 
                     @endphp
                   <h5 class="title_gestion" style="color:black">
-                      {{"- PARTIDOS "}}{{($d_bd == $d_h ? 'HOY -':($d_bd == $d_m ? 'MAÑANA -':($d_bd == $d_a ? 'AYER -':'noooooo')) ) }}
+                      {{"- PARTIDOS "}}{{($d_bd == $d_h ? 'HOY -':($d_bd == $d_m ? 'MAÑANA -':($d_bd == $d_a ? 'AYER -':$date_bd->format('l, j F Y'))) ) }}
                   </h5>
               </th>
               </tr>

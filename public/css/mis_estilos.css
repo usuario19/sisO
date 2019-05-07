@@ -1422,9 +1422,14 @@ i.material-icons{
     /* top: 5px */
 }
 
-.reporte {
+.reporte{
     padding-top: 10px;
     border-bottom: #1D3B6D solid 2px;
+    margin-bottom: 20px;
+}
+.reporte_img {
+    padding-top: 10px;
+    border-bottom: rgb(255, 255, 255) solid 2px;
     margin-bottom: 20px;
 }
 .reporte_navbar{
@@ -1604,25 +1609,9 @@ td.dato {
     color: #000000;
     
 }
-
-
-/* #detalles {
-    display: block;
-    display: -webkit-box;
-    height: $font-size * $line-height * $lines;
-    font-size: $font-size;
-    line-height: $line-height;
-    -webkit-line-clamp: $lines;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-} */
-
-/* footer {
-    position: absolute;
-    bottom: 0;
-    margin-top: 300px;
-    
+.img_galeria h5{
+text-transform: uppercase;
+font-weight: bolder;
 }
 html {
     min-height: 100%;
@@ -1858,12 +1847,7 @@ div.card-a{
 span.span_disc{
     font-size: 12px;
 }
-/* .card-a li a div{
-    width: 130px;
-    text-align: center;
-    align-content: center; */
-    
-/* } */
+
 div.grupo{
     background: #1E3D71;
     color: white;
@@ -2032,4 +2016,27 @@ div.punto_set{
 div.navbar_disc:hover{
     background:rgba(0, 0, 0, 0.048);
     border-radius: 25px;
+}
+div.img_galeria{
+    width: 100%;
+    overflow: hidden;
+}
+
+span.lista_sub_disc{
+    font-family: 'Unica One', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin: auto;
+    text-transform: uppercase;
+    color:#333333;
+}
+div.cubo:hover{
+    color:#0e0e0e2a;
+    background: rgba(15, 37, 53, 0.02);
+}
+span.calendario_turismo{
+    font-size: 15px;
+    /* color: #C40F31; */
+    text-transform: initial;
+    font-weight: bold;
 }

@@ -147,4 +147,6 @@ class AvisoController extends Controller
 
         return response()->json($datos);
     }
+    //GALERIA
+    
 }

@@ -14,7 +14,7 @@ use Auth;
 use Hash;
 use App\Rules\VerificarCi;
 use App\Rules\verificar_genero;
-
+use App\Models\Galeria;
 
 class AdministradorController extends Controller
 {
@@ -459,6 +459,4 @@ class AdministradorController extends Controller
        //return redirect()->back()->with('errores',$errores);
 
     }
-
-    
 }

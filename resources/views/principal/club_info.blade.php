@@ -159,8 +159,6 @@
         
     </div>
 
-    @include('sweetalert::cdn') 
- @include('vendor.sweetalert.view') 
+   {{--   @include('sweetalert::cdn') 
+ @include('vendor.sweetalert.view')   --}}
 @endsection
-  
-

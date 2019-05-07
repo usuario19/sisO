@@ -16,7 +16,7 @@ $("#id_gestion").change(function cargar_participacion(event) {
             var html_disc = '<option value="">Seleccione</option>';
 
             for (var i = 0; i < data.length; i++) {
-                html_disc += '<option value=" ' + data[i].id_disc + '"> ' + data[i].nombre_disc + '</option>';
+                html_disc += '<option value="' + data[i].id_disc + '">' + data[i].nombre_disc + '</option>';
                 $('#id_disc').html(html_disc);
             }
         }else

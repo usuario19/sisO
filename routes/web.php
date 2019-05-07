@@ -161,6 +161,25 @@ Route::group(['middleware' => ['web','guest']],function(){
 	Route::post('coordinador/partidos/participaciones',[ 
 		'uses'=> 'PrincipalController@obtener_disciplinas',
 		'as' => 'principal.obtener_part']);
+
+	Route::get('fotos/encuentros/{foto}/{gestion}',[ 
+			'uses'=> 'LugarController@evento_info',
+			'as' => 'centro.evento_info']);
+
+	Route::get('fotos/eventos/{foto}/{gestion}',[ 
+				'uses'=> 'LugarController@evento_informacion',
+				'as' => 'centro.evento_informacion']);
+
+	Route::get('turismo',[ 
+		'uses'=> 'LugarController@turismo_index',
+		'as' => 'principal.turismo']);
+	Route::get('gastronomia',[ 
+			'uses'=> 'LugarController@gastronomia_index',
+			'as' => 'principal.gastronomia']);
+
+	Route::get('medallero',[ 
+				'uses'=> 'LugarController@medallero',
+				'as' => 'principal.medallero']);
 	
 });
 
@@ -789,8 +808,18 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 		'uses'=> 'LugarController@destroy',
 		'as' => 'centro.delete']);
 
-	
+	Route::get('fotos/partidos',[ 
+		'uses'=> 'LugarController@lista_imagenes',
+		'as' => 'lugares.imagenes_partidos']);
 
+	Route::post('fotos/store',[ 
+			'uses'=> 'LugarController@store_imagen',
+			'as' => 'centro.store_imagen']);
+	
+	Route::get('fotos/delete/{id_foto}',[ 
+				'uses'=> 'LugarController@eliminar_imagen',
+				'as' => 'centro.eliminar_imagen']);
+				
 	/* Route::put('centro/update',[ 
 		'uses'=> 'LugarController@update',
 		'as' => 'centro.update']); */
@@ -1124,5 +1153,6 @@ Route::group(['middleware' => ['auth','admin_coordinador']], function () {
 	Route::post('crop',[
 		'uses'=>'CropImageController@store',
 		'as'=>'crop.store']);
+		
 	
 });

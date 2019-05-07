@@ -67,7 +67,12 @@
               <a class="nav-link" href="{{ route('aviso.index') }}">
                 avisos
               </a>
-          </li> 
+          </li>
+          <li class="nav-item dropdown active">
+              <a class="nav-link" href="{{ route('lugares.imagenes_partidos') }}" >
+                Galeria
+              </a>
+            </li>  
           {{--  <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Resultados
@@ -99,7 +104,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('administrador.show',Auth::User()->id_administrador) }}">Usuario: <strong>{{Auth::User()->nombre}} <br>{{Auth::User()->apellidos}}</strong></a>
+                    <a class="dropdown-item" href={{ route('administrador.show',Auth::User()->id_administrador) }}>Usuario: <strong>{{Auth::User()->nombre}} <br>{{Auth::User()->apellidos}}</strong></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href={{ route('administrador.edit',Auth::User()->id_administrador) }}>Editar perfil</a>
                     

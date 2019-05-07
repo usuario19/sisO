@@ -15,6 +15,7 @@ use App\Models\Tabla_Posicion;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\Fase;
+use App\Models\Galeria;
 
 class PrincipalController extends Controller
 {
@@ -491,8 +492,10 @@ class PrincipalController extends Controller
 
     public function noticias(){
         /*  $dato = Disciplina::find($id); */
+
+        $datos = Galeria::all();
  
-         return view('principal.noticias');
+         return view('principal.noticias')->with('datos',$datos);
     }
 
     public function obtener_gestiones()

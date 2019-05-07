@@ -14,4 +14,11 @@ class Participante_Ganador extends Model
     	'id_participacion',
     ];
     protected $hidden = ['remember_token'];
+
+    public function participacion(){
+    	return $this->belongsTo('App\Models\Participacion','id_participacion');
+    } 
+    public function jugador(){
+    	return $this->belongsTo('App\Models\Jugador','id_jugador');
+    }
 }

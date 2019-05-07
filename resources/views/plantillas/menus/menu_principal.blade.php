@@ -43,6 +43,10 @@
             </li>
             <div class="dropdown-divider"></div>
             <li class="nav-item dropdown">
+                <a class="nav-link" href={{ route('principal.turismo') }}>TURISMO</a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item dropdown">
               <a class="nav-link" href={{ route('gestion.mostrar_principal') }}>GESTIONES</a>
           </li>
           <div class="dropdown-divider"></div>
@@ -60,7 +64,12 @@
             
           </li>
           <div class="dropdown-divider"></div>
-          
+          <li class="nav-item dropdown">
+            
+                <a class="nav-link" href={{ route('principal.medallero') }}>MEDALLERO</a>
+              
+            </li>
+            <div class="dropdown-divider"></div>
           
         </ul>
           

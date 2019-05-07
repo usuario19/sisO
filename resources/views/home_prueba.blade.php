@@ -172,7 +172,7 @@
 
                           @endphp
                         <h5 class="title_gestion" style="color:black">
-                            {{"- PARTIDOS "}}{{($d_bd == $d_h ? 'HOY -':($d_bd == $d_m ? 'MAÑANA -':($d_bd == $d_a ? 'AYER -':'noooooo')) ) }}
+                            {{"- PARTIDOS "}}{{($d_bd == $d_h ? 'HOY -':($d_bd == $d_m ? 'MAÑANA -':($d_bd == $d_a ? 'AYER -':$date_bd->format('Y-m-d'))) ) }}
                         </h5>
                     </th>
                     </tr>

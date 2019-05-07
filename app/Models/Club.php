@@ -45,6 +45,10 @@ class Club extends Model
     public function inscripciones(){
         return $this->hasMany('App\Models\Inscripcion','id_adminClub');
     }
+
+    public function ganadores(){
+    	return $this->hasMany('App\Models\Ganador','id_club');
+    }
     //ALMACEN LOGO EN CARPETA
 
 	public function setLogoAttribute($value)

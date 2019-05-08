@@ -39,8 +39,8 @@
 
 
                     @endphp
-                  <h5 class="title_gestion" style="color:black">
-                      {{"- PARTIDOS "}}{{($d_bd == $d_h ? 'HOY -':($d_bd == $d_m ? 'MAÑANA -':($d_bd == $d_a ? 'AYER -':$date_bd->format('l, j F Y'))) ) }}
+                  <h5 class="fecha_aviso" style="color:black">
+                      {{"PARTIDOS "}}{{($d_bd == $d_h ? 'HOY':($d_bd == $d_m ? 'MAÑANA':($d_bd == $d_a ? 'AYER -':$date_bd->format('l, j F Y'))) ) }}
                   </h5>
               </th>
               </tr>

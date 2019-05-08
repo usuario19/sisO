@@ -10,6 +10,8 @@ $("#yesterday").click(function(event){
 });
 
 function consultar_partidos(){
+    $("#cargando").show();
+
     var contenido = $('#partidos_hoy');
     $.ajax({
         headers: {
@@ -25,7 +27,7 @@ function consultar_partidos(){
         },
         
         success: function(data){
-           /*  $("#cargando").hide(); */
+            $("#cargando").hide();
             console.log(data);
             $('#partidos_hoy').html(data.html);
         /* $.getScript("/js/vista_previa.js", function(){});
@@ -43,6 +45,7 @@ function consultar_partidos(){
 
 
     $("#fecha_title").click(function (event) {
+        $("#cargando").show();
     
         var contenido = $('#partidos_hoy');
         

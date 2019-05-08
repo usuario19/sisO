@@ -5,12 +5,12 @@
 @endsection
 @section('content')
 
-    <div class="container-fluid" style="background: #C40F31">
+    <div class="container" style="background: #C40F31">
         <div class="div-title-sub container text-left">
             <a class="" href="{{ route('principal.listar_disciplinas') }}" style="text-decoration:none"><h6 class="title-principal">disciplinas / {{$disciplina->nombre_tipo($disciplina->tipo)}}</h6></a>
         </div>
     </div>
-    <div class="container-fluid" style="background: #ED1941">
+    <div class="container" style="background: #ED1941">
         <div class="div-title-principal container text-center">
                 <h1 class="title-principal">{{strtoupper($disciplina->nombre_disc)}}</h1>
         </div>
@@ -20,11 +20,11 @@
             <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
                 <table class="table table-borderless" style="margin: 0%">
                     <thead>
-                        <th class="sub-title">informacion</th>
+                        <th class="lista_sub text-dark">informacion</th>
                     </thead>
                 </table>
             </div><br> 
-            <div class="row col-md-12 mx-auto">
+            <div class="row col-md-12 mx-auto p-0">
                 <div class="col-md-4">
                    
                             <div class="text-center" style="margin: 0 20px 20px 20px">
@@ -32,7 +32,7 @@
                             </div>
                         
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 p-0">
                         <div class="card">
                                 <div class="card-body">
                                     
@@ -47,7 +47,7 @@
                                                 </td>
                                             </tr> --}}
                                             <tr>
-                                                <th style="width: 100px">
+                                                <th class="text-right text-md-left" style="width: 100px">
                                                     categoria
                                                 </th>
                                                 <td>
@@ -55,7 +55,15 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>
+                                                <th class="text-right text-md-left" style="width: 100px">
+                                                        Subcategoria
+                                                    </th>
+                                                    <td>
+                                                        <strong>{{strtoupper ($disciplina->nombre_subcateg($disciplina->sub_categoria))}}</strong> 
+                                                    </td>
+                                                </tr>
+                                            <tr>
+                                                <th class="text-right text-md-left">
                                                     tipo
                                                 </th>
                                                 <td>
@@ -63,7 +71,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>
+                                                <th class="text-right text-md-left">
                                                     descripcion
                                                 </th>
                                                 <td>
@@ -73,7 +81,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>
+                                                <th class="text-right text-md-left">
                                                     reglamento
                                                 </th>
                                                 <td>

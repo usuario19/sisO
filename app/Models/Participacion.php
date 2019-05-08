@@ -23,6 +23,9 @@ class Participacion extends Model
     public function ganadores(){
     	return $this->hasMany('App\Models\Ganador','id_participacion');
     }
+    public function reconocimientos(){
+    	return $this->hasMany('App\Models\Reconocimiento','id_participacion');
+    }
     public function participante_ganadors(){
     	return $this->hasMany('App\Models\Participante_Ganador','id_participacion');
     } 

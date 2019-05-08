@@ -16,6 +16,8 @@ use App\Http\Requests\GestionRequest;
 use App\Http\Requests\UpdateGestionRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin_Club;
+use App\Models\Jugador_Club;
+use App\Models\Reconocimiento;
 
 class GestionController extends Controller
 {
@@ -145,6 +147,12 @@ class GestionController extends Controller
         //return 'eliminado';
         DB::table('gestiones')->where('id_gestion', '=',$id)->delete();
         return redirect()->route('gestion.index');
+    }
+    public function destroy_rec($id)
+    {
+        //return 'eliminado';
+        DB::table('reconocimientos')->where('id_reconocimiento', '=',$id)->delete();
+        return redirect()->back();
     }
 
     public function clubs($id_gestion)
@@ -732,6 +740,23 @@ class GestionController extends Controller
         $gestion = Gestion::find($id_gestion);
         return view('gestiones.resultados_finales',compact('disciplinas','gestion'));
     }
+
+    public function reconocimientos($id_gestion){
+        $disciplinas = Participacion::where('id_gestion',$id_gestion)->get();
+        $gestion = Gestion::find($id_gestion);
+
+        $ps = Participacion::where('id_gestion',$id_gestion);
+        $array_p=[];
+        foreach($ps as $p){
+            array_push($array_p, $p->id_participacion);
+        }
+
+        $reconocimientos = Reconocimiento::whereIn('id_participacion',$array_p)->get();
+        $club_part = Club_Participacion::where('id_gestion',$id_gestion)->get();
+        $gestion = Gestion::find($id_gestion);
+
+        return view('gestiones.reconocimientos',compact('disciplinas','gestion'));
+    }
     public function array_clubs_ajax($id_gestion, $id_disc){
         $data = DB::table('club_participaciones')
             ->join('clubs','club_participaciones.id_club','clubs.id_club')
@@ -766,26 +791,90 @@ class GestionController extends Controller
         
         return redirect()->back();
     }
+    public function registrar_reconocimientos(request $request){
+        
+            $id_participacion = Participacion::where('id_gestion',$request->get('id_gestion'))
+                    ->where('id_disciplina',$request->get('id_disc'))
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+
+                    $ganadores = new Reconocimiento(); 
+                    $ganadores->titulo = $request->get('titulo');
+                    $ganadores->descripcion = $request->get('descripcion');
+                    $ganadores->id_participacion = $id_participacion;
+                    $ganadores->id_club = $request->get('1');
+                    $ganadores->save();
+        
+        return redirect()->back();
+    }
+    public function registrar_reconocimiento_jugador(request $request){
+        //
+        
+            $id_participacion = Participacion::where('id_gestion',$request->get('id_gestion'))
+                    ->where('id_disciplina',$request->get('id_disc'))
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+                    //return dd($request);
+                    $ganadores = new Reconocimiento(); 
+                    $ganadores->titulo = $request->get('titulo');
+                    $ganadores->descripcion = $request->get('descripcion');
+                    $ganadores->id_participacion = $id_participacion;
+                    //$ganadores->id_jugador = $request->get($i);
+                    
+                    $jugador_club =Jugador_Club::find($request->get('1'));
+
+                    $ganadores->id_club = $jugador_club->id_club;
+                    $ganadores->id_jugador = $jugador_club->id_jugador;
+                    $ganadores->save();
+        
+        return redirect()->back();
+    }
     public function registrar_ganadores_competicion(request $request){
         //
+        
         for ($i=1; $i <= 3; $i++) { 
             $id_participacion = Participacion::where('id_gestion',$request->get('id_gestion'))
                     ->where('id_disciplina',$request->get('id_disc'))
                     ->select('id_participacion')
                     ->get()->last()->id_participacion;
                     //return dd($request);
-                    $ganadores = new Participante_Ganador(); 
-                    $ganadores->posicion_participante = $i;
+                    $ganadores = new Ganador(); 
+                    $ganadores->posicion_ganador = $i;
                     $ganadores->id_participacion = $id_participacion;
-                    $ganadores->id_jugador = $request->get($i);
+                    //$ganadores->id_jugador = $request->get($i);
+                    
+                    $jugador_club =Jugador_Club::find($request->get($i));
+
+                    $ganadores->id_club = $jugador_club->id_club;
+                    $ganadores->id_jugador = $jugador_club->id_jugador;
                     $ganadores->save();
                 }
         
         return redirect()->back();
     }
+    
     public function mostrar_ganadores($id_gestion, $id_disc){
+
+        $data = DB::table('club_participaciones')
+        ->join('clubs','club_participaciones.id_club','clubs.id_club')
+        ->join('selecciones','club_participaciones.id_club_part','selecciones.id_club_part')
+        ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+        ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+        ->where('club_participaciones.id_disc',$id_disc)
+        ->where('club_participaciones.id_gestion',$id_gestion)
+        ->get();
+        
+        $data_club = DB::table('club_participaciones')
+            ->join('clubs','club_participaciones.id_club','clubs.id_club')
+            ->where('club_participaciones.id_disc',$id_disc)
+            ->where('club_participaciones.id_gestion',$id_gestion)
+            ->get();
+
+
         $disc = Disciplina::find($id_disc);
         $gestion = Gestion::find($id_gestion);
+
+
         $id_part = Participacion::where('id_gestion',$id_gestion)
                     ->where('id_disciplina',$id_disc)
                     ->select('id_participacion')
@@ -794,15 +883,154 @@ class GestionController extends Controller
             $ganadores = DB::table('ganadors')
             ->join('clubs','ganadors.id_club','clubs.id_club')
             ->where('ganadors.id_participacion',$id_part)->orderBy('posicion_ganador','asc')->get();
-             return view('gestiones.medallero_clubs',compact('gestion','ganadores'));
+             return view('gestiones.medallero_clubs',compact('gestion','ganadores','data_club'));
         } else {
-            $ganadores = DB::table('participante_ganadors')
+            $ganadores = DB::table('ganadors')
+            ->join('clubs','ganadors.id_club','clubs.id_club')
+            ->join('jugadores','ganadors.id_jugador','jugadores.id_jugador')
+            ->where('ganadors.id_participacion',$id_part)->orderBy('posicion_ganador','asc')->get();
+            /* $ganadores = DB::table('participante_ganadors')
                 ->join('jugadores','participante_ganadors.id_jugador','jugadores.id_jugador')
                 ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
                 ->join('clubs','jugador_clubs.id_club','clubs.id_club')
-                ->where('participante_ganadors.id_participacion',$id_part)->orderBy('posicion_participante','asc')->get();
-        return view('gestiones.medallero_jugadores',compact('gestion','ganadores'));
+                ->where('participante_ganadors.id_participacion',$id_part)->orderBy('posicion_participante','asc')->get(); */
+        return view('gestiones.medallero_jugadores',compact('gestion','ganadores','data'));
         } 
+    }
+
+    public function mostrar_reconocimientos($id_gestion, $id_disc){
+
+        $data = DB::table('club_participaciones')
+        ->join('clubs','club_participaciones.id_club','clubs.id_club')
+        ->join('selecciones','club_participaciones.id_club_part','selecciones.id_club_part')
+        ->join('jugador_clubs','selecciones.id_jug_club','jugador_clubs.id_jug_club')
+        ->join('jugadores','jugador_clubs.id_jugador','jugadores.id_jugador')
+        ->where('club_participaciones.id_disc',$id_disc)
+        ->where('club_participaciones.id_gestion',$id_gestion)
+        ->get();
+        
+        $data_club = DB::table('club_participaciones')
+            ->join('clubs','club_participaciones.id_club','clubs.id_club')
+            ->where('club_participaciones.id_disc',$id_disc)
+            ->where('club_participaciones.id_gestion',$id_gestion)
+            ->get();
+
+
+        $disc = Disciplina::find($id_disc);
+        $gestion = Gestion::find($id_gestion);
+
+
+        $id_part = Participacion::where('id_gestion',$id_gestion)
+                    ->where('id_disciplina',$id_disc)
+                    ->select('id_participacion')
+                    ->get()->last()->id_participacion;
+
+
+            $ganadores = DB::table('reconocimientos')
+            ->join('clubs','reconocimientos.id_club','clubs.id_club')
+            ->where('reconocimientos.id_participacion',$id_part)
+            ->where('reconocimientos.id_jugador',null)->get();
+             //return view('gestiones.medallero_clubs',compact('gestion','ganadores','data_club'));
+
+            $ganadores2 = DB::table('reconocimientos')
+            ->join('clubs','reconocimientos.id_club','clubs.id_club')
+            ->join('jugadores','reconocimientos.id_jugador','jugadores.id_jugador')
+            ->where('reconocimientos.id_participacion',$id_part)->get();
+            /* $ganadores = DB::table('participante_ganadors')
+                ->join('jugadores','participante_ganadors.id_jugador','jugadores.id_jugador')
+                ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
+                ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+                ->where('participante_ganadors.id_participacion',$id_part)->orderBy('posicion_participante','asc')->get(); */
+        return view('gestiones.medallero_reconocimiento',compact('gestion','ganadores2','ganadores','data','data_club'));
+    }
+
+    public function editar_ganador(Request $request/* , $id */)
+    {
+        $this->validate($request, [
+            'id_jug_club' => 'required',
+        ],[
+            'id_jug_club.required'=>'Debe seleccionar un jugador.'
+        ]);
+        
+
+        $id = $request->get('id_ganador');
+        $id_jug = $request->get('id_jug_club');
+        $jug_club=Jugador_Club::find($id_jug);
+        
+        $datos = Ganador::find($id);
+
+        $datos->id_club = $jug_club->id_club;
+        $datos->id_jugador = $jug_club->id_jugador;
+        $datos->save();
+
+        flash('Se actualizo correctamente el ganador.')->info()->important();
+        return redirect()->back();
+    }
+    public function editar_rec(Request $request/* , $id */)
+    {
+        $this->validate($request, [
+            'id_jug_club' => 'required',
+        ],[
+            'id_jug_club.required'=>'Debe seleccionar un jugador.'
+        ]);
+        
+
+        $id = $request->get('id_reconocimiento');
+        $id_jug = $request->get('id_jug_club');
+        $jug_club=Jugador_Club::find($id_jug);
+        
+        $datos = Reconocimiento::find($id);
+
+        $datos->id_club = $jug_club->id_club;
+        $datos->id_jugador = $jug_club->id_jugador;
+        $datos->save();
+
+        flash('Se actualizo correctamente.')->info()->important();
+        return redirect()->back();
+    }
+    public function editar_ganador_club(Request $request/* , $id */)
+    {
+        $this->validate($request, [
+            'id_club' => 'required',
+        ],[
+            'id_club.required'=>'Debe seleccionar un club.'
+        ]);
+        
+
+        $id = $request->get('id_ganador');
+        //$id_jug = $request->get('id_jug_club');
+        //$jug_club=Jugador_Club::find($id_jug);
+        
+        $datos = Ganador::find($id);
+
+        $datos->id_club = $request->get('id_club') ;
+        //$datos->id_jugador = $jug_club->id_jugador;
+        $datos->save();
+
+        flash('Se actualizo correctamente el ganador.')->info()->important();
+        return redirect()->back();
+    }
+    public function editar_rec_club(Request $request/* , $id */)
+    {
+        $this->validate($request, [
+            'id_club' => 'required',
+        ],[
+            'id_club.required'=>'Debe seleccionar un club.'
+        ]);
+        
+
+        $id = $request->get('id_reconocimiento');
+        //$id_jug = $request->get('id_jug_club');
+        //$jug_club=Jugador_Club::find($id_jug);
+        
+        $datos = Reconocimiento::find($id);
+
+        $datos->id_club = $request->get('id_club') ;
+        //$datos->id_jugador = $jug_club->id_jugador;
+        $datos->save();
+
+        flash('Se actualizo correctamente.')->info()->important();
+        return redirect()->back();
     }
 
 }

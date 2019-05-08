@@ -23,7 +23,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href={{ route('gestion.index') }} style="color:black">Lista de Campeonatos</a>
                   <div class="dropdown-divider"></div>
-                  <a id="gestiones" class="dropdown-item" href={{ route('coordinador.mis_gestiones') }} style="color:black">Mis Campeonatos</a>
+                  <a id="gestiones" class="dropdown-item" href={{ route('coordinador.mis_gestiones') }} style="color:black">Seleccion Campeonatos</a>
                 </div>
               
           </li>
@@ -32,7 +32,15 @@
               Coordinadores
             </a>
           </li> 
-          <li class="nav-item dropdown active">
+          <li class="nav-item active">
+              <a class="nav-link" href={{ route('jugador.index') }}>jugadores
+              </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href={{ route('club.index') }}>CLUBS
+                </a>
+              </li>
+         {{--   <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Jugadores
               </a>
@@ -41,8 +49,8 @@
                 <a class="dropdown-item" href={{ route('jugador.index') }} style="color:black">Lista de jugadores</a>
                 <a id="jugadores" class="dropdown-item" href={{ route('coordinador.club_jugadores_ajax') }} style="color:black">MIS JUGADORES</a>
               </div>
-            </li>
-          <li class="nav-item dropdown active">
+            </li>  --}}
+          {{--  <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Clubs
                 </a>
@@ -51,7 +59,7 @@
                   <a class="dropdown-item" href="{{ route('club.index') }}" style="color:black">Lista de clubs</a>
                   <a class="dropdown-item" href={{ route('coordinador.index') }} style="color:black">MIS CLUBS</a>
                 </div>
-          </li> 
+          </li>   --}}
 
            <li class="nav-item active">
             <a class="nav-link" href="{{ route('disciplina.index')}}">

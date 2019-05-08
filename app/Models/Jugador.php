@@ -33,12 +33,19 @@ class Jugador extends Model
     public function jugador_clubs(){
         return $this->hasMany('App\Models\Jugador_Club', 'id_jugador');
     }
+    public function reconocimientos(){
+    	return $this->hasMany('App\Models\Reconocimiento','id_jugador');
+    }
+
     //un jugador administra a un club
     public function jugador_inscripciones(){
         return $this->hasMany('App\Models\Jugador_Inscripcion', 'id_jugador');
     } 
     public function participante_ganadors(){
     	return $this->hasMany('App\Models\Participante_Ganador','id_jugador');
+    }
+    public function ganadors(){
+    	return $this->hasMany('App\Models\Ganador','id_jugador');
     }
    
     //un jugador pertenece a un club
@@ -57,7 +64,7 @@ class Jugador extends Model
             $this->attributes['apellidos_jugador']= ucwords(strtolower($value));
     }
     //ALMACENAR FOTO EN LA CARPETA
-    public function setFotoJugadorAttribute($value)
+    public function setFotoJugadoresAttribute($value)//cambie para poderinstalas mas nombre de imagen
     {
         if($value !== null)
         {

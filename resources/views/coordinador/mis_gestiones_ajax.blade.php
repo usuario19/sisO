@@ -273,7 +273,9 @@
                                                 <td colspan="2" style="padding: 0%">
                                                 <div  style="padding: 5px">
                                                     {{strtoupper($disc->disciplina->nombre_disc)}}
-                                                    {{$disc->disciplina->categoria == 1 ? '( Mujeres )':($disc->disciplina->categoria == 2 ? '( Hombres )':'( Mixto )')}}</td>
+                                                    {{$disc->disciplina->categoria == 1 ? '( Mujeres )':($disc->disciplina->categoria == 2 ? '( Hombres )':'( Mixto )')}}
+                                                    {{$disc->disciplina->nombre_subcateg($disc->disciplina->sub_categoria)}}
+                                                </td>
                                                 </div>
                                                     
                 

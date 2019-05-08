@@ -7,18 +7,18 @@ SisO - Lista de gestiones
 
 
 <div class="container mx-auto padd_none">
-  <div class="container-fluid" style="background: #333333">
+  <div class="container-fluid" style="background: #42B72A">
     <div class="div-title-principal container text-center" style="height: 80px">
       <h5 class="lista text-white">Turismo</h5>
     </div>
-  </div><br>
-  <nav class="navbar navbar-expand-lg menu">
+  </div>
+  <nav class="navbar navbar-expand-lg menu mb-3">
       <ul class="navbar-nav btn-block">
         <li class="nav-item link competicion col-md-6">
-          <a class="nav-link link   col-md-12" href="{{ route('principal.turismo') }}"><span class="lista_sub">LUGARES TURÍSTICOS</span></a>
+          <a class="nav-link link  active col-md-12" href="{{ route('principal.turismo') }}"><span class="lista_sub_turismoc">LUGARES TURÍSTICOS</span></a>
         </li>
         <li class="nav-item link competicion col-md-6">
-          <a class="nav-link link active col-md-12" href="{{ route('principal.gastronomia') }}"><span class="lista_sub">LUGARES GASTRONÓMICOS</span></a>
+          <a class="nav-link link  col-md-12" href="{{ route('principal.gastronomia') }}"><span class="lista_sub_turismob">LUGARES GASTRONÓMICOS</span></a>
         </li>
       </ul>
     </nav>
@@ -43,75 +43,63 @@ SisO - Lista de gestiones
           <li data-target="#carouselExampleCaptions" data-slide-to="9"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="10"></li>
         </ol>
-        <div class="carousel-inner overflow-hidden" style="height: 400px">
+        <div class="carousel-inner overflow-hidden" style="max-height: 400px">
           <div class="carousel-item active">
             <img src="/storage/foto_disc/11.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              
             </div>
           </div>
           <div class="carousel-item">
             <img src="/storage/foto_disc/12.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Primer partido</p>
+              
             </div>
           </div>
           <div class="carousel-item">
-            <img src="/storage/foto_disc/13.jpg" class="d-block  w-100" alt="...">
+            <img src="/storage/foto_disc/21.jpg" class="d-block  w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              
             </div>
           </div>
           <div class="carousel-item">
               <img src="/storage/foto_disc/14.jpg" class="d-block  w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                
               </div>
             </div>
             <div class="carousel-item">
                 <img src="/storage/foto_disc/15.jpg" class="d-block  w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                  
                 </div>
               </div>
               <div class="carousel-item">
                   <img src="/storage/foto_disc/16.jpg" class="d-block  w-100" alt="...">
                   <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    
                   </div>
                 </div>
                 <div class="carousel-item">
                     <img src="/storage/foto_disc/17.jpg" class="d-block  w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                      <h5>Third slide label</h5>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                      
                     </div>
                   </div>
                   <div class="carousel-item">
                       <img src="/storage/foto_disc/18.jpg" class="d-block  w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        
                       </div>
                     </div>
                     <div class="carousel-item">
                         <img src="/storage/foto_disc/19.jpg" class="d-block  w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                          <h5>Third slide label</h5>
-                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
                           <img src="/storage/foto_disc/20.jpg" class="d-block  w-100" alt="...">
                           <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                           </div>
                         </div>
         </div>
@@ -147,16 +135,16 @@ SisO - Lista de gestiones
                 </div>
                 <div class="col-md-8 img_galeria p-3">
                   <h5>RESTAURANTE EL PALMAR</h5>
-                  <h6>PLATO: "PAMPAKU"</h6>
+                  <h6>ESPECIALIDAD: "PAMPAKU"</h6>
 
                   <p>
-                      Se trata de un plato hecho a base a carne de pollo, res, cordero, cerdo, papa, camote, yuca y plátano.
+                      Se trata de un ESPECIALIDAD hecho a base a carne de pollo, res, cordero, cerdo, papa, camote, yuca y plátano.
                   </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/qiyoJJHbpUNu7WWD8">
                       <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
                               place
-                          </i>Como llegar
+                          </i>Ubicación
                         </span>
                     </a>
               </div>
@@ -174,96 +162,21 @@ SisO - Lista de gestiones
                 </div>
                 <div class="col-md-8 img_galeria p-3">
                     <h5>CLIZA</h5>
-                  <h6>PLATO: "PICHON"</h6>
+                  <h6>ESPECIALIDAD: "PICHON"</h6>
                   <p>
                       Es un plato hecho con carne de pichón (cría de paloma), hervida y dorada a la brasa. Se acompaña con arroz y papa cocida.
                   </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/QajegBvL5nDQ8PFu9">
                       <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
                               place
-                          </i>Como llegar
+                          </i>Ubicación
                         </span>
                     </a>
               </div>
           </div>
       </div>
-      <div class="card my-3 text-white bg-success col-md-12 mx-auto">
-          <div class="form-row">
-              <div class="col-md-4 img_galeria ">
-                      <a class="title-span" >
-                          <div class="text-center img_galeria " style="margin-top: 20px">
-                              <img class="mx-auto d-block " src="/storage/foto_disc/18.jpg" alt="" width="" height="200px">
-                              <span class="lista_sub_disc"></span><br>
-                          </div>
-                      </a>
-                </div>
-                <div class="col-md-8 img_galeria p-3">
-                    <h5>CASA DE CAMPO</h5>
-                  <h6>PLATO: "SILPANCHO COCHABAMBINO"</h6>
-                  <p>
-                      Es un plato seco con carne de res apanada, frita al sartén, acompañada de huevo frito y ensalada cruda de cebolla, tomate y locoto (llajua). Se sirve con arroz y papa frita.
-                  </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
-                      <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
-                              place
-                          </i>Como llegar
-                        </span>
-                    </a>
-              </div>
-          </div>
-      </div>
-      <div class="card my-3 text-white bg-danger col-md-12 mx-auto">
-          <div class="form-row">
-              <div class="col-md-4 img_galeria ">
-                      <a class="title-span" >
-                          <div class="text-center img_galeria " style="margin-top: 20px">
-                              <img class="mx-auto d-block " src="/storage/foto_disc/19.jpg" alt="" width="" height="200px">
-                              <span class="lista_sub_disc"></span><br>
-                          </div>
-                      </a>
-                </div>
-                <div class="col-md-8 img_galeria p-3">
-                    <h5>CRISTO DE LA CONCORDIA</h5>
-                  <p>
-                      El denominado Cristo de La Concordia es una colosal estatua ubicada en la ciudad de Cochabamba- Bolivia, que desde el año 1987 forma parte del atractivo turístico de la ciudad. La imagen es considerada la estatua de Jesús más grande del mundo. Dadas sus dimensiones, la imagen es visible desde prácticamente cualquier punto de la ciudad.
-                  </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
-                      <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
-                              place
-                          </i>Como llegar
-                        </span>
-                    </a>
-              </div>
-          </div>
-      </div>
-      <div class=" card my-3 text-dark bg-warning col-md-12 mx-auto">
-          <div class="form-row">
-              <div class="col-md-4 img_galeria ">
-                      <a class="title-span" >
-                          <div class="text-center img_galeria " style="margin-top: 20px">
-                              <img class="mx-auto d-block " src="/storage/foto_disc/20.jpg" alt="" width="" height="200px">
-                              <span class="lista_sub_disc"></span><br>
-                          </div>
-                      </a>
-                </div>
-                <div class="col-md-8 img_galeria p-3">
-                    <h5>CRISTO DE LA CONCORDIA</h5>
-                  <p>
-                      El denominado Cristo de La Concordia es una colosal estatua ubicada en la ciudad de Cochabamba- Bolivia, que desde el año 1987 forma parte del atractivo turístico de la ciudad. La imagen es considerada la estatua de Jesús más grande del mundo. Dadas sus dimensiones, la imagen es visible desde prácticamente cualquier punto de la ciudad.
-                  </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
-                      <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
-                              place
-                          </i>Como llegar
-                        </span>
-                    </a>
-              </div>
-          </div>
-      </div>
+      
       <div class="card my-3 text-dark bg-transparent col-md-12 mx-auto">
           <div class="form-row">
               <div class="col-md-4 img_galeria ">
@@ -275,16 +188,16 @@ SisO - Lista de gestiones
                       </a>
                 </div>
                 <div class="col-md-8 img_galeria p-3">
-                    <h5>RESTAURANT CASA DE CAMPO</h5>
-                  <h6>PLATO: "SILPANCHO COCHABAMBINO"</h6>
+                    <h5>RESTAURANTE CASA DE CAMPO</h5>
+                  <h6>ESPECIALIDAD: "SILPANCHO COCHABAMBINO"</h6>
                   <p>
                       Es un plato seco con carne de res apanada, frita al sartén, acompañada de huevo frito y ensalada cruda de cebolla, tomate y locoto (llajua). Se sirve con arroz y papa frita.
                   </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/DKq4aAcHmogmkAGA7">
                       <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
                               place
-                          </i>Como llegar
+                          </i>Ubicación
                         </span>
                     </a>
               </div>
@@ -301,15 +214,16 @@ SisO - Lista de gestiones
                       </a>
                 </div>
                 <div class="col-md-8 img_galeria p-3">
-                    <h5>CRISTO DE LA CONCORDIA</h5>
+                    <h5>RESTAURANTE PUNTO DE ENCUENTRO</h5>
+                    <h6>ESPECIALIDAD: "CHARQUE COCHABAMBINO"</h6>
                   <p>
-                      El denominado Cristo de La Concordia es una colosal estatua ubicada en la ciudad de Cochabamba- Bolivia, que desde el año 1987 forma parte del atractivo turístico de la ciudad. La imagen es considerada la estatua de Jesús más grande del mundo. Dadas sus dimensiones, la imagen es visible desde prácticamente cualquier punto de la ciudad.
+                      Este plato es elaborado con charque de res, arroz, mote (maíz amarillo) papas medianas, huevo, quesillo, tomates, cebollas medianas, locotos amarillos, quirquiña y sal.
                   </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/GNYUtCg5e3G7w32V8">
                       <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
                               place
-                          </i>Como llegar
+                          </i>Ubicación
                         </span>
                     </a>
               </div>
@@ -326,15 +240,16 @@ SisO - Lista de gestiones
                       </a>
                 </div>
                 <div class="col-md-8 img_galeria p-3">
-                    <h5>CRISTO DE LA CONCORDIA</h5>
+                    <h5>RESTAURANTE AMERICA</h5>
+                    <h6>ESPECIALIDAD: "PIQUE MACHO"</h6>
                   <p>
-                      El denominado Cristo de La Concordia es una colosal estatua ubicada en la ciudad de Cochabamba- Bolivia, que desde el año 1987 forma parte del atractivo turístico de la ciudad. La imagen es considerada la estatua de Jesús más grande del mundo. Dadas sus dimensiones, la imagen es visible desde prácticamente cualquier punto de la ciudad.
+                      Plato elaborado con carne de res picada, salchicha, chorizo, locoto, cebolla, papa frita.
                   </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
+                    <a class="title-span btn btn-light" target="_blank" href="">
                       <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
                               place
-                          </i>Como llegar
+                          </i>Ubicación
                         </span>
                     </a>
               </div>
@@ -351,15 +266,15 @@ SisO - Lista de gestiones
                       </a>
                 </div>
                 <div class="col-md-8 img_galeria p-3">
-                    <h5>CRISTO DE LA CONCORDIA</h5>
+                    <h5>RESTAURANTE CHORICERIA DOÑA FIDELIA</h5>
+                    <h6>ESPECIALIDAD: "CHORIZOS ORIGINALES TARATA"</h6>
                   <p>
-                      El denominado Cristo de La Concordia es una colosal estatua ubicada en la ciudad de Cochabamba- Bolivia, que desde el año 1987 forma parte del atractivo turístico de la ciudad. La imagen es considerada la estatua de Jesús más grande del mundo. Dadas sus dimensiones, la imagen es visible desde prácticamente cualquier punto de la ciudad.
                   </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/qQj2HyCmeZgEjJ276">
                       <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
                               place
-                          </i>Como llegar
+                          </i>Ubicación
                         </span>
                     </a>
               </div>
@@ -376,20 +291,126 @@ SisO - Lista de gestiones
                       </a>
                 </div>
                 <div class="col-md-8 img_galeria p-3">
-                    <h5>Pampaku</h5>
+                    <h5>RESTAURANTE LAPING DOÑA IRMA</h5>
+                    <h6>ESPECIALIDAD: "LAPING"</h6>
                   <p>
+                      Es un plato con carne de res pero con la cualidad de que la carne es súuuper blanda. Para esto, se la remoja en jugo de papaya una noche antes. Esto le da su sabor característico. Se cocina la carne al horno y viene con papas horneadas, habas, choclo. Además de la típica ensalada de quesillo, cebolla y tomate.
                   </p>
-                    <a class="title-span btn btn-light" href="https://goo.gl/maps/wqrXLS2byq9eQp968">
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/GZ9fLBktpn9cvvTV9">
                       <span class="calendario_turismo">
-                          <i class="material-icons calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
                               place
-                          </i>Como llegar
+                          </i>Ubicación
                         </span>
                     </a>
               </div>
           </div>
       </div>
-      
+      <div class="card my-3 text-white bg-success col-md-12 mx-auto">
+          <div class="form-row">
+              <div class="col-md-4 img_galeria ">
+                      <a class="title-span" >
+                          <div class="text-center img_galeria " style="margin-top: 20px">
+                              <img class="mx-auto d-block " src="/storage/foto_disc/18.jpg" alt="" width="" height="200px">
+                              <span class="lista_sub_disc"></span><br>
+                          </div>
+                      </a>
+                </div>
+                <div class="col-md-8 img_galeria p-3">
+                    <h5>COMEDOR DOÑA BLANCA</h5>
+                  <h6>ESPECIALIDAD: "PUCHERO"</h6>
+                  <p>
+                      Un plato casi obsceno por la cantidad de estímulos que ofrece al paladar. Un costillar de cordero cocinado con ají y hierba buena. El detalle es que se acompaña con frutas dulces de temporada como duraznos y peras.
+                  </p>
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/GmpAxZ8MYdoSoWxF9">
+                      <span class="calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
+                              place
+                          </i>Ubicación
+                        </span>
+                    </a>
+              </div>
+          </div>
+      </div>
+      <div class="card my-3 text-white bg-danger col-md-12 mx-auto">
+          <div class="form-row">
+              <div class="col-md-4 img_galeria ">
+                      <a class="title-span" >
+                          <div class="text-center img_galeria " style="margin-top: 20px">
+                              <img class="mx-auto d-block " src="/storage/foto_disc/19.jpg" alt="" width="" height="200px">
+                              <span class="lista_sub_disc"></span><br>
+                          </div>
+                      </a>
+                </div>
+                <div class="col-md-8 img_galeria p-3">
+                    <h5>RESTAURANTE DOÑA FELY</h5>
+                    <h6>ESPECIALIDAD: "FIDEOS UCHU"</h6>
+                  <p>
+                      Aji de Fideo Tradicion en Cochabamba de todos los jueves.
+                  </p>
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/bJsLMjHU8LN91GCg8">
+                      <span class="calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
+                              place
+                          </i>Ubicación
+                        </span>
+                    </a>
+              </div>
+          </div>
+      </div>
+      <div class=" card my-3 text-dark bg-warning col-md-12 mx-auto">
+          <div class="form-row">
+              <div class="col-md-4 img_galeria ">
+                      <a class="title-span" >
+                          <div class="text-center img_galeria " style="margin-top: 20px">
+                              <img class="mx-auto d-block " src="/storage/foto_disc/20.jpg" alt="" width="" height="200px">
+                              <span class="lista_sub_disc"></span><br>
+                          </div>
+                      </a>
+                </div>
+                <div class="col-md-8 img_galeria p-3">
+                    <h5>RESTAURANTE PLANCHITAS ORIGINALES NORTE</h5>
+                    <h6>ESPECIALIDAD: "PLANCHITA"</h6>
+                  <p>
+                  <p>
+                      Plato típico Servido en una plancha consta de carne papa salchicha chorrizo yuca chorrellana que ofrece un sabor suculento al paladar
+                  </p>
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/sqsBBxmBS5buWYGW8">
+                      <span class="calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
+                              place
+                          </i>Ubicación
+                        </span>
+                    </a>
+              </div>
+          </div>
+      </div>
+      <div class=" card my-3 text-dark bg-light col-md-12 mx-auto">
+          <div class="form-row">
+              <div class="col-md-4 img_galeria ">
+                      <a class="title-span" >
+                          <div class="text-center img_galeria " style="margin-top: 20px">
+                              <img class="mx-auto d-block " src="/storage/foto_disc/21.jpg" alt="" width="" height="200px">
+                              <span class="lista_sub_disc"></span><br>
+                          </div>
+                      </a>
+                </div>
+                <div class="col-md-8 img_galeria p-3">
+                    <h5>RESTAURANTE LOS CHICHARRONES ORIGINALES 1</h5>
+                    <h6>ESPECIALIDAD: "CHICHARRON DE CERDO"</h6>
+                  <p>
+                  <p>
+                  </p>
+                    <a class="title-span btn btn-light" target="_blank" href="https://goo.gl/maps/dPRHVzb5FTGCksG68">
+                      <span class="calendario_turismo">
+                          <i class="material-icons calendario_turismo" style="top:5px">
+                              place
+                          </i>Ubicación
+                        </span>
+                    </a>
+              </div>
+          </div>
+      </div>
   </div>
     </div>
   </div>

@@ -50,7 +50,7 @@
               </td>
               <td>
                 <img src="/storage/foto_disc/{{ $disciplina->foto_disc }}" alt="" width="30px" height="30px"> 
-                {!! Form::label("check_all".$disciplina->id_disc,$disciplina->nombre_disc." ".$disciplina->nombre_categoria($disciplina->categoria) , []) !!}
+                {!! Form::label("check_all".$disciplina->id_disc,$disciplina->nombre_disc." ".$disciplina->nombre_categoria($disciplina->categoria)." ".$disciplina->nombre_subcateg($disciplina->sub_categoria) , []) !!}
 
               </td>
             </tr>

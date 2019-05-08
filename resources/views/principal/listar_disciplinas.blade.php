@@ -8,7 +8,7 @@
 <div class="card">
 
 
-<div class="container-fluid"  style="background: #C40F31" >
+<div class="container"  style="background: #C40F31" >
     <div class="div-title-principal container text-center">
         <h1 class="title-principal">disciplinas</h1>
     </div>
@@ -19,7 +19,7 @@
         <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
             <table class="table table-borderless" style="margin: 0%">
                 <thead>
-                    <th class="sub-title text-center">deportes colectivos</th>
+                    <th class="lista_sub text-dark text-center">deportes colectivos</th>
                 </thead>
             </table>
         </div>
@@ -33,7 +33,12 @@
                             <div class="text-center" style="margin: 20px">
                                 <img class="rounded-circle mx-auto d-block" src="/storage/foto_disc/{{ $disciplina->foto_disc}}" alt="" width="100px" height="100px">
                                 <br><span>{{ $disciplina->nombre_disc}}
-                                    {{ $disciplina->nombre_categoria($disciplina->categoria)}}</span>
+                                    {{ $disciplina->nombre_categoria($disciplina->categoria)}}<br>
+                                </span>
+                                <span class="lista_sub text-dark" style="font-size:15px">
+                                        {{ $disciplina->nombre_subcateg($disciplina->sub_categoria)}}
+                                            
+                                     </span> 
                                 
                             </div>
                         </a>
@@ -50,7 +55,7 @@
             <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
                 <table class="table table-borderless" style="margin: 0%">
                     <thead>
-                        <th class="sub-title text-center">deportes individuales</th>
+                        <th class="ista_sub text-dark text-center">deportes individuales</th>
                     </thead>
                 </table>
             </div>
@@ -64,7 +69,12 @@
                                 <div class="text-center" style="margin: 20px">
                                     <img class="rounded-circle mx-auto d-block" src="/storage/foto_disc/{{ $disciplina->foto_disc}}" alt="" width="100px" height="100px">
                                     <br><span>{{ $disciplina->nombre_disc}}
-                                        {{ $disciplina->nombre_categoria($disciplina->categoria)}}</span>
+                                        {{ $disciplina->nombre_categoria($disciplina->categoria)}}<br></span>
+                                       <span class="lista_sub text-dark" style="font-size:15px">
+                                       {{ $disciplina->nombre_subcateg($disciplina->sub_categoria)}}
+                                           
+                                    </span> 
+                                    
                                     
                                 </div>
                             </a>
@@ -76,6 +86,8 @@
           </div>
       </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
 

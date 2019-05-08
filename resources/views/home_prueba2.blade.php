@@ -964,5 +964,5 @@
 {!! Html::script('/jquery-ui/external/jquery/jquery.js') !!} 
 {!! Html::script('/jquery-ui/jquery-ui.js') !!} 
 {!! Html::script('/js/resultados_home.js') !!} 
-{!! Html::script('/js/fechas_partidos.js') !!}
+{!! Html::script('/js/fechas_partidos2.js') !!}
 @endsection

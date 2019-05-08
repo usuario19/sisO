@@ -50,6 +50,11 @@
                                         <i class="material-icons reporte_icon">
                                         favorite
                                         </i>Ganadores</a>
+                                        <div class="dropdown-divider reporte_divider"></div>
+                                        <a class="nav-link btn-block" href="{{ route('gestion.reconocimientos',$gestion->id_gestion) }}">
+                                        <i class="material-icons reporte_icon">
+                                        favorite
+                                        </i>Reconocimientos</a>
                                     </div>
                                 </div>
                               

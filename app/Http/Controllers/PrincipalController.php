@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\Fase;
 use App\Models\Galeria;
+use App\Models\Ganador;
 
 class PrincipalController extends Controller
 {
@@ -290,7 +291,8 @@ class PrincipalController extends Controller
         //dd($encuentros2);
 
         if(Auth::check())
-        return view('home2')->with('avisos',$avisos)->with('encuentros',$encuentros2)->with('disciplinas',$disciplinas)->with('disc',$disc)->with('fecha',$hoy);
+        return view('home_prueba2')->with('avisos',$avisos)->with('encuentros',$encuentros2)->with('disciplinas',$disciplinas)->with('disciplinas2',$disciplinas2)->with('disc',$disc)->with('fecha',$hoy);
+        
         else
         return view('home_prueba')->with('avisos',$avisos)->with('encuentros',$encuentros2)->with('disciplinas',$disciplinas)->with('disciplinas2',$disciplinas2)->with('disc',$disc)->with('fecha',$hoy);
     }
@@ -455,15 +457,39 @@ class PrincipalController extends Controller
         //
     }
     public function gestion_info($id){
+        
         $dato = Gestion::find($id);
         return view('principal.gestion_info')->with('gestion',$dato);
     }
 
     public function club_info($id){
         $dato = Club::find($id);
-        $jug_clubs = Jugador_Club::where('id_club', $id)->paginate(15);
+        $logros = DB::table('ganadors')
+                    ->join('participaciones','ganadors.id_participacion','participaciones.id_participacion')
+                    ->join('gestiones','participaciones.id_gestion','gestiones.id_gestion')
+                    ->join('disciplinas','participaciones.id_disciplina','disciplinas.id_disc')
+                    ->where('ganadors.id_club',$id)->get();
+                    
+        $logros2 = DB::table('ganadors')
+                    ->join('participaciones','ganadors.id_participacion','participaciones.id_participacion')
+                    ->join('gestiones','participaciones.id_gestion','gestiones.id_gestion')
+                    ->join('disciplinas','participaciones.id_disciplina','disciplinas.id_disc')
+                    ->join('jugadores','ganadors.id_jugador','jugadores.id_jugador')
+                    ->where('ganadors.id_club',$id)->get();
+        
+        /* $logros2 = DB::table('participante_ganadors')
+                    ->join('participaciones','participante_ganadors.id_participacion','participaciones.id_participacion')
+                    ->join('gestiones','participaciones.id_gestion','gestiones.id_gestion')
+                    ->join('disciplinas','participaciones.id_disciplina','disciplinas.id_disc')
+                    ->join('jugadores','participante_ganadors.id_jugador','jugadores.id_jugador')
+                    ->join('jugador_clubs','jugadores.id_jugador','jugador_clubs.id_jugador')
+                    ->join('clubs','jugador_clubs.id_club','clubs.id_club')
+                    ->where('clubs.id_club',$id)->get(); */
 
-        return view('principal.club_info')->with('club',$dato)->with('jug_clubs',$jug_clubs);
+        $jug_clubs = Jugador_Club::where('id_club', $id)->get();
+        //$logros = Ganador::where('id_club', $id)->get();
+
+        return view('principal.club_info')->with('club',$dato)->with('jug_clubs',$jug_clubs)->with('logros',$logros)->with('logros2',$logros2);
     }
 
     public function listar_disciplinas()

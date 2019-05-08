@@ -26,6 +26,7 @@
                         <th>#</th>
                         <th colspan="2">Disciplina</th>
                         <th>categoria</th>
+                        <th>subcategoria</th>
                         <th>Reglamento</th>
                         <th>Descripcion</th>
                         <th colspan="3"></th>
@@ -49,6 +50,9 @@
                                 {{ 'Mixto' }}
                               @endif
                           </td>
+                          <td>
+                          {{ $disc->disciplina->nombre_subcateg($disc->disciplina->sub_categoria)}}
+                        </td>
                           <td><a href="storage/archivos/{{ $disc->disciplina->reglamento_disc }}">
                             <div class="button-div" style="">
                                 <i class="material-icons float-left">vertical_align_bottom</i>

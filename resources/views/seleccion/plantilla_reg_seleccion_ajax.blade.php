@@ -9,13 +9,15 @@
 						</div>          	      	
 						<div class="col-md-6" >
 							<p class="text-center display-4 title-select" style="font-size: 16px; margin: 0%; color: black"><img src="/storage/foto_disc/{{ $dato->disciplina->foto_disc }}" alt="" width="30px" height="30px">
-								@if($dato->disciplina->categoria == 1)
+								{{$dato->disciplina->nombre_disc." ".$dato->disciplina->nombre_categoria($dato->disciplina->categoria)." ".$dato->disciplina->nombre_subcateg($dato->disciplina->sub_categoria)}}
+								{{--  @if($dato->disciplina->categoria == 1)
 									{{ strtoupper($dato->disciplina->nombre_disc."( Mujeres )") }}</p>
 								@elseif($dato->disciplina->categoria == 2)
 									{{ strtoupper($dato->disciplina->nombre_disc."( Varones )") }}</p>
 								@else
-									{{ strtoupper($dato->disciplina->nombre_disc."( Mixto )") }}</p>
-								@endif
+									{{ strtoupper($dato->disciplina->nombre_disc."( Mixto )") }}
+								</p>
+								@endif  --}}
 						</div>
 					</div>
 					

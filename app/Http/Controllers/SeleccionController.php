@@ -88,7 +88,8 @@ class SeleccionController extends Controller
             # code...
             
             $categoria = $id_one->disciplina->categoria == (1) ? 'Mujeres' : ($id_one->disciplina->categoria == (2) ? 'Hombres' : 'Mixto' );
-            $select[$id_one->id_club_part] = $id_one->disciplina->nombre_disc." - ".$categoria ;
+            $subcategoria = $id_one->disciplina->nombre_subcateg($id_one->disciplina->sub_categoria);
+            $select[$id_one->id_club_part] = $id_one->disciplina->nombre_disc." - ".$categoria." ".$subcategoria ;
 
         }
        // dd($select);

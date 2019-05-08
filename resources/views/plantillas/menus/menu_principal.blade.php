@@ -66,11 +66,22 @@
           <div class="dropdown-divider"></div>
           <li class="nav-item dropdown">
             
-                <a class="nav-link" href={{ route('principal.medallero') }}>MEDALLERO</a>
+                <a class="nav-link" href={{ route('principal.medallero') }}>ganadores</a>
               
             </li>
             <div class="dropdown-divider"></div>
-          
+            <li class="nav-item dropdown">
+            
+                    <a class="nav-link" href={{ route('principal.medallero_club') }}>medallero</a>
+                  
+                </li>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item dropdown">
+            
+                        <a class="nav-link" href={{ route('principal.reconocimientos') }}>Reconocimientos</a>
+                      
+                    </li>
+                    <div class="dropdown-divider"></div>
         </ul>
           
         <ul class="navbar-nav menu-nav">

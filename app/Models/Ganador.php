@@ -13,6 +13,7 @@ class Ganador extends Model
     protected $fillable = [
     	'posicion_ganador', 
     	'id_club',
+    	'id_jugador',
     	'id_participacion',
     ];
     protected $hidden = ['remember_token'];
@@ -25,6 +26,9 @@ class Ganador extends Model
     } 
     public function club(){
     	return $this->belongsTo('App\Models\Club','id_club');
+    }
+    public function jugador(){
+    	return $this->belongsTo('App\Models\Jugador','id_jugador');
     } 
     /* public function clubs(){
     	return $this->hasMany('App\Models\Club','id_club');

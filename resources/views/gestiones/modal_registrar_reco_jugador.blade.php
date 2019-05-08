@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>'gestion.registrar_ganadores_competicion','method' => 'POST','id'=>'form_reg_ganadores']) !!}
+{!! Form::open(['route'=>'gestion.registrar_reconocimiento_jugador','method' => 'POST','id'=>'form_reg_ganadores']) !!}
         <!-- Modal -->
         <div class="modal fade" id="modalGanadoresCompeticion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -15,22 +15,32 @@
                                 {!! Form::text('id_disc',null, ['id'=>'id_dis']) !!}
                                 {!! Form::text('id_gestion',$gestion->id_gestion, ['id'=>'id_gest']) !!}
                             </div>
-                                <div class="container col-md-12" id="resultado">
+                            <div class="form-row ">
+                                    {!! Form::label('titulo', 'Titulo:', []) !!}
+                                    {!! Form::text('titulo', null, ['class'=>'form-control']) !!}
+                                 </div>
+                                <div class="container col-md-12 p-0" id="resultado">
                                        <div class="form-row">
-                                                {!! Form::label('primero', 'Primer lugar:', []) !!}
+                                                {!! Form::label('primero', 'Jugador:', []) !!}
                                                 
                                                 {!! Form::select('1', [], null, ['id'=>'1','class'=>'form-control','placeholder'=>'Seleccione']) !!}
                                              
                                        </div>
-                                       <div class="form-row ">
+                                       {{--  <div class="form-row ">
                                        {!! Form::label('segundo', 'Segundo lugar:', []) !!}
                                        {!! Form::select('2', [], null, ['id'=>'2','class'=>'form-control','placeholder'=>'Seleccione']) !!}
                                     </div>
                                     <div class="form-row">
                                        {!! Form::label('tercero', 'Tercer lugar:', []) !!}
                                        {!! Form::select('3', [], null, ['id'=>'3','class'=>'form-control','placeholder'=>'Seleccione']) !!}
-                                    </div>
+                                    </div>  --}}
                                 </div>
+                                <div class="form-row ">
+                                        {!! Form::label('titulo', 'Titulo:', []) !!}
+                                        
+                                        {!! Form::textarea('descripcion', null, ['class'=>'form-control']) !!}
+                                        
+                                    </div>
                         </div>
                     </div>    
                     <div class="modal-footer">
@@ -56,8 +66,8 @@
                     for (var i = 0; i < data.length; i++) {
                         html_fases += '<option value=" ' + data[i].id_jug_club + '"> ' + data[i].nombre_club +': '+data[i].nombre_jugador+' '+data[i].apellidos_jugador+ '</option>';
                         $('#1').html(html_fases);
-                        $('#2').html(html_fases);
-                        $('#3').html(html_fases);
+                        //$('#2').html(html_fases);
+                        //$('#3').html(html_fases);
                         //console.log(html_fases);
                     }
                     //i++;

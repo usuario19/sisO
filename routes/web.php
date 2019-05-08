@@ -180,20 +180,26 @@ Route::group(['middleware' => ['web','guest']],function(){
 	Route::get('medallero',[ 
 				'uses'=> 'LugarController@medallero',
 				'as' => 'principal.medallero']);
-	
+
+	Route::get('medallero_club',[ 
+					'uses'=> 'LugarController@medallero_club',
+					'as' => 'principal.medallero_club']);
+	Route::get('reconocimientos',[ 
+						'uses'=> 'LugarController@reconocimientos',
+						'as' => 'principal.reconocimientos']);
 });
 
 //RUTAS QUE NECESITAS ESTAR LOQUEADO/A PARA VERLOS
 Route::group(['middleware' => 'auth'], function () {
 	//
 	Route::get('welcome',[
-		'uses'=>'PrincipalController@index',
+		'uses'=>'PrincipalController@index_conjunto',
 		'as'=>'principal.index_auth'] 
 	 );
 
 	 Route::post('partidos_hoy',[ 
 		'uses'=> 'PrincipalController@partidos_hoy',
-		'as' => 'principal.consultar_partidos2'
+		'as' => 'principal.encuentros_hoy'
 	]);
 	 Route::get('tabla/{gestion}/{disc}/{fase}/ver',[
 		'uses'=>'PrincipalController@tabla_pos',
@@ -356,6 +362,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
 	]);
+	Route::get('gestion/{id}/destroy_rec',[
+	    'uses'=> 'GestionController@destroy_rec',
+	    'as'=> 'gestion.destroy_rec'
+	]);
 	Route::get('gestion/{id}/disciplinas',[
 	    'uses'=> 'GestionController@destroy',
 	    'as'=> 'gestion.destroy'
@@ -417,6 +427,10 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@resultados_finales',
 	    'as'=> 'gestion.resultados_finales'
 	]);
+	Route::get('gestion/{id_gestion}/reconocimiento',[
+	    'uses'=> 'GestionController@reconocimientos',
+	    'as'=> 'gestion.reconocimientos'
+	]);
 	Route::get('gestion/{id_gestion}/{id_fase}/array_clubs_ajax',[
 	    'uses'=> 'GestionController@array_clubs_ajax',
 	    'as'=> 'gestion.array_clubs_ajax'
@@ -429,6 +443,32 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	    'uses'=> 'GestionController@registrar_ganadores',
 	    'as'=> 'gestion.registrar_ganadores'
 	]);
+	Route::post('registrar_reconocimientos',[
+	    'uses'=> 'GestionController@registrar_reconocimientos',
+	    'as'=> 'gestion.registrar_reconocimientos'
+	]);
+	Route::post('registrar_reconocimiento_jugador',[
+	    'uses'=> 'GestionController@registrar_reconocimiento_jugador',
+	    'as'=> 'gestion.registrar_reconocimiento_jugador'
+	]);
+	Route::put('gestion/editar_ganador',[
+	    'uses'=> 'GestionController@editar_ganador',
+	    'as'=> 'gestion.editar_ganador'
+	]);
+
+	Route::put('gestion/editar_rec',[
+	    'uses'=> 'GestionController@editar_rec',
+	    'as'=> 'gestion.editar_rec'
+	]);
+	Route::put('gestion/editar_ganador_club',[
+	    'uses'=> 'GestionController@editar_ganador_club',
+	    'as'=> 'gestion.editar_ganador_club'
+	]);
+
+	Route::put('gestion/editar_rec_club',[
+	    'uses'=> 'GestionController@editar_rec_club',
+	    'as'=> 'gestion.editar_rec_club'
+	]);
 	Route::post('registrar_ganadores_competicion',[
 	    'uses'=> 'GestionController@registrar_ganadores_competicion',
 	    'as'=> 'gestion.registrar_ganadores_competicion'
@@ -436,6 +476,11 @@ Route::group(['middleware' => ['auth','administrador']], function () {
 	Route::get('gestion/{id_gestion}/{id_disc}/mostrar_ganadores',[
 	    'uses'=> 'GestionController@mostrar_ganadores',
 	    'as'=> 'gestion.mostrar_ganadores'
+	]);
+
+	Route::get('gestion/{id_gestion}/{id_disc}/mostrar_reconocimientos',[
+	    'uses'=> 'GestionController@mostrar_reconocimientos',
+	    'as'=> 'gestion.mostrar_reconocimientos'
 	]);
 
 	//JUGADOR_INSCRIPCION

@@ -10,7 +10,8 @@ class Participante_Ganador extends Model
 	protected $primaryKey = 'id_participante_ganador';
     protected $fillable = [
     	'posicion_participante', 
-    	'id_jugador',
+    	/* 'id_jugador', */
+    	'id_jug_club',
     	'id_participacion',
     ];
     protected $hidden = ['remember_token'];
@@ -20,5 +21,8 @@ class Participante_Ganador extends Model
     } 
     public function jugador(){
     	return $this->belongsTo('App\Models\Jugador','id_jugador');
+    }
+    public function jugador_clubs(){
+    	return $this->belongsTo('App\Models\Jugador_club','id_jugador_club');
     }
 }

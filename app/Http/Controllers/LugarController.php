@@ -9,6 +9,9 @@ use App\Models\Galeria;
 use App\Models\Gestion;
 use App\Models\Ganador;
 use App\Models\Participacion;
+use App\Models\Jugador;
+use Illuminate\Support\Facades\DB;
+use App\Models\Reconocimiento;
 
 class LugarController extends Controller
 {
@@ -201,6 +204,19 @@ class LugarController extends Controller
         $ganadores=Participacion::all();
 
         return view('principal.medallero')->with('participacion',$ganadores);
+    }
+
+    public function medallero_club(){
+        $ganadores=Ganador::all();
+
+        return view('principal.medallero_club')->with('ganadores',$ganadores);
+    }
+
+    public function reconocimientos(){
+        $ganadores=Reconocimiento::where('id_jugador',null)->get();
+        $ganadores2=Reconocimiento::where('id_jugador','!=',null)->get();
+
+        return view('principal.lista_reconocimientos')->with('ganadores',$ganadores)->with('ganadores2',$ganadores2);
     }
     
 }

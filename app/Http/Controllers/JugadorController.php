@@ -215,6 +215,7 @@ class JugadorController extends Controller
             'fecha_nac_jugador' =>$row[5],
             'email_jugador'=>$row[6],
             'descripcion_jugador'=>$row[7], 
+            'foto_jugador'=>$row[8], 
         ];
     }
 
@@ -265,6 +266,7 @@ class JugadorController extends Controller
                     $jugador->fecha_nac_jugador =$datos['fecha_nac_jugador'];
                     $jugador->email_jugador = $datos['email_jugador'];
                     $jugador->descripcion_jugador = $datos['descripcion_jugador'];
+                    $jugador->foto_jugador = $datos['foto_jugador'];
                     $jugador->save();
                     
                     if($request->id_club)

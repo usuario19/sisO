@@ -25,7 +25,7 @@
               <img src="/storage/logos/abcd.png" height="60" class="rounded float-md-right" alt="">
             </div>
             <div class="col-md-10 col-12" style="padding:0%">
-              <p class="title text-md-left text-wrap text-center">OLIMPIADAS SI.T.UMSS</p>
+              <p class="title text-md-left text-wrap text-center">OLIMPIADAS F.N.T.U.B</p>
             </div>
           </div>
         </a>

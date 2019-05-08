@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGanadorsTable extends Migration
+class CreateReconocimientosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateGanadorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ganadors', function (Blueprint $table) {
-            $table->increments('id_ganador');
-            $table->integer('posicion_ganador');
+        Schema::create('reconocimientos', function (Blueprint $table) {
+            $table->increments('id_reconocimiento');
+            $table->string('titulo');
+            $table->text('descripcion');
+
             $table->integer('id_participacion')->unsigned();
             $table->foreign('id_participacion')->references('id_participacion')->on('participaciones')->onDelete('cascade');
                 
@@ -35,6 +37,6 @@ class CreateGanadorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ganadors');
+        Schema::dropIfExists('reconocimientos');
     }
 }

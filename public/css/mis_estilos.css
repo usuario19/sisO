@@ -136,6 +136,7 @@ ul.menu-nav li a {
     color: #ffffff;
     /* font-family: 'Oswald', sans-serif; */
     text-transform: uppercase;
+    font-size: 20px;
     /* font-weight: 100; */
 }
 
@@ -1427,6 +1428,11 @@ i.material-icons{
     border-bottom: #1D3B6D solid 2px;
     margin-bottom: 20px;
 }
+.reporte_g{
+    padding-top: 20px;
+    border-bottom: rgb(83, 83, 83) solid 1px;
+    margin-bottom: 20px;
+}
 .reporte_img {
     padding-top: 10px;
     border-bottom: rgb(255, 255, 255) solid 2px;
@@ -1625,8 +1631,8 @@ html {
   body {
     margin: 0;
     margin-bottom: 200px;
-    font-weight: lighter;
-    font-size: 80%;
+    font-weight: 400;
+    font-size: 90%;
     
     font-family: 'Quicksand', sans-serif;
   }
@@ -1724,7 +1730,7 @@ h5.title_gestion{
 }
 div.div_gestion{
     padding: 5px;
-    background: #0F4583;
+    background: #6C7174;
 }
 h5.title_gestion_nombre{
     
@@ -1745,6 +1751,44 @@ h4.lista_sub , span.lista_sub{
     margin: auto;
     text-transform: uppercase;
 }
+
+span.lista_sub_turismo{
+    font-family: 'Unica One', sans-serif;
+    color: #33333383;
+    font-size: 20px;
+    font-weight: 500;
+    margin: auto;
+    text-transform: uppercase;
+}
+a.active span.lista_sub_turismo{
+    font-weight: 800;
+    color: #333333ab;
+
+}
+span.lista_sub_turismob{
+    font-family: 'Unica One', sans-serif;
+    font-size: 20px;
+    margin: auto;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #333333ab;
+
+
+}
+span.lista_sub_turismoc{
+    font-family: 'Unica One', sans-serif;
+    color: #33333383;
+    font-size: 20px;
+    font-weight: 500;
+    margin: auto;
+    text-transform: uppercase;
+
+}
+a.active span.lista_sub_turismo:hover{
+    font-weight: 800;
+    color: #333333ab;
+}
+
 h4.lista_sub_rep , span.lista_sub_rep{
     font-family: 'Unica One', sans-serif;
     color: #173D58;
@@ -2030,13 +2074,18 @@ span.lista_sub_disc{
     text-transform: uppercase;
     color:#333333;
 }
-div.cubo:hover{
-    color:#0e0e0e2a;
-    background: rgba(15, 37, 53, 0.02);
+.cubo:hover{
+    color:#ffffff;
 }
 span.calendario_turismo{
     font-size: 15px;
     /* color: #C40F31; */
     text-transform: initial;
     font-weight: bold;
+}
+.fecha_aviso{
+    font-weight: 900;
+}
+div.card-a:active{
+    background: rgba(0, 0, 0, 0.404);
 }

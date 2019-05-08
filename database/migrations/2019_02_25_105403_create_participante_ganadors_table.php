@@ -18,9 +18,10 @@ class CreateParticipanteGanadorsTable extends Migration
             $table->integer('posicion_participante');
             $table->integer('id_participacion')->unsigned();
             $table->foreign('id_participacion')->references('id_participacion')->on('participaciones')->onDelete('cascade');
-                
-            $table->integer('id_jugador')->unsigned();
-            $table->foreign('id_jugador')->references('id_jugador')->on('jugadores')->onDelete('cascade');
+            $table->integer('id_jug_club')->unsigned();
+            $table->foreign('id_jug_club')->references('id_jug_club')->on('jugador_clubs')->onDelete('cascade');    
+            /* $table->integer('id_jugador')->unsigned();
+            $table->foreign('id_jugador')->references('id_jugador')->on('jugadores')->onDelete('cascade'); */
             $table->timestamps();
         });
     }

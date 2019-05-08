@@ -6,12 +6,12 @@
 
 @section('content')
 
-    <div class="container-fluid" style="background: #E74C3C">
+    <div class="container" style="background: #E74C3C">
         <div class="div-title-sub container text-left">
             <a class="" href="{{ route('gestion.mostrar_principal') }}" style="text-decoration:none"><h6 class="title-principal">GESTIONES</h6></a>
         </div>
     </div>
-    <div class="container-fluid" style="background: #CB4335">
+    <div class="container" style="background: #CB4335">
         <div class="div-title-principal container text-center">
                 <h1 class="title-principal">{{strtoupper($gestion->nombre_gestion)}}</h1>
         </div>
@@ -39,7 +39,7 @@
             <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
                 <table class="table table-borderless" style="margin: 0%">
                     <thead>
-                        <th class="sub-title">informacion</th>
+                        <th class="lista_sub">informacion</th>
                     </thead>
                 </table>
             </div>
@@ -85,19 +85,23 @@
             <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
                 <table class="table table-borderless" style="margin: 0%">
                     <thead>
-                        <th class="sub-title">disciplinas</th>
+                        <th class="lista_sub">disciplinas</th>
                     </thead>
                 </table>
             </div>
         <div class="col-md-12 mx-auto">
             <div class="form-row">
                 @foreach ($gestion->participaciones as $participacion)
+                    @foreach ($participacion->disciplina as $item)
+                        
+                    @endforeach
                 <div class="col-md-3">
                         <a class="title-span" title="Ver resultados" href="">
                             <div class="text-center" style="margin: 20px">
                                 <img class="rounded mx-auto d-block" src="/storage/foto_disc/{{$participacion->disciplina->foto_disc}}" alt="" width="100px" height="100px">
                                 <br><span>{{$participacion->disciplina->nombre_disc}}</span>
-                                <span>{{$participacion->disciplina->nombre_categoria($participacion->disciplina->categoria)}}</span>
+                                <span>{{$participacion->disciplina->nombre_categoria($participacion->disciplina->categoria)}}</span><br>
+                                <span>{{$participacion->disciplina->nombre_subcateg($participacion->disciplina->sub_categoria)}}</span>
                                 
                             </div>
                         </a>
@@ -131,7 +135,7 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive-xl">
+    {{--  <div class="table-responsive-xl">
         <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
             <table class="table table-borderless" style="margin: 0%">
                 <thead>
@@ -141,7 +145,7 @@
                 </thead>
             </table>
         </div>
-    </div>
+    </div>  --}}
 </div>
 
     @include('sweetalert::cdn') 

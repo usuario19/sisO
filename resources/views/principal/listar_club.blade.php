@@ -5,7 +5,7 @@
 
 @section('content')
 
-<div class="container-fluid" style="background: #00447B">
+<div class="container" style="background: #00447B">
     <div class="div-title-principal container text-center">
         <h1 class="title-principal">CLUBS</h1>
     </div>
@@ -13,14 +13,14 @@
 <br>
 <div class="container">
         <div class="col-md-12" style="border-block-end: solid 2px #D0D3D4">
-                <table class="table table-borderless" style="margin: 0%">
+                {{--  <table class="table table-borderless" style="margin: 0%">
                     <thead>
                         <th id="ordenar_nombre" class="link-change text-right" style="width: 50%"><span>Ordenar por nombre</span></th>
                         <th id="ordenar_ciudad" class="link-change" style="width: 50%">
                             <span>Ordenar por ciudad</span>
                         </th>
                     </thead>
-                </table>
+                </table>  --}}
             </div>
             <br>
 </div>
@@ -33,8 +33,9 @@
                       <a class="title-span" href="{{ route('principal.club_info',$club->id_club) }}">
                           <div class="text-center" style="margin: 20px">
                               <img class="rounded-circle mx-auto d-block" src="/storage/logos/{{ $club->logo}}" alt="" width="100px" height="100px">
-                              <br><span>{{ $club->nombre_club}}</span><br>
-                              <span>{{ $club->ciudad}}</span>
+                              <br>
+                            <span class="lista_sub text-dark">{{ $club->ciudad}}</span>
+                              <br><span>{{ $club->nombre_club}}</span>
                           </div>
                       </a>
                 </div>

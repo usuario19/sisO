@@ -29,4 +29,7 @@ class Jugador_Club extends Model
     public function selecciones(){
          return $this->hasMany('App\Models\Seleccion','id_jug_club');
     }
+    public function ganadores(){
+        return $this->hasMany('App\Models\Ganador','id_jug_club');
+   }
 }

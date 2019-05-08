@@ -37,6 +37,10 @@ class Club extends Model
 		return $this->hasMany('App\Models\Admin_Club','id_adminClub');  
 	}
     //
+    public function reconocimientos(){
+    	return $this->hasMany('App\Models\Reconocimiento','id_club');
+    }
+
     public function club_participaciones(){
 
         return $this->hasMany('App\Models\Club_Participacion','id_club');  

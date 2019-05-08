@@ -151,8 +151,8 @@ class Disciplina extends Model
                 return 1;
             }
         } else {
-            $ganadores = DB::table('participante_ganadors')
-                ->join('participaciones','participante_ganadors.id_participacion','participaciones.id_participacion')
+            $ganadores = DB::table('ganadors')
+                ->join('participaciones','ganadors.id_participacion','participaciones.id_participacion')
                 ->where('participaciones.id_gestion',$id_gestion)
                 ->where('participaciones.id_disciplina',$id_disc)->get()->last();
             if (empty($ganadores)) {
@@ -160,6 +160,15 @@ class Disciplina extends Model
             } else {
                 return 1;
             }
+           /*  $ganadores = DB::table('participante_ganadors')
+                ->join('participaciones','participante_ganadors.id_participacion','participaciones.id_participacion')
+                ->where('participaciones.id_gestion',$id_gestion)
+                ->where('participaciones.id_disciplina',$id_disc)->get()->last();
+            if (empty($ganadores)) {
+                return 0;
+            } else {
+                return 1;
+            } */
         }
     }
     public function es_futbol($id_disc){

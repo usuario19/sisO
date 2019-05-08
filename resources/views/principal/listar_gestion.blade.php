@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background: #E74C3C">
+<div class="container" style="background: #E74C3C">
     <div class="div-title-principal container text-center">
         <h1 class="title-principal">GESTIONES</h1>
     </div>

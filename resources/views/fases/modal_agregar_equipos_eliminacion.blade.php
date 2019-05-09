@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>'fase.store_club_eliminacion','method' => 'POST']) !!}
+{!! Form::open(['route'=>'fase.store_club_eliminacion','method' => 'POST','class'=>'form_disc_reg','id'=>'form1']) !!}
                 
                       <div class="modal fade" id="v" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -12,9 +12,11 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <h6></h6><br>
+                              <h6></h6>
                                     <div class="col-md-12">
                                               <div class="form-row">
+                                                <div class="form1 form-group">
+                                                </div>
                                                 <div class="form-group col-md-12">
                                                   <table class="table mi_tabla table-sm table-bordered">
                                                     <thead>

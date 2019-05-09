@@ -7,13 +7,14 @@ SisO - Medallero
 
 
 <div class="container mx-auto padd_none">
-  <div class="container-fluid" style="background: #FFC107">
-    <div class="div-title-principal container text-center" style="height: 80px">
-      <h5 class="lista text-dark">ganadores</h5>
+  <div class="container"  style="background: #C40F31" >
+    <div class="div-title-principal container text-center">
+        <h1 class="title-principal">GANADORES</h1>
     </div>
-  </div>
+</div>
+<br>
 
-  <div class="container col-md-10">
+  <div class="container col-md-12">
     @foreach ($participacion->groupBy('id_gestion') as $gestion)
     <div class="margin_top col-md-12 mx-auto padd_none" tyle="border-block-end: solid 2px #D0D3D4">
       <h5 class="lista text-center" style="color:black">{{$gestion->first()->gestiones->nombre_gestion}}</h5>

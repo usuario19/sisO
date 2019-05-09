@@ -133,52 +133,52 @@ class AdministradoresTableSeeder extends Seeder
             'descripcion_club' => 'El alto',
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '1',
+            'id_administrador' => 1,
+            'id_club' => 1,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '2',
+            'id_administrador' => 1,
+            'id_club' => 2,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '3',
+            'id_administrador' => 1,
+            'id_club' => 3,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '4',
+            'id_administrador' => 1,
+            'id_club' => 4,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '5',
+            'id_administrador' => 1,
+            'id_club' => 5,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '6',
+            'id_administrador' => 1,
+            'id_club' => 6,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '7',
+            'id_administrador' => 1,
+            'id_club' => 7,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '8',
+            'id_administrador' => 1,
+            'id_club' => 8,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '9',
+            'id_administrador' => 1,
+            'id_club' => 9,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '10',
+            'id_administrador' => 1,
+            'id_club' => 10,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '11',
+            'id_administrador' => 1,
+            'id_club' => 11,
         ]);
         DB::table('adminclubs')->insert([
-            'id_administrador' => '1',
-            'id_club' => '12',
+            'id_administrador' => 1,
+            'id_club' => 12,
         ]);
     }
 }

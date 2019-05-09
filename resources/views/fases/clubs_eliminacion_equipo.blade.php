@@ -101,4 +101,5 @@
 @section('scripts')
 {!! Html::script('/js/checkbox.js') !!}
 {!! Html::script('/js/reset_inputs.js') !!}
+{!! Html::script('/js/validacion_ajax_disc_reg.js') !!}
 @endsection

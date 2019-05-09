@@ -101,34 +101,7 @@
                     class="button_delete" data-target="#Eliminar{{$disciplina->id_disc }}">
                           <i title="Eliminar" class="material-icons delete_button button_redirect">delete</i>
                         </a>
-                  <!-- Modal -->
-                  <div class="modal fade" id="Eliminar{{ $disciplina->id_disc}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header modal_advertencia">
-                          <h5 class="modal-title" id="exampleModalLabel">ADVERTENCIA:</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                        </div>
-
-                        <div class="modal-body">
-                          ¿Esta seguro de querer eliminar la esta disciplina?
-                        </div>
-
-                        <div class="modal-footer">
-                          <div class="form-group col-md-6">
-                            <a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-block btn-danger">Eliminar</a>
-                          </div>
-                          <div class="form-group col-md-6">
-                            <button type="button" class="btn btn-block btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  
                 </td>
                 {{-- <td>
                   <a href="#?" data-toggle="modal" class="button_delete" data-target="#inscribir{{$disciplina->id_disc }}">
@@ -197,6 +170,35 @@
                     </div>
                   {!! Form::close() !!}
                 </td> --}}
+
+                <!-- Modal -->
+                  <div class="modal fade" id="Eliminar{{ $disciplina->id_disc}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header modal_advertencia">
+                          <h5 class="modal-title" id="exampleModalLabel">ADVERTENCIA:</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                        </div>
+
+                        <div class="modal-body">
+                          ¿Esta seguro de querer eliminar la esta disciplina?
+                        </div>
+
+                        <div class="modal-footer">
+                          <div class="form-group col-md-6">
+                            <a href="{{ route('gestion.eliminar_disciplina',[$gestion->id_gestion,$disciplina->id_disc]) }}" class="btn btn-block btn-danger">Eliminar</a>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <button type="button" class="btn btn-block btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </tr>
               @endforeach
             </tbody>
@@ -222,7 +224,7 @@
     function redirect(e){
       elemento = e.target;
       console.log(elemento.className)
-      if(elemento.className.indexOf('button_redirect') == -1)
+      if(elemento.className.indexOf('button_redirect') == -1)//si no lo encuentra
         {
           window.location = elemento.parentNode.getAttribute('data-href');
           console.log(e.target)

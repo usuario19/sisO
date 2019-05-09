@@ -6,11 +6,11 @@ SisO - Lista de gestiones
 
 @section('content')
 <div class="container mx-auto padd_none">
-  <div class="container-fluid" style="background: #FFC107">
-    <div class="div-title-principal container text-center" style="height: 80px">
-      <h5 class="lista text-dark">Trofeos</h5>
+  <div class="container"  style="background: #FFB935" >
+    <div class="div-title-principal container text-center">
+        <h1 class="title-principal text-dark">medallero</h1>
     </div>
-  </div>
+</div>
 </div>
 <div class="container col-md-10 p-0">
     @foreach ($ganadores->groupBy('id_gestion') as $gestion)

@@ -316,6 +316,13 @@ class FaseController extends Controller
 
     public function store_club_eliminacion(Request $request)
     {
+        
+        $this->validate($request, [
+            'id_club' => 'required'
+        ],[
+            'id_club.required'=>'Debe seleccionar por lo menos una opcion.']
+        );
+
         $disciplina = Disciplina::find($request->get('id_disciplina'));
         $clubs = $request->get('id_club');
         foreach ($clubs as $club) {

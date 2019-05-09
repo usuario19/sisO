@@ -9,6 +9,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
+<<<<<<< HEAD
       </div>
 
       <div class="modal-body">
@@ -36,6 +37,68 @@
             !!}
 
           </div>
+=======
+                            </div>
+                            
+                            <div class="modal-body">
+                              <h6>Datos generales:</h6>                
+                                      <div style="display: none">
+                                          {!! Form::text('id_gestion', $gestion->id_gestion, []) !!}
+                                          {!! Form::text('id_disc', $disciplina->id_disc, []) !!}
+                                  </div>
+                              <div class="form-row">
+                                  <div class="col-md-6">
+                                    {!! Form::label('ubicacion', 'Ubicacion', []) !!}
+                                      {!! Form::select('id_centro',$centros,null, ['placeholder'=>'seleccione','class'=>'form-control custom-select','required'=>'required']) !!}     
+                                      
+                                  </div>
+                                  <div class="col-md-6">
+                                      {!! Form::label('id_fecha', 'Fecha', []) !!}
+                                      {!! Form::select('id_fecha',$fechas2, null,['placeholder'=>'seleccione','class'=>'form-control custom-select','required'=>'required']) !!}     
+                                  </div>
+                              </div>
+                              <div class="form-row">
+                                  <div class="col-md-6">
+                                    {!! Form::label('fechas', 'Fecha', []) !!}
+                                      {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class'=>'form-control']) !!}
+                                    
+                                  </div>
+                                  <div class="col-md-6">
+                                      {!! Form::label('hora', 'Hora', []) !!}
+                                      {!! Form::time('hora', \Illuminate\Support\Carbon::now()->format('H:i'), ['class'=>'form-control']) !!}
+                                   
+                                </div>
+                                  </div>
+                                <div class="form-row">
+                                  <div class="col-md-12">
+                                      {!! Form::label('detalle', 'Detalle', []) !!}
+                                      {!! Form::textarea('detalle',null, ['class'=>'form-control','rows'=>4]) !!}
+                                  </div>
+                              </div>
+                              <div class="form-row">
+                                  <div class="col-md-12">
+                                  {!! Form::label('texto', 'Seleccione participantes', []) !!}
+                                  <br>
+                                    @foreach ($participantes as $participante)
+                                    {!! Form::checkbox('id_participante[]',$participante->id_jugador, false, ['class'=>'check_us']) !!}
+                                    <img src="/storage/fotos/{{ $participante->foto_jugador }}" alt="" width="50px" height="50px">{{ $participante->nombre_jugador." ".$participante->apellidos_jugador }} <br>
+                                    <br>
+                                    @endforeach
+                            </div></div>
+                              </div>
+                              
+                              <div class="modal-footer">
+                                  <div class="row col-md-12">
+                                      <div class="form-group col-md-6">
+                                          {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
+                                          </div>
+                                      <div class="form-group col-md-6">
+                                  {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+                                  </div>
+                                  
+                                  </div>
+                              </div>
+>>>>>>> refs/remotes/origin/master
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">

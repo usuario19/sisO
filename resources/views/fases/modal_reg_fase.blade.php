@@ -12,25 +12,32 @@
       <div class="modal-body">
           <div class="form-group">
             {!! Form::label('nombre', 'Nombre', []) !!}
-            {!! Form::text('nombre', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+            {!! Form::text('nombre_fase', null, ['class'=>'form-control','placeholder'=>'Nombre']) !!}
             <div id ="error_nombre" class="">
             </div>
           </div>
           <div class="form-group">
             {!! Form::label('tipo', 'Tipo', []) !!}
+<<<<<<< HEAD
             <div class="">
             </div>
+=======
+>>>>>>> refs/remotes/origin/master
             <br>
             <div class="card">
               <div class="card-body padd_bottom_none">
                 <div class="form-row">
-                  
                     @foreach ($tipos2 as $tipo)
                     <div class="form-group col-md-4">
+<<<<<<< HEAD
                       {!! Form::radio('tipo',$tipo->id_tipo,true,['id'=>'series'.$tipo->id_tipo,'class'=>'radio']) !!}
                       {!! Form::label('series'.$tipo->id_tipo,ucwords(strtolower($tipo->nombre_tipo)), []) !!}
+=======
+                      {!! Form::radio('tipo',$tipo->id_tipo,2,['id'=>'series','class'=>'radio']) !!}
+                      {!! Form::label('series',$tipo->nombre_tipo, []) !!}
+>>>>>>> refs/remotes/origin/master
                       </div>
-                    @endforeach       
+                    @endforeach    
                 </div>  
               </div>
            </div>
@@ -64,5 +71,7 @@
 </div>
 {!! Form::close() !!}
 
-   
+@section('scripts')
+  {!! Html::script('/js/validacion_reg_fase.js') !!}
+@endsection
 

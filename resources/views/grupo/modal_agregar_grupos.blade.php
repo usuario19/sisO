@@ -35,7 +35,11 @@
                                         <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre', 'Nombre', []) !!}
+<<<<<<< HEAD
                                                     {!! Form::text('nombre',"Grupo ".chr($j), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+=======
+                                                    {!! Form::text('nombre',null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
+>>>>>>> refs/remotes/origin/master
                                                 </div>
                                             </div>	
                                     </div>	
@@ -49,7 +53,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre', 'Nombre', []) !!}
+<<<<<<< HEAD
                                                     {!! Form::text('nombre'.$i,"Grupo ".chr($j+$i), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+=======
+                                                    {!! Form::text('nombre'.$i,null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
+>>>>>>> refs/remotes/origin/master
                                                 </div>
                                             </div>
                                         </div>
@@ -68,7 +76,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
+<<<<<<< HEAD
                                                     {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-2), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+=======
+                                                    {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
+>>>>>>> refs/remotes/origin/master
                                                 </div>
                                             </div>
                                         </div>
@@ -86,7 +98,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
+<<<<<<< HEAD
                                                     {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-5), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+=======
+                                                    {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
+>>>>>>> refs/remotes/origin/master
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +119,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     {!! Form::label('nombre'.$i, 'Nombre', []) !!}
+<<<<<<< HEAD
                                                     {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-9), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+=======
+                                                    {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
+>>>>>>> refs/remotes/origin/master
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +140,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                         {!! Form::label('nombre'.$i, 'Nombre', []) !!}
+<<<<<<< HEAD
                                                         {!! Form::text('nombre'.$i, "Grupo ".chr($j+$i-14), ['class'=>'form-control','placeholder'=>'Nombre']) !!}
+=======
+                                                        {!! Form::text('nombre'.$i, null, ['class'=>'nombre_grupo form-control','placeholder'=>'Nombre']) !!}
+>>>>>>> refs/remotes/origin/master
                                                 </div>
                                             </div>
                                         </div>

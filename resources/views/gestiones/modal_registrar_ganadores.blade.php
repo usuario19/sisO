@@ -18,22 +18,22 @@
                                 <div class="container col-md-12" id="resultado">
                                        <div class="form-row">
                                                 {!! Form::label('primero', 'Primer lugar:', []) !!}
-                                                
-                                                {!! Form::select('1', [], null, ['id'=>'primero','class'=>'form-control','placeholder'=>'Seleccione']) !!}
+                                                {!! Form::select('1', [], null, ['id'=>'primero','class'=>'form-control','placeholder'=>'Seleccione','required'=>'required']) !!}
                                              
                                        </div>
                                        <div class="form-row ">
                                        {!! Form::label('segundo', 'Segundo lugar:', []) !!}
-                                       {!! Form::select('2', [], null, ['id'=>'segundo','class'=>'form-control','placeholder'=>'Seleccione']) !!}
+                                       {!! Form::select('2', [], null, ['id'=>'segundo','class'=>'form-control','placeholder'=>'Seleccione','required'=>'required']) !!}
                                     </div>
                                     <div class="form-row">
                                        {!! Form::label('tercero', 'Tercer lugar:', []) !!}
-                                       {!! Form::select('3', [], null, ['id'=>'tercero','class'=>'form-control','placeholder'=>'Seleccione']) !!}
+                                       {!! Form::select('3', [], null, ['id'=>'tercero','class'=>'form-control','placeholder'=>'Seleccione','required'=>'required']) !!}
                                     </div>
                                 </div>
                         </div>
                     </div>    
                     <div class="modal-footer">
+<<<<<<< HEAD
                         <div class="row col-md-12">
 								
                             <div class="form-group col-md-6">
@@ -49,6 +49,17 @@
                             {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary btn_cerrar']) !!}
                             </div>
                             </div>
+=======
+                            <div class="row col-md-12">
+                                    <div class="form-group col-md-6">
+                                        {!! Form::submit('Aceptar', ['class'=>'btn btn-block btn-primary btn_aceptar']) !!}
+                                        </div>
+                                    <div class="form-group col-md-6">
+                                {!! Form::submit('Cancelar', ['data-dismiss'=>"modal" ,'class'=>'btn btn-block btn-secondary']) !!}
+                                </div>
+                                
+                                </div>
+>>>>>>> refs/remotes/origin/master
                     </div>
                 </div>      
             </div>

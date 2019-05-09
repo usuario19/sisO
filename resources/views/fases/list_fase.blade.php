@@ -174,7 +174,10 @@
     }
 </script>  --}}
   {!! Html::script('/js/filtrar_por_nombre.js') !!}
+<<<<<<< HEAD
   {!! Html::script('/js/validaciones.js') !!}
   {!! Html::script('/js/reset_inputs.js') !!}
   {!! Html::script('/js/validacion_reg_fase.js') !!}
+=======
+>>>>>>> refs/remotes/origin/master
 @endsection

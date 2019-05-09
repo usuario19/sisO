@@ -17,10 +17,14 @@ use App\Models\Participacion;
 use App\Models\Fase_Tipo;
 use App\Models\Centro;
 use Illuminate\Support\Facades\DB;
+<<<<<<< HEAD
 use App\Models\Seleccion_Eliminacion;
 use App\Models\Jugador;
 use App\Models\Tabla_Posicion_Jugador;
 use App\Models\Tabla_Posiciones_Set;
+=======
+use App\Http\Requests\CrearFaseRequest;
+>>>>>>> refs/remotes/origin/master
 
 class FaseController extends Controller
 {
@@ -33,15 +37,12 @@ class FaseController extends Controller
         $tipos = DB::table('tipos')->get();
         return view('fases.reg_fase')->with('tipos', $tipos)->with('id_disc', $id_disc)->with('id_gestion', $id_gestion);
     }
-    public function store(Request $request)
-    {   
-        $this->validate($request,[
-            
-            'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
-             
-            'tipo' =>'required',
-            
-            ]);
+    public function store(CrearFaseRequest $request)
+    {   //$validated = $request->validated();
+        // $this->validate($request,[
+        //     'nombre'=>['required','between:2,150', new \App\Rules\Alpha_spaces], 
+        //     'tipo' =>'required',
+        //     ]);
 
         $id_disc = $request->get('id_disc');
         $id_gestion = $request->get('id_gestion');
@@ -51,7 +52,7 @@ class FaseController extends Controller
             ->select('participaciones.id_participacion')
             ->get()->toArray();
         $fases = new Fase;
-        $fases->nombre_fase = $request->get('nombre');
+        $fases->nombre_fase = $request->get('nombre_fase');
         $fases->id_participacion = $id_participacion[0]->{'id_participacion'};
         $fases->save();
 
